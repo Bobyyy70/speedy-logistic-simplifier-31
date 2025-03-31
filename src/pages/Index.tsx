@@ -1,13 +1,35 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { Hero } from "@/components/home/Hero";
+import { Services } from "@/components/home/Services";
+import { HowItWorks } from "@/components/home/HowItWorks";
+import { WhyChooseUs } from "@/components/home/WhyChooseUs";
+import { Testimonials } from "@/components/home/Testimonials";
+import { FAQ } from "@/components/home/FAQ";
+import { ContactCTA } from "@/components/home/ContactCTA";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { useEffect } from "react";
 
 const Index = () => {
+  // Scroll to top on component mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <>
+      <Navbar />
+      <main>
+        <Hero />
+        <Services />
+        <HowItWorks />
+        <WhyChooseUs />
+        <Testimonials />
+        <FAQ />
+        <ContactCTA />
+      </main>
+      <Footer />
+    </>
   );
 };
 
