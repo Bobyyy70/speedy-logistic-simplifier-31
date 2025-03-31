@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { LogoIcon } from "@/components/ui/LogoIcon";
 
-export function Footer() {
+const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -111,4 +111,6 @@ export function Footer() {
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;
