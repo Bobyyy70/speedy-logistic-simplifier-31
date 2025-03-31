@@ -1,231 +1,173 @@
 
-import { useEffect } from "react";
-import { Info, Check, Package, FileText, Clock, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 import {
   Table,
   TableBody,
+  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { 
+  Card, 
+  CardContent, 
+  CardDescription, 
+  CardFooter, 
+  CardHeader, 
+  CardTitle 
+} from "@/components/ui/card";
+import { Truck } from "lucide-react";
 
-const pricingItems = [
+// Types pour les services de tarification
+type PricingService = {
+  name: string;
+  description: string;
+  price: string;
+  unit: string;
+};
+
+// Données des services
+const pricingServices: PricingService[] = [
   {
     name: "Colisage",
-    price: "3,50 €",
+    description: "Préparation et emballage de votre commande",
+    price: "1,80€",
     unit: "par colis",
-    icon: Package,
-    description: "Préparation, emballage et étiquetage de votre colis",
   },
   {
-    name: "Article Supplémentaire",
-    price: "0,30 €",
+    name: "Article supplémentaire",
+    description: "Chaque article ajouté au colis",
+    price: "0,15€",
     unit: "par article",
-    icon: Package,
-    description: "Coût pour chaque article additionnel dans un même colis",
   },
   {
     name: "Stockage",
-    price: "15,00 €",
+    description: "Stockage sécurisé de vos produits",
+    price: "19,90€",
     unit: "par m³/mois",
-    icon: FileText,
-    description: "Stockage de vos produits dans notre entrepôt sécurisé",
   },
   {
-    name: "Traitement Retour",
-    price: "2,50 €",
-    unit: "par colis",
-    icon: Clock,
-    description: "Réception et traitement d'un colis retour",
+    name: "Traitement retour",
+    description: "Gestion des produits retournés",
+    price: "1,80€",
+    unit: "par retour",
   },
   {
     name: "Restockage",
-    price: "0,50 €",
+    description: "Remise en stock d'un article retourné",
+    price: "0,30€",
     unit: "par article",
-    icon: Package,
-    description: "Remise en stock d'un article retourné après contrôle",
   },
   {
     name: "Édition CN23",
-    price: "1,50 €",
+    description: "Documents douaniers pour l'international",
+    price: "2,90€",
     unit: "par document",
-    icon: FileText,
-    description: "Création et impression des documents douaniers",
   },
   {
-    name: "Déchargement Palette",
-    price: "15,00 €",
+    name: "Déchargement palette",
+    description: "Réception et déchargement",
+    price: "9,90€",
     unit: "par palette",
-    icon: Package,
-    description: "Réception et déchargement d'une palette de marchandises",
   },
 ];
 
-const transportInfo = [
-  "Tarifs négociés avec nos partenaires transporteurs",
-  "Prix variables selon destination, poids et dimensions",
-  "Devis personnalisé en fonction de votre volume",
-  "Livraison en France et international",
-  "Options express disponibles",
-];
-
-const PricingPage = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
+// Composant pour les tarifs
+const Pricing = () => {
   return (
-    <>
-      <Navbar />
-      <main>
-        {/* Hero Section */}
-        <section className="bg-gradient-to-r from-blue-50 to-sky-50 pt-32 pb-16">
-          <div className="section-container">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Tarification Transparente
-              </h1>
-              <p className="text-xl text-muted-foreground">
-                Des prix clairs et sans surprise pour une gestion sereine de votre budget logistique. Tous nos tarifs sont indiqués hors taxes (HT).
-              </p>
-            </div>
+    <Layout>
+      <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-3xl font-bold text-center mb-6">Nos tarifs</h1>
+          
+          <div className="text-center mb-12">
+            <p className="text-lg mb-4">
+              Chez Speed E Log, nous croyons en la transparence totale des tarifs. Voici notre grille tarifaire indicative pour nos services de logistique e-commerce.
+            </p>
+            <p className="text-muted-foreground">
+              Tous les prix sont indiqués hors taxes (HT) et incluent les fournitures d'emballage standard.
+            </p>
           </div>
-        </section>
 
-        {/* Pricing Table */}
-        <section className="section-container">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-10 text-center">
-              Grille Tarifaire Indicative
-            </h2>
-
-            <div className="overflow-x-auto rounded-lg border shadow-sm mb-12">
+          {/* Grille tarifaire sous forme de tableau */}
+          <Card className="mb-12">
+            <CardHeader>
+              <CardTitle>Grille tarifaire</CardTitle>
+              <CardDescription>
+                Tarifs indicatifs pour les services logistiques
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
               <Table>
+                <TableCaption>
+                  * Les tarifs de transport varient selon le poids, les dimensions et la destination.
+                </TableCaption>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="w-1/2">Service</TableHead>
-                    <TableHead>Prix HT</TableHead>
-                    <TableHead className="hidden md:table-cell">Unité</TableHead>
-                    <TableHead className="text-right">
-                      <span className="sr-only">Info</span>
-                    </TableHead>
+                    <TableHead className="w-[250px]">Service</TableHead>
+                    <TableHead>Description</TableHead>
+                    <TableHead className="text-right">Tarif HT</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {pricingItems.map((item, index) => (
-                    <TableRow key={index}>
-                      <TableCell className="font-medium flex items-center gap-2">
-                        <div className="bg-primary/10 w-8 h-8 rounded-md flex items-center justify-center">
-                          <item.icon className="h-4 w-4 text-primary" />
-                        </div>
-                        {item.name}
-                      </TableCell>
-                      <TableCell className="font-bold">{item.price}</TableCell>
-                      <TableCell className="hidden md:table-cell text-muted-foreground">
-                        {item.unit}
-                      </TableCell>
+                  {pricingServices.map((service) => (
+                    <TableRow key={service.name}>
+                      <TableCell className="font-medium">{service.name}</TableCell>
+                      <TableCell>{service.description}</TableCell>
                       <TableCell className="text-right">
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger>
-                              <Info className="h-4 w-4 text-muted-foreground" />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p className="max-w-xs">{item.description}</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
+                        {service.price} <span className="text-muted-foreground text-sm">{service.unit}</span>
                       </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
               </Table>
-            </div>
+            </CardContent>
+          </Card>
 
-            <div className="bg-gray-50 p-6 rounded-lg border mb-12">
-              <h3 className="text-xl font-semibold mb-4">Précisions Importantes :</h3>
-              <ul className="space-y-2">
-                <li className="flex items-start gap-2">
-                  <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                  <span>Les fournitures standard d'emballage sont incluses (carton, film bulle, adhésif).</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                  <span>Les emballages personnalisés à votre marque sont facturés au prix coûtant.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                  <span>Le stockage est calculé sur l'espace réellement occupé (volume) et non au mètre carré.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                  <span>Aucun frais d'activation ou d'intégration n'est facturé pour les plateformes standards.</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-primary/5 p-6 rounded-lg border border-primary/20 mb-12">
-              <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+          {/* Section transport */}
+          <Card className="mb-12 border-primary/20">
+            <CardHeader className="bg-primary/5">
+              <div className="flex items-center gap-2 mb-2">
                 <Truck className="h-5 w-5 text-primary" />
-                Tarifs de Transport
-              </h3>
+                <CardTitle>Transport</CardTitle>
+              </div>
+              <CardDescription>
+                Expédition nationale et internationale
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="pt-6">
               <p className="mb-4">
-                Les frais de transport sont variables et dépendent de plusieurs facteurs. Nous avons négocié des tarifs avantageux avec nos partenaires transporteurs.
+                Les tarifs de transport sont variables et dépendent de plusieurs facteurs :
               </p>
-              <ul className="space-y-2">
-                {transportInfo.map((info, index) => (
-                  <li key={index} className="flex items-start gap-2">
-                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                    <span>{info}</span>
-                  </li>
-                ))}
+              <ul className="list-disc pl-5 space-y-2 mb-4">
+                <li>Poids et dimensions du colis</li>
+                <li>Destination (France, Europe, International)</li>
+                <li>Niveau de service choisi (standard, express, etc.)</li>
+                <li>Options supplémentaires (assurance, signature, etc.)</li>
               </ul>
-            </div>
-
-            <div className="text-center">
-              <Button asChild size="lg">
-                <Link to="/contact">
-                  Demander un devis personnalisé <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <p className="text-sm text-muted-foreground mt-3">
-                Nous vous répondrons sous 24h ouvrées avec une proposition adaptée à vos besoins.
+              <p>
+                Nous travaillons avec plusieurs transporteurs nationaux et internationaux pour vous offrir le meilleur rapport qualité/prix. Les tarifs de transport sont communiqués sur devis personnalisé.
               </p>
-            </div>
-          </div>
-        </section>
+            </CardContent>
+          </Card>
 
-        {/* Volume Discount */}
-        <section className="bg-gray-50 py-16">
-          <div className="section-container">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-6">
-                Tarifs Dégressifs selon Volume
-              </h2>
-              <p className="text-lg text-muted-foreground mb-8">
-                Plus votre volume de commandes est important, plus nos tarifs sont avantageux. Contactez-nous pour une grille tarifaire personnalisée.
-              </p>
-              <Button asChild>
-                <Link to="/contact">Discuter de votre volume</Link>
-              </Button>
-            </div>
+          {/* CTA Devis personnalisé */}
+          <div className="bg-card rounded-lg p-8 text-center shadow-md border border-border">
+            <h2 className="text-2xl font-semibold mb-4">Besoin d'un devis personnalisé ?</h2>
+            <p className="mb-6 max-w-2xl mx-auto">
+              Chaque entreprise e-commerce a des besoins spécifiques. Contactez-nous pour obtenir un devis adapté à votre volume de commandes, vos produits et vos exigences particulières.
+            </p>
+            <Button size="lg" className="font-medium">
+              Demander un devis personnalisé
+            </Button>
           </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+        </div>
+      </div>
+    </Layout>
   );
 };
 
-export default PricingPage;
+export default Pricing;
