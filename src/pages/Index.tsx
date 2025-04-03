@@ -1,6 +1,7 @@
 
 import { useEffect } from "react";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { ChallengesSection } from "@/components/sections/ChallengesSection";
 import { Services } from "@/components/home/Services";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
@@ -17,6 +18,7 @@ const Index = () => {
   return (
     <>
       <HeroSection />
+      <ChallengesSection />
       <Services />
       <HowItWorks />
       <WhyChooseUs />
