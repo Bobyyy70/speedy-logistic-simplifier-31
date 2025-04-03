@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ChallengesSection } from "@/components/sections/ChallengesSection";
 import { Services } from "@/components/home/Services";
-import { HowItWorks } from "@/components/home/HowItWorks";
+import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 import { Testimonials } from "@/components/home/Testimonials";
 import { FAQ } from "@/components/home/FAQ";
@@ -20,7 +20,7 @@ const Index = () => {
       <HeroSection />
       <ChallengesSection />
       <Services />
-      <HowItWorks />
+      <HowItWorksSection />
       <WhyChooseUs />
       <Testimonials />
       <FAQ />
