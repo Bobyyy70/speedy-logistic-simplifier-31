@@ -2,31 +2,40 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Plug, Warehouse, ClipboardList, Truck } from "lucide-react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 // Définition des étapes du processus
 const steps = [
   {
+    id: "step1",
     number: "01",
+    shortTitle: "Intégration",
     title: "Intégration Facile",
-    description: "Connexion simple avec votre plateforme e-commerce (Shopify, WooCommerce, Prestashop...) ou via notre API.",
+    description: "Connexion simple avec votre plateforme e-commerce (Shopify, WooCommerce, Prestashop...) ou via notre API. Nos solutions techniques s'adaptent à votre infrastructure existante pour un démarrage rapide.",
     icon: Plug,
   },
   {
+    id: "step2",
     number: "02",
+    shortTitle: "Réception",
     title: "Envoyez vos produits",
-    description: "Vos produits sont réceptionnés, contrôlés et référencés dans notre système de gestion d'entrepôt.",
+    description: "Vos produits sont réceptionnés, contrôlés et référencés dans notre système de gestion d'entrepôt. Chaque article est vérifié et stocké dans des conditions optimales, prêt à être expédié.",
     icon: Warehouse,
   },
   {
+    id: "step3",
     number: "03",
+    shortTitle: "Préparation",
     title: "Préparation Commandes",
-    description: "Nous préparons, emballons et vérifions chaque commande avec rapidité et précision.",
+    description: "Nous préparons, emballons et vérifions chaque commande avec rapidité et précision. Nos procédures de contrôle qualité garantissent que vos clients reçoivent exactement ce qu'ils ont commandé.",
     icon: ClipboardList,
   },
   {
+    id: "step4",
     number: "04",
+    shortTitle: "Expédition",
     title: "Expédition Rapide",
-    description: "Vos commandes sont expédiées via les meilleurs transporteurs avec suivi en temps réel pour vos clients.",
+    description: "Vos commandes sont expédiées via les meilleurs transporteurs avec suivi en temps réel pour vos clients. Notre réseau de partenaires permet d'optimiser les délais et les coûts de livraison.",
     icon: Truck,
   },
 ];
@@ -63,36 +72,47 @@ export function HowItWorksSection() {
           </motion.p>
         </div>
 
-        {/* Étapes */}
-        <div className="relative mx-auto max-w-5xl">
-          {/* Ligne de connexion verticale (desktop uniquement) */}
-          <div 
-            className="absolute left-1/2 top-6 bottom-6 w-0.5 bg-border -translate-x-1/2 hidden md:block" 
-            aria-hidden="true"
-          ></div>
-          
-          {/* Grille des étapes */}
-          <div className="grid gap-8 md:grid-cols-4 md:gap-12">
-            {steps.map((step, index) => (
-              <motion.div
-                key={index}
-                className="relative flex flex-col items-center text-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground mb-4 shadow-lg z-10">
-                  {step.number}
-                </div>
-                <div className="mt-2 mb-3">
-                  <step.icon className="h-8 w-8 text-primary mx-auto" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                <p className="text-sm text-muted-foreground">{step.description}</p>
-              </motion.div>
+        {/* Tabs pour les étapes */}
+        <div className="max-w-4xl mx-auto">
+          <Tabs defaultValue="step1" className="w-full">
+            <TabsList className="grid w-full grid-cols-4 mb-8">
+              {steps.map((step) => (
+                <TabsTrigger 
+                  key={step.id} 
+                  value={step.id}
+                  className="flex flex-col items-center py-3 px-1 sm:px-4 data-[state=active]:text-primary"
+                >
+                  <span className="text-sm sm:text-base font-medium">{step.number}</span>
+                  <span className="text-xs hidden sm:block mt-1">{step.shortTitle}</span>
+                </TabsTrigger>
+              ))}
+            </TabsList>
+            
+            {steps.map((step) => (
+              <TabsContent key={step.id} value={step.id} className="mt-6">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-card rounded-lg p-6 shadow-sm border"
+                >
+                  <div className="flex flex-col md:flex-row md:items-start gap-6">
+                    <div className="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4 mx-auto md:mx-0">
+                      <step.icon className="h-8 w-8 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold mb-3 text-center md:text-left">
+                        Étape {step.number.replace(/^0/, '')}: {step.title}
+                      </h3>
+                      <p className="text-muted-foreground">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </TabsContent>
             ))}
-          </div>
+          </Tabs>
         </div>
       </div>
     </section>
