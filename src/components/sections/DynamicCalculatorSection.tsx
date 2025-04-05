@@ -52,20 +52,46 @@ export function DynamicCalculatorSection() {
       try {
         // Logique de calcul simulée
         let basePrice: number;
-        if (service === "relay") {
-          basePrice = 4.5 + weightNum * 0.8;
-        } else {
-          // Service à domicile un peu plus cher
-          basePrice = 5.9 + weightNum * 1.2;
+        
+        // Calcul selon le type de service
+        switch (service) {
+          case "relay":
+            basePrice = 4.5 + weightNum * 0.8;
+            break;
+          case "express":
+            basePrice = 8.9 + weightNum * 1.5;
+            break;
+          case "international":
+            basePrice = 12.5 + weightNum * 2.0;
+            break;
+          default:
+            // Service à domicile standard
+            basePrice = 5.9 + weightNum * 1.2;
+            break;
         }
         
         // Ajustement selon le code postal (simulé)
-        // Zones plus éloignées (DOM-TOM et Corse) plus chères
         const zipNum = parseInt(zipCode.substring(0, 2));
-        if (zipNum >= 97) { // DOM-TOM
-          basePrice = basePrice * 2.5;
-        } else if (zipNum >= 20 && zipNum <= 20) { // Corse
-          basePrice = basePrice * 1.5;
+        
+        if (service === "international") {
+          // Ajustements pour les destinations internationales basés sur le code postal
+          // Pour la simulation, on va considérer le code postal comme une indication du pays
+          if (zipNum <= 20) { // Europe proche (simulation)
+            basePrice = basePrice * 1.2;
+          } else if (zipNum <= 50) { // Europe éloignée (simulation)
+            basePrice = basePrice * 1.5;
+          } else if (zipNum <= 80) { // USA/Canada (simulation)
+            basePrice = basePrice * 2.0;
+          } else { // Reste du monde (simulation)
+            basePrice = basePrice * 2.5;
+          }
+        } else {
+          // Pour les livraisons nationales
+          if (zipNum >= 97) { // DOM-TOM
+            basePrice = basePrice * 2.5;
+          } else if (zipNum >= 20 && zipNum <= 20) { // Corse
+            basePrice = basePrice * 1.5;
+          }
         }
         
         // Arrondir et formatter le résultat
@@ -147,6 +173,8 @@ export function DynamicCalculatorSection() {
                   <SelectContent>
                     <SelectItem value="relay">Point Relais</SelectItem>
                     <SelectItem value="home">Domicile Standard</SelectItem>
+                    <SelectItem value="express">Livraison Express</SelectItem>
+                    <SelectItem value="international">Livraison Internationale</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

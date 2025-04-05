@@ -1,20 +1,17 @@
-
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { Target, Star, MapPin, History, TruckFast } from "lucide-react";
+import { Target, Star, MapPin, History, Truck } from "lucide-react";
 
 const About = () => {
-  // Scroll to top on component mount
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <div>
-      {/* Hero / Introduction Section */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-secondary/50 to-background">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -28,7 +25,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Mission & Valeurs Section */}
       <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 md:mb-16">
@@ -41,7 +37,6 @@ const About = () => {
             </div>
           </div>
 
-          {/* Valeurs */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card className="bg-muted/30 border-0">
               <CardHeader className="pb-2 flex flex-row items-center space-y-0">
@@ -94,7 +89,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Notre Histoire Section */}
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
@@ -119,7 +113,7 @@ const About = () => {
             </div>
             <div className="md:w-1/2 bg-muted rounded-lg p-6 flex items-center justify-center">
               <div className="text-center">
-                <TruckFast className="h-16 w-16 text-primary mx-auto mb-4" />
+                <Truck className="h-16 w-16 text-primary mx-auto mb-4" />
                 <p className="text-xl font-medium">
                   "Notre ambition est de démocratiser l'accès à une logistique e-commerce de qualité pour les PME françaises."
                 </p>
@@ -130,7 +124,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Localisation Section */}
       <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
@@ -166,10 +159,8 @@ const About = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
       <TestimonialsSection />
 
-      {/* CTA Section */}
       <section className="py-16 md:py-20 bg-muted/30 text-center">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
