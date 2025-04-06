@@ -1,8 +1,7 @@
-
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { LogoIcon } from "@/components/ui/LogoIcon";
+import { LogoIconWithText } from "@/components/ui/LogoIcon";
 import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
 import { 
@@ -29,7 +28,7 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <NavLink to="/" className="flex items-center gap-2">
-          <LogoIcon />
+          <LogoIconWithText />
         </NavLink>
 
         {/* Desktop Navigation */}

@@ -1,7 +1,6 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
-import { LogoIcon } from "@/components/ui/LogoIcon";
+import { LogoIconWithText } from "@/components/ui/LogoIcon";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -12,22 +11,13 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-4">
           {/* Logo et Copyright */}
           <div className="flex flex-col items-center md:items-start gap-2">
-            <div className="flex items-center">
-              <div className="flex items-center justify-center bg-primary rounded-md p-1">
-                <LogoIcon className="h-5 w-5 text-white" />
-              </div>
-              <span className="ml-2 font-bold">
-                <span>Speed</span>
-                <span className="text-primary">E</span>
-                <span>Log</span>
-              </span>
-            </div>
+            <LogoIconWithText />
             <p className="text-sm text-muted-foreground text-center md:text-left">
               © {currentYear} Speed E Log. Tous droits réservés. Construit avec passion à Port-sur-Saône.
             </p>
           </div>
 
-          {/* Liens de navigation */}
+          {/* Navigation links remain the same */}
           <nav className="flex gap-4 sm:gap-6">
             <Link 
               to="/mentions-legales" 
