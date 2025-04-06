@@ -15,6 +15,7 @@ import {
   FormLabel, 
   FormMessage 
 } from "@/components/ui/form";
+import { Loader2, Send } from "lucide-react";
 
 const contactFormSchema = z.object({
   name: z.string().min(2, {
@@ -24,9 +25,13 @@ const contactFormSchema = z.object({
     message: "Veuillez entrer une adresse email valide.",
   }),
   phone: z.string().optional(),
-  message: z.string().min(10, {
-    message: "Le message doit contenir au moins 10 caractères.",
-  }),
+  message: z.string()
+    .min(10, {
+      message: "Le message doit contenir au moins 10 caractères.",
+    })
+    .max(500, {
+      message: "Le message ne doit pas dépasser 500 caractères.",
+    }),
 });
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
@@ -47,7 +52,7 @@ export const ContactForm = () => {
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
     
-    // Simulate API call with timeout
+    // Simuler API call avec timeout
     try {
       await new Promise((resolve) => setTimeout(resolve, 1500));
       
@@ -138,7 +143,17 @@ export const ContactForm = () => {
           />
           
           <Button type="submit" className="w-full" disabled={isSubmitting}>
-            {isSubmitting ? "Envoi en cours..." : "Envoyer le message"}
+            {isSubmitting ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Envoi en cours...
+              </>
+            ) : (
+              <>
+                <Send className="mr-2 h-4 w-4" />
+                Envoyer le message
+              </>
+            )}
           </Button>
         </form>
       </Form>

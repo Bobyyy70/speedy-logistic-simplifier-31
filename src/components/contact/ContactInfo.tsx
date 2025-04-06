@@ -12,7 +12,7 @@ export const ContactInfo = () => {
           <Mail className="w-5 h-5 mt-1 mr-3 text-primary" />
           <div>
             <h3 className="font-medium">Email</h3>
-            <p className="text-muted-foreground">contact@speedelog.com</p>
+            <p className="text-muted-foreground">contact@speedelog.fr</p>
           </div>
         </div>
         
@@ -38,7 +38,7 @@ export const ContactInfo = () => {
         </div>
       </div>
       
-      <div className="mt-8 bg-muted h-[300px] rounded-lg flex items-center justify-center">
+      <div className="mt-8 bg-muted rounded-lg h-[300px] flex items-center justify-center">
         <p className="text-muted-foreground">Carte Google Maps à intégrer</p>
       </div>
     </div>
