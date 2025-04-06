@@ -60,6 +60,17 @@ const Header = () => {
             À Propos
           </NavLink>
           <NavLink 
+            to="/faq"
+            className={({ isActive }) =>
+              cn(
+                "text-sm font-medium transition-colors hover:text-primary",
+                isActive ? "text-primary" : "text-muted-foreground"
+              )
+            }
+          >
+            FAQ
+          </NavLink>
+          <NavLink 
             to="/contact"
             className={({ isActive }) =>
               cn(
