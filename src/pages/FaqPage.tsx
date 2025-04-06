@@ -7,6 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 
 const FaqPage = () => {
   // Scroll to top on component mount
@@ -59,7 +60,12 @@ const FaqPage = () => {
 
   return (
     <div className="container mx-auto py-12 md:py-16 lg:py-20">
-      <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+      <motion.div 
+        className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm dark:bg-slate-800">
           FAQ
         </div>
@@ -69,28 +75,40 @@ const FaqPage = () => {
         <p className="text-muted-foreground max-w-2xl mx-auto">
           Trouvez ici les réponses aux questions les plus couramment posées sur nos services de logistique e-commerce.
         </p>
-      </div>
+      </motion.div>
 
       <div className="max-w-3xl mx-auto">
         <Accordion type="single" collapsible className="w-full">
           {faqs.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="text-left font-semibold">
-                {faq.question}
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.05 }}
+            >
+              <AccordionItem value={`item-${index}`}>
+                <AccordionTrigger className="text-left font-semibold">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            </motion.div>
           ))}
         </Accordion>
 
-        <div className="mt-12 text-center text-muted-foreground">
+        <motion.div 
+          className="mt-12 text-center text-muted-foreground"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+        >
           <p>Vous ne trouvez pas la réponse à votre question ?</p>
           <Link to="/contact" className="text-primary hover:underline font-medium">
             Contactez-nous directement
           </Link>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

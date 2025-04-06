@@ -1,10 +1,16 @@
 
 import React from "react";
+import { motion } from "framer-motion";
 
 export const ContactHeader = () => {
   return (
     <>
-      <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+      <motion.div 
+        className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="inline-block rounded-lg bg-secondary/20 px-3 py-1 text-sm mb-2">
           Contactez-Nous
         </div>
@@ -13,7 +19,7 @@ export const ContactHeader = () => {
           Remplissez le formulaire ci-dessous pour obtenir un devis personnalisé ou discuter de vos besoins spécifiques. 
           Notre équipe vous répondra dans les plus brefs délais.
         </p>
-      </div>
+      </motion.div>
     </>
   );
 };

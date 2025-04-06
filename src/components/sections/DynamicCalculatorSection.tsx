@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Calculator } from "lucide-react";
+import { motion } from "framer-motion";
 import {
   Select,
   SelectContent,
@@ -109,7 +110,13 @@ export function DynamicCalculatorSection() {
     <section id="calculator" className="bg-muted/40 dark:bg-slate-900 py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-4 md:px-6">
         {/* Introduction */}
-        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+        <motion.div 
+          className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm dark:bg-slate-800">
             Estimation Tarif Transport
           </div>
@@ -123,99 +130,141 @@ export function DynamicCalculatorSection() {
           <p className="text-sm text-muted-foreground">
             Estimation pour un colis au départ de notre entrepôt à Port-sur-Saône.
           </p>
-        </div>
+        </motion.div>
 
         {/* Calculateur */}
-        <Card className="max-w-2xl mx-auto">
-          <CardContent className="pt-6">
-            <form onSubmit={handleCalculate} className="space-y-4">
-              {/* Code Postal */}
-              <div className="grid gap-2">
-                <Label htmlFor="zip-code">Code Postal de destination</Label>
-                <Input
-                  id="zip-code"
-                  type="text"
-                  placeholder="Ex: 75001"
-                  value={zipCode}
-                  onChange={(e) => setZipCode(e.target.value)}
-                  required
-                />
-              </div>
-              
-              {/* Poids */}
-              <div className="grid gap-2">
-                <Label htmlFor="weight">Poids (en kg)</Label>
-                <Input
-                  id="weight"
-                  type="number"
-                  step="0.1"
-                  min="0.1"
-                  max="30"
-                  placeholder="Ex: 1.5"
-                  value={weight}
-                  onChange={(e) => setWeight(e.target.value)}
-                  required
-                />
-                <p className="text-xs text-muted-foreground">Maximum 30 kg</p>
-              </div>
-              
-              {/* Type de Service */}
-              <div className="grid gap-2">
-                <Label htmlFor="service">Type de Service</Label>
-                <Select 
-                  value={service} 
-                  onValueChange={setService}
-                  required
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <Card className="max-w-2xl mx-auto">
+            <CardContent className="pt-6">
+              <form onSubmit={handleCalculate} className="space-y-4">
+                {/* Code Postal */}
+                <motion.div 
+                  className="grid gap-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3, delay: 0.1 }}
                 >
-                  <SelectTrigger id="service">
-                    <SelectValue placeholder="Sélectionnez un service" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="relay">Point Relais</SelectItem>
-                    <SelectItem value="home">Domicile Standard</SelectItem>
-                    <SelectItem value="express">Livraison Express</SelectItem>
-                    <SelectItem value="international">Livraison Internationale</SelectItem>
-                  </SelectContent>
-                </Select>
+                  <Label htmlFor="zip-code">Code Postal de destination</Label>
+                  <Input
+                    id="zip-code"
+                    type="text"
+                    placeholder="Ex: 75001"
+                    value={zipCode}
+                    onChange={(e) => setZipCode(e.target.value)}
+                    required
+                  />
+                </motion.div>
+                
+                {/* Poids */}
+                <motion.div 
+                  className="grid gap-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3, delay: 0.2 }}
+                >
+                  <Label htmlFor="weight">Poids (en kg)</Label>
+                  <Input
+                    id="weight"
+                    type="number"
+                    step="0.1"
+                    min="0.1"
+                    max="30"
+                    placeholder="Ex: 1.5"
+                    value={weight}
+                    onChange={(e) => setWeight(e.target.value)}
+                    required
+                  />
+                  <p className="text-xs text-muted-foreground">Maximum 30 kg</p>
+                </motion.div>
+                
+                {/* Type de Service */}
+                <motion.div 
+                  className="grid gap-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3, delay: 0.3 }}
+                >
+                  <Label htmlFor="service">Type de Service</Label>
+                  <Select 
+                    value={service} 
+                    onValueChange={setService}
+                    required
+                  >
+                    <SelectTrigger id="service">
+                      <SelectValue placeholder="Sélectionnez un service" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="relay">Point Relais</SelectItem>
+                      <SelectItem value="home">Domicile Standard</SelectItem>
+                      <SelectItem value="express">Livraison Express</SelectItem>
+                      <SelectItem value="international">Livraison Internationale</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </motion.div>
+                
+                {/* Bouton Calculer */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3, delay: 0.4 }}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <Button 
+                    type="submit" 
+                    className="w-full" 
+                    disabled={loading}
+                  >
+                    <Calculator className="mr-2 h-4 w-4" />
+                    {loading ? "Calcul en cours..." : "Estimer le tarif"}
+                  </Button>
+                </motion.div>
+              </form>
+              
+              {/* Zone de Résultat */}
+              <div className="mt-6 pt-4 border-t">
+                {loading && (
+                  <p className="text-center text-muted-foreground">Calcul en cours...</p>
+                )}
+                
+                {error && (
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="p-3 bg-destructive/10 text-destructive rounded-md text-center"
+                  >
+                    {error}
+                  </motion.div>
+                )}
+                
+                {!loading && !error && calculationResult && (
+                  <motion.div 
+                    className="text-center space-y-2"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ 
+                      duration: 0.4, 
+                      type: "spring",
+                      stiffness: 120 
+                    }}
+                  >
+                    <div className="font-bold text-2xl">
+                      Tarif estimé : {calculationResult} € TTC
+                    </div>
+                    <p className="text-xs text-muted-foreground max-w-md mx-auto">
+                      *Tarif indicatif TTC, basé sur les informations fournies. Le tarif final dépendra des dimensions exactes 
+                      et des éventuelles surcharges non incluses dans cette simulation.
+                    </p>
+                  </motion.div>
+                )}
               </div>
-              
-              {/* Bouton Calculer */}
-              <Button 
-                type="submit" 
-                className="w-full" 
-                disabled={loading}
-              >
-                <Calculator className="mr-2 h-4 w-4" />
-                {loading ? "Calcul en cours..." : "Estimer le tarif"}
-              </Button>
-            </form>
-            
-            {/* Zone de Résultat */}
-            <div className="mt-6 pt-4 border-t">
-              {loading && (
-                <p className="text-center text-muted-foreground">Calcul en cours...</p>
-              )}
-              
-              {error && (
-                <div className="p-3 bg-destructive/10 text-destructive rounded-md text-center">
-                  {error}
-                </div>
-              )}
-              
-              {!loading && !error && calculationResult && (
-                <div className="text-center space-y-2">
-                  <div className="font-bold text-2xl">
-                    Tarif estimé : {calculationResult} € TTC
-                  </div>
-                  <p className="text-xs text-muted-foreground max-w-md mx-auto">
-                    *Tarif indicatif TTC, basé sur les informations fournies. Le tarif final dépendra des dimensions exactes 
-                    et des éventuelles surcharges non incluses dans cette simulation.
-                  </p>
-                </div>
-              )}
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </motion.div>
       </div>
     </section>
   );

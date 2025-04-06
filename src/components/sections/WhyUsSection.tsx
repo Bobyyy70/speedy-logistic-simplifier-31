@@ -1,6 +1,7 @@
 
 import React from "react";
 import { CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
 
 export function WhyUsSection() {
   // Define advantages with specific details
@@ -32,7 +33,13 @@ export function WhyUsSection() {
       <div className="container mx-auto">
         <div className="grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
           {/* Text Column */}
-          <div className="space-y-4">
+          <motion.div 
+            className="space-y-4"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
             <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm dark:bg-slate-800">
               Notre Différence
             </div>
@@ -45,19 +52,32 @@ export function WhyUsSection() {
             
             <ul className="grid gap-4 py-4">
               {advantages.map((advantage, index) => (
-                <li key={index} className="flex items-start space-x-3">
+                <motion.li 
+                  key={index} 
+                  className="flex items-start space-x-3"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
                   <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-primary" />
                   <div>
                     <h3 className="font-semibold">{advantage.title}</h3>
                     <p className="text-sm text-muted-foreground">{advantage.description}</p>
                   </div>
-                </li>
+                </motion.li>
               ))}
             </ul>
-          </div>
+          </motion.div>
           
           {/* Visual Column */}
-          <div className="flex items-center justify-center">
+          <motion.div 
+            className="flex items-center justify-center"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
             <img 
               src="https://placehold.co/600x400/e0f2fe/075985?text=Visuel+Avantages" 
               alt="Avantages Speed E Log" 
@@ -65,7 +85,7 @@ export function WhyUsSection() {
               height="400" 
               className="mx-auto aspect-video overflow-hidden rounded-xl object-cover shadow-lg" 
             />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

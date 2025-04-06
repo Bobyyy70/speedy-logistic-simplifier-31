@@ -1,6 +1,7 @@
 
 import React from "react";
 import { Clock, TrendingUp, Wallet } from "lucide-react";
+import { motion } from "framer-motion";
 
 export function ChallengesSection() {
   const challenges = [
@@ -25,7 +26,13 @@ export function ChallengesSection() {
     <section id="challenges" className="bg-muted/40 dark:bg-slate-900 py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-4">
         {/* Introduction */}
-        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12 md:mb-16">
+        <motion.div 
+          className="flex flex-col items-center justify-center space-y-4 text-center mb-12 md:mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm dark:bg-slate-800">
             Vos Défis Actuels
           </div>
@@ -36,18 +43,25 @@ export function ChallengesSection() {
             Gérer les stocks, préparer les commandes, négocier les tarifs transporteurs... Autant de tâches chronophages 
             qui vous détournent de l'essentiel : développer votre e-commerce.
           </p>
-        </div>
+        </motion.div>
 
         {/* Challenges Grid */}
         <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-3">
           {challenges.map((challenge, index) => (
-            <div key={index} className="flex flex-col items-center text-center">
+            <motion.div 
+              key={index} 
+              className="flex flex-col items-center text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
               <div className="mb-4 rounded-full bg-primary/10 p-4">
                 <challenge.icon className="h-8 w-8 text-primary" />
               </div>
               <h3 className="text-xl font-bold mb-2">{challenge.title}</h3>
               <p className="text-muted-foreground">{challenge.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
