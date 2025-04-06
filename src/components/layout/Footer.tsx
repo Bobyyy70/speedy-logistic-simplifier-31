@@ -1,7 +1,7 @@
 
 import React from "react";
-import { Ship } from "lucide-react";
 import { Link } from "react-router-dom";
+import { LogoIcon } from "@/components/ui/LogoIcon";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -14,7 +14,7 @@ export function Footer() {
           <div className="flex flex-col items-center md:items-start gap-2">
             <div className="flex items-center">
               <div className="flex items-center justify-center bg-primary rounded-md p-1">
-                <Ship className="h-5 w-5 text-white" strokeWidth={2.5} />
+                <LogoIcon className="h-5 w-5 text-white" />
               </div>
               <span className="ml-2 font-bold">
                 <span>Speed</span>
