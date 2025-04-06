@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,6 +13,19 @@ const About = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>À Propos de Speed E Log | Votre Partenaire Logistique</title>
+        <meta 
+          name="description" 
+          content="Découvrez Speed E Log, votre partenaire logistique e-commerce à Port-sur-Saône. Notre mission: simplifier la logistique pour les PME françaises avec fiabilité et transparence."
+        />
+        <meta property="og:title" content="À Propos de Speed E Log | Votre Partenaire Logistique" />
+        <meta 
+          property="og:description" 
+          content="Découvrez Speed E Log, votre partenaire logistique e-commerce à Port-sur-Saône. Notre mission: simplifier la logistique pour les PME françaises avec fiabilité et transparence."
+        />
+      </Helmet>
+
       <section className="py-16 md:py-24 bg-gradient-to-b from-secondary/50 to-background">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">

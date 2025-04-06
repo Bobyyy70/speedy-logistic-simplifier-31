@@ -1,5 +1,6 @@
 
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { DynamicCalculatorSection } from "@/components/sections/DynamicCalculatorSection";
 
 const Pricing = () => {
@@ -10,6 +11,18 @@ const Pricing = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Estimation Tarif Transport & Tarification | Speed E Log</title>
+        <meta 
+          name="description" 
+          content="Estimez rapidement votre coût de transport TTC avec notre calculateur. Tarification logistique transparente pour les e-commerçants."
+        />
+        <meta property="og:title" content="Estimation Tarif Transport & Tarification | Speed E Log" />
+        <meta 
+          property="og:description" 
+          content="Estimez rapidement votre coût de transport TTC avec notre calculateur. Tarification logistique transparente pour les e-commerçants."
+        />
+      </Helmet>
       <DynamicCalculatorSection />
       
       <div className="container mx-auto py-12 px-4 text-center">

@@ -1,28 +1,6 @@
 
-import { useEffect, useState } from "react";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { toast } from "@/hooks/use-toast";
-import { 
-  Form, 
-  FormControl, 
-  FormField, 
-  FormItem, 
-  FormLabel, 
-  FormMessage 
-} from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { 
-  Card, 
-  CardHeader, 
-  CardTitle, 
-  CardDescription, 
-  CardContent 
-} from "@/components/ui/card";
-import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
+import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { ContactInfo } from "@/components/contact/ContactInfo";
 import { ContactHeader } from "@/components/contact/ContactHeader";
@@ -35,6 +13,19 @@ const Contact = () => {
 
   return (
     <div className="container mx-auto py-12 md:py-16 lg:py-20 px-4">
+      <Helmet>
+        <title>Contact & Devis Logistique E-commerce | Speed E Log</title>
+        <meta 
+          name="description" 
+          content="Contactez Speed E Log pour un devis personnalisé ou des informations sur nos services logistiques pour e-commerce. Notre équipe vous répond dans les plus brefs délais."
+        />
+        <meta property="og:title" content="Contact & Devis Logistique E-commerce | Speed E Log" />
+        <meta 
+          property="og:description" 
+          content="Contactez Speed E Log pour un devis personnalisé ou des informations sur nos services logistiques pour e-commerce. Notre équipe vous répond dans les plus brefs délais."
+        />
+      </Helmet>
+      
       <div className="max-w-5xl mx-auto">
         <ContactHeader />
         

@@ -1,5 +1,5 @@
-
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import {
   Accordion,
   AccordionContent,
@@ -60,6 +60,19 @@ const FaqPage = () => {
 
   return (
     <div className="container mx-auto py-12 md:py-16 lg:py-20">
+      <Helmet>
+        <title>FAQ - Questions Fréquentes Logistique | Speed E Log</title>
+        <meta 
+          name="description" 
+          content="Trouvez les réponses à vos questions sur nos services logistiques pour e-commerce : types de produits gérés, transport, intégration, suivi et plus encore."
+        />
+        <meta property="og:title" content="FAQ - Questions Fréquentes Logistique | Speed E Log" />
+        <meta 
+          property="og:description" 
+          content="Trouvez les réponses à vos questions sur nos services logistiques pour e-commerce : types de produits gérés, transport, intégration, suivi et plus encore."
+        />
+      </Helmet>
+      
       <motion.div 
         className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
         initial={{ opacity: 0, y: 20 }}

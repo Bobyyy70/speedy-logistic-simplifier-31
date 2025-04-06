@@ -1,5 +1,6 @@
 
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Services as ServicesSection } from "@/components/home/Services";
@@ -12,6 +13,18 @@ const Services = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Nos Services Logistique E-commerce | Speed E Log</title>
+        <meta 
+          name="description" 
+          content="Découvrez nos services logistiques complets pour e-commerce : réception, stockage, préparation de commandes, expédition optimisée. Adapté aux PME." 
+        />
+        <meta property="og:title" content="Nos Services Logistique E-commerce | Speed E Log" />
+        <meta 
+          property="og:description" 
+          content="Découvrez nos services logistiques complets pour e-commerce : réception, stockage, préparation de commandes, expédition optimisée. Adapté aux PME." 
+        />
+      </Helmet>
       {/* Header section */}
       <div className="container mx-auto py-16 px-4">
         <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl text-center mb-6">
