@@ -18,7 +18,7 @@ export function HeroSection() {
               La logistique E-commerce, <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">sans les tracas</span>.
             </h1>
             <p className="max-w-[600px] text-muted-foreground md:text-xl mx-auto lg:mx-0">
-              Externalisez votre logistique et concentrez-vous sereinement sur votre croissance. Speed E Log simplifie vos expéditions.
+              Externalisez votre logistique et concentrez-vous sereinement sur votre croissance. Speed E-Log simplifie vos expéditions.
             </p>
             <div className="flex flex-col gap-3 min-[400px]:flex-row justify-center lg:justify-start">
               <Button asChild size="lg">
@@ -49,7 +49,7 @@ export function HeroSection() {
             <div className="absolute -inset-1 bg-gradient-to-r from-primary to-blue-600 rounded-lg blur opacity-20"></div>
             <div className="relative bg-white shadow-xl rounded-lg p-6">
               <div className="aspect-video lg:aspect-square bg-blue-50 rounded-md mb-4 flex items-center justify-center overflow-hidden">
-                <img src="/placeholder.svg" alt="Logistique Speed E Log" className="w-full h-full object-cover" />
+                <img src="/placeholder.svg" alt="Logistique Speed E-Log" className="w-full h-full object-cover" />
               </div>
               <h3 className="font-semibold text-lg mb-2">Une logistique moderne et efficace</h3>
               <p className="text-muted-foreground">

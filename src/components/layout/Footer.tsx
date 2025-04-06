@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { LogoIconWithText } from "@/components/ui/LogoIcon";
@@ -13,7 +14,7 @@ export function Footer() {
           <div className="flex flex-col items-center md:items-start gap-2">
             <LogoIconWithText />
             <p className="text-sm text-muted-foreground text-center md:text-left">
-              © {currentYear} Speed E Log. Tous droits réservés. Construit avec passion à Port-sur-Saône.
+              © {currentYear} Speed E-Log. Tous droits réservés. Construit avec passion à Port-sur-Saône.
             </p>
           </div>
 

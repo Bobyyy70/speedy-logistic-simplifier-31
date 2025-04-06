@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import {
@@ -59,14 +60,14 @@ const FaqPage = () => {
   ];
 
   return (
-    <div className="container mx-auto py-12 md:py-16 lg:py-20">
+    <div className="container mx-auto py-8 md:py-16 lg:py-20 px-4">
       <Helmet>
-        <title>FAQ - Questions Fréquentes Logistique | Speed E Log</title>
+        <title>FAQ - Questions Fréquentes Logistique | Speed E-Log</title>
         <meta 
           name="description" 
           content="Trouvez les réponses à vos questions sur nos services logistiques pour e-commerce : types de produits gérés, transport, intégration, suivi et plus encore."
         />
-        <meta property="og:title" content="FAQ - Questions Fréquentes Logistique | Speed E Log" />
+        <meta property="og:title" content="FAQ - Questions Fréquentes Logistique | Speed E-Log" />
         <meta 
           property="og:description" 
           content="Trouvez les réponses à vos questions sur nos services logistiques pour e-commerce : types de produits gérés, transport, intégration, suivi et plus encore."
@@ -74,7 +75,7 @@ const FaqPage = () => {
       </Helmet>
       
       <motion.div 
-        className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
+        className="flex flex-col items-center justify-center space-y-4 text-center mb-8 md:mb-12"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -82,7 +83,7 @@ const FaqPage = () => {
         <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm dark:bg-slate-800">
           FAQ
         </div>
-        <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl">
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tighter sm:text-5xl">
           Questions Fréquentes
         </h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -112,7 +113,7 @@ const FaqPage = () => {
         </Accordion>
 
         <motion.div 
-          className="mt-12 text-center text-muted-foreground"
+          className="mt-8 md:mt-12 text-center text-muted-foreground"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}

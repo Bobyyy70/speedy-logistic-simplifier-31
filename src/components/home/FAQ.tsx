@@ -41,7 +41,7 @@ export function FAQ() {
         Retrouvez les réponses aux questions les plus courantes. N'hésitez pas à nous contacter pour toute autre information.
       </p>
 
-      <div className="max-w-3xl mx-auto mt-12">
+      <div className="max-w-3xl mx-auto mt-8 md:mt-12">
         <Accordion type="single" collapsible className="w-full">
           {faqs.map((faq, index) => (
             <AccordionItem key={index} value={`faq-${index}`}>
