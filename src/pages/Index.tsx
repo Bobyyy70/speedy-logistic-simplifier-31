@@ -6,7 +6,7 @@ import { ChallengesSection } from "@/components/sections/ChallengesSection";
 import { Services } from "@/components/home/Services";
 import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
 import { WhyUsSection } from "@/components/sections/WhyUsSection";
-import { PricingSection } from "@/components/sections/PricingSection";
+// Suppression de l'import PricingSection
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 import { Testimonials } from "@/components/home/Testimonials";
@@ -22,15 +22,15 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Speed E Log | Logistique E-commerce Simplifiée pour PME</title>
+        <title>Speed E-Log | Logistique E-commerce Simplifiée pour PME</title>
         <meta 
           name="description" 
-          content="Externalisez votre logistique e-commerce avec Speed E Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
+          content="Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
         />
-        <meta property="og:title" content="Speed E Log | Logistique E-commerce Simplifiée pour PME" />
+        <meta property="og:title" content="Speed E-Log | Logistique E-commerce Simplifiée pour PME" />
         <meta 
           property="og:description" 
-          content="Externalisez votre logistique e-commerce avec Speed E Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
+          content="Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
         />
       </Helmet>
       <HeroSection />
@@ -38,7 +38,7 @@ const Index = () => {
       <Services />
       <HowItWorksSection />
       <WhyUsSection />
-      <PricingSection />
+      {/* Suppression du composant PricingSection */}
       <TestimonialsSection />
       <WhyChooseUs />
       <Testimonials />
