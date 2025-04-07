@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Calculator } from "lucide-react";
+import { Calculator, Package } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "@/hooks/use-toast";
 import {
@@ -14,6 +14,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
 
 export function DynamicCalculatorSection() {
   // États pour le formulaire
@@ -21,16 +27,36 @@ export function DynamicCalculatorSection() {
   const [weight, setWeight] = useState("");
   const [service, setService] = useState("");
   
+  // États pour les dimensions (poids volumétrique)
+  const [length, setLength] = useState("");
+  const [width, setWidth] = useState("");
+  const [height, setHeight] = useState("");
+  const [calculationType, setCalculationType] = useState("weight");
+  
   // États pour la logique de calcul
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [calculationResult, setCalculationResult] = useState<string | null>(null);
+  const [volumetricWeight, setVolumetricWeight] = useState<number | null>(null);
+
+  const calculateVolumetricWeight = () => {
+    if (!length || !width || !height) return null;
+    
+    const l = parseFloat(length);
+    const w = parseFloat(width);
+    const h = parseFloat(height);
+    
+    if (isNaN(l) || isNaN(w) || isNaN(h)) return null;
+    
+    // Formule standard: (L x l x h en cm) / 5000 = poids volumétrique en kg
+    const volumeWeight = (l * w * h) / 5000;
+    return volumeWeight;
+  };
 
   const handleCalculate = (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validation basique
-    const weightNum = parseFloat(weight);
     if (!zipCode || zipCode.length < 5) {
       setError("Veuillez entrer un code postal valide");
       toast({
@@ -40,15 +66,7 @@ export function DynamicCalculatorSection() {
       });
       return;
     }
-    if (!weightNum || weightNum <= 0 || weightNum > 30) {
-      setError("Le poids doit être entre 0.1 et 30 kg");
-      toast({
-        title: "Erreur de validation",
-        description: "Le poids doit être entre 0.1 et 30 kg",
-        variant: "destructive"
-      });
-      return;
-    }
+    
     if (!service) {
       setError("Veuillez sélectionner un type de service");
       toast({
@@ -57,6 +75,36 @@ export function DynamicCalculatorSection() {
         variant: "destructive"
       });
       return;
+    }
+    
+    let weightNum: number;
+    
+    if (calculationType === "weight") {
+      // Validation du poids physique
+      weightNum = parseFloat(weight);
+      if (!weightNum || weightNum <= 0 || weightNum > 30) {
+        setError("Le poids doit être entre 0.1 et 30 kg");
+        toast({
+          title: "Erreur de validation",
+          description: "Le poids doit être entre 0.1 et 30 kg",
+          variant: "destructive"
+        });
+        return;
+      }
+    } else {
+      // Validation et calcul du poids volumétrique
+      const volWeight = calculateVolumetricWeight();
+      if (!volWeight || volWeight <= 0 || volWeight > 30) {
+        setError("Les dimensions doivent donner un poids volumétrique entre 0.1 et 30 kg");
+        toast({
+          title: "Erreur de validation",
+          description: "Les dimensions doivent donner un poids volumétrique entre 0.1 et 30 kg",
+          variant: "destructive"
+        });
+        return;
+      }
+      weightNum = volWeight;
+      setVolumetricWeight(volWeight);
     }
     
     // Réinitialiser les états
@@ -118,7 +166,7 @@ export function DynamicCalculatorSection() {
         // Notification de succès
         toast({
           title: "Estimation réussie",
-          description: `Tarif estimé : ${finalPrice.toFixed(2)} € TTC`,
+          description: `Tarif estimé : ${finalPrice.toFixed(2)} € TTC${calculationType === "volumetric" ? ' (basé sur le poids volumétrique)' : ''}`,
         });
       } catch (err) {
         setError("Une erreur est survenue lors du calcul. Veuillez réessayer.");
@@ -169,6 +217,114 @@ export function DynamicCalculatorSection() {
           <Card className="max-w-2xl mx-auto">
             <CardContent className="pt-6">
               <form onSubmit={handleCalculate} className="space-y-4">
+                {/* Choix du type de calcul */}
+                <Tabs 
+                  value={calculationType} 
+                  onValueChange={setCalculationType}
+                  className="w-full"
+                >
+                  <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="weight">Poids réel</TabsTrigger>
+                    <TabsTrigger value="volumetric">Poids volumétrique</TabsTrigger>
+                  </TabsList>
+                  
+                  <TabsContent value="weight" className="mt-4 space-y-4">
+                    {/* Poids */}
+                    <motion.div 
+                      className="grid gap-2"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3, delay: 0.2 }}
+                    >
+                      <Label htmlFor="weight">Poids (en kg)</Label>
+                      <Input
+                        id="weight"
+                        type="number"
+                        step="0.1"
+                        min="0.1"
+                        max="30"
+                        placeholder="Ex: 1.5"
+                        value={weight}
+                        onChange={(e) => setWeight(e.target.value)}
+                        aria-describedby="weight-error"
+                        required
+                      />
+                      <p className="text-xs text-muted-foreground">Maximum 30 kg</p>
+                      {error && error.includes("poids") && (
+                        <p id="weight-error" className="text-sm text-destructive">{error}</p>
+                      )}
+                    </motion.div>
+                  </TabsContent>
+                  
+                  <TabsContent value="volumetric" className="mt-4 space-y-4">
+                    {/* Dimensions pour calculer le poids volumétrique */}
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-sm font-medium">Dimensions du colis</h3>
+                        <Package className="h-4 w-4 text-muted-foreground" />
+                      </div>
+                      
+                      <div className="grid grid-cols-3 gap-4">
+                        {/* Longueur */}
+                        <div className="space-y-2">
+                          <Label htmlFor="length">Longueur (cm)</Label>
+                          <Input
+                            id="length"
+                            type="number"
+                            min="1"
+                            step="0.1"
+                            placeholder="Ex: 30"
+                            value={length}
+                            onChange={(e) => setLength(e.target.value)}
+                            required
+                          />
+                        </div>
+                        
+                        {/* Largeur */}
+                        <div className="space-y-2">
+                          <Label htmlFor="width">Largeur (cm)</Label>
+                          <Input
+                            id="width"
+                            type="number"
+                            min="1"
+                            step="0.1"
+                            placeholder="Ex: 20"
+                            value={width}
+                            onChange={(e) => setWidth(e.target.value)}
+                            required
+                          />
+                        </div>
+                        
+                        {/* Hauteur */}
+                        <div className="space-y-2">
+                          <Label htmlFor="height">Hauteur (cm)</Label>
+                          <Input
+                            id="height"
+                            type="number"
+                            min="1"
+                            step="0.1"
+                            placeholder="Ex: 15"
+                            value={height}
+                            onChange={(e) => setHeight(e.target.value)}
+                            required
+                          />
+                        </div>
+                      </div>
+                      
+                      {volumetricWeight !== null && (
+                        <p className="text-sm text-muted-foreground">
+                          Poids volumétrique calculé: <span className="font-medium">{volumetricWeight.toFixed(2)} kg</span> 
+                          <span className="block text-xs">(L × l × h) ÷ 5000</span>
+                        </p>
+                      )}
+                      
+                      {error && error.includes("dimensions") && (
+                        <p className="text-sm text-destructive">{error}</p>
+                      )}
+                    </div>
+                  </TabsContent>
+                </Tabs>
+                
                 {/* Code Postal */}
                 <motion.div 
                   className="grid gap-2"
@@ -188,32 +344,6 @@ export function DynamicCalculatorSection() {
                   />
                   {error && error.includes("code postal") && (
                     <p id="zip-code-error" className="text-sm text-destructive">{error}</p>
-                  )}
-                </motion.div>
-                
-                {/* Poids */}
-                <motion.div 
-                  className="grid gap-2"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3, delay: 0.2 }}
-                >
-                  <Label htmlFor="weight">Poids (en kg)</Label>
-                  <Input
-                    id="weight"
-                    type="number"
-                    step="0.1"
-                    min="0.1"
-                    max="30"
-                    placeholder="Ex: 1.5"
-                    value={weight}
-                    onChange={(e) => setWeight(e.target.value)}
-                    aria-describedby="weight-error"
-                    required
-                  />
-                  <p className="text-xs text-muted-foreground">Maximum 30 kg</p>
-                  {error && error.includes("poids") && (
-                    <p id="weight-error" className="text-sm text-destructive">{error}</p>
                   )}
                 </motion.div>
                 
@@ -270,7 +400,7 @@ export function DynamicCalculatorSection() {
                   <p className="text-center text-muted-foreground">Calcul en cours...</p>
                 )}
                 
-                {error && !error.includes("code postal") && !error.includes("poids") && !error.includes("service") && (
+                {error && !error.includes("code postal") && !error.includes("poids") && !error.includes("dimensions") && !error.includes("service") && (
                   <motion.div 
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -297,6 +427,11 @@ export function DynamicCalculatorSection() {
                     <p className="text-xs text-muted-foreground max-w-md mx-auto">
                       *Tarif indicatif TTC, basé sur les informations fournies. Le tarif final dépendra des dimensions exactes 
                       et des éventuelles surcharges non incluses dans cette simulation.
+                      {calculationType === "volumetric" && volumetricWeight && (
+                        <span className="block mt-1">
+                          Calcul effectué sur le poids volumétrique de {volumetricWeight.toFixed(2)} kg.
+                        </span>
+                      )}
                     </p>
                   </motion.div>
                 )}
