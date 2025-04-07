@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -218,8 +217,7 @@ export function DynamicCalculatorSection() {
             Estimez votre coût d'expédition TTC
           </h1>
           <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-            Le juste prix pour chaque envoi. Notre calculateur dynamique trouve le meilleur tarif TTC, 
-            transporteur anonymisé. Zéro prise de tête, transparence totale.
+            Le juste prix pour chaque envoi. Notre calculateur dynamique sélectionne automatiquement le transporteur le plus économique, avec tarifs TTC variables selon la destination et les surcharges en vigueur.
           </p>
           <p className="text-sm text-muted-foreground">
             Estimation pour un colis au départ de notre entrepôt à Port-sur-Saône.
