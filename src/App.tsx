@@ -12,6 +12,9 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import FaqPage from "./pages/FaqPage";
 import NotFound from "./pages/NotFound";
+import LegalMentions from "./pages/LegalMentions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +30,9 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<FaqPage />} />
+            <Route path="/mentions-legales" element={<LegalMentions />} />
+            <Route path="/politique-confidentialite" element={<PrivacyPolicy />} />
+            <Route path="/cgv" element={<TermsOfService />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>

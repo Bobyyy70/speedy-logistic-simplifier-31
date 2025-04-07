@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Calculator } from "lucide-react";
 import { motion } from "framer-motion";
+import { toast } from "@/hooks/use-toast";
 import {
   Select,
   SelectContent,
@@ -32,14 +33,29 @@ export function DynamicCalculatorSection() {
     const weightNum = parseFloat(weight);
     if (!zipCode || zipCode.length < 5) {
       setError("Veuillez entrer un code postal valide");
+      toast({
+        title: "Erreur de validation",
+        description: "Veuillez entrer un code postal valide",
+        variant: "destructive"
+      });
       return;
     }
     if (!weightNum || weightNum <= 0 || weightNum > 30) {
       setError("Le poids doit être entre 0.1 et 30 kg");
+      toast({
+        title: "Erreur de validation",
+        description: "Le poids doit être entre 0.1 et 30 kg",
+        variant: "destructive"
+      });
       return;
     }
     if (!service) {
       setError("Veuillez sélectionner un type de service");
+      toast({
+        title: "Erreur de validation",
+        description: "Veuillez sélectionner un type de service",
+        variant: "destructive"
+      });
       return;
     }
     
@@ -98,8 +114,19 @@ export function DynamicCalculatorSection() {
         // Arrondir et formatter le résultat
         const finalPrice = Math.round(basePrice * 100) / 100;
         setCalculationResult(finalPrice.toFixed(2));
+        
+        // Notification de succès
+        toast({
+          title: "Estimation réussie",
+          description: `Tarif estimé : ${finalPrice.toFixed(2)} € TTC`,
+        });
       } catch (err) {
         setError("Une erreur est survenue lors du calcul. Veuillez réessayer.");
+        toast({
+          title: "Erreur",
+          description: "Une erreur est survenue lors du calcul",
+          variant: "destructive"
+        });
       } finally {
         setLoading(false);
       }
@@ -120,9 +147,9 @@ export function DynamicCalculatorSection() {
           <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm dark:bg-slate-800">
             Estimation Tarif Transport
           </div>
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             Estimez votre coût d'expédition TTC
-          </h2>
+          </h1>
           <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
             Le juste prix pour chaque envoi. Notre calculateur dynamique trouve le meilleur tarif TTC, 
             transporteur anonymisé. Zéro prise de tête, transparence totale.
@@ -156,8 +183,12 @@ export function DynamicCalculatorSection() {
                     placeholder="Ex: 75001"
                     value={zipCode}
                     onChange={(e) => setZipCode(e.target.value)}
+                    aria-describedby="zip-code-error"
                     required
                   />
+                  {error && error.includes("code postal") && (
+                    <p id="zip-code-error" className="text-sm text-destructive">{error}</p>
+                  )}
                 </motion.div>
                 
                 {/* Poids */}
@@ -177,9 +208,13 @@ export function DynamicCalculatorSection() {
                     placeholder="Ex: 1.5"
                     value={weight}
                     onChange={(e) => setWeight(e.target.value)}
+                    aria-describedby="weight-error"
                     required
                   />
                   <p className="text-xs text-muted-foreground">Maximum 30 kg</p>
+                  {error && error.includes("poids") && (
+                    <p id="weight-error" className="text-sm text-destructive">{error}</p>
+                  )}
                 </motion.div>
                 
                 {/* Type de Service */}
@@ -195,7 +230,7 @@ export function DynamicCalculatorSection() {
                     onValueChange={setService}
                     required
                   >
-                    <SelectTrigger id="service">
+                    <SelectTrigger id="service" aria-describedby="service-error">
                       <SelectValue placeholder="Sélectionnez un service" />
                     </SelectTrigger>
                     <SelectContent>
@@ -205,6 +240,9 @@ export function DynamicCalculatorSection() {
                       <SelectItem value="international">Livraison Internationale</SelectItem>
                     </SelectContent>
                   </Select>
+                  {error && error.includes("service") && (
+                    <p id="service-error" className="text-sm text-destructive">{error}</p>
+                  )}
                 </motion.div>
                 
                 {/* Bouton Calculer */}
@@ -213,6 +251,7 @@ export function DynamicCalculatorSection() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3, delay: 0.4 }}
                   whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <Button 
                     type="submit" 
@@ -231,7 +270,7 @@ export function DynamicCalculatorSection() {
                   <p className="text-center text-muted-foreground">Calcul en cours...</p>
                 )}
                 
-                {error && (
+                {error && !error.includes("code postal") && !error.includes("poids") && !error.includes("service") && (
                   <motion.div 
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}

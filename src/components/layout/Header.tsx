@@ -1,19 +1,38 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+
+import React, { useState, useEffect } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { LogoIconWithText } from "@/components/ui/LogoIcon";
 import { cn } from "@/lib/utils";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { 
   Sheet, 
   SheetContent, 
-  SheetHeader, 
+  SheetHeader,
   SheetTitle, 
-  SheetTrigger 
+  SheetTrigger,
+  SheetClose
 } from "@/components/ui/sheet";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+
+  // Fermer le menu mobile lors des changements de route
+  useEffect(() => {
+    setOpen(false);
+  }, [location]);
+
+  // Détection du scroll pour ajouter une ombre
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navigationItems = [
     { name: "Accueil", path: "/" },
@@ -25,7 +44,10 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className={cn(
+      "sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
+      isScrolled && "shadow-sm"
+    )}>
       <div className="container flex h-16 items-center justify-between">
         <NavLink to="/" className="flex items-center gap-2">
           <LogoIconWithText />
@@ -43,54 +65,62 @@ const Header = () => {
                   isActive ? "text-primary" : "text-muted-foreground"
                 )
               }
+              aria-current={({ isActive }) => isActive ? "page" : undefined}
             >
               {item.name}
             </NavLink>
           ))}
+          
+          <Button size="sm" asChild className="ml-2">
+            <NavLink to="/contact">Obtenir un devis</NavLink>
+          </Button>
         </nav>
 
         {/* Mobile Navigation */}
-        <div className="flex items-center gap-4 md:hidden">
-          <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="h-10 w-10">
-                <Menu className="h-5 w-5" />
-                <span className="sr-only">Toggle menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[80%] sm:w-[350px]">
-              <SheetHeader>
-                <SheetTitle className="text-left">Menu</SheetTitle>
-              </SheetHeader>
-              <nav className="flex flex-col gap-4 mt-8">
-                {navigationItems.map((item) => (
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger asChild className="md:hidden">
+            <Button variant="outline" size="icon" className="h-10 w-10" aria-label="Menu">
+              <Menu className="h-5 w-5" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-[80%] sm:w-[350px]">
+            <SheetHeader>
+              <SheetTitle className="text-left">Menu</SheetTitle>
+            </SheetHeader>
+            <nav className="flex flex-col gap-4 mt-8">
+              {navigationItems.map((item) => (
+                <SheetClose key={item.name} asChild>
                   <NavLink
-                    key={item.name}
                     to={item.path}
-                    onClick={() => setOpen(false)}
                     className={({ isActive }) =>
                       cn(
                         "text-base font-medium transition-colors hover:text-primary px-1 py-2",
                         isActive ? "text-primary" : "text-foreground"
                       )
                     }
+                    aria-current={({ isActive }) => isActive ? "page" : undefined}
                   >
                     {item.name}
                   </NavLink>
-                ))}
+                </SheetClose>
+              ))}
+              <SheetClose asChild>
                 <Button className="mt-4 w-full" asChild>
-                  <NavLink to="/contact" onClick={() => setOpen(false)}>
+                  <NavLink to="/contact">
                     Obtenir un devis
                   </NavLink>
                 </Button>
-              </nav>
-            </SheetContent>
-          </Sheet>
-        </div>
+              </SheetClose>
+            </nav>
+          </SheetContent>
+        </Sheet>
 
-        <Button size="sm" asChild className="hidden md:inline-flex">
-          <NavLink to="/contact">Obtenir un devis</NavLink>
-        </Button>
+        {/* Desktop CTA Button (moved out of the nav for clarity) */}
+        <div className="hidden md:block">
+          <Button size="sm" asChild>
+            <NavLink to="/contact">Obtenir un devis</NavLink>
+          </Button>
+        </div>
       </div>
     </header>
   );
