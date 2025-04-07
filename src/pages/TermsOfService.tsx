@@ -20,18 +20,24 @@ const TermsOfService = () => {
       <h1 className="text-3xl md:text-4xl font-bold mb-8">Conditions Générales de Vente</h1>
       
       <div className="prose max-w-none">
-        <p className="text-muted-foreground">
-          Cette page sera complétée avec les conditions générales de vente définitives de Speed E-Log.
-        </p>
+        <section className="mb-8">
+          <p className="text-muted-foreground">
+            Cette page sera complétée avec les conditions générales de vente définitives de Speed E-Log.
+          </p>
+        </section>
         
-        <h2 className="text-xl md:text-2xl font-semibold mt-8 mb-4">Conditions d'utilisation des services</h2>
-        <p>
-          Les présentes conditions générales régissent l'utilisation des services logistiques proposés par Speed E-Log.
-        </p>
+        <section className="mb-8">
+          <h2 className="text-xl md:text-2xl font-semibold mb-4">Conditions d'utilisation des services</h2>
+          <p className="mb-4">
+            Les présentes conditions générales régissent l'utilisation des services logistiques proposés par Speed E-Log.
+          </p>
+        </section>
         
-        <p className="text-muted-foreground mt-8">
-          Contenu à compléter par le client.
-        </p>
+        <section>
+          <p className="text-muted-foreground mt-8">
+            Contenu à compléter par le client.
+          </p>
+        </section>
       </div>
     </div>
   );
