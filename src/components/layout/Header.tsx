@@ -65,15 +65,10 @@ const Header = () => {
                   isActive ? "text-primary" : "text-muted-foreground"
                 )
               }
-              aria-current={({ isActive }) => isActive ? "page" : undefined}
             >
               {item.name}
             </NavLink>
           ))}
-          
-          <Button size="sm" asChild className="ml-2">
-            <NavLink to="/contact">Obtenir un devis</NavLink>
-          </Button>
         </nav>
 
         {/* Mobile Navigation */}
