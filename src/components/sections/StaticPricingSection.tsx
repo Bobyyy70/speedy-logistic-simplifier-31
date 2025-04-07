@@ -3,7 +3,6 @@ import React from "react";
 import { 
   Table, 
   TableBody, 
-  TableCaption, 
   TableCell, 
   TableHead, 
   TableHeader, 
@@ -36,7 +35,7 @@ type PricingItem = {
   price: string;
 };
 
-export function PricingSection() {
+export function StaticPricingSection() {
   // Pricing data based on Francesco's information
   const pricingItems: PricingItem[] = [
     {

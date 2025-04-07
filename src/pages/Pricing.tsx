@@ -12,12 +12,12 @@ const Pricing = () => {
   return (
     <div>
       <Helmet>
-        <title>Estimation Tarif Transport & Tarification | Speed E Log</title>
+        <title>Estimation Tarif Transport & Tarification | Speed E-Log</title>
         <meta 
           name="description" 
           content="Estimez rapidement votre coût de transport TTC avec notre calculateur. Tarification logistique transparente pour les e-commerçants."
         />
-        <meta property="og:title" content="Estimation Tarif Transport & Tarification | Speed E Log" />
+        <meta property="og:title" content="Estimation Tarif Transport & Tarification | Speed E-Log" />
         <meta 
           property="og:description" 
           content="Estimez rapidement votre coût de transport TTC avec notre calculateur. Tarification logistique transparente pour les e-commerçants."
