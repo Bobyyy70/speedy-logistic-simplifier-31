@@ -4,7 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { LogoIconWithText } from "@/components/ui/LogoIcon";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { 
   Sheet, 
   SheetContent, 
@@ -98,7 +98,6 @@ const Header = () => {
                         isActive ? "text-primary" : "text-foreground"
                       )
                     }
-                    aria-current={({ isActive }) => isActive ? "page" : undefined}
                   >
                     {item.name}
                   </NavLink>
