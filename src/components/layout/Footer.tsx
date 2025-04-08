@@ -3,15 +3,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { LogoIconWithText } from "@/components/ui/LogoIcon";
 import { Mail, Phone, MapPin } from "lucide-react";
+
 export function Footer() {
   const currentYear = new Date().getFullYear();
-  return <footer className="border-t bg-background">
+  
+  return (
+    <footer className="border-t bg-background">
       <div className="container mx-auto px-4 py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Logo et description */}
           <div className="flex flex-col gap-4">
-            <LogoIconWithText />
-            <p className="text-sm text-muted-foreground">
+            <div className="flex justify-start">
+              <LogoIconWithText />
+            </div>
+            <p className="text-sm text-muted-foreground mt-4">
               Votre partenaire logistique pour simplifier vos opérations e-commerce et accélérer votre croissance.
             </p>
             <div className="flex flex-col space-y-2 text-sm text-muted-foreground">
@@ -72,5 +77,6 @@ export function Footer() {
           </p>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 }
