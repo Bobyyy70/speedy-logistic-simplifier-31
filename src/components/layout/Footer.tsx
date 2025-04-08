@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { LogoIconWithText } from "@/components/ui/LogoIcon";
@@ -16,18 +17,20 @@ export function Footer() {
             <div className="flex flex-col space-y-2 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />
-                <span>contact@speedelog.net
-              </span>
+                <span>contact@speedelog.net</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                <span>+33 
-6 35 58 40 04</span>
+                <span>+33 6 35 58 40 04</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
                 <span>
-70170 Port-sur-Saône,</span>
+                  Speed E-Log<br />
+                  70170 Port-sur-Saône<br />
+                  Bourgogne-Franche-Comté<br />
+                  France
+                </span>
               </div>
             </div>
           </div>

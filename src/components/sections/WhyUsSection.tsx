@@ -48,7 +48,7 @@ export function WhyUsSection() {
               Notre Différence
             </div>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Pourquoi choisir Speed E Log ?
+              Pourquoi choisir Speed E-Log ?
             </h2>
             <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed">
               Nous combinons expertise logistique, technologie et flexibilité pour offrir un service <strong>parfaitement adapté aux PME e-commerce ambitieuses de notre niche</strong>.
@@ -84,7 +84,7 @@ export function WhyUsSection() {
           >
             <img 
               src="https://placehold.co/600x400/e0f2fe/075985?text=Visuel+Avantages" 
-              alt="Avantages Speed E Log" 
+              alt="Avantages Speed E-Log" 
               width="600" 
               height="400" 
               className="mx-auto aspect-video overflow-hidden rounded-xl object-cover shadow-lg" 

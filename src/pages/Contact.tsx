@@ -14,15 +14,15 @@ const Contact = () => {
   return (
     <div className="container mx-auto py-12 md:py-16 lg:py-20 px-4">
       <Helmet>
-        <title>Contact & Devis Logistique E-commerce | Speed E Log</title>
+        <title>Contact & Devis Logistique E-commerce | Speed E-Log</title>
         <meta 
           name="description" 
-          content="Contactez Speed E Log pour un devis personnalisé ou des informations sur nos services logistiques pour e-commerce. Notre équipe vous répond dans les plus brefs délais."
+          content="Contactez Speed E-Log pour un devis personnalisé ou des informations sur nos services logistiques pour e-commerce. Notre équipe vous répond dans les plus brefs délais."
         />
-        <meta property="og:title" content="Contact & Devis Logistique E-commerce | Speed E Log" />
+        <meta property="og:title" content="Contact & Devis Logistique E-commerce | Speed E-Log" />
         <meta 
           property="og:description" 
-          content="Contactez Speed E Log pour un devis personnalisé ou des informations sur nos services logistiques pour e-commerce. Notre équipe vous répond dans les plus brefs délais."
+          content="Contactez Speed E-Log pour un devis personnalisé ou des informations sur nos services logistiques pour e-commerce. Notre équipe vous répond dans les plus brefs délais."
         />
       </Helmet>
       

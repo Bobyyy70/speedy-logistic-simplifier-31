@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -14,15 +15,15 @@ const About = () => {
   return (
     <div>
       <Helmet>
-        <title>À Propos de Speed E Log | Votre Partenaire Logistique</title>
+        <title>À Propos de Speed E-Log | Votre Partenaire Logistique</title>
         <meta 
           name="description" 
-          content="Découvrez Speed E Log, votre partenaire logistique e-commerce à Port-sur-Saône. Notre mission: simplifier la logistique pour les PME françaises avec fiabilité et transparence."
+          content="Découvrez Speed E-Log, votre partenaire logistique e-commerce à Port-sur-Saône. Notre mission: simplifier la logistique pour les PME françaises avec fiabilité et transparence."
         />
-        <meta property="og:title" content="À Propos de Speed E Log | Votre Partenaire Logistique" />
+        <meta property="og:title" content="À Propos de Speed E-Log | Votre Partenaire Logistique" />
         <meta 
           property="og:description" 
-          content="Découvrez Speed E Log, votre partenaire logistique e-commerce à Port-sur-Saône. Notre mission: simplifier la logistique pour les PME françaises avec fiabilité et transparence."
+          content="Découvrez Speed E-Log, votre partenaire logistique e-commerce à Port-sur-Saône. Notre mission: simplifier la logistique pour les PME françaises avec fiabilité et transparence."
         />
       </Helmet>
 
@@ -32,7 +33,7 @@ const About = () => {
             Qui Sommes-Nous ?
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Speed E Log est un partenaire logistique spécialisé pour les PME e-commerce françaises.
+            Speed E-Log est un partenaire logistique spécialisé pour les PME e-commerce françaises.
             Notre mission est de vous permettre de vous concentrer sur la croissance de votre entreprise
             en gérant votre logistique de manière fiable et efficace.
           </p>
@@ -112,7 +113,7 @@ const About = () => {
                 <h2 className="text-3xl md:text-4xl font-bold">Notre Histoire</h2>
               </div>
               <p className="text-muted-foreground">
-                Fondée par Francesco Almanzo, Speed E Log est née d'une passion pour l'optimisation logistique et d'une 
+                Fondée par Francesco Almanzo, Speed E-Log est née d'une passion pour l'optimisation logistique et d'une 
                 compréhension approfondie des défis auxquels sont confrontées les PME du e-commerce.
               </p>
               <p className="text-muted-foreground">

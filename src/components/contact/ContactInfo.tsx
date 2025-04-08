@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
@@ -63,7 +64,7 @@ export const ContactInfo = () => {
           <div>
             <h3 className="font-medium">Adresse</h3>
             <p className="text-muted-foreground">
-              Speed E Log<br />
+              Speed E-Log<br />
               70170 Port-sur-Saône<br />
               Bourgogne-Franche-Comté<br />
               France

@@ -14,12 +14,12 @@ const Services = () => {
   return (
     <div>
       <Helmet>
-        <title>Nos Services Logistique E-commerce | Speed E Log</title>
+        <title>Nos Services Logistique E-commerce | Speed E-Log</title>
         <meta 
           name="description" 
           content="Découvrez nos services logistiques complets pour e-commerce : réception, stockage, préparation de commandes, expédition optimisée. Adapté aux PME." 
         />
-        <meta property="og:title" content="Nos Services Logistique E-commerce | Speed E Log" />
+        <meta property="og:title" content="Nos Services Logistique E-commerce | Speed E-Log" />
         <meta 
           property="og:description" 
           content="Découvrez nos services logistiques complets pour e-commerce : réception, stockage, préparation de commandes, expédition optimisée. Adapté aux PME." 
@@ -45,7 +45,7 @@ const Services = () => {
           Prêt à externaliser votre logistique ?
         </h2>
         <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-          Discutons de vos besoins spécifiques et voyons comment Speed E Log peut vous aider à simplifier vos opérations et à vous concentrer sur votre croissance.
+          Discutons de vos besoins spécifiques et voyons comment Speed E-Log peut vous aider à simplifier vos opérations et à vous concentrer sur votre croissance.
         </p>
         <Button size="lg" asChild>
           <Link to="/contact">Demander un Devis Personnalisé</Link>
