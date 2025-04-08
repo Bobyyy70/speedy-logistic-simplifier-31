@@ -85,14 +85,6 @@ export default {
 					700: '#C2410C',
 					800: '#9A3412',
 					900: '#7C2D12',
-				},
-				warm-orange: {
-					50: '#FFF7ED',
-					100: '#FFEDD5',
-					200: '#FED7AA',
-					300: '#FDBA74',
-					400: '#FB923C',
-					500: '#F97316',
 				}
 			},
 			borderRadius: {
@@ -152,13 +144,10 @@ export default {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'blue-gradient': 'linear-gradient(90deg, hsla(221, 45%, 73%, 1) 0%, hsla(220, 78%, 29%, 1) 100%)',
         'soft-gradient': 'linear-gradient(to bottom, rgba(249, 250, 251, 0.5), rgba(249, 250, 251, 0.9))',
-        'soft-orange-gradient': 'linear-gradient(to bottom, rgba(255, 237, 213, 0.3), rgba(255, 237, 213, 0.6))',
       },
       backgroundColor: {
         'soft-gray': '#f9fafb',
         'subtle-gray': '#f3f4f6',
-        'soft-orange': '#FFF7ED',
-        'subtle-orange': '#FFEDD5',
       }
 		}
 	},
