@@ -1,19 +1,10 @@
-
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { LogoIconWithText } from "@/components/ui/LogoIcon";
 import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
-import { 
-  Sheet, 
-  SheetContent, 
-  SheetHeader,
-  SheetTitle, 
-  SheetTrigger,
-  SheetClose
-} from "@/components/ui/sheet";
-
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,46 +20,41 @@ const Header = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const navigationItems = [
-    { name: "Accueil", path: "/" },
-    { name: "Services", path: "/services" },
-    { name: "Tarification", path: "/pricing" },
-    { name: "À Propos", path: "/about" },
-    { name: "FAQ", path: "/faq" },
-    { name: "Contact", path: "/contact" },
-  ];
-
-  return (
-    <header className={cn(
-      "sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
-      isScrolled && "shadow-sm"
-    )}>
+  const navigationItems = [{
+    name: "Accueil",
+    path: "/"
+  }, {
+    name: "Services",
+    path: "/services"
+  }, {
+    name: "Tarification",
+    path: "/pricing"
+  }, {
+    name: "À Propos",
+    path: "/about"
+  }, {
+    name: "FAQ",
+    path: "/faq"
+  }, {
+    name: "Contact",
+    path: "/contact"
+  }];
+  return <header className={cn("sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60", isScrolled && "shadow-sm")}>
       <div className="container flex h-16 items-center justify-between">
-        <NavLink to="/" className="flex items-center gap-2">
+        <NavLink to="/" className="flex items-center gap-2 mx-0 py-0 my-0">
           <LogoIconWithText />
         </NavLink>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
-          {navigationItems.map((item) => (
-            <NavLink 
-              key={item.name}
-              to={item.path}
-              className={({ isActive }) =>
-                cn(
-                  "text-sm font-medium transition-colors hover:text-orange-600 dark:hover:text-orange-400",
-                  isActive ? "text-orange-600 dark:text-orange-400 font-semibold" : "text-muted-foreground"
-                )
-              }
-            >
+          {navigationItems.map(item => <NavLink key={item.name} to={item.path} className={({
+          isActive
+        }) => cn("text-sm font-medium transition-colors hover:text-orange-600 dark:hover:text-orange-400", isActive ? "text-orange-600 dark:text-orange-400 font-semibold" : "text-muted-foreground")}>
               {item.name}
-            </NavLink>
-          ))}
+            </NavLink>)}
         </nav>
 
         {/* Mobile Navigation */}
@@ -83,21 +69,13 @@ const Header = () => {
               <SheetTitle className="text-left">Menu</SheetTitle>
             </SheetHeader>
             <nav className="flex flex-col gap-4 mt-8">
-              {navigationItems.map((item) => (
-                <SheetClose key={item.name} asChild>
-                  <NavLink
-                    to={item.path}
-                    className={({ isActive }) =>
-                      cn(
-                        "text-base font-medium transition-colors hover:text-orange-600 dark:hover:text-orange-400 px-1 py-2",
-                        isActive ? "text-orange-600 dark:text-orange-400 font-semibold" : "text-foreground"
-                      )
-                    }
-                  >
+              {navigationItems.map(item => <SheetClose key={item.name} asChild>
+                  <NavLink to={item.path} className={({
+                isActive
+              }) => cn("text-base font-medium transition-colors hover:text-orange-600 dark:hover:text-orange-400 px-1 py-2", isActive ? "text-orange-600 dark:text-orange-400 font-semibold" : "text-foreground")}>
                     {item.name}
                   </NavLink>
-                </SheetClose>
-              ))}
+                </SheetClose>)}
               <SheetClose asChild>
                 <Button className="mt-4 w-full" asChild>
                   <NavLink to="/contact">
@@ -116,8 +94,6 @@ const Header = () => {
           </Button>
         </div>
       </div>
-    </header>
-  );
+    </header>;
 };
-
 export default Header;

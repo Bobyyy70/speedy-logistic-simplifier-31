@@ -6,7 +6,7 @@ export const LogoIcon: React.FC<{
 }> = ({
   className = ""
 }) => {
-  return <motion.svg width="250" height="250" viewBox="0 0 250 250" fill="none" xmlns="http://www.w3.org/2000/svg" className={cn("h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20", "text-orange-600 dark:text-orange-400", className)} initial={{
+  return <motion.svg width="250" height="250" viewBox="0 0 250 250" fill="none" xmlns="http://www.w3.org/2000/svg" initial={{
     opacity: 0,
     scale: 0.95
   }} animate={{
@@ -19,7 +19,7 @@ export const LogoIcon: React.FC<{
     transition: {
       duration: 0.2
     }
-  }}>
+  }} className="my-0">
       <path d="M125 50L75 80.9808V142.942L125 173.923L175 142.942V80.9808L125 50Z" stroke="currentColor" strokeWidth="10" className="text-orange-600 dark:text-orange-400" />
       <path d="M75 80.9808L125 111.962L175 80.9808" stroke="currentColor" strokeWidth="10" className="text-orange-600/80 dark:text-orange-400/80" />
       <path d="M125 111.962V173.923" stroke="currentColor" strokeWidth="10" className="text-orange-600/60 dark:text-orange-400/60" />
