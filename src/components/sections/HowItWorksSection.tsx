@@ -47,7 +47,7 @@ export function HowItWorksSection() {
         {/* Introduction */}
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12 md:mb-16">
           <motion.div 
-            className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm dark:bg-slate-800"
+            className="inline-block rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-300 px-3 py-1 text-sm"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -80,7 +80,7 @@ export function HowItWorksSection() {
                 <TabsTrigger 
                   key={step.id} 
                   value={step.id}
-                  className="flex flex-col items-center py-3 px-1 sm:px-4 data-[state=active]:text-primary"
+                  className="flex flex-col items-center py-3 px-1 sm:px-4 data-[state=active]:text-orange-600 dark:data-[state=active]:text-orange-400"
                 >
                   <span className="text-sm sm:text-base font-medium">{step.number}</span>
                   <span className="text-xs hidden sm:block mt-1">{step.shortTitle}</span>
@@ -97,8 +97,8 @@ export function HowItWorksSection() {
                   className="bg-card rounded-lg p-6 shadow-sm border"
                 >
                   <div className="flex flex-col md:flex-row md:items-start gap-6">
-                    <div className="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4 mx-auto md:mx-0">
-                      <step.icon className="h-8 w-8 text-primary" />
+                    <div className="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-orange-100 dark:bg-orange-900/30 mb-4 mx-auto md:mx-0">
+                      <step.icon className="h-8 w-8 text-orange-600 dark:text-orange-500" />
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold mb-3 text-center md:text-left">

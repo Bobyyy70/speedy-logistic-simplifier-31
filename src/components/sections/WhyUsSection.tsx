@@ -44,7 +44,7 @@ export function WhyUsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm dark:bg-slate-800">
+            <div className="inline-block rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-300 px-3 py-1 text-sm">
               Notre Différence
             </div>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -64,7 +64,7 @@ export function WhyUsSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-primary" />
+                  <CheckCircle className={`mt-1 h-5 w-5 flex-shrink-0 ${index % 2 === 0 ? 'text-orange-500 dark:text-orange-400' : 'text-primary'}`} />
                   <div>
                     <h3 className="font-semibold">{advantage.title}</h3>
                     <p className="text-sm text-muted-foreground">{advantage.description}</p>

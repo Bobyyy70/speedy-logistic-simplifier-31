@@ -11,7 +11,7 @@ export const ContactHeader = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="inline-block rounded-lg bg-secondary/20 px-3 py-1 text-sm mb-2">
+        <div className="inline-block rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-300 px-3 py-1 text-sm mb-2">
           Contactez-Nous
         </div>
         <h1 className="text-2xl md:text-3xl font-bold text-center mb-2">Prêt à simplifier votre logistique ?</h1>

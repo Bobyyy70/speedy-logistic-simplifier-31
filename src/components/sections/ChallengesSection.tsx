@@ -33,7 +33,7 @@ export function ChallengesSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm dark:bg-slate-800">
+          <div className="inline-block rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-300 px-3 py-1 text-sm">
             Vos Défis Actuels
           </div>
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -56,8 +56,8 @@ export function ChallengesSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="mb-4 rounded-full bg-primary/10 p-4">
-                <challenge.icon className="h-8 w-8 text-primary" />
+              <div className="mb-4 rounded-full bg-orange-100 dark:bg-orange-900/30 p-4">
+                <challenge.icon className="h-8 w-8 text-orange-600 dark:text-orange-500" />
               </div>
               <h3 className="text-xl font-bold mb-2">{challenge.title}</h3>
               <p className="text-muted-foreground">{challenge.description}</p>

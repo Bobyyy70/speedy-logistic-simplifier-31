@@ -61,8 +61,8 @@ const Header = () => {
               to={item.path}
               className={({ isActive }) =>
                 cn(
-                  "text-sm font-medium transition-colors hover:text-primary",
-                  isActive ? "text-primary" : "text-muted-foreground"
+                  "text-sm font-medium transition-colors hover:text-orange-600 dark:hover:text-orange-400",
+                  isActive ? "text-orange-600 dark:text-orange-400 font-semibold" : "text-muted-foreground"
                 )
               }
             >
@@ -74,7 +74,7 @@ const Header = () => {
         {/* Mobile Navigation */}
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild className="md:hidden">
-            <Button variant="outline" size="icon" className="h-10 w-10" aria-label="Menu">
+            <Button variant="outline" size="icon" className="h-10 w-10 hover:border-orange-500 hover:text-orange-600 dark:hover:text-orange-400" aria-label="Menu">
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
@@ -89,8 +89,8 @@ const Header = () => {
                     to={item.path}
                     className={({ isActive }) =>
                       cn(
-                        "text-base font-medium transition-colors hover:text-primary px-1 py-2",
-                        isActive ? "text-primary" : "text-foreground"
+                        "text-base font-medium transition-colors hover:text-orange-600 dark:hover:text-orange-400 px-1 py-2",
+                        isActive ? "text-orange-600 dark:text-orange-400 font-semibold" : "text-foreground"
                       )
                     }
                   >
