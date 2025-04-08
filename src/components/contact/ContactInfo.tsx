@@ -28,7 +28,7 @@ export const ContactInfo = () => {
           <Mail className="w-5 h-5 mt-1 mr-3 text-primary" />
           <div>
             <h3 className="font-medium">Email</h3>
-            <p className="text-muted-foreground">contact@speedelog.fr</p>
+            <p className="text-muted-foreground">contact@speedelog.net</p>
           </div>
         </motion.div>
         
