@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -144,7 +143,12 @@ export default {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'blue-gradient': 'linear-gradient(90deg, hsla(221, 45%, 73%, 1) 0%, hsla(220, 78%, 29%, 1) 100%)',
+        'soft-gradient': 'linear-gradient(to bottom, rgba(249, 250, 251, 0.5), rgba(249, 250, 251, 0.9))',
       },
+      backgroundColor: {
+        'soft-gray': '#f9fafb',
+        'subtle-gray': '#f3f4f6',
+      }
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
