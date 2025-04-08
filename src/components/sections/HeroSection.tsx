@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -10,7 +11,9 @@ export function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_600px] gap-6 lg:gap-12 items-center">
           {/* Content Column */}
           <div className="flex flex-col justify-center space-y-6 text-center lg:text-left">
-            <LogoIconWithText className="w-36 mb-4 self-start" />
+            <div className="mb-2">
+              <LogoIconWithText className="w-36 lg:self-start mx-auto lg:mx-0" />
+            </div>
             <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
               La logistique E-commerce, <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">sans les tracas</span>.
             </h1>

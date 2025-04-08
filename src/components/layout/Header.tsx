@@ -42,7 +42,7 @@ const Header = () => {
     )}>
       <div className="container flex h-16 items-center justify-between">
         <NavLink to="/" className="flex items-center">
-          <LogoIcon size="md" className="mr-2" />
+          <LogoIconWithText className="w-28 md:w-32" />
         </NavLink>
 
         {/* Desktop Navigation */}
