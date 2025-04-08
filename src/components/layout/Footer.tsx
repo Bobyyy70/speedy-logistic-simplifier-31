@@ -1,14 +1,10 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { LogoIconWithText } from "@/components/ui/LogoIcon";
 import { Mail, Phone, MapPin } from "lucide-react";
-
 export function Footer() {
   const currentYear = new Date().getFullYear();
-
-  return (
-    <footer className="border-t bg-background">
+  return <footer className="border-t bg-background">
       <div className="container mx-auto px-4 py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Logo et description */}
@@ -20,15 +16,18 @@ export function Footer() {
             <div className="flex flex-col space-y-2 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />
-                <span>contact@speedelog.fr</span>
+                <span>contact@speedelog.net
+              </span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                <span>+33 3 84 XX XX XX</span>
+                <span>+33 
+6 35 58 40 04</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
-                <span>Port-sur-Saône, 70170</span>
+                <span>
+70170 Port-sur-Saône,</span>
               </div>
             </div>
           </div>
@@ -70,6 +69,5 @@ export function Footer() {
           </p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 }
