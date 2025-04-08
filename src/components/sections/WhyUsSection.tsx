@@ -25,6 +25,10 @@ export function WhyUsSection() {
     {
       title: "Partenariat Dédié",
       description: "Plus qu'un prestataire, nous sommes votre partenaire logistique engagé, basé à Port-sur-Saône, prêt à vous accompagner."
+    },
+    {
+      title: "Compétitivité Europe & Qualité Garantie",
+      description: "Profitez de nos tarifs négociés et de notre localisation pour des expéditions rapides et économiques vers la France et l'Europe proche. Nous nous engageons sur une qualité de service irréprochable pour chaque colis."
     }
   ];
 
