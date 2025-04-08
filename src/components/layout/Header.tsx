@@ -43,8 +43,8 @@ const Header = () => {
     path: "/contact"
   }];
   return <header className={cn("sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60", isScrolled && "shadow-sm")}>
-      <div className="container flex h-20 items-center justify-between">
-        <NavLink to="/" className="flex items-center gap-2 mx-0 px-0 py-0 my-[240px]">
+      <div className="container flex h-20 items-center justify-between py-[240px]">
+        <NavLink to="/" className="flex items-center gap-2 px-0 mx-0 py-0 my-[240px]">
           <LogoIcon size="lg" />
         </NavLink>
 

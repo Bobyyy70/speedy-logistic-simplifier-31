@@ -26,7 +26,7 @@ export const LogoIcon: React.FC<{
     transition: {
       duration: 0.2
     }
-  }} className="object-scale-down" />;
+  }} className="object-fill" />;
 };
 export const LogoIconWithText: React.FC<{
   className?: string;
