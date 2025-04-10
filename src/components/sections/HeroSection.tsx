@@ -13,7 +13,7 @@ export function HeroSection() {
               <LogoIconWithText className="w-36 lg:self-start mx-auto lg:mx-0" />
             </div>
             <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-              La logistique E-commerce, <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">sans les tracas</span>.
+              La logistique E-commerce, <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500 mx-0">sans les tracas</span>.
             </h1>
             <p className="max-w-[600px] text-muted-foreground md:text-xl mx-auto lg:mx-0">
               Externalisez votre logistique et concentrez-vous sereinement sur votre croissance. Speed E-Log simplifie vos expéditions.
