@@ -1,3 +1,4 @@
+
 import { Package, Truck, Clock, FileText, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -25,7 +26,7 @@ const services = [{
   icon: Clock
 }];
 export function Services() {
-  return <section className="section-container" id="services">
+  return <section className="section-container bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950 rounded-lg py-12" id="services">
       <motion.div initial={{
       opacity: 0,
       y: 20
@@ -61,7 +62,7 @@ export function Services() {
           duration: 0.2
         }
       }}>
-            <Card className="transition-all duration-300 h-full border-opacity-80 bg-orange-100">
+            <Card className="transition-all duration-300 h-full border-opacity-80 bg-gradient-to-tr from-white to-blue-50 dark:from-slate-900 dark:to-blue-950 hover:shadow-md">
               <CardHeader className="pb-4">
                 <div className="bg-primary/10 w-12 h-12 rounded-md flex items-center justify-center mb-3">
                   <service.icon className="h-6 w-6 text-primary" />

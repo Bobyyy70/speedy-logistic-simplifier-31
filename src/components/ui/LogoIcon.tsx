@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -50,7 +51,7 @@ export const HomeLogoWithText: React.FC<{
 }> = ({
   className = ""
 }) => {
-  return <div className="px-[240px] py-[92px] mx-0 my-0 rounded-none bg-blue-100">
+  return <div className="bg-gradient-to-r from-blue-50 to-green-50 dark:from-slate-900 dark:to-emerald-950 px-6 py-4 rounded-xl">
       <motion.img alt="Speed E-Log Logo with Text" width={300} initial={{
       opacity: 0,
       scale: 0.95
@@ -59,7 +60,7 @@ export const HomeLogoWithText: React.FC<{
       scale: 1
     }} transition={{
       duration: 0.3
-    }} src="/lovable-uploads/44bd1cbe-178d-4cd7-8783-f02ff7d4d5a5.png" className="mb-1 object-fill" />
+    }} src="/lovable-uploads/44bd1cbe-178d-4cd7-8783-f02ff7d4d5a5.png" className="mb-1 object-contain" />
     </div>;
 };
 export default LogoIcon;

@@ -24,7 +24,7 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="bg-gray-50 py-12 md:py-20">
+    <section className="bg-gradient-to-tr from-blue-50 via-white to-green-50 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950 py-12 md:py-20">
       <div className="section-container">
         <h2 className="section-title">Ce que nos clients disent</h2>
         <p className="section-subtitle">
@@ -33,7 +33,7 @@ export function Testimonials() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="bg-white border-0 shadow-md">
+            <Card key={index} className="bg-gradient-to-bl from-white to-blue-50 dark:from-slate-900 dark:to-blue-950 border-0 shadow-md">
               <CardContent className="pt-6">
                 <div className="mb-4">
                   {[...Array(5)].map((_, i) => (

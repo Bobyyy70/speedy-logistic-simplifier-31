@@ -35,7 +35,7 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <section className="section-container">
+    <section className="section-container bg-gradient-to-tr from-blue-50 via-white to-green-50 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950 rounded-lg py-12">
       <h2 className="section-title">Questions fréquentes</h2>
       <p className="section-subtitle">
         Retrouvez les réponses aux questions les plus courantes. N'hésitez pas à nous contacter pour toute autre information.

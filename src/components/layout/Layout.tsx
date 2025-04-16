@@ -1,3 +1,4 @@
+
 import React from "react";
 import Header from "./Header";
 import { Footer } from "./Footer";
@@ -8,7 +9,7 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({
   children
 }) => {
-  return <div className="flex flex-col min-h-screen">
+  return <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950">
       <Helmet>
         <html lang="fr" />
         <meta charSet="utf-8" />
@@ -17,7 +18,7 @@ export const Layout: React.FC<LayoutProps> = ({
         <link rel="canonical" href="https://speedelog.fr" />
       </Helmet>
       <Header />
-      <main className="flex-1 bg-blue-100">{children}</main>
+      <main className="flex-1">{children}</main>
       <Footer />
     </div>;
 };
