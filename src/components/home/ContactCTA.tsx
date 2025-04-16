@@ -14,11 +14,11 @@ export function ContactCTA() {
           <p className="text-lg text-muted-foreground mb-8">
             Contactez-nous dès aujourd'hui pour obtenir un devis personnalisé et découvrir comment Speed E Log peut transformer votre chaîne logistique.
           </p>
-          <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600">
-            <Link to="/contact">
+          <Link to="/contact">
+            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600">
               Obtenir un devis gratuit <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

@@ -70,7 +70,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger asChild>
+          <SheetTrigger>
             <Button variant="ghost" size="sm" className="h-10 w-10 hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 md:hidden" aria-label="Menu">
               <Menu className="h-5 w-5" />
             </Button>
@@ -94,7 +94,7 @@ const Header = () => {
               ))}
               
               <div className="mt-4">
-                <SheetClose asChild>
+                <SheetClose>
                   <NavLink 
                     to="/contact"
                     className="block"

@@ -17,14 +17,16 @@ export function Hero() {
               Externalisez votre logistique et concentrez-vous sereinement sur votre croissance. Solution spécialisée pour PME e-commerce.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button asChild size="lg">
-                <Link to="/contact">
+              <Link to="/contact">
+                <Button size="lg">
                   Obtenir un devis personnalisé <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link to="/services">Découvrir nos services</Link>
-              </Button>
+                </Button>
+              </Link>
+              <Link to="/services">
+                <Button variant="outline" size="lg">
+                  Découvrir nos services
+                </Button>
+              </Link>
             </div>
             <div className="pt-4">
               <div className="flex items-center space-x-3">
