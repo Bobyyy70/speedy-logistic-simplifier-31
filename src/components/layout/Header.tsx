@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/neon-button";
 import { LogoIconWithText, LogoIcon } from "@/components/ui/LogoIcon";
 import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,25 +24,34 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  const navigationItems = [{
-    name: "Accueil",
-    path: "/"
-  }, {
-    name: "Services",
-    path: "/services"
-  }, {
-    name: "Tarification",
-    path: "/pricing"
-  }, {
-    name: "À Propos",
-    path: "/about"
-  }, {
-    name: "FAQ",
-    path: "/faq"
-  }, {
-    name: "Contact",
-    path: "/contact"
-  }];
+  
+  const navigationItems = [
+    {
+      name: "Accueil",
+      path: "/"
+    },
+    {
+      name: "Services",
+      path: "/services"
+    },
+    {
+      name: "Tarification",
+      path: "/pricing"
+    },
+    {
+      name: "À Propos",
+      path: "/about"
+    },
+    {
+      name: "FAQ",
+      path: "/faq"
+    },
+    {
+      name: "Contact",
+      path: "/contact"
+    }
+  ];
+
   return <header className={cn("sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60", isScrolled && "shadow-sm")}>
       <div className="container flex h-16 items-center justify-between py-0 my-[8px]">
         <NavLink to="/" className="flex items-center">
@@ -60,7 +70,7 @@ const Header = () => {
         {/* Mobile Navigation */}
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild className="md:hidden">
-            <Button variant="outline" size="icon" className="h-10 w-10 hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400" aria-label="Menu">
+            <Button variant="ghost" size="sm" className="h-10 w-10 hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400" aria-label="Menu">
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
@@ -80,10 +90,8 @@ const Header = () => {
                   </NavLink>
                 </SheetClose>)}
               <SheetClose asChild>
-                <Button className="mt-4 w-full" asChild>
-                  <NavLink to="/contact">
-                    Obtenir un devis
-                  </NavLink>
+                <Button variant="solid" size="default" className="mt-4 w-full" onClick={() => window.location.href = "/contact"}>
+                  Obtenir un devis
                 </Button>
               </SheetClose>
             </nav>
@@ -92,11 +100,12 @@ const Header = () => {
 
         {/* Desktop CTA Button */}
         <div className="hidden md:block">
-          <Button size="sm" asChild>
+          <Button variant="solid" size="default" asChild>
             <NavLink to="/contact">Obtenir un devis</NavLink>
           </Button>
         </div>
       </div>
     </header>;
 };
+
 export default Header;
