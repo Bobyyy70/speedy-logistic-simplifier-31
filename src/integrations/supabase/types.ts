@@ -9,116 +9,13 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      clients: {
-        Row: {
-          billing_address_line1: string | null
-          billing_address_line2: string | null
-          billing_city: string | null
-          billing_country: string | null
-          billing_postal_code: string | null
-          company_name: string
-          contract_type: string | null
-          created_at: string
-          id: string
-          is_active: boolean
-          monthly_volume_tier: string | null
-          notes: string | null
-          primary_contact_email: string
-          primary_contact_name: string | null
-          primary_contact_phone: string | null
-          siret: string | null
-          vat_number: string | null
-          website_url: string | null
-        }
-        Insert: {
-          billing_address_line1?: string | null
-          billing_address_line2?: string | null
-          billing_city?: string | null
-          billing_country?: string | null
-          billing_postal_code?: string | null
-          company_name: string
-          contract_type?: string | null
-          created_at?: string
-          id?: string
-          is_active?: boolean
-          monthly_volume_tier?: string | null
-          notes?: string | null
-          primary_contact_email: string
-          primary_contact_name?: string | null
-          primary_contact_phone?: string | null
-          siret?: string | null
-          vat_number?: string | null
-          website_url?: string | null
-        }
-        Update: {
-          billing_address_line1?: string | null
-          billing_address_line2?: string | null
-          billing_city?: string | null
-          billing_country?: string | null
-          billing_postal_code?: string | null
-          company_name?: string
-          contract_type?: string | null
-          created_at?: string
-          id?: string
-          is_active?: boolean
-          monthly_volume_tier?: string | null
-          notes?: string | null
-          primary_contact_email?: string
-          primary_contact_name?: string | null
-          primary_contact_phone?: string | null
-          siret?: string | null
-          vat_number?: string | null
-          website_url?: string | null
-        }
-        Relationships: []
-      }
-      profiles: {
-        Row: {
-          avatar_url: string | null
-          client_id: string | null
-          full_name: string | null
-          id: string
-          phone_number: string | null
-          role: string
-          updated_at: string | null
-        }
-        Insert: {
-          avatar_url?: string | null
-          client_id?: string | null
-          full_name?: string | null
-          id: string
-          phone_number?: string | null
-          role?: string
-          updated_at?: string | null
-        }
-        Update: {
-          avatar_url?: string | null
-          client_id?: string | null
-          full_name?: string | null
-          id?: string
-          phone_number?: string | null
-          role?: string
-          updated_at?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "profiles_client_id_fkey"
-            columns: ["client_id"]
-            isOneToOne: false
-            referencedRelation: "clients"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
+      [_ in never]: never
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      get_user_client_id: {
-        Args: Record<PropertyKey, never>
-        Returns: string
-      }
+      [_ in never]: never
     }
     Enums: {
       [_ in never]: never
