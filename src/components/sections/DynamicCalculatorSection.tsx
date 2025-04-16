@@ -237,7 +237,7 @@ export function DynamicCalculatorSection() {
                   {/* Poids */}
                   <div className="grid gap-2 py-0">
                     <Label htmlFor="weight">Poids (en kg)</Label>
-                    <Input id="weight" type="number" step="0.1" min="0.1" max="30" placeholder="Ex: 1.5" value={weight} onChange={e => setWeight(e.target.value)} aria-describedby="weight-error" required />
+                    <Input id="weight" type="number" step="0.1" min="0.1" max="30" placeholder="Ex: 1.5" value={weight} onChange={e => setWeight(e.target.value)} aria-describedby="weight-error" required className="py-0" />
                     <p className="text-xs text-muted-foreground">Maximum 30 kg</p>
                     {error && error.includes("poids") && <p id="weight-error" className="text-sm text-destructive">{error}</p>}
                   </div>
