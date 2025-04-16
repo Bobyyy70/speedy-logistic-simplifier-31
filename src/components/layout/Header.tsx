@@ -6,11 +6,15 @@ import { LogoIconWithText, LogoIcon } from "@/components/ui/LogoIcon";
 import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import { NavBar } from "@/components/ui/tubelight-navbar";
+import { Home, Briefcase, CircleDollarSign, Info, FileQuestion, Contact } from 'lucide-react';
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const isMobile = useIsMobile();
 
   // Fermer le menu mobile lors des changements de route
   useEffect(() => {
@@ -29,27 +33,33 @@ const Header = () => {
   const navigationItems = [
     {
       name: "Accueil",
-      path: "/"
+      url: "/",
+      icon: Home
     },
     {
       name: "Services",
-      path: "/services"
+      url: "/services",
+      icon: Briefcase
     },
     {
       name: "Tarification",
-      path: "/pricing"
+      url: "/pricing",
+      icon: CircleDollarSign
     },
     {
       name: "À Propos",
-      path: "/about"
+      url: "/about",
+      icon: Info
     },
     {
       name: "FAQ",
-      path: "/faq"
+      url: "/faq",
+      icon: FileQuestion
     },
     {
       name: "Contact",
-      path: "/contact"
+      url: "/contact",
+      icon: Contact
     }
   ];
 
@@ -59,14 +69,13 @@ const Header = () => {
           <LogoIconWithText className="w-28 md:w-32" />
         </NavLink>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
-          {navigationItems.map(item => <NavLink key={item.name} to={item.path} className={({
-          isActive
-        }) => cn("text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400", isActive ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-muted-foreground")}>
-              {item.name}
-            </NavLink>)}
-        </nav>
+        {/* Desktop Navigation - TubeLight Navbar */}
+        <div className="hidden md:block">
+          <NavBar 
+            items={navigationItems} 
+            className="relative sm:static left-auto transform-none mb-0 sm:pt-0" 
+          />
+        </div>
 
         {/* Mobile Navigation */}
         <Sheet open={open} onOpenChange={setOpen}>
@@ -85,7 +94,7 @@ const Header = () => {
             <nav className="flex flex-col gap-4 mt-8">
               {navigationItems.map(item => (
                 <SheetClose key={item.name} asChild>
-                  <NavLink to={item.path} className={({
+                  <NavLink to={item.url} className={({
                 isActive
               }) => cn("text-base font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400 px-1 py-2", isActive ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-foreground")}>
                     {item.name}
@@ -118,6 +127,14 @@ const Header = () => {
           </NavLink>
         </div>
       </div>
+      
+      {/* Display the mobile navigation at the bottom */}
+      {isMobile && (
+        <NavBar 
+          items={navigationItems.slice(0, 5)} 
+          className="z-50" 
+        />
+      )}
     </header>;
 };
 
