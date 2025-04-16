@@ -19,31 +19,29 @@ const Index = () => {
   }, []);
 
   return (
-    <AuroraBackground showRadialGradient={true}>
-      <div>
-        <Helmet>
-          <title>Speed E-Log | Logistique E-commerce Simplifiée pour PME</title>
-          <meta 
-            name="description" 
-            content="Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
-          />
-          <meta property="og:title" content="Speed E-Log | Logistique E-commerce Simplifiée pour PME" />
-          <meta 
-            property="og:description" 
-            content="Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
-          />
-        </Helmet>
-        <HeroSection />
-        <ChallengesSection />
-        <Services />
-        <HowItWorksSection />
-        <WhyUsSection />
-        <TestimonialsSection />
-        <WhyChooseUs />
-        <Testimonials />
-        <FAQ />
-        <ContactCTA />
-      </div>
+    <AuroraBackground className="min-h-screen">
+      <Helmet>
+        <title>Speed E-Log | Logistique E-commerce Simplifiée pour PME</title>
+        <meta 
+          name="description" 
+          content="Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
+        />
+        <meta property="og:title" content="Speed E-Log | Logistique E-commerce Simplifiée pour PME" />
+        <meta 
+          property="og:description" 
+          content="Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
+        />
+      </Helmet>
+      <HeroSection />
+      <ChallengesSection />
+      <Services />
+      <HowItWorksSection />
+      <WhyUsSection />
+      <TestimonialsSection />
+      <WhyChooseUs />
+      <Testimonials />
+      <FAQ />
+      <ContactCTA />
     </AuroraBackground>
   );
 };
