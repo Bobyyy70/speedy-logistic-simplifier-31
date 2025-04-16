@@ -33,7 +33,7 @@ export function ChallengesSection() {
             Vos Défis Actuels
           </div>
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Externalisez votre logistique avec Speed E-Log  
-Libérez votre temps, boostez votre croissance</h2>
+ Libérez votre temps, boostez votre croissance</h2>
           <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed">
             Gérer les stocks, préparer les commandes, négocier les tarifs transporteurs... Autant de tâches chronophages 
             qui vous détournent de l'essentiel : développer votre e-commerce.
