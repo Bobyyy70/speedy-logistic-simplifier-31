@@ -6,35 +6,23 @@ import { Button } from "@/components/ui/button";
 import { Calculator, Package, Info } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "@/hooks/use-toast";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 export function DynamicCalculatorSection() {
   // États pour le formulaire
   const [zipCode, setZipCode] = useState("");
   const [weight, setWeight] = useState("");
   const [service, setService] = useState("");
-  
+
   // États pour les dimensions (poids volumétrique)
   const [length, setLength] = useState("");
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
-  
+
   // État pour la signature à la livraison
   const [withSignature, setWithSignature] = useState(false);
-  
+
   // États pour la logique de calcul
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -56,24 +44,20 @@ export function DynamicCalculatorSection() {
       setUseVolumetricWeight(false);
     }
   }, [volumetricWeight, weight]);
-
   const calculateVolumetricWeight = () => {
     if (!length || !width || !height) return null;
-    
     const l = parseFloat(length);
     const w = parseFloat(width);
     const h = parseFloat(height);
-    
     if (isNaN(l) || isNaN(w) || isNaN(h)) return null;
-    
+
     // Formule standard: (L x l x h en cm) / 5000 = poids volumétrique en kg
-    const volumeWeight = (l * w * h) / 5000;
+    const volumeWeight = l * w * h / 5000;
     return volumeWeight;
   };
-
   const handleCalculate = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validation basique
     if (!zipCode || zipCode.length < 5) {
       setError("Veuillez entrer un code postal valide");
@@ -84,7 +68,6 @@ export function DynamicCalculatorSection() {
       });
       return;
     }
-    
     if (!service) {
       setError("Veuillez sélectionner un type de service");
       toast({
@@ -94,9 +77,8 @@ export function DynamicCalculatorSection() {
       });
       return;
     }
-    
     let weightNum: number;
-    
+
     // Vérification du poids réel
     if (!weight || parseFloat(weight) <= 0 || parseFloat(weight) > 30) {
       setError("Le poids doit être entre 0.1 et 30 kg");
@@ -107,9 +89,8 @@ export function DynamicCalculatorSection() {
       });
       return;
     }
-    
     weightNum = parseFloat(weight);
-    
+
     // Si les dimensions sont remplies, calculer et comparer le poids volumétrique
     const volWeight = calculateVolumetricWeight();
     if (volWeight !== null) {
@@ -117,18 +98,18 @@ export function DynamicCalculatorSection() {
         weightNum = volWeight; // On utilise le poids le plus élevé
       }
     }
-    
+
     // Réinitialiser les états
     setError(null);
     setCalculationResult(null);
     setLoading(true);
-    
+
     // Simuler un appel API avec setTimeout
     setTimeout(() => {
       try {
         // Logique de calcul simulée
         let basePrice: number;
-        
+
         // Calcul selon le type de service
         switch (service) {
           case "relay":
@@ -153,38 +134,43 @@ export function DynamicCalculatorSection() {
             }
             break;
         }
-        
+
         // Ajustement selon le code postal (simulé)
         const zipNum = parseInt(zipCode.substring(0, 2));
-        
         if (service === "international") {
           // Ajustements pour les destinations internationales basés sur le code postal
-          if (zipNum <= 20) { // Europe proche (simulation)
+          if (zipNum <= 20) {
+            // Europe proche (simulation)
             basePrice = basePrice * 1.2;
-          } else if (zipNum <= 50) { // Europe éloignée (simulation)
+          } else if (zipNum <= 50) {
+            // Europe éloignée (simulation)
             basePrice = basePrice * 1.5;
-          } else if (zipNum <= 80) { // USA/Canada (simulation)
+          } else if (zipNum <= 80) {
+            // USA/Canada (simulation)
             basePrice = basePrice * 2.0;
-          } else { // Reste du monde (simulation)
+          } else {
+            // Reste du monde (simulation)
             basePrice = basePrice * 2.5;
           }
         } else {
           // Pour les livraisons nationales
-          if (zipNum >= 97) { // DOM-TOM
+          if (zipNum >= 97) {
+            // DOM-TOM
             basePrice = basePrice * 2.5;
-          } else if (zipNum >= 20 && zipNum <= 20) { // Corse
+          } else if (zipNum >= 20 && zipNum <= 20) {
+            // Corse
             basePrice = basePrice * 1.5;
           }
         }
-        
+
         // Arrondir et formatter le résultat
         const finalPrice = Math.round(basePrice * 100) / 100;
         setCalculationResult(finalPrice.toFixed(2));
-        
+
         // Notification de succès
         toast({
           title: "Estimation réussie",
-          description: `Tarif estimé : ${finalPrice.toFixed(2)} € TTC${useVolumetricWeight ? ' (basé sur le poids volumétrique)' : ''}`,
+          description: `Tarif estimé : ${finalPrice.toFixed(2)} € TTC${useVolumetricWeight ? ' (basé sur le poids volumétrique)' : ''}`
         });
       } catch (err) {
         setError("Une erreur est survenue lors du calcul. Veuillez réessayer.");
@@ -198,18 +184,20 @@ export function DynamicCalculatorSection() {
       }
     }, 1000);
   };
-
-  return (
-    <section id="calculator" className="bg-muted/40 dark:bg-slate-900 py-12 md:py-24 lg:py-32">
+  return <section id="calculator" className="py-12 md:py-24 lg:py-32 bg-[#b3bee8]/[0.27]">
       <div className="container mx-auto px-4 md:px-6">
         {/* Introduction */}
-        <motion.div 
-          className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <motion.div className="flex flex-col items-center justify-center space-y-4 text-center mb-12" initial={{
+        opacity: 0,
+        y: 20
+      }} whileInView={{
+        opacity: 1,
+        y: 0
+      }} viewport={{
+        once: true
+      }} transition={{
+        duration: 0.5
+      }}>
           <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm dark:bg-slate-800">
             Estimation Tarif Transport
           </div>
@@ -225,12 +213,17 @@ export function DynamicCalculatorSection() {
         </motion.div>
 
         {/* Calculateur */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+        <motion.div initial={{
+        opacity: 0,
+        y: 30
+      }} whileInView={{
+        opacity: 1,
+        y: 0
+      }} viewport={{
+        once: true
+      }} transition={{
+        duration: 0.6
+      }}>
           <Card className="max-w-2xl mx-auto">
             <CardContent className="pt-6">
               <form onSubmit={handleCalculate} className="space-y-6">
@@ -244,22 +237,9 @@ export function DynamicCalculatorSection() {
                   {/* Poids */}
                   <div className="grid gap-2">
                     <Label htmlFor="weight">Poids (en kg)</Label>
-                    <Input
-                      id="weight"
-                      type="number"
-                      step="0.1"
-                      min="0.1"
-                      max="30"
-                      placeholder="Ex: 1.5"
-                      value={weight}
-                      onChange={(e) => setWeight(e.target.value)}
-                      aria-describedby="weight-error"
-                      required
-                    />
+                    <Input id="weight" type="number" step="0.1" min="0.1" max="30" placeholder="Ex: 1.5" value={weight} onChange={e => setWeight(e.target.value)} aria-describedby="weight-error" required />
                     <p className="text-xs text-muted-foreground">Maximum 30 kg</p>
-                    {error && error.includes("poids") && (
-                      <p id="weight-error" className="text-sm text-destructive">{error}</p>
-                    )}
+                    {error && error.includes("poids") && <p id="weight-error" className="text-sm text-destructive">{error}</p>}
                   </div>
                   
                   <div className="space-y-2">
@@ -286,85 +266,43 @@ export function DynamicCalculatorSection() {
                       {/* Longueur */}
                       <div className="space-y-2">
                         <Label htmlFor="length">Longueur (cm)</Label>
-                        <Input
-                          id="length"
-                          type="number"
-                          min="1"
-                          step="0.1"
-                          placeholder="Ex: 30"
-                          value={length}
-                          onChange={(e) => setLength(e.target.value)}
-                        />
+                        <Input id="length" type="number" min="1" step="0.1" placeholder="Ex: 30" value={length} onChange={e => setLength(e.target.value)} />
                       </div>
                       
                       {/* Largeur */}
                       <div className="space-y-2">
                         <Label htmlFor="width">Largeur (cm)</Label>
-                        <Input
-                          id="width"
-                          type="number"
-                          min="1"
-                          step="0.1"
-                          placeholder="Ex: 20"
-                          value={width}
-                          onChange={(e) => setWidth(e.target.value)}
-                        />
+                        <Input id="width" type="number" min="1" step="0.1" placeholder="Ex: 20" value={width} onChange={e => setWidth(e.target.value)} />
                       </div>
                       
                       {/* Hauteur */}
                       <div className="space-y-2">
                         <Label htmlFor="height">Hauteur (cm)</Label>
-                        <Input
-                          id="height"
-                          type="number"
-                          min="1"
-                          step="0.1"
-                          placeholder="Ex: 15"
-                          value={height}
-                          onChange={(e) => setHeight(e.target.value)}
-                        />
+                        <Input id="height" type="number" min="1" step="0.1" placeholder="Ex: 15" value={height} onChange={e => setHeight(e.target.value)} />
                       </div>
                     </div>
                     
-                    {volumetricWeight !== null && (
-                      <p className="text-sm text-muted-foreground mt-2">
+                    {volumetricWeight !== null && <p className="text-sm text-muted-foreground mt-2">
                         Poids volumétrique calculé: <span className="font-medium">{volumetricWeight.toFixed(2)} kg</span>
-                        {useVolumetricWeight && (
-                          <span className="ml-2 text-amber-500 dark:text-amber-400 font-medium">
+                        {useVolumetricWeight && <span className="ml-2 text-amber-500 dark:text-amber-400 font-medium">
                             (Ce poids sera utilisé car supérieur au poids réel)
-                          </span>
-                        )}
-                      </p>
-                    )}
+                          </span>}
+                      </p>}
                   </div>
                 </div>
                 
                 {/* Code Postal */}
                 <div className="grid gap-2">
                   <Label htmlFor="zip-code">Code Postal de destination</Label>
-                  <Input
-                    id="zip-code"
-                    type="text"
-                    placeholder="Ex: 75001"
-                    value={zipCode}
-                    onChange={(e) => setZipCode(e.target.value)}
-                    aria-describedby="zip-code-error"
-                    required
-                  />
-                  {error && error.includes("code postal") && (
-                    <p id="zip-code-error" className="text-sm text-destructive">{error}</p>
-                  )}
+                  <Input id="zip-code" type="text" placeholder="Ex: 75001" value={zipCode} onChange={e => setZipCode(e.target.value)} aria-describedby="zip-code-error" required />
+                  {error && error.includes("code postal") && <p id="zip-code-error" className="text-sm text-destructive">{error}</p>}
                 </div>
                 
                 {/* Type de Service */}
                 <div className="space-y-4">
                   <div className="grid gap-2">
                     <Label htmlFor="service">Type de Service</Label>
-                    <Select 
-                      value={service} 
-                      onValueChange={setService}
-                      required
-                    >
+                    <Select value={service} onValueChange={setService} required>
                       <SelectTrigger id="service" aria-describedby="service-error">
                         <SelectValue placeholder="Sélectionnez un service" />
                       </SelectTrigger>
@@ -375,39 +313,32 @@ export function DynamicCalculatorSection() {
                         <SelectItem value="international">Livraison Internationale</SelectItem>
                       </SelectContent>
                     </Select>
-                    {error && error.includes("service") && (
-                      <p id="service-error" className="text-sm text-destructive">{error}</p>
-                    )}
+                    {error && error.includes("service") && <p id="service-error" className="text-sm text-destructive">{error}</p>}
                   </div>
                   
                   {/* Option de signature conditionnelle */}
-                  {(service === "home" || service === "international") && (
-                    <div className="flex items-center space-x-2">
-                      <Checkbox 
-                        id="signature" 
-                        checked={withSignature}
-                        onCheckedChange={(checked) => setWithSignature(checked === true)}
-                      />
+                  {(service === "home" || service === "international") && <div className="flex items-center space-x-2">
+                      <Checkbox id="signature" checked={withSignature} onCheckedChange={checked => setWithSignature(checked === true)} />
                       <Label htmlFor="signature" className="text-sm font-normal cursor-pointer">
                         Avec signature à la livraison {service === "international" ? "(+3.50€)" : "(+2.00€)"}
                       </Label>
-                    </div>
-                  )}
+                    </div>}
                 </div>
                 
                 {/* Bouton Calculer */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3, delay: 0.4 }}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Button 
-                    type="submit" 
-                    className="w-full" 
-                    disabled={loading}
-                  >
+                <motion.div initial={{
+                opacity: 0
+              }} animate={{
+                opacity: 1
+              }} transition={{
+                duration: 0.3,
+                delay: 0.4
+              }} whileHover={{
+                scale: 1.02
+              }} whileTap={{
+                scale: 0.98
+              }}>
+                  <Button type="submit" className="w-full" disabled={loading}>
                     <Calculator className="mr-2 h-4 w-4" />
                     {loading ? "Calcul en cours..." : "Estimer le tarif"}
                   </Button>
@@ -416,55 +347,47 @@ export function DynamicCalculatorSection() {
               
               {/* Zone de Résultat */}
               <div className="mt-6 pt-4 border-t">
-                {loading && (
-                  <p className="text-center text-muted-foreground">Calcul en cours...</p>
-                )}
+                {loading && <p className="text-center text-muted-foreground">Calcul en cours...</p>}
                 
-                {error && !error.includes("code postal") && !error.includes("poids") && !error.includes("dimensions") && !error.includes("service") && (
-                  <motion.div 
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="p-3 bg-destructive/10 text-destructive rounded-md text-center"
-                  >
+                {error && !error.includes("code postal") && !error.includes("poids") && !error.includes("dimensions") && !error.includes("service") && <motion.div initial={{
+                opacity: 0,
+                scale: 0.95
+              }} animate={{
+                opacity: 1,
+                scale: 1
+              }} className="p-3 bg-destructive/10 text-destructive rounded-md text-center">
                     {error}
-                  </motion.div>
-                )}
+                  </motion.div>}
                 
-                {!loading && !error && calculationResult && (
-                  <motion.div 
-                    className="text-center space-y-2"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ 
-                      duration: 0.4, 
-                      type: "spring",
-                      stiffness: 120 
-                    }}
-                  >
+                {!loading && !error && calculationResult && <motion.div className="text-center space-y-2" initial={{
+                opacity: 0,
+                scale: 0.9
+              }} animate={{
+                opacity: 1,
+                scale: 1
+              }} transition={{
+                duration: 0.4,
+                type: "spring",
+                stiffness: 120
+              }}>
                     <div className="font-bold text-2xl">
                       Tarif estimé : {calculationResult} € TTC
                     </div>
                     <p className="text-xs text-muted-foreground max-w-md mx-auto">
                       *Tarif indicatif TTC, basé sur les informations fournies. Le tarif final dépendra des dimensions exactes 
                       et des éventuelles surcharges non incluses dans cette simulation.
-                      {useVolumetricWeight && volumetricWeight && (
-                        <span className="block mt-1">
+                      {useVolumetricWeight && volumetricWeight && <span className="block mt-1">
                           Calcul effectué sur le poids volumétrique de {volumetricWeight.toFixed(2)} kg.
-                        </span>
-                      )}
-                      {withSignature && (
-                        <span className="block mt-1">
+                        </span>}
+                      {withSignature && <span className="block mt-1">
                           Incluant le supplément pour livraison avec signature.
-                        </span>
-                      )}
+                        </span>}
                     </p>
-                  </motion.div>
-                )}
+                  </motion.div>}
               </div>
             </CardContent>
           </Card>
         </motion.div>
       </div>
-    </section>
-  );
+    </section>;
 }
