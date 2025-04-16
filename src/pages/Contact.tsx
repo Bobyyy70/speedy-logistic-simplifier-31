@@ -12,7 +12,7 @@ const Contact = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 via-blue-100/50 to-blue-200/30 dark:from-slate-900 dark:via-slate-900/80 dark:to-blue-950/50">
+    <div className="bg-gradient-to-br from-blue-50 via-green-50/30 to-blue-100/40 dark:from-slate-900 dark:via-green-950/20 dark:to-blue-950/30">
       <Helmet>
         <title>Contact & Devis Logistique E-commerce | Speed E-Log</title>
         <meta 

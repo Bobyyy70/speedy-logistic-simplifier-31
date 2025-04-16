@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -13,7 +14,7 @@ const About = () => {
   }, []);
 
   return (
-    <div>
+    <div className="bg-gradient-to-br from-blue-50 via-green-50/30 to-blue-100/40 dark:from-slate-900 dark:via-green-950/20 dark:to-blue-950/30">
       <Helmet>
         <title>À Propos de Speed E-Log | Votre Partenaire Logistique</title>
         <meta 
@@ -27,7 +28,7 @@ const About = () => {
         />
       </Helmet>
 
-      <section className="py-16 md:py-24 bg-gradient-to-b from-secondary/50 to-background">
+      <section className="py-16 md:py-24 bg-gradient-to-b from-green-50/50 to-blue-50/40 dark:from-green-950/20 dark:to-blue-950/20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Qui Sommes-Nous ?
@@ -40,7 +41,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-background">
+      <section className="py-16 md:py-20 bg-blue-50/30 dark:bg-blue-950/10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Notre Mission et Nos Valeurs</h2>
@@ -53,7 +54,7 @@ const About = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="bg-muted/30 border-0">
+            <Card className="bg-white/80 dark:bg-slate-800/50 border border-green-100/50 dark:border-green-900/20">
               <CardHeader className="pb-2 flex flex-row items-center space-y-0">
                 <Star className="h-5 w-5 text-primary mr-2" />
                 <CardTitle className="text-xl">Transparence</CardTitle>
@@ -65,7 +66,7 @@ const About = () => {
               </CardContent>
             </Card>
             
-            <Card className="bg-muted/30 border-0">
+            <Card className="bg-white/80 dark:bg-slate-800/50 border border-green-100/50 dark:border-green-900/20">
               <CardHeader className="pb-2 flex flex-row items-center space-y-0">
                 <Star className="h-5 w-5 text-primary mr-2" />
                 <CardTitle className="text-xl">Fiabilité</CardTitle>
@@ -77,7 +78,7 @@ const About = () => {
               </CardContent>
             </Card>
             
-            <Card className="bg-muted/30 border-0">
+            <Card className="bg-white/80 dark:bg-slate-800/50 border border-green-100/50 dark:border-green-900/20">
               <CardHeader className="pb-2 flex flex-row items-center space-y-0">
                 <Star className="h-5 w-5 text-primary mr-2" />
                 <CardTitle className="text-xl">Efficacité</CardTitle>
@@ -89,7 +90,7 @@ const About = () => {
               </CardContent>
             </Card>
             
-            <Card className="bg-muted/30 border-0">
+            <Card className="bg-white/80 dark:bg-slate-800/50 border border-green-100/50 dark:border-green-900/20">
               <CardHeader className="pb-2 flex flex-row items-center space-y-0">
                 <Star className="h-5 w-5 text-primary mr-2" />
                 <CardTitle className="text-xl">Partenariat</CardTitle>
@@ -104,7 +105,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-muted/30">
+      <section className="py-16 md:py-20 bg-green-50/40 dark:bg-green-950/10">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
             <div className="md:w-1/2 space-y-4">
@@ -126,7 +127,7 @@ const About = () => {
                 logistique de nos clients et contribuer à leur succès.
               </p>
             </div>
-            <div className="md:w-1/2 bg-muted rounded-lg p-6 flex items-center justify-center">
+            <div className="md:w-1/2 bg-white/80 dark:bg-slate-800/50 rounded-lg p-6 flex items-center justify-center border border-blue-100/50 dark:border-blue-900/20">
               <div className="text-center">
                 <Truck className="h-16 w-16 text-primary mx-auto mb-4" />
                 <p className="text-xl font-medium">
@@ -139,10 +140,10 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-background">
+      <section className="py-16 md:py-20 bg-blue-50/30 dark:bg-blue-950/10">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-            <div className="md:w-1/2 order-2 md:order-1 bg-muted/50 rounded-lg h-64 flex items-center justify-center">
+            <div className="md:w-1/2 order-2 md:order-1 bg-white/80 dark:bg-slate-800/50 rounded-lg h-64 flex items-center justify-center border border-green-100/50 dark:border-green-900/20">
               <div className="text-center p-4">
                 <MapPin className="h-12 w-12 text-primary mx-auto mb-4" />
                 <p className="text-lg font-medium">
@@ -176,7 +177,7 @@ const About = () => {
 
       <TestimonialsSection />
 
-      <section className="py-16 md:py-20 bg-muted/30 text-center">
+      <section className="py-16 md:py-20 bg-gradient-to-b from-green-50/40 to-blue-50/30 dark:from-green-950/20 dark:to-blue-950/20 text-center">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             Envie de travailler avec nous ?
@@ -186,10 +187,10 @@ const About = () => {
             et vous accompagner dans la croissance de votre entreprise e-commerce.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" asChild>
+            <Button size="lg" asChild className="bg-gradient-to-r from-primary to-blue-500 hover:from-primary/90 hover:to-blue-500/90">
               <Link to="/contact">Nous Contacter</Link>
             </Button>
-            <Button size="lg" variant="outline" asChild>
+            <Button size="lg" variant="outline" asChild className="border-green-200 hover:border-green-300 dark:border-green-800 dark:hover:border-green-700">
               <Link to="/services">Nos Services</Link>
             </Button>
           </div>

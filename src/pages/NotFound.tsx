@@ -14,7 +14,7 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-blue-100/50 to-blue-200/30 dark:from-slate-900 dark:via-slate-900/80 dark:to-blue-950/50">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-green-50/30 to-blue-100/40 dark:from-slate-900 dark:via-green-950/20 dark:to-blue-950/30">
       <Helmet>
         <title>404 - Page Non Trouvée | Speed E Log</title>
         <meta 
@@ -23,7 +23,7 @@ const NotFound = () => {
         />
         <meta name="robots" content="noindex, follow" />
       </Helmet>
-      <div className="text-center bg-white/80 dark:bg-slate-800/70 p-12 rounded-lg shadow-sm border border-blue-100/70 dark:border-blue-900/30">
+      <div className="text-center bg-white/80 dark:bg-slate-800/70 p-12 rounded-lg shadow-sm border border-green-100/70 dark:border-green-900/30">
         <h1 className="text-4xl font-bold mb-4">404</h1>
         <p className="text-xl text-muted-foreground mb-6">Cette page n'existe pas</p>
         <a href="/" className="text-primary hover:text-primary/90 underline">
