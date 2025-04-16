@@ -1,7 +1,8 @@
 
 import React from 'react'
 import { cn } from '@/lib/utils'
-import { VariantProps, cva } from "class-variance-authority";
+import { VariantProps, cva } from "class-variance-authority"
+import { Slot } from "@radix-ui/react-slot"
 
 const buttonVariants = cva(
     "relative group border text-foreground mx-auto text-center rounded-full",
@@ -27,12 +28,17 @@ const buttonVariants = cva(
 
 export interface ButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> { neon?: boolean }
+    VariantProps<typeof buttonVariants> { 
+        neon?: boolean;
+        asChild?: boolean;
+    }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ className, neon = true, size, variant, children, ...props }, ref) => {
+    ({ className, neon = true, size, variant, asChild = false, children, ...props }, ref) => {
+        const Comp = asChild ? Slot : "button"
+        
         return (
-            <button
+            <Comp
                 className={cn(buttonVariants({ variant, size }), className)}
                 ref={ref}
                 {...props}
@@ -40,7 +46,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 <span className={cn("absolute h-px opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out inset-x-0 inset-y-0 bg-gradient-to-r w-3/4 mx-auto from-transparent dark:via-blue-500 via-blue-600 to-transparent hidden", neon && "block")} />
                 {children}
                 <span className={cn("absolute group-hover:opacity-30 transition-all duration-500 ease-in-out inset-x-0 h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent dark:via-blue-500 via-blue-600 to-transparent hidden", neon && "block")} />
-            </button>
+            </Comp>
         );
     }
 )

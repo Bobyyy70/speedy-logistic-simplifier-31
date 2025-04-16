@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/neon-button";
@@ -90,8 +91,8 @@ const Header = () => {
                   </NavLink>
                 </SheetClose>)}
               <SheetClose asChild>
-                <Button variant="solid" size="default" className="mt-4 w-full" onClick={() => window.location.href = "/contact"}>
-                  Obtenir un devis
+                <Button variant="solid" size="default" asChild>
+                  <NavLink to="/contact">Obtenir un devis</NavLink>
                 </Button>
               </SheetClose>
             </nav>
