@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { HomeLogoWithText } from "@/components/ui/LogoIcon";
 export function HeroSection() {
   return <section className="bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-700 py-12 md:py-24 lg:py-32 overflow-hidden xl:py-0 rounded-none mx-0">
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto relative z-10 px-0">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_600px] gap-6 lg:gap-12 items-center">
           {/* Content Column */}
           <div className="flex flex-col justify-center space-y-6 text-center lg:text-left px-[25px]">
@@ -47,7 +47,7 @@ export function HeroSection() {
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg blur opacity-20"></div>
             <div className="relative bg-white dark:bg-slate-900 shadow-xl rounded-lg p-6">
               <div className="aspect-video lg:aspect-square bg-gradient-to-r from-blue-50 to-green-50 dark:from-slate-800 dark:to-green-950 mb-4 flex items-center justify-center overflow-hidden rounded-3xl px-0 mx-0">
-                <img alt="Logistique Speed E-Log" className="w-full h-full object-cover" src="/lovable-uploads/2e66f51f-45f3-4ba7-b497-e45a56dad2f7.png" />
+                
               </div>
               <h3 className="font-semibold text-lg mb-2">Une logistique moderne et efficace</h3>
               <p className="text-muted-foreground">
