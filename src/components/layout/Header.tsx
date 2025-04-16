@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/neon-button";
-import { LogoIconWithText, LogoIcon } from "@/components/ui/LogoIcon";
+import { LogoWithText, LogoIcon } from "@/components/ui/LogoIcon";
 import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
@@ -66,7 +66,7 @@ const Header = () => {
   return <header className={cn("sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60", isScrolled && "shadow-sm")}>
       <div className="container flex h-16 items-center justify-between py-0 my-[8px]">
         <NavLink to="/" className="flex items-center">
-          <LogoIconWithText className="w-28 md:w-32" />
+          <LogoWithText className="w-28 md:w-32" />
         </NavLink>
 
         {/* Desktop Navigation - TubeLight Navbar */}
@@ -89,7 +89,7 @@ const Header = () => {
               <SheetTitle className="text-left">Menu</SheetTitle>
             </SheetHeader>
             <div className="flex justify-center my-4">
-              <LogoIconWithText />
+              <LogoWithText />
             </div>
             <nav className="flex flex-col gap-4 mt-8">
               {navigationItems.map(item => (
