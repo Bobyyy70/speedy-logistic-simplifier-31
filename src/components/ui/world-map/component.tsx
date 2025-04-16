@@ -18,11 +18,14 @@ export function WorldMap({
   const svgRef = useRef<SVGSVGElement>(null);
   const map = new DottedMap({ height: 100, grid: "diagonal" });
 
+  // Since we're not using next-themes, we'll default to light mode
+  const theme = "light";
+
   const svgMap = map.getSVG({
     radius: 0.22,
-    color: "#00000030", // Increased visibility with a softer color
+    color: theme === "light" ? "#00000020" : "#FFFFFF20", // Fixed comparison
     shape: "circle",
-    backgroundColor: "transparent", // Make background transparent
+    backgroundColor: theme === "light" ? "white" : "black", // Fixed comparison
   });
 
   const projectPoint = (lat: number, lng: number) => {
@@ -44,7 +47,7 @@ export function WorldMap({
     <div className="w-full aspect-[2/1] rounded-lg relative font-sans bg-transparent">
       <img
         src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
-        className="h-full w-full [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] pointer-events-none select-none opacity-50"
+        className="h-full w-full [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] pointer-events-none select-none opacity-40"
         alt="world map"
         height="495"
         width="1056"
@@ -64,9 +67,13 @@ export function WorldMap({
                 d={createCurvedPath(startPoint, endPoint)}
                 fill="none"
                 stroke="url(#path-gradient)"
-                strokeWidth="1.5" // Slightly thicker line
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
+                strokeWidth="1"
+                initial={{
+                  pathLength: 0,
+                }}
+                animate={{
+                  pathLength: 1,
+                }}
                 transition={{
                   duration: 1,
                   delay: 0.5 * i,
@@ -81,8 +88,8 @@ export function WorldMap({
         <defs>
           <linearGradient id="path-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="white" stopOpacity="0" />
-            <stop offset="5%" stopColor={lineColor} stopOpacity="0.7" />
-            <stop offset="95%" stopColor={lineColor} stopOpacity="0.7" />
+            <stop offset="5%" stopColor={lineColor} stopOpacity="1" />
+            <stop offset="95%" stopColor={lineColor} stopOpacity="1" />
             <stop offset="100%" stopColor="white" stopOpacity="0" />
           </linearGradient>
         </defs>
@@ -99,6 +106,38 @@ export function WorldMap({
               <circle
                 cx={projectPoint(dot.start.lat, dot.start.lng).x}
                 cy={projectPoint(dot.start.lat, dot.start.lng).y}
+                r="2"
+                fill={lineColor}
+                opacity="0.5"
+              >
+                <animate
+                  attributeName="r"
+                  from="2"
+                  to="8"
+                  dur="1.5s"
+                  begin="0s"
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="opacity"
+                  from="0.5"
+                  to="0"
+                  dur="1.5s"
+                  begin="0s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </g>
+            <g key={`end-${i}`}>
+              <circle
+                cx={projectPoint(dot.end.lat, dot.end.lng).x}
+                cy={projectPoint(dot.end.lat, dot.end.lng).y}
+                r="2"
+                fill={lineColor}
+              />
+              <circle
+                cx={projectPoint(dot.end.lat, dot.end.lng).x}
+                cy={projectPoint(dot.end.lat, dot.end.lng).y}
                 r="2"
                 fill={lineColor}
                 opacity="0.5"
