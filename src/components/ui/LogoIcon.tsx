@@ -1,6 +1,8 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+
 export const LogoIcon: React.FC<{
   className?: string;
   size?: "sm" | "md" | "lg";
@@ -29,6 +31,7 @@ export const LogoIcon: React.FC<{
     }
   }} className={cn(sizeClasses[size], "object-contain", className)} />;
 };
+
 export const LogoIconWithText: React.FC<{
   className?: string;
 }> = ({
@@ -47,14 +50,32 @@ export const LogoIconWithText: React.FC<{
     }} src={logoPath} className="mb-1 object-scale-down" />
   </div>;
 };
+
 export const HomeLogoWithText: React.FC<{
   className?: string;
 }> = ({
   className = ""
 }) => {
-  const logoPath = "/lovable-uploads/44bd1cbe-178d-4cd7-8783-f02ff7d4d5a5.png";
+  const logoPath = "/lovable-uploads/83cc9529-aa94-4f8a-851d-02ea52cc3c71.png";
   return <div className="bg-gradient-to-r from-blue-50 to-green-50 dark:from-slate-900 dark:to-emerald-950 px-6 py-4 rounded-xl">
-    
+    <motion.img 
+      src={logoPath} 
+      alt="Speed E-Log Logo" 
+      width={220} 
+      className="mx-auto" 
+      initial={{
+        opacity: 0,
+        y: -10
+      }} 
+      animate={{
+        opacity: 1,
+        y: 0
+      }} 
+      transition={{
+        duration: 0.5
+      }} 
+    />
   </div>;
 };
+
 export default LogoIcon;
