@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/neon-button";
@@ -9,7 +8,6 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose 
 import { NavBar } from "@/components/ui/tubelight-navbar";
 import { Home, Briefcase, CircleDollarSign, Info, FileQuestion, Contact } from 'lucide-react';
 import { useIsMobile } from "@/hooks/use-mobile";
-
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,40 +27,31 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  
-  const navigationItems = [
-    {
-      name: "Accueil",
-      url: "/",
-      icon: Home
-    },
-    {
-      name: "Services",
-      url: "/services",
-      icon: Briefcase
-    },
-    {
-      name: "Tarification",
-      url: "/pricing",
-      icon: CircleDollarSign
-    },
-    {
-      name: "À Propos",
-      url: "/about",
-      icon: Info
-    },
-    {
-      name: "FAQ",
-      url: "/faq",
-      icon: FileQuestion
-    },
-    {
-      name: "Contact",
-      url: "/contact",
-      icon: Contact
-    }
-  ];
-
+  const navigationItems = [{
+    name: "Accueil",
+    url: "/",
+    icon: Home
+  }, {
+    name: "Services",
+    url: "/services",
+    icon: Briefcase
+  }, {
+    name: "Tarification",
+    url: "/pricing",
+    icon: CircleDollarSign
+  }, {
+    name: "À Propos",
+    url: "/about",
+    icon: Info
+  }, {
+    name: "FAQ",
+    url: "/faq",
+    icon: FileQuestion
+  }, {
+    name: "Contact",
+    url: "/contact",
+    icon: Contact
+  }];
   return <header className={cn("sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60", isScrolled && "shadow-sm")}>
       <div className="container flex h-16 items-center justify-between py-0 my-[8px]">
         <NavLink to="/" className="flex items-center">
@@ -71,10 +60,7 @@ const Header = () => {
 
         {/* Desktop Navigation - TubeLight Navbar */}
         <div className="hidden md:block">
-          <NavBar 
-            items={navigationItems} 
-            className="relative sm:static left-auto transform-none mb-0 sm:pt-0" 
-          />
+          <NavBar items={navigationItems} className="relative sm:static left-auto transform-none mb-0 sm:pt-0" />
         </div>
 
         {/* Mobile Navigation */}
@@ -92,22 +78,17 @@ const Header = () => {
               <LogoIconWithText />
             </div>
             <nav className="flex flex-col gap-4 mt-8">
-              {navigationItems.map(item => (
-                <SheetClose key={item.name} asChild>
+              {navigationItems.map(item => <SheetClose key={item.name} asChild>
                   <NavLink to={item.url} className={({
                 isActive
               }) => cn("text-base font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400 px-1 py-2", isActive ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-foreground")}>
                     {item.name}
                   </NavLink>
-                </SheetClose>
-              ))}
+                </SheetClose>)}
               
               <div className="mt-4">
                 <SheetClose>
-                  <NavLink 
-                    to="/contact"
-                    className="block"
-                  >
+                  <NavLink to="/contact" className="block">
                     <Button variant="solid" size="default">
                       Obtenir un devis
                     </Button>
@@ -121,7 +102,7 @@ const Header = () => {
         {/* Desktop CTA Button */}
         <div className="hidden md:block">
           <NavLink to="/contact">
-            <Button variant="solid" size="default">
+            <Button variant="solid" size="default" className="py-0">
               Obtenir un devis
             </Button>
           </NavLink>
@@ -129,13 +110,7 @@ const Header = () => {
       </div>
       
       {/* Display the mobile navigation at the bottom */}
-      {isMobile && (
-        <NavBar 
-          items={navigationItems.slice(0, 5)} 
-          className="z-50" 
-        />
-      )}
+      {isMobile && <NavBar items={navigationItems.slice(0, 5)} className="z-50" />}
     </header>;
 };
-
 export default Header;
