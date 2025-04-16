@@ -50,7 +50,7 @@ export const HomeLogoWithText: React.FC<{
 }> = ({
   className = ""
 }) => {
-  return <div className={cn("flex flex-col items-center", className)}>
+  return <div className="px-[240px] my-0 py-[92px]">
       <motion.img alt="Speed E-Log Logo with Text" width={200} initial={{
       opacity: 0,
       scale: 0.95
@@ -59,7 +59,7 @@ export const HomeLogoWithText: React.FC<{
       scale: 1
     }} transition={{
       duration: 0.3
-    }} className="mb-1 object-contain" src="/lovable-uploads/e02c63d7-a1f7-49cc-90d1-86018630f4de.png" />
+    }} className="mb-1 object-fill" src="/lovable-uploads/44bd1cbe-178d-4cd7-8783-f02ff7d4d5a5.png" />
     </div>;
 };
 export default LogoIcon;
