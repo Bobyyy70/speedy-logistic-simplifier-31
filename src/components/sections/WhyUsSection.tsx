@@ -23,7 +23,7 @@ export function WhyUsSection() {
     title: "Compétitivité Europe & Qualité Garantie",
     description: "Profitez de nos tarifs négociés et de notre localisation pour des expéditions rapides et économiques vers la France et l'Europe proche. Nous nous engageons sur une qualité de service irréprochable pour chaque colis."
   }];
-  return <section id="why-us" className="py-12 md:py-24 lg:py-32 bg-gradient-to-bl from-orange-50 via-white to-orange-50 dark:from-slate-900 dark:via-slate-950 dark:to-orange-950/20">
+  return <section id="why-us" className="py-12 md:py-24 lg:py-32 bg-gradient-to-bl from-blue-50 via-white to-green-50 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950">
       <div className="container mx-auto">
         <div className="grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
           {/* Text Column */}
@@ -61,7 +61,7 @@ export function WhyUsSection() {
               duration: 0.5,
               delay: index * 0.1
             }}>
-                  <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-orange-500 dark:text-orange-400" />
+                  <CheckCircle className={`mt-1 h-5 w-5 flex-shrink-0 ${index % 2 === 0 ? 'text-orange-500 dark:text-orange-400' : 'text-primary'}`} />
                   <div>
                     <h3 className="font-semibold">{advantage.title}</h3>
                     <p className="text-sm text-muted-foreground">{advantage.description}</p>
@@ -82,7 +82,7 @@ export function WhyUsSection() {
         }} transition={{
           duration: 0.7
         }}>
-            <img src="https://placehold.co/600x400/fff7ed/f97316?text=Avantages+Speed+E-Log" alt="Avantages Speed E-Log" width="600" height="400" className="mx-auto aspect-video overflow-hidden rounded-xl object-cover shadow-lg" />
+            <img src="https://placehold.co/600x400/e0f2fe/075985?text=Visuel+Avantages" alt="Avantages Speed E-Log" width="600" height="400" className="mx-auto aspect-video overflow-hidden rounded-xl object-cover shadow-lg" />
           </motion.div>
         </div>
       </div>

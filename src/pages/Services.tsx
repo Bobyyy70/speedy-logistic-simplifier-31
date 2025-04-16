@@ -12,7 +12,7 @@ const Services = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-orange-50/50 via-white to-orange-50/50 dark:from-slate-900 dark:via-slate-950 dark:to-orange-950/20">
+    <div>
       <Helmet>
         <title>Nos Services Logistique E-commerce | Speed E-Log</title>
         <meta 
@@ -26,9 +26,6 @@ const Services = () => {
         />
       </Helmet>
       <div className="container mx-auto py-16 px-4">
-        <div className="inline-block rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-300 px-3 py-1 text-sm mb-4 mx-auto">
-          Nos Services
-        </div>
         <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl text-center mb-6">
           Nos Services Logistiques pour E-commerce
         </h1>
@@ -45,7 +42,7 @@ const Services = () => {
         <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
           Discutons de vos besoins spécifiques et voyons comment Speed E-Log peut vous aider à simplifier vos opérations et à vous concentrer sur votre croissance.
         </p>
-        <Button size="lg" asChild className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700">
+        <Button size="lg" asChild>
           <Link to="/contact">Demander un Devis Personnalisé</Link>
         </Button>
       </section>

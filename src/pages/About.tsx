@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -14,7 +13,7 @@ const About = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-orange-50/50 via-white to-orange-50/50 dark:from-slate-900 dark:via-slate-950 dark:to-orange-950/20">
+    <div>
       <Helmet>
         <title>À Propos de Speed E-Log | Votre Partenaire Logistique</title>
         <meta 
@@ -28,11 +27,8 @@ const About = () => {
         />
       </Helmet>
 
-      <section className="py-16 md:py-24 bg-gradient-to-b from-orange-50/80 to-background">
+      <section className="py-16 md:py-24 bg-gradient-to-b from-secondary/50 to-background">
         <div className="container mx-auto px-4 text-center">
-          <div className="inline-block rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-300 px-3 py-1 text-sm mb-4">
-            À Propos
-          </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Qui Sommes-Nous ?
           </h1>
@@ -49,7 +45,7 @@ const About = () => {
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Notre Mission et Nos Valeurs</h2>
             <div className="flex items-center justify-center mb-10">
-              <Target className="w-6 h-6 text-orange-500 mr-2" />
+              <Target className="w-6 h-6 text-primary mr-2" />
               <p className="text-lg md:text-xl font-medium">
                 Simplifier la logistique e-commerce pour les PME françaises
               </p>
@@ -59,7 +55,7 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card className="bg-muted/30 border-0">
               <CardHeader className="pb-2 flex flex-row items-center space-y-0">
-                <Star className="h-5 w-5 text-orange-500 mr-2" />
+                <Star className="h-5 w-5 text-primary mr-2" />
                 <CardTitle className="text-xl">Transparence</CardTitle>
               </CardHeader>
               <CardContent>
@@ -71,7 +67,7 @@ const About = () => {
             
             <Card className="bg-muted/30 border-0">
               <CardHeader className="pb-2 flex flex-row items-center space-y-0">
-                <Star className="h-5 w-5 text-orange-500 mr-2" />
+                <Star className="h-5 w-5 text-primary mr-2" />
                 <CardTitle className="text-xl">Fiabilité</CardTitle>
               </CardHeader>
               <CardContent>
@@ -83,7 +79,7 @@ const About = () => {
             
             <Card className="bg-muted/30 border-0">
               <CardHeader className="pb-2 flex flex-row items-center space-y-0">
-                <Star className="h-5 w-5 text-orange-500 mr-2" />
+                <Star className="h-5 w-5 text-primary mr-2" />
                 <CardTitle className="text-xl">Efficacité</CardTitle>
               </CardHeader>
               <CardContent>
@@ -95,7 +91,7 @@ const About = () => {
             
             <Card className="bg-muted/30 border-0">
               <CardHeader className="pb-2 flex flex-row items-center space-y-0">
-                <Star className="h-5 w-5 text-orange-500 mr-2" />
+                <Star className="h-5 w-5 text-primary mr-2" />
                 <CardTitle className="text-xl">Partenariat</CardTitle>
               </CardHeader>
               <CardContent>
@@ -113,7 +109,7 @@ const About = () => {
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
             <div className="md:w-1/2 space-y-4">
               <div className="flex items-center mb-4">
-                <History className="h-6 w-6 text-orange-500 mr-2" />
+                <History className="h-6 w-6 text-primary mr-2" />
                 <h2 className="text-3xl md:text-4xl font-bold">Notre Histoire</h2>
               </div>
               <p className="text-muted-foreground">
@@ -132,7 +128,7 @@ const About = () => {
             </div>
             <div className="md:w-1/2 bg-muted rounded-lg p-6 flex items-center justify-center">
               <div className="text-center">
-                <Truck className="h-16 w-16 text-orange-500 mx-auto mb-4" />
+                <Truck className="h-16 w-16 text-primary mx-auto mb-4" />
                 <p className="text-xl font-medium">
                   "Notre ambition est de démocratiser l'accès à une logistique e-commerce de qualité pour les PME françaises."
                 </p>
@@ -148,7 +144,7 @@ const About = () => {
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
             <div className="md:w-1/2 order-2 md:order-1 bg-muted/50 rounded-lg h-64 flex items-center justify-center">
               <div className="text-center p-4">
-                <MapPin className="h-12 w-12 text-orange-500 mx-auto mb-4" />
+                <MapPin className="h-12 w-12 text-primary mx-auto mb-4" />
                 <p className="text-lg font-medium">
                   Port-sur-Saône, Bourgogne-Franche-Comté
                 </p>
@@ -160,7 +156,7 @@ const About = () => {
             </div>
             <div className="md:w-1/2 space-y-4 order-1 md:order-2">
               <div className="flex items-center mb-4">
-                <MapPin className="h-6 w-6 text-orange-500 mr-2" />
+                <MapPin className="h-6 w-6 text-primary mr-2" />
                 <h2 className="text-3xl md:text-4xl font-bold">Basés à Port-sur-Saône</h2>
               </div>
               <p className="text-muted-foreground">
@@ -190,10 +186,10 @@ const About = () => {
             et vous accompagner dans la croissance de votre entreprise e-commerce.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" asChild className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700">
+            <Button size="lg" asChild>
               <Link to="/contact">Nous Contacter</Link>
             </Button>
-            <Button size="lg" variant="outline" asChild className="hover:border-orange-500 hover:text-orange-600 dark:hover:text-orange-400">
+            <Button size="lg" variant="outline" asChild>
               <Link to="/services">Nos Services</Link>
             </Button>
           </div>
