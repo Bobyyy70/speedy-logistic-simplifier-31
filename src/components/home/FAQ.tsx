@@ -1,3 +1,4 @@
+
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 const faqs = [{
   question: "Quels types de produits gérez-vous ?",
@@ -19,7 +20,7 @@ const faqs = [{
   answer: "Nous traitons les retours avec le même soin que les expéditions. Chaque retour est réceptionné, contrôlé et, selon vos instructions, remis en stock, mis de côté ou recyclé. Vous êtes notifié à chaque étape du processus via notre plateforme."
 }];
 export function FAQ() {
-  return <section className="section-container bg-gradient-to-tr from-blue-50 via-white to-green-50 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950 py-[48px] rounded-none px-0">
+  return <section className="section-container bg-gradient-to-tr from-blue-100 via-white to-blue-200 dark:from-slate-900 dark:via-slate-950 dark:to-blue-950 py-[48px] rounded-none px-0">
       <h2 className="section-title">Questions fréquentes</h2>
       <p className="section-subtitle">
         Retrouvez les réponses aux questions les plus courantes. N'hésitez pas à nous contacter pour toute autre information.

@@ -12,7 +12,7 @@ const Contact = () => {
   }, []);
 
   return (
-    <div>
+    <div className="bg-gradient-to-br from-green-50 via-white to-green-100 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-900">
       <Helmet>
         <title>Contact & Devis Logistique E-commerce | Speed E-Log</title>
         <meta 
@@ -26,7 +26,7 @@ const Contact = () => {
         />
       </Helmet>
       
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto px-4 py-12">
         <ContactHeader />
         
         <div className="grid items-start justify-center gap-8 md:gap-12 lg:grid-cols-2">

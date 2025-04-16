@@ -1,3 +1,4 @@
+
 import { Package, Truck, Clock, FileText, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -25,7 +26,7 @@ const services = [{
   icon: Clock
 }];
 export function Services() {
-  return <section id="services" className="section-container bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950 py-12 rounded-none">
+  return <section id="services" className="section-container bg-gradient-to-br from-blue-100 via-white to-blue-200 dark:from-slate-900 dark:via-slate-950 dark:to-blue-950 py-12 rounded-none">
       <motion.div initial={{
       opacity: 0,
       y: 20
