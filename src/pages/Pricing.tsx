@@ -3,6 +3,7 @@ import React from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { DynamicCalculatorSection } from "@/components/sections/DynamicCalculatorSection";
+import { BadgePercent, Truck, Package } from "lucide-react";
 
 const Pricing = () => {
   useEffect(() => {
@@ -26,13 +27,15 @@ const Pricing = () => {
 
       <div className="container mx-auto py-16 px-4">
         <div className="inline-block rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-300 px-3 py-1 text-sm mb-4 mx-auto">
-          Tarification
+          <BadgePercent className="inline-block mr-2 h-4 w-4" /> Tarification
         </div>
         <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl text-center mb-6">
           Tarification Transparente
         </h1>
-        <p className="text-lg text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+        <p className="text-lg text-center text-muted-foreground mb-12 max-w-3xl mx-auto flex items-center justify-center gap-2">
+          <Package className="text-orange-500 h-6 w-6" />
           Estimez rapidement vos coûts de transport avec notre calculateur. Des tarifs clairs sans mauvaises surprises.
+          <Truck className="text-orange-500 h-6 w-6" />
         </p>
       </div>
       
@@ -40,13 +43,15 @@ const Pricing = () => {
       
       <div className="container mx-auto py-12 px-4 text-center">
         <div className="max-w-2xl mx-auto bg-orange-50/50 p-6 rounded-lg border border-orange-100/50">
-          <h3 className="text-xl font-semibold mb-3">Information importante</h3>
+          <h3 className="text-xl font-semibold mb-3 text-orange-700">Information importante</h3>
           <p className="text-muted-foreground">
             La grille tarifaire complète de nos prestations (colisage, stockage, préparation de commandes...) 
             ainsi que le service d'impression d'étiquettes sont disponibles pour nos clients après connexion à l'espace client.
           </p>
-          <p className="text-sm text-muted-foreground mt-4">
+          <p className="text-sm text-muted-foreground mt-4 flex items-center justify-center gap-2">
+            <BadgePercent className="text-orange-500 h-4 w-4" />
             Pour plus d'informations ou pour obtenir un devis personnalisé, n'hésitez pas à nous contacter.
+            <BadgePercent className="text-orange-500 h-4 w-4" />
           </p>
         </div>
       </div>
