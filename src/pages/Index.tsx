@@ -11,6 +11,7 @@ import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 import { Testimonials } from "@/components/home/Testimonials";
 import { FAQ } from "@/components/home/FAQ";
 import { ContactCTA } from "@/components/home/ContactCTA";
+import { LogisticsFeatureSection } from "@/components/sections/LogisticsFeatureSection";
 
 const Index = () => {
   useEffect(() => {
@@ -32,6 +33,7 @@ const Index = () => {
         />
       </Helmet>
       <HeroSection />
+      <LogisticsFeatureSection />
       <ChallengesSection />
       <Services />
       <HowItWorksSection />
@@ -43,6 +45,6 @@ const Index = () => {
       <ContactCTA />
     </div>
   );
-};
+}
 
 export default Index;
