@@ -12,7 +12,8 @@ const Pricing = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 via-white to-green-100/30 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950">
+    <div className="bg-gradient-to-br from-blue-100 via-white to-orange-100/30 
+                    dark:from-blue-800/20 dark:via-slate-950 dark:to-orange-900/20">
       <Helmet>
         <title>Estimation Tarif Transport & Tarification | Speed E-Log</title>
         <meta 
@@ -26,10 +27,11 @@ const Pricing = () => {
         />
       </Helmet>
       
-      <section className="py-16 md:py-24 bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-700">
+      <section className="py-16 md:py-24 bg-gradient-to-r from-blue-100 via-white to-orange-200/50 
+                           dark:from-blue-900/30 dark:via-slate-950 dark:to-orange-900/30">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Tarification <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">Transparente</span>
+            Tarification <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-orange-600 dark:from-blue-400 dark:to-orange-500">Transparente</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
             Des tarifs clairs et sans surprise pour une gestion logistique sereine.
@@ -41,8 +43,10 @@ const Pricing = () => {
       <DynamicCalculatorSection />
       <StaticPricingSection />
       
-      <div className="container mx-auto py-12 px-4 text-center mb-12">
-        <div className="max-w-2xl mx-auto bg-gradient-to-r from-orange-50 to-orange-100/50 dark:from-orange-950/30 dark:to-orange-900/20 p-6 rounded-lg border border-orange-200/50 dark:border-orange-800/30 shadow-sm">
+      <div className="container mx-auto py-12 px-4 text-center mb-12 relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-50/50 to-blue-100/50 
+                        dark:from-orange-900/20 dark:to-blue-900/20 opacity-50 rounded-lg"></div>
+        <div className="max-w-2xl mx-auto bg-white/80 dark:bg-slate-900/80 p-6 rounded-lg border border-orange-200/50 dark:border-orange-800/30 shadow-sm relative z-10">
           <h3 className="text-xl font-semibold mb-3 text-orange-700 dark:text-orange-400">Information importante</h3>
           <p className="text-muted-foreground">
             La grille tarifaire complète de nos prestations (colisage, stockage, préparation de commandes...) 
