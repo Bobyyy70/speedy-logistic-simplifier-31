@@ -187,8 +187,8 @@ export function DynamicCalculatorSection() {
   };
   return <section 
     id="calculator" 
-    className="py-12 md:py-24 lg:py-32 bg-gradient-to-br from-green-50 via-white to-green-100/30 
-               dark:from-emerald-950 dark:via-slate-950 dark:to-emerald-900"
+    className="py-12 md:py-24 lg:py-32 bg-gradient-to-br from-orange-50 via-white to-green-100/30 
+               dark:from-orange-950/40 dark:via-slate-950 dark:to-emerald-900/50"
   >
     <div className="container mx-auto px-4 md:px-6">
       {/* Introduction */}
