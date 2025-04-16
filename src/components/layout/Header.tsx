@@ -83,18 +83,23 @@ const Header = () => {
               <LogoIconWithText />
             </div>
             <nav className="flex flex-col gap-4 mt-8">
-              {navigationItems.map(item => <SheetClose key={item.name} asChild>
+              {navigationItems.map(item => (
+                <SheetClose key={item.name} asChild>
                   <NavLink to={item.path} className={({
                 isActive
               }) => cn("text-base font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400 px-1 py-2", isActive ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-foreground")}>
                     {item.name}
                   </NavLink>
-                </SheetClose>)}
-              <SheetClose asChild>
-                <Button variant="solid" size="default" asChild>
-                  <NavLink to="/contact">Obtenir un devis</NavLink>
-                </Button>
-              </SheetClose>
+                </SheetClose>
+              ))}
+              
+              <div className="mt-4">
+                <SheetClose asChild>
+                  <Button variant="solid" size="default" asChild>
+                    <NavLink to="/contact">Obtenir un devis</NavLink>
+                  </Button>
+                </SheetClose>
+              </div>
             </nav>
           </SheetContent>
         </Sheet>
