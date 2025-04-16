@@ -70,8 +70,8 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="sm" className="h-10 w-10 hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400" aria-label="Menu">
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="sm" className="h-10 w-10 hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 md:hidden" aria-label="Menu">
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
@@ -95,9 +95,14 @@ const Header = () => {
               
               <div className="mt-4">
                 <SheetClose asChild>
-                  <Button variant="solid" size="default" asChild>
-                    <NavLink to="/contact">Obtenir un devis</NavLink>
-                  </Button>
+                  <NavLink 
+                    to="/contact"
+                    className="block"
+                  >
+                    <Button variant="solid" size="default">
+                      Obtenir un devis
+                    </Button>
+                  </NavLink>
                 </SheetClose>
               </div>
             </nav>
@@ -106,9 +111,11 @@ const Header = () => {
 
         {/* Desktop CTA Button */}
         <div className="hidden md:block">
-          <Button variant="solid" size="default" asChild>
-            <NavLink to="/contact">Obtenir un devis</NavLink>
-          </Button>
+          <NavLink to="/contact">
+            <Button variant="solid" size="default">
+              Obtenir un devis
+            </Button>
+          </NavLink>
         </div>
       </div>
     </header>;
