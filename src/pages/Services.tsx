@@ -11,7 +11,7 @@ const Services = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-blue-100 via-blue-50 to-blue-100 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950">
+    <div className="bg-gradient-to-br from-blue-50 via-blue-50/50 to-blue-100/30 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950">
       <Helmet>
         <title>Nos Services Logistique E-commerce | Speed E-Log</title>
         <meta 
