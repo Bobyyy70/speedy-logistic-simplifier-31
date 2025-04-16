@@ -9,6 +9,7 @@ import { toast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+
 export function DynamicCalculatorSection() {
   // États pour le formulaire
   const [zipCode, setZipCode] = useState("");
@@ -184,7 +185,7 @@ export function DynamicCalculatorSection() {
       }
     }, 1000);
   };
-  return <section id="calculator" className="py-12 md:py-24 lg:py-32 bg-[#b3bee8]/[0.27]">
+  return <section id="calculator" className="py-12 md:py-24 lg:py-32 bg-gradient-to-br from-blue-50 via-white to-green-100/30 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950">
       <div className="container mx-auto px-4 md:px-6">
         {/* Introduction */}
         <motion.div className="flex flex-col items-center justify-center space-y-4 text-center mb-12" initial={{
