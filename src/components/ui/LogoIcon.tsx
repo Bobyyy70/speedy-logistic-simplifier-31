@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-
 export const LogoIcon: React.FC<{
   className?: string;
   size?: "sm" | "md" | "lg";
@@ -29,7 +28,6 @@ export const LogoIcon: React.FC<{
     }
   }} className={cn(sizeClasses[size], "object-contain", className)} />;
 };
-
 export const LogoIconWithText: React.FC<{
   className?: string;
 }> = ({
@@ -47,31 +45,21 @@ export const LogoIconWithText: React.FC<{
     }} className="mb-1 object-contain" src="/lovable-uploads/be317568-d1d2-426a-9ba8-a9ec38ab2e67.png" />
     </div>;
 };
-
 export const HomeLogoWithText: React.FC<{
   className?: string;
 }> = ({
   className = ""
 }) => {
   return <div className={cn("flex flex-col items-center", className)}>
-      <motion.img 
-        src="/lovable-uploads/26e89ca6-7225-4bc3-bbe2-4ccb461479d7.png" 
-        alt="Speed E-Log Logo with Text" 
-        width={200} 
-        initial={{
-          opacity: 0,
-          scale: 0.95
-        }} 
-        animate={{
-          opacity: 1,
-          scale: 1
-        }} 
-        transition={{
-          duration: 0.3
-        }} 
-        className="mb-1 object-contain" 
-      />
+      <motion.img alt="Speed E-Log Logo with Text" width={200} initial={{
+      opacity: 0,
+      scale: 0.95
+    }} animate={{
+      opacity: 1,
+      scale: 1
+    }} transition={{
+      duration: 0.3
+    }} className="mb-1 object-contain" src="/lovable-uploads/e02c63d7-a1f7-49cc-90d1-86018630f4de.png" />
     </div>;
 };
-
 export default LogoIcon;
