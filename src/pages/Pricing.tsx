@@ -1,10 +1,10 @@
 
-import React from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { DynamicCalculatorSection } from "@/components/sections/DynamicCalculatorSection";
 
 const Pricing = () => {
+  // Scroll to top on component mount
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

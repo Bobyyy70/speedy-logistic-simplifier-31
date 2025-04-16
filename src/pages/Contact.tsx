@@ -1,5 +1,4 @@
 
-import React from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { ContactForm } from "@/components/contact/ContactForm";
@@ -7,12 +6,13 @@ import { ContactInfo } from "@/components/contact/ContactInfo";
 import { ContactHeader } from "@/components/contact/ContactHeader";
 
 const Contact = () => {
+  // Scroll to top on component mount
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div>
+    <div className="container mx-auto py-12 md:py-16 lg:py-20 px-4">
       <Helmet>
         <title>Contact & Devis Logistique E-commerce | Speed E-Log</title>
         <meta 

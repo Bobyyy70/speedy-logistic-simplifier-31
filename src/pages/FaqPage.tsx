@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import {
@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 
 const FaqPage = () => {
+  // Scroll to top on component mount
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -59,7 +60,7 @@ const FaqPage = () => {
   ];
 
   return (
-    <div>
+    <div className="container mx-auto py-8 md:py-16 lg:py-20 px-4">
       <Helmet>
         <title>FAQ - Questions Fréquentes Logistique | Speed E-Log</title>
         <meta 
