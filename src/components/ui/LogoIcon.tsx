@@ -1,4 +1,3 @@
-
 import React from "react";
 import { cn } from "@/lib/utils";
 import { Ship } from "lucide-react";
@@ -30,7 +29,7 @@ export const HomeLogoIcon = React.forwardRef<HTMLDivElement, LogoIconProps>(
 );
 HomeLogoIcon.displayName = "HomeLogoIcon";
 
-export const LogoWithText = React.forwardRef<
+export const LogoIconWithText = React.forwardRef<
   HTMLDivElement,
   LogoIconProps & { text?: string }
 >(({ className, text = "Speed E-Log", ...props }, ref) => {
@@ -41,13 +40,13 @@ export const LogoWithText = React.forwardRef<
     </div>
   );
 });
-LogoWithText.displayName = "LogoWithText";
+LogoIconWithText.displayName = "LogoIconWithText";
 
 export const HomeLogoWithText = React.forwardRef<HTMLDivElement, LogoIconProps>(
   ({ className, ...props }, ref) => {
     return (
       <div ref={ref} className={cn("inline-block", className)} {...props}>
-        <LogoWithText text="Speed E-Log" />
+        <LogoIconWithText text="Speed E-Log" />
       </div>
     );
   }
