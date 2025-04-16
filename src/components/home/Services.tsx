@@ -26,7 +26,7 @@ const services = [{
   icon: Clock
 }];
 export function Services() {
-  return <section id="services" className="section-container bg-gradient-to-br from-blue-100 via-white to-green-100 dark:from-slate-900 dark:via-slate-950 dark:to-green-900 py-12 rounded-none">
+  return <section id="services" className="section-container bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-700 py-12 rounded-none">
       <motion.div initial={{
       opacity: 0,
       y: 20
@@ -62,9 +62,9 @@ export function Services() {
           duration: 0.2
         }
       }}>
-            <Card className="transition-all duration-300 h-full border-opacity-80 bg-gradient-to-tr from-white to-blue-50 dark:from-slate-900 dark:to-blue-950 hover:shadow-md">
+            <Card className="transition-all duration-300 h-full border-opacity-80 bg-gradient-to-r from-blue-50 to-green-50 dark:from-slate-900 dark:to-green-950 hover:shadow-md">
               <CardHeader className="pb-4">
-                <div className="bg-primary/10 w-12 h-12 rounded-md flex items-center justify-center mb-3">
+                <div className="bg-gradient-to-r from-blue-400/10 to-green-400/10 w-12 h-12 rounded-md flex items-center justify-center mb-3">
                   <service.icon className="h-6 w-6 text-primary" />
                 </div>
                 <CardTitle className="text-xl">{service.title}</CardTitle>
@@ -90,7 +90,7 @@ export function Services() {
       duration: 0.5,
       delay: 0.3
     }}>
-        <Button asChild>
+        <Button asChild className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600">
           <Link to="/services">En savoir plus sur nos services</Link>
         </Button>
       </motion.div>
