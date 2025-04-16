@@ -16,13 +16,13 @@ export function Footer() {
               Votre partenaire logistique pour simplifier vos opérations e-commerce et accélérer votre croissance.
             </p>
             <div className="flex flex-col space-y-2 text-sm text-muted-foreground px-0 py-0 my-0 mx-0">
-              <div className="flex items-center gap-2">
-                <Mail className="h-4 w-4" />
-                <span>contact@speedelog.net</span>
-              </div>
+              
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                <span>+33 6 35 58 40 04</span>
+                <span>Speed E-Log
+37 rue de Remaucourt
+70170 Port-sur-Saône
+France</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
