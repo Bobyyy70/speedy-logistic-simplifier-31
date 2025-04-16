@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 
 export function StaticPricingSection() {
   return (
-    <section id="pricing" className="bg-gradient-to-br from-blue-50 via-white to-blue-100/30 dark:bg-slate-900 py-12 md:py-24 lg:py-32">
+    <section id="pricing" className="bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950 py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-4 md:px-6">
         {/* Introduction */}
         <motion.div 
@@ -23,7 +23,7 @@ export function StaticPricingSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm dark:bg-slate-800">
+          <div className="inline-block rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-300 px-3 py-1 text-sm">
             Tarification
           </div>
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -41,7 +41,7 @@ export function StaticPricingSection() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl mx-auto text-center"
         >
-          <Card className="bg-white/80 dark:bg-slate-800/50 shadow-sm">
+          <Card className="bg-white/80 dark:bg-slate-800/50 shadow-sm border border-blue-100 dark:border-blue-900/30">
             <CardHeader>
               <CardTitle>Disponibilité des tarifs</CardTitle>
               <CardDescription>
@@ -60,7 +60,7 @@ export function StaticPricingSection() {
 
         {/* CTA */}
         <div className="text-center mt-8">
-          <Button asChild size="lg" className="bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90">
+          <Button asChild size="lg" className="bg-gradient-to-r from-primary to-green-500 hover:from-primary/90 hover:to-green-500/90">
             <Link to="/contact">Demandez votre devis personnalisé</Link>
           </Button>
         </div>
