@@ -1,10 +1,47 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { HomeLogoWithText } from "@/components/ui/LogoIcon";
+import { WorldMap } from "@/components/ui/world-map/component";
+
 export function HeroSection() {
-  return <section className="bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-700 py-12 md:py-24 lg:py-32 overflow-hidden xl:py-0 rounded-none mx-0">
+  return (
+    <section className="relative bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-700 py-12 md:py-24 lg:py-32 overflow-hidden xl:py-0 rounded-none mx-0">
+      {/* World Map Background */}
+      <div className="absolute inset-0 opacity-10 overflow-hidden">
+        <WorldMap
+          dots={[
+            {
+              start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
+              end: { lat: 40.7128, lng: -74.0060 }, // New York
+            },
+            {
+              start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
+              end: { lat: -33.8688, lng: 151.2093 }, // Sydney
+            },
+            {
+              start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
+              end: { lat: 35.6762, lng: 139.6503 }, // Tokyo
+            },
+            {
+              start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
+              end: { lat: 55.7558, lng: 37.6173 }, // Moscow
+            },
+            {
+              start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
+              end: { lat: -15.7975, lng: -47.8919 }, // Brazil (Brasília)
+            },
+            {
+              start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
+              end: { lat: -1.2921, lng: 36.8219 }, // Nairobi, Kenya
+            },
+          ]}
+          lineColor="#3B82F6"
+        />
+      </div>
+      
       <div className="container mx-auto relative z-10 px-0">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_600px] gap-6 lg:gap-12 items-center">
           {/* Content Column */}
@@ -55,5 +92,6 @@ export function HeroSection() {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 }

@@ -19,7 +19,7 @@ export function WorldMap({
   const svgRef = useRef<SVGSVGElement>(null);
   const map = new DottedMap({ height: 100, grid: "diagonal" });
   
-  // Get the theme from next-themes, defaulting to light mode if theme is undefined
+  // Get the theme from next-themes
   const { theme } = useTheme();
   const isDarkMode = theme === "dark";
 

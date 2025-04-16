@@ -1,4 +1,3 @@
 
-import { WorldMap } from "./component";
-
-export { WorldMap };
+export { WorldMap } from "./component";
+export { WorldMapDemo } from "./demo";
