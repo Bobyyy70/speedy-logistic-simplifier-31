@@ -8,7 +8,7 @@ const TermsOfService = () => {
   }, []);
 
   return (
-    <div className="container mx-auto py-16 px-4 bg-gradient-to-br from-blue-50 via-green-50/30 to-blue-100/40 dark:from-slate-900 dark:via-green-950/20 dark:to-blue-950/30">
+    <div className="container mx-auto py-16 px-4">
       <Helmet>
         <title>Conditions Générales de Vente | Speed E-Log</title>
         <meta 

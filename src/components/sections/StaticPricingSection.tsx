@@ -1,6 +1,14 @@
 
 import React from "react";
 import { 
+  Table, 
+  TableBody, 
+  TableCell, 
+  TableHead, 
+  TableHeader, 
+  TableRow 
+} from "@/components/ui/table";
+import { 
   Card, 
   CardContent, 
   CardHeader, 
@@ -8,12 +16,89 @@ import {
   CardDescription 
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { 
+  PackageCheck, 
+  Building, 
+  Undo2, 
+  Recycle, 
+  FileText, 
+  HandCoins, 
+  Truck 
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
+type PricingItem = {
+  id: string;
+  icon: React.ReactNode;
+  service: string;
+  description: string;
+  price: string;
+};
+
 export function StaticPricingSection() {
+  // Pricing data based on Francesco's information
+  const pricingItems: PricingItem[] = [
+    {
+      id: "colisage",
+      icon: <PackageCheck className="h-5 w-5 text-primary" />,
+      service: "Colisage",
+      description: "Préparation de la commande (picking, packing, fournitures standard)",
+      price: "1,00 € / commande"
+    },
+    {
+      id: "article-supp",
+      icon: <PackageCheck className="h-5 w-5 text-primary" />,
+      service: "Article Suppl.",
+      description: "Par article supplémentaire dans la même commande",
+      price: "0,20 € / article"
+    },
+    {
+      id: "stockage",
+      icon: <Building className="h-5 w-5 text-primary" />,
+      service: "Stockage",
+      description: "Stockage sécurisé de vos produits",
+      price: "5,50 € / m² / mois"
+    },
+    {
+      id: "traitement-retour",
+      icon: <Undo2 className="h-5 w-5 text-primary" />,
+      service: "Traitement Retour",
+      description: "Réception, contrôle et traitement administratif du retour",
+      price: "2,00 € / retour"
+    },
+    {
+      id: "restockage-article",
+      icon: <Recycle className="h-5 w-5 text-primary" />,
+      service: "Restockage Article",
+      description: "Remise en stock d'un article retourné (si applicable)",
+      price: "0,20 € / article"
+    },
+    {
+      id: "edition-cn23",
+      icon: <FileText className="h-5 w-5 text-primary" />,
+      service: "Édition CN23",
+      description: "Génération et impression du formulaire douanier CN23",
+      price: "0,20 € / document"
+    },
+    {
+      id: "dechargement-palette",
+      icon: <HandCoins className="h-5 w-5 text-primary" />,
+      service: "Déchargement Palette",
+      description: "Manutention pour déchargement de palette à la réception",
+      price: "2,00 € / palette"
+    },
+    {
+      id: "transport",
+      icon: <Truck className="h-5 w-5 text-primary" />,
+      service: "Transport",
+      description: "Frais d'expédition (variables selon poids, destination, service)",
+      price: "Sur devis"
+    }
+  ];
+
   return (
-    <section id="pricing" className="bg-gradient-to-br from-green-50 via-green-100/50 to-green-200/30 dark:from-slate-900 dark:via-slate-900/80 dark:to-green-950/50 py-12 md:py-24 lg:py-32">
+    <section id="pricing" className="bg-gradient-to-br from-blue-50 via-white to-blue-100/30 dark:bg-slate-900 py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-4 md:px-6">
         {/* Introduction */}
         <motion.div 
@@ -23,7 +108,7 @@ export function StaticPricingSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <div className="inline-block rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-300 px-3 py-1 text-sm">
+          <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm dark:bg-slate-800">
             Tarification
           </div>
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -34,25 +119,46 @@ export function StaticPricingSection() {
           </p>
         </motion.div>
 
+        {/* Pricing Table */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center"
         >
-          <Card className="bg-white/80 dark:bg-slate-800/50 shadow-sm border border-green-100/70 dark:border-green-900/30 bg-gradient-to-br from-white to-green-50/50 dark:from-slate-800/70 dark:to-green-900/20">
+          <Card className="max-w-4xl mx-auto bg-white/80 dark:bg-slate-800/50 shadow-sm">
             <CardHeader>
-              <CardTitle>Disponibilité des tarifs</CardTitle>
+              <CardTitle>Grille tarifaire indicative</CardTitle>
               <CardDescription>
-                Notre grille tarifaire complète est disponible sur demande
+                Tous les prix sont hors taxes (HT) et incluent les fournitures d'emballage standard
               </CardDescription>
             </CardHeader>
             <CardContent className="pt-6">
-              <p className="text-muted-foreground mb-6">
-                Pour obtenir notre tarification détaillée et adaptée à vos besoins spécifiques, 
-                n'hésitez pas à nous contacter. Nous vous proposerons une offre personnalisée 
-                en fonction de votre volume, du type de produits et de vos exigences logistiques.
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[200px]">Service</TableHead>
+                    <TableHead>Description</TableHead>
+                    <TableHead className="text-right">Tarif HT</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {pricingItems.map((item) => (
+                    <TableRow key={item.id}>
+                      <TableCell className="font-medium">
+                        <div className="flex items-center space-x-2">
+                          {item.icon}
+                          <span>{item.service}</span>
+                        </div>
+                      </TableCell>
+                      <TableCell>{item.description}</TableCell>
+                      <TableCell className="text-right">{item.price}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+              <p className="text-xs text-muted-foreground mt-4">
+                *Les tarifs de transport dépendent du poids, de la destination et du niveau de service choisi. Contactez-nous pour un devis précis.
               </p>
             </CardContent>
           </Card>

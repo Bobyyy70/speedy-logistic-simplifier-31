@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -201,7 +200,7 @@ export function DynamicCalculatorSection() {
   };
 
   return (
-    <section id="calculator" className="bg-gradient-to-br from-blue-100/50 via-blue-50 to-white dark:from-blue-950/30 dark:via-slate-900 dark:to-slate-950 py-12 md:py-24 lg:py-32">
+    <section id="calculator" className="bg-muted/40 dark:bg-slate-900 py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-4 md:px-6">
         {/* Introduction */}
         <motion.div 
@@ -211,7 +210,7 @@ export function DynamicCalculatorSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <div className="inline-block rounded-lg bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 px-3 py-1 text-sm">
+          <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm dark:bg-slate-800">
             Estimation Tarif Transport
           </div>
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -232,7 +231,7 @@ export function DynamicCalculatorSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <Card className="max-w-2xl mx-auto bg-gradient-to-br from-white to-blue-50/50 dark:from-slate-800 dark:to-blue-900/20 border border-blue-100/50 dark:border-blue-800/30">
+          <Card className="max-w-2xl mx-auto">
             <CardContent className="pt-6">
               <form onSubmit={handleCalculate} className="space-y-6">
                 {/* Section poids et dimensions dans la même zone */}

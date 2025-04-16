@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -60,7 +59,7 @@ const FaqPage = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 via-green-50/30 to-blue-100/40 dark:from-slate-900 dark:via-green-950/20 dark:to-blue-950/30 py-16">
+    <div>
       <Helmet>
         <title>FAQ - Questions Fréquentes Logistique | Speed E-Log</title>
         <meta 
@@ -74,57 +73,55 @@ const FaqPage = () => {
         />
       </Helmet>
       
-      <div className="container mx-auto px-4">
-        <motion.div 
-          className="flex flex-col items-center justify-center space-y-4 text-center mb-8 md:mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm dark:bg-slate-800">
-            FAQ
-          </div>
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tighter sm:text-5xl">
-            Questions Fréquentes
-          </h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Trouvez ici les réponses aux questions les plus couramment posées sur nos services de logistique e-commerce.
-          </p>
-        </motion.div>
-  
-        <div className="max-w-3xl mx-auto bg-white/80 dark:bg-slate-800/50 p-6 rounded-lg shadow-sm border border-green-100/70 dark:border-green-900/30">
-          <Accordion type="single" collapsible className="w-full">
-            {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-              >
-                <AccordionItem value={`item-${index}`}>
-                  <AccordionTrigger className="text-left font-semibold">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              </motion.div>
-            ))}
-          </Accordion>
-  
-          <motion.div 
-            className="mt-8 md:mt-12 text-center text-muted-foreground"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-          >
-            <p>Vous ne trouvez pas la réponse à votre question ?</p>
-            <Link to="/contact" className="text-primary hover:underline font-medium">
-              Contactez-nous directement
-            </Link>
-          </motion.div>
+      <motion.div 
+        className="flex flex-col items-center justify-center space-y-4 text-center mb-8 md:mb-12"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm dark:bg-slate-800">
+          FAQ
         </div>
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tighter sm:text-5xl">
+          Questions Fréquentes
+        </h1>
+        <p className="text-muted-foreground max-w-2xl mx-auto">
+          Trouvez ici les réponses aux questions les plus couramment posées sur nos services de logistique e-commerce.
+        </p>
+      </motion.div>
+
+      <div className="max-w-3xl mx-auto">
+        <Accordion type="single" collapsible className="w-full">
+          {faqs.map((faq, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.05 }}
+            >
+              <AccordionItem value={`item-${index}`}>
+                <AccordionTrigger className="text-left font-semibold">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            </motion.div>
+          ))}
+        </Accordion>
+
+        <motion.div 
+          className="mt-8 md:mt-12 text-center text-muted-foreground"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+        >
+          <p>Vous ne trouvez pas la réponse à votre question ?</p>
+          <Link to="/contact" className="text-primary hover:underline font-medium">
+            Contactez-nous directement
+          </Link>
+        </motion.div>
       </div>
     </div>
   );
