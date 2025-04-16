@@ -9,7 +9,7 @@ export const HistorySection = () => {
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
           <div className="md:w-1/2 space-y-4">
             <div className="flex items-center mb-4">
-              <History className="h-6 w-6 text-orange-500 mr-2" />
+              <History className="h-6 h-6 text-orange-500 mr-2" />
               <h2 className="text-3xl md:text-4xl font-bold">Notre Histoire</h2>
             </div>
             <p className="text-muted-foreground">
