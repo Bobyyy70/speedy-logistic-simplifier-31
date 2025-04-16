@@ -189,12 +189,12 @@ export function DynamicCalculatorSection() {
     id="calculator" 
     className="py-12 md:py-24 lg:py-32 
                bg-gradient-to-br 
-               from-green-50 
-               via-blue-100/50 
-               to-teal-100/30 
-               dark:from-green-950/40 
-               dark:via-blue-950/30 
-               dark:to-teal-900/50"
+               from-green-100 
+               via-blue-200/80 
+               to-teal-150/50 
+               dark:from-green-950 
+               dark:via-blue-900/70 
+               dark:to-teal-900"
   >
     <div className="container mx-auto px-4 md:px-6">
       {/* Introduction */}
