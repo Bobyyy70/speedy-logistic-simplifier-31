@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -47,7 +48,10 @@ export function HeroSection() {
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg blur opacity-20"></div>
             <div className="relative bg-white dark:bg-slate-900 shadow-xl rounded-lg p-6">
               <div className="aspect-video lg:aspect-square bg-gradient-to-r from-blue-50 to-green-50 dark:from-slate-800 dark:to-green-950 mb-4 flex items-center justify-center overflow-hidden rounded-3xl px-0 mx-0">
-                
+                {/* Orange accent element */}
+                <div className="absolute top-4 right-4 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                  Nouveau
+                </div>
               </div>
               <h3 className="font-semibold text-lg mb-2">Une logistique moderne et efficace</h3>
               <p className="text-muted-foreground">
