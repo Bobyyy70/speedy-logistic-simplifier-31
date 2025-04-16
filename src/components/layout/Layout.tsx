@@ -11,7 +11,7 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({
   children
 }) => {
-  return <div className="flex flex-col min-h-screen bg-gradient-to-r from-blue-50/30 via-white/50 to-green-50/30 dark:from-slate-900/20 dark:via-slate-950/30 dark:to-green-900/20">
+  return <div className="flex flex-col min-h-screen bg-gradient-to-r from-blue-50/20 via-white/30 to-blue-50/20 dark:from-slate-900/10 dark:via-slate-950/20 dark:to-slate-900/10">
       <Helmet>
         <html lang="fr" />
         <meta charSet="utf-8" />
