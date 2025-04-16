@@ -5,7 +5,7 @@ import { Mail, Phone, MapPin } from "lucide-react";
 export function Footer() {
   const currentYear = new Date().getFullYear();
   return <footer className="border-t bg-background">
-      <div className="container mx-auto py-10 px-[17px]">
+      <div className="container mx-auto px-4 py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Logo et description */}
           <div className="flex flex-col gap-4">
@@ -15,15 +15,14 @@ export function Footer() {
             <p className="text-sm text-muted-foreground mt-4">
               Votre partenaire logistique pour simplifier vos opérations e-commerce et accélérer votre croissance.
             </p>
-            <div className="flex flex-col space-y-2 text-sm text-muted-foreground">
-              
+            <div className="flex flex-col space-y-2 text-sm text-muted-foreground px-0 py-0 my-0 mx-0">
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                <span>contact@speedelog.net</span>
+              </div>
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                <span>
-Speed E-Log
-37 rue  de Remaucourt
-70170 Port-sur-Saône
-France</span>
+                <span>+33 6 35 58 40 04</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
