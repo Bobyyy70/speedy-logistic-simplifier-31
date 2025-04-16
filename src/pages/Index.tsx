@@ -1,6 +1,7 @@
 
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ChallengesSection } from "@/components/sections/ChallengesSection";
 import { Services } from "@/components/home/Services";
@@ -18,30 +19,32 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-700">
-      <Helmet>
-        <title>Speed E-Log | Logistique E-commerce Simplifiée pour PME</title>
-        <meta 
-          name="description" 
-          content="Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
-        />
-        <meta property="og:title" content="Speed E-Log | Logistique E-commerce Simplifiée pour PME" />
-        <meta 
-          property="og:description" 
-          content="Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
-        />
-      </Helmet>
-      <HeroSection />
-      <ChallengesSection />
-      <Services />
-      <HowItWorksSection />
-      <WhyUsSection />
-      <TestimonialsSection />
-      <WhyChooseUs />
-      <Testimonials />
-      <FAQ />
-      <ContactCTA />
-    </div>
+    <AuroraBackground showRadialGradient={true}>
+      <div>
+        <Helmet>
+          <title>Speed E-Log | Logistique E-commerce Simplifiée pour PME</title>
+          <meta 
+            name="description" 
+            content="Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
+          />
+          <meta property="og:title" content="Speed E-Log | Logistique E-commerce Simplifiée pour PME" />
+          <meta 
+            property="og:description" 
+            content="Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
+          />
+        </Helmet>
+        <HeroSection />
+        <ChallengesSection />
+        <Services />
+        <HowItWorksSection />
+        <WhyUsSection />
+        <TestimonialsSection />
+        <WhyChooseUs />
+        <Testimonials />
+        <FAQ />
+        <ContactCTA />
+      </div>
+    </AuroraBackground>
   );
 };
 
