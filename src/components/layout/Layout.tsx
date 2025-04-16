@@ -3,6 +3,7 @@ import React from "react";
 import Header from "./Header";
 import { Footer } from "./Footer";
 import { Helmet } from "react-helmet-async";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -11,7 +12,7 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({
   children
 }) => {
-  return <div className="flex flex-col min-h-screen bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-700">
+  return <div className="flex flex-col min-h-screen">
       <Helmet>
         <html lang="fr" />
         <meta charSet="utf-8" />
@@ -19,8 +20,10 @@ export const Layout: React.FC<LayoutProps> = ({
         <meta name="theme-color" content="#0074E4" />
         <link rel="canonical" href="https://speedelog.fr" />
       </Helmet>
-      <Header />
-      <main className="flex-1">{children}</main>
-      <Footer />
+      <AuroraBackground className="min-h-screen">
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </AuroraBackground>
     </div>;
 };
