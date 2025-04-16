@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-
 export const LogoIcon: React.FC<{
   className?: string;
   size?: "sm" | "md" | "lg";
@@ -29,7 +28,6 @@ export const LogoIcon: React.FC<{
     }
   }} className={cn(sizeClasses[size], "object-contain", className)} />;
 };
-
 export const LogoIconWithText: React.FC<{
   className?: string;
 }> = ({
@@ -47,31 +45,21 @@ export const LogoIconWithText: React.FC<{
     }} src="/lovable-uploads/f1857faa-e92e-4c2f-8baa-f5d3ce99f322.png" className="mb-1 object-scale-down" />
     </div>;
 };
-
 export const HomeLogoWithText: React.FC<{
   className?: string;
 }> = ({
   className = ""
 }) => {
-  return <div className="px-[240px] my-0 py-[92px]">
-      <motion.img 
-        alt="Speed E-Log Logo with Text" 
-        width={300} 
-        initial={{
-          opacity: 0,
-          scale: 0.95
-        }} 
-        animate={{
-          opacity: 1,
-          scale: 1
-        }} 
-        transition={{
-          duration: 0.3
-        }} 
-        className="mb-1 object-contain"
-        src="/lovable-uploads/44bd1cbe-178d-4cd7-8783-f02ff7d4d5a5.png" 
-      />
+  return <div className="px-[240px] py-[92px] mx-0 my-0 bg-slate-300 rounded-none">
+      <motion.img alt="Speed E-Log Logo with Text" width={300} initial={{
+      opacity: 0,
+      scale: 0.95
+    }} animate={{
+      opacity: 1,
+      scale: 1
+    }} transition={{
+      duration: 0.3
+    }} src="/lovable-uploads/44bd1cbe-178d-4cd7-8783-f02ff7d4d5a5.png" className="mb-1 object-fill" />
     </div>;
 };
-
 export default LogoIcon;
