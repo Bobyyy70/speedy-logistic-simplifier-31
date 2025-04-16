@@ -8,17 +8,17 @@ export function HeroSection() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_600px] gap-6 lg:gap-12 items-center">
           {/* Content Column */}
-          <div className="flex flex-col justify-center space-y-6 text-center lg:text-left">
+          <div className="flex flex-col justify-center space-y-6 text-center lg:text-left px-[25px]">
             <div className="mb-2">
               <HomeLogoWithText className="w-36 lg:self-start mx-auto lg:mx-0" />
             </div>
-            <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+            <h1 className="text-3xl font-bold tracking-tighter xl:text-6xl/none sm:text-5xl">
               La logistique E-commerce, <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500 mx-0">sans les tracas</span>.
             </h1>
             <p className="max-w-[600px] text-muted-foreground md:text-xl mx-auto lg:mx-0">
               Externalisez votre logistique et concentrez-vous sereinement sur votre croissance. Speed E-Log simplifie vos expéditions.
             </p>
-            <div className="flex flex-col gap-3 min-[400px]:flex-row justify-center lg:justify-start">
+            <div className="flex flex-col gap-3 min-[400px]:flex-row justify-center lg:justify-start px-[2px]">
               <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600">
                 <Link to="/contact">
                   Obtenir un devis personnalisé <ArrowRight className="ml-2 h-4 w-4" />
