@@ -15,7 +15,7 @@ export function ChallengesSection() {
     title: "Complexité de la gestion",
     description: "Stocks, retours, expéditions multi-transporteurs... Plus vous grandissez, plus la logistique devient complexe à gérer."
   }];
-  return <section id="challenges" className="bg-muted/40 dark:bg-slate-900 py-12 md:py-24 lg:py-32">
+  return <section id="challenges" className="py-12 md:py-24 lg:py-32 bg-green-200">
       <div className="container mx-auto px-4">
         {/* Introduction */}
         <motion.div className="flex flex-col items-center justify-center space-y-4 text-center mb-12 md:mb-16" initial={{
