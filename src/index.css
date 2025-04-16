@@ -5,10 +5,10 @@
 
 @layer utilities {
   .glass-effect {
-    @apply backdrop-blur-md bg-white/10 border border-white/20 shadow-glass-light;
+    @apply backdrop-blur-sm bg-white/5 border border-white/10 shadow-glass-light;
   }
 
   .glass-background {
-    @apply bg-speedelog-glass-100 backdrop-blur-sm;
+    @apply bg-speedelog-glass-50/40 backdrop-blur-sm;
   }
 }
