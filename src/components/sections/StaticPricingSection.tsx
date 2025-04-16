@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 
 export function StaticPricingSection() {
   return (
-    <section id="pricing" className="bg-gradient-to-br from-blue-50 via-blue-100/50 to-blue-200/30 dark:from-slate-900 dark:via-slate-900/80 dark:to-blue-950/50 py-12 md:py-24 lg:py-32">
+    <section id="pricing" className="bg-gradient-to-br from-green-50 via-green-100/50 to-green-200/30 dark:from-slate-900 dark:via-slate-900/80 dark:to-green-950/50 py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-4 md:px-6">
         {/* Introduction */}
         <motion.div 
@@ -41,7 +41,7 @@ export function StaticPricingSection() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl mx-auto text-center"
         >
-          <Card className="bg-white/80 dark:bg-slate-800/50 shadow-sm border border-blue-100/70 dark:border-blue-900/30 bg-gradient-to-br from-white to-blue-50/50 dark:from-slate-800/70 dark:to-blue-900/20">
+          <Card className="bg-white/80 dark:bg-slate-800/50 shadow-sm border border-green-100/70 dark:border-green-900/30 bg-gradient-to-br from-white to-green-50/50 dark:from-slate-800/70 dark:to-green-900/20">
             <CardHeader>
               <CardTitle>Disponibilité des tarifs</CardTitle>
               <CardDescription>

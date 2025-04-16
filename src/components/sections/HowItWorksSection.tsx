@@ -42,7 +42,7 @@ const steps = [
 
 export function HowItWorksSection() {
   return (
-    <section id="how-it-works" className="bg-muted/40 dark:bg-slate-900 py-12 md:py-24 lg:py-32">
+    <section id="how-it-works" className="bg-gradient-to-br from-green-50 via-blue-50/30 to-green-100/40 dark:from-slate-900 dark:via-blue-950/20 dark:to-green-950/30 py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-4">
         {/* Introduction */}
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12 md:mb-16">
@@ -94,7 +94,7 @@ export function HowItWorksSection() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-card rounded-lg p-6 shadow-sm border"
+                  className="bg-card rounded-lg p-6 shadow-sm border border-blue-100/70 dark:border-blue-900/30"
                 >
                   <div className="flex flex-col md:flex-row md:items-start gap-6">
                     <div className="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-orange-100 dark:bg-orange-900/30 mb-4 mx-auto md:mx-0">
