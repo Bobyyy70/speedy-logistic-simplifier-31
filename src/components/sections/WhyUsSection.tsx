@@ -37,7 +37,7 @@ export function WhyUsSection() {
         }} transition={{
           duration: 0.5
         }}>
-            <div className="inline-block rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-300 px-3 py-1 text-sm">
+            <div className="inline-block bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-300 px-3 py-1 text-sm rounded-3xl">
               Notre Différence
             </div>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">

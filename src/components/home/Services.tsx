@@ -1,4 +1,3 @@
-
 import { Package, Truck, Clock, FileText, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -78,7 +77,7 @@ export function Services() {
           </motion.div>)}
       </div>
 
-      <motion.div className="mt-12 text-center" initial={{
+      <motion.div initial={{
       opacity: 0,
       y: 10
     }} whileInView={{
@@ -89,7 +88,7 @@ export function Services() {
     }} transition={{
       duration: 0.5,
       delay: 0.3
-    }}>
+    }} className="mt-12 text-center rounded-none">
         <Button asChild className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600">
           <Link to="/services">En savoir plus sur nos services</Link>
         </Button>
