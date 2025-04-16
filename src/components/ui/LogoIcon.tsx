@@ -42,7 +42,7 @@ export const LogoIconWithText: React.FC<{
       scale: 1
     }} transition={{
       duration: 0.3
-    }} className="mb-1 object-contain" src="/lovable-uploads/be317568-d1d2-426a-9ba8-a9ec38ab2e67.png" />
+    }} src="/lovable-uploads/f1857faa-e92e-4c2f-8baa-f5d3ce99f322.png" className="mb-1 object-scale-down" />
     </div>;
 };
 export const HomeLogoWithText: React.FC<{
