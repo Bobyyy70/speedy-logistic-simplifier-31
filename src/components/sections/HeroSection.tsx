@@ -18,7 +18,7 @@ export function HeroSection() {
             <p className="max-w-[600px] text-muted-foreground md:text-xl mx-auto lg:mx-0">
               Externalisez votre logistique et concentrez-vous sereinement sur votre croissance. Speed E-Log simplifie vos expéditions.
             </p>
-            <div className="flex flex-col gap-3 min-[400px]:flex-row justify-center lg:justify-start px-[2px]">
+            <div className="flex flex-col gap-3 min-[400px]:flex-row justify-center lg:justify-start px-[4px]">
               <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600">
                 <Link to="/contact">
                   Obtenir un devis personnalisé <ArrowRight className="ml-2 h-4 w-4" />
