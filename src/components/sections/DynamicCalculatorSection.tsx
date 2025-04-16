@@ -209,7 +209,7 @@ export function DynamicCalculatorSection() {
       }} transition={{
         duration: 0.5
       }}>
-        <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm dark:bg-slate-800">
+        <div className="inline-block rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-600 dark:to-orange-700 px-3 py-1 text-sm text-white dark:text-white">
           Estimation Tarif Transport
         </div>
         <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
