@@ -47,7 +47,7 @@ export function HeroSection() {
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg blur opacity-20"></div>
             <div className="relative bg-white dark:bg-slate-900 shadow-xl rounded-lg p-6">
               <div className="aspect-video lg:aspect-square bg-gradient-to-r from-blue-50 to-green-50 dark:from-slate-800 dark:to-green-950 rounded-md mb-4 flex items-center justify-center overflow-hidden">
-                <img alt="Logistique Speed E-Log" className="w-full h-full object-cover" src="/lovable-uploads/a663a0f1-79d9-49d6-b64d-5e4d0ce2c17e.png" />
+                <img alt="Logistique Speed E-Log" className="w-full h-full object-cover" src="/lovable-uploads/2e66f51f-45f3-4ba7-b497-e45a56dad2f7.png" />
               </div>
               <h3 className="font-semibold text-lg mb-2">Une logistique moderne et efficace</h3>
               <p className="text-muted-foreground">
