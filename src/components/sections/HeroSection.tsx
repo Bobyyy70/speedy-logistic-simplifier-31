@@ -53,7 +53,7 @@ export function HeroSection() {
                 <img 
                   alt="Logistique Speed E-Log" 
                   className="w-full h-full object-cover" 
-                  src="/lovable-uploads/e02c63d7-a1f7-49cc-90d1-86018630f4de.png" 
+                  src="/lovable-uploads/d9844daf-a84c-4b70-aadf-37684e45dbc3.png" 
                 />
               </div>
               <h3 className="font-semibold text-lg mb-2">Une logistique moderne et efficace</h3>
