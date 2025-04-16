@@ -1,6 +1,7 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
-import { LogoWithText } from "@/components/ui/LogoIcon";
+import { LogoIconWithText } from "@/components/ui/LogoIcon";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 export function Footer() {
@@ -13,7 +14,7 @@ export function Footer() {
           {/* Logo et description */}
           <div className="flex flex-col gap-4">
             <div className="flex justify-start">
-              <LogoWithText />
+              <LogoIconWithText />
             </div>
             <p className="text-sm text-muted-foreground mt-4">
               Votre partenaire logistique pour simplifier vos opérations e-commerce et accélérer votre croissance.
