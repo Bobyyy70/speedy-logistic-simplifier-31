@@ -11,4 +11,16 @@
   .glass-background {
     @apply bg-speedelog-glass-50/40 backdrop-blur-sm;
   }
+  
+  .section-container {
+    @apply container mx-auto px-4 py-12 md:py-20;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-center mb-4;
+  }
+  
+  .section-subtitle {
+    @apply text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-12;
+  }
 }

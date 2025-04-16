@@ -42,7 +42,7 @@ const steps = [
 
 export function HowItWorksSection() {
   return (
-    <section id="how-it-works" className="bg-muted/40 dark:bg-slate-900 py-12 md:py-24 lg:py-32">
+    <section id="how-it-works" className="bg-blue-50/5 dark:bg-slate-900/5 py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-4">
         {/* Introduction */}
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12 md:mb-16">
