@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -137,13 +138,22 @@ export default {
             opacity: '0',
             transform: 'translateY(10px)'
           }
+        },
+        aurora: {
+          from: {
+            backgroundPosition: "0% 0%, 50% 50%",
+          },
+          to: {
+            backgroundPosition: "100% 0%, 50% 50%",
+          }
         }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in': 'fade-in 0.3s ease-out',
-        'fade-out': 'fade-out 0.3s ease-out'
+        'fade-out': 'fade-out 0.3s ease-out',
+        'aurora': 'aurora 10s linear infinite'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
