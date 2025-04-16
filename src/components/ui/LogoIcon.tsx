@@ -44,7 +44,7 @@ export const LogoIconWithText: React.FC<{
       scale: 1
     }} transition={{
       duration: 0.3
-    }} className="mb-1 object-contain" src="blob:https://lovable.dev/643f77a9-0f5c-4ef4-820f-c604833ff47b" />
+    }} className="mb-1 object-contain" src="/lovable-uploads/be317568-d1d2-426a-9ba8-a9ec38ab2e67.png" />
     </div>;
 };
 
