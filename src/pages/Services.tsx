@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -11,7 +12,7 @@ const Services = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 via-blue-50/50 to-blue-100/30 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950">
+    <div>
       <Helmet>
         <title>Nos Services Logistique E-commerce | Speed E-Log</title>
         <meta 

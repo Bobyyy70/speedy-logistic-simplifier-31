@@ -10,7 +10,7 @@ const Pricing = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-green-50 via-green-50/50 to-green-100/30 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950">
+    <div>
       <Helmet>
         <title>Estimation Tarif Transport & Tarification | Speed E-Log</title>
         <meta 
@@ -26,7 +26,7 @@ const Pricing = () => {
       <DynamicCalculatorSection />
       
       <div className="container mx-auto py-12 px-4 text-center">
-        <div className="max-w-2xl mx-auto bg-blue-50/50 p-6 rounded-lg">
+        <div className="max-w-2xl mx-auto bg-muted/50 p-6 rounded-lg">
           <h3 className="text-xl font-semibold mb-3">Information importante</h3>
           <p className="text-muted-foreground">
             La grille tarifaire complète de nos prestations (colisage, stockage, préparation de commandes...) 

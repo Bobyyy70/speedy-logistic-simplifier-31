@@ -18,7 +18,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 via-blue-50/50 to-blue-100/30 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950">
+    <>
       <Helmet>
         <title>Speed E-Log | Logistique E-commerce Simplifiée pour PME</title>
         <meta 
@@ -41,7 +41,7 @@ const Index = () => {
       <Testimonials />
       <FAQ />
       <ContactCTA />
-    </div>
+    </>
   );
 };
 
