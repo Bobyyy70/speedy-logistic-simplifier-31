@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { HomeLogoWithText } from "@/components/ui/LogoIcon";
+
 export function HeroSection() {
   return <section className="bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-700 py-12 md:py-24 lg:py-32 overflow-hidden xl:py-0 rounded-none mx-0">
       <div className="container mx-auto px-4 relative z-10">
