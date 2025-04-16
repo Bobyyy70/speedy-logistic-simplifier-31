@@ -15,7 +15,7 @@ export const ContactHeader = () => {
           Contactez-Nous
         </div>
         <h1 className="text-2xl md:text-3xl font-bold text-center mb-2">Prêt à simplifier votre logistique ?</h1>
-        <p className="text-base md:text-lg text-center text-muted-foreground max-w-2xl mx-auto px-4 md:px-0">
+        <p className="text-base md:text-lg text-center text-muted-foreground max-w-2xl mx-auto px-4 md:px-0 py-0">
           Remplissez le formulaire ci-dessous pour obtenir un devis personnalisé ou discuter de vos besoins spécifiques. 
           Notre équipe vous répondra dans les plus brefs délais.
         </p>
