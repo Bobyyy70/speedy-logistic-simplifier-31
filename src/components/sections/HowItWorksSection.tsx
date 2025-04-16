@@ -1,98 +1,96 @@
 
 import React from "react";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { ArrowRight, PackageCheck, Truck, FileCheck, BarChart3 } from "lucide-react";
 import { motion } from "framer-motion";
-import { Plug, Warehouse, ClipboardList, Truck } from "lucide-react";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
-// Définition des étapes du processus
 const steps = [
   {
-    id: "step1",
-    number: "01",
-    shortTitle: "Intégration",
-    title: "Intégration Facile",
-    description: "Connexion simple avec votre plateforme e-commerce (Shopify, WooCommerce, Prestashop...) ou via notre API. Nos solutions techniques s'adaptent à votre infrastructure existante pour un démarrage rapide.",
-    icon: Plug,
+    step: "1",
+    icon: PackageCheck,
+    title: "Intégration",
+    description: "Nous nous connectons à votre plateforme e-commerce (Shopify, WooCommerce, Prestashop...).",
+    details: "Une intégration technique simple et rapide avec votre boutique en ligne. Nos équipes s'occupent de tout pour garantir une connexion fiable entre nos systèmes."
   },
   {
-    id: "step2",
-    number: "02",
-    shortTitle: "Réception",
-    title: "Envoyez vos produits",
-    description: "Vos produits sont réceptionnés, contrôlés et référencés dans notre système de gestion d'entrepôt. Chaque article est vérifié et stocké dans des conditions optimales, prêt à être expédié.",
-    icon: Warehouse,
+    step: "2",
+    icon: FileCheck,
+    title: "Réception",
+    description: "Nous réceptionnons et contrôlons vos produits avant de les intégrer dans notre système.",
+    details: "Envoyez-nous votre stock et nous vérifions chaque article avec soin avant de le référencer dans notre système de gestion d'entrepôt."
   },
   {
-    id: "step3",
-    number: "03",
-    shortTitle: "Préparation",
-    title: "Préparation Commandes",
-    description: "Nous préparons, emballons et vérifions chaque commande avec rapidité et précision. Nos procédures de contrôle qualité garantissent que vos clients reçoivent exactement ce qu'ils ont commandé.",
-    icon: ClipboardList,
-  },
-  {
-    id: "step4",
-    number: "04",
-    shortTitle: "Expédition",
-    title: "Expédition Rapide",
-    description: "Vos commandes sont expédiées via les meilleurs transporteurs avec suivi en temps réel pour vos clients. Notre réseau de partenaires permet d'optimiser les délais et les coûts de livraison.",
+    step: "3",
     icon: Truck,
+    title: "Traitement",
+    description: "Nous préparons et expédions vos commandes rapidement via les meilleurs transporteurs.",
+    details: "Dès qu'une commande est passée sur votre boutique, nous la préparons, l'emballons et l'expédions selon vos préférences et avec les transporteurs les plus adaptés."
   },
+  {
+    step: "4",
+    icon: BarChart3,
+    title: "Suivi",
+    description: "Suivez en temps réel vos stocks et commandes sur votre espace client dédié.",
+    details: "Accédez à votre tableau de bord personnalisé pour consulter vos niveaux de stock, l'état de vos commandes, générer des rapports et bien plus encore."
+  }
 ];
 
 export function HowItWorksSection() {
   return (
-    <section id="how-it-works" className="bg-gradient-to-br from-green-50 via-blue-50/30 to-green-100/40 dark:from-slate-900 dark:via-blue-950/20 dark:to-green-950/30 py-12 md:py-24 lg:py-32">
+    <section id="how-it-works" className="bg-gradient-to-br from-blue-50 via-green-50/30 to-blue-100/40 dark:from-slate-900 dark:via-green-950/20 dark:to-blue-950/30 py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-4">
         {/* Introduction */}
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12 md:mb-16">
-          <motion.div 
-            className="inline-block rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-300 px-3 py-1 text-sm"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Le Processus
-          </motion.div>
-          <motion.h2 
-            className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
+          <div className="inline-block rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-300 px-3 py-1 text-sm">
+            Processus Simplifié
+          </div>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             Comment ça marche ?
-          </motion.h2>
-          <motion.p 
-            className="max-w-[900px] text-muted-foreground md:text-xl/relaxed"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            Intégration simple et rapide pour une externalisation sans friction.
-          </motion.p>
+          </h2>
+          <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
+            Un processus en 4 étapes simples pour externaliser votre logistique e-commerce
+            sans tracas et sans interruption de votre activité.
+          </p>
         </div>
-
-        {/* Tabs pour les étapes */}
-        <div className="max-w-4xl mx-auto">
-          <Tabs defaultValue="step1" className="w-full">
-            <TabsList className="grid w-full grid-cols-4 mb-8">
-              {steps.map((step) => (
-                <TabsTrigger 
-                  key={step.id} 
-                  value={step.id}
-                  className="flex flex-col items-center py-3 px-1 sm:px-4 data-[state=active]:text-orange-600 dark:data-[state=active]:text-orange-400"
-                >
-                  <span className="text-sm sm:text-base font-medium">{step.number}</span>
-                  <span className="text-xs hidden sm:block mt-1">{step.shortTitle}</span>
-                </TabsTrigger>
-              ))}
-            </TabsList>
-            
-            {steps.map((step) => (
-              <TabsContent key={step.id} value={step.id} className="mt-6">
+        
+        {/* Process Steps - Mobile View (Timeline) */}
+        <div className="md:hidden">
+          <div className="relative space-y-8 before:absolute before:inset-0 before:ml-5 before:-translate-x-px before:h-full before:w-0.5 before:bg-gradient-to-b before:from-blue-400 before:to-green-400">
+            {steps.map((step, index) => (
+              <motion.div 
+                key={index}
+                className="relative flex items-start"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+              >
+                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold text-sm shadow-md">
+                  {step.step}
+                </div>
+                <div className="ml-4 pb-5">
+                  <div className="flex items-center mb-1">
+                    <step.icon className="w-4 h-4 mr-2 text-primary" />
+                    <h3 className="text-lg font-semibold">{step.title}</h3>
+                  </div>
+                  <p className="text-muted-foreground">{step.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Process Steps - Desktop View (Cards) */}
+        <div className="hidden md:block">
+          <div className="grid gap-8">
+            {steps.map((step, index) => (
+              <div key={index} className="relative">
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.3 }}
                   className="bg-card rounded-lg p-6 shadow-sm border border-blue-100/70 dark:border-blue-900/30"
                 >
@@ -101,19 +99,39 @@ export function HowItWorksSection() {
                       <step.icon className="h-8 w-8 text-orange-600 dark:text-orange-500" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold mb-3 text-center md:text-left">
-                        Étape {step.number.replace(/^0/, '')}: {step.title}
-                      </h3>
-                      <p className="text-muted-foreground">
-                        {step.description}
-                      </p>
+                      <div className="flex items-center mb-3">
+                        <span className="flex items-center justify-center bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full w-8 h-8 mr-4 font-bold">
+                          {step.step}
+                        </span>
+                        <h3 className="text-xl font-semibold">{step.title}</h3>
+                      </div>
+                      <p className="text-lg mb-2">{step.description}</p>
+                      <p className="text-muted-foreground">{step.details}</p>
                     </div>
                   </div>
                 </motion.div>
-              </TabsContent>
+                {index < steps.length - 1 && (
+                  <div className="absolute left-[2.75rem] top-full h-8 w-px bg-gradient-to-b from-blue-200 to-green-300 dark:from-blue-700 dark:to-green-700 hidden md:block"></div>
+                )}
+              </div>
             ))}
-          </Tabs>
+          </div>
         </div>
+        
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-12 text-center"
+        >
+          <Button asChild size="lg">
+            <Link to="/contact">
+              Démarrer l'externalisation <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+        </motion.div>
       </div>
     </section>
   );

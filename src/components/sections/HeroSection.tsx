@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { HomeLogoWithText } from "@/components/ui/LogoIcon";
 export function HeroSection() {
-  return <section className="bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950 py-12 md:py-24 lg:py-32 overflow-hidden xl:py-0 rounded-none mx-0">
+  return <section className="bg-gradient-to-br from-green-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-950 dark:to-blue-950/30 py-12 md:py-24 lg:py-32 overflow-hidden xl:py-0 rounded-none mx-0">
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_600px] gap-6 lg:gap-12 items-center">
           {/* Content Column */}

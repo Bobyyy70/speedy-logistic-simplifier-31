@@ -23,7 +23,7 @@ export function WhyUsSection() {
     title: "Compétitivité Europe & Qualité Garantie",
     description: "Profitez de nos tarifs négociés et de notre localisation pour des expéditions rapides et économiques vers la France et l'Europe proche. Nous nous engageons sur une qualité de service irréprochable pour chaque colis."
   }];
-  return <section id="why-us" className="py-12 md:py-24 lg:py-32 bg-gradient-to-bl from-blue-50 via-white to-green-50 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950">
+  return <section id="why-us" className="py-12 md:py-24 lg:py-32 bg-gradient-to-bl from-green-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-950 dark:to-blue-950/30">
       <div className="container mx-auto">
         <div className="grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
           {/* Text Column */}
