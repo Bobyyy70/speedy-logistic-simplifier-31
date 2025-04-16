@@ -24,10 +24,10 @@ export function WorldMap({
   const isDarkMode = theme === "dark";
 
   const svgMap = map.getSVG({
-    radius: 0.22,
-    color: isDarkMode ? "#FFFFFF40" : "#00000040",
+    radius: 0.25, // Slightly larger dots
+    color: isDarkMode ? "#FFFFFF60" : "#00000060", // More opaque dots
     shape: "circle",
-    backgroundColor: isDarkMode ? "black" : "white",
+    backgroundColor: "transparent", // Transparent background to blend with the gradient
   });
 
   const projectPoint = (lat: number, lng: number) => {
@@ -46,7 +46,7 @@ export function WorldMap({
   };
 
   return (
-    <div className="w-full aspect-[2/1] dark:bg-black bg-white rounded-lg relative font-sans">
+    <div className="w-full aspect-[2/1] bg-transparent rounded-lg relative font-sans">
       <img
         src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
         className="h-full w-full [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] pointer-events-none select-none"
@@ -69,7 +69,7 @@ export function WorldMap({
                 d={createCurvedPath(startPoint, endPoint)}
                 fill="none"
                 stroke="url(#path-gradient)"
-                strokeWidth="1"
+                strokeWidth="2" // Thicker lines
                 initial={{
                   pathLength: 0,
                 }}
@@ -89,10 +89,10 @@ export function WorldMap({
 
         <defs>
           <linearGradient id="path-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="white" stopOpacity="0" />
+            <stop offset="0%" stopColor={lineColor} stopOpacity="0.3" />
             <stop offset="5%" stopColor={lineColor} stopOpacity="1" />
             <stop offset="95%" stopColor={lineColor} stopOpacity="1" />
-            <stop offset="100%" stopColor="white" stopOpacity="0" />
+            <stop offset="100%" stopColor={lineColor} stopOpacity="0.3" />
           </linearGradient>
         </defs>
 
@@ -102,27 +102,27 @@ export function WorldMap({
               <circle
                 cx={projectPoint(dot.start.lat, dot.start.lng).x}
                 cy={projectPoint(dot.start.lat, dot.start.lng).y}
-                r="2"
+                r="3" // Bigger points
                 fill={lineColor}
               />
               <circle
                 cx={projectPoint(dot.start.lat, dot.start.lng).x}
                 cy={projectPoint(dot.start.lat, dot.start.lng).y}
-                r="2"
+                r="3" // Bigger points
                 fill={lineColor}
-                opacity="0.5"
+                opacity="0.6" // More visible
               >
                 <animate
                   attributeName="r"
-                  from="2"
-                  to="8"
+                  from="3"
+                  to="12" // Bigger pulse
                   dur="1.5s"
                   begin="0s"
                   repeatCount="indefinite"
                 />
                 <animate
                   attributeName="opacity"
-                  from="0.5"
+                  from="0.6"
                   to="0"
                   dur="1.5s"
                   begin="0s"
@@ -134,27 +134,27 @@ export function WorldMap({
               <circle
                 cx={projectPoint(dot.end.lat, dot.end.lng).x}
                 cy={projectPoint(dot.end.lat, dot.end.lng).y}
-                r="2"
+                r="3" // Bigger points
                 fill={lineColor}
               />
               <circle
                 cx={projectPoint(dot.end.lat, dot.end.lng).x}
                 cy={projectPoint(dot.end.lat, dot.end.lng).y}
-                r="2"
+                r="3" // Bigger points
                 fill={lineColor}
-                opacity="0.5"
+                opacity="0.6" // More visible
               >
                 <animate
                   attributeName="r"
-                  from="2"
-                  to="8"
+                  from="3"
+                  to="12" // Bigger pulse
                   dur="1.5s"
                   begin="0s"
                   repeatCount="indefinite"
                 />
                 <animate
                   attributeName="opacity"
-                  from="0.5"
+                  from="0.6"
                   to="0"
                   dur="1.5s"
                   begin="0s"

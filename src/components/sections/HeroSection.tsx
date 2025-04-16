@@ -10,7 +10,7 @@ export function HeroSection() {
   return (
     <section className="relative bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-700 py-12 md:py-24 lg:py-32 overflow-hidden xl:py-0 rounded-none mx-0">
       {/* World Map Background */}
-      <div className="absolute inset-0 opacity-10 overflow-hidden">
+      <div className="absolute inset-0 opacity-25 overflow-hidden">
         <WorldMap
           dots={[
             {
@@ -38,7 +38,7 @@ export function HeroSection() {
               end: { lat: -1.2921, lng: 36.8219 }, // Nairobi, Kenya
             },
           ]}
-          lineColor="#3B82F6"
+          lineColor="#FEC6A1" /* Soft orange color */
         />
       </div>
       
