@@ -13,7 +13,7 @@ const About = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950">
+    <div>
       <Helmet>
         <title>À Propos de Speed E-Log | Votre Partenaire Logistique</title>
         <meta 

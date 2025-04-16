@@ -13,7 +13,6 @@ import { FAQ } from "@/components/home/FAQ";
 import { ContactCTA } from "@/components/home/ContactCTA";
 
 const Index = () => {
-  // Scroll to top on component mount
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
