@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -59,7 +60,7 @@ const FaqPage = () => {
   ];
 
   return (
-    <div>
+    <div className="bg-gradient-to-br from-blue-100 via-white to-green-100 dark:from-slate-900 dark:via-slate-950 dark:to-green-900 py-12">
       <Helmet>
         <title>FAQ - Questions Fréquentes Logistique | Speed E-Log</title>
         <meta 
