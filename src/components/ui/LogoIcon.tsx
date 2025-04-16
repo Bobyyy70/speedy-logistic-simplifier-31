@@ -17,7 +17,7 @@ export const LogoIcon: React.FC<{
   };
   
   return <motion.img 
-    src="/lovable-uploads/1e40acc5-0282-4821-8805-e6ec5630d09a.png" 
+    src="/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png" 
     alt="Speed E-Log Logo" 
     initial={{
       opacity: 0,
