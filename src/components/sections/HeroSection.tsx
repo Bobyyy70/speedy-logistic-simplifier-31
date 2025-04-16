@@ -1,8 +1,9 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { LogoIconWithText } from "@/components/ui/LogoIcon";
+import { HomeLogoWithText } from "@/components/ui/LogoIcon";
 export function HeroSection() {
   return <section className="bg-gradient-to-br from-blue-50 via-white to-blue-100 dark:from-slate-900 dark:via-slate-950 dark:to-blue-950 py-12 md:py-24 lg:py-32 overflow-hidden mx-px xl:py-[20px]">
       <div className="container mx-auto px-4 relative z-10">
@@ -10,7 +11,7 @@ export function HeroSection() {
           {/* Content Column */}
           <div className="flex flex-col justify-center space-y-6 text-center lg:text-left">
             <div className="mb-2">
-              <LogoIconWithText className="w-36 lg:self-start mx-auto lg:mx-0" />
+              <HomeLogoWithText className="w-36 lg:self-start mx-auto lg:mx-0" />
             </div>
             <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
               La logistique E-commerce, <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500 mx-0">sans les tracas</span>.
