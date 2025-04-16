@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -59,7 +60,7 @@ const FaqPage = () => {
   ];
 
   return (
-    <div>
+    <div className="bg-gradient-to-br from-orange-50/50 via-white to-orange-50/50 dark:from-slate-900 dark:via-slate-950 dark:to-orange-950/20 py-16 px-4">
       <Helmet>
         <title>FAQ - Questions Fréquentes Logistique | Speed E-Log</title>
         <meta 
@@ -79,7 +80,7 @@ const FaqPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm dark:bg-slate-800">
+        <div className="inline-block rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-300 px-3 py-1 text-sm">
           FAQ
         </div>
         <h1 className="text-3xl md:text-4xl font-bold tracking-tighter sm:text-5xl">
@@ -100,7 +101,7 @@ const FaqPage = () => {
               transition={{ duration: 0.3, delay: index * 0.05 }}
             >
               <AccordionItem value={`item-${index}`}>
-                <AccordionTrigger className="text-left font-semibold">
+                <AccordionTrigger className="text-left font-semibold hover:text-orange-600 dark:hover:text-orange-400">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
@@ -118,7 +119,7 @@ const FaqPage = () => {
           transition={{ duration: 0.5, delay: 0.5 }}
         >
           <p>Vous ne trouvez pas la réponse à votre question ?</p>
-          <Link to="/contact" className="text-primary hover:underline font-medium">
+          <Link to="/contact" className="text-orange-600 hover:underline font-medium dark:text-orange-400">
             Contactez-nous directement
           </Link>
         </motion.div>

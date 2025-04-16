@@ -52,8 +52,8 @@ const Header = () => {
               key={item.name} 
               to={item.path} 
               className={({ isActive }) => cn(
-                "text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400", 
-                isActive ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-muted-foreground"
+                "text-sm font-medium transition-colors hover:text-orange-600 dark:hover:text-orange-400", 
+                isActive ? "text-orange-600 dark:text-orange-400 font-semibold" : "text-muted-foreground"
               )}
             >
               {item.name}
@@ -67,7 +67,7 @@ const Header = () => {
             <Button 
               variant="outline" 
               size="icon" 
-              className="h-10 w-10 hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400" 
+              className="h-10 w-10 hover:border-orange-500 hover:text-orange-600 dark:hover:text-orange-400" 
               aria-label="Menu"
             >
               <Menu className="h-5 w-5" />
@@ -86,8 +86,8 @@ const Header = () => {
                   <NavLink 
                     to={item.path} 
                     className={({ isActive }) => cn(
-                      "text-base font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400 px-1 py-2", 
-                      isActive ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-foreground"
+                      "text-base font-medium transition-colors hover:text-orange-600 dark:hover:text-orange-400 px-1 py-2", 
+                      isActive ? "text-orange-600 dark:text-orange-400 font-semibold" : "text-foreground"
                     )}
                   >
                     {item.name}
@@ -95,7 +95,7 @@ const Header = () => {
                 </SheetClose>
               ))}
               <SheetClose asChild>
-                <Button className="mt-4 w-full" asChild>
+                <Button className="mt-4 w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700" asChild>
                   <NavLink to="/contact">
                     Obtenir un devis
                   </NavLink>
@@ -107,7 +107,7 @@ const Header = () => {
 
         {/* Desktop CTA Button */}
         <div className="hidden md:block">
-          <Button size="sm" asChild>
+          <Button size="sm" asChild className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700">
             <NavLink to="/contact">Obtenir un devis</NavLink>
           </Button>
         </div>

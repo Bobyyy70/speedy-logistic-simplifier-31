@@ -26,6 +26,9 @@ const Services = () => {
         />
       </Helmet>
       <div className="container mx-auto py-16 px-4">
+        <div className="inline-block rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-300 px-3 py-1 text-sm mb-4 mx-auto">
+          Nos Services
+        </div>
         <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl text-center mb-6">
           Nos Services Logistiques pour E-commerce
         </h1>
