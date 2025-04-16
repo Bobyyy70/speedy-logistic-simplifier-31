@@ -1,4 +1,3 @@
-
 import React from "react";
 import { CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
@@ -82,7 +81,7 @@ export function WhyUsSection() {
         }} transition={{
           duration: 0.7
         }}>
-            <img src="https://placehold.co/600x400/e0f2fe/075985?text=Visuel+Avantages" alt="Avantages Speed E-Log" width="600" height="400" className="mx-auto aspect-video overflow-hidden rounded-xl object-cover shadow-lg" />
+            <img alt="Avantages Speed E-Log" width="600" height="400" className="mx-auto aspect-video overflow-hidden rounded-xl object-cover shadow-lg" src="C:\\Users\\User\\OneDrive\\Documents\\ShareX\\Screenshots\\2025-04\\brave_U4Oj1MCUfb.png" />
           </motion.div>
         </div>
       </div>
