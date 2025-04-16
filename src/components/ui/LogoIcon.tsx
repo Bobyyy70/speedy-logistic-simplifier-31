@@ -50,7 +50,7 @@ export const HomeLogoWithText: React.FC<{
 }> = ({
   className = ""
 }) => {
-  return <div className="px-[240px] py-[92px] mx-0 my-0 rounded-none bg-emerald-200">
+  return <div className="px-[240px] py-[92px] mx-0 my-0 rounded-none bg-blue-100">
       <motion.img alt="Speed E-Log Logo with Text" width={300} initial={{
       opacity: 0,
       scale: 0.95
