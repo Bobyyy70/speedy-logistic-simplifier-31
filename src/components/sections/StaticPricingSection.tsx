@@ -26,6 +26,7 @@ import {
   Truck 
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 type PricingItem = {
   id: string;
@@ -97,10 +98,16 @@ export function StaticPricingSection() {
   ];
 
   return (
-    <section id="pricing" className="bg-muted/40 dark:bg-slate-900 py-12 md:py-24 lg:py-32">
+    <section id="pricing" className="bg-gradient-to-br from-blue-50 via-white to-blue-100/30 dark:bg-slate-900 py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-4 md:px-6">
         {/* Introduction */}
-        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+        <motion.div 
+          className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm dark:bg-slate-800">
             Tarification
           </div>
@@ -110,49 +117,56 @@ export function StaticPricingSection() {
           <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed">
             Pas de frais cachés, une structure de coûts simple pour vous aider à planifier. (Tarifs indicatifs HT)
           </p>
-        </div>
+        </motion.div>
 
         {/* Pricing Table */}
-        <Card className="max-w-4xl mx-auto">
-          <CardHeader>
-            <CardTitle>Grille tarifaire indicative</CardTitle>
-            <CardDescription>
-              Tous les prix sont hors taxes (HT) et incluent les fournitures d'emballage standard
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="pt-6">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[200px]">Service</TableHead>
-                  <TableHead>Description</TableHead>
-                  <TableHead className="text-right">Tarif HT</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {pricingItems.map((item) => (
-                  <TableRow key={item.id}>
-                    <TableCell className="font-medium">
-                      <div className="flex items-center space-x-2">
-                        {item.icon}
-                        <span>{item.service}</span>
-                      </div>
-                    </TableCell>
-                    <TableCell>{item.description}</TableCell>
-                    <TableCell className="text-right">{item.price}</TableCell>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <Card className="max-w-4xl mx-auto bg-white/80 dark:bg-slate-800/50 shadow-sm">
+            <CardHeader>
+              <CardTitle>Grille tarifaire indicative</CardTitle>
+              <CardDescription>
+                Tous les prix sont hors taxes (HT) et incluent les fournitures d'emballage standard
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="pt-6">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[200px]">Service</TableHead>
+                    <TableHead>Description</TableHead>
+                    <TableHead className="text-right">Tarif HT</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-            <p className="text-xs text-muted-foreground mt-4">
-              *Les tarifs de transport dépendent du poids, de la destination et du niveau de service choisi. Contactez-nous pour un devis précis.
-            </p>
-          </CardContent>
-        </Card>
+                </TableHeader>
+                <TableBody>
+                  {pricingItems.map((item) => (
+                    <TableRow key={item.id}>
+                      <TableCell className="font-medium">
+                        <div className="flex items-center space-x-2">
+                          {item.icon}
+                          <span>{item.service}</span>
+                        </div>
+                      </TableCell>
+                      <TableCell>{item.description}</TableCell>
+                      <TableCell className="text-right">{item.price}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+              <p className="text-xs text-muted-foreground mt-4">
+                *Les tarifs de transport dépendent du poids, de la destination et du niveau de service choisi. Contactez-nous pour un devis précis.
+              </p>
+            </CardContent>
+          </Card>
+        </motion.div>
 
         {/* CTA */}
         <div className="text-center mt-8">
-          <Button asChild size="lg">
+          <Button asChild size="lg" className="bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90">
             <Link to="/contact">Demandez votre devis personnalisé</Link>
           </Button>
         </div>
