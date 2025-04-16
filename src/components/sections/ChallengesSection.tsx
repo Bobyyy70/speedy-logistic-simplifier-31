@@ -29,7 +29,7 @@ export function ChallengesSection() {
       }} transition={{
         duration: 0.5
       }}>
-          <div className="inline-block bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-300 px-3 py-1 text-sm rounded-3xl">
+          <div className="inline-block text-orange-700 dark:text-orange-300 px-3 py-1 text-sm rounded-3xl bg-orange-100">
             Vos Défis Actuels
           </div>
           <h2 className="text-3xl tracking-tighter sm:text-4xl text-center font-bold md:text-6xl"> Externalisez votre logistique avec Speed E-Log  
