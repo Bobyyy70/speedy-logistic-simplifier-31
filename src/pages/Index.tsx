@@ -1,7 +1,6 @@
 
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { AuroraBackground } from "@/components/ui/aurora-background";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ChallengesSection } from "@/components/sections/ChallengesSection";
 import { Services } from "@/components/home/Services";
@@ -19,7 +18,7 @@ const Index = () => {
   }, []);
 
   return (
-    <AuroraBackground className="min-h-screen">
+    <div className="bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-700">
       <Helmet>
         <title>Speed E-Log | Logistique E-commerce Simplifiée pour PME</title>
         <meta 
@@ -42,7 +41,7 @@ const Index = () => {
       <Testimonials />
       <FAQ />
       <ContactCTA />
-    </AuroraBackground>
+    </div>
   );
 };
 
