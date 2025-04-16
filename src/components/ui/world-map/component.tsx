@@ -18,15 +18,16 @@ export function WorldMap({
 }: MapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const map = new DottedMap({ height: 100, grid: "diagonal" });
-
-  // Since we're not using next-themes, we'll default to light mode
-  const theme = "light";
+  
+  // Get the theme from next-themes, defaulting to light mode if theme is undefined
+  const { theme } = useTheme();
+  const isDarkMode = theme === "dark";
 
   const svgMap = map.getSVG({
     radius: 0.22,
-    color: theme === "dark" ? "#FFFFFF40" : "#00000040",
+    color: isDarkMode ? "#FFFFFF40" : "#00000040",
     shape: "circle",
-    backgroundColor: theme === "dark" ? "black" : "white",
+    backgroundColor: isDarkMode ? "black" : "white",
   });
 
   const projectPoint = (lat: number, lng: number) => {
