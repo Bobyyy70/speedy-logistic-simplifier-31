@@ -32,7 +32,7 @@ export function ChallengesSection() {
           <div className="inline-block rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-300 px-3 py-1 text-sm">
             Vos Défis Actuels
           </div>
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Externalisez votre logistique avec Speed E-Log 
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Externalisez votre logistique avec Speed E-Log  
 Libérez votre temps, boostez votre croissance</h2>
           <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed">
             Gérer les stocks, préparer les commandes, négocier les tarifs transporteurs... Autant de tâches chronophages 
