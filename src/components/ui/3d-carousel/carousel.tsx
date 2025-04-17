@@ -13,7 +13,7 @@ const Carousel = memo(
     cards,
     isCarouselActive,
   }: {
-    handleClick: (imgUrl: string, index: number) => void;
+    handleClick: (imgUrl: string) => void;
     controls: any;
     cards: string[];
     isCarouselActive: boolean;
@@ -75,7 +75,7 @@ const Carousel = memo(
                   i * (360 / faceCount)
                 }deg) translateZ(${radius}px)`,
               }}
-              onClick={() => handleClick(imgUrl, i)}
+              onClick={() => handleClick(imgUrl)}
             >
               <motion.img
                 src={imgUrl}
