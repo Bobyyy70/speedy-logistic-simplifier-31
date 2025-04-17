@@ -9,6 +9,7 @@ import { toast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+
 export function DynamicCalculatorSection() {
   // États pour le formulaire
   const [zipCode, setZipCode] = useState("");
@@ -44,6 +45,7 @@ export function DynamicCalculatorSection() {
       setUseVolumetricWeight(false);
     }
   }, [volumetricWeight, weight]);
+
   const calculateVolumetricWeight = () => {
     if (!length || !width || !height) return null;
     const l = parseFloat(length);
@@ -55,6 +57,7 @@ export function DynamicCalculatorSection() {
     const volumeWeight = l * w * h / 5000;
     return volumeWeight;
   };
+
   const handleCalculate = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -184,7 +187,9 @@ export function DynamicCalculatorSection() {
       }
     }, 1000);
   };
-  return <section id="calculator" className="bg-muted/40 dark:bg-slate-900 py-12 md:py-24 lg:py-32">
+
+  return <section id="calculator" className="bg-gradient-to-r from-orange-200/50 via-white to-blue-100 
+                    dark:from-orange-900/30 dark:via-slate-950 dark:to-blue-900/30 py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-4 md:px-6">
         {/* Introduction */}
         <motion.div className="flex flex-col items-center justify-center space-y-4 text-center mb-12" initial={{
