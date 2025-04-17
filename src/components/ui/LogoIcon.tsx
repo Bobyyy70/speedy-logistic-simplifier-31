@@ -1,8 +1,6 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-
 export const LogoIcon: React.FC<{
   className?: string;
   size?: "sm" | "md" | "lg";
@@ -15,7 +13,7 @@ export const LogoIcon: React.FC<{
     md: "w-12 h-12",
     lg: "w-16 h-16"
   };
-  const logoPath = "/lovable-uploads/bbf853d2-2eb8-479c-9fd0-3d87a8e9e230.png";
+  const logoPath = "/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png";
   return <motion.img src={logoPath} alt="Speed E-Log Logo" initial={{
     opacity: 0,
     scale: 0.95
@@ -31,62 +29,30 @@ export const LogoIcon: React.FC<{
     }
   }} className={cn(sizeClasses[size], "object-contain", className)} />;
 };
-
 export const LogoIconWithText: React.FC<{
   className?: string;
 }> = ({
   className = ""
 }) => {
-  const logoPath = "/lovable-uploads/bbf853d2-2eb8-479c-9fd0-3d87a8e9e230.png";
+  const logoPath = "/lovable-uploads/f1857faa-e92e-4c2f-8baa-f5d3ce99f322.png";
   return <div className={cn("flex flex-col items-center", className)}>
-    <motion.img 
-      alt="Speed E-Log Logo with Text" 
-      width={140} 
-      initial={{
-        opacity: 0,
-        scale: 0.95
-      }} 
-      animate={{
-        opacity: 1,
-        scale: 1
-      }} 
-      transition={{
-        duration: 0.3
-      }} 
-      src={logoPath} 
-      className="mb-1 object-scale-down" 
-    />
+    <motion.img alt="Speed E-Log Logo with Text" width={140} initial={{
+      opacity: 0,
+      scale: 0.95
+    }} animate={{
+      opacity: 1,
+      scale: 1
+    }} transition={{
+      duration: 0.3
+    }} src={logoPath} className="mb-1 object-scale-down" />
   </div>;
 };
-
 export const HomeLogoWithText: React.FC<{
   className?: string;
 }> = ({
   className = ""
 }) => {
-  const logoPath = "/lovable-uploads/bbf853d2-2eb8-479c-9fd0-3d87a8e9e230.png";
-  return (
-    <div className={cn("flex flex-col items-center", className)}>
-      <motion.img 
-        alt="Speed E-Log Home Logo"
-        width={140}
-        initial={{
-          opacity: 0,
-          scale: 0.95
-        }} 
-        animate={{
-          opacity: 1,
-          scale: 1
-        }} 
-        transition={{
-          duration: 0.3
-        }} 
-        src={logoPath} 
-        className="mb-1 object-scale-down" 
-      />
-    </div>
-  );
+  const logoPath = "/lovable-uploads/83cc9529-aa94-4f8a-851d-02ea52cc3c71.png";
+  return;
 };
-
 export default LogoIcon;
-
