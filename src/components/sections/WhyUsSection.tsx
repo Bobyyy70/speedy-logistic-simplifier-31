@@ -14,13 +14,13 @@ export function WhyUsSection() {
     description: "Nos services s'adaptent à votre croissance, que vous expédiiez 50 ou 500 colis par jour, tout en restant focalisés sur les besoins des PME."
   }, {
     title: "Transparence Totale",
-    description: "Aucun frais caché. Notre grille tarifaire claire (voir section Tarifs) vous permet de maîtriser vos coûts logistiques."
+    description: "Aucun frais caché. Notre grille tarifaire claire (voir section Tarification) vous permet de maîtriser vos coûts logistiques."
   }, {
-    title: "Partenariat Dédié",
+    title: "Partenariat & Accompagnement",
     description: "Nous sommes un véritable partenaire de croissance, pas un simple prestataire logistique."
   }, {
     title: "Compétitivité & Qualité Garantie",
-    description: "Profitez de nos tarifs négociés et de notre localisation pour des expéditions rapides et économiques vers la France et l'Europe proche ainsi que partout dans le Monde. Nous nous engageons sur une qualité de service irréprochable pour chaque colis."
+    description: "Profitez de nos tarifs négociés et de notre localisation pour des expéditions rapides et économiques vers la France l'Europe ainsi que partout dans le Monde. Nous nous engageons sur une qualité de service irréprochable pour chaque colis."
   }];
   return <section id="why-us" className="py-12 md:py-24 lg:py-32 bg-gradient-to-r from-green-200 via-white to-blue-100 dark:from-green-800 dark:via-slate-950 dark:to-slate-900">
       <div className="container mx-auto">
