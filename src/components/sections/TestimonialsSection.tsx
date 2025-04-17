@@ -46,10 +46,10 @@ export function TestimonialsSection() {
             Nos Clients Témoignent
           </div>
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            Témoignages de nos Partenaires E-commerce
+            Ils nous font confiance
           </h2>
           <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed">
-            Découvrez comment Speed E Log a transformé la logistique de nos clients et les a aidés à se concentrer sur leur cœur de métier.
+            Découvrez comment Speed E Log a aidé d'autres e-commerçants à simplifier leur logistique et accélérer leur croissance.
           </p>
         </motion.div>
 
