@@ -19,8 +19,8 @@ export function WhyUsSection() {
     title: "Partenariat Dédié",
     description: "Nous sommes un véritable partenaire de croissance, pas un simple prestataire logistique."
   }, {
-    title: "Compétitivité Europe & Qualité Garantie",
-    description: "Profitez de nos tarifs négociés et de notre localisation pour des expéditions rapides et économiques vers la France et l'Europe proche. Nous nous engageons sur une qualité de service irréprochable pour chaque colis."
+    title: "Compétitivité & Qualité Garantie",
+    description: "Profitez de nos tarifs négociés et de notre localisation pour des expéditions rapides et économiques vers la France et l'Europe proche ainsi que partout dans le Monde. Nous nous engageons sur une qualité de service irréprochable pour chaque colis."
   }];
   return <section id="why-us" className="py-12 md:py-24 lg:py-32 bg-gradient-to-r from-green-200 via-white to-blue-100 dark:from-green-800 dark:via-slate-950 dark:to-slate-900">
       <div className="container mx-auto">
