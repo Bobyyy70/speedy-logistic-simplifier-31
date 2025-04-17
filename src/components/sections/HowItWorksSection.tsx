@@ -35,7 +35,7 @@ const steps = [{
 }];
 export function HowItWorksSection() {
   return <section id="how-it-works" className="py-12 md:py-24 lg:py-0 bg-blue-100">
-      <div className="container mx-auto px-4 bg-emerald-100">
+      <div className="container mx-auto px-4 bg-emerald-100 rounded-full">
         {/* Introduction */}
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12 md:mb-16">
           <motion.div initial={{
