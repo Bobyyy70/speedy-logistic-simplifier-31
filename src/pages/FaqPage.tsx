@@ -90,7 +90,7 @@ const FaqPage = () => {
             </motion.div>)}
         </Accordion>
 
-        <motion.div initial={{
+        <motion.div className="mt-8 md:mt-12 text-center text-muted-foreground" initial={{
         opacity: 0,
         y: 10
       }} animate={{
@@ -99,7 +99,7 @@ const FaqPage = () => {
       }} transition={{
         duration: 0.5,
         delay: 0.5
-      }} className="mt-8 md:mt-12 text-center text-muted-foreground bg-orange-100 rounded-3xl">
+      }}>
           <p>Vous ne trouvez pas la réponse à votre question ?</p>
           <Link to="/contact" className="text-primary hover:underline font-medium">
             Contactez-nous directement
