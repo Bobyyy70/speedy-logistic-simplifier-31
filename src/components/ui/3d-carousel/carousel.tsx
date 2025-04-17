@@ -1,6 +1,6 @@
 
 import { memo } from "react";
-import { motion, useTransform } from "framer-motion";
+import { motion, useTransform, useMotionValue } from "framer-motion";
 import { useMediaQuery } from "./hooks";
 
 const duration = 0.15;
