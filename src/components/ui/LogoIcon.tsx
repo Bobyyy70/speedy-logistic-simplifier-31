@@ -15,7 +15,7 @@ export const LogoIcon: React.FC<{
     md: "w-12 h-12",
     lg: "w-16 h-16"
   };
-  const logoPath = "/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png";
+  const logoPath = "/lovable-uploads/bbf853d2-2eb8-479c-9fd0-3d87a8e9e230.png";
   return <motion.img src={logoPath} alt="Speed E-Log Logo" initial={{
     opacity: 0,
     scale: 0.95
@@ -37,7 +37,7 @@ export const LogoIconWithText: React.FC<{
 }> = ({
   className = ""
 }) => {
-  const logoPath = "/lovable-uploads/3d8adc49-4128-4bd5-b325-3d0825d8685e.png";
+  const logoPath = "/lovable-uploads/bbf853d2-2eb8-479c-9fd0-3d87a8e9e230.png";
   return <div className={cn("flex flex-col items-center", className)}>
     <motion.img 
       alt="Speed E-Log Logo with Text" 
@@ -64,7 +64,7 @@ export const HomeLogoWithText: React.FC<{
 }> = ({
   className = ""
 }) => {
-  const logoPath = "/lovable-uploads/18100238-2c09-413e-85cf-c4c63bab6f9e.png";
+  const logoPath = "/lovable-uploads/bbf853d2-2eb8-479c-9fd0-3d87a8e9e230.png";
   return (
     <div className={cn("flex flex-col items-center", className)}>
       <motion.img 
@@ -89,3 +89,4 @@ export const HomeLogoWithText: React.FC<{
 };
 
 export default LogoIcon;
+
