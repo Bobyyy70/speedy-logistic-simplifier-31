@@ -1,7 +1,6 @@
-
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, Leaf, Diversity, Award, CalendarDays, Flame, Recycle, Box, HandHeart } from "lucide-react";
+import { Users, Leaf, Award, CalendarDays, Flame, Recycle, Box, HandHeart } from "lucide-react";
 import { motion } from "framer-motion";
 
 const commitmentData = {
@@ -10,7 +9,7 @@ const commitmentData = {
     description: "Nous croyons que la réussite collective naît du bien-être individuel.",
     items: [
       {
-        icon: Diversity,
+        icon: Users,
         text: "Cultiver un environnement de travail inclusif et respectueux, où chaque voix compte et où la diversité est une force"
       },
       {
