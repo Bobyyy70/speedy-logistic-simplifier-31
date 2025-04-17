@@ -1,4 +1,3 @@
-
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 const faqs = [{
   question: "Quels types de produits gérez-vous ?",
@@ -20,23 +19,5 @@ const faqs = [{
   answer: "Nous traitons les retours avec le même soin que les expéditions. Chaque retour est réceptionné, contrôlé et, selon vos instructions, remis en stock, mis de côté ou recyclé. Vous êtes notifié à chaque étape du processus via notre plateforme."
 }];
 export function FAQ() {
-  return <section className="section-container bg-blue-50/5 dark:bg-slate-900/5 py-[48px] rounded-none px-0">
-      <h2 className="section-title">Questions fréquentes</h2>
-      <p className="section-subtitle">
-        Retrouvez les réponses aux questions les plus courantes. N'hésitez pas à nous contacter pour toute autre information.
-      </p>
-
-      <div className="max-w-3xl mx-auto mt-8 md:mt-12">
-        <Accordion type="single" collapsible className="w-full">
-          {faqs.map((faq, index) => <AccordionItem key={index} value={`faq-${index}`}>
-              <AccordionTrigger className="text-left font-semibold">
-                {faq.question}
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>)}
-        </Accordion>
-      </div>
-    </section>;
+  return;
 }
