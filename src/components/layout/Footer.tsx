@@ -9,7 +9,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Logo et description */}
           <div className="flex flex-col gap-4">
-            <div className="flex justify-start">
+            <div className="flex justify-start py-0">
               <LogoIconWithText />
             </div>
             <p className="text-sm text-muted-foreground mt-4">
