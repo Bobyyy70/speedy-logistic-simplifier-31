@@ -56,9 +56,7 @@ const FaqPage = () => {
     }} transition={{
       duration: 0.5
     }}>
-        <div className="inline-block px-3 py-1 text-sm rounded-3xl bg-orange-100">
-          FAQ
-        </div>
+        <div className="inline-block px-3 py-1 text-sm rounded-3xl bg-orange-100">FAQ</div>
         <h1 className="text-3xl md:text-4xl font-bold tracking-tighter sm:text-5xl">
           Questions Fréquentes
         </h1>
