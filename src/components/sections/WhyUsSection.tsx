@@ -81,7 +81,7 @@ export function WhyUsSection() {
         }} transition={{
           duration: 0.7
         }}>
-            <img alt="Avantages Speed E-Log" width="600" height="400" className="mx-auto aspect-video overflow-hidden rounded-xl object-cover shadow-lg" src="/lovable-uploads/c85b8c1f-5982-46a8-ad62-46a9dbe6e3a5.png" />
+            <img alt="Avantages Speed E-Log" width="600" height="400" className="mx-auto aspect-video overflow-hidden rounded-xl object-cover shadow-lg" src="blob:https://lovable.dev/9b2523bd-54d2-4060-814a-759b76e4d4fa" />
           </motion.div>
         </div>
       </div>
