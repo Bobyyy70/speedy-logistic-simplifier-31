@@ -1,35 +1,58 @@
-
 import React from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-
-const LogoIcon: React.FC<{ className?: string }> = ({ className }) => {
-  return (
-    <div className={cn("inline-flex", className)}>
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M4 15L20 15"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M4 9L20 9"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M10 3H14V21H10V3Z"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </div>
-  );
+export const LogoIcon: React.FC<{
+  className?: string;
+  size?: "sm" | "md" | "lg";
+}> = ({
+  className = "",
+  size = "md"
+}) => {
+  const sizeClasses = {
+    sm: "w-8 h-8",
+    md: "w-12 h-12",
+    lg: "w-16 h-16"
+  };
+  const logoPath = "/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png";
+  return <motion.img src={logoPath} alt="Speed E-Log Logo" initial={{
+    opacity: 0,
+    scale: 0.95
+  }} animate={{
+    opacity: 1,
+    scale: 1
+  }} transition={{
+    duration: 0.3
+  }} whileHover={{
+    scale: 1.05,
+    transition: {
+      duration: 0.2
+    }
+  }} className={cn(sizeClasses[size], "object-contain", className)} />;
 };
-
-export { LogoIcon };
+export const LogoIconWithText: React.FC<{
+  className?: string;
+}> = ({
+  className = ""
+}) => {
+  const logoPath = "/lovable-uploads/f1857faa-e92e-4c2f-8baa-f5d3ce99f322.png";
+  return <div className={cn("flex flex-col items-center", className)}>
+    <motion.img alt="Speed E-Log Logo with Text" width={140} initial={{
+      opacity: 0,
+      scale: 0.95
+    }} animate={{
+      opacity: 1,
+      scale: 1
+    }} transition={{
+      duration: 0.3
+    }} src={logoPath} className="mb-1 object-scale-down" />
+  </div>;
+};
+export const HomeLogoWithText: React.FC<{
+  className?: string;
+}> = ({
+  className = ""
+}) => {
+  const logoPath = "/lovable-uploads/83cc9529-aa94-4f8a-851d-02ea52cc3c71.png";
+  return;
+};
+export default LogoIcon;
