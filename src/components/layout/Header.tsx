@@ -1,7 +1,8 @@
+
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/neon-button";
-import { LogoIconWithText, LogoIcon } from "@/components/ui/LogoIcon";
+import { LogoIconWithText, LogoIcon, HomeLogoWithText } from "@/components/ui/LogoIcon";
 import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
@@ -75,7 +76,7 @@ const Header = () => {
               <SheetTitle className="text-left">Menu</SheetTitle>
             </SheetHeader>
             <div className="flex justify-center my-4">
-              <LogoIconWithText />
+              <HomeLogoWithText />
             </div>
             <nav className="flex flex-col gap-4 mt-8">
               {navigationItems.map(item => <SheetClose key={item.name} asChild>
