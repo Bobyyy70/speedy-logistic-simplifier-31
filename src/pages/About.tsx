@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -7,25 +6,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { Target, Star, MapPin, History, Truck } from "lucide-react";
-
 const About = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  return (
-    <div className="bg-gradient-to-br from-blue-50 via-white to-green-100/30 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950">
+  return <div className="bg-gradient-to-br from-blue-50 via-white to-green-100/30 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950">
       <Helmet>
         <title>À Propos de Speed E-Log | Votre Partenaire Logistique</title>
-        <meta 
-          name="description" 
-          content="Découvrez Speed E-Log, votre partenaire logistique e-commerce à Port-sur-Saône. Notre mission: simplifier la logistique pour les PME françaises avec fiabilité et transparence."
-        />
+        <meta name="description" content="Découvrez Speed E-Log, votre partenaire logistique e-commerce à Port-sur-Saône. Notre mission: simplifier la logistique pour les PME françaises avec fiabilité et transparence." />
         <meta property="og:title" content="À Propos de Speed E-Log | Votre Partenaire Logistique" />
-        <meta 
-          property="og:description" 
-          content="Découvrez Speed E-Log, votre partenaire logistique e-commerce à Port-sur-Saône. Notre mission: simplifier la logistique pour les PME françaises avec fiabilité et transparence."
-        />
+        <meta property="og:description" content="Découvrez Speed E-Log, votre partenaire logistique e-commerce à Port-sur-Saône. Notre mission: simplifier la logistique pour les PME françaises avec fiabilité et transparence." />
       </Helmet>
 
       <section className="py-16 md:py-24 bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-700">
@@ -46,7 +36,7 @@ const About = () => {
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Notre Mission et Nos Valeurs</h2>
             <div className="flex items-center justify-center mb-10">
-              <Target className="w-6 h-6 text-blue-600 dark:text-blue-400 mr-2" />
+              
               <p className="text-lg md:text-xl font-medium">
                 Simplifier la logistique e-commerce pour les PME françaises
               </p>
@@ -113,10 +103,7 @@ const About = () => {
                 <History className="h-6 w-6 text-blue-600 dark:text-blue-400 mr-2" />
                 <h2 className="text-3xl md:text-4xl font-bold">Notre Histoire</h2>
               </div>
-              <p className="text-muted-foreground">
-                Fondée par Francesco Almanzo, Speed E-Log est née d'une passion pour l'optimisation logistique et d'une 
-                compréhension approfondie des défis auxquels sont confrontées les PME du e-commerce.
-              </p>
+              <p className="text-muted-foreground"> Speed E-Log est née d'une passion pour l'optimisation logistique et d'une compréhension approfondie des défis auxquels sont confrontées les PME du e-commerce.</p>
               <p className="text-muted-foreground">
                 Après plusieurs années d'expérience dans le secteur, Francesco a identifié un besoin crucial : 
                 offrir aux entrepreneurs e-commerce une solution logistique adaptée à leur taille, flexible et 
@@ -196,8 +183,6 @@ const About = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default About;
