@@ -1,23 +1,59 @@
+
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-const faqs = [{
-  question: "Quels types de produits gérez-vous ?",
-  answer: "Nous sommes spécialisés dans les produits non fragiles, non périssables, sans température dirigée, et dont le poids ne dépasse pas 30 kg. Nous sommes particulièrement adaptés aux produits à forte rotation ou exclusifs comme les compléments alimentaires, cosmétiques, accessoires, textile, etc."
-}, {
-  question: "Comment sont calculés les frais de transport ?",
-  answer: "Les frais de transport sont variables en fonction des transporteurs, des destinations, du poids et du volume des colis. Nous avons négocié des tarifs avantageux avec nos partenaires transporteurs que nous répercutons à nos clients. Un devis détaillé vous sera fourni en fonction de votre activité."
-}, {
-  question: "Quel est l'engagement contractuel minimum ?",
-  answer: "Nous privilégions la flexibilité avec des engagements adaptés à vos besoins, généralement de 3 à 12 mois. Notre objectif est d'établir un partenariat durable plutôt que de vous lier par des contrats contraignants."
-}, {
-  question: "Quelles plateformes e-commerce sont compatibles avec votre système ?",
-  answer: "Nous nous intégrons avec la plupart des principales plateformes e-commerce : Shopify, WooCommerce, Prestashop, Magento, ainsi que les marketplaces comme Amazon ou Cdiscount. Si vous utilisez une solution spécifique, nous pouvons généralement nous y adapter via notre API."
-}, {
-  question: "Comment s'effectue le suivi des stocks et des commandes ?",
-  answer: "Vous bénéficiez d'un accès à notre portail client où vous pouvez suivre en temps réel vos niveaux de stock, l'état de vos commandes et générer des rapports. Notre système met automatiquement à jour votre plateforme e-commerce pour refléter les niveaux de stock actuels."
-}, {
-  question: "Comment gérez-vous les retours clients ?",
-  answer: "Nous traitons les retours avec le même soin que les expéditions. Chaque retour est réceptionné, contrôlé et, selon vos instructions, remis en stock, mis de côté ou recyclé. Vous êtes notifié à chaque étape du processus via notre plateforme."
-}];
+
 export function FAQ() {
-  return;
+  const faqItems = [
+    {
+      question: "Quels types de produits gérez-vous ?",
+      answer:
+        "Nous sommes spécialisés dans la gestion des produits non fragiles, non périssables, sans température dirigée et dont le poids (réel ou volumétrique) ne dépasse pas 30 kg. Nous sommes particulièrement adaptés aux produits à forte rotation ou exclusifs tels que les compléments alimentaires, cosmétiques, accessoires, etc."
+    },
+    {
+      question: "Comment fonctionne la tarification des transports ?",
+      answer:
+        "Les tarifs de transport varient en fonction du poids des colis, de la destination et du service choisi. Nous avons négocié des tarifs préférentiels avec nos partenaires transporteurs que nous répercutons directement à nos clients. Contactez-nous pour obtenir une grille tarifaire adaptée à vos besoins."
+    },
+    {
+      question: "Quel est l'engagement contractuel minimum ?",
+      answer:
+        "Nous proposons des contrats flexibles avec une période d'engagement minimale de 3 mois. Notre objectif est de construire des partenariats durables basés sur la confiance et la satisfaction mutuelle, pas sur des contraintes contractuelles."
+    },
+    {
+      question: "Comment s'intègre votre solution avec ma boutique en ligne ?",
+      answer:
+        "Nous proposons des intégrations avec les principales plateformes e-commerce (Shopify, WooCommerce, Prestashop, etc.) via API. Notre équipe technique vous accompagne dans la mise en place de cette connexion pour assurer une transition fluide."
+    },
+    {
+      question: "Comment puis-je suivre mes stocks et mes commandes ?",
+      answer:
+        "Vous disposez d'un accès à notre portail client qui vous permet de suivre en temps réel l'état de vos stocks et le statut de vos commandes. Des rapports sont également disponibles pour une vision plus globale de votre activité."
+    },
+    {
+      question: "Comment gérez-vous les retours ?",
+      answer:
+        "Nous offrons un service complet de gestion des retours qui comprend la réception, l'inspection, le reconditionnement si nécessaire et la remise en stock ou la mise au rebut selon vos instructions. Chaque retour est documenté et visible dans votre espace client."
+    },
+  ];
+
+  return (
+    <section className="py-12 md:py-20 bg-background" id="faq">
+      <div className="section-container">
+        <h2 className="section-title">Questions Fréquentes</h2>
+        <p className="section-subtitle">
+          Tout ce que vous devez savoir sur notre service de logistique e-commerce.
+        </p>
+
+        <div className="mt-12 max-w-4xl mx-auto">
+          <Accordion type="single" collapsible className="w-full">
+            {faqItems.map((item, index) => (
+              <AccordionItem key={index} value={`item-${index}`}>
+                <AccordionTrigger className="text-left">{item.question}</AccordionTrigger>
+                <AccordionContent>{item.answer}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </div>
+    </section>
+  );
 }
