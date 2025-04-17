@@ -1,16 +1,13 @@
-
 import React from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { DynamicCalculatorSection } from "@/components/sections/DynamicCalculatorSection";
 import { StaticPricingSection } from "@/components/sections/StaticPricingSection";
 import { ContactCTA } from "@/components/home/ContactCTA";
-
 const Pricing = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
   return <div className="bg-gradient-to-br from-blue-100 via-white to-orange-100/30 
                     dark:from-blue-800/20 dark:via-slate-950 dark:to-orange-900/20">
       <Helmet>
@@ -22,7 +19,7 @@ const Pricing = () => {
       
       <section className="py-16 md:py-24 bg-gradient-to-r from-blue-100 via-white to-orange-200/50 
                            dark:from-blue-900/30 dark:via-slate-950 dark:to-orange-900/30">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-center py-0">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Tarification <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-orange-600 dark:from-blue-400 dark:to-orange-500">Transparente</span>
           </h1>
@@ -39,5 +36,4 @@ const Pricing = () => {
       <ContactCTA />
     </div>;
 };
-
 export default Pricing;
