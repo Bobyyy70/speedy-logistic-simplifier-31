@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Plug, Warehouse, ClipboardList, Truck } from "lucide-react";
@@ -33,9 +34,10 @@ const steps = [{
   description: "Vos commandes sont expédiées via les meilleurs transporteurs avec suivi en temps réel pour vos clients. Notre réseau de partenaires permet d'optimiser les délais et les coûts de livraison.",
   icon: Truck
 }];
+
 export function HowItWorksSection() {
-  return <section id="how-it-works" className="py-12 md:py-24 bg-blue-100 lg:py-[34px]">
-      <div className="container mx-auto px-4 bg-emerald-100 rounded-full">
+  return <section id="how-it-works" className="py-12 md:py-24 bg-gradient-to-r from-green-200 via-white to-blue-100 dark:from-green-900 dark:via-slate-950 dark:to-slate-900 lg:py-[34px]">
+      <div className="container mx-auto px-4 rounded-full">
         {/* Introduction */}
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12 md:mb-16">
           <motion.div initial={{
