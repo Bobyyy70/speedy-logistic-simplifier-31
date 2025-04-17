@@ -16,8 +16,8 @@ const testimonials = [{
   image: "/placeholder.svg"
 }];
 export function Testimonials() {
-  return <section className="bg-gradient-to-r from-green-200 via-white to-blue-100 dark:from-green-900 dark:via-slate-950 dark:to-slate-900 py-12 md:py-20">
-      <div className="section-container">
+  return <section className="bg-gradient-to-r from-green-200 via-white to-blue-100 dark:from-green-900 dark:via-slate-950 dark:to-slate-900 py-12 md:py-[120px]">
+      <div className="section-container py-0 my-0">
         <h2 className="section-title">Ils nous font confiance</h2>
         <p className="section-subtitle">Découvrez comment Speed E Log a aidé d'autres e-commerçants à simplifier leur logistique et accélérer leur croissance.</p>
 
