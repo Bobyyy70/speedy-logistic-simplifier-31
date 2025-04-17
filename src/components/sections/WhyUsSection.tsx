@@ -1,6 +1,7 @@
 import React from "react";
 import { CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
+
 export function WhyUsSection() {
   // Define advantages with specific details
   const advantages = [{
@@ -17,11 +18,12 @@ export function WhyUsSection() {
     description: "Aucun frais caché. Notre grille tarifaire claire (voir section Tarifs) vous permet de maîtriser vos coûts logistiques."
   }, {
     title: "Partenariat Dédié",
-    description: "Plus qu'un prestataire, nous sommes votre partenaire logistique engagé, basé à Port-sur-Saône, prêt à vous accompagner."
+    description: "Nous sommes un véritable partenaire de croissance, pas un simple prestataire logistique."
   }, {
     title: "Compétitivité Europe & Qualité Garantie",
     description: "Profitez de nos tarifs négociés et de notre localisation pour des expéditions rapides et économiques vers la France et l'Europe proche. Nous nous engageons sur une qualité de service irréprochable pour chaque colis."
   }];
+
   return <section id="why-us" className="py-12 md:py-24 lg:py-32 bg-gradient-to-r from-green-200 via-white to-blue-100 dark:from-green-800 dark:via-slate-950 dark:to-slate-900">
       <div className="container mx-auto">
         <div className="grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">

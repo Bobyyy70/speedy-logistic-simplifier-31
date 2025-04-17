@@ -1,19 +1,22 @@
+
 import React from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { DynamicCalculatorSection } from "@/components/sections/DynamicCalculatorSection";
 import { StaticPricingSection } from "@/components/sections/StaticPricingSection";
 import { ContactCTA } from "@/components/home/ContactCTA";
+
 const Pricing = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return <div className="bg-gradient-to-br from-blue-100 via-white to-orange-100/30 
                     dark:from-blue-800/20 dark:via-slate-950 dark:to-orange-900/20">
       <Helmet>
-        <title>Estimation Tarif Transport & Tarification | Speed E-Log</title>
+        <title>Estimation Tarification & Prix | Speed E-Log</title>
         <meta name="description" content="Estimez rapidement votre coût de transport TTC avec notre calculateur. Tarification logistique transparente pour les e-commerçants." />
-        <meta property="og:title" content="Estimation Tarif Transport & Tarification | Speed E-Log" />
+        <meta property="og:title" content="Estimation Tarification & Prix | Speed E-Log" />
         <meta property="og:description" content="Estimez rapidement votre coût de transport TTC avec notre calculateur. Tarification logistique transparente pour les e-commerçants." />
       </Helmet>
       
@@ -33,9 +36,8 @@ const Pricing = () => {
       <DynamicCalculatorSection />
       <StaticPricingSection />
       
-      
-      
       <ContactCTA />
     </div>;
 };
+
 export default Pricing;
