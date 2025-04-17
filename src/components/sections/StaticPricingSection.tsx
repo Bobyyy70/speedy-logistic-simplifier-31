@@ -62,56 +62,5 @@ export function StaticPricingSection() {
     description: "Frais d'expédition (variables selon poids, destination, service)",
     price: "Sur devis"
   }];
-  return <section id="pricing" className="bg-muted/40 dark:bg-slate-900 py-12 md:py-24 lg:py-32">
-      <div className="container mx-auto px-4 md:px-6">
-        {/* Introduction */}
-        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
-          <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm dark:bg-slate-800">
-            Tarification
-          </div>
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            Une tarification transparente et adaptée
-          </h2>
-          <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed">
-            Pas de frais cachés, une structure de coûts simple pour vous aider à planifier. (Tarifs indicatifs HT)
-          </p>
-        </div>
-
-        {/* Pricing Table */}
-        <Card className="max-w-4xl mx-auto">
-          <CardHeader>
-            <CardTitle>Grille tarifaire indicative</CardTitle>
-            
-          </CardHeader>
-          <CardContent className="pt-6">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[200px]">Service</TableHead>
-                  <TableHead>Description</TableHead>
-                  <TableHead className="text-right">Tarif HT</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {pricingItems.map(item => <TableRow key={item.id}>
-                    
-                    
-                    <TableCell className="text-right">{item.price}</TableCell>
-                  </TableRow>)}
-              </TableBody>
-            </Table>
-            <p className="text-xs text-muted-foreground mt-4">
-              *Les tarifs de transport dépendent du poids, de la destination et du niveau de service choisi. Contactez-nous pour un devis précis.
-            </p>
-          </CardContent>
-        </Card>
-
-        {/* CTA */}
-        <div className="text-center mt-8">
-          <Button asChild size="lg">
-            <Link to="/contact">Demandez votre devis personnalisé</Link>
-          </Button>
-        </div>
-      </div>
-    </section>;
+  return;
 }
