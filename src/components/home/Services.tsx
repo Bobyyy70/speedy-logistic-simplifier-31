@@ -25,7 +25,7 @@ const services = [{
   icon: Clock
 }];
 export function Services() {
-  return <section id="services" className="section-container bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-700 rounded-none py-0">
+  return <section id="services" className="section-container bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-700 py-0 rounded-none">
       <motion.div initial={{
       opacity: 0,
       y: 20

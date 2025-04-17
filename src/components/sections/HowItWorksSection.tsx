@@ -34,8 +34,8 @@ const steps = [{
   icon: Truck
 }];
 export function HowItWorksSection() {
-  return <section id="how-it-works" className="bg-blue-50/5 dark:bg-slate-900/5 py-12 md:py-24 lg:py-32">
-      <div className="container mx-auto px-4">
+  return <section id="how-it-works" className="py-12 md:py-24 lg:py-0 bg-blue-100">
+      <div className="container mx-auto px-4 bg-emerald-100">
         {/* Introduction */}
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12 md:mb-16">
           <motion.div initial={{
