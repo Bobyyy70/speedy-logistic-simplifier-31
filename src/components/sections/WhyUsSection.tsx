@@ -1,7 +1,6 @@
 import React from "react";
 import { CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
-
 export function WhyUsSection() {
   // Define advantages with specific details
   const advantages = [{
@@ -23,7 +22,6 @@ export function WhyUsSection() {
     title: "Compétitivité Europe & Qualité Garantie",
     description: "Profitez de nos tarifs négociés et de notre localisation pour des expéditions rapides et économiques vers la France et l'Europe proche. Nous nous engageons sur une qualité de service irréprochable pour chaque colis."
   }];
-
   return <section id="why-us" className="py-12 md:py-24 lg:py-32 bg-gradient-to-r from-green-200 via-white to-blue-100 dark:from-green-800 dark:via-slate-950 dark:to-slate-900">
       <div className="container mx-auto">
         <div className="grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
@@ -83,7 +81,7 @@ export function WhyUsSection() {
         }} transition={{
           duration: 0.7
         }}>
-            <img alt="Avantages Speed E-Log" width="600" height="400" className="mx-auto aspect-video overflow-hidden rounded-xl object-cover shadow-lg" src="blob:https://lovable.dev/9b2523bd-54d2-4060-814a-759b76e4d4fa" />
+            <img alt="Avantages Speed E-Log" width="600" height="400" src="/lovable-uploads/8496c6ed-4aa6-48c1-a91a-046ad5db961f.png" className="mx-auto aspect-video overflow-hidden rounded-xl shadow-lg object-fill" />
           </motion.div>
         </div>
       </div>
