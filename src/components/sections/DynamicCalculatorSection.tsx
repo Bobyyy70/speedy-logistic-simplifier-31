@@ -230,7 +230,7 @@ export function DynamicCalculatorSection() {
                 {/* Section poids et dimensions dans la même zone */}
                 <div className="space-y-4 border rounded-md p-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-sm font-medium">Poids et dimensions du colis</h3>
+                    <h3 className="text-sm font-medium text-zinc-950">Poids et dimensions du colis</h3>
                     <Package className="h-4 w-4 text-muted-foreground" />
                   </div>
                   
@@ -292,15 +292,15 @@ export function DynamicCalculatorSection() {
                 </div>
                 
                 {/* Code Postal */}
-                <div className="grid gap-2">
+                <div className="grid gap-2 bg-orange-100 rounded-3xl">
                   <Label htmlFor="zip-code">Code Postal de destination</Label>
-                  <Input id="zip-code" type="text" placeholder="Ex: 75001" value={zipCode} onChange={e => setZipCode(e.target.value)} aria-describedby="zip-code-error" required />
+                  <Input id="zip-code" type="text" placeholder="Ex: 75001" value={zipCode} onChange={e => setZipCode(e.target.value)} aria-describedby="zip-code-error" required className="bg-orange-100 rounded-3xl" />
                   {error && error.includes("code postal") && <p id="zip-code-error" className="text-sm text-destructive">{error}</p>}
                 </div>
                 
                 {/* Type de Service */}
                 <div className="space-y-4">
-                  <div className="grid gap-2">
+                  <div className="grid gap-2 bg-orange-100 rounded-full">
                     <Label htmlFor="service">Type de Service</Label>
                     <Select value={service} onValueChange={setService} required>
                       <SelectTrigger id="service" aria-describedby="service-error">
@@ -317,8 +317,8 @@ export function DynamicCalculatorSection() {
                   </div>
                   
                   {/* Option de signature conditionnelle */}
-                  {(service === "home" || service === "international") && <div className="flex items-center space-x-2">
-                      <Checkbox id="signature" checked={withSignature} onCheckedChange={checked => setWithSignature(checked === true)} />
+                  {(service === "home" || service === "international") && <div className="flex items-center space-x-2 bg-orange-100">
+                      <Checkbox id="signature" checked={withSignature} onCheckedChange={checked => setWithSignature(checked === true)} className="rounded-lg" />
                       <Label htmlFor="signature" className="text-sm font-normal cursor-pointer">
                         Avec signature à la livraison {service === "international" ? "(+3.50€)" : "(+2.00€)"}
                       </Label>
