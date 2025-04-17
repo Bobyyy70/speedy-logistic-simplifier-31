@@ -75,7 +75,7 @@ export function HowItWorksSection() {
         <div className="max-w-4xl mx-auto">
           <Tabs defaultValue="step1" className="w-full">
             <TabsList className="grid w-full grid-cols-4 mb-8">
-              {steps.map(step => <TabsTrigger key={step.id} value={step.id} className="flex flex-col items-center py-3 px-1 sm:px-4 data-[state=active]:text-orange-600 dark:data-[state=active]:text-orange-400">
+              {steps.map(step => <TabsTrigger key={step.id} value={step.id} className="flex flex-col items-center py-3 px-1 sm:px-4 data-[state=active]:text-orange-600 dark:data-[state=active]:text-orange-400 bg-orange-200 hover:bg-orange-100 font-extrabold text-base rounded-full">
                   <span className="text-sm sm:text-base font-medium">{step.number}</span>
                   <span className="text-xs hidden sm:block mt-1">{step.shortTitle}</span>
                 </TabsTrigger>)}
