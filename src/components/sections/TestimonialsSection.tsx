@@ -5,40 +5,29 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Quote } from "lucide-react";
 import { motion } from "framer-motion";
 
-// Testimonial data
+// Updated testimonial data from Testimonials.tsx component
 const testimonials = [
   {
-    name: "Jean Dupont",
-    role: "CEO, MaSuperBoutique.fr",
-    avatar: "https://placehold.co/40x40/e2e8f0/334155?text=JD",
-    initials: "JD",
-    quote:
-      "Depuis que nous avons confié notre logistique à Speed E Log, nous avons gagné un temps précieux et nos coûts d'expédition ont diminué. Leur équipe est réactive et professionnelle.",
+    quote: "Speed E Log nous a permis de nous concentrer sur notre croissance sans nous soucier de la logistique. Service impeccable et réactif !",
+    name: "Marie Dupont",
+    role: "Fondatrice, BeautyBox France",
+    avatar: "/placeholder.svg",
+    initials: "MD"
   },
   {
-    name: "Alice Martin",
-    role: "Fondatrice, AccessoiresChics.com",
-    avatar: "https://placehold.co/40x40/e2e8f0/334155?text=AM",
-    initials: "AM",
-    quote:
-      "L'intégration a été très simple et le suivi en temps réel est un vrai plus. Nous pouvons enfin nous concentrer sur le développement de nos produits sereinement.",
+    quote: "La transparence tarifaire et la qualité de préparation des commandes sont remarquables. Nos clients sont ravis des délais de livraison.",
+    name: "Thomas Laurent",
+    role: "Directeur E-commerce, GreenLife",
+    avatar: "/placeholder.svg",
+    initials: "TL"
   },
   {
-    name: "Thomas Legrand",
-    role: "Directeur E-commerce, NatureBio.fr",
-    avatar: "https://placehold.co/40x40/e2e8f0/334155?text=TL",
-    initials: "TL",
-    quote:
-      "Speed E Log a transformé notre chaîne logistique. La transparence tarifaire et la qualité du service client sont remarquables. Je les recommande vivement.",
-  },
-  {
-    name: "Sophie Dubois",
-    role: "Co-fondatrice, ModeFrançaise.com",
-    avatar: "https://placehold.co/40x40/e2e8f0/334155?text=SD",
-    initials: "SD",
-    quote:
-      "Nous avons réduit nos délais de livraison de 40% depuis notre collaboration. L'automatisation et la flexibilité offertes par Speed E Log sont exactement ce dont nous avions besoin pour notre croissance.",
-  },
+    quote: "L'intégration avec notre boutique Shopify a été d'une simplicité étonnante. Le suivi en temps réel des stocks est un vrai plus pour notre activité.",
+    name: "Julie Moreau",
+    role: "CEO, FashionTrend",
+    avatar: "/placeholder.svg",
+    initials: "JM"
+  }
 ];
 
 export function TestimonialsSection() {
