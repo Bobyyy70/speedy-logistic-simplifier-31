@@ -1,9 +1,6 @@
-
 import React from "react";
-
 export function LogisticsFeatureSection() {
-  return (
-    <div className="py-16 bg-gradient-to-r from-blue-50 to-white">
+  return <div className="py-16 bg-gradient-to-r from-blue-50 to-white bg-amber-100">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="w-full md:w-1/2">
@@ -55,6 +52,5 @@ export function LogisticsFeatureSection() {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 }
