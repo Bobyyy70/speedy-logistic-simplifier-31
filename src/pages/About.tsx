@@ -32,7 +32,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-background">
+      <section className="py-16 md:py-20 bg-gradient-to-r from-blue-100/80 via-blue-50/50 to-green-100/50 dark:from-slate-900/80 dark:via-blue-950/30 dark:to-green-950/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Notre Mission et Nos Valeurs</h2>
@@ -96,7 +96,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-gradient-to-r from-blue-50/50 via-blue-50/30 to-green-50/30 dark:from-slate-900/80 dark:via-blue-950/30 dark:to-green-950/30">
+      <section className="py-16 md:py-20 bg-gradient-to-r from-blue-100/80 via-blue-50/50 to-green-100/50 dark:from-slate-900/80 dark:via-blue-950/30 dark:to-green-950/30">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
             <div className="md:w-1/2 space-y-4">
@@ -123,7 +123,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-background">
+      <section className="py-16 md:py-20 bg-gradient-to-r from-blue-100/80 via-blue-50/50 to-green-100/50 dark:from-slate-900/80 dark:via-blue-950/30 dark:to-green-950/30">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
             <div className="md:w-1/2 order-1 space-y-4">
@@ -160,7 +160,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-gradient-to-r from-blue-50/50 via-blue-50/30 to-green-50/30 dark:from-slate-900/80 dark:via-blue-950/30 dark:to-green-950/30">
+      <section className="py-16 md:py-20 bg-gradient-to-r from-blue-100/80 via-blue-50/50 to-green-100/50 dark:from-slate-900/80 dark:via-blue-950/30 dark:to-green-950/30">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
             <div className="md:w-1/2">
@@ -210,4 +210,5 @@ const About = () => {
       </section>
     </div>;
 };
+
 export default About;
