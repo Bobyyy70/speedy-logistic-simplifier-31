@@ -1,4 +1,5 @@
 
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import {
@@ -11,9 +12,14 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
+import { RateForm } from "./RateForm";
+import { useToast } from "@/hooks/use-toast";
 
 export function CarrierRatesAdmin() {
-  const { data: rates, isLoading } = useQuery({
+  const [isAddingRate, setIsAddingRate] = useState(false);
+  const { toast } = useToast();
+
+  const { data: rates, isLoading, refetch } = useQuery({
     queryKey: ["carrierRates"],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -38,7 +44,7 @@ export function CarrierRatesAdmin() {
     <div className="space-y-4">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-semibold">Tarifs de Base</h2>
-        <Button>
+        <Button onClick={() => setIsAddingRate(true)}>
           <Plus className="mr-2 h-4 w-4" /> Ajouter un tarif
         </Button>
       </div>
@@ -75,6 +81,20 @@ export function CarrierRatesAdmin() {
           ))}
         </TableBody>
       </Table>
+
+      {isAddingRate && (
+        <RateForm 
+          onClose={() => setIsAddingRate(false)}
+          onSuccess={() => {
+            setIsAddingRate(false);
+            refetch();
+            toast({
+              title: "Tarif ajouté",
+              description: "Le tarif a été ajouté avec succès.",
+            });
+          }}
+        />
+      )}
     </div>
   );
 }
