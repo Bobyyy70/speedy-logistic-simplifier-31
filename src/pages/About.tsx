@@ -104,11 +104,7 @@ const About = () => {
                 <h2 className="text-3xl md:text-4xl font-bold">Notre Histoire</h2>
               </div>
               <p className="text-muted-foreground"> Speed E-Log est née d'une passion pour l'optimisation logistique et d'une compréhension approfondie des défis auxquels sont confrontées les PME du e-commerce.</p>
-              <p className="text-muted-foreground">
-                Après plusieurs années d'expérience dans le secteur, Francesco a identifié un besoin crucial : 
-                offrir aux entrepreneurs e-commerce une solution logistique adaptée à leur taille, flexible et 
-                technologiquement avancée, sans les coûts prohibitifs des grands prestataires.
-              </p>
+              <p className="text-muted-foreground">Après plusieurs années d'expérience dans le secteur, Nous avons identifié un besoin crucial : offrir aux entrepreneurs e-commerce une solution logistique adaptée à leur taille, flexible et technologiquement avancée, sans les coûts prohibitifs des grands prestataires.</p>
               <p className="text-muted-foreground">
                 Aujourd'hui, notre équipe partage cette vision et travaille chaque jour pour optimiser la chaîne 
                 logistique de nos clients et contribuer à leur succès.
