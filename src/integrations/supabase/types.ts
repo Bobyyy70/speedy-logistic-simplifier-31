@@ -9,6 +9,53 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      carrier_base_rates: {
+        Row: {
+          base_rate_ht: number
+          carrier_name: string
+          client_volume_tier: string
+          currency: string
+          destination_zone: string
+          id: string
+          service_id: string
+          valid_from: string | null
+          valid_to: string | null
+          weight_kg_max: number
+        }
+        Insert: {
+          base_rate_ht: number
+          carrier_name: string
+          client_volume_tier: string
+          currency?: string
+          destination_zone: string
+          id?: string
+          service_id: string
+          valid_from?: string | null
+          valid_to?: string | null
+          weight_kg_max: number
+        }
+        Update: {
+          base_rate_ht?: number
+          carrier_name?: string
+          client_volume_tier?: string
+          currency?: string
+          destination_zone?: string
+          id?: string
+          service_id?: string
+          valid_from?: string | null
+          valid_to?: string | null
+          weight_kg_max?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "carrier_base_rates_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "transport_services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       clients: {
         Row: {
           billing_address_line1: string | null
@@ -109,6 +156,27 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      transport_services: {
+        Row: {
+          id: string
+          is_active: boolean
+          service_code: string
+          service_name: string
+        }
+        Insert: {
+          id?: string
+          is_active?: boolean
+          service_code: string
+          service_name: string
+        }
+        Update: {
+          id?: string
+          is_active?: boolean
+          service_code?: string
+          service_name?: string
+        }
+        Relationships: []
       }
     }
     Views: {
