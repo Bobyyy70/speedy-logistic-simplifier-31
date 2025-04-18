@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { Target, Star, MapPin, History, Truck } from "lucide-react";
+import { Target, Star, MapPin, History, Truck, Quote } from "lucide-react";
+
 const About = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
