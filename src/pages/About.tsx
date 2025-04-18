@@ -120,7 +120,7 @@ const About = () => {
                 <p className="text-xl font-medium">
                   "Notre ambition est de démocratiser l'accès à une logistique e-commerce de qualité pour les PME françaises."
                 </p>
-                <p className="text-sm text-muted-foreground mt-2">- Francesco Almanzo, Fondateur</p>
+                
               </div>
             </div>
           </div>
