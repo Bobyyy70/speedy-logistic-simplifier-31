@@ -50,9 +50,16 @@ export function ServiceForm({ onClose, onSuccess }: ServiceFormProps) {
   async function onSubmit(data: ServiceFormValues) {
     try {
       setIsSubmitting(true);
+      // S'assurer que les données sont conformes au type attendu par Supabase
+      const serviceData = {
+        service_code: data.service_code,
+        service_name: data.service_name,
+        is_active: data.is_active,
+      };
+      
       const { error } = await supabase
         .from("transport_services")
-        .insert(data);
+        .insert(serviceData);
       
       if (error) throw error;
       onSuccess();
