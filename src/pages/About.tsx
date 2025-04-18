@@ -104,7 +104,7 @@ const About = () => {
                 <History className="h-6 w-6 text-blue-600 dark:text-blue-400 mr-2" />
                 <h2 className="text-3xl md:text-4xl font-bold">Notre Histoire</h2>
               </div>
-              <p className="text-muted-foreground"> Speed E-Log est née d'une passion pour l'optimisation logistique et d'une compréhension approfondie des défis auxquels sont confrontées les PME du e-commerce.</p>
+              <p className="text-muted-foreground">Speed E-Log est née d'une passion pour l'optimisation logistique et d'une compréhension approfondie des défis auxquels sont confrontées les PME du e-commerce.</p>
               <p className="text-muted-foreground">Après plusieurs années d'expérience dans le secteur, Nous avons identifié un besoin crucial : offrir aux entrepreneurs e-commerce une solution logistique adaptée à leur taille, flexible et technologiquement avancée, sans les coûts prohibitifs des grands prestataires.</p>
               <p className="text-muted-foreground">
                 Aujourd'hui, notre équipe partage cette vision et travaille chaque jour pour optimiser la chaîne 
@@ -117,7 +117,6 @@ const About = () => {
                 <p className="text-xl font-medium">
                   "Notre ambition est de démocratiser l'accès à une logistique e-commerce de qualité pour les PME françaises."
                 </p>
-                
               </div>
             </div>
           </div>
@@ -127,32 +126,44 @@ const About = () => {
       <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-            <div className="md:w-1/2 order-2 md:order-1 bg-gradient-to-r from-blue-50 to-green-100/50 dark:from-blue-950/30 dark:to-green-900/20 rounded-lg h-64 flex items-center justify-center border border-blue-200/50 dark:border-blue-800/30 shadow-sm">
-              <div className="text-center p-4">
-                <MapPin className="h-12 w-12 text-blue-600 dark:text-blue-400 mx-auto mb-4" />
-                <p className="text-lg font-medium">
-                  Port-sur-Saône, Bourgogne-Franche-Comté
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {/* Placeholder for future map integration */}
-                  Image de la carte ou de l'entrepôt à venir
-                </p>
-              </div>
-            </div>
-            <div className="md:w-1/2 space-y-4 order-1 md:order-2">
+            <div className="md:w-1/2 order-1 space-y-4">
               <div className="flex items-center mb-4">
-                <MapPin className="h-6 w-6 text-green-600 dark:text-green-400 mr-2" />
-                <h2 className="text-3xl md:text-4xl font-bold">Basés à Port-sur-Saône</h2>
+                <Target className="h-6 w-6 text-green-600 dark:text-green-400 mr-2" />
+                <h2 className="text-3xl md:text-4xl font-bold">Notre Mission</h2>
               </div>
               <p className="text-muted-foreground">
-                Notre entrepôt est situé en Bourgogne-Franche-Comté, à Port-sur-Saône, une position 
-                stratégique qui nous permet d'optimiser la distribution de vos produits sur l'ensemble 
-                du territoire français et européen.
+                Speed E-Log est bien plus qu'un prestataire logistique : nous sommes le partenaire opérationnel 
+                des e-commerces TPE/PME, déterminés à transformer leur chaîne logistique en levier de croissance.
               </p>
               <p className="text-muted-foreground">
-                Cette localisation offre un excellent équilibre entre accessibilité, coûts optimisés 
-                et efficacité logistique, des avantages que nous répercutons directement sur la qualité 
-                de nos services et nos tarifs.
+                En nous appuyant sur une relation de proximité et une écoute active de vos besoins, nous 
+                construisons des collaborations pérennes ou performances rime avec agilité.
+              </p>
+              <div className="bg-gradient-to-r from-blue-50 to-green-100/50 dark:from-blue-950/30 dark:to-green-900/20 rounded-lg p-6 border border-blue-200/50 dark:border-blue-800/30 shadow-sm my-6">
+                <p className="text-lg font-medium italic text-center">
+                  "Chez Speed E-Log, chaque colis expédié incarne notre promesse : une logistique fiable, 
+                  des délais maîtrisés et une traçabilité totale pour garantir votre réputation."
+                </p>
+              </div>
+              <p className="text-muted-foreground font-medium">
+                Notre engagement ? Vous offrir une logistique fluide, scalable et transparente, conçue pour 
+                renforcer la satisfaction de vos clients et accroître votre compétitivité sur un marché en 
+                constante évolution.
+              </p>
+            </div>
+            <div className="md:w-1/2 order-2 space-y-4">
+              <div className="flex items-center mb-4">
+                <Star className="h-6 w-6 text-blue-600 dark:text-blue-400 mr-2" />
+                <h2 className="text-3xl md:text-4xl font-bold">Nos Valeurs</h2>
+              </div>
+              <p className="text-muted-foreground">
+                Chez Speed E-Log, nous percevons la logistique bien au-delà d'une simple chaîne d'opérations : 
+                c'est un écosystème vibrant, où chaque maillon est une opportunité de créer de la valeur partagée.
+              </p>
+              <p className="text-muted-foreground">
+                Dans ce domaine passionnant, chaque acteur devient gagnant – qu'il s'agisse de nos prestataires, 
+                de nos clients ou de leurs destinataires finaux. Les défis, qu'ils soient techniques, humains ou 
+                environnementaux, ne sont pas des obstacles, mais des leviers pour innover et progresser ensemble.
               </p>
             </div>
           </div>
