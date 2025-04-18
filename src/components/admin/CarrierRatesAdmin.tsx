@@ -26,7 +26,7 @@ export function CarrierRatesAdmin() {
         .from("carrier_base_rates")
         .select(`
           *,
-          transport_services (
+          transport_services!inner (
             service_name,
             carrier_name
           )
@@ -65,7 +65,7 @@ export function CarrierRatesAdmin() {
           {rates?.map((rate) => (
             <TableRow key={rate.id}>
               <TableCell>{rate.carrier_name}</TableCell>
-              <TableCell>{rate.transport_services?.service_name}</TableCell>
+              <TableCell>{rate.transport_services.service_name}</TableCell>
               <TableCell>{rate.destination_zone}</TableCell>
               <TableCell>{rate.weight_kg_max}</TableCell>
               <TableCell>{rate.client_volume_tier}</TableCell>

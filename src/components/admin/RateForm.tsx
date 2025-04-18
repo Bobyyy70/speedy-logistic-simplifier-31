@@ -32,7 +32,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const rateFormSchema = z.object({
   carrier_name: z.string().min(1, "Le transporteur est requis"),
-  service_id: z.string().uuid("Veuillez sélectionner un service"),
+  service_code: z.string().min(1, "Le service est requis"),
   destination_zone: z.string().min(1, "La zone de destination est requise"),
   weight_kg_max: z
     .number()
@@ -61,7 +61,7 @@ export function RateForm({ onClose, onSuccess }: RateFormProps) {
     resolver: zodResolver(rateFormSchema),
     defaultValues: {
       carrier_name: "",
-      service_id: "",
+      service_code: "",
       destination_zone: "",
       client_volume_tier: "DEFAULT",
       currency: "EUR",
@@ -95,14 +95,14 @@ export function RateForm({ onClose, onSuccess }: RateFormProps) {
 
   // Mettre à jour automatiquement le transporteur quand on sélectionne un service
   useEffect(() => {
-    const serviceId = form.watch("service_id");
-    if (serviceId) {
-      const selectedService = services?.find((s) => s.id === serviceId);
+    const serviceCode = form.watch("service_code");
+    if (serviceCode) {
+      const selectedService = services?.find((s) => s.service_code === serviceCode);
       if (selectedService && selectedService.carrier_name !== form.getValues("carrier_name")) {
         form.setValue("carrier_name", selectedService.carrier_name);
       }
     }
-  }, [form.watch("service_id"), services]);
+  }, [form.watch("service_code"), services]);
 
   async function onSubmit(data: RateFormValues) {
     try {
@@ -111,7 +111,7 @@ export function RateForm({ onClose, onSuccess }: RateFormProps) {
       // Formatage des données numériques
       const rateData = {
         carrier_name: data.carrier_name,
-        service_id: data.service_id,
+        service_code: data.service_code,
         destination_zone: data.destination_zone,
         weight_kg_max: Number(data.weight_kg_max),
         client_volume_tier: data.client_volume_tier,
@@ -186,7 +186,7 @@ export function RateForm({ onClose, onSuccess }: RateFormProps) {
 
             <FormField
               control={form.control}
-              name="service_id"
+              name="service_code"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Service</FormLabel>
@@ -200,7 +200,7 @@ export function RateForm({ onClose, onSuccess }: RateFormProps) {
                       </SelectTrigger>
                       <SelectContent>
                         {filteredServices.map((service) => (
-                          <SelectItem key={service.id} value={service.id}>
+                          <SelectItem key={service.service_code} value={service.service_code}>
                             {service.service_name}
                           </SelectItem>
                         ))}

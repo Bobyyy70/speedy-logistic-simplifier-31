@@ -18,7 +18,7 @@ export type Database = {
           currency: string
           destination_zone: string
           id: string
-          service_id: string
+          service_code: string | null
           updated_at: string
           valid_from: string | null
           valid_to: string | null
@@ -32,7 +32,7 @@ export type Database = {
           currency?: string
           destination_zone: string
           id?: string
-          service_id: string
+          service_code?: string | null
           updated_at?: string
           valid_from?: string | null
           valid_to?: string | null
@@ -46,21 +46,13 @@ export type Database = {
           currency?: string
           destination_zone?: string
           id?: string
-          service_id?: string
+          service_code?: string | null
           updated_at?: string
           valid_from?: string | null
           valid_to?: string | null
           weight_kg_max?: number
         }
-        Relationships: [
-          {
-            foreignKeyName: "carrier_base_rates_service_id_fkey"
-            columns: ["service_id"]
-            isOneToOne: false
-            referencedRelation: "transport_services"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       clients: {
         Row: {
