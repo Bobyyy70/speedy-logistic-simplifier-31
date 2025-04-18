@@ -25,6 +25,7 @@ import { supabase } from "@/integrations/supabase/client";
 const serviceFormSchema = z.object({
   service_code: z.string().min(1, "Le code est requis"),
   service_name: z.string().min(1, "Le nom est requis"),
+  carrier_name: z.string().min(1, "Le nom du transporteur est requis"),
   is_active: z.boolean().default(true),
 });
 
@@ -43,6 +44,7 @@ export function ServiceForm({ onClose, onSuccess }: ServiceFormProps) {
     defaultValues: {
       service_code: "",
       service_name: "",
+      carrier_name: "",
       is_active: true,
     },
   });
@@ -50,16 +52,9 @@ export function ServiceForm({ onClose, onSuccess }: ServiceFormProps) {
   async function onSubmit(data: ServiceFormValues) {
     try {
       setIsSubmitting(true);
-      // S'assurer que les données sont conformes au type attendu par Supabase
-      const serviceData = {
-        service_code: data.service_code,
-        service_name: data.service_name,
-        is_active: data.is_active,
-      };
-      
       const { error } = await supabase
         .from("transport_services")
-        .insert(serviceData);
+        .insert(data);
       
       if (error) throw error;
       onSuccess();
@@ -78,6 +73,20 @@ export function ServiceForm({ onClose, onSuccess }: ServiceFormProps) {
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <FormField
+              control={form.control}
+              name="carrier_name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Nom du transporteur</FormLabel>
+                  <FormControl>
+                    <Input {...field} placeholder="Ex: Colissimo" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <FormField
               control={form.control}
               name="service_code"

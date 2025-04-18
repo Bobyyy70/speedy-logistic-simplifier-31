@@ -46,6 +46,7 @@ export function TransportServicesAdmin() {
       <Table>
         <TableHeader>
           <TableRow>
+            <TableHead>Transporteur</TableHead>
             <TableHead>Code</TableHead>
             <TableHead>Nom du Service</TableHead>
             <TableHead>Statut</TableHead>
@@ -55,6 +56,7 @@ export function TransportServicesAdmin() {
         <TableBody>
           {services?.map((service) => (
             <TableRow key={service.id}>
+              <TableCell>{service.carrier_name}</TableCell>
               <TableCell>{service.service_code}</TableCell>
               <TableCell>{service.service_name}</TableCell>
               <TableCell>

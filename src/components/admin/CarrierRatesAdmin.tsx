@@ -21,7 +21,8 @@ export function CarrierRatesAdmin() {
         .select(`
           *,
           transport_services (
-            service_name
+            service_name,
+            carrier_name
           )
         `)
         .order("carrier_name");

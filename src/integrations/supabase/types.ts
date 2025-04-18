@@ -14,10 +14,12 @@ export type Database = {
           base_rate_ht: number
           carrier_name: string
           client_volume_tier: string
+          created_at: string
           currency: string
           destination_zone: string
           id: string
           service_id: string
+          updated_at: string
           valid_from: string | null
           valid_to: string | null
           weight_kg_max: number
@@ -26,10 +28,12 @@ export type Database = {
           base_rate_ht: number
           carrier_name: string
           client_volume_tier: string
+          created_at?: string
           currency?: string
           destination_zone: string
           id?: string
           service_id: string
+          updated_at?: string
           valid_from?: string | null
           valid_to?: string | null
           weight_kg_max: number
@@ -38,10 +42,12 @@ export type Database = {
           base_rate_ht?: number
           carrier_name?: string
           client_volume_tier?: string
+          created_at?: string
           currency?: string
           destination_zone?: string
           id?: string
           service_id?: string
+          updated_at?: string
           valid_from?: string | null
           valid_to?: string | null
           weight_kg_max?: number
@@ -157,20 +163,85 @@ export type Database = {
           },
         ]
       }
+      surcharge_rules: {
+        Row: {
+          applies_to_base: boolean
+          calculation_order: number
+          carrier_name: string | null
+          condition_logic: Json | null
+          created_at: string
+          currency: string | null
+          id: string
+          included_in_fuel_base: boolean
+          is_active: boolean
+          notes: string | null
+          rule_name: string
+          service_id: string | null
+          surcharge_type: string
+          surcharge_value: number | null
+          updated_at: string
+        }
+        Insert: {
+          applies_to_base?: boolean
+          calculation_order?: number
+          carrier_name?: string | null
+          condition_logic?: Json | null
+          created_at?: string
+          currency?: string | null
+          id?: string
+          included_in_fuel_base?: boolean
+          is_active?: boolean
+          notes?: string | null
+          rule_name: string
+          service_id?: string | null
+          surcharge_type: string
+          surcharge_value?: number | null
+          updated_at?: string
+        }
+        Update: {
+          applies_to_base?: boolean
+          calculation_order?: number
+          carrier_name?: string | null
+          condition_logic?: Json | null
+          created_at?: string
+          currency?: string | null
+          id?: string
+          included_in_fuel_base?: boolean
+          is_active?: boolean
+          notes?: string | null
+          rule_name?: string
+          service_id?: string | null
+          surcharge_type?: string
+          surcharge_value?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "surcharge_rules_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "transport_services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       transport_services: {
         Row: {
+          carrier_name: string
           id: string
           is_active: boolean
           service_code: string
           service_name: string
         }
         Insert: {
+          carrier_name: string
           id?: string
           is_active?: boolean
           service_code: string
           service_name: string
         }
         Update: {
+          carrier_name?: string
           id?: string
           is_active?: boolean
           service_code?: string
