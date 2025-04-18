@@ -34,39 +34,64 @@ const About = () => {
 
       <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="space-y-16">
-            <div className="space-y-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-center">Notre Mission</h2>
-              <div className="max-w-4xl mx-auto space-y-6 text-muted-foreground">
-                <p>
-                  Speed E-Log est bien plus qu'un prestataire logistique : nous sommes le partenaire opérationnel des e-commerces TPE/PME, déterminés à transformer leur chaîne logistique en levier de croissance.
-                </p>
-                <p>
-                  En nous appuyant sur une relation de proximité et une écoute active de vos besoins, nous construisons des collaborations pérennes ou performances rime avec agilité.
-                </p>
-                <p>
-                  Notre engagement ? Vous offrir une logistique fluide, scalable et transparente, conçue pour renforcer la satisfaction de vos clients et accroître votre compétitivité sur un marché en constante évolution.
-                </p>
-                <div className="bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-950/50 dark:to-green-950/50 p-6 rounded-lg border border-blue-100/50 dark:border-blue-800/30 mt-8">
-                  <Quote className="h-8 w-8 text-blue-600 dark:text-blue-400 mx-auto mb-4" />
-                  <p className="text-lg font-medium text-center">
-                    « Chez Speed E-Log, chaque colis expédié incarne notre promesse : une logistique fiable, des délais maîtrisés et une traçabilité totale pour garantir votre réputation. »
-                  </p>
-                </div>
-              </div>
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Notre Mission et Nos Valeurs</h2>
+            <div className="flex items-center justify-center mb-10">
+              
+              <p className="text-lg md:text-xl font-medium">
+                Simplifier la logistique e-commerce pour les PME françaises
+              </p>
             </div>
+          </div>
 
-            <div className="space-y-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-center">Nos Valeurs</h2>
-              <div className="max-w-4xl mx-auto space-y-6 text-muted-foreground">
-                <p>
-                  Chez Speed E-Log, nous percevons la logistique bien au-delà d'une simple chaîne d'opérations : c'est un écosystème vibrant, où chaque maillon est une opportunité de créer de la valeur partagée.
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Card className="bg-gradient-to-br from-blue-50/50 to-blue-100/30 dark:from-blue-900/10 dark:to-blue-800/5 border-blue-200/50 dark:border-blue-700/30">
+              <CardHeader className="pb-2 flex flex-row items-center space-y-0">
+                <Star className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2" />
+                <CardTitle className="text-xl">Transparence</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">
+                  Une tarification claire et une communication ouverte à chaque étape du processus logistique.
                 </p>
-                <p>
-                  Dans ce domaine passionnant, chaque acteur devient gagnant – qu'il s'agisse de nos prestataires, de nos clients ou de leurs destinataires finaux. Les défis, qu'ils soient techniques, humains ou environnementaux, ne sont pas des obstacles, mais des leviers pour innover et progresser ensemble.
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-gradient-to-br from-green-50/50 to-green-100/30 dark:from-green-900/10 dark:to-green-800/5 border-green-200/50 dark:border-green-700/30">
+              <CardHeader className="pb-2 flex flex-row items-center space-y-0">
+                <Star className="h-5 w-5 text-green-600 dark:text-green-400 mr-2" />
+                <CardTitle className="text-xl">Fiabilité</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">
+                  Un engagement sur la qualité et la précision des préparations pour satisfaire vos clients.
                 </p>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-gradient-to-br from-orange-50/50 to-orange-100/30 dark:from-orange-900/10 dark:to-orange-800/5 border-orange-200/50 dark:border-orange-700/30">
+              <CardHeader className="pb-2 flex flex-row items-center space-y-0">
+                <Star className="h-5 w-5 text-orange-500 dark:text-orange-400 mr-2" />
+                <CardTitle className="text-xl">Efficacité</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">
+                  Des processus optimisés et des technologies avancées pour une logistique performante et rentable.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-gradient-to-br from-blue-50/50 to-green-100/30 dark:from-blue-900/10 dark:to-green-800/5 border-blue-200/50 dark:border-green-700/30">
+              <CardHeader className="pb-2 flex flex-row items-center space-y-0">
+                <Star className="h-5 w-5 text-green-600 dark:text-green-400 mr-2" />
+                <CardTitle className="text-xl">Partenariat</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">
+                  Une relation basée sur l'écoute et l'accompagnement pour soutenir votre croissance.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
@@ -157,5 +182,4 @@ const About = () => {
       </section>
     </div>;
 };
-
 export default About;
