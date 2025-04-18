@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -123,10 +124,16 @@ const About = () => {
         </div>
       </section>
 
+      {/* Notre Mission Section - Image on left, content on right */}
       <section className="py-16 md:py-20 bg-gradient-to-r from-blue-100/80 via-blue-50/50 to-green-100/50 dark:from-slate-900/80 dark:via-blue-950/30 dark:to-green-950/30">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-            <div className="md:w-1/2 order-1 space-y-4">
+            <div className="md:w-1/2 order-2 md:order-1">
+              <div className="aspect-video rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/50 dark:from-blue-950/30 dark:to-blue-900/20 border border-blue-200/50 dark:border-blue-800/30 overflow-hidden">
+                {/* Zone pour l'image future */}
+              </div>
+            </div>
+            <div className="md:w-1/2 order-1 md:order-2 space-y-4">
               <div className="flex items-center mb-4">
                 <Target className="h-6 w-6 text-green-600 dark:text-green-400 mr-2" />
                 <h2 className="text-3xl md:text-4xl font-bold">Notre Mission</h2>
@@ -151,23 +158,14 @@ const About = () => {
                 constante évolution.
               </p>
             </div>
-            <div className="md:w-1/2 order-2">
-              <div className="aspect-video rounded-lg bg-gradient-to-r from-orange-50 to-orange-100/50 dark:from-orange-950/30 dark:to-orange-900/20 border border-orange-200/50 dark:border-orange-800/30 overflow-hidden">
-                {/* Zone pour l'image future */}
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
+      {/* Nos Valeurs Section - Content on left, image on right */}
       <section className="py-16 md:py-20 bg-gradient-to-r from-blue-100/80 via-blue-50/50 to-green-100/50 dark:from-slate-900/80 dark:via-blue-950/30 dark:to-green-950/30">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-            <div className="md:w-1/2">
-              <div className="aspect-video rounded-lg bg-gradient-to-r from-orange-50 to-orange-100/50 dark:from-orange-950/30 dark:to-orange-900/20 border border-orange-200/50 dark:border-orange-800/30 overflow-hidden">
-                {/* Zone pour l'image future */}
-              </div>
-            </div>
             <div className="md:w-1/2 space-y-4">
               <div className="flex items-center mb-4">
                 <Star className="h-6 w-6 text-blue-600 dark:text-blue-400 mr-2" />
@@ -182,6 +180,11 @@ const About = () => {
                 de nos clients ou de leurs destinataires finaux. Les défis, qu'ils soient techniques, humains ou 
                 environnementaux, ne sont pas des obstacles, mais des leviers pour innover et progresser ensemble.
               </p>
+            </div>
+            <div className="md:w-1/2">
+              <div className="aspect-video rounded-lg bg-gradient-to-r from-orange-50 to-orange-100/50 dark:from-orange-950/30 dark:to-orange-900/20 border border-orange-200/50 dark:border-orange-800/30 overflow-hidden">
+                {/* Zone pour l'image future */}
+              </div>
             </div>
           </div>
         </div>
