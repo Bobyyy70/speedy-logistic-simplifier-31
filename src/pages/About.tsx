@@ -151,7 +151,24 @@ const About = () => {
                 constante évolution.
               </p>
             </div>
-            <div className="md:w-1/2 order-2 space-y-4">
+            <div className="md:w-1/2 order-2">
+              <div className="aspect-video rounded-lg bg-gradient-to-r from-orange-50 to-orange-100/50 dark:from-orange-950/30 dark:to-orange-900/20 border border-orange-200/50 dark:border-orange-800/30 overflow-hidden">
+                {/* Zone pour l'image future */}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20 bg-gradient-to-r from-blue-50/50 via-blue-50/30 to-green-50/30 dark:from-slate-900/80 dark:via-blue-950/30 dark:to-green-950/30">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+            <div className="md:w-1/2">
+              <div className="aspect-video rounded-lg bg-gradient-to-r from-orange-50 to-orange-100/50 dark:from-orange-950/30 dark:to-orange-900/20 border border-orange-200/50 dark:border-orange-800/30 overflow-hidden">
+                {/* Zone pour l'image future */}
+              </div>
+            </div>
+            <div className="md:w-1/2 space-y-4">
               <div className="flex items-center mb-4">
                 <Star className="h-6 w-6 text-blue-600 dark:text-blue-400 mr-2" />
                 <h2 className="text-3xl md:text-4xl font-bold">Nos Valeurs</h2>
