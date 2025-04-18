@@ -52,9 +52,18 @@ export function ServiceForm({ onClose, onSuccess }: ServiceFormProps) {
   async function onSubmit(data: ServiceFormValues) {
     try {
       setIsSubmitting(true);
+      
+      // Création d'un objet avec les champs requis garantis comme non-optionnels
+      const serviceData = {
+        service_code: data.service_code,
+        service_name: data.service_name,
+        carrier_name: data.carrier_name,
+        is_active: data.is_active,
+      };
+      
       const { error } = await supabase
         .from("transport_services")
-        .insert(data);
+        .insert(serviceData);
       
       if (error) throw error;
       onSuccess();
