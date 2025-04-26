@@ -23,7 +23,7 @@ export function Testimonials() {
         <p className="section-subtitle">Découvrez comment Speed E Log a aidé d'autres e-commerçants à simplifier leur logistique et accélérer leur croissance.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-          {testimonials.map((testimonial, index) => <Card key={index} className="bg-white dark:bg-slate-900 border-0 shadow-md">
+          {testimonials.map((testimonial, index) => <Card key={index} className="bg-white/10 backdrop-blur-sm dark:bg-slate-900/10 border border-white/10 dark:border-slate-700/20 shadow-md">
               <CardContent className="pt-6">
                 <div className="mb-4">
                   {[...Array(5)].map((_, i) => <span key={i} className="text-yellow-400 text-lg">★</span>)}
