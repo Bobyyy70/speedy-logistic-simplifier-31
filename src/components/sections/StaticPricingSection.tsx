@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -6,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { PackageCheck, Building, Undo2, Recycle, FileText, HandCoins, Truck } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-
 type PricingItem = {
   id: string;
   icon: React.ReactNode;
@@ -14,7 +12,6 @@ type PricingItem = {
   description: string;
   price: string;
 };
-
 export function StaticPricingSection() {
   // Pricing data based on Francesco's information
   const pricingItems: PricingItem[] = [{
@@ -66,60 +63,5 @@ export function StaticPricingSection() {
     description: "Frais d'expédition (variables selon poids, destination, service)",
     price: "Sur devis"
   }];
-
-  return (
-    <section id="static-pricing" className="py-16 bg-white dark:bg-slate-900">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Tarifs Indicatifs</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Nos tarifs sont transparents et sans surprises. Voici une grille indicative de nos prestations.
-          </p>
-        </div>
-        
-        <Card className="mx-auto max-w-4xl">
-          <CardHeader>
-            <CardTitle>Grille Tarifaire (HT)</CardTitle>
-            <CardDescription>
-              Tous nos prix sont indiqués hors taxes et peuvent varier selon le volume.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[100px]">Service</TableHead>
-                  <TableHead>Description</TableHead>
-                  <TableHead className="text-right">Tarif HT</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {pricingItems.map((item) => (
-                  <TableRow key={item.id}>
-                    <TableCell className="font-medium">
-                      <div className="flex items-center gap-2">
-                        {item.icon}
-                        <span>{item.service}</span>
-                      </div>
-                    </TableCell>
-                    <TableCell>{item.description}</TableCell>
-                    <TableCell className="text-right">{item.price}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-            
-            <div className="mt-8 text-center">
-              <p className="text-sm text-muted-foreground mb-4">
-                Les tarifs de transport varient selon la destination et le volume. N'hésitez pas à nous contacter pour obtenir un devis personnalisé.
-              </p>
-              <Link to="/contact">
-                <Button size="lg">Demander un devis</Button>
-              </Link>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    </section>
-  );
+  return;
 }
