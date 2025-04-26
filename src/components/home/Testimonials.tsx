@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 const testimonials = [{
   quote: "Speed E Log nous a permis de nous concentrer sur notre croissance sans nous soucier de la logistique. Service impeccable et réactif !",
@@ -22,7 +23,7 @@ export function Testimonials() {
         <p className="section-subtitle">Découvrez comment Speed E Log a aidé d'autres e-commerçants à simplifier leur logistique et accélérer leur croissance.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-          {testimonials.map((testimonial, index) => <Card key={index} className="bg-gradient-to-r from-white via-white to-blue-50 dark:from-slate-900 dark:via-slate-950 dark:to-blue-950 border-0 shadow-md">
+          {testimonials.map((testimonial, index) => <Card key={index} className="bg-white dark:bg-slate-900 border-0 shadow-md">
               <CardContent className="pt-6">
                 <div className="mb-4">
                   {[...Array(5)].map((_, i) => <span key={i} className="text-yellow-400 text-lg">★</span>)}
