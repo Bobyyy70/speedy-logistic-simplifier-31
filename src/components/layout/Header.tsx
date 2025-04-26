@@ -6,20 +6,19 @@ import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { NavBar } from "@/components/ui/tubelight-navbar";
-import { Home, Briefcase, CircleDollarSign, Info, FileQuestion, Contact } from 'lucide-react';
+import { Home, Briefcase, Info, FileQuestion, Contact } from 'lucide-react';
 import { useIsMobile } from "@/hooks/use-mobile";
+
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const isMobile = useIsMobile();
 
-  // Fermer le menu mobile lors des changements de route
   useEffect(() => {
     setOpen(false);
   }, [location]);
 
-  // Détection du scroll pour ajouter une ombre
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -27,6 +26,7 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   const navigationItems = [{
     name: "Accueil",
     url: "/",
@@ -35,10 +35,6 @@ const Header = () => {
     name: "Services",
     url: "/services",
     icon: Briefcase
-  }, {
-    name: "Tarification",
-    url: "/pricing",
-    icon: CircleDollarSign
   }, {
     name: "À Propos",
     url: "/about",
@@ -52,18 +48,17 @@ const Header = () => {
     url: "/contact",
     icon: Contact
   }];
+
   return <header className={cn("sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60", isScrolled && "shadow-sm")}>
       <div className="container flex h-16 items-center justify-between py-0 my-[8px]">
         <NavLink to="/" className="flex items-center">
           <LogoIconWithText className="w-28 md:w-32" />
         </NavLink>
 
-        {/* Desktop Navigation - TubeLight Navbar */}
         <div className="hidden md:block">
           <NavBar items={navigationItems} className="relative sm:static left-auto transform-none mb-0 sm:pt-0" />
         </div>
 
-        {/* Mobile Navigation */}
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger>
             <Button variant="ghost" size="sm" className="h-10 w-10 hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 md:hidden" aria-label="Menu">
@@ -99,7 +94,6 @@ const Header = () => {
           </SheetContent>
         </Sheet>
 
-        {/* Desktop CTA Button */}
         <div className="hidden md:block">
           <NavLink to="/contact">
             <Button variant="solid" size="default" className="py-0">
@@ -109,8 +103,8 @@ const Header = () => {
         </div>
       </div>
       
-      {/* Display the mobile navigation at the bottom */}
       {isMobile && <NavBar items={navigationItems.slice(0, 5)} className="z-50" />}
     </header>;
 };
+
 export default Header;
