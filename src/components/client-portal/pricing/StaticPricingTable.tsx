@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { PackageCheck, Building, Undo2, Recycle, FileText, HandCoins, Truck } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+
 type PricingItem = {
   id: string;
   icon: React.ReactNode;
@@ -13,6 +14,7 @@ type PricingItem = {
   description: string;
   price: string;
 };
+
 export function StaticPricingSection() {
   // Pricing data based on Francesco's information
   const pricingItems: PricingItem[] = [{
@@ -64,5 +66,6 @@ export function StaticPricingSection() {
     description: "Frais d'expédition (variables selon poids, destination, service)",
     price: "Sur devis"
   }];
+
   return;
 }
