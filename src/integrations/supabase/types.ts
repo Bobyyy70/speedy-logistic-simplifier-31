@@ -9,408 +9,235 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      api_credentials: {
+      carrier_base_rates: {
         Row: {
-          credentials: Json | null
+          base_rate_ht: number
+          carrier_name: string
+          client_volume_tier: string
+          created_at: string
+          currency: string
+          destination_zone: string
           id: string
-          integration_id: string
-          last_validated: string | null
+          service_code: string | null
+          updated_at: string
+          valid_from: string | null
+          valid_to: string | null
+          weight_kg_max: number
         }
         Insert: {
-          credentials?: Json | null
+          base_rate_ht: number
+          carrier_name: string
+          client_volume_tier: string
+          created_at?: string
+          currency?: string
+          destination_zone: string
           id?: string
-          integration_id: string
-          last_validated?: string | null
+          service_code?: string | null
+          updated_at?: string
+          valid_from?: string | null
+          valid_to?: string | null
+          weight_kg_max: number
         }
         Update: {
-          credentials?: Json | null
+          base_rate_ht?: number
+          carrier_name?: string
+          client_volume_tier?: string
+          created_at?: string
+          currency?: string
+          destination_zone?: string
           id?: string
-          integration_id?: string
-          last_validated?: string | null
+          service_code?: string | null
+          updated_at?: string
+          valid_from?: string | null
+          valid_to?: string | null
+          weight_kg_max?: number
+        }
+        Relationships: []
+      }
+      clients: {
+        Row: {
+          billing_address_line1: string | null
+          billing_address_line2: string | null
+          billing_city: string | null
+          billing_country: string | null
+          billing_postal_code: string | null
+          company_name: string
+          contract_type: string | null
+          created_at: string
+          id: string
+          is_active: boolean
+          monthly_volume_tier: string | null
+          notes: string | null
+          primary_contact_email: string
+          primary_contact_name: string | null
+          primary_contact_phone: string | null
+          siret: string | null
+          vat_number: string | null
+          website_url: string | null
+        }
+        Insert: {
+          billing_address_line1?: string | null
+          billing_address_line2?: string | null
+          billing_city?: string | null
+          billing_country?: string | null
+          billing_postal_code?: string | null
+          company_name: string
+          contract_type?: string | null
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          monthly_volume_tier?: string | null
+          notes?: string | null
+          primary_contact_email: string
+          primary_contact_name?: string | null
+          primary_contact_phone?: string | null
+          siret?: string | null
+          vat_number?: string | null
+          website_url?: string | null
+        }
+        Update: {
+          billing_address_line1?: string | null
+          billing_address_line2?: string | null
+          billing_city?: string | null
+          billing_country?: string | null
+          billing_postal_code?: string | null
+          company_name?: string
+          contract_type?: string | null
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          monthly_volume_tier?: string | null
+          notes?: string | null
+          primary_contact_email?: string
+          primary_contact_name?: string | null
+          primary_contact_phone?: string | null
+          siret?: string | null
+          vat_number?: string | null
+          website_url?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          client_id: string | null
+          full_name: string | null
+          id: string
+          phone_number: string | null
+          role: string
+          updated_at: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          client_id?: string | null
+          full_name?: string | null
+          id: string
+          phone_number?: string | null
+          role?: string
+          updated_at?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          client_id?: string | null
+          full_name?: string | null
+          id?: string
+          phone_number?: string | null
+          role?: string
+          updated_at?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "api_credentials_integration_id_fkey"
-            columns: ["integration_id"]
+            foreignKeyName: "profiles_client_id_fkey"
+            columns: ["client_id"]
             isOneToOne: false
-            referencedRelation: "integrations"
+            referencedRelation: "clients"
             referencedColumns: ["id"]
           },
         ]
       }
-      carriers: {
+      surcharge_rules: {
         Row: {
-          api_identifier: string | null
+          applies_to_base: boolean
+          calculation_order: number
+          carrier_name: string | null
+          condition_logic: Json | null
+          created_at: string
+          currency: string | null
           id: string
-          is_active: boolean | null
-          name: string
+          included_in_fuel_base: boolean
+          is_active: boolean
+          notes: string | null
+          rule_name: string
+          service_id: string | null
+          surcharge_type: string
+          surcharge_value: number | null
+          updated_at: string
         }
         Insert: {
-          api_identifier?: string | null
+          applies_to_base?: boolean
+          calculation_order?: number
+          carrier_name?: string | null
+          condition_logic?: Json | null
+          created_at?: string
+          currency?: string | null
           id?: string
-          is_active?: boolean | null
-          name: string
+          included_in_fuel_base?: boolean
+          is_active?: boolean
+          notes?: string | null
+          rule_name: string
+          service_id?: string | null
+          surcharge_type: string
+          surcharge_value?: number | null
+          updated_at?: string
         }
         Update: {
-          api_identifier?: string | null
+          applies_to_base?: boolean
+          calculation_order?: number
+          carrier_name?: string | null
+          condition_logic?: Json | null
+          created_at?: string
+          currency?: string | null
           id?: string
-          is_active?: boolean | null
-          name?: string
-        }
-        Relationships: []
-      }
-      customers: {
-        Row: {
-          address: Json | null
-          created_at: string | null
-          email: string | null
-          id: string
-          name: string | null
-          phone: string | null
-        }
-        Insert: {
-          address?: Json | null
-          created_at?: string | null
-          email?: string | null
-          id?: string
-          name?: string | null
-          phone?: string | null
-        }
-        Update: {
-          address?: Json | null
-          created_at?: string | null
-          email?: string | null
-          id?: string
-          name?: string | null
-          phone?: string | null
-        }
-        Relationships: []
-      }
-      integrations: {
-        Row: {
-          created_at: string | null
-          id: string
-          is_active: boolean | null
-          platform_name: string
-          user_id: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          id?: string
-          is_active?: boolean | null
-          platform_name: string
-          user_id?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          id?: string
-          is_active?: boolean | null
-          platform_name?: string
-          user_id?: string | null
-        }
-        Relationships: []
-      }
-      order_items: {
-        Row: {
-          id: string
-          order_id: string
-          product_id: string
-          quantity: number
-          unit_price: number
-        }
-        Insert: {
-          id?: string
-          order_id: string
-          product_id: string
-          quantity: number
-          unit_price: number
-        }
-        Update: {
-          id?: string
-          order_id?: string
-          product_id?: string
-          quantity?: number
-          unit_price?: number
+          included_in_fuel_base?: boolean
+          is_active?: boolean
+          notes?: string | null
+          rule_name?: string
+          service_id?: string | null
+          surcharge_type?: string
+          surcharge_value?: number | null
+          updated_at?: string
         }
         Relationships: [
           {
-            foreignKeyName: "order_items_order_id_fkey"
-            columns: ["order_id"]
+            foreignKeyName: "surcharge_rules_service_id_fkey"
+            columns: ["service_id"]
             isOneToOne: false
-            referencedRelation: "orders"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "order_items_product_id_fkey"
-            columns: ["product_id"]
-            isOneToOne: false
-            referencedRelation: "products"
+            referencedRelation: "transport_services"
             referencedColumns: ["id"]
           },
         ]
       }
-      orders: {
+      transport_services: {
         Row: {
-          billing_address: Json | null
-          created_at: string | null
-          customer_id: string | null
+          carrier_name: string
           id: string
-          order_date: string | null
-          order_ref: string
-          shipping_address: Json | null
-          source: string | null
-          status: string | null
-          total_amount: number | null
-          user_id: string | null
+          is_active: boolean
+          service_code: string
+          service_name: string
         }
         Insert: {
-          billing_address?: Json | null
-          created_at?: string | null
-          customer_id?: string | null
+          carrier_name: string
           id?: string
-          order_date?: string | null
-          order_ref: string
-          shipping_address?: Json | null
-          source?: string | null
-          status?: string | null
-          total_amount?: number | null
-          user_id?: string | null
+          is_active?: boolean
+          service_code: string
+          service_name: string
         }
         Update: {
-          billing_address?: Json | null
-          created_at?: string | null
-          customer_id?: string | null
+          carrier_name?: string
           id?: string
-          order_date?: string | null
-          order_ref?: string
-          shipping_address?: Json | null
-          source?: string | null
-          status?: string | null
-          total_amount?: number | null
-          user_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "orders_customer_id_fkey"
-            columns: ["customer_id"]
-            isOneToOne: false
-            referencedRelation: "customers"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      permissions: {
-        Row: {
-          id: string
-          permission_name: string
-        }
-        Insert: {
-          id?: string
-          permission_name: string
-        }
-        Update: {
-          id?: string
-          permission_name?: string
-        }
-        Relationships: []
-      }
-      products: {
-        Row: {
-          created_at: string | null
-          description: string | null
-          dimensions: Json | null
-          id: string
-          image_url: string | null
-          name: string
-          price: number
-          sku: string
-          weight: number | null
-        }
-        Insert: {
-          created_at?: string | null
-          description?: string | null
-          dimensions?: Json | null
-          id?: string
-          image_url?: string | null
-          name: string
-          price: number
-          sku: string
-          weight?: number | null
-        }
-        Update: {
-          created_at?: string | null
-          description?: string | null
-          dimensions?: Json | null
-          id?: string
-          image_url?: string | null
-          name?: string
-          price?: number
-          sku?: string
-          weight?: number | null
-        }
-        Relationships: []
-      }
-      shipments: {
-        Row: {
-          carrier_id: string | null
-          created_at: string | null
-          estimated_delivery_date: string | null
-          id: string
-          label_url: string | null
-          order_id: string
-          shipped_date: string | null
-          shipping_cost: number | null
-          status: string | null
-          tracking_number: string | null
-        }
-        Insert: {
-          carrier_id?: string | null
-          created_at?: string | null
-          estimated_delivery_date?: string | null
-          id?: string
-          label_url?: string | null
-          order_id: string
-          shipped_date?: string | null
-          shipping_cost?: number | null
-          status?: string | null
-          tracking_number?: string | null
-        }
-        Update: {
-          carrier_id?: string | null
-          created_at?: string | null
-          estimated_delivery_date?: string | null
-          id?: string
-          label_url?: string | null
-          order_id?: string
-          shipped_date?: string | null
-          shipping_cost?: number | null
-          status?: string | null
-          tracking_number?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "shipments_carrier_id_fkey"
-            columns: ["carrier_id"]
-            isOneToOne: false
-            referencedRelation: "carriers"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "shipments_order_id_fkey"
-            columns: ["order_id"]
-            isOneToOne: false
-            referencedRelation: "orders"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      stock_levels: {
-        Row: {
-          id: string
-          last_updated: string | null
-          product_id: string
-          quantity_allocated: number | null
-          quantity_on_hand: number | null
-          warehouse_id: string
-        }
-        Insert: {
-          id?: string
-          last_updated?: string | null
-          product_id: string
-          quantity_allocated?: number | null
-          quantity_on_hand?: number | null
-          warehouse_id: string
-        }
-        Update: {
-          id?: string
-          last_updated?: string | null
-          product_id?: string
-          quantity_allocated?: number | null
-          quantity_on_hand?: number | null
-          warehouse_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "stock_levels_product_id_fkey"
-            columns: ["product_id"]
-            isOneToOne: false
-            referencedRelation: "products"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "stock_levels_warehouse_id_fkey"
-            columns: ["warehouse_id"]
-            isOneToOne: false
-            referencedRelation: "warehouses"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      tracking_events: {
-        Row: {
-          event_timestamp: string
-          id: string
-          location: string | null
-          shipment_id: string
-          status_description: string
-        }
-        Insert: {
-          event_timestamp: string
-          id?: string
-          location?: string | null
-          shipment_id: string
-          status_description: string
-        }
-        Update: {
-          event_timestamp?: string
-          id?: string
-          location?: string | null
-          shipment_id?: string
-          status_description?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "tracking_events_shipment_id_fkey"
-            columns: ["shipment_id"]
-            isOneToOne: false
-            referencedRelation: "shipments"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      user_roles: {
-        Row: {
-          id: string
-          role_name: string
-        }
-        Insert: {
-          id?: string
-          role_name: string
-        }
-        Update: {
-          id?: string
-          role_name?: string
-        }
-        Relationships: []
-      }
-      warehouses: {
-        Row: {
-          address: Json | null
-          created_at: string | null
-          id: string
-          name: string
-        }
-        Insert: {
-          address?: Json | null
-          created_at?: string | null
-          id?: string
-          name: string
-        }
-        Update: {
-          address?: Json | null
-          created_at?: string | null
-          id?: string
-          name?: string
+          is_active?: boolean
+          service_code?: string
+          service_name?: string
         }
         Relationships: []
       }
