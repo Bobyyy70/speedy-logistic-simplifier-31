@@ -26,7 +26,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/services" element={<Services />} />
-            {/* Redirection des anciennes routes de tarification vers le contact */}
+            {/* Redirection of all pricing routes to contact page */}
             <Route path="/pricing" element={<Navigate to="/contact" replace />} />
             <Route path="/tarifs" element={<Navigate to="/contact" replace />} />
             <Route path="/prix" element={<Navigate to="/contact" replace />} />

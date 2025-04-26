@@ -1,4 +1,4 @@
-// Copie du contenu de StaticPricingSection.tsx pour référence future
+
 import React from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -15,7 +15,7 @@ type PricingItem = {
   price: string;
 };
 
-export function StaticPricingSection() {
+export function StaticPricingTable() {
   // Pricing data based on Francesco's information
   const pricingItems: PricingItem[] = [{
     id: "colisage",
@@ -67,5 +67,35 @@ export function StaticPricingSection() {
     price: "Sur devis"
   }];
 
-  return;
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Grille Tarifaire Speed E-Log</CardTitle>
+        <CardDescription>Tarifs indicatifs pour nos services logistiques</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Service</TableHead>
+              <TableHead>Description</TableHead>
+              <TableHead>Prix HT</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {pricingItems.map((item) => (
+              <TableRow key={item.id}>
+                <TableCell className="flex items-center gap-2">
+                  {item.icon}
+                  {item.service}
+                </TableCell>
+                <TableCell>{item.description}</TableCell>
+                <TableCell>{item.price}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </CardContent>
+    </Card>
+  );
 }
