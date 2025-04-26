@@ -21,7 +21,7 @@ export function Testimonials() {
         <h2 className="section-title">Ils nous font confiance</h2>
         <p className="section-subtitle">Découvrez comment Speed E Log a aidé d'autres e-commerçants à simplifier leur logistique et accélérer leur croissance.</p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+        <div className="transparent">
           {testimonials.map((testimonial, index) => <Card key={index} className="bg-gradient-to-r from-white via-white to-blue-50 dark:from-slate-900 dark:via-slate-950 dark:to-blue-950 border-0 shadow-md">
               <CardContent className="pt-6">
                 <div className="mb-4">
