@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -82,8 +81,7 @@ export function HeroSection() {
           {/* Visual Column */}
           <div className="lg:order-last relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg blur opacity-20"></div>
-            <div className="relative bg-white dark:bg-slate-900 shadow-xl rounded-lg p-6">
-              
+            <div className="relative bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-900 shadow-xl rounded-lg p-6 backdrop-blur-sm border border-white/10 dark:border-slate-700/20">
               <h3 className="font-semibold text-lg mb-2">Une logistique moderne et efficace</h3>
               <p className="text-muted-foreground">
                 Notre infrastructure technologique évolue constamment pour vous offrir le meilleur service possible.
