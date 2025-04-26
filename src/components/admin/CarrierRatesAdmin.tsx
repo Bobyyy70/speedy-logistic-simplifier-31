@@ -22,19 +22,32 @@ export function CarrierRatesAdmin() {
   const { data: rates, isLoading, refetch } = useQuery({
     queryKey: ["carrierRates"],
     queryFn: async () => {
-      const { data, error } = await supabase
+      // First, let's fetch the base rates
+      const { data: ratesData, error: ratesError } = await supabase
         .from("carrier_base_rates")
-        .select(`
-          *,
-          transport_services!inner (
-            service_name,
-            carrier_name
-          )
-        `)
+        .select("*")
         .order("carrier_name");
       
-      if (error) throw error;
-      return data;
+      if (ratesError) throw ratesError;
+      
+      // Now, let's fetch all transport services to be able to join them manually
+      const { data: servicesData, error: servicesError } = await supabase
+        .from("transport_services")
+        .select("*");
+        
+      if (servicesError) throw servicesError;
+      
+      // Map services by their service_code for easy lookup
+      const servicesMap = servicesData.reduce((acc, service) => {
+        acc[service.service_code] = service;
+        return acc;
+      }, {});
+      
+      // Combine the data
+      return ratesData.map(rate => ({
+        ...rate,
+        transport_services: servicesMap[rate.service_code] || { service_name: "Service inconnu", carrier_name: rate.carrier_name }
+      }));
     },
   });
 
@@ -65,7 +78,7 @@ export function CarrierRatesAdmin() {
           {rates?.map((rate) => (
             <TableRow key={rate.id}>
               <TableCell>{rate.carrier_name}</TableCell>
-              <TableCell>{rate.transport_services.service_name}</TableCell>
+              <TableCell>{rate.transport_services?.service_name || "Service inconnu"}</TableCell>
               <TableCell>{rate.destination_zone}</TableCell>
               <TableCell>{rate.weight_kg_max}</TableCell>
               <TableCell>{rate.client_volume_tier}</TableCell>
