@@ -4,8 +4,8 @@ import { Helmet } from "react-helmet-async";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 
+// FAQ data array
 const faqs = [
   {
     question: "Quels types de produits gérez-vous ?",
@@ -51,21 +51,14 @@ const FaqPage = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-blue-100/90 via-white to-green-200/90 dark:from-slate-900 dark:via-slate-950 dark:to-green-800/90">
-      <section className="py-16 md:py-24 bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-700">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Questions <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">Fréquentes</span>
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Retrouvez les réponses aux questions les plus fréquentes sur nos services logistiques.
-          </p>
-          <Button size="lg" className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600 text-white" asChild>
-            <Link to="/contact">Demander un Devis Personnalisé</Link>
-          </Button>
-        </div>
-      </section>
-
+    <div className="bg-gradient-to-l from-blue-100/90 via-white to-green-200/90 dark:from-slate-900 dark:via-slate-950 dark:to-green-800/90 py-12">
+      <Helmet>
+        <title>FAQ - Questions Fréquentes Logistique | Speed E-Log</title>
+        <meta name="description" content="Trouvez les réponses à vos questions sur nos services logistiques pour e-commerce : types de produits gérés, transport, intégration, suivi et plus encore." />
+        <meta property="og:title" content="FAQ - Questions Fréquentes Logistique | Speed E-Log" />
+        <meta property="og:description" content="Trouvez les réponses à vos questions sur nos services logistiques pour e-commerce : types de produits gérés, transport, intégration, suivi et plus encore." />
+      </Helmet>
+      
       <motion.div className="flex flex-col items-center justify-center space-y-4 text-center mb-8 md:mb-12" initial={{
       opacity: 0,
       y: 20
