@@ -14,7 +14,7 @@ export function StarRating({ rating, className = "" }: StarRatingProps) {
           key={index}
           size={20}
           className={`${
-            index < rating ? "fill-icon text-icon" : "text-muted-foreground/20"
+            index < rating ? "fill-orange-500 text-orange-500" : "text-muted-foreground/20"
           }`}
         />
       ))}

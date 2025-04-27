@@ -11,40 +11,37 @@ const testimonials: TestimonialCardType[] = [
   {
     quote: "Speed E Log nous a permis de nous concentrer sur notre croissance sans nous soucier de la logistique. Service impeccable et réactif !",
     name: "Marie D.",
-    title: "Fondatrice, BeautyBox France",
     rating: 5
   },
   {
     quote: "La transparence tarifaire et la qualité de préparation des commandes sont remarquables. Nos clients sont ravis des délais de livraison.",
     name: "Thomas L.",
-    title: "Directeur E-commerce, GreenLife",
     rating: 5
   },
   {
     quote: "L'intégration avec notre boutique Shopify a été d'une simplicité étonnante. Le suivi en temps réel des stocks est un vrai plus.",
     name: "Julie M.",
-    title: "CEO, FashionTrend",
     rating: 4
   },
   {
-    quote: "Une équipe à l'écoute qui comprend vraiment les enjeux du e-commerce. Notre partenariat est un vrai succès.",
+    quote: "Une équipe à l'écoute qui comprend vraiment les besoins de ses clients. Notre partenariat est un vrai succès.",
     name: "Alex M.",
-    title: "Founder, TechStyle",
     rating: 5
   },
   {
     quote: "La précision dans la préparation des commandes est impressionnante. Zéro erreur depuis 6 mois !",
     name: "Sophie B.",
-    title: "COO, WellnessBox",
     rating: 5
   },
   {
-    quote: "Un accompagnement personnalisé qui fait toute la différence. Merci à toute l'équipe Speed E Log !",
+    quote: "Un accompagnement personnalisé qui fait toute la différence. Merci à toute l'équipe !",
     name: "Paul D.",
-    title: "Directeur, EcoShop",
     rating: 5
   }
 ];
+
+// Double the array for seamless looping
+const duplicatedTestimonials = [...testimonials, ...testimonials];
 
 export function TestimonialsCarousel() {
   const [isPaused, setIsPaused] = useState(false);
@@ -60,7 +57,11 @@ export function TestimonialsCarousel() {
         setScrollX((prev) => {
           const newScrollX = prev - (SCROLL_SPEED * deltaTime) / 1000;
           const containerWidth = testimonials.length * 420; // card width + gap
-          return newScrollX <= -containerWidth ? 0 : newScrollX;
+          // Reset position when reaching the end of first set
+          if (newScrollX <= -containerWidth) {
+            return 0;
+          }
+          return newScrollX;
         });
       }
       lastTime = currentTime;
@@ -76,7 +77,7 @@ export function TestimonialsCarousel() {
 
   return (
     <div
-      className="overflow-hidden"
+      className="overflow-hidden relative"
       onMouseEnter={() => PAUSE_ON_HOVER && setIsPaused(true)}
       onMouseLeave={() => PAUSE_ON_HOVER && setIsPaused(false)}
     >
@@ -85,7 +86,7 @@ export function TestimonialsCarousel() {
         style={{ x: scrollX }}
         transition={{ type: "tween", ease: "linear" }}
       >
-        {testimonials.map((testimonial, index) => (
+        {duplicatedTestimonials.map((testimonial, index) => (
           <TestimonialCard key={index} {...testimonial} />
         ))}
       </motion.div>
