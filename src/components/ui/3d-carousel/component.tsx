@@ -3,7 +3,14 @@ import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { Carousel } from "./carousel";
 
-const testimonials = [
+type TestimonialCard = {
+  quote: string;
+  name: string;
+  title: string;
+  image: string;
+};
+
+const testimonials: TestimonialCard[] = [
   {
     quote: "Speed E Log nous a permis de nous concentrer sur notre croissance sans nous soucier de la logistique. Service impeccable et réactif !",
     name: "Marie Dupont",

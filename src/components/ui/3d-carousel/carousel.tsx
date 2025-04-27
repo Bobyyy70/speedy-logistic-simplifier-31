@@ -3,6 +3,13 @@ import { memo } from "react";
 import { motion, useTransform, useMotionValue } from "framer-motion";
 import { useMediaQuery } from "./hooks";
 
+type TestimonialCard = {
+  quote: string;
+  name: string;
+  title: string;
+  image: string;
+};
+
 const duration = 0.15;
 const transition = { duration, ease: [0.32, 0.72, 0, 1], filter: "blur(4px)" };
 
@@ -15,7 +22,7 @@ const Carousel = memo(
   }: {
     handleClick: (imgUrl: string) => void;
     controls: any;
-    cards: string[];
+    cards: TestimonialCard[];
     isCarouselActive: boolean;
   }) => {
     const isScreenSizeSm = useMediaQuery("(max-width: 640px)");
