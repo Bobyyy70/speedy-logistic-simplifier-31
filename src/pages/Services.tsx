@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -12,17 +11,19 @@ const Services = () => {
   }, []);
 
   return (
-    <div className="relative overflow-hidden">
-      <div className="container mx-auto py-16 px-4 bg-gradient-to-r from-blue-100/90 via-white to-green-200/90 dark:from-slate-900 dark:via-slate-950 dark:to-green-800/90 relative">
-        <div className="absolute top-0 left-0 w-12 h-12 rounded-full bg-orange-100/20 dark:bg-orange-900/20" />
-        <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl text-center mb-6">
-          Nos Services Logistiques pour E-commerce
-        </h1>
-        <p className="text-lg text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-          Des solutions complètes et sur mesure pour gérer efficacement votre chaîne logistique.
-          Nous vous aidons à vous concentrer sur votre cœur de métier.
-        </p>
-        <div className="absolute bottom-0 right-0 w-16 h-16 rounded-full bg-orange-100/10 dark:bg-orange-900/10" />
+    <div className="w-full">
+      <div className="w-full py-16 px-4 bg-gradient-to-r from-blue-100/90 via-white to-green-200/90 dark:from-slate-900 dark:via-slate-950 dark:to-green-800/90">
+        <div className="container mx-auto relative">
+          <div className="absolute top-0 left-0 w-12 h-12 rounded-full bg-orange-100/20 dark:bg-orange-900/20" />
+          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl text-center mb-6">
+            Nos Services Logistiques pour E-commerce
+          </h1>
+          <p className="text-lg text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+            Des solutions complètes et sur mesure pour gérer efficacement votre chaîne logistique.
+            Nous vous aidons à vous concentrer sur votre cœur de métier.
+          </p>
+          <div className="absolute bottom-0 right-0 w-16 h-16 rounded-full bg-orange-100/10 dark:bg-orange-900/10" />
+        </div>
       </div>
       
       <div className="relative bg-gradient-to-l from-blue-100/90 via-white to-green-200/90 dark:from-slate-900 dark:via-slate-950 dark:to-green-800/90">
