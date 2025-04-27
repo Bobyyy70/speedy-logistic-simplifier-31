@@ -1,9 +1,11 @@
+
 import React from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Services as ServicesSection } from "@/components/home/Services";
+import { LogisticsPerformanceSection } from "@/components/sections/LogisticsPerformanceSection";
 
 const Services = () => {
   useEffect(() => {
@@ -11,7 +13,7 @@ const Services = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-green-200 via-white to-blue-100 dark:from-green-800 dark:via-slate-950 dark:to-slate-900">
+    <div className="bg-gradient-to-br from-green-200 via-white to-blue-200 dark:from-green-800 dark:via-slate-950 dark:to-slate-900">
       <Helmet>
         <title>Nos Services Logistique E-commerce | Speed E-Log</title>
         <meta 
@@ -33,7 +35,10 @@ const Services = () => {
           Nous vous aidons à vous concentrer sur votre cœur de métier.
         </p>
       </div>
+      
       <ServicesSection />
+      <LogisticsPerformanceSection />
+      
       <section className="container mx-auto mt-12 md:mt-16 lg:mt-20 text-center px-4 pb-16">
         <h2 className="text-2xl font-semibold tracking-tight mb-4">
           Prêt à externaliser votre logistique ?
