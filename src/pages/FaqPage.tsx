@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -70,7 +71,7 @@ const FaqPage = () => {
     }}>
         <div className="inline-block px-3 py-1 text-sm rounded-3xl bg-orange-100">FAQ</div>
         <h1 className="text-3xl md:text-4xl font-bold tracking-tighter sm:text-5xl">
-          Questions Fréquentes
+          Questions <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">Fréquentes</span>
         </h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
           Trouvez ici les réponses aux questions les plus couramment posées sur nos services de logistique e-commerce.

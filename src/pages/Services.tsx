@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -16,7 +17,7 @@ const Services = () => {
         <div className="container mx-auto relative">
           <div className="absolute top-0 left-0 w-12 h-12 rounded-full bg-orange-100/20 dark:bg-orange-900/20" />
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl text-center mb-6">
-            Nos Services Logistiques pour E-commerce
+            Nos Services <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">Logistiques</span>
           </h1>
           <p className="text-lg text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
             Des solutions complètes et sur mesure pour gérer efficacement votre chaîne logistique.

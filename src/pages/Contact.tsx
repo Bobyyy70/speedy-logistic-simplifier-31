@@ -27,7 +27,14 @@ const Contact = () => {
       </Helmet>
       
       <div className="max-w-5xl mx-auto px-4 py-12">
-        <ContactHeader />
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl mb-6">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">Contactez-nous</span>
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Discutons de vos besoins logistiques et trouvons ensemble la meilleure solution pour votre e-commerce.
+          </p>
+        </div>
         
         <div className="grid items-start justify-center gap-8 md:gap-12 lg:grid-cols-2">
           <ContactInfo />
