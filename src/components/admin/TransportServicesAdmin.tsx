@@ -15,20 +15,30 @@ import { Plus } from "lucide-react";
 import { ServiceForm } from "./ServiceForm";
 import { useToast } from "@/hooks/use-toast";
 
+// Définir les types manuellement
+type TransportService = {
+  id: string;
+  carrier_name: string;
+  service_code: string;
+  service_name: string;
+  is_active: boolean;
+  created_at?: string;
+}
+
 export function TransportServicesAdmin() {
   const [isAddingService, setIsAddingService] = useState(false);
   const { toast } = useToast();
 
-  const { data: services, isLoading } = useQuery({
+  const { data: services, isLoading, refetch } = useQuery({
     queryKey: ["transportServices"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from("transport_services")
+        .from('transport_services')
         .select("*")
-        .order("service_name");
+        .order("service_name") as { data: TransportService[] | null, error: any };
       
       if (error) throw error;
-      return data;
+      return data || [];
     },
   });
 
@@ -77,6 +87,7 @@ export function TransportServicesAdmin() {
           onClose={() => setIsAddingService(false)}
           onSuccess={() => {
             setIsAddingService(false);
+            refetch();
             toast({
               title: "Service ajouté",
               description: "Le service de transport a été ajouté avec succès.",

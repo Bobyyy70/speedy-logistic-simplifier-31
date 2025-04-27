@@ -38,6 +38,50 @@ export type Database = {
           },
         ]
       }
+      carrier_base_rates: {
+        Row: {
+          base_rate_ht: number
+          carrier_name: string
+          client_volume_tier: string
+          created_at: string | null
+          currency: string
+          destination_zone: string
+          id: string
+          service_code: string
+          weight_kg_max: number
+        }
+        Insert: {
+          base_rate_ht: number
+          carrier_name: string
+          client_volume_tier: string
+          created_at?: string | null
+          currency?: string
+          destination_zone: string
+          id?: string
+          service_code: string
+          weight_kg_max: number
+        }
+        Update: {
+          base_rate_ht?: number
+          carrier_name?: string
+          client_volume_tier?: string
+          created_at?: string | null
+          currency?: string
+          destination_zone?: string
+          id?: string
+          service_code?: string
+          weight_kg_max?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "carrier_base_rates_service_code_fkey"
+            columns: ["service_code"]
+            isOneToOne: false
+            referencedRelation: "transport_services"
+            referencedColumns: ["service_code"]
+          },
+        ]
+      }
       carriers: {
         Row: {
           api_identifier: string | null
@@ -377,6 +421,33 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      transport_services: {
+        Row: {
+          carrier_name: string
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          service_code: string
+          service_name: string
+        }
+        Insert: {
+          carrier_name: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          service_code: string
+          service_name: string
+        }
+        Update: {
+          carrier_name?: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          service_code?: string
+          service_name?: string
+        }
+        Relationships: []
       }
       user_roles: {
         Row: {

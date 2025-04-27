@@ -21,6 +21,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const serviceFormSchema = z.object({
   service_code: z.string().min(1, "Le code est requis"),
@@ -38,6 +39,7 @@ interface ServiceFormProps {
 
 export function ServiceForm({ onClose, onSuccess }: ServiceFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
   const form = useForm<ServiceFormValues>({
     resolver: zodResolver(serviceFormSchema),
@@ -62,13 +64,29 @@ export function ServiceForm({ onClose, onSuccess }: ServiceFormProps) {
       };
       
       const { error } = await supabase
-        .from("transport_services")
-        .insert(serviceData);
+        .from('transport_services')
+        .insert(serviceData as any);
       
-      if (error) throw error;
-      onSuccess();
+      if (error) {
+        if (error.code === '23505') { // Violation de contrainte unique
+          toast({
+            title: "Erreur",
+            description: "Ce code de service existe déjà.",
+            variant: "destructive",
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        onSuccess();
+      }
     } catch (error) {
       console.error("Erreur lors de l'ajout du service:", error);
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue lors de l'ajout du service.",
+        variant: "destructive",
+      });
     } finally {
       setIsSubmitting(false);
     }

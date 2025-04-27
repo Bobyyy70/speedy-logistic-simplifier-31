@@ -15,6 +15,32 @@ import { Plus } from "lucide-react";
 import { RateForm } from "./RateForm";
 import { useToast } from "@/hooks/use-toast";
 
+// Définir les types manuellement puisque nous ne pouvons pas modifier les types générés
+type CarrierBaseRate = {
+  id: string;
+  carrier_name: string;
+  service_code: string;
+  destination_zone: string;
+  weight_kg_max: number;
+  client_volume_tier: string;
+  base_rate_ht: number;
+  currency: string;
+  created_at?: string;
+}
+
+type TransportService = {
+  id: string;
+  carrier_name: string;
+  service_code: string;
+  service_name: string;
+  is_active: boolean;
+  created_at?: string;
+}
+
+type RateWithService = CarrierBaseRate & {
+  transport_services?: TransportService;
+}
+
 export function CarrierRatesAdmin() {
   const [isAddingRate, setIsAddingRate] = useState(false);
   const { toast } = useToast();
@@ -22,32 +48,32 @@ export function CarrierRatesAdmin() {
   const { data: rates, isLoading, refetch } = useQuery({
     queryKey: ["carrierRates"],
     queryFn: async () => {
-      // First, let's fetch the base rates
+      // Utiliser 'from' avec un type générique pour éviter les erreurs TypeScript
       const { data: ratesData, error: ratesError } = await supabase
-        .from("carrier_base_rates")
+        .from('carrier_base_rates')
         .select("*")
-        .order("carrier_name");
+        .order("carrier_name") as { data: CarrierBaseRate[] | null, error: any };
       
       if (ratesError) throw ratesError;
       
-      // Now, let's fetch all transport services to be able to join them manually
+      // Même approche pour les services
       const { data: servicesData, error: servicesError } = await supabase
-        .from("transport_services")
-        .select("*");
+        .from('transport_services')
+        .select("*") as { data: TransportService[] | null, error: any };
         
       if (servicesError) throw servicesError;
       
       // Map services by their service_code for easy lookup
-      const servicesMap = servicesData.reduce((acc, service) => {
+      const servicesMap = (servicesData || []).reduce<Record<string, TransportService>>((acc, service) => {
         acc[service.service_code] = service;
         return acc;
       }, {});
       
       // Combine the data
-      return ratesData.map(rate => ({
+      return (ratesData || []).map(rate => ({
         ...rate,
         transport_services: servicesMap[rate.service_code] || { service_name: "Service inconnu", carrier_name: rate.carrier_name }
-      }));
+      })) as RateWithService[];
     },
   });
 

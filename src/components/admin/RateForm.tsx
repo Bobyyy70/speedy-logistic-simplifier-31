@@ -30,6 +30,16 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
+// Définir les types manuellement
+type TransportService = {
+  id: string;
+  carrier_name: string;
+  service_code: string;
+  service_name: string;
+  is_active: boolean;
+  created_at?: string;
+}
+
 const rateFormSchema = z.object({
   carrier_name: z.string().min(1, "Le transporteur est requis"),
   service_code: z.string().min(1, "Le service est requis"),
@@ -73,12 +83,12 @@ export function RateForm({ onClose, onSuccess }: RateFormProps) {
     queryKey: ["transportServices"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from("transport_services")
+        .from('transport_services')
         .select("*")
-        .order("carrier_name,service_name");
+        .order("carrier_name,service_name") as { data: TransportService[] | null, error: any };
       
       if (error) throw error;
-      return data;
+      return data || [];
     },
   });
 
@@ -120,11 +130,11 @@ export function RateForm({ onClose, onSuccess }: RateFormProps) {
       };
 
       const { error } = await supabase
-        .from("carrier_base_rates")
-        .insert(rateData);
+        .from('carrier_base_rates')
+        .insert(rateData as any);
 
       if (error) {
-        if (error.code === "23505") { // Code de violation de contrainte d'unicité
+        if (error.code === '23505') { // Code de violation de contrainte d'unicité
           toast({
             title: "Erreur",
             description: "Ce tarif existe déjà (même transporteur, service, zone, poids et palier).",
