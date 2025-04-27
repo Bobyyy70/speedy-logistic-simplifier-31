@@ -2,7 +2,7 @@
 import React from "react";
 import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Shield, Clock, Package, BarChart3 } from "lucide-react";
+import { Shield, Clock, Truck } from "lucide-react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const performanceData = [
@@ -61,14 +61,14 @@ export function LogisticsPerformanceSection() {
           <Card className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-orange-100/20">
             <CardHeader className="flex flex-row items-center gap-4">
               <div className="bg-orange-100 dark:bg-orange-900/30 p-2.5 rounded-lg">
-                <Package className="h-6 w-6 text-orange-600 dark:text-orange-500" />
+                <Truck className="h-6 w-6 text-orange-600 dark:text-orange-500" />
               </div>
-              <CardTitle className="text-lg">Volume</CardTitle>
+              <CardTitle className="text-lg">Livraison France</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-3xl font-bold">2000+</p>
+              <p className="text-3xl font-bold">24-48h</p>
               <p className="text-sm text-muted-foreground">
-                Colis traités mensuellement
+                Délai moyen de livraison en France
               </p>
             </CardContent>
           </Card>
@@ -76,14 +76,14 @@ export function LogisticsPerformanceSection() {
           <Card className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-orange-100/20">
             <CardHeader className="flex flex-row items-center gap-4">
               <div className="bg-orange-100 dark:bg-orange-900/30 p-2.5 rounded-lg">
-                <BarChart3 className="h-6 w-6 text-orange-600 dark:text-orange-500" />
+                <Truck className="h-6 w-6 text-orange-600 dark:text-orange-500" />
               </div>
-              <CardTitle className="text-lg">Croissance</CardTitle>
+              <CardTitle className="text-lg">Livraison Europe</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-3xl font-bold">+21%</p>
+              <p className="text-3xl font-bold">48-72h</p>
               <p className="text-sm text-muted-foreground">
-                Augmentation mensuelle moyenne
+                Délai moyen de livraison en Europe
               </p>
             </CardContent>
           </Card>
@@ -135,3 +135,4 @@ export function LogisticsPerformanceSection() {
     </section>
   );
 }
+
