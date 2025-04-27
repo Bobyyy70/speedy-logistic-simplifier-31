@@ -1,13 +1,11 @@
 
 import React from "react";
-import { ChartContainer } from "@/components/ui/chart";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Clock, Truck, MessageCircle } from "lucide-react";
-import { LogoIcon } from "@/components/ui/LogoIcon";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function LogisticsPerformanceSection() {
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-br from-green-100 via-white to-blue-200 dark:from-green-950 dark:via-slate-900 dark:to-blue-900">
+    <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-br from-green-200 via-white to-blue-200 dark:from-green-800 dark:via-slate-950 dark:to-blue-900">
       <div className="container px-4 md:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tighter mb-4">
@@ -46,7 +44,7 @@ export function LogisticsPerformanceSection() {
               <p className="text-sm text-muted-foreground">
                 Traitement moyen des commandes
                 <br />
-                <span className="text-xs italic">* peut varier pendant les périodes Black Friday, Noël, etc.</span>
+                <span className="text-xs italic">* peut varier pendant les périodes de forte activité</span>
               </p>
             </CardContent>
           </Card>
@@ -64,6 +62,8 @@ export function LogisticsPerformanceSection() {
                 Délai moyen de livraison en France
                 <br />
                 <span className="text-xs italic">* Europe sous 48-72h</span>
+                <br />
+                <span className="text-xs italic">* peut varier pendant les périodes de forte activité</span>
               </p>
             </CardContent>
           </Card>
@@ -105,14 +105,12 @@ export function LogisticsPerformanceSection() {
               </Card>
             </div>
           </div>
-          <div className="h-[300px] w-full flex items-center justify-center">
-            <div className="w-[200px]">
-              <img
-                src="/lovable-uploads/849b9842-3d40-446c-b967-2453cdbea69e.png"
-                alt="SupplyOS Logo"
-                className="w-full h-auto"
-              />
-            </div>
+          <div className="h-[400px] w-full flex items-center justify-center">
+            <img
+              src="/lovable-uploads/849b9842-3d40-446c-b967-2453cdbea69e.png"
+              alt="SupplyOS Logo"
+              className="w-[300px] object-contain"
+            />
           </div>
         </div>
       </div>
