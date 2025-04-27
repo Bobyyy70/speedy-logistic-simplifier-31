@@ -72,7 +72,7 @@ export const MovingBorder = ({
           transform,
         }}
       >
-        {children}
+        <div className="h-2 w-2 rounded-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-white/80 to-transparent shadow-[0_0_8px_2px_rgba(255,255,255,0.6)] dark:shadow-[0_0_8px_2px_rgba(255,255,255,0.4)]" />
       </motion.div>
     </>
   );
