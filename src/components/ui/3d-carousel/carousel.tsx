@@ -31,7 +31,7 @@ const Carousel = memo(
 
     return (
       <div
-        className="flex h-full items-center justify-center bg-mauve-dark-2"
+        className="flex h-full items-center justify-center"
         style={{
           perspective: "1000px",
           transformStyle: "preserve-3d",
@@ -65,28 +65,38 @@ const Carousel = memo(
           }
           animate={controls}
         >
-          {cards.map((imgUrl, i) => (
+          {cards.map((card, i) => (
             <motion.div
-              key={`key-${imgUrl}-${i}`}
-              className="absolute flex h-full origin-center items-center justify-center rounded-xl bg-mauve-dark-2 p-2"
+              key={`key-${i}`}
+              className="absolute flex h-full origin-center items-center justify-center rounded-xl p-2 bg-white/10 dark:bg-black/10 backdrop-blur-sm"
               style={{
                 width: `${faceWidth}px`,
-                transform: `rotateY(${
-                  i * (360 / faceCount)
-                }deg) translateZ(${radius}px)`,
+                transform: `rotateY(${i * (360 / faceCount)}deg) translateZ(${radius}px)`,
               }}
-              onClick={() => handleClick(imgUrl)}
+              onClick={() => handleClick(card.image)}
             >
-              <motion.img
-                src={imgUrl}
-                alt={`keyword_${i} ${imgUrl}`}
-                layoutId={`img-${imgUrl}`}
-                className="pointer-events-none w-full rounded-xl object-cover aspect-square"
+              <motion.div
+                layoutId={`card-${i}`}
+                className="w-full h-full rounded-xl overflow-hidden glass-effect"
                 initial={{ filter: "blur(4px)" }}
-                layout="position"
                 animate={{ filter: "blur(0px)" }}
                 transition={transition}
-              />
+              >
+                <div className="p-6 flex flex-col h-full">
+                  <div className="mb-4 flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full overflow-hidden">
+                      <img src={card.image} alt={card.name} className="w-full h-full object-cover" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg">{card.name}</h3>
+                      <p className="text-sm text-muted-foreground">{card.title}</p>
+                    </div>
+                  </div>
+                  <blockquote className="text-sm italic flex-grow">
+                    "{card.quote}"
+                  </blockquote>
+                </div>
+              </motion.div>
             </motion.div>
           ))}
         </motion.div>
