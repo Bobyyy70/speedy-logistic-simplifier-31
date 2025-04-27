@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -46,7 +45,7 @@ const Services = () => {
         <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
           Discutons de vos besoins spécifiques et voyons comment Speed E-Log peut vous aider à simplifier vos opérations et à vous concentrer sur votre croissance.
         </p>
-        <Button size="lg" asChild className="bg-gradient-to-br from-blue-600 via-orange-400/20 to-green-500 hover:from-blue-700 hover:via-orange-500/30 hover:to-green-600">
+        <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600 rounded-full px-8">
           <Link to="/contact">Demander un Devis Personnalisé</Link>
         </Button>
       </section>

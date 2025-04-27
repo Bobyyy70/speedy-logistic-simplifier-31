@@ -1,18 +1,9 @@
 
 import React from "react";
-import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart";
+import { ChartContainer } from "@/components/ui/chart";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Shield, Clock, Truck } from "lucide-react";
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-
-const performanceData = [
-  { month: 'Jan', value: 450 },
-  { month: 'Fév', value: 380 },
-  { month: 'Mar', value: 520 },
-  { month: 'Avr', value: 490 },
-  { month: 'Mai', value: 540 },
-  { month: 'Juin', value: 580 },
-];
+import { Shield, Clock, Truck, MessageCircle } from "lucide-react";
+import { LogoIcon } from "@/components/ui/LogoIcon";
 
 export function LogisticsPerformanceSection() {
   return (
@@ -54,6 +45,8 @@ export function LogisticsPerformanceSection() {
               <p className="text-3xl font-bold">24h</p>
               <p className="text-sm text-muted-foreground">
                 Traitement moyen des commandes
+                <br />
+                <span className="text-xs italic">* peut varier pendant les périodes Black Friday, Noël, etc.</span>
               </p>
             </CardContent>
           </Card>
@@ -69,6 +62,8 @@ export function LogisticsPerformanceSection() {
               <p className="text-3xl font-bold">24-48h</p>
               <p className="text-sm text-muted-foreground">
                 Délai moyen de livraison en France
+                <br />
+                <span className="text-xs italic">* Europe sous 48-72h</span>
               </p>
             </CardContent>
           </Card>
@@ -76,14 +71,16 @@ export function LogisticsPerformanceSection() {
           <Card className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-orange-100/20">
             <CardHeader className="flex flex-row items-center gap-4">
               <div className="bg-orange-100 dark:bg-orange-900/30 p-2.5 rounded-lg">
-                <Truck className="h-6 w-6 text-orange-600 dark:text-orange-500" />
+                <MessageCircle className="h-6 w-6 text-orange-600 dark:text-orange-500" />
               </div>
-              <CardTitle className="text-lg">Livraison Europe</CardTitle>
+              <CardTitle className="text-lg">Service Client</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-3xl font-bold">48-72h</p>
+              <p className="text-3xl font-bold">2h</p>
               <p className="text-sm text-muted-foreground">
-                Délai moyen de livraison en Europe
+                Temps de réponse moyen
+                <br />
+                <span className="text-xs italic">* durant les horaires de travail. Chatbot disponible 24/7</span>
               </p>
             </CardContent>
           </Card>
@@ -108,31 +105,17 @@ export function LogisticsPerformanceSection() {
               </Card>
             </div>
           </div>
-          <div className="h-[300px] w-full">
-            <ChartContainer className="h-full" config={{}}>
-              <AreaChart data={performanceData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-                <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip content={<ChartTooltipContent />} />
-                <Area 
-                  type="monotone" 
-                  dataKey="value" 
-                  stroke="#f97316" 
-                  fill="url(#colorValue)" 
-                />
-                <defs>
-                  <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#f97316" stopOpacity={0.8}/>
-                    <stop offset="95%" stopColor="#f97316" stopOpacity={0}/>
-                  </linearGradient>
-                </defs>
-              </AreaChart>
-            </ChartContainer>
+          <div className="h-[300px] w-full flex items-center justify-center">
+            <div className="w-[200px]">
+              <img
+                src="/lovable-uploads/849b9842-3d40-446c-b967-2453cdbea69e.png"
+                alt="SupplyOS Logo"
+                className="w-full h-auto"
+              />
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 }
-
