@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -51,7 +50,8 @@ const FaqPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  return <div className="bg-gradient-to-br from-blue-100/90 via-white to-green-200/90 dark:from-slate-900 dark:via-slate-950 dark:to-green-800/90 py-12">
+  return (
+    <div className="bg-gradient-to-l from-blue-100/90 via-white to-green-200/90 dark:from-slate-900 dark:via-slate-950 dark:to-green-800/90 py-12">
       <Helmet>
         <title>FAQ - Questions Fréquentes Logistique | Speed E-Log</title>
         <meta name="description" content="Trouvez les réponses à vos questions sur nos services logistiques pour e-commerce : types de produits gérés, transport, intégration, suivi et plus encore." />
@@ -116,7 +116,8 @@ const FaqPage = () => {
           </Link>
         </motion.div>
       </div>
-    </div>;
+    </div>
+  );
 };
 
 export default FaqPage;
