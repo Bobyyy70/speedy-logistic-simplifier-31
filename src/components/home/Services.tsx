@@ -8,36 +8,49 @@ import { motion } from "framer-motion";
 const services = [{
   title: "Réception & Contrôle",
   description: "Réception de vos marchandises et contrôle qualité minutieux pour garantir l'intégrité de votre stock.",
-  icon: Package
+  icon: Package,
+  note: null
 }, {
   title: "Stockage Sécurisé",
   description: "Stockage optimal de vos produits avec suivi d'inventaire en temps réel dans notre entrepôt sécurisé.",
-  icon: FileText
+  icon: FileText,
+  note: null
 }, {
   title: "Préparation Commandes",
   description: "Picking, packing et personnalisation de vos colis avec rapidité et précision pour satisfaire vos clients.",
-  icon: Users
+  icon: Users,
+  note: "* peut varier dans les périodes de forte activité comme le black friday ou noel etc."
 }, {
   title: "Expédition Multi-Transporteurs",
   description: "Expédition via notre réseau de transporteurs avec suivi et tarifs négociés pour une livraison optimale.",
-  icon: Truck
+  icon: Truck,
+  note: "* Europe sous 48-72h dans livraison France"
 }, {
-  title: "Gestion des Retours",
-  description: "Traitement efficace des retours avec contrôle, reconditionnement et réintégration en stock si nécessaire.",
-  icon: Clock
+  title: "Réponse sous 2h au service client",
+  description: "Notre équipe support est disponible rapidement pour répondre à vos questions et résoudre vos problèmes.",
+  icon: Clock,
+  note: "* durant les horaires de travail, et sinon ils ont également le chatbot qui est déjà la première étape avant de passer au SAV"
 }, {
   title: "Précision Opérationnelle",
   description: "Taux d'erreur de préparation quasiment nul grâce à nos processus rigoureux et notre système de contrôle avancé.",
-  icon: ShieldCheck
+  icon: ShieldCheck,
+  note: null
 }];
 
 export function Services() {
   return (
     <section id="services" className="section-container">
-      <h2 className="section-title">Nos Services Logistiques</h2>
-      <p className="section-subtitle">
-        Une solution complète pour gérer efficacement votre chaîne logistique e-commerce
-      </p>
+      <div className="flex flex-col items-center mb-12">
+        <img 
+          src="/lovable-uploads/8c871008-d5f6-4ae5-b46f-3304f641cb8f.png" 
+          alt="SupplyOS Logo" 
+          className="w-32 h-auto mb-8"
+        />
+        <h2 className="section-title">Nos Services Logistiques</h2>
+        <p className="section-subtitle">
+          Une solution complète pour gérer efficacement votre chaîne logistique e-commerce
+        </p>
+      </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
         {services.map((service, index) => {
@@ -60,6 +73,11 @@ export function Services() {
                 <CardContent>
                   <CardDescription className="text-base text-gray-600 dark:text-gray-300">
                     {service.description}
+                    {service.note && (
+                      <p className="mt-2 text-sm text-muted-foreground italic">
+                        {service.note}
+                      </p>
+                    )}
                   </CardDescription>
                 </CardContent>
               </Card>
