@@ -1,7 +1,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { AnimatedButton } from "@/components/ui/moving-border";
 
 export function ContactCTA() {
   return (
@@ -15,12 +15,11 @@ export function ContactCTA() {
             Contactez-nous dès aujourd'hui pour obtenir un devis personnalisé et découvrir comment Speed E Log peut transformer votre chaîne logistique.
           </p>
           <Link to="/contact">
-            <Button 
-              size="lg" 
-              className="bg-gradient-to-br from-blue-600 via-orange-400/20 to-green-500 hover:from-blue-700 hover:via-orange-500/30 hover:to-green-600 rounded-3xl shadow-lg hover:shadow-orange-200/20 dark:hover:shadow-orange-900/20 transition-all duration-300"
+            <AnimatedButton 
+              className="shadow-lg hover:shadow-orange-200/20 dark:hover:shadow-orange-900/20"
             >
               Obtenir un devis gratuit <ArrowRight className="ml-2 h-4 w-4 text-orange-400" />
-            </Button>
+            </AnimatedButton>
           </Link>
         </div>
       </div>

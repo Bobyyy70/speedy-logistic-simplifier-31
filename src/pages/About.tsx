@@ -200,13 +200,12 @@ const About = () => {
             Découvrez comment Speed E Log peut devenir votre partenaire logistique
             et vous accompagner dans la croissance de votre entreprise e-commerce.
           </p>
-          <Button 
-            size="lg" 
-            className="bg-gradient-to-br from-blue-600 via-orange-400/20 to-green-500 hover:from-blue-700 hover:via-orange-500/30 hover:to-green-600 rounded-3xl shadow-lg hover:shadow-orange-200/20 dark:hover:shadow-orange-900/20 transition-all duration-300"
+          <AnimatedButton 
             asChild
+            className="shadow-lg hover:shadow-orange-200/20 dark:hover:shadow-orange-900/20"
           >
             <Link to="/contact">Demander un Devis Personnalisé</Link>
-          </Button>
+          </AnimatedButton>
         </div>
       </section>
     </div>;

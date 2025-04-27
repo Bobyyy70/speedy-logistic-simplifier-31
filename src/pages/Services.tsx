@@ -1,10 +1,10 @@
-
 import React from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Services as ServicesSection } from "@/components/home/Services";
 import { LogisticsPerformanceSection } from "@/components/sections/LogisticsPerformanceSection";
+import { AnimatedButton } from "@/components/ui/moving-border";
 
 const Services = () => {
   useEffect(() => {
@@ -45,13 +45,12 @@ const Services = () => {
         <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
           Discutons de vos besoins spécifiques et voyons comment Speed E-Log peut vous aider à simplifier vos opérations et à vous concentrer sur votre croissance.
         </p>
-        <Button 
-          asChild 
-          size="lg" 
-          className="bg-gradient-to-br from-blue-600 via-orange-400/20 to-green-500 hover:from-blue-700 hover:via-orange-500/30 hover:to-green-600 rounded-3xl shadow-lg hover:shadow-orange-200/20 dark:hover:shadow-orange-900/20 transition-all duration-300"
+        <AnimatedButton 
+          asChild
+          className="shadow-lg hover:shadow-orange-200/20 dark:hover:shadow-orange-900/20"
         >
           <Link to="/contact">Demander un Devis Personnalisé</Link>
-        </Button>
+        </AnimatedButton>
       </section>
     </div>
   );
