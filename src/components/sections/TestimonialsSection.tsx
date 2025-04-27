@@ -65,7 +65,7 @@ export function TestimonialsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <Card className="h-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-2 hover:border-primary/50 transition-all duration-300">
+            <Card className="h-full bg-white/20 dark:bg-slate-800/20 backdrop-blur-sm border-2 hover:border-primary/50 transition-all duration-300">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-2xl">
                   <Users className="h-6 w-6 text-primary" />
@@ -100,7 +100,7 @@ export function TestimonialsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <Card className="h-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-2 hover:border-primary/50 transition-all duration-300">
+            <Card className="h-full bg-white/20 dark:bg-slate-800/20 backdrop-blur-sm border-2 hover:border-primary/50 transition-all duration-300">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-2xl">
                   <Leaf className="h-6 w-6 text-primary" />

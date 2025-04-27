@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -201,14 +200,9 @@ const About = () => {
             Découvrez comment Speed E Log peut devenir votre partenaire logistique
             et vous accompagner dans la croissance de votre entreprise e-commerce.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600 text-white" asChild>
-              <Link to="/contact">Nous Contacter</Link>
-            </Button>
-            <Button size="lg" variant="outline" className="border-blue-300 dark:border-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/20" asChild>
-              <Link to="/services">Nos Services</Link>
-            </Button>
-          </div>
+          <Button size="lg" className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600 text-white" asChild>
+            <Link to="/contact">Demander un Devis Personnalisé</Link>
+          </Button>
         </div>
       </section>
     </div>;
