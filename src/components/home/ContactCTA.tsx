@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 export function ContactCTA() {
   return (
-    <section className="bg-gradient-to-br from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-800 py-16 md:py-[95px] px-0">
+    <section className="bg-gradient-to-br from-green-200 via-white to-blue-100 dark:from-green-800 dark:via-slate-950 dark:to-slate-900 py-16 md:py-[95px] px-0">
       <div className="section-container py-0 my-0">
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">

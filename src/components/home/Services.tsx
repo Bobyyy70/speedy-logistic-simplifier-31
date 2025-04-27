@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
+
 const services = [{
   title: "Réception & Contrôle",
   description: "Réception de vos marchandises et contrôle qualité minutieux pour garantir l'intégrité de votre stock.",
@@ -28,8 +29,9 @@ const services = [{
   description: "Taux d'erreur de préparation quasiment nul grâce à nos processus rigoureux et notre système de contrôle avancé.",
   icon: ShieldCheck
 }];
+
 export function Services() {
-  return <section id="services" className="w-full px-0 py-12 md:py-20 bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-700">
+  return <section id="services" className="w-full px-0 py-12 md:py-20 bg-gradient-to-br from-green-200 via-white to-blue-100 dark:from-green-800 dark:via-slate-950 dark:to-slate-900">
       <motion.div initial={{
       opacity: 0,
       y: 20
@@ -65,10 +67,10 @@ export function Services() {
           duration: 0.2
         }
       }}>
-            <Card className="transition-all duration-300 h-full border-opacity-80 bg-gradient-to-r from-blue-50 to-green-50 dark:from-slate-900 dark:to-green-950 hover:shadow-md">
+            <Card className="transition-all duration-300 h-full border-opacity-80 bg-gradient-to-br from-green-50/50 via-white to-blue-50/50 dark:from-green-950 dark:via-slate-900 dark:to-blue-950 hover:shadow-md">
               <CardHeader className="pb-4">
-                <div className="bg-gradient-to-r from-blue-400/10 to-green-400/10 w-12 h-12 rounded-md flex items-center justify-center mb-3">
-                  <service.icon className="h-6 w-6 text-primary" />
+                <div className="bg-orange-100/50 dark:bg-orange-900/30 w-12 h-12 rounded-md flex items-center justify-center mb-3">
+                  <service.icon className="h-6 w-6 text-orange-600 dark:text-orange-500" />
                 </div>
                 <CardTitle className="text-xl">{service.title}</CardTitle>
               </CardHeader>
@@ -80,7 +82,5 @@ export function Services() {
             </Card>
           </motion.div>)}
       </div>
-
-      
     </section>;
 }
