@@ -83,7 +83,7 @@ export const MovingBorder = ({
           transform,
         }}
       >
-        <div className="h-3 w-3 rounded-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-500 via-orange-400/80 to-transparent shadow-[0_0_12px_3px_rgba(249,115,22,0.6)] dark:shadow-[0_0_12px_3px_rgba(249,115,22,0.4)]" />
+        <div className="h-2 w-2 rounded-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-500 via-orange-400/80 to-transparent shadow-[0_0_8px_2px_rgba(249,115,22,0.6)] dark:shadow-[0_0_8px_2px_rgba(249,115,22,0.4)]" />
       </motion.div>
     </>
   );
