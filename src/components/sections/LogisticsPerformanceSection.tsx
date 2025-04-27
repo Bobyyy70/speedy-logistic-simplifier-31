@@ -1,11 +1,11 @@
-
 import React from "react";
 import { Shield, Clock, Truck, MessageCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function LogisticsPerformanceSection() {
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32">
+    <section className="w-full py-12 md:py-24 lg:py-32 relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-20 h-20 rounded-full bg-orange-100/10 dark:bg-orange-900/10" />
       <div className="container px-4 md:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tighter mb-4">
@@ -17,7 +17,7 @@ export function LogisticsPerformanceSection() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-12">
-          <Card className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-orange-100/20">
+          <Card className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-orange-100/20">
             <CardHeader className="flex flex-row items-center gap-4">
               <div className="bg-orange-100 dark:bg-orange-900/30 p-2.5 rounded-lg">
                 <Shield className="h-6 w-6 text-orange-600 dark:text-orange-500" />
@@ -32,7 +32,7 @@ export function LogisticsPerformanceSection() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-orange-100/20">
+          <Card className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-orange-100/20">
             <CardHeader className="flex flex-row items-center gap-4">
               <div className="bg-orange-100 dark:bg-orange-900/30 p-2.5 rounded-lg">
                 <Clock className="h-6 w-6 text-orange-600 dark:text-orange-500" />
@@ -49,7 +49,7 @@ export function LogisticsPerformanceSection() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-orange-100/20">
+          <Card className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-orange-100/20">
             <CardHeader className="flex flex-row items-center gap-4">
               <div className="bg-orange-100 dark:bg-orange-900/30 p-2.5 rounded-lg">
                 <Truck className="h-6 w-6 text-orange-600 dark:text-orange-500" />
@@ -68,7 +68,7 @@ export function LogisticsPerformanceSection() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-orange-100/20">
+          <Card className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-orange-100/20">
             <CardHeader className="flex flex-row items-center gap-4">
               <div className="bg-orange-100 dark:bg-orange-900/30 p-2.5 rounded-lg">
                 <MessageCircle className="h-6 w-6 text-orange-600 dark:text-orange-500" />
@@ -90,7 +90,7 @@ export function LogisticsPerformanceSection() {
           <div>
             <h3 className="text-2xl font-bold mb-4">Notre Technologie</h3>
             <div className="space-y-4">
-              <Card className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-orange-100/20">
+              <Card className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-orange-100/20">
                 <CardContent className="pt-6">
                   <h4 className="font-semibold mb-2">Supplyos - Notre Partenaire Technologique</h4>
                   <p className="text-muted-foreground mb-4">
@@ -105,15 +105,17 @@ export function LogisticsPerformanceSection() {
               </Card>
             </div>
           </div>
-          <div className="h-[500px] w-full flex items-center justify-center">
+          <div className="h-[500px] w-full flex items-center justify-center relative">
+            <div className="absolute -inset-4 bg-orange-100/5 dark:bg-orange-900/5 blur-xl rounded-full" />
             <img
               src="/lovable-uploads/849b9842-3d40-446c-b967-2453cdbea69e.png"
               alt="SupplyOS Logo"
-              className="w-[400px] h-auto object-contain"
+              className="w-[500px] aspect-[2/1] object-contain relative z-10"
             />
           </div>
         </div>
       </div>
+      <div className="absolute bottom-0 left-0 w-16 h-16 rounded-full bg-orange-100/20 dark:bg-orange-900/20" />
     </section>
   );
 }

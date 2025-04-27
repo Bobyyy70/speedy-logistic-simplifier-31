@@ -1,7 +1,6 @@
 
 import React from "react";
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Services as ServicesSection } from "@/components/home/Services";
@@ -13,8 +12,9 @@ const Services = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-r from-green-200 to-blue-200 dark:from-green-800 dark:to-blue-900">
-      <div className="container mx-auto py-16 px-4 bg-gradient-to-r from-blue-200 to-green-200 dark:from-blue-900 dark:to-green-800">
+    <div className="bg-gradient-to-r from-green-100/80 to-blue-100/80 dark:from-green-800/80 dark:to-blue-900/80">
+      <div className="container mx-auto py-16 px-4 bg-gradient-to-r from-blue-100/80 to-green-100/80 dark:from-blue-900/80 dark:to-green-800/80 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-12 h-12 rounded-full bg-orange-100/20 dark:bg-orange-900/20" />
         <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl text-center mb-6">
           Nos Services Logistiques pour E-commerce
         </h1>
@@ -22,17 +22,20 @@ const Services = () => {
           Des solutions complètes et sur mesure pour gérer efficacement votre chaîne logistique.
           Nous vous aidons à vous concentrer sur votre cœur de métier.
         </p>
+        <div className="absolute bottom-0 right-0 w-16 h-16 rounded-full bg-orange-100/10 dark:bg-orange-900/10" />
       </div>
       
-      <div className="bg-gradient-to-r from-green-200 to-blue-200 dark:from-green-800 dark:to-blue-900">
+      <div className="bg-gradient-to-r from-green-100/80 to-blue-100/80 dark:from-green-800/80 dark:to-blue-900/80 relative">
         <ServicesSection />
+        <div className="absolute top-1/2 right-4 w-8 h-8 rounded-full bg-orange-100/30 dark:bg-orange-900/30" />
       </div>
 
-      <div className="bg-gradient-to-r from-blue-200 to-green-200 dark:from-blue-900 dark:to-green-800">
+      <div className="bg-gradient-to-r from-blue-100/80 to-green-100/80 dark:from-blue-900/80 dark:to-green-800/80">
         <LogisticsPerformanceSection />
       </div>
       
-      <section className="container mx-auto mt-12 md:mt-16 lg:mt-20 text-center px-4 pb-16 bg-gradient-to-r from-green-200 to-blue-200 dark:from-green-800 dark:to-blue-900">
+      <section className="container mx-auto mt-12 md:mt-16 lg:mt-20 text-center px-4 pb-16 bg-gradient-to-r from-green-100/80 to-blue-100/80 dark:from-green-800/80 dark:to-blue-900/80 relative">
+        <div className="absolute top-0 left-1/2 w-10 h-10 rounded-full bg-orange-100/20 dark:bg-orange-900/20" />
         <h2 className="text-2xl font-semibold tracking-tight mb-4">
           Prêt à externaliser votre logistique ?
         </h2>
