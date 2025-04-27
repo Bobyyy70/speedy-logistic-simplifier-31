@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
-
 const services = [{
   title: "Réception & Contrôle",
   description: "Réception de vos marchandises et contrôle qualité minutieux pour garantir l'intégrité de votre stock.",
@@ -29,7 +28,6 @@ const services = [{
   description: "Taux d'erreur de préparation quasiment nul grâce à nos processus rigoureux et notre système de contrôle avancé.",
   icon: ShieldCheck
 }];
-
 export function Services() {
   return <section id="services" className="w-full px-0 py-12 md:py-20 bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-700">
       <motion.div initial={{
@@ -83,21 +81,6 @@ export function Services() {
           </motion.div>)}
       </div>
 
-      <motion.div initial={{
-      opacity: 0,
-      y: 10
-    }} whileInView={{
-      opacity: 1,
-      y: 0
-    }} viewport={{
-      once: true
-    }} transition={{
-      duration: 0.5,
-      delay: 0.3
-    }} className="mt-12 text-center rounded-none">
-        <Button asChild className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600">
-          <Link to="/services">En savoir plus sur nos services</Link>
-        </Button>
-      </motion.div>
+      
     </section>;
 }
