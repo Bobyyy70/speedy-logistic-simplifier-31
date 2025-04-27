@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { Target, Star, MapPin, History, Truck, Quote } from "lucide-react";
+import { AnimatedButton } from "@/components/ui/moving-border";
 
 const About = () => {
   useEffect(() => {
@@ -123,7 +124,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Notre Mission Section - Image on left, content on right */}
       <section className="py-16 md:py-20 bg-gradient-to-r from-blue-100/80 via-blue-50/50 to-green-100/50 dark:from-slate-900/80 dark:via-blue-950/30 dark:to-green-950/30">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
@@ -161,7 +161,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Nos Valeurs Section - Content on left, image on right */}
       <section className="py-16 md:py-20 bg-gradient-to-r from-blue-100/80 via-blue-50/50 to-green-100/50 dark:from-slate-900/80 dark:via-blue-950/30 dark:to-green-950/30">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
