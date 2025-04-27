@@ -1,5 +1,5 @@
 
-import { ThreeDPhotoCarousel } from "@/components/ui/3d-carousel";
+import { TestimonialsCarousel } from "@/components/ui/testimonials/TestimonialsCarousel";
 
 export function Testimonials() {
   return (
@@ -11,7 +11,7 @@ export function Testimonials() {
         </p>
 
         <div className="mt-12">
-          <ThreeDPhotoCarousel />
+          <TestimonialsCarousel />
         </div>
       </div>
     </section>
