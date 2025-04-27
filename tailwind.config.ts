@@ -90,6 +90,10 @@ export default {
           700: '#C2410C',
           800: '#9A3412',
           900: '#7C2D12',
+        },
+        icon: {
+          DEFAULT: "#FB923C",
+          hover: "#F97316",
         }
       },
       borderRadius: {
