@@ -1,3 +1,4 @@
+
 "use client";
 import React from "react";
 import { MovingBorder } from "./moving-border";
@@ -27,7 +28,7 @@ export function AnimatedButton({
   return (
     <Component
       className={cn(
-        "bg-transparent relative h-12 md:h-14 px-6 md:px-8 overflow-hidden",
+        "bg-transparent relative h-14 md:h-16 px-8 md:px-10 overflow-hidden",
         containerClassName
       )}
       style={{
@@ -44,7 +45,7 @@ export function AnimatedButton({
 
       <div
         className={cn(
-          "relative bg-gradient-to-br from-blue-600 via-orange-400/20 to-green-500 hover:from-blue-700 hover:via-orange-500/30 hover:to-green-600 backdrop-blur-xl text-white flex items-center justify-center w-full h-full text-sm antialiased transition-all duration-300",
+          "relative bg-gradient-to-br from-blue-600 via-orange-400/20 to-green-500 hover:from-blue-700 hover:via-orange-500/30 hover:to-green-600 backdrop-blur-xl text-white flex items-center justify-center w-full h-full text-base antialiased transition-all duration-300",
           className
         )}
         style={{
