@@ -16,7 +16,7 @@ export const MovingBorder = ({
   ry,
   ...otherProps
 }: {
-  children: React.ReactNode;
+  children?: React.ReactNode; // Made children optional
   duration?: number;
   rx?: string;
   ry?: string;
