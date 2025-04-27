@@ -50,8 +50,8 @@ const Header = () => {
   }];
 
   return <header className={cn(
-    "sticky top-0 z-50 w-full bg-transparent",
-    isScrolled && "backdrop-blur-sm bg-white/20 dark:bg-slate-900/20"
+    "sticky top-0 z-50 w-full bg-gradient-to-r from-blue-100/80 via-white/80 to-green-200/80 dark:from-slate-900/80 dark:via-slate-950/80 dark:to-green-800/80 backdrop-blur supports-[backdrop-filter]:bg-background/60", 
+    isScrolled && "shadow-sm"
   )}>
       <div className="container flex h-16 items-center justify-between py-0 my-[8px]">
         <NavLink to="/" className="flex items-center">
