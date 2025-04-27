@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Shield, Clock, Truck, MessageCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,73 +18,58 @@ export function LogisticsPerformanceSection() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-12">
-          <Card className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-orange-100/20">
-            <CardHeader className="flex flex-row items-center gap-4">
-              <div className="bg-orange-100 dark:bg-orange-900/30 p-2.5 rounded-lg">
-                <Shield className="h-6 w-6 text-orange-600 dark:text-orange-500" />
-              </div>
-              <CardTitle className="text-lg">Précision</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-3xl font-bold">99.85%</p>
-              <p className="text-sm text-muted-foreground">
-                Taux de précision sur plus de 2000 colis
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-orange-100/20">
-            <CardHeader className="flex flex-row items-center gap-4">
-              <div className="bg-orange-100 dark:bg-orange-900/30 p-2.5 rounded-lg">
-                <Clock className="h-6 w-6 text-orange-600 dark:text-orange-500" />
-              </div>
-              <CardTitle className="text-lg">Délai</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-3xl font-bold">24h</p>
-              <p className="text-sm text-muted-foreground">
-                Traitement moyen des commandes
-                <br />
-                <span className="text-xs italic">* peut varier pendant les périodes de forte activité</span>
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-orange-100/20">
-            <CardHeader className="flex flex-row items-center gap-4">
-              <div className="bg-orange-100 dark:bg-orange-900/30 p-2.5 rounded-lg">
-                <Truck className="h-6 w-6 text-orange-600 dark:text-orange-500" />
-              </div>
-              <CardTitle className="text-lg">Livraison France</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-3xl font-bold">24-48h</p>
-              <p className="text-sm text-muted-foreground">
-                Délai moyen de livraison en France
-                <br />
-                <span className="text-xs italic">* Europe sous 48-72h</span>
-                <br />
-                <span className="text-xs italic">* peut varier pendant les périodes de forte activité</span>
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-orange-100/20">
-            <CardHeader className="flex flex-row items-center gap-4">
-              <div className="bg-orange-100 dark:bg-orange-900/30 p-2.5 rounded-lg">
-                <MessageCircle className="h-6 w-6 text-orange-600 dark:text-orange-500" />
-              </div>
-              <CardTitle className="text-lg">Service Client</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-3xl font-bold">2h</p>
-              <p className="text-sm text-muted-foreground">
-                Temps de réponse moyen
-                <br />
-                <span className="text-xs italic">* durant les horaires de travail. Chatbot disponible 24/7</span>
-              </p>
-            </CardContent>
-          </Card>
+          {[
+            {
+              icon: Shield,
+              title: "Précision",
+              value: "99.85%",
+              description: "Taux de précision sur plus de 2000 colis"
+            },
+            {
+              icon: Clock,
+              title: "Délai",
+              value: "24h",
+              description: "Traitement moyen des commandes",
+              note: "* peut varier pendant les périodes de forte activité"
+            },
+            {
+              icon: Truck,
+              title: "Livraison France",
+              value: "24-48h",
+              description: "Délai moyen de livraison en France",
+              notes: ["* Europe sous 48-72h", "* peut varier pendant les périodes de forte activité"]
+            },
+            {
+              icon: MessageCircle,
+              title: "Service Client",
+              value: "2h",
+              description: "Temps de réponse moyen",
+              note: "* durant les horaires de travail. Chatbot disponible 24/7"
+            }
+          ].map((item, index) => (
+            <Card key={index} className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-orange-100/20">
+              <CardHeader className="flex flex-row items-center gap-4">
+                <div className="bg-orange-100 dark:bg-orange-900/30 p-2.5 rounded-lg">
+                  <item.icon className="h-6 w-6 text-orange-600 dark:text-orange-500" />
+                </div>
+                <CardTitle className="text-lg">{item.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-3xl font-bold">{item.value}</p>
+                <p className="text-sm text-muted-foreground">
+                  {item.description}
+                  {item.note && <br />}
+                  {item.note && <span className="text-xs italic">{item.note}</span>}
+                  {item.notes && item.notes.map((note, i) => (
+                    <React.Fragment key={i}>
+                      <br />
+                      <span className="text-xs italic">{note}</span>
+                    </React.Fragment>
+                  ))}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 items-center">
