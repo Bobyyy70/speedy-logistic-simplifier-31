@@ -43,7 +43,7 @@ export function AnimatedButton({
         <MovingBorder duration={duration} rx="30%" ry="30%">
           <div
             className={cn(
-              "h-20 w-20 opacity-[0.8] bg-[radial-gradient(var(--gradient-color,theme(colors.blue.500))_40%,transparent_60%)]",
+              "h-6 w-6 opacity-100 bg-[radial-gradient(circle,_#fff_0%,_transparent_70%)] blur-[2px]",
               borderClassName
             )}
           />
