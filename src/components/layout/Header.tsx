@@ -8,17 +8,14 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose 
 import { NavBar } from "@/components/ui/tubelight-navbar";
 import { Home, Briefcase, Info, FileQuestion, Contact } from 'lucide-react';
 import { useIsMobile } from "@/hooks/use-mobile";
-
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const isMobile = useIsMobile();
-
   useEffect(() => {
     setOpen(false);
   }, [location]);
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -26,7 +23,6 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
   const navigationItems = [{
     name: "Accueil",
     url: "/",
@@ -48,7 +44,6 @@ const Header = () => {
     url: "/contact",
     icon: Contact
   }];
-
   return <header className={cn("sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60", isScrolled && "shadow-sm")}>
       <div className="container flex h-16 items-center justify-between py-0 my-[8px]">
         <NavLink to="/" className="flex items-center">
@@ -96,9 +91,7 @@ const Header = () => {
 
         <div className="hidden md:block">
           <NavLink to="/contact">
-            <Button variant="solid" size="default" className="py-0">
-              Obtenir un devis
-            </Button>
+            
           </NavLink>
         </div>
       </div>
@@ -106,5 +99,4 @@ const Header = () => {
       {isMobile && <NavBar items={navigationItems.slice(0, 5)} className="z-50" />}
     </header>;
 };
-
 export default Header;
