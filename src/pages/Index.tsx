@@ -1,8 +1,8 @@
+
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ChallengesSection } from "@/components/sections/ChallengesSection";
-import { Services } from "@/components/home/Services";
 import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
 import { WhyUsSection } from "@/components/sections/WhyUsSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
@@ -32,7 +32,6 @@ const Index = () => {
       <HeroSection />
       <LogisticsFeatureSection />
       <ChallengesSection />
-      <Services />
       <HowItWorksSection />
       <WhyUsSection />
       <TestimonialsSection />
