@@ -13,20 +13,8 @@ const Services = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-green-200 via-white to-blue-200 dark:from-green-800 dark:via-slate-950 dark:to-blue-900">
-      <Helmet>
-        <title>Nos Services Logistique E-commerce | Speed E-Log</title>
-        <meta 
-          name="description" 
-          content="Découvrez nos services logistiques complets pour e-commerce : réception, stockage, préparation de commandes, expédition optimisée. Adapté aux PME." 
-        />
-        <meta property="og:title" content="Nos Services Logistique E-commerce | Speed E-Log" />
-        <meta 
-          property="og:description" 
-          content="Découvrez nos services logistiques complets pour e-commerce : réception, stockage, préparation de commandes, expédition optimisée. Adapté aux PME." 
-        />
-      </Helmet>
-      <div className="container mx-auto py-16 px-4">
+    <div className="bg-gradient-to-r from-green-200 to-blue-200 dark:from-green-800 dark:to-blue-900">
+      <div className="container mx-auto py-16 px-4 bg-gradient-to-r from-blue-200 to-green-200 dark:from-blue-900 dark:to-green-800">
         <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl text-center mb-6">
           Nos Services Logistiques pour E-commerce
         </h1>
@@ -36,10 +24,15 @@ const Services = () => {
         </p>
       </div>
       
-      <ServicesSection />
-      <LogisticsPerformanceSection />
+      <div className="bg-gradient-to-r from-green-200 to-blue-200 dark:from-green-800 dark:to-blue-900">
+        <ServicesSection />
+      </div>
+
+      <div className="bg-gradient-to-r from-blue-200 to-green-200 dark:from-blue-900 dark:to-green-800">
+        <LogisticsPerformanceSection />
+      </div>
       
-      <section className="container mx-auto mt-12 md:mt-16 lg:mt-20 text-center px-4 pb-16">
+      <section className="container mx-auto mt-12 md:mt-16 lg:mt-20 text-center px-4 pb-16 bg-gradient-to-r from-green-200 to-blue-200 dark:from-green-800 dark:to-blue-900">
         <h2 className="text-2xl font-semibold tracking-tight mb-4">
           Prêt à externaliser votre logistique ?
         </h2>

@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function LogisticsPerformanceSection() {
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-br from-green-200 via-white to-blue-200 dark:from-green-800 dark:via-slate-950 dark:to-blue-900">
+    <section className="w-full py-12 md:py-24 lg:py-32">
       <div className="container px-4 md:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tighter mb-4">
@@ -105,11 +105,11 @@ export function LogisticsPerformanceSection() {
               </Card>
             </div>
           </div>
-          <div className="h-[400px] w-full flex items-center justify-center">
+          <div className="h-[500px] w-full flex items-center justify-center">
             <img
               src="/lovable-uploads/849b9842-3d40-446c-b967-2453cdbea69e.png"
               alt="SupplyOS Logo"
-              className="w-[300px] object-contain"
+              className="w-[400px] h-auto object-contain"
             />
           </div>
         </div>
