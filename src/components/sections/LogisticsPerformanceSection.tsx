@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Shield, Clock, Truck, MessageCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -94,9 +93,9 @@ export function LogisticsPerformanceSection() {
           <div className="h-[500px] w-full flex items-center justify-center relative">
             <div className="absolute -inset-4 bg-orange-100/5 dark:bg-orange-900/5 blur-xl rounded-full" />
             <img
-              src="/lovable-uploads/849b9842-3d40-446c-b967-2453cdbea69e.png"
+              src="/lovable-uploads/7493ca6a-64c0-484f-9f05-4ec9b7847f32.png"
               alt="SupplyOS Logo"
-              className="w-[500px] aspect-[2/1] object-contain relative z-10"
+              className="w-[500px] aspect-[2/1] object-contain relative z-10 mix-blend-multiply dark:mix-blend-normal"
             />
           </div>
         </div>
