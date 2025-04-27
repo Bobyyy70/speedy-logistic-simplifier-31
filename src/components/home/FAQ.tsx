@@ -1,4 +1,6 @@
+
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+
 const faqs = [{
   question: "Quels types de produits gérez-vous ?",
   answer: "Nous sommes spécialisés dans les produits non fragiles, non périssables, sans température dirigée, et dont le poids ne dépasse pas 30 kg. Nous sommes particulièrement adaptés aux produits à forte rotation ou exclusifs comme les compléments alimentaires, cosmétiques, accessoires, textile, etc."
@@ -18,6 +20,31 @@ const faqs = [{
   question: "Comment gérez-vous les retours clients ?",
   answer: "Nous traitons les retours avec le même soin que les expéditions. Chaque retour est réceptionné, contrôlé et, selon vos instructions, remis en stock, mis de côté ou recyclé. Vous êtes notifié à chaque étape du processus via notre plateforme."
 }];
+
 export function FAQ() {
-  return;
+  return (
+    <section className="container px-4 md:px-6 py-12 md:py-24 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-orange-100/20 rounded-lg my-12">
+      <div className="text-center mb-8 md:mb-12">
+        <h2 className="text-3xl font-bold tracking-tighter mb-4">Questions Fréquentes</h2>
+        <p className="text-muted-foreground md:text-lg max-w-3xl mx-auto">
+          Trouvez les réponses à vos interrogations sur nos services de logistique e-commerce
+        </p>
+      </div>
+      
+      <div className="max-w-3xl mx-auto">
+        <Accordion type="single" collapsible className="w-full">
+          {faqs.map((faq, index) => (
+            <AccordionItem key={index} value={`item-${index}`}>
+              <AccordionTrigger className="text-left font-semibold">
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                {faq.answer}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+    </section>
+  );
 }
