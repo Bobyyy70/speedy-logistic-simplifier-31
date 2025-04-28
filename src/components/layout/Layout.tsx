@@ -20,28 +20,22 @@ export const Layout: React.FC<LayoutProps> = ({
         <link rel="canonical" href="https://speedelog.fr" />
       </Helmet>
 
-      {/* Unified Gradient Background Container */}
+      {/* Gradient Background Container */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
-        {/* Main radial gradient for white center */}
-        <div className="absolute inset-0 bg-gradient-radial from-white via-white/95 to-transparent dark:from-slate-950 dark:via-slate-900/95 dark:to-transparent"></div>
+        {/* Background mesh gradient */}
+        <div className="absolute inset-0 bg-gradient-radial from-white via-white/90 to-white/80 dark:from-slate-950 dark:via-slate-900/90 dark:to-slate-900/80"></div>
         
         {/* Top left blue blob */}
-        <div className="absolute -top-40 -left-40 w-3/4 h-3/4 bg-speedelog-600/30 dark:bg-speedelog-700/30 rounded-full blur-[100px]"></div>
+        <div className="absolute -top-20 -left-20 w-2/3 h-2/3 bg-speedelog-600/30 dark:bg-speedelog-700/30 rounded-full blur-3xl"></div>
         
         {/* Bottom right blue blob */}
-        <div className="absolute -bottom-40 -right-40 w-3/4 h-3/4 bg-speedelog-600/30 dark:bg-speedelog-700/30 rounded-full blur-[100px]"></div>
+        <div className="absolute -bottom-20 -right-20 w-2/3 h-2/3 bg-speedelog-600/30 dark:bg-speedelog-700/30 rounded-full blur-3xl"></div>
         
-        {/* Right side purple blob */}
-        <div className="absolute top-1/2 -right-20 -translate-y-1/2 w-1/3 h-3/4 bg-purple-500/20 dark:bg-purple-700/20 rounded-full blur-[80px]"></div>
+        {/* Top right green blob */}
+        <div className="absolute -top-20 -right-20 w-2/3 h-2/3 bg-green-500/20 dark:bg-green-700/20 rounded-full blur-3xl"></div>
         
-        {/* Top right green blob - smaller and more transparent */}
-        <div className="absolute -top-20 right-1/3 w-1/2 h-1/2 bg-green-500/15 dark:bg-green-700/15 rounded-full blur-[60px]"></div>
-        
-        {/* Bottom left green blob - smaller and more transparent */}
-        <div className="absolute -bottom-20 left-1/3 w-1/2 h-1/2 bg-green-500/15 dark:bg-green-700/15 rounded-full blur-[60px]"></div>
-        
-        {/* Center blue accent - very subtle to blend with white center */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 bg-speedelog-200/20 dark:bg-speedelog-800/10 rounded-full blur-[80px]"></div>
+        {/* Bottom left green blob */}
+        <div className="absolute -bottom-20 -left-20 w-2/3 h-2/3 bg-green-500/20 dark:bg-green-700/20 rounded-full blur-3xl"></div>
         
         {/* Extra subtle texture overlay */}
         <div className="absolute inset-0 bg-[url('/placeholder.svg')] opacity-[0.02] bg-repeat mix-blend-overlay"></div>
