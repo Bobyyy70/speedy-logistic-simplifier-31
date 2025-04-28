@@ -5,7 +5,7 @@ import { AnimatedButton } from "@/components/ui/moving-border";
 
 export function ContactCTA() {
   return (
-    <section className="py-16 md:py-[95px] px-0 transparent-section">
+    <section className="py-16 md:py-[95px] px-0 blend-with-bottom">
       <div className="section-container py-0 my-0">
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
