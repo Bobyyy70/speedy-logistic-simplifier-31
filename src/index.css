@@ -23,4 +23,8 @@
   .section-subtitle {
     @apply text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-12;
   }
+  
+  .bg-blur-backdrop {
+    @apply backdrop-blur-md bg-white/10 dark:bg-slate-900/10;
+  }
 }

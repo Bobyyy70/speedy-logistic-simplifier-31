@@ -50,7 +50,7 @@ export function NavBar({ items, className }: NavBarProps) {
         className,
       )}
     >
-      <div className="flex items-center gap-3 bg-white/40 dark:bg-slate-900/40 border border-white/30 dark:border-slate-700/30 backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
+      <div className="flex items-center gap-3 bg-white/60 dark:bg-slate-900/60 border border-white/40 dark:border-slate-700/40 backdrop-blur-xl py-1 px-1 rounded-full shadow-lg">
         {items.map((item) => {
           const Icon = item.icon
           const isActive = activeTab === item.name
@@ -63,7 +63,7 @@ export function NavBar({ items, className }: NavBarProps) {
               className={cn(
                 "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
                 "text-foreground/80 hover:text-primary",
-                isActive && "bg-white/50 dark:bg-slate-800/50 text-primary",
+                isActive && "bg-white/70 dark:bg-slate-800/70 text-primary",
               )}
             >
               <span className="hidden md:inline">{item.name}</span>
@@ -82,9 +82,9 @@ export function NavBar({ items, className }: NavBarProps) {
                   }}
                 >
                   <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-primary rounded-t-full">
-                    <div className="absolute w-12 h-6 bg-speedelog-400/40 rounded-full blur-md -top-2 -left-2" />
-                    <div className="absolute w-8 h-6 bg-speedelog-400/40 rounded-full blur-md -top-1" />
-                    <div className="absolute w-4 h-4 bg-speedelog-400/40 rounded-full blur-sm top-0 left-2" />
+                    <div className="absolute w-12 h-6 bg-speedelog-400/60 rounded-full blur-md -top-2 -left-2" />
+                    <div className="absolute w-8 h-6 bg-speedelog-400/60 rounded-full blur-md -top-1" />
+                    <div className="absolute w-4 h-4 bg-speedelog-400/60 rounded-full blur-sm top-0 left-2" />
                   </div>
                 </motion.div>
               )}
