@@ -3,9 +3,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { LogoIconWithText } from "@/components/ui/LogoIcon";
 import { Mail, Phone, MapPin } from "lucide-react";
+
 export function Footer() {
   const currentYear = new Date().getFullYear();
-  return <footer className="border-t border-gray-200/30 dark:border-gray-700/30 bg-white/10 dark:bg-slate-900/10 backdrop-blur-sm">
+  return <footer className="bg-transparent backdrop-blur-sm">
       <div className="container mx-auto px-4 py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Logo et description */}
@@ -49,8 +50,8 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="border-t border-gray-200/30 dark:border-gray-700/30 pt-8 text-center">
+        {/* Copyright - removed border-t */}
+        <div className="pt-8 text-center">
           <p className="text-sm text-muted-foreground">
             © {currentYear} Speed E-Log. Tous droits réservés. Construit avec passion à Port-sur-Saône.
           </p>
