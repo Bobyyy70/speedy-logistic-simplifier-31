@@ -21,24 +21,24 @@ export const Layout: React.FC<LayoutProps> = ({
       </Helmet>
 
       {/* Gradient Background Container */}
-      <div className="fixed inset-0 -z-10">
-        {/* Top Left Quadrant - Blue */}
-        <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-speedelog-300 via-speedelog-200/90 to-white/95 dark:from-slate-900 dark:via-slate-800/90 dark:to-white/5" />
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        {/* Background mesh gradient */}
+        <div className="absolute inset-0 bg-gradient-radial from-white via-white/90 to-white/80 dark:from-slate-950 dark:via-slate-900/90 dark:to-slate-900/80"></div>
         
-        {/* Top Right Quadrant - Green */}
-        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-green-300 via-green-200/90 to-white/95 dark:from-green-800 dark:via-green-900/90 dark:to-white/5" />
+        {/* Top left blue blob */}
+        <div className="absolute -top-20 -left-20 w-2/3 h-2/3 bg-speedelog-600/30 dark:bg-speedelog-700/30 rounded-full blur-3xl"></div>
         
-        {/* Bottom Left Quadrant - Green */}
-        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-green-300 via-green-200/90 to-white/95 dark:from-green-800 dark:via-green-900/90 dark:to-white/5" />
+        {/* Bottom right blue blob */}
+        <div className="absolute -bottom-20 -right-20 w-2/3 h-2/3 bg-speedelog-600/30 dark:bg-speedelog-700/30 rounded-full blur-3xl"></div>
         
-        {/* Bottom Right Quadrant - Blue */}
-        <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-speedelog-300 via-speedelog-200/90 to-white/95 dark:from-slate-900 dark:via-slate-800/90 dark:to-white/5" />
+        {/* Top right green blob */}
+        <div className="absolute -top-20 -right-20 w-2/3 h-2/3 bg-green-500/20 dark:bg-green-700/20 rounded-full blur-3xl"></div>
         
-        {/* Center Cross - Vertical */}
-        <div className="absolute left-1/2 top-0 h-full w-px bg-gradient-to-b from-white/0 via-white/80 to-white/0 dark:from-white/0 dark:via-white/10 dark:to-white/0" />
+        {/* Bottom left green blob */}
+        <div className="absolute -bottom-20 -left-20 w-2/3 h-2/3 bg-green-500/20 dark:bg-green-700/20 rounded-full blur-3xl"></div>
         
-        {/* Center Cross - Horizontal */}
-        <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-white/0 via-white/80 to-white/0 dark:from-white/0 dark:via-white/10 dark:to-white/0" />
+        {/* Extra subtle texture overlay */}
+        <div className="absolute inset-0 bg-[url('/placeholder.svg')] opacity-[0.02] bg-repeat mix-blend-overlay"></div>
       </div>
 
       <Header />
