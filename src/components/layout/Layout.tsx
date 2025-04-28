@@ -25,23 +25,26 @@ export const Layout: React.FC<LayoutProps> = ({
         {/* Main radial gradient for white center */}
         <div className="absolute inset-0 bg-gradient-radial from-white via-white/95 to-transparent dark:from-slate-950 dark:via-slate-900/95 dark:to-transparent"></div>
         
-        {/* Top left blue blob */}
-        <div className="absolute -top-40 -left-40 w-3/4 h-3/4 bg-speedelog-600/30 dark:bg-speedelog-700/30 rounded-full blur-[100px]"></div>
+        {/* Large top left blue blob - expanded */}
+        <div className="absolute -top-[30%] -left-[30%] w-[120%] h-[120%] bg-speedelog-600/25 dark:bg-speedelog-700/25 rounded-full blur-[120px]"></div>
         
-        {/* Bottom right blue blob */}
-        <div className="absolute -bottom-40 -right-40 w-3/4 h-3/4 bg-speedelog-600/30 dark:bg-speedelog-700/30 rounded-full blur-[100px]"></div>
+        {/* Large bottom right blue blob - expanded */}
+        <div className="absolute -bottom-[30%] -right-[30%] w-[120%] h-[120%] bg-speedelog-600/25 dark:bg-speedelog-700/25 rounded-full blur-[120px]"></div>
         
-        {/* Right side purple blob */}
-        <div className="absolute top-1/2 -right-20 -translate-y-1/2 w-1/3 h-3/4 bg-purple-500/20 dark:bg-purple-700/20 rounded-full blur-[80px]"></div>
+        {/* Large right side purple blob - more visible */}
+        <div className="absolute top-1/2 -right-[15%] -translate-y-1/2 w-2/3 h-[90%] bg-purple-500/20 dark:bg-purple-700/20 rounded-full blur-[100px]"></div>
         
-        {/* Top right green blob - smaller and more transparent */}
-        <div className="absolute -top-20 right-1/3 w-1/2 h-1/2 bg-green-500/15 dark:bg-green-700/15 rounded-full blur-[60px]"></div>
+        {/* Top right green blob - subtle */}
+        <div className="absolute -top-[10%] right-1/4 w-2/3 h-2/3 bg-green-500/10 dark:bg-green-700/10 rounded-full blur-[90px]"></div>
         
-        {/* Bottom left green blob - smaller and more transparent */}
-        <div className="absolute -bottom-20 left-1/3 w-1/2 h-1/2 bg-green-500/15 dark:bg-green-700/15 rounded-full blur-[60px]"></div>
+        {/* Bottom left green blob - subtle */}
+        <div className="absolute -bottom-[10%] left-1/4 w-2/3 h-2/3 bg-green-500/10 dark:bg-green-700/10 rounded-full blur-[90px]"></div>
         
-        {/* Center blue accent - very subtle to blend with white center */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 bg-speedelog-200/20 dark:bg-speedelog-800/10 rounded-full blur-[80px]"></div>
+        {/* Center white-blue accent to enhance the center brightness */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-white/30 dark:bg-slate-900/30 rounded-full blur-[100px]"></div>
+        
+        {/* Central blue tint - very subtle */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 bg-speedelog-200/10 dark:bg-speedelog-800/10 rounded-full blur-[60px]"></div>
         
         {/* Extra subtle texture overlay */}
         <div className="absolute inset-0 bg-[url('/placeholder.svg')] opacity-[0.02] bg-repeat mix-blend-overlay"></div>
