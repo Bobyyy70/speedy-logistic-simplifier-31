@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/neon-button";
@@ -50,7 +51,7 @@ const Header = () => {
   }];
 
   return <header className={cn(
-    "sticky top-0 z-50 w-full bg-gradient-to-r from-blue-100/80 via-white/80 to-green-200/80 dark:from-slate-900/80 dark:via-slate-950/80 dark:to-green-800/80 backdrop-blur supports-[backdrop-filter]:bg-background/60", 
+    "sticky top-0 z-50 w-full bg-transparent backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-slate-950/60", 
     isScrolled && "shadow-sm"
   )}>
       <div className="container flex h-16 items-center justify-between py-0 my-[8px]">
@@ -99,7 +100,9 @@ const Header = () => {
 
         <div className="hidden md:block">
           <NavLink to="/contact">
-            
+            <Button variant="solid" size="default">
+              Obtenir un devis
+            </Button>
           </NavLink>
         </div>
       </div>
