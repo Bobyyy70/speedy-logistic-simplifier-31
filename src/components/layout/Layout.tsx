@@ -22,20 +22,26 @@ export const Layout: React.FC<LayoutProps> = ({
 
       {/* Gradient Background Container */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
-        {/* Background mesh gradient */}
-        <div className="absolute inset-0 bg-gradient-radial from-white via-white/90 to-white/80 dark:from-slate-950 dark:via-slate-900/90 dark:to-slate-900/80"></div>
+        {/* Background radial gradient - white in center */}
+        <div className="absolute inset-0 bg-gradient-radial from-white via-white to-transparent dark:from-slate-900 dark:via-slate-900/90 dark:to-transparent"></div>
         
-        {/* Top left blue blob */}
-        <div className="absolute -top-20 -left-20 w-2/3 h-2/3 bg-speedelog-600/30 dark:bg-speedelog-700/30 rounded-full blur-3xl"></div>
+        {/* Left blue gradient */}
+        <div className="absolute left-0 inset-y-0 w-1/2 bg-gradient-to-r from-speedelog-400/40 to-transparent"></div>
         
-        {/* Bottom right blue blob */}
-        <div className="absolute -bottom-20 -right-20 w-2/3 h-2/3 bg-speedelog-600/30 dark:bg-speedelog-700/30 rounded-full blur-3xl"></div>
+        {/* Right blue gradient */}
+        <div className="absolute right-0 inset-y-0 w-1/2 bg-gradient-to-l from-speedelog-400/40 to-transparent"></div>
         
-        {/* Top right green blob */}
-        <div className="absolute -top-20 -right-20 w-2/3 h-2/3 bg-green-500/20 dark:bg-green-700/20 rounded-full blur-3xl"></div>
+        {/* Diagonal blue gradient - top left to bottom right */}
+        <div className="absolute h-full w-full bg-gradient-to-br from-speedelog-400/30 via-transparent to-transparent"></div>
         
-        {/* Bottom left green blob */}
-        <div className="absolute -bottom-20 -left-20 w-2/3 h-2/3 bg-green-500/20 dark:bg-green-700/20 rounded-full blur-3xl"></div>
+        {/* Diagonal blue gradient - bottom left to top right */}
+        <div className="absolute h-full w-full bg-gradient-to-tr from-transparent via-transparent to-speedelog-400/30"></div>
+        
+        {/* Top left green blob */}
+        <div className="absolute -top-20 -left-20 w-2/3 h-2/3 bg-green-500/20 dark:bg-green-700/20 rounded-full blur-3xl"></div>
+        
+        {/* Bottom right green blob */}
+        <div className="absolute -bottom-20 -right-20 w-2/3 h-2/3 bg-green-500/20 dark:bg-green-700/20 rounded-full blur-3xl"></div>
         
         {/* Extra subtle texture overlay */}
         <div className="absolute inset-0 bg-[url('/placeholder.svg')] opacity-[0.02] bg-repeat mix-blend-overlay"></div>
