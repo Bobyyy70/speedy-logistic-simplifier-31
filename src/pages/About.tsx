@@ -128,8 +128,12 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
             <div className="md:w-1/2 order-2 md:order-1">
-              <div className="aspect-video rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/50 dark:from-blue-950/30 dark:to-blue-900/20 border border-blue-200/50 dark:border-blue-800/30 overflow-hidden">
-                {/* Zone pour l'image future */}
+              <div className="aspect-video rounded-lg bg-gradient-to-r from-orange-50 to-orange-100/50 dark:from-orange-950/30 dark:to-orange-900/20 border border-orange-200/50 dark:border-orange-800/30 overflow-hidden">
+                <img 
+                  src="/lovable-uploads/0f7bbaab-5e26-4880-8850-8b26cd66a651.png"
+                  alt="Équipe Speed E-Log en réunion stratégique" 
+                  className="w-full h-full object-contain"
+                />
               </div>
             </div>
             <div className="md:w-1/2 order-1 md:order-2 space-y-4">
