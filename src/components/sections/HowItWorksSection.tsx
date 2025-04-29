@@ -36,10 +36,7 @@ const steps = [{
 }];
 
 export function HowItWorksSection() {
-  return <section id="how-it-works" className="py-12 md:py-24 backdrop-blur-sm lg:py-[34px] relative overflow-visible">
-      {/* Section color overlap effect */}
-      <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-green-500/15 to-transparent -mt-24"></div>
-
+  return <section id="how-it-works" className="py-12 md:py-24 bg-gradient-to-r from-green-200 via-white to-blue-100 dark:from-green-900 dark:via-slate-950 dark:to-slate-900 lg:py-[34px]">
       <div className="container mx-auto px-4 rounded-full">
         {/* Introduction */}
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12 md:mb-16">
@@ -114,8 +111,5 @@ export function HowItWorksSection() {
           </Tabs>
         </div>
       </div>
-
-      {/* Section color overlap effect for next section */}
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-blue-500/15 to-transparent -mb-24"></div>
     </section>;
 }
