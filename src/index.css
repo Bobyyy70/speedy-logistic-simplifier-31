@@ -25,7 +25,40 @@
   }
   
   .bg-blur-backdrop {
-    @apply backdrop-blur-md bg-white/10 dark:bg-slate-900/10;
+    @apply backdrop-blur-md bg-transparent;
+  }
+
+  /* Section color transitions */
+  .section-overlap-top {
+    @apply relative;
+  }
+
+  .section-overlap-top::before {
+    @apply content-[''] absolute top-0 left-0 w-full h-24 -mt-24;
+  }
+
+  .section-overlap-bottom {
+    @apply relative;
+  }
+
+  .section-overlap-bottom::after {
+    @apply content-[''] absolute bottom-0 left-0 w-full h-24 -mb-24;
+  }
+
+  .blue-to-green::before {
+    @apply bg-gradient-to-b from-blue-500/15 to-transparent;
+  }
+
+  .green-to-blue::before {
+    @apply bg-gradient-to-b from-green-500/15 to-transparent;
+  }
+
+  .blue-to-green::after {
+    @apply bg-gradient-to-t from-green-500/15 to-transparent;
+  }
+
+  .green-to-blue::after {
+    @apply bg-gradient-to-t from-blue-500/15 to-transparent;
   }
 
   /* Nouvelles classes pour l'optimisation mobile */
