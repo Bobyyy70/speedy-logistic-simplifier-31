@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { Target, Star, MapPin, History, Truck, Quote } from "lucide-react";
 import { AnimatedButton } from "@/components/ui/moving-border";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const About = () => {
   useEffect(() => {
@@ -181,7 +182,13 @@ const About = () => {
             </div>
             <div className="md:w-1/2">
               <div className="aspect-video rounded-lg bg-gradient-to-r from-orange-50 to-orange-100/50 dark:from-orange-950/30 dark:to-orange-900/20 border border-orange-200/50 dark:border-orange-800/30 overflow-hidden">
-                {/* Zone pour l'image future */}
+                <AspectRatio ratio={16/9}>
+                  <img 
+                    src="/public/lovable-uploads/f0eec9e1-ca0f-4ffc-85f8-d1cf8a0113ed.png" 
+                    alt="Équipe de Speed E-Log en réunion stratégique analysant des données logistiques" 
+                    className="w-full h-full object-cover"
+                  />
+                </AspectRatio>
               </div>
             </div>
           </div>
