@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, Leaf, Award, CalendarDays, Flame, Recycle, Box, HandHeart } from "lucide-react";
@@ -40,7 +41,7 @@ const commitmentData = {
 
 export function TestimonialsSection() {
   return (
-    <section id="engagement" className="bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-900 py-12 md:py-24 my-0">
+    <section id="engagement" className="transparent-section py-12 md:py-24 my-0">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -65,7 +66,7 @@ export function TestimonialsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <Card className="h-full bg-white/20 dark:bg-slate-800/20 backdrop-blur-sm border-2 hover:border-primary/50 transition-all duration-300">
+            <Card className="h-full card-glass border-2 hover:border-primary/50 transition-all duration-300">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-2xl">
                   <Users className="h-6 w-6 text-primary" />
@@ -100,7 +101,7 @@ export function TestimonialsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <Card className="h-full bg-white/20 dark:bg-slate-800/20 backdrop-blur-sm border-2 hover:border-primary/50 transition-all duration-300">
+            <Card className="h-full card-glass border-2 hover:border-primary/50 transition-all duration-300">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-2xl">
                   <Leaf className="h-6 w-6 text-primary" />

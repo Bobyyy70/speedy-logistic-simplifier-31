@@ -27,4 +27,25 @@
   .bg-blur-backdrop {
     @apply backdrop-blur-md bg-white/10 dark:bg-slate-900/10;
   }
+  
+  .transparent-section {
+    @apply backdrop-blur-sm bg-transparent;
+  }
+  
+  .card-glass {
+    @apply backdrop-blur-md bg-white/10 dark:bg-slate-900/10 border border-white/20 dark:border-slate-700/20;
+  }
+  
+  /* Classes adaptées au nouveau dégradé vertical avec mouvement */
+  .blend-with-top {
+    @apply bg-transparent backdrop-blur-sm;
+  }
+  
+  .blend-with-middle {
+    @apply bg-transparent backdrop-blur-sm;
+  }
+  
+  .blend-with-bottom {
+    @apply bg-transparent backdrop-blur-md;
+  }
 }
