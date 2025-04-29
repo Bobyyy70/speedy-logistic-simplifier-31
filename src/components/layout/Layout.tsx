@@ -15,9 +15,13 @@ export const Layout: React.FC<LayoutProps> = ({
       <Helmet>
         <html lang="fr" />
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
         <meta name="theme-color" content="#0074E4" />
         <link rel="canonical" href="https://speedelog.fr" />
+        <meta name="format-detection" content="telephone=yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </Helmet>
 
       {/* Gradient Background Container */}

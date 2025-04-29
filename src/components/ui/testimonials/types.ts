@@ -1,6 +1,7 @@
 
-export type TestimonialCard = {
+export interface TestimonialCard {
   quote: string;
   name: string;
-  rating: number;
-};
+  rating: 1 | 2 | 3 | 4 | 5;
+  isMobile?: boolean;
+}
