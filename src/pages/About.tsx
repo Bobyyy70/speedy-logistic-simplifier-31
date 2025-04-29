@@ -186,7 +186,7 @@ const About = () => {
             <div className="w-full md:w-1/2">
               <div className="aspect-video rounded-lg bg-gradient-to-r from-orange-50 to-orange-100/50 dark:from-orange-950/30 dark:to-orange-900/20 border border-orange-200/50 dark:border-orange-800/30 overflow-hidden">
                 <AspectRatio ratio={16 / 9} className="lazy-image" data-loaded="false">
-                  <img src="/lovable-uploads/f0eec9e1-ca0f-4ffc-85f8-d1cf8a0113ed.png" alt="Équipe de Speed E-Log en réunion stratégique analysant des données logistiques" className="w-full h-full object-cover" loading="lazy" onLoad={e => e.currentTarget.parentElement?.setAttribute('data-loaded', 'true')} />
+                  <img alt="Équipe de Speed E-Log en réunion stratégique analysant des données logistiques" className="w-full h-full object-cover" loading="lazy" onLoad={e => e.currentTarget.parentElement?.setAttribute('data-loaded', 'true')} src="/lovable-uploads/7e668035-1d72-4474-a463-2edc7209bb2a.png" />
                 </AspectRatio>
               </div>
             </div>
