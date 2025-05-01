@@ -28,15 +28,6 @@
     @apply backdrop-blur-md bg-white/10 dark:bg-slate-900/10;
   }
 
-  .full-page-gradient {
-    @apply bg-gradient-to-br from-white/95 via-speedelog-100/15 to-green-100/15 dark:from-slate-900/95 dark:via-speedelog-900/15 dark:to-green-900/15;
-  }
-
-  /* Nouvelle classe pour les sections de témoignages et engagements */
-  .content-section-bg {
-    @apply backdrop-blur-sm bg-white/40 dark:bg-slate-900/40;
-  }
-
   /* Nouvelles classes pour l'optimisation mobile */
   .mobile-touch-target {
     @apply p-3 sm:p-2; /* Cibles tactiles plus grandes sur mobile */

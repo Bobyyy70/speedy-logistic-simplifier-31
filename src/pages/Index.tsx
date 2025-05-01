@@ -16,7 +16,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div>
+    <div className="bg-transparent">
       <Helmet>
         <title>Speed E-Log | Logistique E-commerce Simplifiée pour PME</title>
         <meta 
