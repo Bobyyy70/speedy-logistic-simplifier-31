@@ -1,6 +1,9 @@
+
 import { TestimonialsCarousel } from "@/components/ui/testimonials/TestimonialsCarousel";
+
 export function Testimonials() {
-  return <section className="py-12 backdrop-blur-sm md:py-[26px]">
+  return (
+    <section className="py-12 content-section-bg md:py-[26px]">
       <div className="section-container py-0 my-0">
         <h2 className="section-title">Ils nous font confiance</h2>
         <p className="section-subtitle">
@@ -11,5 +14,6 @@ export function Testimonials() {
           <TestimonialsCarousel />
         </div>
       </div>
-    </section>;
+    </section>
+  );
 }

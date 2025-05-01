@@ -34,7 +34,7 @@ const commitmentData = {
 
 export function TestimonialsSection() {
   return (
-    <section className="py-12 backdrop-blur-sm md:py-24">
+    <section className="py-12 content-section-bg md:py-24">
       <div className="section-container py-0 my-0">
         <h2 className="section-title">Nos Engagements</h2>
         <p className="section-subtitle">
