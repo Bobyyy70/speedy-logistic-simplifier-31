@@ -28,6 +28,10 @@
     @apply backdrop-blur-md bg-white/10 dark:bg-slate-900/10;
   }
 
+  .full-page-gradient {
+    @apply bg-gradient-to-b from-white via-white to-[#e6f0fa] dark:from-slate-900 dark:via-slate-900 dark:to-[#1e2d3d];
+  }
+
   /* Nouvelles classes pour l'optimisation mobile */
   .mobile-touch-target {
     @apply p-3 sm:p-2; /* Cibles tactiles plus grandes sur mobile */
