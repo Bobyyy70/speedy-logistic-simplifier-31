@@ -1,14 +1,15 @@
+
 import React from "react";
 import { Check } from "lucide-react";
 export function LogisticsFeatureSection() {
-  return <div className="py-16 bg-gradient-to-br from-green-200 via-white to-blue-100 dark:from-green-800 dark:via-slate-950 dark:to-slate-900">
+  return <div className="py-16 backdrop-blur-sm relative overflow-visible">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="w-full md:w-1/2">
             <div className="relative">
               <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg blur opacity-20"></div>
-              <div className="relative bg-gradient-to-br from-white via-white to-white/80 dark:from-slate-900 dark:via-slate-900 dark:to-slate-900/80 shadow-xl rounded-lg p-6">
-                <div className="aspect-video bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-950 dark:to-blue-950 rounded-md mb-4 flex items-center justify-center overflow-hidden">
+              <div className="relative bg-transparent backdrop-blur-sm rounded-lg p-6">
+                <div className="aspect-video bg-transparent rounded-md mb-4 flex items-center justify-center overflow-hidden">
                   <img alt="Logistique Speed E-Log" className="w-full h-full object-cover" src="/lovable-uploads/486a69e8-fb37-4b81-92e0-79dc5d772590.png" />
                 </div>
                 <h3 className="font-semibold text-lg mb-2">Une logistique moderne et efficace</h3>

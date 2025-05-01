@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -5,7 +6,7 @@ import { Link } from "react-router-dom";
 import { HomeLogoWithText } from "@/components/ui/LogoIcon";
 import { WorldMap } from "@/components/ui/world-map/component";
 export function HeroSection() {
-  return <section className="relative bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-700 py-12 md:py-24 lg:py-32 overflow-hidden xl:py-0 rounded-none mx-0">
+  return <section className="relative backdrop-blur-sm py-12 md:py-24 lg:py-32 overflow-hidden xl:py-0 rounded-none mx-0">
       {/* World Map Background */}
       <div className="absolute inset-0 opacity-25 overflow-hidden">
         <WorldMap dots={[{
@@ -71,6 +72,9 @@ export function HeroSection() {
       }]} lineColor="#FEC6A1" /* Soft orange color */ />
       </div>
       
+      {/* Color overlay for the section */}
+      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-green-500/10 to-transparent"></div>
+      
       <div className="container mx-auto relative z-10 px-0">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_600px] gap-6 lg:gap-12 items-center">
           {/* Content Column */}
@@ -85,9 +89,9 @@ export function HeroSection() {
               Externalisez votre logistique et concentrez-vous sereinement sur votre croissance. Speed E-Log simplifie vos expéditions.
             </p>
             <div className="flex flex-col gap-3 min-[400px]:flex-row justify-center lg:justify-start px-[4px]">
-              <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600">
+              <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600 text-black">
                 <Link to="/contact">
-                  Obtenir un devis personnalisé <ArrowRight className="ml-2 h-4 w-4" />
+                  Obtenir un devis personnalisé
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg">
@@ -111,7 +115,7 @@ export function HeroSection() {
           {/* Visual Column */}
           <div className="lg:order-last relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg blur opacity-20"></div>
-            <div className="relative bg-gradient-to-r from-blue-100 via-blue-50 to-blue-200 dark:from-slate-900 dark:via-slate-950 dark:to-blue-900 shadow-xl p-6 backdrop-blur-sm border border-white/10 dark:border-slate-700/20 rounded-full">
+            <div className="relative bg-transparent backdrop-blur-sm p-6 border border-white/10 dark:border-slate-700/20 rounded-full">
               <h3 className="font-semibold text-lg mb-2">Une logistique moderne et efficace</h3>
               <p className="text-muted-foreground">
                 Notre infrastructure technologique évolue constamment pour vous offrir le meilleur service possible.

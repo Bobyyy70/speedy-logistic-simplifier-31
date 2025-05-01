@@ -1,3 +1,4 @@
+
 import React from "react";
 import { CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
@@ -22,7 +23,10 @@ export function WhyUsSection() {
     title: "Compétitivité & Qualité Garantie",
     description: "Profitez de nos tarifs négociés et de notre localisation pour des expéditions rapides et économiques vers la France l'Europe ainsi que partout dans le Monde. Nous nous engageons sur une qualité de service irréprochable pour chaque colis."
   }];
-  return <section id="why-us" className="py-12 md:py-24 lg:py-32 bg-gradient-to-r from-green-200 via-white to-blue-100 dark:from-green-800 dark:via-slate-950 dark:to-slate-900">
+  return <section id="why-us" className="py-12 md:py-24 lg:py-32 backdrop-blur-sm relative overflow-visible">
+      {/* Section color overlap effect */}
+      <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-blue-500/10 to-transparent -mt-24"></div>
+
       <div className="container mx-auto">
         <div className="grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
           {/* Text Column */}
@@ -85,5 +89,8 @@ export function WhyUsSection() {
           </motion.div>
         </div>
       </div>
+
+      {/* Section color overlap effect for next section */}
+      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-green-500/10 to-transparent -mb-24"></div>
     </section>;
 }
