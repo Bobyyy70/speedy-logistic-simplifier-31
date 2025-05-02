@@ -1,5 +1,4 @@
 
-import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { AnimatedButton } from "@/components/ui/moving-border";
 
@@ -18,7 +17,7 @@ export function ContactCTA() {
             <AnimatedButton 
               className="shadow-lg hover:shadow-orange-200/20 dark:hover:shadow-orange-900/20 px-5 py-3 text-base md:text-lg"
             >
-              Obtenir un devis gratuit <ArrowRight className="ml-2 h-4 w-4 text-orange-400" />
+              Obtenir un devis gratuit
             </AnimatedButton>
           </Link>
         </div>
