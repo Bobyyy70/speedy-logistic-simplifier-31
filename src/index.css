@@ -52,6 +52,11 @@
   .mobile-container {
     @apply px-3 md:px-4; /* Conteneurs avec marges horizontales adaptatives */
   }
+  
+  /* Fond de l'application */
+  .site-background {
+    @apply bg-gradient-to-b from-blue-200 via-teal-100 to-green-100;
+  }
 }
 
 /* Lazy loading pour les images */

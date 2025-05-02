@@ -1,10 +1,11 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { LogoIconWithText } from "@/components/ui/LogoIcon";
 import { Mail, Phone, MapPin } from "lucide-react";
 export function Footer() {
   const currentYear = new Date().getFullYear();
-  return <footer className="backdrop-blur-sm bg-white/5 dark:bg-slate-900/5 py-0 my-0">
+  return <footer className="py-0 my-0">
       <div className="container mx-auto px-4 py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Logo et description */}
