@@ -28,6 +28,18 @@
     @apply backdrop-blur-md bg-white/10 dark:bg-slate-900/10;
   }
 
+  /* Nouvelle classe pour le gradient de fond unifié */
+  .unified-gradient-bg {
+    @apply backdrop-blur-sm bg-gradient-to-br from-blue-50/40 via-white/60 to-green-100/40 
+    dark:from-blue-950/30 dark:via-slate-950/70 dark:to-green-950/30;
+  }
+  
+  /* Ajustement du fond pour les sections de contenu */
+  .content-section-bg {
+    @apply backdrop-blur-sm bg-gradient-to-br from-blue-50/30 via-white/50 to-green-100/30 
+    dark:from-blue-950/20 dark:via-slate-950/60 dark:to-green-950/20;
+  }
+
   /* Nouvelles classes pour l'optimisation mobile */
   .mobile-touch-target {
     @apply p-3 sm:p-2; /* Cibles tactiles plus grandes sur mobile */

@@ -24,46 +24,46 @@ export const Layout: React.FC<LayoutProps> = ({
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </Helmet>
 
-      {/* Gradient Background Container */}
+      {/* Gradient Background Container - More subtle version */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
         {/* Background radial gradient - white only in center, reduced size */}
         <div className="absolute inset-0 bg-gradient-radial from-white via-white to-transparent dark:from-slate-900 dark:via-slate-900/90 dark:to-transparent scale-75"></div>
         
-        {/* Vertical pattern: Left blue gradient with increased intensity */}
-        <div className="absolute left-0 inset-y-0 w-1/2 bg-gradient-to-r from-speedelog-400/60 via-speedelog-400/40 to-transparent"></div>
+        {/* Vertical pattern: Left blue gradient with reduced intensity */}
+        <div className="absolute left-0 inset-y-0 w-1/2 bg-gradient-to-r from-speedelog-400/30 via-speedelog-400/20 to-transparent backdrop-blur-md"></div>
         
-        {/* Vertical pattern: Right green gradient with increased intensity */}
-        <div className="absolute right-0 inset-y-0 w-1/2 bg-gradient-to-l from-green-500/50 via-green-500/30 to-transparent"></div>
+        {/* Vertical pattern: Right green gradient with reduced intensity */}
+        <div className="absolute right-0 inset-y-0 w-1/2 bg-gradient-to-l from-green-500/30 via-green-500/20 to-transparent backdrop-blur-md"></div>
         
-        {/* Diagonal pattern: blue to white to green */}
-        <div className="absolute h-full w-full bg-gradient-to-br from-speedelog-400/60 via-white/20 to-green-500/50"></div>
+        {/* Diagonal pattern: blue to white to green with reduced intensity */}
+        <div className="absolute h-full w-full bg-gradient-to-br from-speedelog-400/30 via-white/20 to-green-500/30 backdrop-blur-md"></div>
         
-        {/* Diagonal pattern: green to white to blue */}
-        <div className="absolute h-full w-full bg-gradient-to-tr from-green-500/40 via-white/10 to-speedelog-400/60"></div>
+        {/* Diagonal pattern: green to white to blue with reduced intensity */}
+        <div className="absolute h-full w-full bg-gradient-to-tr from-green-500/25 via-white/10 to-speedelog-400/30 backdrop-blur-md"></div>
         
-        {/* Horizontal pattern: blue top */}
-        <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-speedelog-400/50 via-speedelog-400/40 to-transparent"></div>
+        {/* Horizontal pattern: blue top with reduced intensity */}
+        <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-speedelog-400/25 via-speedelog-400/20 to-transparent"></div>
         
-        {/* Horizontal pattern: green bottom */}
-        <div className="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-green-500/50 via-green-500/40 to-transparent"></div>
+        {/* Horizontal pattern: green bottom with reduced intensity */}
+        <div className="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-green-500/25 via-green-500/20 to-transparent"></div>
         
-        {/* Upper left blue blob with increased size and intensity */}
-        <div className="absolute -top-20 -left-20 w-2/3 h-2/3 bg-speedelog-400/30 dark:bg-speedelog-700/40 rounded-full blur-3xl"></div>
+        {/* Upper left blue blob with reduced intensity */}
+        <div className="absolute -top-20 -left-20 w-2/3 h-2/3 bg-speedelog-400/15 dark:bg-speedelog-700/25 rounded-full blur-3xl"></div>
         
-        {/* Bottom right green blob with increased size and intensity */}
-        <div className="absolute -bottom-20 -right-20 w-2/3 h-2/3 bg-green-500/40 dark:bg-green-700/40 rounded-full blur-3xl"></div>
+        {/* Bottom right green blob with reduced intensity */}
+        <div className="absolute -bottom-20 -right-20 w-2/3 h-2/3 bg-green-500/20 dark:bg-green-700/25 rounded-full blur-3xl"></div>
         
-        {/* Additional blue blob bottom left */}
-        <div className="absolute -bottom-10 -left-10 w-1/2 h-1/2 bg-speedelog-400/30 dark:bg-speedelog-700/40 rounded-full blur-3xl"></div>
+        {/* Additional blue blob bottom left with reduced intensity */}
+        <div className="absolute -bottom-10 -left-10 w-1/2 h-1/2 bg-speedelog-400/15 dark:bg-speedelog-700/25 rounded-full blur-3xl"></div>
         
-        {/* Additional green blob top right */}
-        <div className="absolute -top-10 -right-10 w-1/2 h-1/2 bg-green-500/30 dark:bg-green-700/30 rounded-full blur-3xl"></div>
+        {/* Additional green blob top right with reduced intensity */}
+        <div className="absolute -top-10 -right-10 w-1/2 h-1/2 bg-green-500/15 dark:bg-green-700/20 rounded-full blur-3xl"></div>
         
-        {/* Central diagonal blob to enhance white separator effect */}
-        <div className="absolute top-1/4 left-1/4 w-1/2 h-1/2 bg-white/20 dark:bg-white/5 rounded-full blur-3xl rotate-45"></div>
+        {/* Central diagonal blob to enhance white separator effect with increased blur */}
+        <div className="absolute top-1/4 left-1/4 w-1/2 h-1/2 bg-white/15 dark:bg-white/5 rounded-full blur-3xl rotate-45"></div>
         
-        {/* Subtle texture overlay */}
-        <div className="absolute inset-0 bg-[url('/placeholder.svg')] opacity-[0.02] bg-repeat mix-blend-overlay"></div>
+        {/* Subtle texture overlay with reduced opacity */}
+        <div className="absolute inset-0 bg-[url('/placeholder.svg')] opacity-[0.01] bg-repeat mix-blend-overlay"></div>
       </div>
 
       <Header />
