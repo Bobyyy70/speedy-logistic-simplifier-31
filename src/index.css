@@ -28,16 +28,13 @@
     @apply backdrop-blur-md bg-white/10 dark:bg-slate-900/10;
   }
 
-  /* Nouvelle classe pour le gradient de fond unifié */
-  .unified-gradient-bg {
-    @apply backdrop-blur-sm bg-gradient-to-br from-blue-50/40 via-white/60 to-green-100/40 
-    dark:from-blue-950/30 dark:via-slate-950/70 dark:to-green-950/30;
+  .full-page-gradient {
+    @apply bg-gradient-to-br from-white/95 via-speedelog-100/15 to-green-100/15 dark:from-slate-900/95 dark:via-speedelog-900/15 dark:to-green-900/15;
   }
-  
-  /* Ajustement du fond pour les sections de contenu */
+
+  /* Nouvelle classe pour les sections de témoignages et engagements */
   .content-section-bg {
-    @apply backdrop-blur-sm bg-gradient-to-br from-blue-50/30 via-white/50 to-green-100/30 
-    dark:from-blue-950/20 dark:via-slate-950/60 dark:to-green-950/20;
+    @apply backdrop-blur-sm bg-white/40 dark:bg-slate-900/40;
   }
 
   /* Nouvelles classes pour l'optimisation mobile */

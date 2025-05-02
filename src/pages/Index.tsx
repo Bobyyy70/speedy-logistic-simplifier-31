@@ -16,7 +16,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="unified-gradient-bg">
+    <div>
       <Helmet>
         <title>Speed E-Log | Logistique E-commerce Simplifiée pour PME</title>
         <meta 

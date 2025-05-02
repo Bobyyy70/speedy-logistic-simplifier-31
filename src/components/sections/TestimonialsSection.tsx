@@ -34,74 +34,61 @@ const commitmentData = {
 
 export function TestimonialsSection() {
   return (
-    <section className="py-12 md:py-20 backdrop-blur-sm">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Nos Engagements</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Notre approche est fondée sur des valeurs fortes et des engagements concrets
-            envers nos équipes et notre planète.
-          </p>
-        </div>
+    <section className="py-12 content-section-bg md:py-24">
+      <div className="section-container py-0 my-0">
+        <h2 className="section-title">Nos Engagements</h2>
+        <p className="section-subtitle">
+          Speed E Log s'engage quotidiennement sur plusieurs fronts pour un avenir meilleur.
+        </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
           {/* Engagement envers l'équipe */}
-          <Card className="bg-gradient-to-br from-blue-50/50 to-green-100/50 dark:from-blue-950/30 dark:to-green-950/30 border-blue-200/50 dark:border-blue-700/30">
+          <Card className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm border-blue-200/50 dark:border-blue-800/30">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Users className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                {commitmentData.team.title}
-              </CardTitle>
-              <CardDescription>{commitmentData.team.description}</CardDescription>
+              <CardTitle className="text-2xl">{commitmentData.team.title}</CardTitle>
+              <CardDescription className="text-lg">{commitmentData.team.description}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              {commitmentData.team.items.map((item, index) => {
-                const Icon = item.icon;
-                return (
-                  <motion.div 
-                    key={index}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="flex items-start gap-3"
-                  >
-                    <div className="mt-1 bg-blue-100 dark:bg-blue-900/30 p-2 rounded-full">
-                      <Icon className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                    </div>
-                    <p className="text-sm md:text-base">{item.text}</p>
-                  </motion.div>
-                );
-              })}
+              {commitmentData.team.items.map((item, index) => (
+                <motion.div 
+                  key={index}
+                  className="flex items-start gap-3"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="mt-1 p-2 rounded-full bg-blue-100 dark:bg-blue-900/30">
+                    <item.icon className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <p className="text-muted-foreground">{item.text}</p>
+                </motion.div>
+              ))}
             </CardContent>
           </Card>
-
+          
           {/* Engagement envers la planète */}
-          <Card className="bg-gradient-to-br from-green-50/50 to-blue-100/50 dark:from-green-950/30 dark:to-blue-950/30 border-green-200/50 dark:border-green-700/30">
+          <Card className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm border-green-200/50 dark:border-green-800/30">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Leaf className="h-5 w-5 text-green-600 dark:text-green-400" />
-                {commitmentData.planet.title}
-              </CardTitle>
-              <CardDescription>{commitmentData.planet.description}</CardDescription>
+              <CardTitle className="text-2xl">{commitmentData.planet.title}</CardTitle>
+              <CardDescription className="text-lg">{commitmentData.planet.description}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              {commitmentData.planet.items.map((item, index) => {
-                const Icon = item.icon;
-                return (
-                  <motion.div 
-                    key={index}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="flex items-start gap-3"
-                  >
-                    <div className="mt-1 bg-green-100 dark:bg-green-900/30 p-2 rounded-full">
-                      <Icon className="h-4 w-4 text-green-600 dark:text-green-400" />
-                    </div>
-                    <p className="text-sm md:text-base">{item.text}</p>
-                  </motion.div>
-                );
-              })}
+              {commitmentData.planet.items.map((item, index) => (
+                <motion.div 
+                  key={index}
+                  className="flex items-start gap-3"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="mt-1 p-2 rounded-full bg-green-100 dark:bg-green-900/30">
+                    <item.icon className="h-5 w-5 text-green-600 dark:text-green-400" />
+                  </div>
+                  <p className="text-muted-foreground">{item.text}</p>
+                </motion.div>
+              ))}
             </CardContent>
           </Card>
         </div>
