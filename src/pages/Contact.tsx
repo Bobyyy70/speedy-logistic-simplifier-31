@@ -11,7 +11,7 @@ const Contact = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  return <div>
+  return <div className="unified-gradient-bg">
       <Helmet>
         <title>Contact & Devis Logistique E-commerce | Speed E-Log</title>
         <meta name="description" content="Contactez Speed E-Log pour un devis personnalisé ou des informations sur nos services logistiques pour e-commerce. Notre équipe vous répond dans les plus brefs délais." />
