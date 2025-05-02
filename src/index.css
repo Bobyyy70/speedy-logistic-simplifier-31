@@ -28,13 +28,14 @@
     @apply backdrop-blur-md bg-white/10 dark:bg-slate-900/10;
   }
 
+  /* Modification de cette classe pour utiliser exactement le même style que le footer */
   .full-page-gradient {
     @apply backdrop-blur-sm bg-white/5 dark:bg-slate-900/5;
   }
 
-  /* Nouvelle classe pour les sections de témoignages et engagements */
+  /* Appliquons ce même style à la classe content-section-bg */
   .content-section-bg {
-    @apply backdrop-blur-sm bg-white/40 dark:bg-slate-900/40;
+    @apply backdrop-blur-sm bg-white/5 dark:bg-slate-900/5;
   }
 
   /* Nouvelles classes pour l'optimisation mobile */
