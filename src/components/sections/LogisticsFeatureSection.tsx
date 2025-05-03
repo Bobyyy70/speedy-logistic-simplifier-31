@@ -1,16 +1,8 @@
-
 import React from "react";
 import { Check } from "lucide-react";
 export function LogisticsFeatureSection() {
   return <div className="py-16 bg-gradient-to-br from-green-200 via-white to-blue-100 dark:from-green-800 dark:via-slate-950 dark:to-slate-900">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold">La Logistique E-Commerce, Simplifiée</h2>
-          <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
-            Des solutions logistiques adaptées aux besoins spécifiques de votre e-commerce
-          </p>
-        </div>
-        
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="w-full md:w-1/2">
             <div className="relative">
