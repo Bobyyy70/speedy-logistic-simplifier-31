@@ -1,10 +1,8 @@
 import React from "react";
 import { Shield, Clock, Truck, MessageCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
 export function LogisticsPerformanceSection() {
-  return (
-    <section className="w-full py-12 md:py-24 lg:py-32 relative overflow-hidden">
+  return <section className="w-full py-12 md:py-24 lg:py-32 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-20 h-20 rounded-full bg-orange-100/10 dark:bg-orange-900/10" />
       <div className="container px-4 md:px-6">
         <div className="text-center mb-12">
@@ -17,36 +15,30 @@ export function LogisticsPerformanceSection() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-12">
-          {[
-            {
-              icon: Shield,
-              title: "Précision",
-              value: "99.85%",
-              description: "Taux de précision sur plus de 2000 colis"
-            },
-            {
-              icon: Clock,
-              title: "Délai",
-              value: "24h",
-              description: "Traitement moyen des commandes",
-              note: "* peut varier pendant les périodes de forte activité"
-            },
-            {
-              icon: Truck,
-              title: "Livraison France",
-              value: "24-48h",
-              description: "Délai moyen de livraison en France",
-              notes: ["* Europe sous 48-72h", "* peut varier pendant les périodes de forte activité"]
-            },
-            {
-              icon: MessageCircle,
-              title: "Service Client",
-              value: "2h",
-              description: "Temps de réponse moyen",
-              note: "* durant les horaires de travail. Chatbot disponible 24/7"
-            }
-          ].map((item, index) => (
-            <Card key={index} className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-orange-100/20">
+          {[{
+          icon: Shield,
+          title: "Précision",
+          value: "99.85%",
+          description: "Taux de précision sur plus de 2000 colis"
+        }, {
+          icon: Clock,
+          title: "Délai",
+          value: "24h",
+          description: "Traitement moyen des commandes",
+          note: "* peut varier pendant les périodes de forte activité"
+        }, {
+          icon: Truck,
+          title: "Livraison France",
+          value: "24-48h",
+          description: "Délai moyen de livraison en France",
+          notes: ["* Europe sous 48-72h", "* peut varier pendant les périodes de forte activité"]
+        }, {
+          icon: MessageCircle,
+          title: "Service Client",
+          value: "2h",
+          description: "Temps de réponse moyen",
+          note: "* durant les horaires de travail. Chatbot disponible 24/7"
+        }].map((item, index) => <Card key={index} className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-orange-100/20">
               <CardHeader className="flex flex-row items-center gap-4">
                 <div className="bg-orange-100 dark:bg-orange-900/30 p-2.5 rounded-lg">
                   <item.icon className="h-6 w-6 text-orange-600 dark:text-orange-500" />
@@ -59,16 +51,13 @@ export function LogisticsPerformanceSection() {
                   {item.description}
                   {item.note && <br />}
                   {item.note && <span className="text-xs italic">{item.note}</span>}
-                  {item.notes && item.notes.map((note, i) => (
-                    <React.Fragment key={i}>
+                  {item.notes && item.notes.map((note, i) => <React.Fragment key={i}>
                       <br />
                       <span className="text-xs italic">{note}</span>
-                    </React.Fragment>
-                  ))}
+                    </React.Fragment>)}
                 </p>
               </CardContent>
-            </Card>
-          ))}
+            </Card>)}
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -92,15 +81,10 @@ export function LogisticsPerformanceSection() {
           </div>
           <div className="h-[500px] w-full flex items-center justify-center relative">
             <div className="absolute -inset-4 bg-orange-100/5 dark:bg-orange-900/5 blur-xl rounded-full" />
-            <img
-              src="/lovable-uploads/7493ca6a-64c0-484f-9f05-4ec9b7847f32.png"
-              alt="SupplyOS Logo"
-              className="w-[500px] aspect-[2/1] object-contain relative z-10 mix-blend-multiply dark:mix-blend-normal"
-            />
+            <img alt="SupplyOS Logo" className="w-[500px] aspect-[2/1] object-contain relative z-10 mix-blend-multiply dark:mix-blend-normal" src="blob:https://lovable.dev/7dcca4cb-f357-43a3-be88-ee18b72cc3ee" />
           </div>
         </div>
       </div>
       <div className="absolute bottom-0 left-0 w-16 h-16 rounded-full bg-orange-100/20 dark:bg-orange-900/20" />
-    </section>
-  );
+    </section>;
 }
