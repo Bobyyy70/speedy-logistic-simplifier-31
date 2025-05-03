@@ -81,7 +81,7 @@ export function LogisticsPerformanceSection() {
           </div>
           <div className="h-[500px] w-full flex items-center justify-center relative">
             <div className="absolute -inset-4 bg-orange-100/5 dark:bg-orange-900/5 blur-xl rounded-full" />
-            <img alt="SupplyOS Logo" className="w-[500px] aspect-[2/1] object-contain relative z-10 mix-blend-multiply dark:mix-blend-normal" src="blob:https://lovable.dev/7dcca4cb-f357-43a3-be88-ee18b72cc3ee" />
+            <img alt="SupplyOS Logo" className="w-[500px] aspect-[2/1] object-contain relative z-10 mix-blend-multiply dark:mix-blend-normal" src="/lovable-uploads/9e3dc511-3aec-4dc9-840f-187ab8de7235.png" />
           </div>
         </div>
       </div>
