@@ -14,7 +14,7 @@ const About = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  return <div className="bg-gradient-to-br from-blue-50 via-white to-green-100/30 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950">
+  return <div className="site-background">
       <Helmet>
         <title>À Propos de Speed E-Log | Votre Partenaire Logistique</title>
         <meta name="description" content="Découvrez Speed E-Log, votre partenaire logistique e-commerce à Port-sur-Saône. Notre mission: simplifier la logistique pour les PME françaises avec fiabilité et transparence." />
@@ -23,7 +23,7 @@ const About = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
       </Helmet>
 
-      <section className="py-10 md:py-24 bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-700">
+      <section className="py-10 md:py-24">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6">
             Qui <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">Sommes-Nous</span> ?
@@ -36,7 +36,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-10 md:py-20 bg-gradient-to-r from-blue-100/80 via-blue-50/50 to-green-100/50 dark:from-slate-900/80 dark:via-blue-950/30 dark:to-green-950/30">
+      <section className="py-10 md:py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8 md:mb-16">
             <h2 className="text-2xl md:text-4xl font-bold mb-3 md:mb-4">Notre Mission et Nos Valeurs</h2>
@@ -99,7 +99,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-10 md:py-20 bg-gradient-to-r from-blue-100/80 via-blue-50/50 to-green-100/50 dark:from-slate-900/80 dark:via-blue-950/30 dark:to-green-950/30">
+      <section className="py-10 md:py-20">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-6 md:gap-16">
             <div className="w-full md:w-1/2 space-y-4">
@@ -126,7 +126,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-10 md:py-20 bg-gradient-to-r from-blue-100/80 via-blue-50/50 to-green-100/50 dark:from-slate-900/80 dark:via-blue-950/30 dark:to-green-950/30">
+      <section className="py-10 md:py-20">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-6 md:gap-16">
             <div className="w-full md:w-1/2 order-2 md:order-1">
@@ -165,7 +165,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-10 md:py-20 bg-gradient-to-r from-blue-100/80 via-blue-50/50 to-green-100/50 dark:from-slate-900/80 dark:via-blue-950/30 dark:to-green-950/30">
+      <section className="py-10 md:py-20">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-6 md:gap-16">
             <div className="w-full md:w-1/2 space-y-4">
@@ -196,7 +196,7 @@ const About = () => {
 
       <TestimonialsSection />
 
-      <section className="py-12 md:py-20 bg-gradient-to-r from-blue-100 via-white to-green-200 dark:from-slate-900 dark:via-slate-950 dark:to-green-700 text-center">
+      <section className="py-12 md:py-20 text-center">
         <div className="container mx-auto px-4">
           <h2 className="text-xl md:text-3xl font-bold mb-4">
             Envie de travailler avec nous ?
