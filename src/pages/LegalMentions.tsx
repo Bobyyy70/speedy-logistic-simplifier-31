@@ -39,7 +39,7 @@ const LegalMentions = () => {
         <section className="mb-8">
           <h2 className="text-xl md:text-2xl font-semibold mb-4">Contact</h2>
           <p className="mb-4"><strong>Adresse :</strong> 37 Rue de Rémaucourt, 70170 Port-sur-Saône, France</p>
-          <p className="mb-4"><strong>Email :</strong> contact@speedelog.fr</p>
+          <p className="mb-4"><strong>Email :</strong> contact@speedelog.net</p>
           <p className="mb-4"><strong>Téléphone :</strong> +33 6 35 58 40 04</p>
         </section>
 
