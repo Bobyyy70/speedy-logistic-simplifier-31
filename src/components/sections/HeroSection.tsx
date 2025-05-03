@@ -106,11 +106,11 @@ export function HeroSection() {
                   <AvatarFallback>HG</AvatarFallback>
                 </Avatar>
                 <Avatar className="inline-block h-8 w-8 border-2 border-white">
-                  <AvatarImage alt="Logo THOMAS" src="/lovable-uploads/719f09ed-b24b-44da-9a90-5e247bc9fa9f.png" className="p-1 object-cover" />
+                  <AvatarImage alt="Logo THOMAS" className="p-1 object-cover" src="/lovable-uploads/95fcf84f-8ddc-4c7d-9f92-d3790f0586eb.png" />
                   <AvatarFallback>TH</AvatarFallback>
                 </Avatar>
                 <Avatar className="inline-block h-8 w-8 border-2 border-white">
-                  <AvatarImage alt="Logo Heatzy" src="/lovable-uploads/b4410995-8878-4fb4-911b-1a4c82b154b4.png" className="p-1 object-cover" />
+                  <AvatarImage alt="Logo Heatzy" className="p-1 object-cover" src="/lovable-uploads/f35f65b6-a18b-454c-bc6c-0deebc8ed6e6.png" />
                   <AvatarFallback>HZ</AvatarFallback>
                 </Avatar>
               </div>
