@@ -102,15 +102,15 @@ export function HeroSection() {
             <div className="mt-6 flex items-center justify-center lg:justify-start space-x-3">
               <div className="flex -space-x-2">
                 <Avatar className="inline-block h-8 w-8 border-2 border-white">
-                  <AvatarImage alt="Logo HEFA Group" src="/lovable-uploads/590ac1d9-f785-4df5-b83a-eba31531fcb1.png" className="p-1 object-fill" />
+                  <AvatarImage alt="Logo HEFA Group" className="p-1 object-cover" src="/lovable-uploads/44a63774-38e6-47c0-bddf-56c2d10f5e6c.png" />
                   <AvatarFallback>HG</AvatarFallback>
                 </Avatar>
                 <Avatar className="inline-block h-8 w-8 border-2 border-white">
-                  <AvatarImage alt="Logo THOMAS" src="/lovable-uploads/719f09ed-b24b-44da-9a90-5e247bc9fa9f.png" className="p-1 object-fill" />
+                  <AvatarImage alt="Logo THOMAS" src="/lovable-uploads/719f09ed-b24b-44da-9a90-5e247bc9fa9f.png" className="p-1 object-cover" />
                   <AvatarFallback>TH</AvatarFallback>
                 </Avatar>
                 <Avatar className="inline-block h-8 w-8 border-2 border-white">
-                  <AvatarImage alt="Logo Heatzy" className="p-1 object-fill" src="/lovable-uploads/b4410995-8878-4fb4-911b-1a4c82b154b4.png" />
+                  <AvatarImage alt="Logo Heatzy" src="/lovable-uploads/b4410995-8878-4fb4-911b-1a4c82b154b4.png" className="p-1 object-cover" />
                   <AvatarFallback>HZ</AvatarFallback>
                 </Avatar>
               </div>
