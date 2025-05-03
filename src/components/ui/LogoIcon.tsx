@@ -32,7 +32,8 @@ export const LogoIconWithText: React.FC<{
 }> = ({
   className = ""
 }) => {
-  const logoPath = "/lovable-uploads/f1857faa-e92e-4c2f-8baa-f5d3ce99f322.png";
+  // Using the new logo you've provided
+  const logoPath = "/lovable-uploads/d8057960-9029-4b12-a063-029b783f8f84.png";
   return <div className={cn("flex flex-col items-center", className)}>
     <motion.img 
       alt="Speed E-Log Logo with Text" 
