@@ -4,38 +4,71 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { HomeLogoWithText } from "@/components/ui/LogoIcon";
 import { WorldMap } from "@/components/ui/world-map/component";
-
 export function HeroSection() {
-  return (
-    <section className="relative site-background py-12 md:py-24 lg:py-32 overflow-hidden xl:py-0 rounded-none mx-0">
+  return <section className="relative site-background py-12 md:py-24 lg:py-32 overflow-hidden xl:py-0 rounded-none mx-0">
       {/* World Map Background */}
       <div className="absolute inset-0 opacity-25 overflow-hidden">
-        <WorldMap dots={[
-          {
-            start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-            end: { lat: 40.7128, lng: -74.0060 } // New York
-          },
-          {
-            start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-            end: { lat: -33.8688, lng: 151.2093 } // Sydney
-          },
-          {
-            start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-            end: { lat: 35.6762, lng: 139.6503 } // Tokyo
-          },
-          {
-            start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-            end: { lat: 55.7558, lng: 37.6173 } // Moscow
-          },
-          {
-            start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-            end: { lat: -15.7975, lng: -47.8919 } // Brazil (Brasília)
-          },
-          {
-            start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-            end: { lat: -1.2921, lng: 36.8219 } // Nairobi, Kenya
-          }
-        ]} lineColor="#FEC6A1" /* Soft orange color */ />
+        <WorldMap dots={[{
+        start: {
+          lat: 48.8566,
+          lng: 2.3522
+        },
+        // Paris, France
+        end: {
+          lat: 40.7128,
+          lng: -74.0060
+        } // New York
+      }, {
+        start: {
+          lat: 48.8566,
+          lng: 2.3522
+        },
+        // Paris, France
+        end: {
+          lat: -33.8688,
+          lng: 151.2093
+        } // Sydney
+      }, {
+        start: {
+          lat: 48.8566,
+          lng: 2.3522
+        },
+        // Paris, France
+        end: {
+          lat: 35.6762,
+          lng: 139.6503
+        } // Tokyo
+      }, {
+        start: {
+          lat: 48.8566,
+          lng: 2.3522
+        },
+        // Paris, France
+        end: {
+          lat: 55.7558,
+          lng: 37.6173
+        } // Moscow
+      }, {
+        start: {
+          lat: 48.8566,
+          lng: 2.3522
+        },
+        // Paris, France
+        end: {
+          lat: -15.7975,
+          lng: -47.8919
+        } // Brazil (Brasília)
+      }, {
+        start: {
+          lat: 48.8566,
+          lng: 2.3522
+        },
+        // Paris, France
+        end: {
+          lat: -1.2921,
+          lng: 36.8219
+        } // Nairobi, Kenya
+      }]} lineColor="#FEC6A1" /* Soft orange color */ />
       </div>
       
       <div className="container mx-auto relative z-10 px-0">
@@ -78,7 +111,7 @@ export function HeroSection() {
           {/* Visual Column */}
           <div className="lg:order-last relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg blur opacity-20"></div>
-            <div className="relative bg-gradient-to-r from-blue-100 via-blue-50 to-blue-200 dark:from-slate-900 dark:via-slate-950 dark:to-blue-900 shadow-xl p-6 backdrop-blur-sm border border-white/10 dark:border-slate-700/20 rounded-full">
+            <div className="relative bg-gradient-to-r from-blue-100 via-blue-50 to-blue-200 dark:from-slate-900 dark:via-slate-950 dark:to-blue-900 shadow-xl p-6 backdrop-blur-sm border border-white/10 dark:border-slate-700/20 rounded">
               <h3 className="font-semibold text-lg mb-2">Une logistique moderne et efficace</h3>
               <p className="text-muted-foreground">
                 Notre infrastructure technologique évolue constamment pour vous offrir le meilleur service possible.
@@ -87,6 +120,5 @@ export function HeroSection() {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 }
