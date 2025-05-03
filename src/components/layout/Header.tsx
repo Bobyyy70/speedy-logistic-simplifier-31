@@ -56,7 +56,7 @@ const Header = () => {
   )}>
       <div className="container flex h-16 items-center justify-between py-0 my-[8px]">
         <NavLink to="/" className="flex items-center">
-          <LogoIconWithText className="w-28 md:w-32" />
+          <LogoIconWithText className="w-auto" />
         </NavLink>
 
         <div className="hidden md:block">
