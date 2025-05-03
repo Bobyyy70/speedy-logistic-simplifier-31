@@ -52,7 +52,7 @@ export function Footer() {
         {/* Copyright - sans bordure supérieure */}
         <div className="pt-4 text-center">
           <p className="text-sm text-muted-foreground">
-            © {currentYear} Speed E-Log. Tous droits réservés. Construit avec passion à Port-sur-Saône.
+            © {currentYear} Speed E-Log. Tous droits réservés. réalisé avec passion à Port-sur-Saône.
           </p>
         </div>
       </div>
