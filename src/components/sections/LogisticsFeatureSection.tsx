@@ -1,7 +1,9 @@
+
 import React from "react";
 import { Check } from "lucide-react";
+
 export function LogisticsFeatureSection() {
-  return <div className="py-16 bg-gradient-to-br from-green-200 via-white to-blue-100 dark:from-green-800 dark:via-slate-950 dark:to-slate-900">
+  return <div className="py-16 site-background">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="w-full md:w-1/2">
