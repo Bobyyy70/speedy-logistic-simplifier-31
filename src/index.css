@@ -53,7 +53,7 @@
     @apply px-3 md:px-4; /* Conteneurs avec marges horizontales adaptatives */
   }
   
-  /* Fond de l'application */
+  /* Fond de l'application - maintenant défini pour tout le site */
   .site-background {
     @apply bg-gradient-to-r from-green-200 via-white to-blue-100 dark:from-green-800 dark:via-slate-950 dark:to-blue-900;
   }
