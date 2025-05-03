@@ -12,22 +12,22 @@ const DESKTOP_CARD_WIDTH = 400; // larger width on desktop
 
 const testimonials: TestimonialCardType[] = [
   {
-    quote: "Speed E Log nous a permis de nous concentrer sur notre croissance sans nous soucier de la logistique. Service impeccable et réactif !",
+    quote: "J’ai confié mon stock ainsi que toute ma logistique chez Speedelog depuis le début et je ne suis absolument pas déçu. Mes clients reçoivent ce qu’ils ont commandé (ça change de mon ancien prestataire) Francesco est très à l’écoute et surtout réactif quand on a besoin de lui. Je recommande à 200%",
     name: "Marie D.",
     rating: 5
   },
   {
-    quote: "La transparence tarifaire et la qualité de préparation des commandes sont remarquables. Nos clients sont ravis des délais de livraison.",
+    quote: "Je crois que je n’ai jamais eu un logisticien aussi fiable depuis le lancement de mon activité (en 2015), un taux d’erreurs quasiment nul, une super gestion des retours et un Sav existant contrairement a beaucoup d’autres ;)Merci beaucoup, grâce à speedElog je peux maintenant me consacrer pleinement à mon activité sans me soucier des contraintes logistiques. Allez y les yeux fermés",
     name: "Thomas L.",
     rating: 5
   },
   {
-    quote: "L'intégration avec notre boutique Shopify a été d'une simplicité étonnante. Le suivi en temps réel des stocks est un vrai plus.",
+    quote: "Entreprise à taille humaine, avec de vrais valeurs et proches de ses clients, qui sait nous conseiller sur les meilleures solutions de transport ! je fais clairement des économies depuis que j’ai externalisé ma logistique chez eux",
     name: "Julie M.",
     rating: 4
   },
   {
-    quote: "Une équipe à l'écoute qui comprend vraiment les besoins de ses clients. Notre partenariat est un vrai succès.",
+    quote: "Je viens de lancer mon activité e-commerce et j’ai eu du mal à trouver un logisticien avec le peu d’expédition que nous avons.. mais speedElog nous a fait tout de suite confiance en intégrant notre stock chez eux. Cerise sur le gâteux ils nous donnent de vrais conseils pour nous développer",
     name: "Alex M.",
     rating: 5
   },
