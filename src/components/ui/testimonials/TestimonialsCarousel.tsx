@@ -13,32 +13,32 @@ const DESKTOP_CARD_WIDTH = 400; // larger width on desktop
 const testimonials: TestimonialCardType[] = [
   {
     quote: "J’ai confié mon stock ainsi que toute ma logistique chez Speedelog depuis le début et je ne suis absolument pas déçu. Mes clients reçoivent ce qu’ils ont commandé (ça change de mon ancien prestataire) Francesco est très à l’écoute et surtout réactif quand on a besoin de lui. Je recommande à 200%",
-    name: "Marie D.",
+    name: "Sébastien P.",
     rating: 5
   },
   {
     quote: "Je crois que je n’ai jamais eu un logisticien aussi fiable depuis le lancement de mon activité (en 2015), un taux d’erreurs quasiment nul, une super gestion des retours et un Sav existant contrairement a beaucoup d’autres ;)Merci beaucoup, grâce à speedElog je peux maintenant me consacrer pleinement à mon activité sans me soucier des contraintes logistiques. Allez y les yeux fermés",
-    name: "Thomas L.",
+    name: "Julie B.",
     rating: 5
   },
   {
     quote: "Entreprise à taille humaine, avec de vrais valeurs et proches de ses clients, qui sait nous conseiller sur les meilleures solutions de transport ! je fais clairement des économies depuis que j’ai externalisé ma logistique chez eux",
-    name: "Julie M.",
+    name: "Mathis H.",
     rating: 4
   },
   {
     quote: "Je viens de lancer mon activité e-commerce et j’ai eu du mal à trouver un logisticien avec le peu d’expédition que nous avons.. mais speedElog nous a fait tout de suite confiance en intégrant notre stock chez eux. Cerise sur le gâteux ils nous donnent de vrais conseils pour nous développer",
-    name: "Alex M.",
+    name: "Mathieu M.",
     rating: 5
   },
   {
-    quote: "La précision dans la préparation des commandes est impressionnante. Zéro erreur depuis 6 mois !",
-    name: "Sophie B.",
+    quote: " Tarifs justes, professionnalisme, et hyper sympa ! Il y a encore des gens passionnés et impliqués, À su gérer récemment un gros pic d’activité sans baisser la qualité du service", 
+    name: "Cédric M.",
     rating: 5
   },
   {
     quote: "Un accompagnement personnalisé qui fait toute la différence. Merci à toute l'équipe !",
-    name: "Paul D.",
+    name: "Fred P.",
     rating: 5
   }
 ];
