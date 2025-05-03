@@ -24,7 +24,6 @@ export const LogoIcon: React.FC<{
     transition={{ duration: 0.3 }}
     whileHover={{ scale: 1.05, transition: { duration: 0.2 }}}
     className={cn(sizeClasses[size], "object-contain", className)}
-    style={{ filter: "brightness(0) saturate(100%) invert(23%) sepia(90%) saturate(1352%) hue-rotate(201deg) brightness(96%) contrast(101%)" }}
   />;
 };
 
@@ -43,7 +42,6 @@ export const LogoIconWithText: React.FC<{
       transition={{ duration: 0.3 }}
       src={logoPath} 
       className="mb-1 object-scale-down" 
-      style={{ filter: "brightness(0) saturate(100%) invert(23%) sepia(90%) saturate(1352%) hue-rotate(201deg) brightness(96%) contrast(101%)" }}
     />
   </div>;
 };
