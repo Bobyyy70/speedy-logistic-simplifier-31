@@ -55,7 +55,7 @@
   
   /* Fond de l'application */
   .site-background {
-    @apply bg-gradient-to-b from-blue-200 via-teal-100 to-green-100;
+    @apply bg-gradient-to-r from-green-200 via-white to-blue-100 dark:from-green-800 dark:via-slate-950 dark:to-blue-900;
   }
 }
 

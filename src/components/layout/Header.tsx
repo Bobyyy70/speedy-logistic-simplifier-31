@@ -52,7 +52,7 @@ const Header = () => {
 
   return <header className={cn(
     "sticky top-0 z-50 w-full bg-transparent backdrop-blur-sm", 
-    isScrolled && "shadow-sm bg-white/30"
+    isScrolled && "shadow-sm bg-white/20 dark:bg-slate-900/20"
   )}>
       <div className="container flex h-16 items-center justify-between py-0 my-[8px]">
         <NavLink to="/" className="flex items-center">
@@ -69,7 +69,7 @@ const Header = () => {
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[80%] sm:w-[350px]">
+          <SheetContent side="right" className="w-[80%] sm:w-[350px] bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
             <SheetHeader>
               <SheetTitle className="text-left">Menu</SheetTitle>
             </SheetHeader>
