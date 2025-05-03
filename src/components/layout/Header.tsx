@@ -51,8 +51,8 @@ const Header = () => {
   }];
 
   return <header className={cn(
-    "sticky top-0 z-50 w-full bg-gradient-to-b from-blue-200 via-teal-100 to-green-100 backdrop-blur-md", 
-    isScrolled && "shadow-sm"
+    "sticky top-0 z-50 w-full bg-transparent backdrop-blur-sm", 
+    isScrolled && "shadow-sm bg-white/30"
   )}>
       <div className="container flex h-16 items-center justify-between py-0 my-[8px]">
         <NavLink to="/" className="flex items-center">
@@ -100,7 +100,9 @@ const Header = () => {
 
         <div className="hidden md:block">
           <NavLink to="/contact">
-            
+            <Button variant="solid" size="default">
+              Obtenir un devis
+            </Button>
           </NavLink>
         </div>
       </div>
