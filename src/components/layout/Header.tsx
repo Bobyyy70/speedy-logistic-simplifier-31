@@ -51,7 +51,7 @@ const Header = () => {
   }];
 
   return <header className={cn(
-    "sticky top-0 z-50 w-full backdrop-blur-md bg-white/10 dark:bg-slate-900/10", 
+    "sticky top-0 z-50 w-full bg-gradient-to-b from-blue-200 via-teal-100 to-green-100 backdrop-blur-md", 
     isScrolled && "shadow-sm"
   )}>
       <div className="container flex h-16 items-center justify-between py-0 my-[8px]">

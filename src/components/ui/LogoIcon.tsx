@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -22,7 +23,7 @@ export const LogoIcon: React.FC<{
     animate={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.3 }}
     whileHover={{ scale: 1.05, transition: { duration: 0.2 }}}
-    className={cn(sizeClasses[size], "object-contain mix-blend-multiply dark:mix-blend-normal", className)}
+    className={cn(sizeClasses[size], "object-contain", className)}
   />;
 };
 
@@ -40,7 +41,7 @@ export const LogoIconWithText: React.FC<{
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
       src={logoPath} 
-      className="mb-1 object-scale-down mix-blend-multiply dark:mix-blend-normal" 
+      className="mb-1 object-scale-down" 
     />
   </div>;
 };
