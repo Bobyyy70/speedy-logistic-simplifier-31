@@ -38,12 +38,12 @@ export const LogoIconWithText: React.FC<{
     <motion.img 
       src={logoPath}
       alt="Speed E-Log Logo with Text" 
-      width={180} 
-      height={40}
+      width={216} // Augmentation de 20% (180px * 1.2 = 216px)
+      height={48} // Augmentation de la hauteur pour couvrir le header (48px au lieu de 40px)
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
-      className="object-contain h-[40px]" 
+      className="object-contain h-[48px]" // Ajustement de la hauteur à 48px au lieu de 40px
     />
   </div>;
 };
