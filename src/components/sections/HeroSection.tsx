@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -6,7 +5,6 @@ import { Link } from "react-router-dom";
 import { HomeLogoWithText } from "@/components/ui/LogoIcon";
 import { WorldMap } from "@/components/ui/world-map/component";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-
 export function HeroSection() {
   return <section className="relative site-background py-12 md:py-24 lg:py-32 overflow-hidden xl:py-0 rounded-none mx-0">
       {/* World Map Background */}
@@ -104,15 +102,15 @@ export function HeroSection() {
             <div className="mt-6 flex items-center justify-center lg:justify-start space-x-3">
               <div className="flex -space-x-2">
                 <Avatar className="inline-block h-8 w-8 border-2 border-white">
-                  <AvatarImage src="/lovable-uploads/95b27dc0-a84b-4b24-a5d0-c8c2a0d909c1.png" alt="Logo HEFA Group" className="object-contain p-1" />
+                  <AvatarImage alt="Logo HEFA Group" src="/lovable-uploads/590ac1d9-f785-4df5-b83a-eba31531fcb1.png" className="p-1 object-fill" />
                   <AvatarFallback>HG</AvatarFallback>
                 </Avatar>
                 <Avatar className="inline-block h-8 w-8 border-2 border-white">
-                  <AvatarImage src="/lovable-uploads/24c83f4f-ee17-4c4b-83dd-8c2eb376882a.png" alt="Logo THOMAS" className="object-contain p-1" />
+                  <AvatarImage alt="Logo THOMAS" src="/lovable-uploads/719f09ed-b24b-44da-9a90-5e247bc9fa9f.png" className="p-1 object-fill" />
                   <AvatarFallback>TH</AvatarFallback>
                 </Avatar>
                 <Avatar className="inline-block h-8 w-8 border-2 border-white">
-                  <AvatarImage src="/lovable-uploads/d1503c04-c44a-4c14-83dd-e67f034c9e5d.png" alt="Logo Heatzy" className="object-contain p-1" />
+                  <AvatarImage alt="Logo Heatzy" className="p-1 object-fill" src="/lovable-uploads/b4410995-8878-4fb4-911b-1a4c82b154b4.png" />
                   <AvatarFallback>HZ</AvatarFallback>
                 </Avatar>
               </div>
