@@ -27,8 +27,8 @@ const Contact = () => {
           </p>
         </div>
         
-        {/* Calendar Widget - Full width with increased height and improved container */}
-        <div className="mb-8 overflow-visible">
+        {/* Calendar Widget - Full width with expanded view on interaction */}
+        <div className="mb-8 overflow-visible relative">
           <CalendarWidget />
         </div>
         
