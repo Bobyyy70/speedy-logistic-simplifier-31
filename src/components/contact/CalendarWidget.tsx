@@ -1,76 +1,82 @@
 
-import React, { useEffect, useState } from "react";
-import Cal, { getCalApi } from "@calcom/embed-react";
+import React, { useState } from "react";
+import { Cal, getCalApi } from "@calcom/embed-react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
 
-export const CalendarWidget = () => {
+const CalendarWidget = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   
+  // Initialize Cal.com
   useEffect(() => {
     (async function () {
-      const cal = await getCalApi({
-        "namespace": "15min",
-        "embedJsUrl": "https://calcom.speedelog.space/embed/embed.js"
+      const cal = await getCalApi();
+      cal('ui', {
+        theme: 'light',
+        styles: {
+          branding: {
+            brandColor: '#3182ce'
+          }
+        },
+        hideEventTypeDetails: false
       });
-      cal("ui", { "hideEventTypeDetails": true, "layout": "week_view" });
     })();
   }, []);
 
+  // Handlers pour l'expansion/contraction du calendrier
+  const handleMouseEnter = () => {
+    setIsExpanded(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsExpanded(false);
+  };
+
+  // Animations avec framer-motion
+  const variants = {
+    expanded: {
+      height: "600px",
+      zIndex: 50
+    },
+    collapsed: {
+      height: "350px",
+      zIndex: 10
+    }
+  };
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.3 }}
-      className="w-full"
-    >
-      <Card className="relative z-10">
-        <CardHeader>
-          <h3 className="text-xl font-semibold">Prendre rendez-vous</h3>
-          <p className="text-sm text-muted-foreground">
-            Sélectionnez une date et un horaire qui vous convient pour un appel de 15 minutes
-          </p>
-        </CardHeader>
-        <CardContent>
-          <motion.div
-            className="relative rounded-md overflow-hidden"
-            animate={{
-              height: isExpanded ? "80vh" : "600px",
-              zIndex: isExpanded ? 50 : 1
-            }}
-            transition={{ duration: 0.3 }}
-            onMouseEnter={() => setIsExpanded(true)}
-            onMouseLeave={() => setIsExpanded(false)}
-            onTouchStart={() => setIsExpanded(true)}
-            style={{ scrollBehavior: "smooth" }}
-          >
-            {isExpanded && (
-              <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-40 pointer-events-none" />
-            )}
-            <div
-              className={`relative z-50 w-full h-full ${isExpanded ? "shadow-2xl" : ""}`}
-            >
-              <Cal
-                namespace="15min"
-                calLink="admin-speedelog.net/15min"
-                style={{ width: "100%", height: "100%", overflow: "auto" }}
-                config={{ 
-                  layout: "month_view",
-                  hideEventTypeDetails: false,
-                  bookerLayouts: {
-                    default: {
-                      showRemoveCalendarButton: true
-                    }
-                  }
-                }}
-                calOrigin="https://calcom.speedelog.space"
-                embedJsUrl="https://calcom.speedelog.space/embed/embed.js"
-              />
-            </div>
-          </motion.div>
-        </CardContent>
-      </Card>
-    </motion.div>
+    <>
+      {/* Backdrop flou qui apparaît lorsque le calendrier est développé */}
+      {isExpanded && (
+        <div 
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+          onClick={() => setIsExpanded(false)}
+        />
+      )}
+      
+      <motion.div 
+        className="relative overflow-auto border border-gray-200 rounded-lg shadow-lg"
+        variants={variants}
+        animate={isExpanded ? "expanded" : "collapsed"}
+        transition={{ duration: 0.3 }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onTouchStart={handleMouseEnter}
+        onTouchEnd={handleMouseLeave}
+      >
+        <Cal
+          calLink="speedelog/30min"
+          style={{ width: "100%", height: "100%", overflow: "auto" }}
+          config={{
+            layout: "month_view",
+            hideEventTypeDetails: false,
+            uiOptions: {
+              hideEventTypeDetails: false
+            }
+          }}
+        />
+      </motion.div>
+    </>
   );
 };
 
