@@ -9,7 +9,7 @@ export const CalendarWidget = () => {
     (async function () {
       const cal = await getCalApi({
         "namespace": "15min",
-        "embedLibUrl": "https://calcom.speedelog.space/embed/embed.js"
+        "embedJsUrl": "https://calcom.speedelog.space/embed/embed.js"
       });
       cal("ui", { "hideEventTypeDetails": true, "layout": "week_view" });
     })();

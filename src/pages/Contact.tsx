@@ -30,20 +30,20 @@ const Contact = () => {
           </p>
         </div>
         
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-12">
-          {/* Contact Info & Map - Takes 5 columns on large screens */}
-          <div className="lg:col-span-4">
-            <ContactInfo />
-          </div>
-          
-          {/* Contact Form - Takes 4 columns on large screens */}
-          <div className="lg:col-span-4">
+        {/* Calendar Widget - Full width */}
+        <div className="mb-8">
+          <CalendarWidget />
+        </div>
+        
+        <div className="grid gap-8 md:grid-cols-2">
+          {/* Contact Form - Left column */}
+          <div>
             <ContactForm />
           </div>
           
-          {/* Calendar Widget - Takes 4 columns on large screens */}
-          <div className="lg:col-span-4">
-            <CalendarWidget />
+          {/* Contact Info & Map - Right column */}
+          <div>
+            <ContactInfo />
           </div>
         </div>
       </div>
