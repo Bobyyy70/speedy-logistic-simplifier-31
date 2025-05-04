@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Cal, getCalApi } from "@calcom/embed-react";
+import Cal from "@calcom/embed-react";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 
@@ -10,7 +10,7 @@ const CalendarWidget = () => {
   // Initialize Cal.com
   useEffect(() => {
     (async function () {
-      const cal = await getCalApi();
+      const cal = await Cal.getCalApi();
       cal('ui', {
         theme: 'light',
         styles: {
