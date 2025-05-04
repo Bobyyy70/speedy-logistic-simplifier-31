@@ -154,6 +154,21 @@ export type Database = {
         }
         Relationships: []
       }
+      MCPso: {
+        Row: {
+          created_at: string
+          id: number
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+        }
+        Update: {
+          created_at?: string
+          id?: number
+        }
+        Relationships: []
+      }
       order_items: {
         Row: {
           id: string
@@ -291,27 +306,6 @@ export type Database = {
           price?: number
           sku?: string
           weight?: number | null
-        }
-        Relationships: []
-      }
-      profiles: {
-        Row: {
-          client_id: string | null
-          created_at: string | null
-          id: string
-          user_id: string
-        }
-        Insert: {
-          client_id?: string | null
-          created_at?: string | null
-          id?: string
-          user_id: string
-        }
-        Update: {
-          client_id?: string | null
-          created_at?: string | null
-          id?: string
-          user_id?: string
         }
         Relationships: []
       }

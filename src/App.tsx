@@ -15,49 +15,37 @@ import LegalMentions from "./pages/LegalMentions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Admin from "./pages/Admin";
-import { HelmetProvider } from "react-helmet-async";
 
-// Création d'un client QueryClient avec une configuration spécifique pour éviter les erreurs
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: false,
-      refetchOnWindowFocus: false,
-      staleTime: 1000 * 60 * 5, // 5 minutes
-    },
-  },
-});
+const queryClient = new QueryClient();
 
 const App = () => (
-  <HelmetProvider>
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <BrowserRouter>
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/services" element={<Services />} />
-              {/* Redirection of all pricing routes to contact page */}
-              <Route path="/pricing" element={<Navigate to="/contact" replace />} />
-              <Route path="/tarifs" element={<Navigate to="/contact" replace />} />
-              <Route path="/prix" element={<Navigate to="/contact" replace />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/a-propos" element={<Navigate to="/about" replace />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/faq" element={<FaqPage />} />
-              <Route path="/mentions-legales" element={<LegalMentions />} />
-              <Route path="/politique-confidentialite" element={<PrivacyPolicy />} />
-              <Route path="/cgv" element={<TermsOfService />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Layout>
-          <Toaster />
-          <Sonner />
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
-  </HelmetProvider>
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <BrowserRouter>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/services" element={<Services />} />
+            {/* Redirection of all pricing routes to contact page */}
+            <Route path="/pricing" element={<Navigate to="/contact" replace />} />
+            <Route path="/tarifs" element={<Navigate to="/contact" replace />} />
+            <Route path="/prix" element={<Navigate to="/contact" replace />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/a-propos" element={<Navigate to="/about" replace />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<FaqPage />} />
+            <Route path="/mentions-legales" element={<LegalMentions />} />
+            <Route path="/politique-confidentialite" element={<PrivacyPolicy />} />
+            <Route path="/cgv" element={<TermsOfService />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Layout>
+        <Toaster />
+        <Sonner />
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
 );
 
 export default App;
