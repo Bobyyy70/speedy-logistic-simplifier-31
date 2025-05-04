@@ -1,15 +1,12 @@
 
 import React from "react";
-import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { ContactInfo } from "@/components/contact/ContactInfo";
 import CalendarWidget from "@/components/contact/CalendarWidget";
 
 const Contact = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // Removed the useEffect with window.scrollTo(0, 0) to prevent scrolling issues
 
   return (
     <div className="site-background">
@@ -30,8 +27,8 @@ const Contact = () => {
           </p>
         </div>
         
-        {/* Calendar Widget - Full width */}
-        <div className="mb-8">
+        {/* Calendar Widget - Full width with increased height and improved container */}
+        <div className="mb-8 overflow-visible">
           <CalendarWidget />
         </div>
         

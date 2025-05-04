@@ -30,12 +30,20 @@ export const CalendarWidget = () => {
           </p>
         </CardHeader>
         <CardContent>
-          <div className="h-[500px] w-full rounded-md">
+          <div className="relative h-[600px] w-full rounded-md" style={{ scrollBehavior: "smooth" }}>
             <Cal
               namespace="15min"
               calLink="admin-speedelog.net/15min"
-              style={{ width: "100%", height: "100%", overflow: "scroll" }}
-              config={{ "layout": "month_view" }}
+              style={{ width: "100%", height: "100%", overflow: "auto" }}
+              config={{ 
+                "layout": "month_view",
+                "hideEventTypeDetails": false,
+                "bookerLayouts": {
+                  "default": {
+                    "showRemoveCalendarButton": true
+                  }
+                }
+              }}
               calOrigin="https://calcom.speedelog.space"
               embedJsUrl="https://calcom.speedelog.space/embed/embed.js"
             />
