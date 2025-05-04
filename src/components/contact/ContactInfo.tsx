@@ -1,10 +1,20 @@
 
-import React from "react";
-import { Mail, Phone, MapPin } from "lucide-react";
+import React, { useEffect } from "react";
+import { Mail, Phone, MapPin, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { getCalApi } from "@calcom/embed-react";
 
 export const ContactInfo = () => {
+  // Initialize Cal.com
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({"namespace":"15min","embedLibUrl":"https://calcom.speedelog.space/embed/embed.js"});
+      cal("ui", {"theme":"light","hideEventTypeDetails":true,"layout":"month_view"});
+    })();
+  }, []);
+  
   return (
     <motion.div 
       initial={{ opacity: 0, x: -20 }}
@@ -12,6 +22,28 @@ export const ContactInfo = () => {
       transition={{ duration: 0.5, delay: 0.1 }}
       className="space-y-6"
     >
+      <Card className="overflow-hidden border-blue-200 shadow-lg">
+        <CardContent className="pt-6">
+          <div className="text-center mb-4">
+            <h3 className="text-xl font-semibold mb-2 text-blue-700">Planifiez un rendez-vous</h3>
+            <p className="text-muted-foreground mb-4">
+              Réservez une consultation de 15 minutes pour discuter de vos besoins logistiques
+            </p>
+            <Button 
+              data-cal-namespace="15min"
+              data-cal-link="admin-speedelog.net/15min"
+              data-cal-origin="https://calcom.speedelog.space"
+              data-cal-config='{"layout":"month_view","theme":"light"}'
+              size="lg"
+              className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white shadow-md hover:shadow-lg transition-all duration-300 w-full md:w-auto px-8 py-6"
+            >
+              <Calendar className="mr-2 h-5 w-5" />
+              Prendre rendez-vous
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
       <Card>
         <CardContent className="pt-6">
           <div className="space-y-4">

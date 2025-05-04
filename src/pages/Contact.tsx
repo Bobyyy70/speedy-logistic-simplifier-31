@@ -3,11 +3,8 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { ContactInfo } from "@/components/contact/ContactInfo";
-import CalendarWidget from "@/components/contact/CalendarWidget";
 
 const Contact = () => {
-  // Removed the useEffect with window.scrollTo(0, 0) to prevent scrolling issues
-
   return (
     <div className="site-background">
       <Helmet>
@@ -25,11 +22,6 @@ const Contact = () => {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Discutons de vos besoins logistiques et trouvons ensemble la meilleure solution pour votre e-commerce.
           </p>
-        </div>
-        
-        {/* Calendar Widget - Full width with expanded view on interaction */}
-        <div className="mb-8 overflow-visible relative">
-          <CalendarWidget />
         </div>
         
         <div className="grid gap-8 md:grid-cols-2">
