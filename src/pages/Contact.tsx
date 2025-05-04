@@ -3,6 +3,8 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { ContactInfo } from "@/components/contact/ContactInfo";
+import { ContactHeader } from "@/components/contact/ContactHeader";
+import { ContactFAQLink } from "@/components/contact/ContactFAQLink";
 
 const Contact = () => {
   return (
@@ -24,17 +26,20 @@ const Contact = () => {
           </p>
         </div>
         
-        <div className="grid gap-8 md:grid-cols-2">
-          {/* Contact Form - Left column */}
-          <div>
+        <div className="grid gap-8 lg:grid-cols-12">
+          {/* Contact Form - Left column (wider on large screens) */}
+          <div className="lg:col-span-7">
+            <ContactHeader />
             <ContactForm />
           </div>
           
           {/* Contact Info & Map - Right column */}
-          <div>
+          <div className="lg:col-span-5">
             <ContactInfo />
           </div>
         </div>
+        
+        <ContactFAQLink />
       </div>
     </div>
   );
