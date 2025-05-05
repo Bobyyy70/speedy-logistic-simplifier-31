@@ -26,7 +26,7 @@ const About = () => {
       <section className="py-10 md:py-24">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6">
-            Qui <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">Sommes-Nous</span> ?
+            Qui <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">Sommes-nous</span> ?
           </h1>
           <p className="text-base md:text-xl text-muted-foreground max-w-3xl mx-auto">
             Speed E-Log est un partenaire logistique spécialisé pour les PME e-commerce françaises.
