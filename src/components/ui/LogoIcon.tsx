@@ -1,8 +1,6 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-
 export const LogoIcon: React.FC<{
   className?: string;
   size?: "sm" | "md" | "lg";
@@ -16,17 +14,21 @@ export const LogoIcon: React.FC<{
     lg: "w-16 h-16"
   };
   const logoPath = "/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png";
-  return <motion.img 
-    src={logoPath} 
-    alt="Speed E-Log Logo" 
-    initial={{ opacity: 0, scale: 0.95 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.3 }}
-    whileHover={{ scale: 1.05, transition: { duration: 0.2 }}}
-    className={cn(sizeClasses[size], "object-contain", className)}
-  />;
+  return <motion.img src={logoPath} alt="Speed E-Log Logo" initial={{
+    opacity: 0,
+    scale: 0.95
+  }} animate={{
+    opacity: 1,
+    scale: 1
+  }} transition={{
+    duration: 0.3
+  }} whileHover={{
+    scale: 1.05,
+    transition: {
+      duration: 0.2
+    }
+  }} className={cn(sizeClasses[size], "object-contain", className)} />;
 };
-
 export const LogoIconWithText: React.FC<{
   className?: string;
 }> = ({
@@ -35,19 +37,17 @@ export const LogoIconWithText: React.FC<{
   // Utilisation du nouveau logo fourni par l'utilisateur
   const logoPath = "/lovable-uploads/5c1b4538-57b0-4f38-af9e-dda22195de74.png";
   return <div className={cn("flex flex-col items-center", className)}>
-    <motion.img 
-      src={logoPath}
-      alt="Speed E-Log Logo with Text" 
-      width={280} 
-      height={64}
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.3 }}
-      className="object-contain h-[64px]" 
-    />
+    <motion.img src={logoPath} alt="Speed E-Log Logo with Text" width={280} height={64} initial={{
+      opacity: 0,
+      scale: 0.95
+    }} animate={{
+      opacity: 1,
+      scale: 1
+    }} transition={{
+      duration: 0.3
+    }} className="h-[64px] object-contain" />
   </div>;
 };
-
 export const HomeLogoWithText: React.FC<{
   className?: string;
 }> = ({
@@ -58,5 +58,4 @@ export const HomeLogoWithText: React.FC<{
       
     </div>;
 };
-
 export default LogoIcon;
