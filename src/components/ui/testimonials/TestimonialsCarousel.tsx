@@ -37,7 +37,7 @@ const testimonials: TestimonialCardType[] = [
     rating: 5
   },
   {
-    quote: "Un accompagnement personnalisé qui fait toute la différence. Merci à toute l'équipe !",
+    quote: "En tant qu’e-commerçant actif sur Amazon, Cdiscount et d’autres plateformes, j’ai besoin d’un logisticien sur qui je peux vraiment compter. Ce que j’apprécie particulièrement chez lui, c’est sa réactivité exceptionnelle : que ce soit un dimanche soir ou un jour férié, il est toujours là pour répondre présent. Il sait s’adapter à toutes les situations, toujours avec professionnalisme et efficacité. Les tarifs sont compétitifs, mais surtout, le service est irréprochable. C’est rare de trouver un partenaire aussi fiable, et pour moi, c’est devenu un pilier de mon activité.",
     name: "Fred P.",
     rating: 5
   }
