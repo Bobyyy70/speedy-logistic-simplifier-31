@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -37,15 +38,24 @@ export const LogoIconWithText: React.FC<{
   // Utilisation du nouveau logo fourni par l'utilisateur
   const logoPath = "/lovable-uploads/5c1b4538-57b0-4f38-af9e-dda22195de74.png";
   return <div className={cn("flex flex-col items-center", className)}>
-    <motion.img src={logoPath} alt="Speed E-Log Logo with Text" width={280} height={64} initial={{
-      opacity: 0,
-      scale: 0.95
-    }} animate={{
-      opacity: 1,
-      scale: 1
-    }} transition={{
-      duration: 0.3
-    }} className="h-[64px] object-contain" />
+    <motion.img 
+      src={logoPath} 
+      alt="Speed E-Log Logo with Text" 
+      width={364} // Augmentation de 30% par rapport à 280 précédemment
+      height={64} 
+      initial={{
+        opacity: 0,
+        scale: 0.95
+      }} 
+      animate={{
+        opacity: 1,
+        scale: 1
+      }} 
+      transition={{
+        duration: 0.3
+      }} 
+      className="h-16 object-contain" // Augmentation de la hauteur pour correspondre à la hauteur du header (h-16 = 64px)
+    />
   </div>;
 };
 export const HomeLogoWithText: React.FC<{
