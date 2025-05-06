@@ -41,7 +41,7 @@ export const LogoIconWithText: React.FC<{
     <motion.img 
       src={logoPath} 
       alt="Speed E-Log Logo with Text" 
-      width={364} // Augmentation de 30% par rapport à 280 précédemment
+      width={364} // Largeur augmentée de 30% par rapport à 280px
       height={64} 
       initial={{
         opacity: 0,
@@ -54,7 +54,7 @@ export const LogoIconWithText: React.FC<{
       transition={{
         duration: 0.3
       }} 
-      className="h-16 object-contain" // Augmentation de la hauteur pour correspondre à la hauteur du header (h-16 = 64px)
+      className="h-16 w-auto object-contain" // h-16 correspond exactement à la hauteur du header (64px) et w-auto maintient le ratio
     />
   </div>;
 };
