@@ -67,7 +67,24 @@ export const HomeLogoWithText: React.FC<{
 }) => {
   const logoPath = "/lovable-uploads/83cc9529-aa94-4f8a-851d-02ea52cc3c71.png";
   return <div className={cn("flex items-center", className)}>
-      
-    </div>;
+    <motion.img 
+      src={logoPath} 
+      alt="Speed E-Log Home Logo" 
+      width={650}
+      height={120}
+      initial={{
+        opacity: 0,
+        scale: 0.95
+      }} 
+      animate={{
+        opacity: 1,
+        scale: 1
+      }} 
+      transition={{
+        duration: 0.3
+      }} 
+      className="w-auto max-h-[120px] object-contain"
+    />
+  </div>;
 };
 export default LogoIcon;
