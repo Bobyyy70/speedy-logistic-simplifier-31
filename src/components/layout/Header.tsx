@@ -54,9 +54,9 @@ const Header = () => {
     "sticky top-0 z-50 w-full bg-transparent backdrop-blur-sm", 
     isScrolled && "shadow-sm bg-white/10 dark:bg-slate-900/10"
   )}>
-      <div className="container flex h-16 items-center justify-between py-0 my-[8px]">
-        <NavLink to="/" className="flex items-center">
-          <LogoIconWithText className="w-auto" />
+      <div className="container flex h-20 items-center justify-between py-0 my-[8px]">
+        <NavLink to="/" className="flex items-center h-full py-1">
+          <LogoIconWithText className="w-auto h-full" />
         </NavLink>
 
         <div className="hidden md:block">

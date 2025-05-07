@@ -30,19 +30,20 @@ export const LogoIcon: React.FC<{
     }
   }} className={cn(sizeClasses[size], "object-contain", className)} />;
 };
+
 export const LogoIconWithText: React.FC<{
   className?: string;
 }> = ({
   className = ""
 }) => {
-  // Utilisation du nouveau logo fourni par l'utilisateur
+  // Utilisation du logo fourni par l'utilisateur
   const logoPath = "/lovable-uploads/5c1b4538-57b0-4f38-af9e-dda22195de74.png";
-  return <div className={cn("flex flex-col items-center", className)}>
+  return <div className={cn("flex items-center justify-center h-full", className)}>
     <motion.img 
       src={logoPath} 
       alt="Speed E-Log Logo with Text" 
-      width={364} // Largeur augmentée de 30% par rapport à 280px
-      height={64} 
+      width={450} // Largeur augmentée significativement pour remplir l'espace
+      height={80} // Hauteur augmentée pour dépasser légèrement la hauteur du header
       initial={{
         opacity: 0,
         scale: 0.95
@@ -54,10 +55,11 @@ export const LogoIconWithText: React.FC<{
       transition={{
         duration: 0.3
       }} 
-      className="h-16 w-auto object-contain" // h-16 correspond exactement à la hauteur du header (64px) et w-auto maintient le ratio
+      className="h-[72px] w-auto object-contain" // Hauteur augmentée à 72px (plus que h-16/64px)
     />
   </div>;
 };
+
 export const HomeLogoWithText: React.FC<{
   className?: string;
 }> = ({
