@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -30,7 +29,6 @@ export const LogoIcon: React.FC<{
     }
   }} className={cn(sizeClasses[size], "object-contain", className)} />;
 };
-
 export const LogoIconWithText: React.FC<{
   className?: string;
 }> = ({
@@ -39,27 +37,20 @@ export const LogoIconWithText: React.FC<{
   // Utilisation du logo fourni par l'utilisateur
   const logoPath = "/lovable-uploads/5c1b4538-57b0-4f38-af9e-dda22195de74.png";
   return <div className={cn("flex items-center justify-center h-full", className)}>
-    <motion.img 
-      src={logoPath} 
-      alt="Speed E-Log Logo with Text" 
-      width={520} // Largeur augmentée encore plus pour respecter la demande de +30%
-      height={80} // Hauteur maintenue pour correspondre à la hauteur du header
-      initial={{
-        opacity: 0,
-        scale: 0.95
-      }} 
-      animate={{
-        opacity: 1,
-        scale: 1
-      }} 
-      transition={{
-        duration: 0.3
-      }} 
-      className="h-full w-auto max-h-[80px] object-contain" // Utilisation de h-full pour prendre toute la hauteur disponible
+    <motion.img src={logoPath} alt="Speed E-Log Logo with Text" width={520} // Largeur augmentée encore plus pour respecter la demande de +30%
+    height={80} // Hauteur maintenue pour correspondre à la hauteur du header
+    initial={{
+      opacity: 0,
+      scale: 0.95
+    }} animate={{
+      opacity: 1,
+      scale: 1
+    }} transition={{
+      duration: 0.3
+    }} className="h-full w-auto max-h-[80px] object-contain" // Utilisation de h-full pour prendre toute la hauteur disponible
     />
   </div>;
 };
-
 export const HomeLogoWithText: React.FC<{
   className?: string;
 }> = ({
@@ -67,24 +58,7 @@ export const HomeLogoWithText: React.FC<{
 }) => {
   const logoPath = "/lovable-uploads/83cc9529-aa94-4f8a-851d-02ea52cc3c71.png";
   return <div className={cn("flex items-center", className)}>
-    <motion.img 
-      src={logoPath} 
-      alt="Speed E-Log Home Logo" 
-      width={650}
-      height={120}
-      initial={{
-        opacity: 0,
-        scale: 0.95
-      }} 
-      animate={{
-        opacity: 1,
-        scale: 1
-      }} 
-      transition={{
-        duration: 0.3
-      }} 
-      className="w-auto max-h-[120px] object-contain"
-    />
+    
   </div>;
 };
 export default LogoIcon;
