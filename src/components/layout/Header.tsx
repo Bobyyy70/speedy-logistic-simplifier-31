@@ -55,7 +55,7 @@ const Header = () => {
     isScrolled && "shadow-sm bg-white/10 dark:bg-slate-900/10"
   )}>
       <div className="container flex h-20 items-center justify-between py-0 my-[8px]">
-        <NavLink to="/" className="flex items-center h-full py-1">
+        <NavLink to="/" className="flex items-center h-full py-0">
           <LogoIconWithText className="w-auto h-full" />
         </NavLink>
 
