@@ -15,6 +15,7 @@ import LegalMentions from "./pages/LegalMentions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Admin from "./pages/Admin";
+import Technology from "./pages/Technology";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/technology" element={<Technology />} />
+            <Route path="/technologie" element={<Navigate to="/technology" replace />} />
             {/* Redirection of all pricing routes to contact page */}
             <Route path="/pricing" element={<Navigate to="/contact" replace />} />
             <Route path="/tarifs" element={<Navigate to="/contact" replace />} />

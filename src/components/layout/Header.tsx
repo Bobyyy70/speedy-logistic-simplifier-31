@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { NavBar } from "@/components/ui/tubelight-navbar";
-import { Home, Briefcase, Info, FileQuestion, Contact } from 'lucide-react';
+import { Home, Briefcase, Info, FileQuestion, Contact, Laptop } from 'lucide-react';
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const Header = () => {
@@ -36,6 +36,10 @@ const Header = () => {
     name: "Services",
     url: "/services",
     icon: Briefcase
+  }, {
+    name: "Technologie",
+    url: "/technology",
+    icon: Laptop
   }, {
     name: "À Propos",
     url: "/about",

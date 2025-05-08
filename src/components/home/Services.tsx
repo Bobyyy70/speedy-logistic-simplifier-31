@@ -1,3 +1,4 @@
+
 import { Package, Truck, Clock, FileText, Users, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -72,7 +73,9 @@ export function Services() {
       
       <div className="flex justify-center mt-8 md:mt-12">
         <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600">
-          
+          <Link to="/technology">
+            Découvrez notre technologie SupplyOS
+          </Link>
         </Button>
       </div>
     </section>;

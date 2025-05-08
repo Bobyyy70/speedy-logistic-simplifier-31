@@ -1,7 +1,10 @@
 
 import React from "react";
-import { Shield, Clock, Truck, MessageCircle } from "lucide-react";
+import { Shield, Clock, Truck, MessageCircle, ChevronRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
+import { AnimatedButton } from "@/components/ui/moving-border";
+
 export function LogisticsPerformanceSection() {
   return <section className="w-full py-12 md:py-24 lg:py-32 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-20 h-20 rounded-full bg-orange-100/10 dark:bg-orange-900/10" />
@@ -76,6 +79,15 @@ export function LogisticsPerformanceSection() {
                     <li>TMS (Transport Management System) pour le suivi des expéditions</li>
                     <li>OMS (Order Management System) pour le traitement des commandes</li>
                   </ul>
+                  
+                  <div className="mt-6">
+                    <AnimatedButton asChild className="shadow-lg hover:shadow-blue-200/20 dark:hover:shadow-blue-900/20">
+                      <Link to="/technology">
+                        En savoir plus
+                        <ChevronRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </AnimatedButton>
+                  </div>
                 </CardContent>
               </Card>
             </div>
