@@ -201,10 +201,7 @@ const About = () => {
           <h2 className="text-xl md:text-3xl font-bold mb-4">
             Envie de travailler avec nous ?
           </h2>
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-6 md:mb-8">
-            Découvrez comment Speed E Log peut devenir votre partenaire logistique
-            et vous accompagner dans la croissance de votre entreprise e-commerce.
-          </p>
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-6 md:mb-8">Découvrez comment Speed E-Log peut devenir votre partenaire logistique et vous accompagner dans la croissance de votre entreprise e-commerce.</p>
           <AnimatedButton asChild className="shadow-lg hover:shadow-orange-200/20 dark:hover:shadow-orange-900/20 touch-target">
             <Link to="/contact">Demander un Devis Personnalisé</Link>
           </AnimatedButton>
