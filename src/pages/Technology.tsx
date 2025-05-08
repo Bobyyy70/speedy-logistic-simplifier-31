@@ -12,24 +12,24 @@ const Technology = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // États pour le suivi des images survolées
-  const [hoveredImage, setHoveredImage] = useState<number | null>(null);
+  // États pour le suivi des images agrandies
+  const [enlargedImage, setEnlargedImage] = useState<number | null>(null);
 
   const screenshots = [
     {
-      src: "/lovable-uploads/7e668035-1d72-4474-a463-2edc7209bb2a.png",
+      src: "/lovable-uploads/78d7ab9f-306b-4854-a6c6-a1863ac47cf4.png",
       title: "Vue d'ensemble du tableau de bord",
-      description: "Notre interface centralisée permet de visualiser toutes vos données logistiques en un coup d'œil. Le tableau de bord personnalisable vous présente vos KPIs essentiels, l'état des commandes en cours et les alertes importantes pour une gestion proactive de votre chaîne logistique."
+      description: "Notre interface centralisée permet de visualiser toutes vos données logistiques en un coup d'œil. Le tableau de bord personnalisable vous présente vos KPIs essentiels comme le nombre d'expéditions, le coût moyen, les délais et le taux de livraison à temps, ainsi que des graphiques détaillés sur la performance des transporteurs."
     },
     {
-      src: "/lovable-uploads/f1857faa-e92e-4c2f-8baa-f5d3ce99f322.png",
-      title: "Gestion des commandes en temps réel",
-      description: "Suivez chaque étape du processus de traitement des commandes, depuis la réception jusqu'à l'expédition. Notre système offre une visibilité totale sur le statut des commandes, les détails des produits et les informations d'expédition, vous permettant d'anticiper et de résoudre rapidement les problèmes potentiels."
+      src: "/lovable-uploads/b65d821a-6ccc-47a6-b314-0d8cfc210fd1.png",
+      title: "Analyse financière et logistique",
+      description: "Suivez en temps réel tous vos indicateurs financiers clés: chiffre d'affaires, coûts logistiques, frais d'expédition et marges. Notre tableau de bord vous permet également de surveiller le statut de vos commandes, leur distribution par période et d'identifier rapidement les tendances pour optimiser votre chaîne logistique."
     },
     {
-      src: "/lovable-uploads/c85b8c1f-5982-46a8-ad62-46a9dbe6e3a5.png",
-      title: "Analytics et rapports avancés",
-      description: "Transformez vos données en insights actionnables grâce à nos outils d'analyse avancés. Visualisez les tendances, identifiez les opportunités d'optimisation et prenez des décisions éclairées basées sur des données précises et en temps réel pour améliorer continuellement votre performance logistique."
+      src: "/lovable-uploads/51b5f104-7aea-4689-b53f-7e8e7563143d.png",
+      title: "Performance par marketplace et catégorie",
+      description: "Analysez précisément la performance de vos ventes par marketplace, avec un suivi détaillé des commandes par statut et des indicateurs de performance (taux de commandes parfaites, commandes en retard). Notre système permet également de segmenter vos données par catégories de produits pour une vision stratégique de votre activité."
     }
   ];
 
@@ -102,7 +102,7 @@ const Technology = () => {
       </section>
 
       {/* Screenshots with alternating layout */}
-      <section className="container mx-auto px-4 py-12 md:py-20">
+      <section className="container mx-auto px-4 py-12 md:py-20 relative">
         <motion.h2 
           className="text-2xl md:text-3xl font-bold mb-12 text-center"
           initial={{ opacity: 0 }}
@@ -131,21 +131,34 @@ const Technology = () => {
               <div className="w-full md:w-1/2 flex justify-center">
                 <div 
                   className="relative overflow-hidden rounded-lg shadow-lg"
-                  onMouseEnter={() => setHoveredImage(index)}
-                  onMouseLeave={() => setHoveredImage(null)}
                 >
-                  <motion.img
-                    src={screenshot.src}
-                    alt={`SupplyOS - ${screenshot.title}`}
-                    className="w-full h-auto rounded-lg"
-                    animate={{
-                      scale: hoveredImage === index ? 1.8 : 1,
-                      transition: { duration: 0.3 }
-                    }}
-                    style={{
-                      transformOrigin: 'center',
-                    }}
-                  />
+                  {enlargedImage === index ? (
+                    <div 
+                      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+                      onClick={() => setEnlargedImage(null)}
+                    >
+                      <div className="relative max-w-6xl max-h-[90vh]">
+                        <img 
+                          src={screenshot.src}
+                          alt={`SupplyOS - ${screenshot.title}`}
+                          className="w-full h-auto object-contain"
+                        />
+                        <button 
+                          onClick={() => setEnlargedImage(null)}
+                          className="absolute top-2 right-2 bg-black/50 text-white rounded-full p-2"
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <img
+                      src={screenshot.src}
+                      alt={`SupplyOS - ${screenshot.title}`}
+                      className="w-full h-auto rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                      onClick={() => setEnlargedImage(index)}
+                    />
+                  )}
                 </div>
               </div>
               
