@@ -1,11 +1,9 @@
-
 import { Package, Truck, Clock, FileText, Users, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
-
 const services = [{
   title: "Réception & Contrôle",
   description: "Réception de vos marchandises et contrôle qualité minutieux pour garantir l'intégrité de votre stock.",
@@ -31,14 +29,11 @@ const services = [{
   description: "Taux d'erreur de préparation quasiment nul grâce à nos processus rigoureux et notre système de contrôle avancé.",
   icon: ShieldCheck
 }];
-
 export function Services() {
   const isMobile = useIsMobile();
   return <section id="services" className="mobile-container section-container">
       <h2 className="section-title mobile-heading">Nos Services Logistiques</h2>
-      <p className="section-subtitle mobile-text">
-        Une solution complète pour gérer efficacement votre chaîne logistique e-commerce
-      </p>
+      <p className="section-subtitle mobile-text">Une solution complète pour gérer efficacement votre chaîne logistique e-commerce sans les tracas</p>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mt-8 md:mt-12">
         {services.map((service, index) => {
@@ -74,11 +69,7 @@ export function Services() {
       </div>
       
       <div className="flex justify-center mt-8 md:mt-12">
-        <Button 
-          asChild 
-          size="lg" 
-          className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600"
-        >
+        <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600">
           <Link to="/technology" className="flex items-center">
             Découvrez notre technologie SupplyOS
           </Link>
