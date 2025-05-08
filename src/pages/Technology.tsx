@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -83,6 +84,20 @@ const Technology = () => {
           delay: 0.1
         }}>Une plateforme logistique intégrée et moderne, développé en collaboration avec des e-commerces et des logisticiens, pour optimiser chaque étape de votre chaîne logistique e-commerce.</motion.p>
           <div className="absolute bottom-0 right-0 w-16 h-16 rounded-full bg-orange-100/10 dark:bg-orange-900/10" />
+        </div>
+      </section>
+
+      {/* Logo Section - NEW SECTION ADDED */}
+      <section className="container mx-auto px-4 py-12 md:py-16 text-center">
+        <div className="max-w-3xl mx-auto">
+          <div className="mb-8">
+            <img src="/lovable-uploads/9e3dc511-3aec-4dc9-840f-187ab8de7235.png" alt="SupplyOS Logo" className="w-[400px] max-w-full mx-auto aspect-[2/1] object-contain relative z-10 mix-blend-multiply dark:mix-blend-normal" />
+          </div>
+          
+          <p className="text-xl mb-8 text-center max-w-2xl mx-auto">
+            Notre technologie SupplyOS est constamment améliorée pour répondre aux besoins 
+            spécifiques des PME e-commerce et optimiser chaque étape de votre logistique.
+          </p>
         </div>
       </section>
 
@@ -172,18 +187,9 @@ const Technology = () => {
         <div className="absolute bottom-1/3 left-8 w-16 h-16 rounded-full bg-orange-100/20 dark:bg-orange-900/20" />
       </section>
 
-      {/* Logo and CTA section */}
+      {/* CTA section - Kept at bottom but removed logo and text */}
       <section className="container mx-auto px-4 py-12 md:py-20 text-center">
         <div className="max-w-3xl mx-auto">
-          <div className="mb-8">
-            <img src="/lovable-uploads/9e3dc511-3aec-4dc9-840f-187ab8de7235.png" alt="SupplyOS Logo" className="w-[400px] max-w-full mx-auto aspect-[2/1] object-contain relative z-10 mix-blend-multiply dark:mix-blend-normal" />
-          </div>
-          
-          <p className="text-xl mb-8 text-center max-w-2xl mx-auto">
-            Notre technologie SupplyOS est constamment améliorée pour répondre aux besoins 
-            spécifiques des PME e-commerce et optimiser chaque étape de votre logistique.
-          </p>
-          
           <Link to="/contact" className="block w-fit mx-auto">
             <AnimatedButton 
               className="shadow-lg hover:shadow-orange-200/20 dark:hover:shadow-orange-900/20 px-5 py-3 text-base md:text-lg"
