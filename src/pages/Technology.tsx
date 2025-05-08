@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -6,7 +5,6 @@ import { ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { AnimatedButton } from "@/components/ui/moving-border";
-
 const Technology = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -88,7 +86,7 @@ const Technology = () => {
       </section>
 
       {/* Logo Section - NEW SECTION ADDED */}
-      <section className="container mx-auto px-4 py-12 md:py-16 text-center">
+      <section className="container mx-auto px-4 md:py-16 text-center py-0">
         <div className="max-w-3xl mx-auto">
           <div className="mb-8">
             <img src="/lovable-uploads/9e3dc511-3aec-4dc9-840f-187ab8de7235.png" alt="SupplyOS Logo" className="w-[400px] max-w-full mx-auto aspect-[2/1] object-contain relative z-10 mix-blend-multiply dark:mix-blend-normal" />
@@ -191,9 +189,7 @@ const Technology = () => {
       <section className="container mx-auto px-4 py-12 md:py-20 text-center">
         <div className="max-w-3xl mx-auto">
           <Link to="/contact" className="block w-fit mx-auto">
-            <AnimatedButton 
-              className="shadow-lg hover:shadow-orange-200/20 dark:hover:shadow-orange-900/20 px-5 py-3 text-base md:text-lg"
-            >
+            <AnimatedButton className="shadow-lg hover:shadow-orange-200/20 dark:hover:shadow-orange-900/20 px-5 py-3 text-base md:text-lg">
               Discuter de vos besoins technologiques <ChevronRight className="ml-2 h-4 w-4 text-orange-400" />
             </AnimatedButton>
           </Link>
