@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { AnimatedButton } from "@/components/ui/moving-border";
+
 const Technology = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -183,12 +184,13 @@ const Technology = () => {
             spécifiques des PME e-commerce et optimiser chaque étape de votre logistique.
           </p>
           
-          <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600">
-            <Link to="/contact" className="flex items-center">
-              Discuter de vos besoins technologiques
-              <ChevronRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
+          <Link to="/contact" className="block w-fit mx-auto">
+            <AnimatedButton 
+              className="shadow-lg hover:shadow-orange-200/20 dark:hover:shadow-orange-900/20 px-5 py-3 text-base md:text-lg"
+            >
+              Discuter de vos besoins technologiques <ChevronRight className="ml-2 h-4 w-4 text-orange-400" />
+            </AnimatedButton>
+          </Link>
         </div>
       </section>
     </div>;
