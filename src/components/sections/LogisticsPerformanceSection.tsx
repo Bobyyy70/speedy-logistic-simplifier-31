@@ -3,7 +3,7 @@ import React from "react";
 import { Shield, Clock, Truck, MessageCircle, ChevronRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { AnimatedButton } from "@/components/ui/moving-border";
+import { Button } from "@/components/ui/button";
 
 export function LogisticsPerformanceSection() {
   return <section className="w-full py-12 md:py-24 lg:py-32 relative overflow-hidden">
@@ -81,12 +81,16 @@ export function LogisticsPerformanceSection() {
                   </ul>
                   
                   <div className="mt-6">
-                    <AnimatedButton asChild className="shadow-lg hover:shadow-blue-200/20 dark:hover:shadow-blue-900/20">
-                      <Link to="/technology">
+                    <Button 
+                      asChild 
+                      size="lg"
+                      className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600"
+                    >
+                      <Link to="/technology" className="flex items-center">
                         En savoir plus
                         <ChevronRight className="ml-2 h-4 w-4" />
                       </Link>
-                    </AnimatedButton>
+                    </Button>
                   </div>
                 </CardContent>
               </Card>

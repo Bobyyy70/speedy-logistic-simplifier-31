@@ -1,29 +1,36 @@
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { AnimatedButton } from "@/components/ui/moving-border";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const Technology = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // États pour le suivi des images survolées
+  const [hoveredImage, setHoveredImage] = useState<number | null>(null);
+
   const screenshots = [
-    "/lovable-uploads/7e668035-1d72-4474-a463-2edc7209bb2a.png",
-    "/lovable-uploads/f1857faa-e92e-4c2f-8baa-f5d3ce99f322.png",
-    "/lovable-uploads/c85b8c1f-5982-46a8-ad62-46a9dbe6e3a5.png"
+    {
+      src: "/lovable-uploads/7e668035-1d72-4474-a463-2edc7209bb2a.png",
+      title: "Vue d'ensemble du tableau de bord",
+      description: "Notre interface centralisée permet de visualiser toutes vos données logistiques en un coup d'œil. Le tableau de bord personnalisable vous présente vos KPIs essentiels, l'état des commandes en cours et les alertes importantes pour une gestion proactive de votre chaîne logistique."
+    },
+    {
+      src: "/lovable-uploads/f1857faa-e92e-4c2f-8baa-f5d3ce99f322.png",
+      title: "Gestion des commandes en temps réel",
+      description: "Suivez chaque étape du processus de traitement des commandes, depuis la réception jusqu'à l'expédition. Notre système offre une visibilité totale sur le statut des commandes, les détails des produits et les informations d'expédition, vous permettant d'anticiper et de résoudre rapidement les problèmes potentiels."
+    },
+    {
+      src: "/lovable-uploads/c85b8c1f-5982-46a8-ad62-46a9dbe6e3a5.png",
+      title: "Analytics et rapports avancés",
+      description: "Transformez vos données en insights actionnables grâce à nos outils d'analyse avancés. Visualisez les tendances, identifiez les opportunités d'optimisation et prenez des décisions éclairées basées sur des données précises et en temps réel pour améliorer continuellement votre performance logistique."
+    }
   ];
 
   const features = [
@@ -94,44 +101,71 @@ const Technology = () => {
         </div>
       </section>
 
-      {/* Screenshots Carousel */}
-      <section className="container mx-auto px-4 py-8 md:py-12">
+      {/* Screenshots with alternating layout */}
+      <section className="container mx-auto px-4 py-12 md:py-20">
         <motion.h2 
-          className="text-2xl md:text-3xl font-bold mb-8 text-center"
+          className="text-2xl md:text-3xl font-bold mb-12 text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          Interface Intuitive et Puissante
+          Une Interface Intuitive et Puissante
         </motion.h2>
-        <Carousel className="w-full max-w-5xl mx-auto">
-          <CarouselContent>
-            {screenshots.map((src, index) => (
-              <CarouselItem key={index}>
-                <Card className="border-0 overflow-hidden bg-transparent">
-                  <CardContent className="p-1">
-                    <img 
-                      src={src} 
-                      alt={`SupplyOS Interface ${index + 1}`} 
-                      className="rounded-lg shadow-lg w-full h-auto object-contain aspect-video"
-                    />
-                  </CardContent>
-                </Card>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <div className="flex justify-center mt-4">
-            <CarouselPrevious className="relative static translate-y-0 mr-2" />
-            <CarouselNext className="relative static translate-y-0 ml-2" />
-          </div>
-        </Carousel>
+        
+        <div className="space-y-16 md:space-y-24">
+          {screenshots.map((screenshot, index) => (
+            <motion.div 
+              key={index}
+              className={cn(
+                "flex flex-col gap-8 items-center", 
+                index % 2 === 0 
+                  ? "md:flex-row" 
+                  : "md:flex-row-reverse"
+              )}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: index * 0.1 }}
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              {/* Image Section */}
+              <div className="w-full md:w-1/2 flex justify-center">
+                <div 
+                  className="relative overflow-hidden rounded-lg shadow-lg"
+                  onMouseEnter={() => setHoveredImage(index)}
+                  onMouseLeave={() => setHoveredImage(null)}
+                >
+                  <motion.img
+                    src={screenshot.src}
+                    alt={`SupplyOS - ${screenshot.title}`}
+                    className="w-full h-auto rounded-lg"
+                    animate={{
+                      scale: hoveredImage === index ? 1.8 : 1,
+                      transition: { duration: 0.3 }
+                    }}
+                    style={{
+                      transformOrigin: 'center',
+                    }}
+                  />
+                </div>
+              </div>
+              
+              {/* Text Section */}
+              <div className="w-full md:w-1/2 flex flex-col justify-center">
+                <h3 className="text-xl md:text-2xl font-bold mb-4">{screenshot.title}</h3>
+                <p className="text-muted-foreground">
+                  {screenshot.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </section>
       
       {/* Features Section */}
-      <section className="container mx-auto px-4 py-8 md:py-16 relative">
+      <section className="container mx-auto px-4 py-12 md:py-20 relative">
         <div className="absolute top-1/4 right-8 w-20 h-20 rounded-full bg-orange-100/10 dark:bg-orange-900/10" />
         <motion.h2 
-          className="text-2xl md:text-3xl font-bold mb-8 text-center"
+          className="text-2xl md:text-3xl font-bold mb-12 text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -147,14 +181,11 @@ const Technology = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
+              className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-orange-100/20 rounded-lg p-6"
             >
-              <Card className="h-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-orange-100/20">
-                <CardContent className="pt-6">
-                  <div className="text-3xl mb-4">{feature.icon}</div>
-                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
-                </CardContent>
-              </Card>
+              <div className="text-3xl mb-4">{feature.icon}</div>
+              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+              <p className="text-muted-foreground">{feature.description}</p>
             </motion.div>
           ))}
         </div>
@@ -163,7 +194,7 @@ const Technology = () => {
       </section>
 
       {/* Logo and CTA section */}
-      <section className="container mx-auto px-4 py-8 md:py-16 text-center">
+      <section className="container mx-auto px-4 py-12 md:py-20 text-center">
         <div className="max-w-3xl mx-auto">
           <div className="mb-8">
             <img 
@@ -178,12 +209,16 @@ const Technology = () => {
             spécifiques des PME e-commerce et optimiser chaque étape de votre logistique.
           </p>
           
-          <AnimatedButton asChild className="mx-auto">
-            <Link to="/contact">
+          <Button 
+            asChild 
+            size="lg"
+            className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600"
+          >
+            <Link to="/contact" className="flex items-center">
               Discuter de vos besoins technologiques
               <ChevronRight className="ml-2 h-4 w-4" />
             </Link>
-          </AnimatedButton>
+          </Button>
         </div>
       </section>
     </div>

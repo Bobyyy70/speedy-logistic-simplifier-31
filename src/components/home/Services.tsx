@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
+
 const services = [{
   title: "Réception & Contrôle",
   description: "Réception de vos marchandises et contrôle qualité minutieux pour garantir l'intégrité de votre stock.",
@@ -30,6 +31,7 @@ const services = [{
   description: "Taux d'erreur de préparation quasiment nul grâce à nos processus rigoureux et notre système de contrôle avancé.",
   icon: ShieldCheck
 }];
+
 export function Services() {
   const isMobile = useIsMobile();
   return <section id="services" className="mobile-container section-container">
@@ -72,8 +74,12 @@ export function Services() {
       </div>
       
       <div className="flex justify-center mt-8 md:mt-12">
-        <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600">
-          <Link to="/technology">
+        <Button 
+          asChild 
+          size="lg" 
+          className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600"
+        >
+          <Link to="/technology" className="flex items-center">
             Découvrez notre technologie SupplyOS
           </Link>
         </Button>
