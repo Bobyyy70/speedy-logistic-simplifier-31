@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export function BackgroundPathsDemo() {
   return (
-    <BackgroundPaths className="min-h-screen flex items-center justify-center" preserveBackground={false}>
+    <BackgroundPaths className="min-h-screen flex items-center justify-center" preserveBackground={false} opacity={0.2}>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
