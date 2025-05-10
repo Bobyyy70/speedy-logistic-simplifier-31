@@ -7,6 +7,7 @@ import { Services as ServicesSection } from "@/components/home/Services";
 import { LogisticsPerformanceSection } from "@/components/sections/LogisticsPerformanceSection";
 import { AnimatedButton } from "@/components/ui/moving-border";
 import { Helmet } from "react-helmet-async";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 
 const Services = () => {
   useEffect(() => {
@@ -22,11 +23,11 @@ const Services = () => {
         <meta property="og:description" content="Découvrez nos services logistiques e-commerce: réception, stockage, préparation de commandes, expédition et gestion des retours. Solutions pour PME." />
       </Helmet>
       
-      <div className="w-full py-12 md:py-16 px-4">
-        <div className="container mx-auto relative">
+      <AuroraBackground className="min-h-[50vh] h-auto py-12 md:py-16">
+        <div className="container mx-auto relative px-4">
           <div className="absolute top-0 left-0 w-12 h-12 rounded-full bg-orange-100/20 dark:bg-orange-900/20" />
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter text-center mb-4 md:mb-6">
-            Fulfilment e-commerce : la solution logistique complète pour  <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">votre boutique en ligne</span>
+            Fulfilment e-commerce : la solution logistique complète pour <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">votre boutique en ligne</span>
           </h1>
           <p className="text-base md:text-lg text-center text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto">
             Des solutions complètes et sur mesure pour gérer efficacement votre chaîne logistique.
@@ -34,7 +35,7 @@ const Services = () => {
           </p>
           <div className="absolute bottom-0 right-0 w-16 h-16 rounded-full bg-orange-100/10 dark:bg-orange-900/10" />
         </div>
-      </div>
+      </AuroraBackground>
       
       <div className="relative">
         <ServicesSection />

@@ -1,4 +1,39 @@
+
 import type { Config } from "tailwindcss";
+
+function addVariablesForColors(options: any) {
+  const { addBase, theme } = options;
+  
+  // Convert colors to flat object with color-shade keys
+  function flattenColorPalette(colors: Record<string, any>, prefix = ''): Record<string, string> {
+    let result: Record<string, string> = {};
+    
+    Object.keys(colors).forEach(key => {
+      const value = colors[key];
+      const prefixedKey = prefix ? `${prefix}-${key}` : key;
+      
+      if (typeof value === 'string') {
+        result[prefixedKey] = value;
+      } else if (typeof value === 'object') {
+        result = {
+          ...result,
+          ...flattenColorPalette(value, prefixedKey)
+        };
+      }
+    });
+    
+    return result;
+  }
+  
+  let allColors = flattenColorPalette(theme("colors"));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
+
+  addBase({
+    ":root": newVars,
+  });
+}
 
 export default {
   darkMode: ["class"],
@@ -141,13 +176,22 @@ export default {
             opacity: '0',
             transform: 'translateY(10px)'
           }
-        }
+        },
+        'aurora': {
+          from: {
+            backgroundPosition: "50% 50%, 50% 50%",
+          },
+          to: {
+            backgroundPosition: "350% 50%, 350% 50%",
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in': 'fade-in 0.3s ease-out',
-        'fade-out': 'fade-out 0.3s ease-out'
+        'fade-out': 'fade-out 0.3s ease-out',
+        'aurora': 'aurora 60s linear infinite',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -159,5 +203,5 @@ export default {
       }
     }
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), addVariablesForColors],
 } satisfies Config;
