@@ -11,7 +11,7 @@ export interface BackgroundPathsProps extends React.HTMLProps<HTMLDivElement> {
   preserveBackground?: boolean;
 }
 
-function FloatingPaths({ position, opacity = 0.2 }: { position: number; opacity?: number }) {
+function FloatingPaths({ position, opacity = 0.5 }: { position: number; opacity?: number }) {
   const paths = Array.from({ length: 36 }, (_, i) => ({
     id: i,
     d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${
@@ -21,16 +21,16 @@ function FloatingPaths({ position, opacity = 0.2 }: { position: number; opacity?
     } ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${
       684 - i * 5 * position
     } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
-    width: 0.5 + i * 0.03, // Lignes légèrement plus épaisses
+    width: 1.0 + i * 0.05, // Increased line thickness
   }));
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-visible">
       <svg
-        className="w-full h-full text-slate-950 dark:text-white"
+        className="w-full h-full text-blue-500 dark:text-blue-400" 
         viewBox="0 0 696 316"
         fill="none"
-        style={{ position: 'absolute', width: '150%', height: '150%', left: '-25%', top: '-25%' }}
+        style={{ position: 'absolute', width: '200%', height: '200%', left: '-50%', top: '-50%' }}
       >
         <title>Background Paths</title>
         {paths.map((path) => (
@@ -39,15 +39,15 @@ function FloatingPaths({ position, opacity = 0.2 }: { position: number; opacity?
             d={path.d}
             stroke="currentColor"
             strokeWidth={path.width}
-            strokeOpacity={(0.1 + path.id * 0.01) * opacity} // Opacité de base augmentée
-            initial={{ pathLength: 0.3, opacity: 0.5 }}
+            strokeOpacity={(0.3 + path.id * 0.02) * opacity} // Increased base opacity
+            initial={{ pathLength: 0.3, opacity: 0.7 }}
             animate={{
               pathLength: 1,
-              opacity: [0.3, 0.5, 0.3], // Valeurs d'opacité augmentées
+              opacity: [0.5, 0.8, 0.5], // Increased animation opacity
               pathOffset: [0, 1, 0],
             }}
             transition={{
-              duration: 15 + Math.random() * 8, // Durée légèrement réduite
+              duration: 12 + Math.random() * 6, // Slightly faster animation
               repeat: Number.POSITIVE_INFINITY,
               ease: "linear",
             }}
@@ -61,7 +61,7 @@ function FloatingPaths({ position, opacity = 0.2 }: { position: number; opacity?
 export function BackgroundPaths({
   className,
   children,
-  opacity = 0.3,
+  opacity = 0.5, // Increased default opacity
   preserveBackground = true,
   ...props
 }: BackgroundPathsProps) {

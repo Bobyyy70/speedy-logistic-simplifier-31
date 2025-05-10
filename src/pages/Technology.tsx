@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -68,7 +67,7 @@ const Technology = () => {
   ];
 
   return (
-    <BackgroundPaths className="w-full" preserveBackground={true} opacity={0.5}>
+    <BackgroundPaths className="w-full" preserveBackground={true} opacity={0.8}>
       <div className="w-full">
         <Helmet>
           <title>Notre Technologie SupplyOS | Speed E-Log</title>
