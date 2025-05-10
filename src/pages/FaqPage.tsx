@@ -54,7 +54,7 @@ const FaqPage = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-l from-blue-100/90 via-white to-green-200/90 dark:from-slate-900 dark:via-slate-950 dark:to-green-800/90 py-12">
+    <div className="relative py-12">
       <Helmet>
         <title>FAQ - Questions Fréquentes Logistique | Speed E-Log</title>
         <meta name="description" content="Trouvez les réponses à vos questions sur nos services logistiques pour e-commerce : types de produits gérés, transport, intégration, suivi et plus encore." />
@@ -75,7 +75,10 @@ const FaqPage = () => {
           duration: 0.5
         }}
       >
-        <BeamsBackgroundDemo />
+        {/* Fond de rayons animés avec intensité augmentée */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+          <BeamsBackgroundDemo />
+        </div>
         <div className="inline-block px-3 py-1 text-sm rounded-3xl bg-orange-100 relative z-10">FAQ</div>
         <h1 className="text-3xl md:text-4xl font-bold tracking-tighter sm:text-5xl relative z-10">
           Questions <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">Fréquentes</span>

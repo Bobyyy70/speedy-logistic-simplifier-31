@@ -7,11 +7,11 @@ export function BeamsBackgroundDemo() {
   return (
     <BeamsBackground 
       className="absolute inset-0 -z-10 h-full w-full min-h-[400px]"
-      intensity="medium"
+      intensity="strong"
       colors={{
-        primary: "#86B6FC",   // Brighter blue
-        secondary: "#FFFFFF", // White
-        tertiary: "#A9F99B",  // Brighter green
+        primary: "#1E88E5",   // Bleu plus vif
+        secondary: "#FFFFFF", // Blanc
+        tertiary: "#7CB342",  // Vert plus vif
       }}
     />
   );

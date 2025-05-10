@@ -1,12 +1,12 @@
 
 import { Beam } from "./types";
 
-export const MINIMUM_BEAMS = 20; // Increased for more visible effect
+export const MINIMUM_BEAMS = 30; // Augmenté pour un effet plus visible
 
 export const opacityMap = {
-    subtle: 0.5,
-    medium: 0.7,
-    strong: 0.9,
+    subtle: 0.6,
+    medium: 0.8,
+    strong: 1.0,
 };
 
 export function createBeam(width: number, height: number): Beam {
@@ -14,11 +14,11 @@ export function createBeam(width: number, height: number): Beam {
     return {
         x: Math.random() * width * 1.5 - width * 0.25,
         y: Math.random() * height * 1.5 - height * 0.25,
-        width: 60 + Math.random() * 100, // Increased width for more visible beams
+        width: 80 + Math.random() * 120, // Largeur des rayons augmentée
         length: height * 2.5,
         angle: angle,
         speed: 0.6 + Math.random() * 1.2,
-        opacity: 0.15 + Math.random() * 0.15, // Increased base opacity
+        opacity: 0.25 + Math.random() * 0.20, // Opacité de base augmentée
         hue: 190 + Math.random() * 70,
         pulse: Math.random() * Math.PI * 2,
         pulseSpeed: 0.02 + Math.random() * 0.03,
@@ -36,20 +36,20 @@ export function resetBeam(beam: Beam, index: number, totalBeams: number, canvas:
         column * spacing +
         spacing / 2 +
         (Math.random() - 0.5) * spacing * 0.5;
-    beam.width = 60 + Math.random() * 100; // Increased width for more visible beams
+    beam.width = 80 + Math.random() * 120; // Largeur des rayons augmentée
     beam.speed = 0.2 + Math.random() * 0.3;
     
-    // Use our custom colors based on index
+    // Utiliser nos couleurs personnalisées en fonction de l'index
     const colorIndex = index % 3;
     if (colorIndex === 0) {
-        beam.hue = 210; // Blue hue
+        beam.hue = 210; // Teinte bleue
     } else if (colorIndex === 1) {
-        beam.hue = 0; // White (will be overridden in drawBeam)
+        beam.hue = 0; // Blanc (sera remplacé dans drawBeam)
     } else {
-        beam.hue = 90; // Green hue
+        beam.hue = 90; // Teinte verte
     }
     
-    beam.opacity = 0.15 + Math.random() * 0.15; // Increased base opacity
+    beam.opacity = 0.25 + Math.random() * 0.20; // Opacité de base augmentée
     return beam;
 }
 
@@ -63,7 +63,7 @@ export function drawBeam(
     ctx.translate(beam.x, beam.y);
     ctx.rotate((beam.angle * Math.PI) / 180);
 
-    // Calculate pulsing opacity
+    // Calculer l'opacité pulsante
     const pulsingOpacity =
         beam.opacity *
         (0.7 + Math.sin(beam.pulse) * 0.3) *
@@ -71,7 +71,7 @@ export function drawBeam(
 
     const gradient = ctx.createLinearGradient(0, 0, 0, beam.length);
     
-    // Get color based on beam's hue
+    // Obtenir la couleur en fonction de la teinte du rayon
     let color;
     if (Math.abs(beam.hue - 210) < 20) {
         color = colors.primary;
@@ -81,12 +81,12 @@ export function drawBeam(
         color = colors.tertiary;
     }
 
-    // Enhanced gradient with custom colors
+    // Dégradé amélioré avec des couleurs personnalisées
     gradient.addColorStop(0, `${color}00`); // Transparent
-    gradient.addColorStop(0.1, `${color}${Math.floor(pulsingOpacity * 128).toString(16).padStart(2, '0')}`);
+    gradient.addColorStop(0.1, `${color}${Math.floor(pulsingOpacity * 200).toString(16).padStart(2, '0')}`); // Opacité augmentée
     gradient.addColorStop(0.4, `${color}${Math.floor(pulsingOpacity * 255).toString(16).padStart(2, '0')}`);
     gradient.addColorStop(0.6, `${color}${Math.floor(pulsingOpacity * 255).toString(16).padStart(2, '0')}`);
-    gradient.addColorStop(0.9, `${color}${Math.floor(pulsingOpacity * 128).toString(16).padStart(2, '0')}`);
+    gradient.addColorStop(0.9, `${color}${Math.floor(pulsingOpacity * 200).toString(16).padStart(2, '0')}`); // Opacité augmentée
     gradient.addColorStop(1, `${color}00`); // Transparent
 
     ctx.fillStyle = gradient;

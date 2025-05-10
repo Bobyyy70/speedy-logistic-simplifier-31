@@ -4,11 +4,11 @@ import { Beam, BeamsBackgroundProps } from "./types";
 import { MINIMUM_BEAMS, createBeam, resetBeam, drawBeam } from "./utils";
 
 export function useBeamsAnimation({
-    intensity = "medium",
+    intensity = "strong", // Changé à "strong" pour plus d'intensité
     colors = {
-        primary: "#86B6FC",   // Brighter blue
-        secondary: "#FFFFFF", // White
-        tertiary: "#A9F99B",  // Brighter green
+        primary: "#1E88E5",   // Bleu plus vif
+        secondary: "#FFFFFF", // Blanc
+        tertiary: "#7CB342",  // Vert plus vif
     },
 }: Partial<BeamsBackgroundProps>) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -43,14 +43,14 @@ export function useBeamsAnimation({
             if (!canvas || !ctx) return;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.filter = "blur(20px)"; // Slightly reduced blur for more definition
+            ctx.filter = "blur(8px)"; // Flou réduit pour plus de définition
 
             const totalBeams = beamsRef.current.length;
             beamsRef.current.forEach((beam, index) => {
                 beam.y -= beam.speed;
                 beam.pulse += beam.pulseSpeed;
 
-                // Reset beam when it goes off screen
+                // Réinitialiser le rayon quand il sort de l'écran
                 if (beam.y + beam.length < -100) {
                     resetBeam(beam, index, totalBeams, canvas);
                 }
