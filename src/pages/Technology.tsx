@@ -68,7 +68,7 @@ const Technology = () => {
   ];
 
   return (
-    <BackgroundPaths className="w-full" preserveBackground={true} opacity={0.2}>
+    <BackgroundPaths className="w-full" preserveBackground={true} opacity={0.35}>
       <div className="w-full">
         <Helmet>
           <title>Notre Technologie SupplyOS | Speed E-Log</title>
