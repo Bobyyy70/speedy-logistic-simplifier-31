@@ -75,10 +75,10 @@ const Technology = () => {
         <meta name="description" content="Découvrez SupplyOS, notre solution logistique intégrée combinant WMS, OMS et TMS pour une gestion optimale de votre chaîne logistique e-commerce." />
       </Helmet>
 
-      {/* Hero Section avec fond de gradient animé */}
+      {/* Fond animé appliqué à toute la page */}
       <BackgroundGradientAnimation 
-        containerClassName="min-h-[80vh] w-full py-20 md:py-24 relative z-0"
-        className="z-10"
+        fullPage={true}
+        className="z-0"
         preserveBackground={true}
         firstColor="134, 239, 172" // Vert clair (green-200)
         secondColor="255, 255, 255" // Blanc (white)
@@ -89,160 +89,158 @@ const Technology = () => {
         blendingValue="soft-light"
         size="200%"
         interactive={true}
-      >
-        <div className="container mx-auto relative z-20 px-4 h-full flex flex-col justify-center">
-          <div className="absolute top-10 left-10 w-20 h-20 rounded-full bg-orange-100/20 dark:bg-orange-900/20 animate-pulse" />
-          <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-6" 
-            initial={{ opacity: 0, y: -20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 0.5 }}
-          >
-            Notre Technologie <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600 dark:from-blue-300 dark:to-blue-500">SupplyOS</span>
-          </motion.h1>
-          <motion.p 
-            className="text-lg md:text-xl text-center text-muted-foreground mb-12 max-w-3xl mx-auto" 
-            initial={{ opacity: 0, y: -20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            Une plateforme logistique intégrée et moderne, développée en collaboration avec des e-commerces et des logisticiens, pour optimiser chaque étape de votre chaîne logistique e-commerce.
-          </motion.p>
-          <div className="absolute bottom-10 right-10 w-24 h-24 rounded-full bg-orange-100/10 dark:bg-orange-900/10 animate-pulse" />
+      />
+
+      {/* Hero Section avec contenu */}
+      <div className="container mx-auto relative z-20 px-4 py-16 md:py-20">
+        <div className="absolute top-10 left-10 w-20 h-20 rounded-full bg-orange-100/20 dark:bg-orange-900/20 animate-pulse" />
+        <motion.h1 
+          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-6" 
+          initial={{ opacity: 0, y: -20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.5 }}
+        >
+          Notre Technologie <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600 dark:from-blue-300 dark:to-blue-500">SupplyOS</span>
+        </motion.h1>
+        <motion.p 
+          className="text-lg md:text-xl text-center text-muted-foreground mb-12 max-w-3xl mx-auto" 
+          initial={{ opacity: 0, y: -20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          Une plateforme logistique intégrée et moderne, développée en collaboration avec des e-commerces et des logisticiens, pour optimiser chaque étape de votre chaîne logistique e-commerce.
+        </motion.p>
+        <div className="absolute bottom-10 right-10 w-24 h-24 rounded-full bg-orange-100/10 dark:bg-orange-900/10 animate-pulse" />
+      </div>
+
+      {/* Logo Section - Espacement réduit */}
+      <section className="container mx-auto px-4 py-8 text-center">
+        <div className="max-w-3xl mx-auto">
+          <div className="mb-6">
+            <img 
+              src="/lovable-uploads/9e3dc511-3aec-4dc9-840f-187ab8de7235.png" 
+              alt="SupplyOS Logo" 
+              className="w-[400px] max-w-full mx-auto aspect-[2/1] object-contain relative z-10 mix-blend-multiply dark:mix-blend-normal" 
+            />
+          </div>
+          
+          <p className="text-xl mb-6 text-center max-w-2xl mx-auto">
+            Notre technologie SupplyOS est constamment améliorée pour répondre aux besoins 
+            spécifiques des PME e-commerce et optimiser chaque étape de votre logistique.
+          </p>
         </div>
-      </BackgroundGradientAnimation>
+      </section>
 
-      {/* Reste du contenu */}
-      <BackgroundPaths className="w-full" preserveBackground={true} opacity={0.35}>
-        {/* Logo Section */}
-        <section className="container mx-auto px-4 py-16 text-center">
-          <div className="max-w-3xl mx-auto">
-            <div className="mb-8">
-              <img 
-                src="/lovable-uploads/9e3dc511-3aec-4dc9-840f-187ab8de7235.png" 
-                alt="SupplyOS Logo" 
-                className="w-[400px] max-w-full mx-auto aspect-[2/1] object-contain relative z-10 mix-blend-multiply dark:mix-blend-normal" 
-              />
-            </div>
-            
-            <p className="text-xl mb-8 text-center max-w-2xl mx-auto">
-              Notre technologie SupplyOS est constamment améliorée pour répondre aux besoins 
-              spécifiques des PME e-commerce et optimiser chaque étape de votre logistique.
-            </p>
-          </div>
-        </section>
-
-        {/* Screenshots with alternating layout */}
-        <section className="container mx-auto px-4 py-12 md:py-20 relative">
-          <motion.h2 
-            className="text-2xl md:text-3xl font-bold mb-12 text-center" 
-            initial={{ opacity: 0 }} 
-            whileInView={{ opacity: 1 }} 
-            viewport={{ once: true }}
-          >
-            Une Interface Intuitive et Puissante
-          </motion.h2>
-          
-          <div className="space-y-16 md:space-y-24">
-            {screenshots.map((screenshot, index) => (
-              <motion.div 
-                key={index} 
-                className={cn("flex flex-col gap-8 items-center", index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse")} 
-                initial={{ opacity: 0, y: 50 }} 
-                whileInView={{ opacity: 1, y: 0 }} 
-                transition={{ duration: 0.7, delay: index * 0.1 }} 
-                viewport={{ once: true, margin: "-100px" }}
-              >
-                {/* Image Section */}
-                <div className="w-full md:w-1/2 flex justify-center">
-                  <div className="relative overflow-hidden rounded-lg shadow-lg">
-                    {enlargedImage === index ? (
-                      <div 
-                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4" 
-                        onClick={() => setEnlargedImage(null)}
-                      >
-                        <div className="relative max-w-6xl max-h-[90vh]">
-                          <img 
-                            src={screenshot.src} 
-                            alt={`SupplyOS - ${screenshot.title}`} 
-                            className="w-full h-auto object-contain" 
-                          />
-                          <button 
-                            onClick={() => setEnlargedImage(null)} 
-                            className="absolute top-2 right-2 bg-black/50 text-white rounded-full p-2"
-                          >
-                            ✕
-                          </button>
-                        </div>
-                      </div>
-                    ) : (
-                      <img 
-                        src={screenshot.src} 
-                        alt={`SupplyOS - ${screenshot.title}`} 
-                        className="w-full h-auto rounded-lg cursor-pointer hover:opacity-90 transition-opacity" 
-                        onClick={() => setEnlargedImage(index)} 
-                      />
-                    )}
-                  </div>
-                </div>
-                
-                {/* Text Section */}
-                <div className="w-full md:w-1/2 flex flex-col justify-center">
-                  <h3 className="text-xl md:text-2xl font-bold mb-4">{screenshot.title}</h3>
-                  <p className="text-muted-foreground">
-                    {screenshot.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
+      {/* Screenshots with alternating layout - Espacement réduit */}
+      <section className="container mx-auto px-4 py-8 relative">
+        <motion.h2 
+          className="text-2xl md:text-3xl font-bold mb-8 text-center" 
+          initial={{ opacity: 0 }} 
+          whileInView={{ opacity: 1 }} 
+          viewport={{ once: true }}
+        >
+          Une Interface Intuitive et Puissante
+        </motion.h2>
         
-        {/* Features Section */}
-        <section className="container mx-auto px-4 py-12 md:py-20 relative">
-          <div className="absolute top-1/4 right-8 w-20 h-20 rounded-full bg-orange-100/10 dark:bg-orange-900/10" />
-          <motion.h2 
-            className="text-2xl md:text-3xl font-bold mb-12 text-center" 
-            initial={{ opacity: 0 }} 
-            whileInView={{ opacity: 1 }} 
-            viewport={{ once: true }}
-          >
-            Fonctionnalités Clés
-          </motion.h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {features.map((feature, index) => (
-              <motion.div 
-                key={feature.title} 
-                initial={{ opacity: 0, y: 20 }} 
-                whileInView={{ opacity: 1, y: 0 }} 
-                transition={{ duration: 0.5, delay: index * 0.1 }} 
-                viewport={{ once: true }} 
-                className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-orange-100/20 rounded-lg p-6"
-              >
-                <div className="text-3xl mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-          
-          <div className="absolute bottom-1/3 left-8 w-16 h-16 rounded-full bg-orange-100/20 dark:bg-orange-900/20" />
-        </section>
+        <div className="space-y-12 md:space-y-16">
+          {screenshots.map((screenshot, index) => (
+            <motion.div 
+              key={index} 
+              className={cn("flex flex-col gap-6 items-center", index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse")} 
+              initial={{ opacity: 0, y: 30 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.7, delay: index * 0.1 }} 
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              {/* Image Section */}
+              <div className="w-full md:w-1/2 flex justify-center">
+                <div className="relative overflow-hidden rounded-lg shadow-lg">
+                  {enlargedImage === index ? (
+                    <div 
+                      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4" 
+                      onClick={() => setEnlargedImage(null)}
+                    >
+                      <div className="relative max-w-6xl max-h-[90vh]">
+                        <img 
+                          src={screenshot.src} 
+                          alt={`SupplyOS - ${screenshot.title}`} 
+                          className="w-full h-auto object-contain" 
+                        />
+                        <button 
+                          onClick={() => setEnlargedImage(null)} 
+                          className="absolute top-2 right-2 bg-black/50 text-white rounded-full p-2"
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <img 
+                      src={screenshot.src} 
+                      alt={`SupplyOS - ${screenshot.title}`} 
+                      className="w-full h-auto rounded-lg cursor-pointer hover:opacity-90 transition-opacity" 
+                      onClick={() => setEnlargedImage(index)} 
+                    />
+                  )}
+                </div>
+              </div>
+              
+              {/* Text Section */}
+              <div className="w-full md:w-1/2 flex flex-col justify-center">
+                <h3 className="text-xl md:text-2xl font-bold mb-4">{screenshot.title}</h3>
+                <p className="text-muted-foreground">
+                  {screenshot.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+      
+      {/* Features Section - Espacement réduit */}
+      <section className="container mx-auto px-4 py-8 md:py-16 relative">
+        <div className="absolute top-1/4 right-8 w-20 h-20 rounded-full bg-orange-100/10 dark:bg-orange-900/10" />
+        <motion.h2 
+          className="text-2xl md:text-3xl font-bold mb-8 text-center" 
+          initial={{ opacity: 0 }} 
+          whileInView={{ opacity: 1 }} 
+          viewport={{ once: true }}
+        >
+          Fonctionnalités Clés
+        </motion.h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {features.map((feature, index) => (
+            <motion.div 
+              key={feature.title} 
+              initial={{ opacity: 0, y: 20 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.5, delay: index * 0.1 }} 
+              viewport={{ once: true }} 
+              className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-orange-100/20 rounded-lg p-6"
+            >
+              <div className="text-3xl mb-4">{feature.icon}</div>
+              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+              <p className="text-muted-foreground">{feature.description}</p>
+            </motion.div>
+          ))}
+        </div>
+        
+        <div className="absolute bottom-1/3 left-8 w-16 h-16 rounded-full bg-orange-100/20 dark:bg-orange-900/20" />
+      </section>
 
-        {/* CTA section */}
-        <section className="container mx-auto px-4 py-12 md:py-20 text-center">
-          <div className="max-w-3xl mx-auto">
-            <Link to="/contact" className="block w-fit mx-auto">
-              <AnimatedButton 
-                className="shadow-lg hover:shadow-orange-200/20 dark:hover:shadow-orange-900/20 px-5 py-3 text-base md:text-lg"
-              >
-                Discuter de vos besoins technologiques <ChevronRight className="ml-2 h-4 w-4 text-orange-400" />
-              </AnimatedButton>
-            </Link>
-          </div>
-        </section>
-      </BackgroundPaths>
+      {/* CTA section */}
+      <section className="container mx-auto px-4 py-8 md:py-16 text-center">
+        <div className="max-w-3xl mx-auto">
+          <Link to="/contact" className="block w-fit mx-auto">
+            <AnimatedButton 
+              className="shadow-lg hover:shadow-orange-200/20 dark:hover:shadow-orange-900/20 px-5 py-3 text-base md:text-lg"
+            >
+              Discuter de vos besoins technologiques <ChevronRight className="ml-2 h-4 w-4 text-orange-400" />
+            </AnimatedButton>
+          </Link>
+        </div>
+      </section>
     </div>
   );
 };
