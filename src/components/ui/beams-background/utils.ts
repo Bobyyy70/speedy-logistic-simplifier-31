@@ -68,26 +68,56 @@ export function drawBeam(
         beam.opacity *
         (0.7 + Math.sin(beam.pulse) * 0.3) *
         opacityMap[intensity];
+    
+    // Convertir les couleurs hexadécimales en format rgba
+    const getColorWithOpacity = (color: string, opacity: number) => {
+        // Si c'est déjà au format rgba, simplement ajuster l'opacité
+        if (color.startsWith('rgba')) {
+            const parts = color.match(/rgba\((\d+),\s*(\d+),\s*(\d+),\s*[\d.]+\)/);
+            if (parts) {
+                return `rgba(${parts[1]}, ${parts[2]}, ${parts[3]}, ${opacity})`;
+            }
+        }
+        
+        // Pour le format hex
+        let hex = color.replace('#', '');
+        
+        // Si le format est #RRGGBBAA, extraire les composantes RGB et ignorer l'alpha original
+        if (hex.length === 8) {
+            hex = hex.substring(0, 6);
+        }
+        
+        // Gérer les formats courts #RGB
+        if (hex.length === 3) {
+            hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+        }
+        
+        const r = parseInt(hex.substring(0, 2), 16);
+        const g = parseInt(hex.substring(2, 4), 16);
+        const b = parseInt(hex.substring(4, 6), 16);
+        
+        return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+    };
 
     const gradient = ctx.createLinearGradient(0, 0, 0, beam.length);
     
     // Obtenir la couleur en fonction de la teinte du rayon
-    let color;
+    let baseColor;
     if (Math.abs(beam.hue - 210) < 20) {
-        color = colors.primary;
+        baseColor = colors.primary;
     } else if (Math.abs(beam.hue - 0) < 20) {
-        color = colors.secondary;
+        baseColor = colors.secondary;
     } else {
-        color = colors.tertiary;
+        baseColor = colors.tertiary;
     }
 
-    // Dégradé avec des couleurs personnalisées mais plus transparent
-    gradient.addColorStop(0, `${color}00`); // Transparent
-    gradient.addColorStop(0.1, `${color}${Math.floor(pulsingOpacity * 150).toString(16).padStart(2, '0')}`); // Opacité réduite
-    gradient.addColorStop(0.4, `${color}${Math.floor(pulsingOpacity * 200).toString(16).padStart(2, '0')}`);
-    gradient.addColorStop(0.6, `${color}${Math.floor(pulsingOpacity * 200).toString(16).padStart(2, '0')}`);
-    gradient.addColorStop(0.9, `${color}${Math.floor(pulsingOpacity * 150).toString(16).padStart(2, '0')}`); // Opacité réduite
-    gradient.addColorStop(1, `${color}00`); // Transparent
+    // Utiliser des valeurs d'opacité pour rgba au lieu d'essayer d'ajouter des valeurs hex d'opacité
+    gradient.addColorStop(0, getColorWithOpacity(baseColor, 0)); // Transparent
+    gradient.addColorStop(0.1, getColorWithOpacity(baseColor, pulsingOpacity * 0.6));  
+    gradient.addColorStop(0.4, getColorWithOpacity(baseColor, pulsingOpacity * 0.8));
+    gradient.addColorStop(0.6, getColorWithOpacity(baseColor, pulsingOpacity * 0.8));
+    gradient.addColorStop(0.9, getColorWithOpacity(baseColor, pulsingOpacity * 0.6));  
+    gradient.addColorStop(1, getColorWithOpacity(baseColor, 0)); // Transparent
 
     ctx.fillStyle = gradient;
     ctx.fillRect(-beam.width / 2, 0, beam.width, beam.length);
