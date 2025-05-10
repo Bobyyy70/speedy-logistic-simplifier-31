@@ -1,10 +1,11 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { WavyBackgroundDemo } from "@/components/ui/wavy-background-demo";
+import { BeamsBackgroundDemo } from "@/components/ui/beams-background-demo";
 import { Button } from "@/components/ui/button";
 
 // FAQ data array
@@ -74,7 +75,7 @@ const FaqPage = () => {
           duration: 0.5
         }}
       >
-        <WavyBackgroundDemo />
+        <BeamsBackgroundDemo />
         <div className="inline-block px-3 py-1 text-sm rounded-3xl bg-orange-100 relative z-10">FAQ</div>
         <h1 className="text-3xl md:text-4xl font-bold tracking-tighter sm:text-5xl relative z-10">
           Questions <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">Fréquentes</span>
