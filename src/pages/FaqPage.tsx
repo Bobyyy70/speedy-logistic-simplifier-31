@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -54,7 +53,10 @@ const FaqPage = () => {
   }, []);
 
   return (
-    <div className="relative py-12">
+    <div className="relative py-12 min-h-screen">
+      {/* Fond de rayons animés appliqué à toute la page */}
+      <BeamsBackgroundDemo />
+      
       <Helmet>
         <title>FAQ - Questions Fréquentes Logistique | Speed E-Log</title>
         <meta name="description" content="Trouvez les réponses à vos questions sur nos services logistiques pour e-commerce : types de produits gérés, transport, intégration, suivi et plus encore." />
@@ -88,7 +90,7 @@ const FaqPage = () => {
         </p>
       </motion.div>
 
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto relative z-10">
         <Accordion type="single" collapsible className="w-full">
           {faqs.map((faq, index) => <motion.div key={index} initial={{
           opacity: 0,

@@ -1,12 +1,12 @@
 
 import { Beam } from "./types";
 
-export const MINIMUM_BEAMS = 30; // Augmenté pour un effet plus visible
+export const MINIMUM_BEAMS = 15; // Réduit pour un effet plus discret
 
 export const opacityMap = {
-    subtle: 0.6,
-    medium: 0.8,
-    strong: 1.0,
+    subtle: 0.3,
+    medium: 0.5, 
+    strong: 0.7,  // Réduit pour être plus discret même en mode strong
 };
 
 export function createBeam(width: number, height: number): Beam {
@@ -14,14 +14,14 @@ export function createBeam(width: number, height: number): Beam {
     return {
         x: Math.random() * width * 1.5 - width * 0.25,
         y: Math.random() * height * 1.5 - height * 0.25,
-        width: 80 + Math.random() * 120, // Largeur des rayons augmentée
+        width: 40 + Math.random() * 80, // Largeur ajustée
         length: height * 2.5,
         angle: angle,
-        speed: 0.6 + Math.random() * 1.2,
-        opacity: 0.25 + Math.random() * 0.20, // Opacité de base augmentée
+        speed: 0.4 + Math.random() * 0.8, // Vitesse réduite
+        opacity: 0.08 + Math.random() * 0.12, // Opacité réduite
         hue: 190 + Math.random() * 70,
         pulse: Math.random() * Math.PI * 2,
-        pulseSpeed: 0.02 + Math.random() * 0.03,
+        pulseSpeed: 0.01 + Math.random() * 0.02, // Pulsation plus lente
     };
 }
 
@@ -36,7 +36,7 @@ export function resetBeam(beam: Beam, index: number, totalBeams: number, canvas:
         column * spacing +
         spacing / 2 +
         (Math.random() - 0.5) * spacing * 0.5;
-    beam.width = 80 + Math.random() * 120; // Largeur des rayons augmentée
+    beam.width = 40 + Math.random() * 80; // Largeur ajustée
     beam.speed = 0.2 + Math.random() * 0.3;
     
     // Utiliser nos couleurs personnalisées en fonction de l'index
@@ -49,7 +49,7 @@ export function resetBeam(beam: Beam, index: number, totalBeams: number, canvas:
         beam.hue = 90; // Teinte verte
     }
     
-    beam.opacity = 0.25 + Math.random() * 0.20; // Opacité de base augmentée
+    beam.opacity = 0.08 + Math.random() * 0.12; // Opacité réduite
     return beam;
 }
 
@@ -81,12 +81,12 @@ export function drawBeam(
         color = colors.tertiary;
     }
 
-    // Dégradé amélioré avec des couleurs personnalisées
+    // Dégradé avec des couleurs personnalisées mais plus transparent
     gradient.addColorStop(0, `${color}00`); // Transparent
-    gradient.addColorStop(0.1, `${color}${Math.floor(pulsingOpacity * 200).toString(16).padStart(2, '0')}`); // Opacité augmentée
-    gradient.addColorStop(0.4, `${color}${Math.floor(pulsingOpacity * 255).toString(16).padStart(2, '0')}`);
-    gradient.addColorStop(0.6, `${color}${Math.floor(pulsingOpacity * 255).toString(16).padStart(2, '0')}`);
-    gradient.addColorStop(0.9, `${color}${Math.floor(pulsingOpacity * 200).toString(16).padStart(2, '0')}`); // Opacité augmentée
+    gradient.addColorStop(0.1, `${color}${Math.floor(pulsingOpacity * 150).toString(16).padStart(2, '0')}`); // Opacité réduite
+    gradient.addColorStop(0.4, `${color}${Math.floor(pulsingOpacity * 200).toString(16).padStart(2, '0')}`);
+    gradient.addColorStop(0.6, `${color}${Math.floor(pulsingOpacity * 200).toString(16).padStart(2, '0')}`);
+    gradient.addColorStop(0.9, `${color}${Math.floor(pulsingOpacity * 150).toString(16).padStart(2, '0')}`); // Opacité réduite
     gradient.addColorStop(1, `${color}00`); // Transparent
 
     ctx.fillStyle = gradient;

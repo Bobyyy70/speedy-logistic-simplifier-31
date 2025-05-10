@@ -4,11 +4,11 @@ import { Beam, BeamsBackgroundProps } from "./types";
 import { MINIMUM_BEAMS, createBeam, resetBeam, drawBeam } from "./utils";
 
 export function useBeamsAnimation({
-    intensity = "strong", // Changé à "strong" pour plus d'intensité
+    intensity = "subtle", // Changé à "subtle" pour plus de discrétion
     colors = {
-        primary: "#1E88E5",   // Bleu plus vif
-        secondary: "#FFFFFF", // Blanc
-        tertiary: "#7CB342",  // Vert plus vif
+        primary: "#1E88E570",   // Bleu plus transparent
+        secondary: "#FFFFFF40", // Blanc transparent
+        tertiary: "#7CB34250",  // Vert plus transparent
     },
 }: Partial<BeamsBackgroundProps>) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -43,7 +43,7 @@ export function useBeamsAnimation({
             if (!canvas || !ctx) return;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.filter = "blur(8px)"; // Flou réduit pour plus de définition
+            ctx.filter = "blur(20px)"; // Flou augmenté pour plus de discrétion
 
             const totalBeams = beamsRef.current.length;
             beamsRef.current.forEach((beam, index) => {

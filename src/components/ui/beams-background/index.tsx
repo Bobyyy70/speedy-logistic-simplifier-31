@@ -10,11 +10,11 @@ import { useBeamsAnimation } from "./use-beams-animation";
 export function BeamsBackground({
     className,
     children,
-    intensity = "strong", // Changé à "strong" par défaut
+    intensity = "subtle", // Changé à "subtle" par défaut pour plus de discrétion
     colors = {
-        primary: "#1E88E5",   // Bleu plus vif
-        secondary: "#FFFFFF", // Blanc
-        tertiary: "#7CB342",  // Vert plus vif
+        primary: "#1E88E570",   // Bleu plus transparent
+        secondary: "#FFFFFF40", // Blanc transparent
+        tertiary: "#7CB34250",  // Vert plus transparent
     },
 }: BeamsBackgroundProps) {
     const canvasRef = useBeamsAnimation({ intensity, colors });
@@ -29,7 +29,7 @@ export function BeamsBackground({
             <canvas
                 ref={canvasRef}
                 className="absolute inset-0 -z-10"
-                style={{ filter: "blur(8px)" }} // Flou réduit ici aussi
+                style={{ filter: "blur(20px)" }} // Flou augmenté pour plus de discrétion
             />
 
             {children && (
