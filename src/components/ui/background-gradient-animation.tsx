@@ -93,7 +93,7 @@ export const BackgroundGradientAnimation = ({
     <div
       className={cn(
         "h-screen w-screen relative overflow-hidden top-0 left-0",
-        preserveBackground ? "bg-transparent" : "bg-[linear-gradient(40deg,var(--gradient-background-start),var(--gradient-background-end))]",
+        preserveBackground ? "" : "bg-[linear-gradient(40deg,var(--gradient-background-start),var(--gradient-background-end))]",
         containerClassName
       )}
     >

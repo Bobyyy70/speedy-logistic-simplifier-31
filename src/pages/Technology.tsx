@@ -69,7 +69,7 @@ const Technology = () => {
   ];
 
   return (
-    <div className="w-full relative">
+    <div className="w-full relative site-background">
       <Helmet>
         <title>Notre Technologie SupplyOS | Speed E-Log</title>
         <meta name="description" content="Découvrez SupplyOS, notre solution logistique intégrée combinant WMS, OMS et TMS pour une gestion optimale de votre chaîne logistique e-commerce." />
@@ -79,23 +79,21 @@ const Technology = () => {
       <BackgroundGradientAnimation 
         containerClassName="min-h-[80vh] w-full py-20 md:py-24 relative z-0"
         className="z-10"
-        gradientBackgroundStart="rgba(10, 20, 40, 0.8)"
-        gradientBackgroundEnd="rgba(5, 15, 35, 0.9)"
+        preserveBackground={true}
         firstColor="69, 140, 248" // Tons bleu plus clair
         secondColor="37, 99, 235" // Tons bleu Speed-E-Log
         thirdColor="29, 78, 216" // Bleu plus foncé
         fourthColor="30, 58, 138" // Bleu profond
         fifthColor="96, 165, 250" // Bleu clair
         pointerColor="59, 130, 246"
-        blendingValue="screen"
+        blendingValue="soft-light"
         size="150%"
         interactive={true}
-        preserveBackground={false}
       >
         <div className="container mx-auto relative z-20 px-4 h-full flex flex-col justify-center">
           <div className="absolute top-10 left-10 w-20 h-20 rounded-full bg-orange-100/20 dark:bg-orange-900/20 animate-pulse" />
           <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-6 text-white dark:text-white" 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-6" 
             initial={{ opacity: 0, y: -20 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.5 }}
@@ -103,7 +101,7 @@ const Technology = () => {
             Notre Technologie <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600 dark:from-blue-300 dark:to-blue-500">SupplyOS</span>
           </motion.h1>
           <motion.p 
-            className="text-lg md:text-xl text-center text-white/90 dark:text-white/90 mb-12 max-w-3xl mx-auto" 
+            className="text-lg md:text-xl text-center text-muted-foreground mb-12 max-w-3xl mx-auto" 
             initial={{ opacity: 0, y: -20 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.5, delay: 0.1 }}
