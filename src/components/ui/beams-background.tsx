@@ -34,11 +34,11 @@ function createBeam(width: number, height: number): Beam {
     return {
         x: Math.random() * width * 1.5 - width * 0.25,
         y: Math.random() * height * 1.5 - height * 0.25,
-        width: 30 + Math.random() * 60,
+        width: 60 + Math.random() * 100, // Increased width for more visible beams
         length: height * 2.5,
         angle: angle,
         speed: 0.6 + Math.random() * 1.2,
-        opacity: 0.12 + Math.random() * 0.16,
+        opacity: 0.15 + Math.random() * 0.15, // Increased base opacity
         hue: 190 + Math.random() * 70,
         pulse: Math.random() * Math.PI * 2,
         pulseSpeed: 0.02 + Math.random() * 0.03,
@@ -58,12 +58,12 @@ export function BeamsBackground({
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const beamsRef = useRef<Beam[]>([]);
     const animationFrameRef = useRef<number>(0);
-    const MINIMUM_BEAMS = 12; // Reduced number for subtlety
+    const MINIMUM_BEAMS = 20; // Increased from 12 to 20 for more visible effect
 
     const opacityMap = {
-        subtle: 0.3,
-        medium: 0.5,
-        strong: 0.7,
+        subtle: 0.5, // Increased from 0.3 to 0.5
+        medium: 0.7, // Increased from 0.5 to 0.7
+        strong: 0.9, // Increased from 0.7 to 0.9
     };
 
     useEffect(() => {
@@ -101,7 +101,7 @@ export function BeamsBackground({
                 column * spacing +
                 spacing / 2 +
                 (Math.random() - 0.5) * spacing * 0.5;
-            beam.width = 40 + Math.random() * 80;
+            beam.width = 60 + Math.random() * 100; // Increased width for more visible beams
             beam.speed = 0.2 + Math.random() * 0.3;
             
             // Use our custom colors based on index
@@ -114,7 +114,7 @@ export function BeamsBackground({
                 beam.hue = 90; // Green hue
             }
             
-            beam.opacity = 0.08 + Math.random() * 0.08;
+            beam.opacity = 0.15 + Math.random() * 0.15; // Increased base opacity
             return beam;
         }
 
@@ -158,7 +158,7 @@ export function BeamsBackground({
             if (!canvas || !ctx) return;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.filter = "blur(25px)";
+            ctx.filter = "blur(20px)"; // Slightly reduced blur for more definition
 
             const totalBeams = beamsRef.current.length;
             beamsRef.current.forEach((beam, index) => {

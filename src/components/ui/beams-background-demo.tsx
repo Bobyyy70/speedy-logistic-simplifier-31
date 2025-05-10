@@ -6,12 +6,12 @@ import { BeamsBackground } from "@/components/ui/beams-background";
 export function BeamsBackgroundDemo() {
   return (
     <BeamsBackground 
-      className="absolute inset-0 -z-10 h-full w-full"
-      intensity="subtle"
+      className="absolute inset-0 -z-10 h-full w-full min-h-[400px]"
+      intensity="medium" // Changed from subtle to medium for more visibility
       colors={{
-        primary: "#D3E4FD",   // Soft blue
+        primary: "#86B6FC",   // Brighter blue
         secondary: "#FFFFFF", // White
-        tertiary: "#F2FCE2",  // Soft green
+        tertiary: "#A9F99B",  // Brighter green
       }}
     />
   );

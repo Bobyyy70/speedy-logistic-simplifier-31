@@ -62,7 +62,7 @@ const FaqPage = () => {
         <meta property="og:description" content="Trouvez les réponses à vos questions sur nos services logistiques pour e-commerce : types de produits gérés, transport, intégration, suivi et plus encore." />
       </Helmet>
       
-      <motion.div className="flex flex-col items-center justify-center space-y-4 text-center mb-8 md:mb-12 relative overflow-hidden" 
+      <motion.div className="flex flex-col items-center justify-center space-y-4 text-center mb-8 md:mb-12 relative overflow-hidden min-h-[300px] py-12" 
         initial={{
           opacity: 0,
           y: 20
