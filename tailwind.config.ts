@@ -185,6 +185,10 @@ export default {
             backgroundPosition: "350% 50%, 350% 50%",
           },
         },
+        'wave-pulse': {
+          '0%, 100%': { opacity: 0.4 },
+          '50%': { opacity: 0.7 },
+        },
         moveHorizontal: {
           "0%": {
             transform: "translateX(-50%) translateY(-10%)",
@@ -225,6 +229,7 @@ export default {
         'fade-in': 'fade-in 0.3s ease-out',
         'fade-out': 'fade-out 0.3s ease-out',
         'aurora': 'aurora 60s linear infinite',
+        'wave-pulse': 'wave-pulse 4s ease-in-out infinite',
         first: "moveVertical 30s ease infinite",
         second: "moveInCircle 20s reverse infinite",
         third: "moveInCircle 40s linear infinite",

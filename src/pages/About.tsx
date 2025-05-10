@@ -9,12 +9,30 @@ import { Target, Star, MapPin, History, Truck, Quote } from "lucide-react";
 import { AnimatedButton } from "@/components/ui/moving-border";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { useLazyImage } from "@/hooks/use-lazy-image"; // Ajout du hook pour lazy loading
+import { Waves } from "@/components/ui/waves-background";
 
 const About = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  return <div className="site-background">
+  return <div className="site-background relative">
+      {/* Waves Effect - Added with transparent background to preserve the original background */}
+      <div className="absolute inset-0 z-0">
+        <Waves
+          lineColor="rgba(255, 255, 255, 0.2)" 
+          backgroundColor="transparent"
+          waveSpeedX={0.015}
+          waveSpeedY={0.01}
+          waveAmpX={35}
+          waveAmpY={20}
+          friction={0.92}
+          tension={0.008}
+          maxCursorMove={100}
+          xGap={15}
+          yGap={40}
+        />
+      </div>
+
       <Helmet>
         <title>À Propos de Speed E-Log | Votre Partenaire Logistique</title>
         <meta name="description" content="Découvrez Speed E-Log, votre partenaire logistique e-commerce à Port-sur-Saône. Notre mission: simplifier la logistique pour les PME françaises avec fiabilité et transparence." />
@@ -23,7 +41,7 @@ const About = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
       </Helmet>
 
-      <section className="py-10 md:py-24">
+      <section className="py-10 md:py-24 relative z-10">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6">
             Qui <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">Sommes-nous</span> ?
@@ -36,7 +54,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-10 md:py-20">
+      <section className="py-10 md:py-20 relative z-10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8 md:mb-16">
             <h2 className="text-2xl md:text-4xl font-bold mb-3 md:mb-4">Notre Mission et Nos Valeurs</h2>
@@ -48,7 +66,7 @@ const About = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            <Card className="bg-gradient-to-br from-blue-50/50 to-blue-100/30 dark:from-blue-900/10 dark:to-blue-800/5 border-blue-200/50 dark:border-blue-700/30">
+            <Card className="bg-gradient-to-br from-blue-50/50 to-blue-100/30 dark:from-blue-900/10 dark:to-blue-800/5 border-blue-200/50 dark:border-blue-700/30 backdrop-blur-sm">
               <CardHeader className="pb-2 flex flex-row items-center space-y-0 px-4 md:px-6">
                 <Star className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2" />
                 <CardTitle className="text-xl">Transparence</CardTitle>
@@ -60,7 +78,7 @@ const About = () => {
               </CardContent>
             </Card>
             
-            <Card className="bg-gradient-to-br from-green-50/50 to-green-100/30 dark:from-green-900/10 dark:to-green-800/5 border-green-200/50 dark:border-green-700/30">
+            <Card className="bg-gradient-to-br from-green-50/50 to-green-100/30 dark:from-green-900/10 dark:to-green-800/5 border-green-200/50 dark:border-green-700/30 backdrop-blur-sm">
               <CardHeader className="pb-2 flex flex-row items-center space-y-0 px-4 md:px-6">
                 <Star className="h-5 w-5 text-green-600 dark:text-green-400 mr-2" />
                 <CardTitle className="text-xl">Fiabilité</CardTitle>
@@ -72,7 +90,7 @@ const About = () => {
               </CardContent>
             </Card>
             
-            <Card className="bg-gradient-to-br from-orange-50/50 to-orange-100/30 dark:from-orange-900/10 dark:to-orange-800/5 border-orange-200/50 dark:border-orange-700/30">
+            <Card className="bg-gradient-to-br from-orange-50/50 to-orange-100/30 dark:from-orange-900/10 dark:to-orange-800/5 border-orange-200/50 dark:border-orange-700/30 backdrop-blur-sm">
               <CardHeader className="pb-2 flex flex-row items-center space-y-0 px-4 md:px-6">
                 <Star className="h-5 w-5 text-orange-500 dark:text-orange-400 mr-2" />
                 <CardTitle className="text-xl">Efficacité</CardTitle>
@@ -84,7 +102,7 @@ const About = () => {
               </CardContent>
             </Card>
             
-            <Card className="bg-gradient-to-br from-blue-50/50 to-green-100/30 dark:from-blue-900/10 dark:to-green-800/5 border-blue-200/50 dark:border-green-700/30">
+            <Card className="bg-gradient-to-br from-blue-50/50 to-green-100/30 dark:from-blue-900/10 dark:to-green-800/5 border-blue-200/50 dark:border-green-700/30 backdrop-blur-sm">
               <CardHeader className="pb-2 flex flex-row items-center space-y-0 px-4 md:px-6">
                 <Star className="h-5 w-5 text-green-600 dark:text-green-400 mr-2" />
                 <CardTitle className="text-xl">Partenariat</CardTitle>
