@@ -7,7 +7,7 @@ export function BeamsBackgroundDemo() {
   return (
     <BeamsBackground 
       className="absolute inset-0 -z-10 h-full w-full min-h-[400px]"
-      intensity="medium" // Changed from subtle to medium for more visibility
+      intensity="medium"
       colors={{
         primary: "#86B6FC",   // Brighter blue
         secondary: "#FFFFFF", // White

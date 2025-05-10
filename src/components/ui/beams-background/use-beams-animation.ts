@@ -4,11 +4,11 @@ import { Beam, BeamsBackgroundProps } from "./types";
 import { MINIMUM_BEAMS, createBeam, resetBeam, drawBeam } from "./utils";
 
 export function useBeamsAnimation({
-    intensity = "subtle",
+    intensity = "medium",
     colors = {
-        primary: "#D3E4FD",   // Soft blue
+        primary: "#86B6FC",   // Brighter blue
         secondary: "#FFFFFF", // White
-        tertiary: "#F2FCE2",  // Soft green
+        tertiary: "#A9F99B",  // Brighter green
     },
 }: Partial<BeamsBackgroundProps>) {
     const canvasRef = useRef<HTMLCanvasElement>(null);

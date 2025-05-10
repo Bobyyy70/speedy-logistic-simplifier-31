@@ -1,12 +1,12 @@
 
 import { Beam } from "./types";
 
-export const MINIMUM_BEAMS = 20; // Increased from 12 to 20 for more visible effect
+export const MINIMUM_BEAMS = 20; // Increased for more visible effect
 
 export const opacityMap = {
-    subtle: 0.5, // Increased from 0.3 to 0.5
-    medium: 0.7, // Increased from 0.5 to 0.7
-    strong: 0.9, // Increased from 0.7 to 0.9
+    subtle: 0.5,
+    medium: 0.7,
+    strong: 0.9,
 };
 
 export function createBeam(width: number, height: number): Beam {

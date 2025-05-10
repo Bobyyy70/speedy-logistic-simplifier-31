@@ -10,11 +10,11 @@ import { useBeamsAnimation } from "./use-beams-animation";
 export function BeamsBackground({
     className,
     children,
-    intensity = "subtle",
+    intensity = "medium",
     colors = {
-        primary: "#D3E4FD",   // Soft blue
+        primary: "#86B6FC",   // Brighter blue
         secondary: "#FFFFFF", // White
-        tertiary: "#F2FCE2",  // Soft green
+        tertiary: "#A9F99B",  // Brighter green
     },
 }: BeamsBackgroundProps) {
     const canvasRef = useBeamsAnimation({ intensity, colors });
