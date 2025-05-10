@@ -1,5 +1,5 @@
 
-import { Waves } from "@/components/ui/waves-background"
+import { Waves } from "@/components/ui/waves-background";
 
 function WavesDemo() {
   return (
@@ -25,7 +25,7 @@ function WavesDemo() {
         <p className="text-muted-foreground">Move your mouse to interact with the waves</p>
       </div>
     </div>
-  )
+  );
 }
 
-export { WavesDemo }
+export { WavesDemo };
