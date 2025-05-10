@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { AnimatedButton } from "@/components/ui/moving-border";
 import { BackgroundPaths } from "@/components/ui/background-paths";
+import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 
 const Technology = () => {
   useEffect(() => {
@@ -75,9 +76,24 @@ const Technology = () => {
           <meta name="description" content="Découvrez SupplyOS, notre solution logistique intégrée combinant WMS, OMS et TMS pour une gestion optimale de votre chaîne logistique e-commerce." />
         </Helmet>
 
-        {/* Hero Section */}
-        <section className="w-full py-12 md:py-16 px-4">
-          <div className="container mx-auto relative">
+        {/* Hero Section avec fond de gradient animé */}
+        <BackgroundGradientAnimation 
+          containerClassName="h-auto min-h-[50vh] py-12 md:py-16"
+          className="z-10"
+          preserveBackground={true}
+          gradientBackgroundStart="transparent"
+          gradientBackgroundEnd="transparent"
+          firstColor="69, 140, 248" // Tons bleu plus clair
+          secondColor="37, 99, 235" // Tons bleu Speed-E-Log
+          thirdColor="29, 78, 216" // Bleu plus foncé
+          fourthColor="30, 58, 138" // Bleu profond
+          fifthColor="96, 165, 250" // Bleu clair
+          pointerColor="59, 130, 246"
+          blendingValue="soft-light"
+          size="100%"
+          interactive={false}
+        >
+          <div className="container mx-auto relative px-4 z-20">
             <div className="absolute top-0 left-0 w-12 h-12 rounded-full bg-orange-100/20 dark:bg-orange-900/20" />
             <motion.h1 
               className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter text-center mb-4 md:mb-6" 
@@ -97,7 +113,7 @@ const Technology = () => {
             </motion.p>
             <div className="absolute bottom-0 right-0 w-16 h-16 rounded-full bg-orange-100/10 dark:bg-orange-900/10" />
           </div>
-        </section>
+        </BackgroundGradientAnimation>
 
         {/* Logo Section */}
         <section className="container mx-auto px-4 md:py-16 text-center py-0">
