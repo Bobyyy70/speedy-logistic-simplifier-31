@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -6,7 +5,7 @@ import { ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { AnimatedButton } from "@/components/ui/moving-border";
-import { BackgroundPaths } from "@/components/ui/background-paths";
+import { EnhancedBackgroundPaths } from "@/components/ui/enhanced-background-paths";
 
 const Technology = () => {
   useEffect(() => {
@@ -68,7 +67,14 @@ const Technology = () => {
   ];
 
   return (
-    <BackgroundPaths className="w-full" preserveBackground={true} opacity={0.35}>
+    <EnhancedBackgroundPaths 
+      className="w-full" 
+      preserveBackground={true} 
+      opacity={0.35}
+      particleDensity={40}
+      particleColor="#8EB8FF"
+      speed={7}
+    >
       <div className="w-full">
         <Helmet>
           <title>Notre Technologie SupplyOS | Speed E-Log</title>
@@ -228,7 +234,7 @@ const Technology = () => {
           </div>
         </section>
       </div>
-    </BackgroundPaths>
+    </EnhancedBackgroundPaths>
   );
 };
 
