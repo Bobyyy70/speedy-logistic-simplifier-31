@@ -19,7 +19,6 @@ export const BackgroundGradientAnimation = ({
   interactive = true,
   containerClassName,
   preserveBackground = false,
-  fullPage = false, // Nouveau paramètre pour appliquer à toute la page
 }: {
   gradientBackgroundStart?: string;
   gradientBackgroundEnd?: string;
@@ -36,7 +35,6 @@ export const BackgroundGradientAnimation = ({
   interactive?: boolean;
   containerClassName?: string;
   preserveBackground?: boolean;
-  fullPage?: boolean; // Nouveau paramètre ajouté
 }) => {
   const interactiveRef = useRef<HTMLDivElement>(null);
 
@@ -94,7 +92,7 @@ export const BackgroundGradientAnimation = ({
   return (
     <div
       className={cn(
-        fullPage ? "fixed inset-0 w-full h-full -z-10" : "h-screen w-screen relative overflow-hidden top-0 left-0",
+        "h-screen w-screen relative overflow-hidden top-0 left-0",
         preserveBackground ? "" : "bg-[linear-gradient(40deg,var(--gradient-background-start),var(--gradient-background-end))]",
         containerClassName
       )}
