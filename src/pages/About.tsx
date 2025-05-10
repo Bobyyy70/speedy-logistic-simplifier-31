@@ -16,20 +16,20 @@ const About = () => {
     window.scrollTo(0, 0);
   }, []);
   return <div className="site-background relative">
-      {/* Waves Effect - Added with transparent background to preserve the original background */}
-      <div className="absolute inset-0 z-0">
+      {/* Waves Effect - Increased visibility with higher opacity, smaller gaps and larger amplitude */}
+      <div className="absolute inset-0 z-0 animate-wave-pulse">
         <Waves
-          lineColor="rgba(255, 255, 255, 0.2)" 
+          lineColor="rgba(255, 255, 255, 0.5)" 
           backgroundColor="transparent"
           waveSpeedX={0.015}
           waveSpeedY={0.01}
-          waveAmpX={35}
-          waveAmpY={20}
+          waveAmpX={50}
+          waveAmpY={30}
           friction={0.92}
           tension={0.008}
           maxCursorMove={100}
-          xGap={15}
-          yGap={40}
+          xGap={8}
+          yGap={25}
         />
       </div>
 

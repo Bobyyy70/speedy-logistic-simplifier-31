@@ -4,19 +4,19 @@ import { Waves } from "@/components/ui/waves-background";
 function WavesDemo() {
   return (
     <div className="relative w-full h-[400px] rounded-lg overflow-hidden">
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 animate-wave-pulse">
         <Waves
-          lineColor="rgba(255, 255, 255, 0.3)"
+          lineColor="rgba(255, 255, 255, 0.5)"
           backgroundColor="transparent"
           waveSpeedX={0.02}
           waveSpeedY={0.01}
-          waveAmpX={40}
-          waveAmpY={20}
+          waveAmpX={50}
+          waveAmpY={30}
           friction={0.9}
           tension={0.01}
           maxCursorMove={120}
-          xGap={12}
-          yGap={36}
+          xGap={8}
+          yGap={25}
         />
       </div>
 
