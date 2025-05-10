@@ -5,6 +5,8 @@ import { Helmet } from "react-helmet-async";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+import { WavyBackgroundDemo } from "@/components/ui/wavy-background-demo";
+import { Button } from "@/components/ui/button";
 
 // FAQ data array
 const faqs = [
@@ -117,6 +119,21 @@ const FaqPage = () => {
           </Link>
         </motion.div>
       </div>
+      
+      {/* Nouveau module WavyBackground après la FAQ */}
+      <motion.div 
+        className="mt-16 md:mt-24"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.7 }}
+      >
+        <WavyBackgroundDemo />
+        <div className="text-center mt-8">
+          <Button className="bg-blue-600 hover:bg-blue-700" asChild>
+            <Link to="/contact">Nous contacter</Link>
+          </Button>
+        </div>
+      </motion.div>
     </div>
   );
 };
