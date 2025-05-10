@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -68,54 +69,54 @@ const Technology = () => {
   ];
 
   return (
-    <BackgroundPaths className="w-full" preserveBackground={true} opacity={0.35}>
-      <div className="w-full">
-        <Helmet>
-          <title>Notre Technologie SupplyOS | Speed E-Log</title>
-          <meta name="description" content="Découvrez SupplyOS, notre solution logistique intégrée combinant WMS, OMS et TMS pour une gestion optimale de votre chaîne logistique e-commerce." />
-        </Helmet>
+    <div className="w-full relative">
+      <Helmet>
+        <title>Notre Technologie SupplyOS | Speed E-Log</title>
+        <meta name="description" content="Découvrez SupplyOS, notre solution logistique intégrée combinant WMS, OMS et TMS pour une gestion optimale de votre chaîne logistique e-commerce." />
+      </Helmet>
 
-        {/* Hero Section avec fond de gradient animé */}
-        <BackgroundGradientAnimation 
-          containerClassName="h-auto min-h-[50vh] py-12 md:py-16"
-          className="z-10"
-          preserveBackground={true}
-          gradientBackgroundStart="transparent"
-          gradientBackgroundEnd="transparent"
-          firstColor="69, 140, 248" // Tons bleu plus clair
-          secondColor="37, 99, 235" // Tons bleu Speed-E-Log
-          thirdColor="29, 78, 216" // Bleu plus foncé
-          fourthColor="30, 58, 138" // Bleu profond
-          fifthColor="96, 165, 250" // Bleu clair
-          pointerColor="59, 130, 246"
-          blendingValue="soft-light"
-          size="100%"
-          interactive={false}
-        >
-          <div className="container mx-auto relative px-4 z-20">
-            <div className="absolute top-0 left-0 w-12 h-12 rounded-full bg-orange-100/20 dark:bg-orange-900/20" />
-            <motion.h1 
-              className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter text-center mb-4 md:mb-6" 
-              initial={{ opacity: 0, y: -20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.5 }}
-            >
-              Notre Technologie <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">SupplyOS</span>
-            </motion.h1>
-            <motion.p 
-              className="text-base md:text-lg text-center text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto" 
-              initial={{ opacity: 0, y: -20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              Une plateforme logistique intégrée et moderne, développé en collaboration avec des e-commerces et des logisticiens, pour optimiser chaque étape de votre chaîne logistique e-commerce.
-            </motion.p>
-            <div className="absolute bottom-0 right-0 w-16 h-16 rounded-full bg-orange-100/10 dark:bg-orange-900/10" />
-          </div>
-        </BackgroundGradientAnimation>
+      {/* Hero Section avec fond de gradient animé */}
+      <BackgroundGradientAnimation 
+        containerClassName="min-h-[80vh] w-full py-20 md:py-24 relative z-0"
+        className="z-10"
+        gradientBackgroundStart="rgba(10, 20, 40, 0.8)"
+        gradientBackgroundEnd="rgba(5, 15, 35, 0.9)"
+        firstColor="69, 140, 248" // Tons bleu plus clair
+        secondColor="37, 99, 235" // Tons bleu Speed-E-Log
+        thirdColor="29, 78, 216" // Bleu plus foncé
+        fourthColor="30, 58, 138" // Bleu profond
+        fifthColor="96, 165, 250" // Bleu clair
+        pointerColor="59, 130, 246"
+        blendingValue="screen"
+        size="150%"
+        interactive={true}
+        preserveBackground={false}
+      >
+        <div className="container mx-auto relative z-20 px-4 h-full flex flex-col justify-center">
+          <div className="absolute top-10 left-10 w-20 h-20 rounded-full bg-orange-100/20 dark:bg-orange-900/20 animate-pulse" />
+          <motion.h1 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-6 text-white dark:text-white" 
+            initial={{ opacity: 0, y: -20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.5 }}
+          >
+            Notre Technologie <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600 dark:from-blue-300 dark:to-blue-500">SupplyOS</span>
+          </motion.h1>
+          <motion.p 
+            className="text-lg md:text-xl text-center text-white/90 dark:text-white/90 mb-12 max-w-3xl mx-auto" 
+            initial={{ opacity: 0, y: -20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            Une plateforme logistique intégrée et moderne, développée en collaboration avec des e-commerces et des logisticiens, pour optimiser chaque étape de votre chaîne logistique e-commerce.
+          </motion.p>
+          <div className="absolute bottom-10 right-10 w-24 h-24 rounded-full bg-orange-100/10 dark:bg-orange-900/10 animate-pulse" />
+        </div>
+      </BackgroundGradientAnimation>
 
+      <BackgroundPaths className="w-full" preserveBackground={true} opacity={0.35}>
         {/* Logo Section */}
-        <section className="container mx-auto px-4 md:py-16 text-center py-0">
+        <section className="container mx-auto px-4 py-16 text-center">
           <div className="max-w-3xl mx-auto">
             <div className="mb-8">
               <img 
@@ -242,8 +243,8 @@ const Technology = () => {
             </Link>
           </div>
         </section>
-      </div>
-    </BackgroundPaths>
+      </BackgroundPaths>
+    </div>
   );
 };
 

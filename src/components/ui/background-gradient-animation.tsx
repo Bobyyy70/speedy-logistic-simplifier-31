@@ -115,16 +115,16 @@ export const BackgroundGradientAnimation = ({
           </filter>
         </defs>
       </svg>
-      <div className={cn("", className)}>{children}</div>
+      <div className={cn("relative z-10", className)}>{children}</div>
       <div
         className={cn(
-          "gradients-container h-full w-full blur-lg",
+          "gradients-container h-full w-full blur-lg absolute inset-0",
           isSafari ? "blur-2xl" : "[filter:url(#blurMe)_blur(40px)]"
         )}
       >
         <div
           className={cn(
-            `absolute [background:radial-gradient(circle_at_center,_var(--first-color)_0,_var(--first-color)_50%)_no-repeat]`,
+            `absolute [background:radial-gradient(circle_at_center,_rgba(var(--first-color),_0.8)_0,_rgba(var(--first-color),_0)_50%)_no-repeat]`,
             `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
             `[transform-origin:center_center]`,
             `animate-first`,
