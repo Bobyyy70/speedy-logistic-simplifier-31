@@ -70,9 +70,7 @@ export function Services() {
       
       <div className="flex justify-center mt-8 md:mt-12">
         <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600">
-          <Link to="/technology" className="flex items-center">
-            Découvrez notre technologie SupplyOS
-          </Link>
+          
         </Button>
       </div>
     </section>;
