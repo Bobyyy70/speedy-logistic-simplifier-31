@@ -19,6 +19,7 @@ export const BackgroundGradientAnimation = ({
   interactive = true,
   containerClassName,
   preserveBackground = false,
+  fullPage = false,
 }: {
   gradientBackgroundStart?: string;
   gradientBackgroundEnd?: string;
@@ -35,6 +36,7 @@ export const BackgroundGradientAnimation = ({
   interactive?: boolean;
   containerClassName?: string;
   preserveBackground?: boolean;
+  fullPage?: boolean;
 }) => {
   const interactiveRef = useRef<HTMLDivElement>(null);
 
@@ -89,10 +91,16 @@ export const BackgroundGradientAnimation = ({
     setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
   }, []);
 
+  // Default container class for normal mode
+  const defaultContainerClass = "h-screen w-screen relative overflow-hidden top-0 left-0";
+  
+  // Class for full page mode - position fixed to cover the entire viewport
+  const fullPageContainerClass = "fixed inset-0 w-full h-full overflow-hidden -z-10";
+
   return (
     <div
       className={cn(
-        "h-screen w-screen relative overflow-hidden top-0 left-0",
+        fullPage ? fullPageContainerClass : defaultContainerClass,
         preserveBackground ? "" : "bg-[linear-gradient(40deg,var(--gradient-background-start),var(--gradient-background-end))]",
         containerClassName
       )}

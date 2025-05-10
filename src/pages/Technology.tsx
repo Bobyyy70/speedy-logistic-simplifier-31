@@ -69,17 +69,16 @@ const Technology = () => {
   ];
 
   return (
-    <div className="w-full relative site-background">
+    <div className="w-full relative">
       <Helmet>
         <title>Notre Technologie SupplyOS | Speed E-Log</title>
         <meta name="description" content="Découvrez SupplyOS, notre solution logistique intégrée combinant WMS, OMS et TMS pour une gestion optimale de votre chaîne logistique e-commerce." />
       </Helmet>
 
-      {/* Hero Section avec fond de gradient animé */}
+      {/* Fond animé appliqué sur toute la page */}
       <BackgroundGradientAnimation 
-        containerClassName="min-h-[80vh] w-full py-20 md:py-24 relative z-0"
-        className="z-10"
-        preserveBackground={true}
+        fullPage={true}
+        className="z-0"
         firstColor="134, 239, 172" // Vert clair (green-200)
         secondColor="255, 255, 255" // Blanc (white)
         thirdColor="224, 242, 254" // Bleu très clair (blue-100)
@@ -89,35 +88,37 @@ const Technology = () => {
         blendingValue="soft-light"
         size="200%"
         interactive={true}
-      >
-        <div className="container mx-auto relative z-20 px-4 h-full flex flex-col justify-center">
-          <div className="absolute top-10 left-10 w-20 h-20 rounded-full bg-orange-100/20 dark:bg-orange-900/20 animate-pulse" />
-          <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-6" 
-            initial={{ opacity: 0, y: -20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 0.5 }}
-          >
-            Notre Technologie <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600 dark:from-blue-300 dark:to-blue-500">SupplyOS</span>
-          </motion.h1>
-          <motion.p 
-            className="text-lg md:text-xl text-center text-muted-foreground mb-12 max-w-3xl mx-auto" 
-            initial={{ opacity: 0, y: -20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            Une plateforme logistique intégrée et moderne, développée en collaboration avec des e-commerces et des logisticiens, pour optimiser chaque étape de votre chaîne logistique e-commerce.
-          </motion.p>
-          <div className="absolute bottom-10 right-10 w-24 h-24 rounded-full bg-orange-100/10 dark:bg-orange-900/10 animate-pulse" />
-        </div>
-      </BackgroundGradientAnimation>
+        preserveBackground={true}
+      />
+
+      {/* Hero Section */}
+      <div className="container mx-auto relative z-10 px-4 min-h-[60vh] flex flex-col justify-center py-16">
+        <div className="absolute top-10 left-10 w-20 h-20 rounded-full bg-orange-100/20 dark:bg-orange-900/20 animate-pulse" />
+        <motion.h1 
+          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-6" 
+          initial={{ opacity: 0, y: -20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.5 }}
+        >
+          Notre Technologie <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600 dark:from-blue-300 dark:to-blue-500">SupplyOS</span>
+        </motion.h1>
+        <motion.p 
+          className="text-lg md:text-xl text-center text-muted-foreground mb-12 max-w-3xl mx-auto" 
+          initial={{ opacity: 0, y: -20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          Une plateforme logistique intégrée et moderne, développée en collaboration avec des e-commerces et des logisticiens, pour optimiser chaque étape de votre chaîne logistique e-commerce.
+        </motion.p>
+        <div className="absolute bottom-10 right-10 w-24 h-24 rounded-full bg-orange-100/10 dark:bg-orange-900/10 animate-pulse" />
+      </div>
 
       {/* Reste du contenu */}
-      <BackgroundPaths className="w-full" preserveBackground={true} opacity={0.35}>
+      <div className="w-full relative z-10">
         {/* Logo Section */}
-        <section className="container mx-auto px-4 py-16 text-center">
+        <section className="container mx-auto px-4 py-8 text-center">
           <div className="max-w-3xl mx-auto">
-            <div className="mb-8">
+            <div className="mb-6">
               <img 
                 src="/lovable-uploads/9e3dc511-3aec-4dc9-840f-187ab8de7235.png" 
                 alt="SupplyOS Logo" 
@@ -133,7 +134,7 @@ const Technology = () => {
         </section>
 
         {/* Screenshots with alternating layout */}
-        <section className="container mx-auto px-4 py-12 md:py-20 relative">
+        <section className="container mx-auto px-4 py-12 md:py-16 relative">
           <motion.h2 
             className="text-2xl md:text-3xl font-bold mb-12 text-center" 
             initial={{ opacity: 0 }} 
@@ -143,7 +144,7 @@ const Technology = () => {
             Une Interface Intuitive et Puissante
           </motion.h2>
           
-          <div className="space-y-16 md:space-y-24">
+          <div className="space-y-16 md:space-y-20">
             {screenshots.map((screenshot, index) => (
               <motion.div 
                 key={index} 
@@ -199,7 +200,7 @@ const Technology = () => {
         </section>
         
         {/* Features Section */}
-        <section className="container mx-auto px-4 py-12 md:py-20 relative">
+        <section className="container mx-auto px-4 py-12 md:py-16 relative">
           <div className="absolute top-1/4 right-8 w-20 h-20 rounded-full bg-orange-100/10 dark:bg-orange-900/10" />
           <motion.h2 
             className="text-2xl md:text-3xl font-bold mb-12 text-center" 
@@ -231,7 +232,7 @@ const Technology = () => {
         </section>
 
         {/* CTA section */}
-        <section className="container mx-auto px-4 py-12 md:py-20 text-center">
+        <section className="container mx-auto px-4 py-12 md:py-16 text-center">
           <div className="max-w-3xl mx-auto">
             <Link to="/contact" className="block w-fit mx-auto">
               <AnimatedButton 
@@ -242,7 +243,7 @@ const Technology = () => {
             </Link>
           </div>
         </section>
-      </BackgroundPaths>
+      </div>
     </div>
   );
 };
