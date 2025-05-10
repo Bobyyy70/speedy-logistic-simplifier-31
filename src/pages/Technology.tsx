@@ -80,14 +80,14 @@ const Technology = () => {
         containerClassName="min-h-[80vh] w-full py-20 md:py-24 relative z-0"
         className="z-10"
         preserveBackground={true}
-        firstColor="69, 140, 248" // Tons bleu plus clair
-        secondColor="37, 99, 235" // Tons bleu Speed-E-Log
-        thirdColor="29, 78, 216" // Bleu plus foncé
-        fourthColor="30, 58, 138" // Bleu profond
-        fifthColor="96, 165, 250" // Bleu clair
-        pointerColor="59, 130, 246"
+        firstColor="134, 239, 172" // Vert clair (green-200)
+        secondColor="255, 255, 255" // Blanc (white)
+        thirdColor="224, 242, 254" // Bleu très clair (blue-100)
+        fourthColor="240, 253, 244" // Vert très clair (green-50)
+        fifthColor="191, 219, 254" // Bleu clair (blue-200)
+        pointerColor="134, 239, 172" // Vert interactif (green-200)
         blendingValue="soft-light"
-        size="150%"
+        size="200%"
         interactive={true}
       >
         <div className="container mx-auto relative z-20 px-4 h-full flex flex-col justify-center">
@@ -112,6 +112,7 @@ const Technology = () => {
         </div>
       </BackgroundGradientAnimation>
 
+      {/* Reste du contenu */}
       <BackgroundPaths className="w-full" preserveBackground={true} opacity={0.35}>
         {/* Logo Section */}
         <section className="container mx-auto px-4 py-16 text-center">
