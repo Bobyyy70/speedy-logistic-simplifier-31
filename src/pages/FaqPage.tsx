@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -62,20 +61,25 @@ const FaqPage = () => {
         <meta property="og:description" content="Trouvez les réponses à vos questions sur nos services logistiques pour e-commerce : types de produits gérés, transport, intégration, suivi et plus encore." />
       </Helmet>
       
-      <motion.div className="flex flex-col items-center justify-center space-y-4 text-center mb-8 md:mb-12" initial={{
-      opacity: 0,
-      y: 20
-    }} animate={{
-      opacity: 1,
-      y: 0
-    }} transition={{
-      duration: 0.5
-    }}>
-        <div className="inline-block px-3 py-1 text-sm rounded-3xl bg-orange-100">FAQ</div>
-        <h1 className="text-3xl md:text-4xl font-bold tracking-tighter sm:text-5xl">
+      <motion.div className="flex flex-col items-center justify-center space-y-4 text-center mb-8 md:mb-12 relative overflow-hidden" 
+        initial={{
+          opacity: 0,
+          y: 20
+        }} 
+        animate={{
+          opacity: 1,
+          y: 0
+        }} 
+        transition={{
+          duration: 0.5
+        }}
+      >
+        <WavyBackgroundDemo />
+        <div className="inline-block px-3 py-1 text-sm rounded-3xl bg-orange-100 relative z-10">FAQ</div>
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tighter sm:text-5xl relative z-10">
           Questions <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">Fréquentes</span>
         </h1>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-muted-foreground max-w-2xl mx-auto relative z-10">
           Trouvez ici les réponses aux questions les plus couramment posées sur nos services de logistique e-commerce.
         </p>
       </motion.div>
@@ -118,22 +122,13 @@ const FaqPage = () => {
             Contactez-nous directement
           </Link>
         </motion.div>
-      </div>
-      
-      {/* Nouveau module WavyBackground après la FAQ */}
-      <motion.div 
-        className="mt-16 md:mt-24"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.7 }}
-      >
-        <WavyBackgroundDemo />
+        
         <div className="text-center mt-8">
           <Button className="bg-blue-600 hover:bg-blue-700" asChild>
             <Link to="/contact">Nous contacter</Link>
           </Button>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };
