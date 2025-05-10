@@ -21,15 +21,16 @@ function FloatingPaths({ position, opacity = 0.2 }: { position: number; opacity?
     } ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${
       684 - i * 5 * position
     } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
-    width: 0.5 + i * 0.02,
+    width: 0.5 + i * 0.03, // Lignes légèrement plus épaisses
   }));
 
   return (
-    <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute inset-0 pointer-events-none overflow-visible">
       <svg
         className="w-full h-full text-slate-950 dark:text-white"
         viewBox="0 0 696 316"
         fill="none"
+        style={{ position: 'absolute', width: '150%', height: '150%', left: '-25%', top: '-25%' }}
       >
         <title>Background Paths</title>
         {paths.map((path) => (
@@ -38,15 +39,15 @@ function FloatingPaths({ position, opacity = 0.2 }: { position: number; opacity?
             d={path.d}
             stroke="currentColor"
             strokeWidth={path.width}
-            strokeOpacity={(0.05 + path.id * 0.01) * opacity}
-            initial={{ pathLength: 0.3, opacity: 0.4 }}
+            strokeOpacity={(0.1 + path.id * 0.01) * opacity} // Opacité de base augmentée
+            initial={{ pathLength: 0.3, opacity: 0.5 }}
             animate={{
               pathLength: 1,
-              opacity: [0.2, 0.3, 0.2],
+              opacity: [0.3, 0.5, 0.3], // Valeurs d'opacité augmentées
               pathOffset: [0, 1, 0],
             }}
             transition={{
-              duration: 20 + Math.random() * 10,
+              duration: 15 + Math.random() * 8, // Durée légèrement réduite
               repeat: Number.POSITIVE_INFINITY,
               ease: "linear",
             }}
