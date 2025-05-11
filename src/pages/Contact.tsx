@@ -5,6 +5,7 @@ import { ContactForm } from "@/components/contact/ContactForm";
 import { ContactInfo } from "@/components/contact/ContactInfo";
 import { ContactHeader } from "@/components/contact/ContactHeader";
 import { ContactFAQLink } from "@/components/contact/ContactFAQLink";
+import { motion } from "framer-motion";
 
 const Contact = () => {
   return (
@@ -31,6 +32,20 @@ const Contact = () => {
           <div className="lg:col-span-7">
             <ContactHeader />
             <ContactForm />
+            
+            {/* Logo under contact form */}
+            <motion.div 
+              className="flex justify-center mt-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <img 
+                src="/lovable-uploads/e05043fa-ef28-4be5-8d3d-7d8400626c7a.png" 
+                alt="Speed E-Log Logo" 
+                className="w-auto max-w-[80%] h-auto max-h-[120px]"
+              />
+            </motion.div>
           </div>
           
           {/* Contact Info & Map - Right column */}
