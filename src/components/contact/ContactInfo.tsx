@@ -30,6 +30,7 @@ export const ContactInfo = () => {
       transition={{ duration: 0.5, delay: 0.1 }}
       className="space-y-6"
     >
+      {/* Calendar Card */}
       <Card className="overflow-hidden border-blue-200 shadow-lg bg-gradient-to-r from-blue-50 to-blue-100">
         <CardContent className="pt-6">
           <div className="text-center mb-4">
@@ -55,6 +56,7 @@ export const ContactInfo = () => {
       {/* Service Après-Vente (SAV) Form */}
       <SavForm />
       
+      {/* Contact Information Card */}
       <Card className="border-blue-200 shadow-md overflow-hidden bg-white">
         <CardContent className="pt-6">
           <h3 className="text-lg font-semibold mb-4 text-blue-700">Nos coordonnées</h3>
@@ -83,6 +85,7 @@ export const ContactInfo = () => {
         </CardContent>
       </Card>
       
+      {/* Google Maps Card */}
       <motion.div 
         className="rounded-lg overflow-hidden h-[300px] shadow-md" 
         initial={{ opacity: 0, y: 20 }}
