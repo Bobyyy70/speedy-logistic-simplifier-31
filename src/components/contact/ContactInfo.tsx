@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getCalApi } from "@calcom/embed-react";
+import { SavForm } from "./SavForm";
 
 export const ContactInfo = () => {
   // Initialize Cal.com
@@ -51,6 +52,9 @@ export const ContactInfo = () => {
         </CardContent>
       </Card>
 
+      {/* Service Après-Vente (SAV) Form */}
+      <SavForm />
+      
       <Card className="border-blue-200 shadow-md overflow-hidden bg-white">
         <CardContent className="pt-6">
           <h3 className="text-lg font-semibold mb-4 text-blue-700">Nos coordonnées</h3>
