@@ -6,7 +6,6 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getCalApi } from "@calcom/embed-react";
 import { SavForm } from "./SavForm";
-import { fadeInRight, fadeInUp } from "@/lib/animation-utils";
 
 export const ContactInfo = () => {
   // Initialize Cal.com
@@ -23,6 +22,7 @@ export const ContactInfo = () => {
       });
     })();
   }, []);
+  
   return <motion.div initial={{
     opacity: 0,
     x: -20
@@ -51,75 +51,42 @@ export const ContactInfo = () => {
       {/* Service Après-Vente (SAV) Form */}
       <SavForm />
       
-      {/* Contact Information and Map section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Contact Information Card */}
-        <motion.div 
-          {...fadeInRight}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="rounded-lg overflow-hidden h-[300px] bg-card border border-blue-200 shadow-md"
-        >
-          <div className="p-6 h-full flex flex-col justify-between bg-gradient-to-br from-white to-blue-50">
-            <h3 className="text-xl font-semibold mb-4 text-blue-700">Nos coordonnées</h3>
-            
-            <div className="space-y-6 flex-grow">
-              <div className="flex items-start">
-                <MapPin className="h-5 w-5 text-blue-600 mt-1 mr-3" />
-                <div>
-                  <h4 className="font-medium text-foreground">Adresse</h4>
-                  <p className="text-muted-foreground">Zone d'activité Le Moulin</p>
-                  <p className="text-muted-foreground">70170 Port-sur-Saône</p>
-                  <p className="text-muted-foreground">France</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start">
-                <Mail className="h-5 w-5 text-blue-600 mt-1 mr-3" />
-                <div>
-                  <h4 className="font-medium text-foreground">Email</h4>
-                  <a href="mailto:contact@speedelog.net" className="text-blue-600 hover:text-blue-800 transition-colors">
-                    contact@speedelog.net
-                  </a>
-                </div>
-              </div>
-              
-              <div className="flex items-start">
-                <Phone className="h-5 w-5 text-blue-600 mt-1 mr-3" />
-                <div>
-                  <h4 className="font-medium text-foreground">Téléphone</h4>
-                  <a href="tel:+33384525656" className="text-blue-600 hover:text-blue-800 transition-colors">
-                    +33 3 84 52 56 56
-                  </a>
-                </div>
-              </div>
+      {/* Carte vide agrandie et alignée avec la carte Google Maps */}
+      <Card className="border-blue-200 shadow-md overflow-hidden bg-white h-[300px] mb-6">
+        <CardHeader className="pb-0">
+          <h3 className="text-lg font-semibold text-blue-700">Nos coordonnées</h3>
+        </CardHeader>
+        <CardContent className="pt-4">
+          <div className="space-y-3">
+            <div className="flex items-start">
+              <MapPin className="h-5 w-5 text-blue-600 mt-0.5 mr-2" />
+              <p>70170 Port-sur-Saône, France</p>
             </div>
-            
-            <div className="mt-4">
-              <p className="text-xs text-muted-foreground">
-                Horaires: Lun-Ven: 9h-18h
-              </p>
+            <div className="flex items-start">
+              <Mail className="h-5 w-5 text-blue-600 mt-0.5 mr-2" />
+              <p>contact@speedelog.net</p>
+            </div>
+            <div className="flex items-start">
+              <Phone className="h-5 w-5 text-blue-600 mt-0.5 mr-2" />
+              <p>+33 (0)3 84 XX XX XX</p>
             </div>
           </div>
-        </motion.div>
-        
-        {/* Google Maps */}
-        <motion.div 
-          {...fadeInUp}
-          transition={{ duration: 0.5, delay: 0.4 }}  
-          className="rounded-lg overflow-hidden h-[300px] shadow-md"
-        >
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10805.55665035175!2d6.036526308525196!3d47.69024919081746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47920f4259cab0c7%3A0x409ce34b30d1220!2s70170%20Port-sur-Sa%C3%B4ne!5e0!3m2!1sfr!2sfr!4v1681578343811!5m2!1sfr!2sfr" 
-            width="100%" 
-            height="100%" 
-            style={{ border: 0 }} 
-            allowFullScreen={true} 
-            loading="lazy" 
-            referrerPolicy="no-referrer-when-downgrade" 
-            title="Localisation de Speed E-Log à Port-sur-Saône" 
-            className="w-full h-full" 
-          />
-        </motion.div>
-      </div>
+        </CardContent>
+      </Card>
+      
+      <motion.div className="rounded-lg overflow-hidden h-[300px] shadow-md" initial={{
+      opacity: 0,
+      y: 20
+    }} animate={{
+      opacity: 1,
+      y: 0
+    }} transition={{
+      duration: 0.5,
+      delay: 0.5
+    }}>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10805.55665035175!2d6.036526308525196!3d47.69024919081746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47920f4259cab0c7%3A0x409ce34b30d1220!2s70170%20Port-sur-Sa%C3%B4ne!5e0!3m2!1sfr!2sfr!4v1681578343811!5m2!1sfr!2sfr" width="100%" height="100%" style={{
+        border: 0
+      }} allowFullScreen={true} loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Localisation de Speed E-Log à Port-sur-Saône" className="w-full h-full" />
+      </motion.div>
     </motion.div>;
 };
