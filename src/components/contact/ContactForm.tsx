@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,7 +14,10 @@ import {
   FormLabel, 
   FormMessage 
 } from "@/components/ui/form";
-import { Loader2, Send, ArrowLeft, ArrowRight, User, Mail, Phone, Building, City, MapPin, Globe, List, DollarSign, FileText, Database } from "lucide-react";
+import { 
+  Loader2, Send, ArrowLeft, ArrowRight, User, Mail, Phone, 
+  Building, MapPin, Globe, List, DollarSign, FileText, Database 
+} from "lucide-react";
 import { motion } from "framer-motion";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -361,7 +363,7 @@ export const ContactForm = () => {
                   <FormControl>
                     <div className="relative">
                       <span className="absolute left-3 top-3 text-muted-foreground">
-                        <City className="h-4 w-4" />
+                        <MapPin className="h-4 w-4" />
                       </span>
                       <Input className="pl-10" placeholder="Votre ville" {...field} />
                     </div>
