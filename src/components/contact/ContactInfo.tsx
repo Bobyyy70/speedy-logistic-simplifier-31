@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { Mail, Phone, MapPin, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
@@ -6,7 +5,6 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getCalApi } from "@calcom/embed-react";
 import { SavForm } from "./SavForm";
-
 export const ContactInfo = () => {
   // Initialize Cal.com
   useEffect(() => {
@@ -22,7 +20,6 @@ export const ContactInfo = () => {
       });
     })();
   }, []);
-  
   return <motion.div initial={{
     opacity: 0,
     x: -20
@@ -52,27 +49,7 @@ export const ContactInfo = () => {
       <SavForm />
       
       {/* Carte vide agrandie et alignée avec la carte Google Maps */}
-      <Card className="border-blue-200 shadow-md overflow-hidden bg-white h-[300px] mb-6">
-        <CardHeader className="pb-0">
-          <h3 className="text-lg font-semibold text-blue-700">Nos coordonnées</h3>
-        </CardHeader>
-        <CardContent className="pt-4">
-          <div className="space-y-3">
-            <div className="flex items-start">
-              <MapPin className="h-5 w-5 text-blue-600 mt-0.5 mr-2" />
-              <p>70170 Port-sur-Saône, France</p>
-            </div>
-            <div className="flex items-start">
-              <Mail className="h-5 w-5 text-blue-600 mt-0.5 mr-2" />
-              <p>contact@speedelog.net</p>
-            </div>
-            <div className="flex items-start">
-              <Phone className="h-5 w-5 text-blue-600 mt-0.5 mr-2" />
-              <p>+33 (0)3 84 XX XX XX</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      
       
       <motion.div className="rounded-lg overflow-hidden h-[300px] shadow-md" initial={{
       opacity: 0,
