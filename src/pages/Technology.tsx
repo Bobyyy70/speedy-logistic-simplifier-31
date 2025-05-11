@@ -78,6 +78,7 @@ const Technology = () => {
       {/* Fond animé appliqué sur toute la page */}
       <BackgroundGradientAnimation 
         fullPage={true}
+        preserveBackground={false}
         className="z-0"
         firstColor="134, 239, 172" // Vert clair (green-200)
         secondColor="255, 255, 255" // Blanc (white)
@@ -85,10 +86,9 @@ const Technology = () => {
         fourthColor="240, 253, 244" // Vert très clair (green-50)
         fifthColor="191, 219, 254" // Bleu clair (blue-200)
         pointerColor="134, 239, 172" // Vert interactif (green-200)
-        blendingValue="soft-light"
+        blendingValue="screen"
         size="200%"
         interactive={true}
-        preserveBackground={true}
       />
 
       {/* Hero Section */}
