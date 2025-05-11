@@ -19,7 +19,6 @@ export const BackgroundGradientAnimation = ({
   interactive = true,
   containerClassName,
   preserveBackground = false,
-  fullPage = false,
 }: {
   gradientBackgroundStart?: string;
   gradientBackgroundEnd?: string;
@@ -36,7 +35,6 @@ export const BackgroundGradientAnimation = ({
   interactive?: boolean;
   containerClassName?: string;
   preserveBackground?: boolean;
-  fullPage?: boolean;
 }) => {
   const interactiveRef = useRef<HTMLDivElement>(null);
 
@@ -61,18 +59,7 @@ export const BackgroundGradientAnimation = ({
     document.body.style.setProperty("--pointer-color", pointerColor);
     document.body.style.setProperty("--size", size);
     document.body.style.setProperty("--blending-value", blendingValue);
-  }, [
-    gradientBackgroundStart,
-    gradientBackgroundEnd,
-    firstColor,
-    secondColor,
-    thirdColor,
-    fourthColor,
-    fifthColor,
-    pointerColor,
-    size,
-    blendingValue,
-  ]);
+  }, []);
 
   useEffect(() => {
     function move() {
@@ -86,13 +73,8 @@ export const BackgroundGradientAnimation = ({
       )}px, ${Math.round(curY)}px)`;
     }
 
-    const animationId = requestAnimationFrame(function animate() {
-      move();
-      requestAnimationFrame(animate);
-    });
-
-    return () => cancelAnimationFrame(animationId);
-  }, [tgX, tgY, curX, curY]);
+    move();
+  }, [tgX, tgY]);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (interactiveRef.current) {
@@ -107,16 +89,10 @@ export const BackgroundGradientAnimation = ({
     setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
   }, []);
 
-  // Default container class for normal mode
-  const defaultContainerClass = "h-screen w-screen relative overflow-hidden top-0 left-0";
-  
-  // Class for full page mode - position fixed to cover the entire viewport
-  const fullPageContainerClass = "fixed inset-0 w-full h-full overflow-hidden -z-10";
-
   return (
     <div
       className={cn(
-        fullPage ? fullPageContainerClass : defaultContainerClass,
+        "h-screen w-screen relative overflow-hidden top-0 left-0",
         preserveBackground ? "" : "bg-[linear-gradient(40deg,var(--gradient-background-start),var(--gradient-background-end))]",
         containerClassName
       )}
