@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/neon-button";
@@ -9,17 +8,14 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose 
 import { NavBar } from "@/components/ui/tubelight-navbar";
 import { Home, Briefcase, Info, FileQuestion, Contact, Laptop } from 'lucide-react';
 import { useIsMobile } from "@/hooks/use-mobile";
-
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const isMobile = useIsMobile();
-
   useEffect(() => {
     setOpen(false);
   }, [location]);
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -27,7 +23,6 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
   const navigationItems = [{
     name: "Accueil",
     url: "/",
@@ -53,11 +48,7 @@ const Header = () => {
     url: "/contact",
     icon: Contact
   }];
-
-  return <header className={cn(
-    "sticky top-0 z-50 w-full bg-transparent backdrop-blur-sm", 
-    isScrolled && "shadow-sm bg-white/10 dark:bg-slate-900/10"
-  )}>
+  return <header className={cn("sticky top-0 z-50 w-full bg-transparent backdrop-blur-sm", isScrolled && "shadow-sm bg-white/10 dark:bg-slate-900/10")}>
       <div className="container flex h-20 items-center justify-between py-0 my-[8px]">
         <NavLink to="/" className="flex items-center h-full py-0">
           <LogoIconWithText className="w-auto h-full" />
@@ -104,9 +95,7 @@ const Header = () => {
 
         <div className="hidden md:block">
           <NavLink to="/contact">
-            <Button variant="solid" size="default">
-              Obtenir un devis
-            </Button>
+            
           </NavLink>
         </div>
       </div>
@@ -114,5 +103,4 @@ const Header = () => {
       {isMobile && <NavBar items={navigationItems.slice(0, 5)} className="z-50" />}
     </header>;
 };
-
 export default Header;
