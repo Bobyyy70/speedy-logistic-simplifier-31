@@ -1,0 +1,211 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .glass-effect {
+    @apply backdrop-blur-sm bg-white/5 border border-white/10 shadow-glass-light;
+  }
+
+  .glass-background {
+    @apply bg-speedelog-glass-50/40 backdrop-blur-sm;
+  }
+  
+  .section-container {
+    @apply container mx-auto px-4 py-12 md:py-20;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-center mb-4;
+  }
+  
+  .section-subtitle {
+    @apply text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-12;
+  }
+  
+  .bg-blur-backdrop {
+    @apply backdrop-blur-md bg-white/10 dark:bg-slate-900/10;
+  }
+
+  /* Nouvelles classes pour l'optimisation mobile */
+  .mobile-touch-target {
+    @apply p-3 sm:p-2; /* Cibles tactiles plus grandes sur mobile */
+  }
+
+  .mobile-spacing-y {
+    @apply space-y-6 md:space-y-8; /* Espacement vertical adaptatif */
+  }
+
+  .mobile-text {
+    @apply text-base md:text-lg; /* Taille de texte adaptative */
+  }
+
+  .mobile-heading {
+    @apply text-2xl md:text-3xl lg:text-4xl; /* Titres adaptatifs */
+  }
+
+  .mobile-card {
+    @apply p-4 md:p-6; /* Cards avec padding adaptatif */
+  }
+
+  .mobile-container {
+    @apply px-3 md:px-4; /* Conteneurs avec marges horizontales adaptatives */
+  }
+  
+  /* Fond de l'application - maintenant défini pour tout le site */
+  .site-background {
+    @apply bg-gradient-to-r from-green-200 via-white to-blue-100 dark:from-green-800 dark:via-slate-950 dark:to-blue-900;
+  }
+  
+  /* Nouvelle animation pulse pour les vagues */
+  .animate-wave-pulse {
+    animation: wave-pulse 8s ease-in-out infinite;
+  }
+  
+  @keyframes wave-pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+  }
+}
+
+/* Animation de fade-in */
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Animation fade-out */
+.animate-fade-out {
+  animation: fade-out 0.3s ease-out;
+}
+
+@keyframes fade-out {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(10px); }
+}
+
+/* Lazy loading pour les images */
+@media (prefers-reduced-motion: no-preference) {
+  .lazy-image {
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .lazy-image[data-loaded="false"] {
+    opacity: 0;
+  }
+  
+  .lazy-image[data-loaded="true"] {
+    opacity: 1;
+  }
+}
+
+/* Optimisations pour les petits écrans */
+@media (max-width: 640px) {
+  .section-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Menu Mobile */
+.mobile-menu-panel {
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%);
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-menu-panel.active {
+  transform: translateX(0);
+}
+
+/* Tube Navbar */
+.tube-navbar {
+  display: flex;
+  align-items: center;
+}
+
+.tube-navbar .menu-item {
+  position: relative;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  transition: all 0.3s;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: rgba(var(--foreground-rgb), 0.8);
+}
+
+.tube-navbar .menu-item:hover {
+  color: var(--primary-color);
+}
+
+.tube-navbar .current-menu-item {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: var(--primary-color);
+}
+
+/* Lampe effet pour le menu actif */
+.tube-navbar .current-menu-item::before {
+  content: "";
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2rem;
+  height: 0.25rem;
+  background-color: var(--primary-color);
+  border-radius: 9999px 9999px 0 0;
+}
+
+.tube-navbar .current-menu-item::after {
+  content: "";
+  position: absolute;
+  top: -0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3rem;
+  height: 1.5rem;
+  background-color: rgba(var(--primary-rgb), 0.6);
+  border-radius: 9999px;
+  filter: blur(8px);
+  z-index: -1;
+}
+
+/* Variables CSS */
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  
+  --primary-color: #3B82F6;
+  --primary-rgb: 59, 130, 246;
+  
+  --secondary-color: #10B981;
+  --secondary-rgb: 16, 185, 129;
+  
+  --border-radius: 0.5rem;
+  --border-width: 1px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
