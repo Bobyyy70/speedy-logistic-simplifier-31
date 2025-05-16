@@ -19,6 +19,7 @@ export const BackgroundGradientAnimation = ({
   interactive = true,
   containerClassName,
   preserveBackground = false,
+  height = "auto", // Ajout d'un paramètre de hauteur personnalisable
 }: {
   gradientBackgroundStart?: string;
   gradientBackgroundEnd?: string;
@@ -35,6 +36,7 @@ export const BackgroundGradientAnimation = ({
   interactive?: boolean;
   containerClassName?: string;
   preserveBackground?: boolean;
+  height?: string; // Type pour le nouveau paramètre
 }) => {
   const interactiveRef = useRef<HTMLDivElement>(null);
 
@@ -92,10 +94,11 @@ export const BackgroundGradientAnimation = ({
   return (
     <div
       className={cn(
-        "h-screen w-screen relative overflow-hidden top-0 left-0",
+        "w-screen relative overflow-hidden top-0 left-0",
         preserveBackground ? "" : "bg-[linear-gradient(40deg,var(--gradient-background-start),var(--gradient-background-end))]",
         containerClassName
       )}
+      style={{ height }} // Utilisation de la hauteur personnalisable
     >
       <svg className="hidden">
         <defs>
