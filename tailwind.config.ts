@@ -98,16 +98,16 @@ export default {
           ring: 'hsl(var(--sidebar-ring))'
         },
         speedelog: {
-          50: '#F0F6FF',
-          100: '#E2EEFF',
-          200: '#C3DDFF',
-          300: '#95C2FF',
-          400: '#6BA1F2',
-          500: '#3B82F6',
-          600: '#2563EB',
-          700: '#1D4ED8',
-          800: '#1E3A8A',
-          900: '#172554',
+          50: '#EEF4FF',
+          100: '#DEE9FF',
+          200: '#B9D0FF',
+          300: '#8FB1FF',
+          400: '#6692FF',
+          500: '#2F68F3', // Nouvelle couleur primaire
+          600: '#1E4BD1',
+          700: '#1738B0',
+          800: '#162A8A',
+          900: '#132254',
           glass: {
             50: '#F5F9FC',
             100: '#E6F0F9',
@@ -115,20 +115,20 @@ export default {
           }
         },
         orange: {
-          50: '#FFF7ED',
-          100: '#FFEDD5',
-          200: '#FED7AA',
-          300: '#FDBA74',
-          400: '#FB923C',
-          500: '#F97316',
-          600: '#EA580C',
-          700: '#C2410C',
-          800: '#9A3412',
-          900: '#7C2D12',
+          50: '#FFF9E7',
+          100: '#FFF3CF',
+          200: '#FFE7A0',
+          300: '#FFD970',
+          400: '#FFCA40',
+          500: '#F3BA2F', // Nouvelle couleur secondaire
+          600: '#D49B1F',
+          700: '#B57E1A',
+          800: '#96651A',
+          900: '#78501A',
         },
         icon: {
-          DEFAULT: "#FB923C",
-          hover: "#F97316",
+          DEFAULT: "#F3BA2F",
+          hover: "#D49B1F",
         }
       },
       borderRadius: {
