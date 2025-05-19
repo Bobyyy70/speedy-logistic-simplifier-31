@@ -5,11 +5,11 @@
 
 @layer utilities {
   .glass-effect {
-    @apply backdrop-blur-sm bg-white/90 border border-gray-100 shadow-sm;
+    @apply backdrop-blur-sm bg-white/5 border border-white/10 shadow-glass-light;
   }
 
   .glass-background {
-    @apply bg-white/90 backdrop-blur-sm;
+    @apply bg-speedelog-glass-50/40 backdrop-blur-sm;
   }
   
   .section-container {
@@ -25,7 +25,7 @@
   }
   
   .bg-blur-backdrop {
-    @apply backdrop-blur-md bg-white/90 dark:bg-slate-900/90;
+    @apply backdrop-blur-md bg-white/10 dark:bg-slate-900/10;
   }
 
   /* Nouvelles classes pour l'optimisation mobile */
@@ -51,6 +51,11 @@
 
   .mobile-container {
     @apply px-3 md:px-4; /* Conteneurs avec marges horizontales adaptatives */
+  }
+  
+  /* Fond de l'application - maintenant défini pour tout le site */
+  .site-background {
+    @apply bg-gradient-to-r from-green-200 via-white to-blue-100 dark:from-green-800 dark:via-slate-950 dark:to-blue-900;
   }
   
   /* Nouvelle animation pulse pour les vagues */
