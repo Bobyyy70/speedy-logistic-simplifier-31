@@ -33,7 +33,7 @@ export function ScrollIndicator() {
       </motion.div>
       
       <motion.p 
-        className="text-xs mt-3 text-center font-medium tracking-wide overflow-hidden whitespace-nowrap"
+        className="text-xs mt-3 text-center font-medium tracking-wide"
         initial={{ opacity: 0, y: 4 }}
         animate={{ 
           opacity: 1, 
