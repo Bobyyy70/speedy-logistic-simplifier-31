@@ -16,10 +16,10 @@ export function Footer() {
             <div className="flex justify-start px-0">
               <LogoIconWithText />
             </div>
-            <p className="text-sm text-gray-400 mt-2">
+            <p className="text-sm text-gray-500 mt-2">
               Votre partenaire logistique pour simplifier vos opérations e-commerce et accélérer votre croissance.
             </p>
-            <div className="flex items-center gap-2 text-sm text-gray-400">
+            <div className="flex items-center gap-2 text-sm text-gray-500">
               <MapPin className="h-4 w-4 text-[#F3BA2F]" />
               Port-sur-Saône, France
             </div>
@@ -27,7 +27,7 @@ export function Footer() {
 
           {/* Liens principaux */}
           <div className="flex flex-col gap-4">
-            <h3 className="font-semibold text-white">Liens rapides</h3>
+            <h3 className="font-semibold text-black">Liens rapides</h3>
             <div className="grid grid-cols-2 gap-2">
               <Link to="/" className="text-sm text-gray-400 hover:text-[#2F68F3] transition-colors">Accueil</Link>
               <Link to="/services" className="text-sm text-gray-400 hover:text-[#2F68F3] transition-colors">Services</Link>
@@ -40,7 +40,7 @@ export function Footer() {
 
           {/* Liens légaux et copyright */}
           <div className="flex flex-col gap-4">
-            <h3 className="font-semibold text-white">Informations légales</h3>
+            <h3 className="font-semibold text-black">Informations légales</h3>
             <div className="flex flex-col gap-2">
               <Link to="/mentions-legales" className="text-sm text-gray-400 hover:text-[#2F68F3] transition-colors">
                 Mentions légales
