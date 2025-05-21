@@ -5,12 +5,7 @@ import { Clock, CheckCircle } from "lucide-react";
 
 export function HeroCard() {
   return (
-    <motion.div 
-      className="lg:order-last relative"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 1 }}
-    >
+    <div className="lg:order-last relative">
       <motion.div 
         className="absolute -inset-1.5 bg-gradient-to-r from-[#2F68F3]/20 to-[#F3BA2F]/20 rounded-xl blur-md"
       ></motion.div>
@@ -68,6 +63,6 @@ export function HeroCard() {
           </motion.div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
