@@ -12,15 +12,6 @@ export function ScrollIndicator() {
     >
       <motion.div 
         className="w-7 h-12 border-2 border-slate-400 rounded-full flex justify-center overflow-hidden"
-        animate={{ 
-          boxShadow: [
-            "0 0 0 rgba(0,0,0,0.1)", 
-            "0 0 15px rgba(47,104,243,0.4)", 
-            "0 0 5px rgba(243,186,47,0.3)", 
-            "0 0 0 rgba(0,0,0,0.1)"
-          ] 
-        }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
       >
         <motion.div 
           className="w-2 h-2 rounded-full mt-2"
@@ -42,28 +33,22 @@ export function ScrollIndicator() {
       </motion.div>
       
       <motion.p 
-        className="text-xs mt-3 text-center font-medium tracking-widest overflow-hidden"
+        className="text-xs mt-3 text-center font-medium tracking-wide overflow-hidden whitespace-nowrap"
         initial={{ opacity: 0, y: 4 }}
         animate={{ 
-          opacity: [0.7, 1, 0.7], 
-          y: [4, 0, 4],
-          textShadow: [
-            "0 0 0px #333333", 
-            "0 0 3px #2F68F3", 
-            "0 0 0px #333333"
-          ]
+          opacity: 1, 
+          y: 0
         }}
         transition={{ 
-          duration: 1.2, 
-          repeat: Infinity, 
-          repeatDelay: 0.7,
-          ease: "easeInOut" 
+          duration: 0.5,
+          delay: 0.2,
+          ease: "easeOut" 
         }}
         style={{
           color: "#333333"
         }}
       >
-        SCROLL
+        Découvrir plus
       </motion.p>
     </motion.div>
   );

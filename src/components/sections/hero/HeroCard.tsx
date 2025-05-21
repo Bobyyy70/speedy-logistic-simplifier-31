@@ -13,24 +13,9 @@ export function HeroCard() {
     >
       <motion.div 
         className="absolute -inset-1.5 bg-gradient-to-r from-[#2F68F3]/20 to-[#F3BA2F]/20 rounded-xl blur-md"
-        animate={{ 
-          opacity: [0.5, 0.8, 0.5],
-        }}
-        transition={{ 
-          duration: 4, 
-          repeat: Infinity, 
-          repeatType: "reverse" 
-        }}
       ></motion.div>
-      <motion.div 
+      <div 
         className="relative backdrop-blur-md bg-slate-50 shadow-xl p-6 border border-slate-200 rounded-lg overflow-hidden"
-        animate={{ y: [0, -8, 0] }}
-        transition={{ 
-          duration: 6, 
-          repeat: Infinity, 
-          repeatType: "reverse",
-          ease: "easeInOut" 
-        }}
       >
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#2F68F3] to-[#F3BA2F]"></div>
         
@@ -82,7 +67,7 @@ export function HeroCard() {
             NOUVEAU
           </motion.div>
         </div>
-      </motion.div>
+      </div>
     </motion.div>
   );
 }
