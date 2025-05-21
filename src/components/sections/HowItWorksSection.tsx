@@ -90,7 +90,7 @@ export function HowItWorksSection() {
         <Card className="max-w-5xl mx-auto border-0 shadow-lg bg-white dark:bg-slate-900/70 backdrop-blur-sm">
           <CardContent className="p-6 md:p-8">
             <Tabs defaultValue="step1" value={activeTab} onValueChange={handleTabChange} className="w-full h-full">
-              <TabsList className="grid w-full h-full grid-cols-4 mb-8 bg-slate-100 dark:bg-slate-800/50 p-1 rounded-full">
+              <TabsList className="grid w-full grid-cols-4 mb-8 bg-slate-100 dark:bg-slate-800/50 p-1 rounded-full">
                 {steps.map((step, index) => (
                   <motion.div
                     key={step.id}
@@ -99,10 +99,11 @@ export function HowItWorksSection() {
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1, duration: 0.5 }}
                     whileHover={{ scale: 1.05 }}
+                    className="w-full"
                   >
                     <TabsTrigger 
                       value={step.id}
-                      className="flex flex-col items-center py-3 px-4 sm:px-4 data-[state=active]:text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-blue-500 data-[state=active]:shadow-md dark:data-[state=active]:from-blue-600 dark:data-[state=active]:to-blue-400 font-medium text-base rounded-full z-10 relative transition-all duration-200"
+                      className="w-full flex flex-col items-center justify-center py-4 px-2 sm:px-4 data-[state=active]:text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-blue-500 data-[state=active]:shadow-md dark:data-[state=active]:from-blue-600 dark:data-[state=active]:to-blue-400 font-medium text-base rounded-full z-10 relative transition-all duration-200"
                     >
                       <span className="text-sm sm:text-base font-medium">{step.number}</span>
                       <span className="text-xs hidden sm:block mt-1">{step.shortTitle}</span>
