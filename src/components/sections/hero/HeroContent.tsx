@@ -28,7 +28,7 @@ export function HeroContent() {
         />
         <AnimatedText
           text="sans les tracas."
-          className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter text-primary"
+          className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter text-[#2F68F3]"
           delay={0.6}
         />
       </div>
