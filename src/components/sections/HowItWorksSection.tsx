@@ -54,7 +54,7 @@ export function HowItWorksSection() {
   };
   
   return (
-    <section id="how-it-works" className="py-12 md:py-24 relative overflow-hidden bg-gradient-to-r from-green-200 via-white to-blue-100 dark:from-green-900 dark:via-slate-950 dark:to-slate-900 lg:py-32">
+    <section id="how-it-works" className="py-12 md:py-24 relative overflow-hidden bg-gradient-to-r from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900 lg:py-32">
       {/* Lignes de connexion décoratives */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-orange-300/30 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-blue-300/30 to-transparent" />
@@ -67,19 +67,19 @@ export function HowItWorksSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-block bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-300 px-3 py-1 text-sm rounded-3xl"
+            className="pin-badge text-orange-700 dark:text-orange-300 bg-orange-100 dark:bg-orange-900/30"
           >
-            Le Processus
+            Le processus
           </motion.div>
           
           <AnimatedText
             text="Comment ça marche ?"
-            className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl"
+            className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-slate-900 dark:text-white"
             delay={0.2}
           />
           
           <motion.p
-            className="max-w-[900px] text-muted-foreground md:text-xl/relaxed"
+            className="max-w-[900px] text-slate-600 dark:text-slate-300 md:text-xl/relaxed"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -132,7 +132,7 @@ export function HowItWorksSection() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: isAnimating ? 0 : 1, y: isAnimating ? 10 : 0 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm rounded-lg p-6 shadow-sm border border-white/20 dark:border-slate-700/20"
+                  className="section-box"
                 >
                   <div className="flex flex-col md:flex-row md:items-start gap-6">
                     <div className="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-orange-100 dark:bg-orange-900/30 mb-4 mx-auto md:mx-0 relative overflow-hidden">
@@ -150,10 +150,10 @@ export function HowItWorksSection() {
                       />
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold mb-3 text-center md:text-left">
+                      <h3 className="text-xl font-semibold mb-3 text-center md:text-left text-slate-900 dark:text-white">
                         Étape {step.number.replace(/^0/, '')}: {step.title}
                       </h3>
-                      <p className="text-muted-foreground">
+                      <p className="text-slate-600 dark:text-slate-300">
                         {step.description}
                       </p>
                     </div>

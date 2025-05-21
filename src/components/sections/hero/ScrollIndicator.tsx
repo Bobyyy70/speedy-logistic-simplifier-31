@@ -15,8 +15,8 @@ export function ScrollIndicator() {
         animate={{ 
           boxShadow: [
             "0 0 0 rgba(255,255,255,0.1)", 
-            "0 0 15px rgba(47,104,243,0.5)", 
-            "0 0 5px rgba(243,186,47,0.3)", 
+            "0 0 15px rgba(47,104,243,0.3)", 
+            "0 0 5px rgba(243,186,47,0.2)", 
             "0 0 0 rgba(255,255,255,0.1)"
           ] 
         }}

@@ -50,7 +50,7 @@ export function HeroContent() {
         transition={{ duration: 0.5, delay: 1.3 }}
         className="flex flex-col gap-3 min-[400px]:flex-row justify-center lg:justify-start"
       >
-        <Button asChild size="lg" className="group relative overflow-hidden bg-gradient-to-r from-[#2F68F3] to-[#2867e5] hover:from-[#2F68F3] hover:to-[#F3BA2F] shadow-lg transition-all duration-300">
+        <Button asChild size="lg" className="modern-button relative overflow-hidden bg-gradient-to-r from-[#2F68F3] to-[#2867e5] hover:from-[#2F68F3] hover:to-[#F3BA2F] shadow-lg transition-all duration-300">
           <Link to="/contact">
             <span className="relative z-10 flex items-center">
               Obtenir un devis personnalisé

@@ -47,7 +47,7 @@ export function WhyUsSection() {
     <section 
       id="why-us" 
       ref={ref}
-      className="py-12 md:py-24 lg:py-32 bg-gradient-to-r from-green-200 via-white to-blue-100 dark:from-green-800 dark:via-slate-950 dark:to-slate-900 relative overflow-hidden"
+      className="py-12 md:py-24 lg:py-32 bg-gradient-to-r from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900 relative overflow-hidden"
     >
       {/* Cercles décoratifs flottants */}
       <motion.div 
@@ -78,7 +78,7 @@ export function WhyUsSection() {
             transition={{ duration: 0.5 }}
           >
             <motion.div 
-              className="inline-block text-orange-700 dark:text-orange-300 px-3 py-1 text-sm rounded-3xl bg-orange-100 dark:bg-orange-900/30"
+              className="pin-badge text-orange-700 dark:text-orange-300 bg-orange-100 dark:bg-orange-900/30"
               initial={{ scale: 0, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
@@ -89,17 +89,17 @@ export function WhyUsSection() {
                 delay: 0.1 
               }}
             >
-              Notre Différence
+              Notre différence
             </motion.div>
             
             <AnimatedText 
               text="Pourquoi choisir Speed E-Log ?"
-              className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl" 
+              className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-slate-900 dark:text-white" 
               delay={0.2}
             />
             
             <motion.p 
-              className="max-w-[600px] text-muted-foreground md:text-xl/relaxed"
+              className="max-w-[600px] text-slate-600 dark:text-slate-300 md:text-xl/relaxed"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -112,17 +112,17 @@ export function WhyUsSection() {
               {advantages.map((advantage, index) => (
                 <motion.li 
                   key={index} 
-                  className="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/20 dark:hover:bg-white/5 transition-colors"
+                  className="section-box flex items-start space-x-3 p-3 hover:bg-slate-50/70 dark:hover:bg-slate-900/70 transition-colors"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ x: 5, transition: { duration: 0.2 } }}
                 >
-                  <CheckCircle className={`mt-1 h-5 w-5 flex-shrink-0 ${index % 2 === 0 ? 'text-orange-500 dark:text-orange-400' : 'text-primary'}`} />
+                  <CheckCircle className={`mt-1 h-5 w-5 flex-shrink-0 ${index % 2 === 0 ? 'text-orange-500 dark:text-orange-400' : 'text-blue-600 dark:text-blue-500'}`} />
                   <div>
-                    <h3 className="font-semibold">{advantage.title}</h3>
-                    <p className="text-sm text-muted-foreground">{advantage.description}</p>
+                    <h3 className="font-semibold text-slate-900 dark:text-white">{advantage.title}</h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-300">{advantage.description}</p>
                   </div>
                 </motion.li>
               ))}
