@@ -102,7 +102,7 @@ export function HowItWorksSection() {
                   >
                     <TabsTrigger 
                       value={step.id}
-                      className="flex flex-col items-center py-3 px-1 sm:px-4 data-[state=active]:text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-blue-500 data-[state=active]:shadow-md dark:data-[state=active]:from-blue-600 dark:data-[state=active]:to-blue-400 font-medium text-base rounded-full z-10 relative transition-all duration-200"
+                      className="flex flex-col items-center py-10 px-1 sm:px-4 data-[state=active]:text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-blue-500 data-[state=active]:shadow-md dark:data-[state=active]:from-blue-600 dark:data-[state=active]:to-blue-400 font-medium text-base rounded-full z-10 relative transition-all duration-200"
                     >
                       <span className="text-sm sm:text-base font-medium">{step.number}</span>
                       <span className="text-xs hidden sm:block mt-1">{step.shortTitle}</span>
