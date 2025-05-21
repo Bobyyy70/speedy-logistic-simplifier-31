@@ -69,7 +69,7 @@ export function LogisticsFeatureSection() {
           {checkItems.map((item, index) => (
             <motion.div
               key={index}
-              className="bg-white/20 dark:bg-slate-800/20 backdrop-blur-sm rounded-lg p-6 shadow-sm border border-gray-100/20 dark:border-gray-700/20"
+              className="bg-white dark:bg-slate-800/20 backdrop-blur-sm rounded-lg p-6 shadow-sm border border-gray-100/20 dark:border-gray-700/20"
               custom={index}
               initial="hidden"
               whileInView="visible"
