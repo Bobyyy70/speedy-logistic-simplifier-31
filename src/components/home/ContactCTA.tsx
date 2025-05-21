@@ -70,14 +70,14 @@ export function ContactCTA() {
             whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
           >
             <Button 
-              variant="purple" 
+              variant="blue" 
               size="2xl" 
-              className="mx-auto shadow-xl hover:shadow-[#9b87f5]/25 transition-all duration-300"
+              className="mx-auto shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
               asChild
             >
               <Link to="/contact" className="flex items-center gap-2">
                 Obtenir un devis gratuit 
-                <ArrowRight className="ml-2 h-4 w-4 text-white transition-transform" />
+                <ArrowRight className="ml-2 h-5 w-5 text-white transition-transform" />
               </Link>
             </Button>
           </motion.div>

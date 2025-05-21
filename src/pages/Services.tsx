@@ -36,7 +36,7 @@ const PrimaryActionButton = ({ to, children, className = "", secondary = false }
   return (
     <Link to={to} className={className}>
       <Button 
-        variant="purple" 
+        variant="blue" 
         size="lg" 
         className="flex items-center gap-2"
       >
@@ -245,12 +245,12 @@ const Services = () => {
             Discutons de vos besoins spécifiques et voyons comment Speed E-Log peut vous aider à simplifier vos opérations et à vous concentrer sur votre croissance.
           </p>
           <Button 
-            variant="purple" 
+            variant="blue" 
             size="2xl" 
-            className="mx-auto shadow-xl hover:shadow-[#9b87f5]/25 transition-all duration-300"
+            className="mx-auto shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 px-8 py-3 rounded-full"
             asChild
           >
-            <Link to="/contact">Demander un Devis Personnalisé</Link>
+            <Link to="/contact">Demander un Devis Personnalisé <ArrowRight className="ml-2 h-5 w-5" /></Link>
           </Button>
         </motion.div>
       </section>

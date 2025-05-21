@@ -21,7 +21,8 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         gradient: "bg-gradient-to-r from-blue-600 via-blue-500 to-orange-400 hover:brightness-110 text-white border-0 shadow-md hover:shadow-lg",
         gradientOutline: "border border-blue-400/30 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-blue-400/50 text-foreground",
-        purple: "bg-[#9b87f5] hover:bg-[#8b77e5] text-white border-0 shadow-md hover:shadow-lg"
+        purple: "bg-[#9b87f5] hover:bg-[#8b77e5] text-white border-0 shadow-md hover:shadow-lg",
+        blue: "bg-[#2F68F3] hover:bg-[#2057E2] text-white border-0 shadow-md hover:shadow-lg transition-all duration-300"
       },
       size: {
         default: "h-10 px-4 py-2",
