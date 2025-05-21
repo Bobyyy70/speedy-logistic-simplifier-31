@@ -90,7 +90,7 @@ export function HowItWorksSection() {
         <Card className="max-w-5xl mx-auto border-0 shadow-lg bg-white dark:bg-slate-900/70 backdrop-blur-sm">
           <CardContent className="p-6 md:p-8">
             <Tabs defaultValue="step1" value={activeTab} onValueChange={handleTabChange} className="w-full h-full">
-              <TabsList className="grid mb-10 w-full grid-cols-4 mb-8 bg-slate-100 dark:bg-slate-800/50 p-1 rounded-full">
+              <TabsList className="grid p-10 w-full grid-cols-4 mb-8 bg-slate-100 dark:bg-slate-800/50 p-1 rounded-full">
                 {steps.map((step, index) => (
                   <motion.div
                     key={step.id}
@@ -102,7 +102,7 @@ export function HowItWorksSection() {
                   >
                     <TabsTrigger 
                       value={step.id}
-                      className="flex flex-col items-center mt-10 py-3 px-1 sm:px-4 data-[state=active]:text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-blue-500 data-[state=active]:shadow-md dark:data-[state=active]:from-blue-600 dark:data-[state=active]:to-blue-400 font-medium text-base rounded-full z-10 relative transition-all duration-200"
+                      className="flex flex-col items-center py-3 px-1 sm:px-4 data-[state=active]:text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-blue-500 data-[state=active]:shadow-md dark:data-[state=active]:from-blue-600 dark:data-[state=active]:to-blue-400 font-medium text-base rounded-full z-10 relative transition-all duration-200"
                     >
                       <span className="text-sm sm:text-base font-medium">{step.number}</span>
                       <span className="text-xs hidden sm:block mt-1">{step.shortTitle}</span>
