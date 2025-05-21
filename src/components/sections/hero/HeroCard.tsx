@@ -72,7 +72,7 @@ export function HeroCard() {
         </div>
 
         {/* Add a badge */}
-        <div className="absolute -top-1 -right-1 transform rotate-12">
+        <div className="absolute -top-1 -right-1 transform">
           <motion.div 
             className="bg-[#F3BA2F] text-slate-900 text-xs font-bold px-2 py-1 rounded-sm"
             initial={{ scale: 0, rotate: 15 }}
