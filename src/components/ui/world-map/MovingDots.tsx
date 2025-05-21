@@ -19,34 +19,21 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
         const midX = (startPoint.x + endPoint.x) / 2;
         const midY = Math.min(startPoint.y, endPoint.y) - 30 - (i * 5);
         
-        // Define animation variants to prevent function issues
-        const dotVariants = {
-          start: { cx: startPoint.x, cy: startPoint.y, opacity: 0, r: 2 },
-          middle: { cx: midX, cy: midY, opacity: 1, r: 3 },
-          end: { cx: endPoint.x, cy: endPoint.y, opacity: 0, r: 2 }
-        };
-
-        const trailVariants = {
-          start: { cx: startPoint.x, cy: startPoint.y, opacity: 0, r: 1.5 },
-          middle: { cx: midX, cy: midY, opacity: 0.7, r: 1.5 },
-          end: { cx: endPoint.x, cy: endPoint.y, opacity: 0, r: 1.5 }
-        };
-
-        const pulseVariants = {
-          start: { cx: endPoint.x, cy: endPoint.y, r: 2, opacity: 0, strokeWidth: 1 },
-          pulse: { cx: endPoint.x, cy: endPoint.y, r: 10, opacity: 0.5, strokeWidth: 0.2 },
-          end: { cx: endPoint.x, cy: endPoint.y, r: 2, opacity: 0, strokeWidth: 1 }
-        };
-        
         return (
           <React.Fragment key={`moving-dot-group-${i}`}>
             {/* Main moving dot */}
             <motion.circle
               key={`moving-dot-${i}`}
-              variants={dotVariants}
-              initial="start"
-              animate={["start", "middle", "end"]}
+              cx={startPoint.x}
+              cy={startPoint.y}
+              r={2}
               fill="#FFFFFF"
+              animate={{
+                cx: [startPoint.x, midX, endPoint.x],
+                cy: [startPoint.y, midY, endPoint.y],
+                opacity: [0, 1, 0],
+                r: [2, 3, 2],
+              }}
               transition={{
                 duration: 4 + (i * 0.5),
                 delay: 1 + (i * 0.8),
@@ -60,10 +47,15 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
             {/* Trailing dot (smaller) */}
             <motion.circle
               key={`moving-dot-trail-${i}`}
-              variants={trailVariants}
-              initial="start"
-              animate={["start", "middle", "end"]}
+              cx={startPoint.x}
+              cy={startPoint.y}
+              r={1.5}
               fill="#FFFFFF"
+              animate={{
+                cx: [startPoint.x, midX, endPoint.x],
+                cy: [startPoint.y, midY, endPoint.y],
+                opacity: [0, 0.7, 0],
+              }}
               transition={{
                 duration: 4 + (i * 0.5),
                 delay: 1.2 + (i * 0.8),
@@ -77,11 +69,16 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
             {/* Pulse effect at destination */}
             <motion.circle
               key={`pulse-dot-${i}`}
-              variants={pulseVariants}
-              initial="start"
-              animate={["start", "pulse", "end"]}
+              cx={endPoint.x}
+              cy={endPoint.y}
+              r={2}
               fill="transparent"
               stroke="#FFFFFF"
+              animate={{
+                r: [2, 10, 2],
+                opacity: [0, 0.5, 0],
+                strokeWidth: [1, 0.2, 1],
+              }}
               transition={{
                 duration: 3,
                 delay: 5 + (i * 0.8),

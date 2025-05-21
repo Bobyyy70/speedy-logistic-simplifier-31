@@ -22,25 +22,6 @@ export const MapPoints: React.FC<MapPointsProps> = ({
         const startPoint = projectPoint(dot.start.lat, dot.start.lng);
         const endPoint = projectPoint(dot.end.lat, dot.end.lng);
         
-        // Define animation variants to prevent function issues
-        const pointVariants = {
-          hidden: { scale: 0, opacity: 0 },
-          visible: { scale: 1, opacity: 0.9 }
-        };
-        
-        const pulseVariants = {
-          animate: {
-            scale: [1, 2, 1],
-            opacity: [0.6, 0.1, 0.6],
-            strokeWidth: [1.5, 0.5, 1.5]
-          }
-        };
-        
-        const labelVariants = {
-          hidden: { opacity: 0 },
-          visible: { opacity: 0.9 }
-        };
-        
         return (
           <g key={`points-group-${i}`}>
             {/* Start point */}
@@ -52,9 +33,8 @@ export const MapPoints: React.FC<MapPointsProps> = ({
                   cy={startPoint.y}
                   r="5" 
                   fill="#F3BA2F"
-                  variants={pointVariants}
-                  initial="hidden"
-                  animate="visible"
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 0.9 }}
                   transition={{ 
                     duration: 1,
                     delay: 0.2,
@@ -66,9 +46,8 @@ export const MapPoints: React.FC<MapPointsProps> = ({
                 cy={startPoint.y}
                 r="3.5"
                 fill={currentColor}
-                variants={pointVariants}
-                initial="hidden"
-                animate="visible"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 0.9 }}
                 transition={{ 
                   duration: 0.5,
                   delay: 0.2 * i,
@@ -82,14 +61,18 @@ export const MapPoints: React.FC<MapPointsProps> = ({
                 r="3.5" 
                 fill="transparent"
                 stroke={currentColor}
-                opacity="0.6"
-                strokeWidth="1.5"
-                animate={pulseVariants.animate}
+                initial={{ opacity: 0.6, scale: 1 }}
+                animate={{ 
+                  scale: [1, 2, 1],
+                  opacity: [0.6, 0.1, 0.6],
+                  strokeWidth: [1.5, 0.5, 1.5]
+                }}
                 transition={{
                   duration: 3,
                   repeat: Infinity,
                   repeatType: "loop",
-                  ease: "easeInOut"
+                  ease: "easeInOut",
+                  times: [0, 0.5, 1]
                 }}
               />
               
@@ -101,9 +84,8 @@ export const MapPoints: React.FC<MapPointsProps> = ({
                   fontSize="11"
                   fontWeight="500"
                   fill="#FFFFFF"
-                  variants={labelVariants}
-                  initial="hidden"
-                  animate="visible"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.9 }}
                   transition={{ duration: 1, delay: 0.5 }}
                 >
                   France
@@ -118,9 +100,8 @@ export const MapPoints: React.FC<MapPointsProps> = ({
                 cy={endPoint.y}
                 r="3.5"
                 fill={currentColor}
-                variants={pointVariants}
-                initial="hidden"
-                animate="visible"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 0.9 }}
                 transition={{ 
                   duration: 0.5,
                   delay: 0.2 * i + 2, // Appear after path animation
@@ -133,6 +114,7 @@ export const MapPoints: React.FC<MapPointsProps> = ({
                 cy={endPoint.y}
                 r="6" 
                 fill={`${currentColor}30`} // Semi-transparent version of the color
+                initial={{ opacity: 0.3 }}
                 animate={{ 
                   opacity: [0.3, 0.6, 0.3],
                 }}
@@ -141,7 +123,8 @@ export const MapPoints: React.FC<MapPointsProps> = ({
                   delay: 0.2 * i + 2.2,
                   repeat: Infinity,
                   repeatType: "loop",
-                  ease: "easeInOut"
+                  ease: "easeInOut",
+                  times: [0, 0.5, 1]
                 }}
               />
               
@@ -155,12 +138,8 @@ export const MapPoints: React.FC<MapPointsProps> = ({
                   fill="#FFFFFF"
                   opacity="0.8"
                   textAnchor="start"
-                  variants={{
-                    hidden: { opacity: 0, y: endPoint.y - 10 },
-                    visible: { opacity: 0.8, y: endPoint.y - 5 }
-                  }}
-                  initial="hidden"
-                  animate="visible"
+                  initial={{ opacity: 0, y: endPoint.y - 10 }}
+                  animate={{ opacity: 0.8, y: endPoint.y - 5 }}
                   transition={{ 
                     duration: 1, 
                     delay: 0.2 * i + 2.5,

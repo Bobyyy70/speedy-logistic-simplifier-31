@@ -62,7 +62,7 @@ export const MapPaths: React.FC<MapPathsProps> = ({
               }}
               animate={{
                 pathLength: 1,
-                opacity: [0, 0.15, 0],
+                opacity: 0.15,
               }}
               transition={{
                 duration: 3,
@@ -80,7 +80,6 @@ export const MapPaths: React.FC<MapPathsProps> = ({
                 <stop offset="100%" stopColor={currentColor} stopOpacity="0.3" />
               </linearGradient>
               
-              {/* Add simpler animated dash effect */}
               <linearGradient
                 id={`dash-gradient-${i}`}
                 x1="0%"

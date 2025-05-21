@@ -23,10 +23,10 @@ export function WorldMap({
   const isDarkMode = theme === "dark";
 
   const svgMap = map.getSVG({
-    radius: 0.28, // Slightly larger dots
-    color: isDarkMode ? "#FFFFFF80" : "#00000080", // More opaque dots
+    radius: 0.28,
+    color: isDarkMode ? "#FFFFFF80" : "#00000080",
     shape: "circle",
-    backgroundColor: "transparent", // Transparent background to blend with the gradient
+    backgroundColor: "transparent",
   });
 
   // Add subtle movement to the map on mousemove
@@ -65,8 +65,8 @@ export function WorldMap({
   ];
 
   // Calculate map movement based on mouse position
-  const translateX = mousePosition.x * 10 - 5; // -5px to 5px
-  const translateY = mousePosition.y * 10 - 5; // -5px to 5px
+  const translateX = mousePosition.x * 10 - 5;
+  const translateY = mousePosition.y * 10 - 5;
 
   return (
     <div 

@@ -69,7 +69,7 @@ const Index = () => {
         ))}
       </div>
       
-      {/* Séparateurs subtils entre les sections - with improved visual */}
+      {/* Séparateurs subtils entre les sections */}
       <div className="section-dividers pointer-events-none">
         {[1, 2, 3, 4, 5].map((i) => (
           <motion.div 
@@ -132,7 +132,7 @@ const Index = () => {
         <ContactCTA />
       </motion.div>
       
-      {/* Enhanced animated particles - more varied and interesting */}
+      {/* Enhanced animated particles */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
         {[...Array(15)].map((_, index) => {
           // Generate more varied sizes, positions and colors
@@ -186,16 +186,14 @@ const Index = () => {
         transition={{ delay: 1.5 }}
       >
         <div className="flex flex-col items-center gap-2">
-          <motion.div 
-            className="w-1 h-16 bg-gray-300/30 dark:bg-gray-600/30 rounded-full overflow-hidden"
-          >
+          <div className="w-1 h-16 bg-gray-300/30 dark:bg-gray-600/30 rounded-full overflow-hidden">
             <motion.div 
               className="w-full bg-blue-500 h-full origin-top"
               style={{
                 scaleY: scrollYProgress
               }}
             />
-          </motion.div>
+          </div>
           <motion.div
             className="text-xs text-gray-500 dark:text-gray-400 font-medium"
             animate={{
