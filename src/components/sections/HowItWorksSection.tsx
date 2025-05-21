@@ -90,7 +90,7 @@ export function HowItWorksSection() {
         <Card className="max-w-5xl mx-auto border-0 shadow-lg bg-white dark:bg-slate-900/70 backdrop-blur-sm">
           <CardContent className="p-6 md:p-8">
             <Tabs defaultValue="step1" value={activeTab} onValueChange={handleTabChange} className="w-full h-full">
-              <TabsList className="grid p-10 w-full grid-cols-4 mb-8 bg-slate-100 dark:bg-slate-800/50 p-1 rounded-full">
+              <TabsList className="grid w-full grid-cols-4 mb-8 bg-slate-100 dark:bg-slate-800/50 p-10 rounded-full">
                 {steps.map((step, index) => (
                   <motion.div
                     key={step.id}
