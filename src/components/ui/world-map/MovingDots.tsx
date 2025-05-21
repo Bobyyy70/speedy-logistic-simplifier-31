@@ -19,62 +19,105 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
         // Origin dot (pulsing effect)
         return (
           <React.Fragment key={`moving-dot-${i}`}>
-            {/* Origin dot with pulsing effect */}
+            {/* Origin dot with advanced pulsing effect */}
             <motion.circle
               cx={startPoint.x}
               cy={startPoint.y}
-              r="3"
+              r="3.5"
               fill="url(#originGradient)"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ 
-                opacity: 1, 
-                scale: 1,
-                filter: ["drop-shadow(0 0 1px #FFFFFF80)", "drop-shadow(0 0 3px #FFFFFF)", "drop-shadow(0 0 1px #FFFFFF80)"]
+                opacity: [0.7, 1, 0.7], 
+                scale: [1, 1.3, 1],
+                filter: [
+                  "drop-shadow(0 0 2px rgba(47, 104, 243, 0.8))", 
+                  "drop-shadow(0 0 8px rgba(47, 104, 243, 0.9))", 
+                  "drop-shadow(0 0 2px rgba(47, 104, 243, 0.8))"
+                ]
               }}
               transition={{
-                duration: 2,
+                duration: 3,
                 delay: i * 0.3,
                 repeat: Infinity,
                 repeatType: "reverse",
+                ease: "easeInOut"
               }}
             />
             
-            {/* Destination dot with subtle animation */}
+            {/* Halo effect for origin */}
+            <motion.circle
+              cx={startPoint.x}
+              cy={startPoint.y}
+              r="6"
+              fill="none"
+              stroke="url(#haloGradient)"
+              strokeWidth="1"
+              initial={{ opacity: 0 }}
+              animate={{ 
+                opacity: [0, 0.5, 0],
+                scale: [0.8, 1.5, 0.8],
+              }}
+              transition={{
+                duration: 4,
+                delay: i * 0.3 + 0.2,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut"
+              }}
+            />
+            
+            {/* Destination dot with enhanced animation */}
             {dot.end.label && (
               <motion.circle
                 cx={endPoint.x}
                 cy={endPoint.y}
-                r="2"
+                r="2.5"
                 fill="url(#destinationGradient)"
                 initial={{ opacity: 0 }}
                 animate={{ 
-                  opacity: [0.5, 0.8, 0.5],
-                  scale: [1, 1.2, 1]
+                  opacity: [0.6, 1, 0.6],
+                  scale: [1, 1.3, 1],
+                  filter: [
+                    "drop-shadow(0 0 1px rgba(243, 186, 47, 0.6))",
+                    "drop-shadow(0 0 6px rgba(243, 186, 47, 0.8))",
+                    "drop-shadow(0 0 1px rgba(243, 186, 47, 0.6))"
+                  ]
                 }}
                 transition={{
-                  duration: 3,
-                  delay: i * 0.3 + 0.5,
+                  duration: 3.5,
+                  delay: i * 0.4 + 0.7,
                   repeat: Infinity,
                   repeatType: "reverse",
+                  ease: "easeInOut"
                 }}
               />
             )}
             
-            {/* Optional destination label */}
+            {/* Optional destination label with glow effect */}
             {dot.end.label && (
               <motion.text
                 x={endPoint.x + 5}
                 y={endPoint.y - 5}
                 fontSize="8"
                 fill="#FFFFFF"
-                opacity="0.7"
+                opacity="0.8"
                 fontFamily="sans-serif"
-                fontWeight="300"
+                fontWeight="400"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 0.7 }}
+                animate={{ 
+                  opacity: [0.6, 0.9, 0.6],
+                  filter: [
+                    "drop-shadow(0 0 0px rgba(255,255,255,0.3))",
+                    "drop-shadow(0 0 2px rgba(255,255,255,0.9))",
+                    "drop-shadow(0 0 0px rgba(255,255,255,0.3))"
+                  ]
+                }}
                 transition={{
-                  duration: 1,
-                  delay: i * 0.3 + 1,
+                  duration: 3,
+                  delay: i * 0.3 + 1.2,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  ease: "easeInOut"
                 }}
               >
                 {dot.end.label}
@@ -84,16 +127,23 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
         );
       })}
 
-      {/* Gradient definitions for dots */}
+      {/* Enhanced gradient definitions for dots with more vibrant colors */}
       <defs>
         <radialGradient id="originGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-          <stop offset="0%" stopColor="#2F68F3" stopOpacity="1" />
-          <stop offset="100%" stopColor="#2F68F3" stopOpacity="0.3" />
+          <stop offset="0%" stopColor="#4C8DFF" stopOpacity="1" />
+          <stop offset="70%" stopColor="#2F68F3" stopOpacity="0.8" />
+          <stop offset="100%" stopColor="#2F68F3" stopOpacity="0" />
+        </radialGradient>
+        
+        <radialGradient id="haloGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+          <stop offset="0%" stopColor="#4C8DFF" stopOpacity="0.5" />
+          <stop offset="100%" stopColor="#4C8DFF" stopOpacity="0" />
         </radialGradient>
         
         <radialGradient id="destinationGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-          <stop offset="0%" stopColor="#F3BA2F" stopOpacity="1" />
-          <stop offset="100%" stopColor="#F3BA2F" stopOpacity="0.3" />
+          <stop offset="0%" stopColor="#FFD700" stopOpacity="1" />
+          <stop offset="70%" stopColor="#F3BA2F" stopOpacity="0.8" />
+          <stop offset="100%" stopColor="#F3BA2F" stopOpacity="0" />
         </radialGradient>
       </defs>
     </>
