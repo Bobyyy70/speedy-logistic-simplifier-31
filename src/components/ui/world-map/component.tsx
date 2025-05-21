@@ -24,7 +24,7 @@ export function WorldMap({
 
   const svgMap = map.getSVG({
     radius: 0.35, // Slightly larger dots
-    color: isDarkMode ? "#FFFFFF90" : "#00000090", // More opaque dots
+    color: isDarkMode ? "#FFFFFF90" : "#00000060", // More visible dots in light mode
     shape: "circle",
     backgroundColor: "transparent", // Transparent background to blend with the gradient
   });

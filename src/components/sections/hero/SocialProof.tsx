@@ -32,12 +32,12 @@ export function SocialProof() {
         </motion.div>
       </div>
       <motion.p 
-        className="text-sm text-gray-300"
+        className="text-sm text-slate-600 font-medium"
         initial={{ opacity: 0.5 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
       >
-        Déjà <span className="font-medium text-white">20+ PME</span> nous font confiance
+        Déjà <span className="font-bold text-slate-900">20+ PME</span> nous font confiance
       </motion.p>
     </motion.div>
   );

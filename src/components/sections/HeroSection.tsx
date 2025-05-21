@@ -54,7 +54,6 @@ export function HeroSection() {
         className="absolute inset-0 z-10"
         preserveBackground={true}
         size="450"
-        blur={25}
       >
         <div className="absolute inset-0 z-10">
           <WorldMapBackground />

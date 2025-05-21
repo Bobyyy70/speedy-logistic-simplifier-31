@@ -23,7 +23,7 @@ export function HeroCard() {
         }}
       ></motion.div>
       <motion.div 
-        className="relative glass-card backdrop-blur-md bg-white/90 shadow-xl p-6 border border-slate-200 rounded-lg overflow-hidden"
+        className="relative glass-card backdrop-blur-md bg-white/95 shadow-xl p-6 border border-slate-200 rounded-lg overflow-hidden"
         animate={{ y: [0, -8, 0] }}
         transition={{ 
           duration: 6, 

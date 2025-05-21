@@ -43,7 +43,7 @@ export function WorldMapBackground() {
         dots={shippingRoutes} 
         lineColor="#2F68F3" 
         secondaryLineColor="#F3BA2F"
-        opacity={0.6}
+        opacity={0.75}
         dotColor="#2F68F3"
         secondaryDotColor="#F3BA2F"
       />
