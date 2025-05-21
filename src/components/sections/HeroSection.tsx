@@ -3,8 +3,9 @@ import React, { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HeroContent } from "@/components/sections/hero/HeroContent";
 import { HeroCard } from "@/components/sections/hero/HeroCard";
-import { ScrollIndicator } from "@/components/sections/hero/ScrollIndicator";
+import { ScrollIndicator } from "@/components/sections/ScrollIndicator";
 import { WorldMapBackground } from "@/components/sections/hero/WorldMapBackground";
+import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 
 export function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -37,7 +38,20 @@ export function HeroSection() {
 
   return (
     <section ref={heroRef} className="relative w-full h-screen min-h-[100vh] overflow-hidden">
-      <div className="absolute inset-0 z-0"></div>
+      {/* Background gradient animation */}
+      <BackgroundGradientAnimation
+        gradientBackgroundStart="#ffffff"
+        gradientBackgroundEnd="#f8fafc"
+        firstColor="47, 104, 243"
+        secondColor="243, 186, 47"
+        thirdColor="100, 220, 255"
+        fourthColor="200, 50, 50"
+        fifthColor="180, 180, 50"
+        pointerColor="140, 100, 255"
+        size="100%"
+        blendingValue="soft-light"
+        className="absolute inset-0 z-0 opacity-30"
+      />
       
       <div className="absolute inset-0 z-10">
         <WorldMapBackground />

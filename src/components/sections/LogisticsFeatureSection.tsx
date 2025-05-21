@@ -41,7 +41,7 @@ export function LogisticsFeatureSection() {
   ];
 
   return (
-    <div className="py-16 bg-white relative">
+    <div className="py-16 relative">
       <MapFeature 
         title="Infrastructure Optimisée sur une Portée Mondiale"
         description="Notre entrepôt est spécialement conçu pour traiter efficacement les commandes e-commerce à l'échelle internationale. Avec des processus optimisés et une technologie de pointe, nous garantissons rapidité et précision pour vos livraisons partout dans le monde."
@@ -67,7 +67,7 @@ export function LogisticsFeatureSection() {
           {checkItems.map((item, index) => (
             <motion.div
               key={index}
-              className="section-box bg-white align-center border border-gray-100/20 rounded-lg p-6 shadow-sm"
+              className="bg-white align-center border border-gray-100 rounded-lg p-6 shadow-sm hover:shadow-md transition-all duration-300"
               custom={index}
               initial="hidden"
               whileInView="visible"

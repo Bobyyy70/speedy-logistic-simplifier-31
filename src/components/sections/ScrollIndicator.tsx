@@ -34,7 +34,7 @@ export function ScrollIndicator() {
         </motion.div>
         
         <motion.p 
-          className="text-xs mt-3 font-medium tracking-wide text-center opacity-70"
+          className="text-xs mt-3 font-medium tracking-wide text-center"
           initial={{ opacity: 0, y: 4 }}
           animate={{ 
             opacity: 0.7, 
@@ -44,9 +44,6 @@ export function ScrollIndicator() {
             duration: 0.5,
             delay: 0.2,
             ease: "easeOut" 
-          }}
-          style={{
-            color: "#333333"
           }}
         >
           Découvrir plus
