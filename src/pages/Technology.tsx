@@ -1,5 +1,4 @@
-
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ChevronRight, Code, Database, Server, ArrowRight, BarChart, Layers } from "lucide-react";
@@ -10,20 +9,12 @@ import { BackgroundPaths } from "@/components/ui/background-paths";
 import { Button } from "@/components/ui/neon-button";
 
 const Technology = () => {
-  // Référence pour la section des fonctionnalités
-  const featuresRef = useRef<HTMLElement>(null);
-  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   // États pour le suivi des images agrandies
   const [enlargedImage, setEnlargedImage] = useState<number | null>(null);
-  
-  // Fonction pour faire défiler vers la section des fonctionnalités
-  const scrollToFeatures = () => {
-    featuresRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
   
   const screenshots = [
     {
@@ -157,13 +148,6 @@ const Technology = () => {
                     Demander une démo
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
-                  <button 
-                    onClick={scrollToFeatures}
-                    className="inline-flex items-center justify-center px-6 py-3 border border-slate-300 dark:border-slate-700 text-base font-medium rounded-md text-slate-700 dark:text-white bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200"
-                  >
-                    Explorer les fonctionnalités
-                    <ChevronRight className="ml-2 h-4 w-4" />
-                  </button>
                 </motion.div>
               </div>
               
@@ -474,7 +458,7 @@ const Technology = () => {
                     </Link>
                     <Link 
                       to="/services" 
-                      className="flex items-center justify-center py-3 px-6 bg-transparent border border-slate-300 dark:border-slate-600 hover:bg-white/10 text-slate-700 dark:text-white font-medium rounded-lg transition-colors duration-300"
+                      className="flex items-center justify-center py-3 px-6 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-blue-500/30 text-blue-600 dark:text-blue-400 font-medium rounded-lg transition-colors duration-300"
                     >
                       Découvrir nos services
                     </Link>
