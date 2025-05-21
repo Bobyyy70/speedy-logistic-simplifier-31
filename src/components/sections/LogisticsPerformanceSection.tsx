@@ -42,7 +42,7 @@ export function LogisticsPerformanceSection() {
       <div className="container px-4 md:px-6">
         <div className="text-center mb-12">
           <motion.span 
-            className="pin-badge text-indigo-700 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 inline-block mb-4"
+            className="pin-badge text-orange-700 dark:text-orange-300 bg-orange-100 dark:bg-orange-900/30"
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

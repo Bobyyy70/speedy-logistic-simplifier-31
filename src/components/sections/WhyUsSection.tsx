@@ -53,7 +53,7 @@ export function WhyUsSection() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-10">
           <motion.div 
-            className="pin-badge text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/30"
+            className="pin-badge text-orange-700 dark:text-orange-300 bg-orange-100 dark:bg-orange-900/30"
             initial={{ scale: 0, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
