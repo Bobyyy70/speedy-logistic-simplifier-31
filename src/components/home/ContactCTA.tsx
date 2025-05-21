@@ -46,7 +46,7 @@ export function ContactCTA() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-orange-500 to-green-500 dark:from-blue-400 dark:via-orange-300 dark:to-green-400">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-orange-500">
               Prêt à optimiser votre logistique ?
             </h2>
           </motion.div>
@@ -113,3 +113,4 @@ export function ContactCTA() {
     </section>
   );
 }
+
