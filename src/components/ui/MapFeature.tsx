@@ -47,21 +47,15 @@ export function MapFeature({
 
   const dots = mapDots.length > 0 ? mapDots : defaultDots;
   
-  // Handle scroll effect
+  // Handle scroll effect - simplified
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
-      if (isInView) {
-        controls.start({
-          y: window.scrollY * 0.03,
-          transition: { type: "spring", stiffness: 50 }
-        });
-      }
     };
     
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [controls, isInView]);
+  }, []);
   
   return (
     <div className="py-16 relative overflow-hidden">
@@ -78,20 +72,8 @@ export function MapFeature({
             onViewportLeave={() => setIsInView(false)}
           >
             <div className="relative">
-              {/* Moving background gradient */}
-              <motion.div 
-                className="absolute -inset-1 bg-gradient-to-r from-green-500/30 to-blue-500/30 rounded-lg blur-xl"
-                animate={{
-                  backgroundPosition: ['0% 0%', '100% 100%'],
-                  opacity: [0.5, 0.7, 0.5]
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  repeatType: "mirror",
-                  ease: "easeInOut"
-                }}
-              />
+              {/* Simplified background gradient */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-green-500/30 to-blue-500/30 rounded-lg blur-xl"></div>
               
               <motion.div 
                 className="relative bg-gradient-to-br from-white via-white to-white/80 dark:from-slate-900 dark:via-slate-900 dark:to-slate-900/80 shadow-xl rounded-lg p-4 md:p-6 overflow-hidden"
@@ -99,7 +81,6 @@ export function MapFeature({
                   scale: 1.02,
                   transition: { duration: 0.3 }
                 }}
-                animate={controls}
               >
                 {image ? (
                   <div className="aspect-video bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-950 dark:to-blue-950 rounded-md mb-4 flex items-center justify-center overflow-hidden">

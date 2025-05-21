@@ -25,7 +25,7 @@ export const MapPaths: React.FC<MapPathsProps> = ({
         
         return (
           <g key={`path-group-${i}`}>
-            {/* Main visible path */}
+            {/* Main visible path - simplified animation */}
             <motion.path
               id={pathId}
               d={createCurvedPath(startPoint, endPoint, i)}
@@ -33,14 +33,8 @@ export const MapPaths: React.FC<MapPathsProps> = ({
               stroke={`url(#path-gradient-${i})`}
               strokeWidth="2.5"
               strokeLinecap="round"
-              initial={{
-                pathLength: 0,
-                opacity: 0.1,
-              }}
-              animate={{
-                pathLength: 1,
-                opacity: 0.8,
-              }}
+              initial={{ pathLength: 0, opacity: 0.1 }}
+              animate={{ pathLength: 1, opacity: 0.8 }}
               transition={{
                 duration: 2.5,
                 delay: 0.3 * i,
@@ -48,7 +42,7 @@ export const MapPaths: React.FC<MapPathsProps> = ({
               }}
             />
             
-            {/* Subtle glow effect path */}
+            {/* Subtle glow effect path - simplified */}
             <motion.path
               d={createCurvedPath(startPoint, endPoint, i)}
               fill="none"
@@ -56,14 +50,8 @@ export const MapPaths: React.FC<MapPathsProps> = ({
               strokeWidth="6"
               strokeLinecap="round"
               strokeOpacity="0.15"
-              initial={{
-                pathLength: 0,
-                opacity: 0,
-              }}
-              animate={{
-                pathLength: 1,
-                opacity: 0.15,
-              }}
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 0.15 }}
               transition={{
                 duration: 3,
                 delay: 0.3 * i,

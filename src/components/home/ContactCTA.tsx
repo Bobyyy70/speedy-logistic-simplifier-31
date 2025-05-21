@@ -34,18 +34,13 @@ export function ContactCTA() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ 
-            duration: 0.8,
-            type: "spring",
-            stiffness: 100,
-            damping: 12
-          }}
+          transition={{ duration: 0.8 }}
         >
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5 }}
           >
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-orange-500 to-green-500 dark:from-blue-400 dark:via-orange-300 dark:to-green-400">
               Prêt à optimiser votre logistique ?
@@ -57,17 +52,16 @@ export function ContactCTA() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.5 }}
           >
             Contactez-nous dès aujourd'hui pour obtenir un devis personnalisé et découvrir comment Speed E Log peut transformer votre chaîne logistique.
           </motion.p>
           
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+            transition={{ duration: 0.5 }}
           >
             <Link to="/contact" className="block w-fit mx-auto">
               <AnimatedButton 
@@ -80,10 +74,10 @@ export function ContactCTA() {
             </Link>
           </motion.div>
           
-          {/* Effets de particules flottantes */}
+          {/* Effets de particules simplifiés */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {[...Array(6)].map((_, index) => (
-              <motion.div
+              <div
                 key={index}
                 className={`absolute w-${index % 2 ? 3 : 2} h-${index % 2 ? 3 : 2} rounded-full ${
                   index % 3 === 0 
@@ -95,17 +89,7 @@ export function ContactCTA() {
                 style={{
                   left: `${(index * 15) + Math.random() * 10}%`,
                   top: `${(index * 10) + Math.random() * 80}%`,
-                }}
-                animate={{
-                  y: [0, -15, 0],
-                  opacity: [0.2, 0.5, 0.2],
-                  scale: [1, 1.1, 1],
-                }}
-                transition={{
-                  duration: 3 + index,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: index * 0.5,
+                  opacity: 0.3
                 }}
               />
             ))}

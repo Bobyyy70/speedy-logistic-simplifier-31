@@ -58,7 +58,6 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
   return (
     <motion.div
       className={className}
-      variants={container}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}

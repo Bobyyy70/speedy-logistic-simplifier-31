@@ -54,25 +54,23 @@ export const MapPoints: React.FC<MapPointsProps> = ({
                 }}
               />
               
-              {/* Pulse effect for origin point */}
+              {/* Pulse effect for origin point - simplified animation */}
               <motion.circle
                 cx={startPoint.x}
                 cy={startPoint.y}
                 r="3.5" 
                 fill="transparent"
                 stroke={currentColor}
-                initial={{ opacity: 0.6, scale: 1 }}
+                initial={{ opacity: 0.6 }}
                 animate={{ 
-                  scale: [1, 2, 1],
                   opacity: [0.6, 0.1, 0.6],
-                  strokeWidth: [1.5, 0.5, 1.5]
+                  scale: [1, 1.5, 1],
                 }}
                 transition={{
                   duration: 3,
                   repeat: Infinity,
                   repeatType: "loop",
                   ease: "easeInOut",
-                  times: [0, 0.5, 1]
                 }}
               />
               
@@ -108,23 +106,18 @@ export const MapPoints: React.FC<MapPointsProps> = ({
                 }}
               />
               
-              {/* Subtle glow effect for destination points */}
+              {/* Subtle glow effect for destination points - simplified animation */}
               <motion.circle
                 cx={endPoint.x}
                 cy={endPoint.y}
                 r="6" 
                 fill={`${currentColor}30`} // Semi-transparent version of the color
-                initial={{ opacity: 0.3 }}
                 animate={{ 
-                  opacity: [0.3, 0.6, 0.3],
+                  opacity: 0.3,
                 }}
                 transition={{
                   duration: 2.5,
                   delay: 0.2 * i + 2.2,
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  ease: "easeInOut",
-                  times: [0, 0.5, 1]
                 }}
               />
               
@@ -138,8 +131,8 @@ export const MapPoints: React.FC<MapPointsProps> = ({
                   fill="#FFFFFF"
                   opacity="0.8"
                   textAnchor="start"
-                  initial={{ opacity: 0, y: endPoint.y - 10 }}
-                  animate={{ opacity: 0.8, y: endPoint.y - 5 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.8 }}
                   transition={{ 
                     duration: 1, 
                     delay: 0.2 * i + 2.5,

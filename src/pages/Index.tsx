@@ -17,20 +17,6 @@ const Index = () => {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
   
-  // Animation variants for staggered section transitions
-  const sectionVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { 
-        duration: 0.6, 
-        ease: "easeOut",
-        when: "beforeChildren",
-        staggerChildren: 0.1 
-      }
-    }
-  };
-  
   // Scroll to top on page load
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -38,9 +24,9 @@ const Index = () => {
 
   return (
     <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={sectionVariants}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
       className="relative overflow-x-hidden min-h-screen"
     >
       <Helmet>
@@ -69,7 +55,7 @@ const Index = () => {
         ))}
       </div>
       
-      {/* Séparateurs subtils entre les sections */}
+      {/* Séparateurs subtils entre les sections - simplified animations */}
       <div className="section-dividers pointer-events-none">
         {[1, 2, 3, 4, 5].map((i) => (
           <motion.div 
@@ -78,17 +64,9 @@ const Index = () => {
             style={{ 
               top: `${i * 17}%`,
               background: `linear-gradient(to right, transparent, var(--${i % 2 ? 'blue' : 'green'}-500) 50%, transparent)`,
-              zIndex: 1
-            }}
-            animate={{
-              opacity: [0.05, 0.15, 0.05],
-              width: ["90%", "95%", "90%"]
-            }}
-            transition={{
-              duration: 5 + i,
-              repeat: Infinity,
-              repeatType: "mirror",
-              ease: "easeInOut",
+              zIndex: 1,
+              opacity: 0.1,
+              width: "90%"
             }}
           />
         ))}
@@ -99,7 +77,7 @@ const Index = () => {
         <HeroSection />
       </motion.div>
       
-      {/* Main Content Sections */}
+      {/* Main Content Sections - simplified animations */}
       <motion.div>
         <LogisticsFeatureSection />
       </motion.div>
@@ -132,15 +110,13 @@ const Index = () => {
         <ContactCTA />
       </motion.div>
       
-      {/* Enhanced animated particles */}
+      {/* Enhanced animated particles - simplified */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
         {[...Array(15)].map((_, index) => {
           // Generate more varied sizes, positions and colors
           const size = (index % 3) + 1 + Math.random();
           const left = `${(index * 7) + Math.random() * 20}%`;
           const top = `${(index * 6) + Math.random() * 70}%`;
-          const duration = 8 + Math.random() * 15;
-          const delay = index * 0.4;
           
           const colors = [
             'bg-blue-400/10',
@@ -162,23 +138,19 @@ const Index = () => {
                 left,
                 top,
               }}
-              animate={{
-                y: [0, -30, 0],
-                x: [0, index % 2 ? 20 : -20, 0],
-                opacity: [0.1, 0.3, 0.1],
-              }}
+              initial={{ opacity: 0.1 }}
+              animate={{ opacity: 0.3 }}
               transition={{
-                duration,
+                duration: 4,
                 repeat: Infinity,
-                ease: "easeInOut",
-                delay,
+                repeatType: "reverse",
               }}
             />
           );
         })}
       </div>
       
-      {/* Scroll indicator that appears when scrolling down */}
+      {/* Scroll indicator that appears when scrolling down - simplified */}
       <motion.div 
         className="fixed right-6 top-1/2 transform -translate-y-1/2 z-20 hidden md:block"
         initial={{ opacity: 0 }}
@@ -194,19 +166,9 @@ const Index = () => {
               }}
             />
           </div>
-          <motion.div
-            className="text-xs text-gray-500 dark:text-gray-400 font-medium"
-            animate={{
-              opacity: [0.6, 1, 0.6]
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatType: "loop"
-            }}
-          >
+          <div className="text-xs text-gray-500 dark:text-gray-400 font-medium">
             SCROLL
-          </motion.div>
+          </div>
         </div>
       </motion.div>
     </motion.div>

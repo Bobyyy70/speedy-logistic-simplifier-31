@@ -29,7 +29,7 @@ export function WorldMap({
     backgroundColor: "transparent",
   });
 
-  // Add subtle movement to the map on mousemove
+  // Add subtle movement to the map on mousemove - simplified
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
@@ -64,21 +64,13 @@ export function WorldMap({
     }
   ];
 
-  // Calculate map movement based on mouse position
-  const translateX = mousePosition.x * 10 - 5;
-  const translateY = mousePosition.y * 10 - 5;
-
+  // Simplified map movement - removed transforms
   return (
     <div 
       ref={containerRef}
       className="w-full aspect-[2/1] rounded-lg relative font-sans site-background overflow-hidden"
     >
-      <div 
-        className="absolute inset-0 transition-transform duration-1000 ease-out"
-        style={{ 
-          transform: `translate(${translateX}px, ${translateY}px)` 
-        }}
-      >
+      <div className="absolute inset-0">
         <img
           src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
           className="h-full w-full [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] pointer-events-none select-none"

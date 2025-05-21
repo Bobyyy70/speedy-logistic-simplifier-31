@@ -29,8 +29,8 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
               r={2}
               fill="#FFFFFF"
               animate={{
-                cx: [startPoint.x, midX, endPoint.x],
-                cy: [startPoint.y, midY, endPoint.y],
+                cx: endPoint.x,
+                cy: endPoint.y,
                 opacity: [0, 1, 0],
                 r: [2, 3, 2],
               }}
@@ -52,8 +52,8 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
               r={1.5}
               fill="#FFFFFF"
               animate={{
-                cx: [startPoint.x, midX, endPoint.x],
-                cy: [startPoint.y, midY, endPoint.y],
+                cx: endPoint.x,
+                cy: endPoint.y,
                 opacity: [0, 0.7, 0],
               }}
               transition={{
