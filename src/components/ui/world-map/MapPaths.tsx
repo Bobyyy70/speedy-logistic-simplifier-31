@@ -24,11 +24,13 @@ export const MapPaths: React.FC<MapPathsProps> = ({
         
         return (
           <g key={`path-group-${i}`}>
+            {/* Main visible path */}
             <motion.path
               d={createCurvedPath(startPoint, endPoint, i)}
               fill="none"
               stroke={`url(#path-gradient-${i})`}
               strokeWidth="2.5"
+              strokeLinecap="round"
               initial={{
                 pathLength: 0,
                 opacity: 0.1,
@@ -45,8 +47,36 @@ export const MapPaths: React.FC<MapPathsProps> = ({
                 repeatType: "loop",
                 repeatDelay: 5,
               }}
-              key={`start-upper-${i}`}
-            ></motion.path>
+            />
+            
+            {/* Subtle glow effect path */}
+            <motion.path
+              d={createCurvedPath(startPoint, endPoint, i)}
+              fill="none"
+              stroke={currentColor}
+              strokeWidth="6"
+              strokeLinecap="round"
+              strokeOpacity="0.15"
+              initial={{
+                pathLength: 0,
+                opacity: 0,
+              }}
+              animate={{
+                pathLength: 1,
+                opacity: [0, 0.15, 0],
+              }}
+              transition={{
+                duration: 3,
+                delay: 0.3 * i,
+                ease: "easeOut",
+                repeat: Infinity,
+                repeatType: "loop",
+                repeatDelay: 4.5,
+                times: [0, 0.5, 1]
+              }}
+            />
+            
+            {/* Path gradient definition */}
             <defs>
               <linearGradient id={`path-gradient-${i}`} x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor={currentColor} stopOpacity="0.3" />
@@ -54,6 +84,28 @@ export const MapPaths: React.FC<MapPathsProps> = ({
                 <stop offset="95%" stopColor={currentColor} stopOpacity="1" />
                 <stop offset="100%" stopColor={currentColor} stopOpacity="0.3" />
               </linearGradient>
+              
+              {/* Add animated dash effect */}
+              <motion.linearGradient
+                id={`dash-gradient-${i}`}
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+                animate={{
+                  x1: ["0%", "100%"],
+                  x2: ["100%", "200%"],
+                }}
+                transition={{
+                  duration: 3 + (i * 0.5),
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              >
+                <stop offset="0%" stopColor={currentColor} stopOpacity="0.1" />
+                <stop offset="50%" stopColor={currentColor} stopOpacity="0.6" />
+                <stop offset="100%" stopColor={currentColor} stopOpacity="0.1" />
+              </motion.linearGradient>
             </defs>
           </g>
         );

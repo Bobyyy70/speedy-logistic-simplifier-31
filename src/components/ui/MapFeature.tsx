@@ -1,8 +1,8 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { WorldMap } from "./world-map/component";
-import { motion } from "framer-motion";
-import AnimatedText from "./AnimatedText";
+import { motion, useAnimation } from "framer-motion";
+import { AnimatedText } from "./AnimatedText";
 
 interface MapFeatureProps {
   title: string;
@@ -24,6 +24,11 @@ export function MapFeature({
   image,
   imageAlt = "Speed E Log"
 }: MapFeatureProps) {
+  // For parallax effect on scroll
+  const controls = useAnimation();
+  const [scrollY, setScrollY] = useState(0);
+  const [isInView, setIsInView] = useState(false);
+  
   // Si aucun point n'est fourni, utiliser des exemples par défaut
   const defaultDots = [
     {
@@ -41,7 +46,23 @@ export function MapFeature({
   ];
 
   const dots = mapDots.length > 0 ? mapDots : defaultDots;
-
+  
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+      if (isInView) {
+        controls.start({
+          y: window.scrollY * 0.03,
+          transition: { type: "spring", stiffness: 50 }
+        });
+      }
+    };
+    
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [controls, isInView]);
+  
   return (
     <div className="py-16 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/20 pointer-events-none" />
@@ -52,14 +73,44 @@ export function MapFeature({
             initial={{ opacity: 0, x: reverse ? 50 : -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
+            onViewportEnter={() => setIsInView(true)}
+            onViewportLeave={() => setIsInView(false)}
           >
             <div className="relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg blur opacity-20"></div>
-              <div className="relative bg-gradient-to-br from-white via-white to-white/80 dark:from-slate-900 dark:via-slate-900 dark:to-slate-900/80 shadow-xl rounded-lg p-4 md:p-6 overflow-hidden">
+              {/* Moving background gradient */}
+              <motion.div 
+                className="absolute -inset-1 bg-gradient-to-r from-green-500/30 to-blue-500/30 rounded-lg blur-xl"
+                animate={{
+                  backgroundPosition: ['0% 0%', '100% 100%'],
+                  opacity: [0.5, 0.7, 0.5]
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  repeatType: "mirror",
+                  ease: "easeInOut"
+                }}
+              />
+              
+              <motion.div 
+                className="relative bg-gradient-to-br from-white via-white to-white/80 dark:from-slate-900 dark:via-slate-900 dark:to-slate-900/80 shadow-xl rounded-lg p-4 md:p-6 overflow-hidden"
+                whileHover={{
+                  scale: 1.02,
+                  transition: { duration: 0.3 }
+                }}
+                animate={controls}
+              >
                 {image ? (
                   <div className="aspect-video bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-950 dark:to-blue-950 rounded-md mb-4 flex items-center justify-center overflow-hidden">
-                    <img alt={imageAlt} className="w-full h-full object-cover" src={image} />
+                    <motion.img 
+                      alt={imageAlt} 
+                      className="w-full h-full object-cover" 
+                      src={image}
+                      initial={{ scale: 1.05 }}
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.5 }}
+                    />
                   </div>
                 ) : (
                   <div className="rounded-md overflow-hidden mb-4">
@@ -70,7 +121,7 @@ export function MapFeature({
                 <p className="text-muted-foreground">
                   Notre réseau s'étend à l'international, permettant des livraisons rapides et fiables partout dans le monde.
                 </p>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -79,7 +130,7 @@ export function MapFeature({
             initial={{ opacity: 0, x: reverse ? -50 : 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             <AnimatedText 
               text={title} 
