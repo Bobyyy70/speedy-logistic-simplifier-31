@@ -17,45 +17,33 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
         
         return (
           <React.Fragment key={`moving-dot-group-${i}`}>
-            {/* Main moving dot - simplified animation */}
+            {/* Main moving dot - simplifié */}
             <motion.circle
               key={`moving-dot-${i}`}
               cx={startPoint.x}
               cy={startPoint.y}
               r={2}
               fill="#FFFFFF"
-              animate={{
-                cx: [startPoint.x, endPoint.x],
-                cy: [startPoint.y, endPoint.y],
-                opacity: [0, 1, 0],
-              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.7 }}
               transition={{
-                duration: 4 + (i * 0.3),
-                delay: 1 + (i * 0.5),
-                repeat: Infinity,
-                repeatDelay: 2,
-                times: [0, 0.5, 1]
+                duration: 1,
+                delay: 0.5 + (i * 0.2),
               }}
             />
             
-            {/* Pulse effect at destination - simplified */}
+            {/* Point de destination - simplifié */}
             <motion.circle
-              key={`pulse-dot-${i}`}
+              key={`dest-dot-${i}`}
               cx={endPoint.x}
               cy={endPoint.y}
               r={2}
-              fill="transparent"
-              stroke="#FFFFFF"
-              animate={{
-                r: [2, 8, 2],
-                opacity: [0, 0.5, 0],
-                strokeWidth: [1, 0.2, 1],
-              }}
+              fill="#FFFFFF"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.7 }}
               transition={{
-                duration: 2,
-                delay: 5 + (i * 0.5),
-                repeat: Infinity,
-                repeatDelay: 3,
+                duration: 1,
+                delay: 2 + (i * 0.2),
               }}
             />
           </React.Fragment>

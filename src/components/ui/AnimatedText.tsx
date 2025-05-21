@@ -26,50 +26,22 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
   // Split the text into words or letters
   const items = type === "words" ? text.split(" ") : Array.from(text);
 
-  // Simpler animation variants to avoid the framer-motion error
-  const container = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { 
-        staggerChildren: staggerChildren,
-        delayChildren: delay,
-      },
-    },
-  };
-
-  const child = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
-    },
-  };
-
+  // Utiliser des animations individuelles plus simples sans staggering complexe
   return (
-    <motion.div
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
-      variants={container}
-    >
+    <div className={`${className}`}>
       {items.map((item, index) => {
-        // Check if this word should be highlighted
         const isHighlighted = type === "words" && highlightWords.includes(item);
         
         return (
           <motion.span
             key={index}
-            variants={child}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ 
+              duration: 0.3,
+              delay: delay + (index * 0.05),
+              ease: "easeOut"
+            }}
             className={`inline-block ${type === "words" ? "mr-1.5" : ""} ${isHighlighted ? highlightColor : ""}`}
             style={{
               display: type === "letters" && item === " " ? "inline-block" : undefined,
@@ -80,7 +52,7 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
           </motion.span>
         );
       })}
-    </motion.div>
+    </div>
   );
 };
 

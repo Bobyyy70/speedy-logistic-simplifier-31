@@ -53,10 +53,10 @@ export function Services() {
           return (
             <motion.div 
               key={service.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: isMobile ? index * 0.05 : index * 0.1 }}
-              viewport={{ once: true, margin: isMobile ? "-50px" : "0px" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="opacity-0"
             >
               <Card className="h-full glass-effect border-gray-200 dark:border-gray-800">
                 <CardHeader className="pb-2 px-3 md:px-6 pt-3 md:pt-6">

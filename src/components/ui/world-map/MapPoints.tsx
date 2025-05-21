@@ -26,15 +26,15 @@ export const MapPoints: React.FC<MapPointsProps> = ({
           <g key={`points-group-${i}`}>
             {/* Start point */}
             <g key={`start-${i}`}>
-              {/* France highlight - special treatment for origin */}
+              {/* France highlight - version simplifiée */}
               {dot.start.lat === 48.8566 && dot.start.lng === 2.3522 && (
                 <motion.circle
                   cx={startPoint.x}
                   cy={startPoint.y}
                   r="5" 
                   fill="#F3BA2F"
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 0.9 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.7 }}
                   transition={{ 
                     duration: 1,
                     delay: 0.2,
@@ -46,35 +46,15 @@ export const MapPoints: React.FC<MapPointsProps> = ({
                 cy={startPoint.y}
                 r="3.5"
                 fill={currentColor}
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 0.9 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.7 }}
                 transition={{ 
                   duration: 0.5,
-                  delay: 0.2 * i,
+                  delay: 0.2,
                 }}
               />
               
-              {/* Pulse effect for origin point - simplified animation */}
-              <motion.circle
-                cx={startPoint.x}
-                cy={startPoint.y}
-                r="3.5" 
-                fill="transparent"
-                stroke={currentColor}
-                initial={{ opacity: 0.6 }}
-                animate={{ 
-                  opacity: [0.6, 0.1, 0.6],
-                  scale: [1, 1.5, 1],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  ease: "easeInOut",
-                }}
-              />
-              
-              {/* Add city label for France origin only */}
+              {/* Étiquette France */}
               {dot.start.lat === 48.8566 && dot.start.lng === 2.3522 && (
                 <motion.text
                   x={startPoint.x + 8}
@@ -83,8 +63,8 @@ export const MapPoints: React.FC<MapPointsProps> = ({
                   fontWeight="500"
                   fill="#FFFFFF"
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.9 }}
-                  transition={{ duration: 1, delay: 0.5 }}
+                  animate={{ opacity: 0.7 }}
+                  transition={{ duration: 1 }}
                 >
                   France
                 </motion.text>
@@ -98,30 +78,15 @@ export const MapPoints: React.FC<MapPointsProps> = ({
                 cy={endPoint.y}
                 r="3.5"
                 fill={currentColor}
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 0.9 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.7 }}
                 transition={{ 
                   duration: 0.5,
-                  delay: 0.2 * i + 2, // Appear after path animation
+                  delay: 0.5,
                 }}
               />
               
-              {/* Subtle glow effect for destination points - simplified animation */}
-              <motion.circle
-                cx={endPoint.x}
-                cy={endPoint.y}
-                r="6" 
-                fill={`${currentColor}30`} // Semi-transparent version of the color
-                animate={{ 
-                  opacity: 0.3,
-                }}
-                transition={{
-                  duration: 2.5,
-                  delay: 0.2 * i + 2.2,
-                }}
-              />
-              
-              {/* Add destination labels for notable destinations */}
+              {/* Étiquettes de destination */}
               {dot.end.label && (
                 <motion.text
                   x={endPoint.x + 8}
@@ -129,15 +94,9 @@ export const MapPoints: React.FC<MapPointsProps> = ({
                   fontSize="10"
                   fontWeight="500"
                   fill="#FFFFFF"
-                  opacity="0.8"
-                  textAnchor="start"
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.8 }}
-                  transition={{ 
-                    duration: 1, 
-                    delay: 0.2 * i + 2.5,
-                    ease: "easeOut"
-                  }}
+                  animate={{ opacity: 0.7 }}
+                  transition={{ duration: 1 }}
                 >
                   {dot.end.label}
                 </motion.text>

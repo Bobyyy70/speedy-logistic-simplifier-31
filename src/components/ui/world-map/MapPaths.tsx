@@ -25,37 +25,19 @@ export const MapPaths: React.FC<MapPathsProps> = ({
         
         return (
           <g key={`path-group-${i}`}>
-            {/* Main visible path - simplified animation */}
+            {/* Main visible path - animation simplifiée */}
             <motion.path
               id={pathId}
               d={createCurvedPath(startPoint, endPoint, i)}
               fill="none"
-              stroke={`url(#path-gradient-${i})`}
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              initial={{ pathLength: 0, opacity: 0.1 }}
-              animate={{ pathLength: 1, opacity: 0.8 }}
-              transition={{
-                duration: 2.5,
-                delay: 0.3 * i,
-                ease: "easeOut",
-              }}
-            />
-            
-            {/* Subtle glow effect path - simplified */}
-            <motion.path
-              d={createCurvedPath(startPoint, endPoint, i)}
-              fill="none"
               stroke={currentColor}
-              strokeWidth="6"
+              strokeWidth="2"
               strokeLinecap="round"
-              strokeOpacity="0.15"
-              initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 0.15 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.8 }}
               transition={{
-                duration: 3,
+                duration: 1,
                 delay: 0.3 * i,
-                ease: "easeOut",
               }}
             />
             
@@ -63,21 +45,8 @@ export const MapPaths: React.FC<MapPathsProps> = ({
             <defs>
               <linearGradient id={`path-gradient-${i}`} x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor={currentColor} stopOpacity="0.3" />
-                <stop offset="5%" stopColor={currentColor} stopOpacity="1" />
-                <stop offset="95%" stopColor={currentColor} stopOpacity="1" />
+                <stop offset="50%" stopColor={currentColor} stopOpacity="1" />
                 <stop offset="100%" stopColor={currentColor} stopOpacity="0.3" />
-              </linearGradient>
-              
-              <linearGradient
-                id={`dash-gradient-${i}`}
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="0%"
-              >
-                <stop offset="0%" stopColor={currentColor} stopOpacity="0.1" />
-                <stop offset="50%" stopColor={currentColor} stopOpacity="0.6" />
-                <stop offset="100%" stopColor={currentColor} stopOpacity="0.1" />
               </linearGradient>
             </defs>
           </g>

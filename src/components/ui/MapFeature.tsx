@@ -47,21 +47,16 @@ export function MapFeature({
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/20 pointer-events-none" />
       <div className="container mx-auto px-4">
         <div className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-8`}>
-          <motion.div 
-            className="w-full md:w-1/2"
-            initial={{ opacity: 0, x: reverse ? 50 : -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
+          <div className="w-full md:w-1/2">
             <div className="relative">
               {/* Simplified background gradient */}
               <div className="absolute -inset-1 bg-gradient-to-r from-green-500/30 to-blue-500/30 rounded-lg blur-xl opacity-70"></div>
               
               <motion.div 
                 className="relative bg-gradient-to-br from-white via-white to-white/80 dark:from-slate-900 dark:via-slate-900 dark:to-slate-900/80 shadow-xl rounded-lg p-4 md:p-6 overflow-hidden"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
               >
                 {image ? (
                   <div className="aspect-video bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-950 dark:to-blue-950 rounded-md mb-4 flex items-center justify-center overflow-hidden">
@@ -82,24 +77,14 @@ export function MapFeature({
                 </p>
               </motion.div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div 
-            className="w-full md:w-1/2 space-y-4"
-            initial={{ opacity: 0, x: reverse ? -50 : 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <AnimatedText 
-              text={title} 
-              className="text-3xl font-bold"
-              delay={0.3}
-            />
+          <div className="w-full md:w-1/2 space-y-4">
+            <h2 className="text-3xl font-bold">{title}</h2>
             <p className="text-muted-foreground text-lg">
               {description}
             </p>
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>
