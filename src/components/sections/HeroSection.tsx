@@ -53,7 +53,7 @@ export function HeroSection() {
         interactive={true}
         className="absolute inset-0 z-10"
         preserveBackground={true}
-        size={450}
+        size="450"
         blur={25}
       >
         <div className="absolute inset-0 z-10">

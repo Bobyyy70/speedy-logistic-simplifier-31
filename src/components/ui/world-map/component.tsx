@@ -12,6 +12,8 @@ export function WorldMap({
   lineColor = "#2F68F3",
   secondaryLineColor = "#F3BA2F",
   opacity = 0.85,
+  dotColor = "#2F68F3",
+  secondaryDotColor = "#F3BA2F",
 }: MapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const map = new DottedMap({ height: 100, grid: "diagonal" });

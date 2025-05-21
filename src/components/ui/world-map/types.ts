@@ -9,4 +9,6 @@ export interface MapProps {
   lineColor?: string;
   secondaryLineColor?: string;
   opacity?: number;
+  dotColor?: string;
+  secondaryDotColor?: string;
 }
