@@ -47,7 +47,7 @@ export function WorldMapBackground() {
       />
       
       {/* Overlay gradient for better contrast with content */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white-900/30 via-transparent to-white-900/50"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/30 via-transparent to-slate-900/50"></div>
     </motion.div>
   );
 }
