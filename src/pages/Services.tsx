@@ -88,12 +88,12 @@ const Services = () => {
               Fulfilment e-commerce : <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">la solution logistique</span> complète pour votre boutique en ligne
             </h1>
             
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground mb-8 md:mb-10 max-w-3xl mx-auto">
               Des solutions sur mesure pour gérer efficacement votre chaîne logistique.
               <span className="block mt-2">Concentrez-vous sur votre cœur de métier, nous nous occupons du reste.</span>
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
               <PrimaryActionButton to="/contact">
                 Demander un devis
               </PrimaryActionButton>
@@ -112,7 +112,7 @@ const Services = () => {
       </AuroraBackground>
       
       {/* Key Benefits Section */}
-      <section className="py-20 relative bg-gradient-to-b from-transparent to-slate-50/30 dark:to-slate-900/30">
+      <section className="py-12 md:py-16 relative bg-gradient-to-b from-transparent to-slate-50/30 dark:to-slate-900/30">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
