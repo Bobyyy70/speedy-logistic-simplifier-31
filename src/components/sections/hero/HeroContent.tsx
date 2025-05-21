@@ -9,6 +9,15 @@ import { AnimatedText } from "@/components/ui/AnimatedText";
 import { SocialProof } from "@/components/sections/hero/SocialProof";
 
 export function HeroContent() {
+  // Fonction pour faire défiler vers la section des fonctionnalités
+  const scrollToFeatures = () => {
+    // Trouver l'élément avec l'ID "features"
+    const featuresSection = document.getElementById("features");
+    if (featuresSection) {
+      featuresSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  
   return (
     <div className="flex flex-col justify-center space-y-6 text-center lg:text-left px-4 md:px-6">
       <motion.div 
@@ -69,10 +78,13 @@ export function HeroContent() {
             </span>
           </Link>
         </Button>
-        <Button asChild variant="outline" size="lg" className="backdrop-blur-sm text-white border-white/20 hover:bg-white/10 hover:text-white hover:border-white/40 transition-all duration-300">
-          <Link to="/services">
-            Découvrir nos services
-          </Link>
+        <Button 
+          variant="outline" 
+          size="lg" 
+          className="backdrop-blur-sm text-white border-white/20 hover:bg-white/10 hover:text-white hover:border-white/40 transition-all duration-300"
+          onClick={scrollToFeatures}
+        >
+          Découvrir nos services
         </Button>
       </motion.div>
       

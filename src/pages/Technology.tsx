@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ChevronRight, Code, Database, Server, ArrowRight, BarChart, Layers } from "lucide-react";
@@ -7,14 +7,23 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { AnimatedButton } from "@/components/ui/moving-border";
 import { BackgroundPaths } from "@/components/ui/background-paths";
+import { Button } from "@/components/ui/neon-button";
 
 const Technology = () => {
+  // Référence pour la section des fonctionnalités
+  const featuresRef = useRef<HTMLElement>(null);
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   // États pour le suivi des images agrandies
   const [enlargedImage, setEnlargedImage] = useState<number | null>(null);
+  
+  // Fonction pour faire défiler vers la section des fonctionnalités
+  const scrollToFeatures = () => {
+    featuresRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
   
   const screenshots = [
     {
@@ -148,10 +157,13 @@ const Technology = () => {
                     Demander une démo
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
-                  <Link to="#features" className="inline-flex items-center justify-center px-6 py-3 border border-slate-300 dark:border-slate-700 text-base font-medium rounded-md text-slate-700 dark:text-white bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200">
+                  <button 
+                    onClick={scrollToFeatures}
+                    className="inline-flex items-center justify-center px-6 py-3 border border-slate-300 dark:border-slate-700 text-base font-medium rounded-md text-slate-700 dark:text-white bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200"
+                  >
                     Explorer les fonctionnalités
                     <ChevronRight className="ml-2 h-4 w-4" />
-                  </Link>
+                  </button>
                 </motion.div>
               </div>
               
@@ -358,7 +370,7 @@ const Technology = () => {
         </section>
         
         {/* Features Section with animated cards */}
-        <section id="features" className="py-24 relative overflow-hidden">
+        <section ref={featuresRef} id="features" className="py-24 relative overflow-hidden">
           <div className="container mx-auto px-6">
             <motion.div 
               className="text-center mb-16"
@@ -399,56 +411,81 @@ const Technology = () => {
           </div>
         </section>
 
-        {/* CTA section with enhanced design */}
-        <section className="py-24 relative overflow-hidden">
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-slate-50 dark:from-slate-900 dark:to-slate-950 opacity-90"></div>
-            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-700 to-transparent"></div>
-            <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-blue-400/10 filter blur-3xl"></div>
-            <div className="absolute bottom-10 right-10 w-32 h-32 rounded-full bg-orange-400/10 filter blur-3xl"></div>
-          </div>
+        {/* CTA section avec nouveau design */}
+        <section className="py-16 relative overflow-hidden">
+          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950"></div>
           
-          <div className="container mx-auto px-6 relative">
-            <div className="max-w-4xl mx-auto bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-slate-200 dark:border-slate-700 shadow-xl">
-              <div className="text-center mb-8">
-                <motion.h2 
-                  className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                >
-                  Prêt à transformer votre logistique e-commerce ?
-                </motion.h2>
-                <motion.p 
-                  className="text-xl text-slate-600 dark:text-slate-300"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                  Prenons rendez-vous pour une démonstration personnalisée de notre technologie SupplyOS.
-                </motion.p>
+          {/* Éléments décoratifs */}
+          <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-white to-transparent dark:from-slate-950 dark:to-transparent"></div>
+          <div className="absolute -top-10 -right-10 w-64 h-64 rounded-full bg-gradient-to-br from-blue-300/10 to-orange-300/10 filter blur-3xl"></div>
+          <div className="absolute -bottom-10 -left-10 w-72 h-72 rounded-full bg-gradient-to-tr from-orange-300/10 to-blue-300/10 filter blur-3xl"></div>
+          
+          <div className="container mx-auto px-6 py-12 relative z-10">
+            <div className="max-w-6xl mx-auto">
+              <div className="bg-gradient-to-tr from-blue-600/[0.08] to-blue-400/[0.03] backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-white/10 dark:border-white/5 shadow-lg relative overflow-hidden">
+                
+                {/* Glowing orbs */}
+                <div className="absolute -top-24 -right-24 w-48 h-48 rounded-full bg-blue-400/20 filter blur-3xl"></div>
+                <div className="absolute -bottom-24 -left-24 w-48 h-48 rounded-full bg-orange-400/10 filter blur-3xl"></div>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 items-center">
+                  <div>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900 dark:text-slate-50">
+                      Créez votre avantage concurrentiel avec SupplyOS
+                    </h2>
+                    <p className="text-xl text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
+                      Notre technologie logistique vous permet de réduire vos coûts, d'améliorer votre efficacité opérationnelle et d'offrir une meilleure expérience client, le tout avec une transparence totale.
+                    </p>
+                    <ul className="mb-8 grid gap-3">
+                      <li className="flex items-start text-slate-600 dark:text-slate-300">
+                        <div className="mr-3 p-1">
+                          <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30">
+                            <div className="h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-400"></div>
+                          </div>
+                        </div>
+                        <span>Intégration rapide avec vos systèmes existants</span>
+                      </li>
+                      <li className="flex items-start text-slate-600 dark:text-slate-300">
+                        <div className="mr-3 p-1">
+                          <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30">
+                            <div className="h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-400"></div>
+                          </div>
+                        </div>
+                        <span>Solution évolutive qui s'adapte à votre croissance</span>
+                      </li>
+                      <li className="flex items-start text-slate-600 dark:text-slate-300">
+                        <div className="mr-3 p-1">
+                          <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30">
+                            <div className="h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-400"></div>
+                          </div>
+                        </div>
+                        <span>Support technique et onboarding personnalisés</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div className="flex flex-col gap-4 sm:min-w-[250px]">
+                    <Link 
+                      to="/contact" 
+                      className="flex items-center justify-center py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-300"
+                    >
+                      Demander une démo
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                    <Link 
+                      to="/services" 
+                      className="flex items-center justify-center py-3 px-6 bg-transparent border border-slate-300 dark:border-slate-600 hover:bg-white/10 text-slate-700 dark:text-white font-medium rounded-lg transition-colors duration-300"
+                    >
+                      Découvrir nos services
+                    </Link>
+                    <div className="text-center mt-3">
+                      <span className="text-sm text-slate-500 dark:text-slate-400">
+                        Pas d'engagement. Pas de frais cachés.
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              
-              <motion.div 
-                className="flex flex-col sm:flex-row justify-center gap-4"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                <Link to="/contact" className="block w-full">
-                  <AnimatedButton 
-                    className="w-full text-center text-base md:text-lg py-3 shadow-lg hover:shadow-blue-200/30 dark:hover:shadow-blue-900/30"
-                  >
-                    Demander une démo <ChevronRight className="ml-2 h-5 w-5 text-blue-400" />
-                  </AnimatedButton>
-                </Link>
-                <Link to="/services" className="inline-flex items-center justify-center px-6 py-3 border border-slate-300 dark:border-slate-700 text-base font-medium rounded-md text-slate-700 dark:text-white bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200 w-full sm:w-auto">
-                  Voir nos services
-                </Link>
-              </motion.div>
             </div>
           </div>
         </section>
