@@ -36,11 +36,7 @@ export function Services() {
   const isMobile = useIsMobile();
   
   return (
-    <section id="services" className="mobile-container section-container relative overflow-hidden">
-      {/* Background decoration elements */}
-      <div className="absolute top-10 left-10 w-16 h-16 rounded-full bg-blue-100/10 dark:bg-blue-900/10 blur-xl" />
-      <div className="absolute bottom-10 right-10 w-24 h-24 rounded-full bg-orange-100/10 dark:bg-orange-900/10 blur-xl" />
-      
+    <section id="services" className="mobile-container section-container">
       <div className="relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

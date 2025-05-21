@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export function ScrollIndicator() {
   return (
     <motion.div 
-      className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20"
+      className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, delay: 1.5 }}
@@ -34,7 +34,7 @@ export function ScrollIndicator() {
         </motion.div>
         
         <motion.p 
-          className="text-xs mt-3 font-medium tracking-wide"
+          className="text-xs mt-3 font-medium tracking-wide text-center"
           initial={{ opacity: 0, y: 4 }}
           animate={{ 
             opacity: 1, 

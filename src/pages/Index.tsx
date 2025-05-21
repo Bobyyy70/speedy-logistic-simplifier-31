@@ -10,6 +10,7 @@ import { ContactCTA } from "@/components/home/ContactCTA";
 import { LogisticsFeatureSection } from "@/components/sections/LogisticsFeatureSection";
 import { LogisticsPerformanceSection } from "@/components/sections/LogisticsPerformanceSection";
 import { motion } from "framer-motion";
+import { BackgroundPaths } from "@/components/ui/background-paths";
 
 // Animation variants pour les transitions entre sections
 const sectionVariants = {
@@ -31,60 +32,62 @@ const Index = () => {
   }, []);
 
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={sectionVariants}
-      className="relative overflow-x-hidden"
-    >
-      <Helmet>
-        <title>Speed E-Log | Logistique E-commerce Simplifiée pour PME</title>
-        <meta 
-          name="description" 
-          content="Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
-        />
-        <meta property="og:title" content="Speed E-Log | Logistique E-commerce Simplifiée pour PME" />
-        <meta 
-          property="og:description" 
-          content="Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
-        />
-        <meta name="keywords" content="logistique e-commerce, externalisation logistique, 3PL, fulfillment, préparation commandes, PME logistique" />
-      </Helmet>
-      
-      {/* Hero Section */}
-      <motion.div variants={sectionVariants}>
-        <HeroSection />
+    <BackgroundPaths className="min-h-screen bg-gradient-to-b from-slate-50 via-slate-50 to-white" opacity={0.2}>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={sectionVariants}
+        className="relative overflow-x-hidden"
+      >
+        <Helmet>
+          <title>Speed E-Log | Logistique E-commerce Simplifiée pour PME</title>
+          <meta 
+            name="description" 
+            content="Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
+          />
+          <meta property="og:title" content="Speed E-Log | Logistique E-commerce Simplifiée pour PME" />
+          <meta 
+            property="og:description" 
+            content="Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
+          />
+          <meta name="keywords" content="logistique e-commerce, externalisation logistique, 3PL, fulfillment, préparation commandes, PME logistique" />
+        </Helmet>
+        
+        {/* Hero Section */}
+        <motion.div variants={sectionVariants}>
+          <HeroSection />
+        </motion.div>
+        
+        {/* Main Content Sections */}
+        <motion.div variants={sectionVariants}>
+          <LogisticsFeatureSection />
+        </motion.div>
+        
+        <motion.div variants={sectionVariants}>
+          <ChallengesSection />
+        </motion.div>
+        
+        <motion.div variants={sectionVariants}>
+          <HowItWorksSection />
+        </motion.div>
+        
+        <motion.div variants={sectionVariants}>
+          <WhyUsSection />
+        </motion.div>
+        
+        <motion.div variants={sectionVariants}>
+          <LogisticsPerformanceSection />
+        </motion.div>
+        
+        <motion.div variants={sectionVariants}>
+          <TestimonialsSection />
+        </motion.div>
+        
+        <motion.div variants={sectionVariants}>
+          <ContactCTA />
+        </motion.div>
       </motion.div>
-      
-      {/* Main Content Sections */}
-      <motion.div variants={sectionVariants}>
-        <LogisticsFeatureSection />
-      </motion.div>
-      
-      <motion.div variants={sectionVariants}>
-        <ChallengesSection />
-      </motion.div>
-      
-      <motion.div variants={sectionVariants}>
-        <HowItWorksSection />
-      </motion.div>
-      
-      <motion.div variants={sectionVariants}>
-        <WhyUsSection />
-      </motion.div>
-      
-      <motion.div variants={sectionVariants}>
-        <LogisticsPerformanceSection />
-      </motion.div>
-      
-      <motion.div variants={sectionVariants}>
-        <TestimonialsSection />
-      </motion.div>
-      
-      <motion.div variants={sectionVariants}>
-        <ContactCTA />
-      </motion.div>
-    </motion.div>
+    </BackgroundPaths>
   );
 }
 
