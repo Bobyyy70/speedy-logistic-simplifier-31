@@ -40,19 +40,18 @@ export function HeroSection() {
     <section ref={heroRef} className="relative py-0 md:py-0 lg:py-0 overflow-hidden xl:py-0 rounded-none mx-0 min-h-[100vh]">
       <BackgroundGradientAnimation 
         height="100vh"
-        gradientBackgroundStart="rgb(10, 17, 40)" 
-        gradientBackgroundEnd="rgb(26, 43, 101)"
-        firstColor="118, 171, 255"                  // Blue
-        secondColor="118, 74, 241"                  // Purple
-        thirdColor="157, 78, 221"                  // Violet
-        fourthColor="76, 201, 240"                  // Cyan
-        fifthColor="10, 17, 40"                    // Dark blue background
-        pointerColor="118, 171, 255"                // Blue
+        gradientBackgroundStart="rgb(17, 24, 39)" // Dark blue background
+        gradientBackgroundEnd="rgb(2, 6, 23)"      // Almost black
+        firstColor="18, 113, 255"                  // Blue
+        secondColor="243, 186, 47"                 // Orange
+        thirdColor="45, 212, 191"                  // Teal
+        fourthColor="240, 171, 252"                // Purple
+        fifthColor="22, 78, 99"                    // Dark blue
+        pointerColor="243, 186, 47"                // Orange
         interactive={true}
         className="z-10"
         preserveBackground={true}
       >
-        <div className="absolute inset-0 tech-grid opacity-20"></div>
         <WorldMapBackground />
         
         <div className="container mx-auto relative z-20 px-0 pt-16 md:pt-0 flex items-center min-h-[100vh]">
