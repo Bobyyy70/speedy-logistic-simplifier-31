@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { WorldMap } from "@/components/ui/world-map/component";
+import { Button } from "@/components/ui/button";
 
 export function ContactCTA() {
   // Points de livraison internationaux pour la carte simplifiée
@@ -68,14 +69,17 @@ export function ContactCTA() {
             transition={{ duration: 0.5, delay: 0.6 }}
             whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
           >
-            <Link to="/contact" className="block w-fit mx-auto">
-              <button className="modern-button overflow-hidden relative bg-gradient-to-r from-[#2F68F3] to-[#2F68F3] hover:from-[#2F68F3] hover:to-[#F3BA2F] text-white font-medium py-3 px-6 rounded-full transition-all duration-300 shadow-lg">
-                <span className="relative z-10 flex items-center">
-                  Obtenir un devis gratuit 
-                  <ArrowRight className="ml-2 h-4 w-4 text-white group-hover:translate-x-1 transition-transform" />
-                </span>
-              </button>
-            </Link>
+            <Button 
+              variant="purple" 
+              size="2xl" 
+              className="mx-auto shadow-xl hover:shadow-[#9b87f5]/25 transition-all duration-300"
+              asChild
+            >
+              <Link to="/contact" className="flex items-center gap-2">
+                Obtenir un devis gratuit 
+                <ArrowRight className="ml-2 h-4 w-4 text-white transition-transform" />
+              </Link>
+            </Button>
           </motion.div>
           
           {/* Effets de particules flottantes */}
@@ -113,4 +117,3 @@ export function ContactCTA() {
     </section>
   );
 }
-

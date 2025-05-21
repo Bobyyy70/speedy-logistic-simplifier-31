@@ -4,16 +4,16 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Services as ServicesSection } from "@/components/home/Services";
 import { LogisticsPerformanceSection } from "@/components/sections/LogisticsPerformanceSection";
-import { AnimatedButton } from "@/components/ui/moving-border";
 import { Helmet } from "react-helmet-async";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { MapFeature } from "@/components/ui/MapFeature";
 import { motion } from "framer-motion";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"; 
 import { Package, Truck, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 // Nouveau composant pour les boutons stylisés
-const GradientButton = ({ to, children, className = "", secondary = false }: { 
+const PrimaryActionButton = ({ to, children, className = "", secondary = false }: { 
   to: string; 
   children: React.ReactNode; 
   className?: string;
@@ -21,24 +21,27 @@ const GradientButton = ({ to, children, className = "", secondary = false }: {
 }) => {
   if (secondary) {
     return (
-      <Link 
-        to={to} 
-        className={`group relative inline-flex items-center gap-2 rounded-full border border-blue-300/30 bg-white/5 backdrop-blur-sm px-6 py-3 text-base font-medium text-foreground transition-all duration-300 hover:bg-white/10 hover:border-blue-400/60 ${className}`}
-      >
-        {children}
+      <Link to={to} className={className}>
+        <Button 
+          variant="outline" 
+          size="lg" 
+          className="flex items-center gap-2 group"
+        >
+          {children}
+        </Button>
       </Link>
     );
   }
   
   return (
-    <Link 
-      to={to} 
-      className={`group relative overflow-hidden rounded-full bg-gradient-to-r from-blue-600 via-blue-500 to-orange-400 p-0.5 shadow-lg hover:shadow-blue-500/25 dark:hover:shadow-blue-800/30 transition-all duration-300 ${className}`}
-    >
-      <div className="relative bg-gradient-to-r from-blue-600/5 to-orange-400/5 backdrop-blur-sm rounded-full px-6 py-3 flex items-center gap-2 text-white font-medium">
-        <span className="relative z-10">{children}</span>
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600/90 to-orange-400/90 opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
-      </div>
+    <Link to={to} className={className}>
+      <Button 
+        variant="purple" 
+        size="lg" 
+        className="flex items-center gap-2"
+      >
+        {children}
+      </Button>
     </Link>
   );
 };
@@ -91,13 +94,13 @@ const Services = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <GradientButton to="/contact">
+              <PrimaryActionButton to="/contact">
                 Demander un devis
-              </GradientButton>
+              </PrimaryActionButton>
               
-              <GradientButton to="#services" secondary>
+              <PrimaryActionButton to="#services" secondary>
                 En savoir plus <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </GradientButton>
+              </PrimaryActionButton>
             </div>
           </motion.div>
           
@@ -241,9 +244,14 @@ const Services = () => {
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
             Discutons de vos besoins spécifiques et voyons comment Speed E-Log peut vous aider à simplifier vos opérations et à vous concentrer sur votre croissance.
           </p>
-          <GradientButton to="/contact" className="mx-auto">
-            Demander un Devis Personnalisé
-          </GradientButton>
+          <Button 
+            variant="purple" 
+            size="2xl" 
+            className="mx-auto shadow-xl hover:shadow-[#9b87f5]/25 transition-all duration-300"
+            asChild
+          >
+            <Link to="/contact">Demander un Devis Personnalisé</Link>
+          </Button>
         </motion.div>
       </section>
     </div>
