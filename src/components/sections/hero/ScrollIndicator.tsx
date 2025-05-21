@@ -54,7 +54,7 @@ export function ScrollIndicator() {
           ]
         }}
         transition={{ 
-          duration: 1,2, 
+          duration: 1.2, 
           repeat: Infinity, 
           repeatDelay: 0.7,
           ease: "easeInOut" 
