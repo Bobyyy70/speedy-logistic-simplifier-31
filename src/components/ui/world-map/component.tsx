@@ -9,9 +9,9 @@ import { MapProps } from "./types";
 
 export function WorldMap({
   dots = [],
-  lineColor = "#2F68F3",
-  secondaryLineColor = "#F3BA2F",
-  opacity = 0.65,
+  lineColor = "#4895EF",
+  secondaryLineColor = "#9D4EDD",
+  opacity = 0.75,
 }: MapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const map = new DottedMap({ height: 100, grid: "diagonal" });
@@ -21,8 +21,8 @@ export function WorldMap({
   const isDarkMode = theme === "dark";
 
   const svgMap = map.getSVG({
-    radius: 0.28, // Slightly larger dots
-    color: isDarkMode ? "#FFFFFF80" : "#00000080", // More opaque dots
+    radius: 0.3, // Slightly larger dots
+    color: "#4CC9F080", // Unified color with opacity
     shape: "circle",
     backgroundColor: "transparent", // Transparent background to blend with the gradient
   });
@@ -44,7 +44,8 @@ export function WorldMap({
   ];
 
   return (
-    <div className="w-full aspect-[2/1] rounded-lg relative font-sans site-background">
+    <div className="w-full aspect-[2/1] rounded-lg relative font-sans site-background tech-grid">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0A1128]/80 via-transparent to-[#0A1128]/80"></div>
       <img
         src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
         className={`h-full w-full [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] pointer-events-none select-none opacity-${Math.round(opacity * 100)}`}

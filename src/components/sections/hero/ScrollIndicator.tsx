@@ -11,12 +11,12 @@ export function ScrollIndicator() {
       transition={{ duration: 1, delay: 1.5 }}
     >
       <motion.div 
-        className="w-7 h-12 border-2 border-white/40 rounded-full flex justify-center"
+        className="w-7 h-12 border-2 border-white/30 rounded-full flex justify-center"
         animate={{ 
           boxShadow: [
             "0 0 0 rgba(255,255,255,0.1)", 
-            "0 0 15px rgba(47,104,243,0.5)", 
-            "0 0 5px rgba(243,186,47,0.3)", 
+            "0 0 15px rgba(72, 149, 239, 0.6)", 
+            "0 0 5px rgba(118, 74, 241, 0.5)", 
             "0 0 0 rgba(255,255,255,0.1)"
           ] 
         }}
@@ -25,7 +25,7 @@ export function ScrollIndicator() {
         <motion.div 
           className="w-2 h-2 rounded-full mt-2"
           style={{
-            background: "linear-gradient(to bottom, #2F68F3, #F3BA2F)"
+            background: "linear-gradient(to bottom, #76ABFF, #764AF1)"
           }}
           animate={{ 
             y: [0, 15, 0],
@@ -41,7 +41,6 @@ export function ScrollIndicator() {
         />
       </motion.div>
       
-      {/* Texte "Scroll" avec animation néon */}
       <motion.p 
         className="text-xs mt-3 text-center font-light tracking-widest"
         initial={{ opacity: 0, y: 5 }}
@@ -50,7 +49,7 @@ export function ScrollIndicator() {
           y: [5, 0, 5],
           textShadow: [
             "0 0 0px #ffffff", 
-            "0 0 5px #2F68F3", 
+            "0 0 5px #76ABFF", 
             "0 0 0px #ffffff"
           ]
         }}
