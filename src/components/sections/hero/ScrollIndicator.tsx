@@ -43,10 +43,10 @@ export function ScrollIndicator() {
       
       <motion.p 
         className="text-xs mt-3 text-left font-light tracking-widest"
-        initial={{ opacity: 0, y: 5 }}
+        initial={{ opacity: 0, y: 4 }}
         animate={{ 
           opacity: [0.5, 1, 0.5], 
-          y: [5, 0, 5],
+          y: [4, 0, 4],
           textShadow: [
             "0 0 0px #ffffff", 
             "0 0 5px #2F68F3", 
@@ -54,9 +54,9 @@ export function ScrollIndicator() {
           ]
         }}
         transition={{ 
-          duration: 2, 
+          duration: 1,2, 
           repeat: Infinity, 
-          repeatDelay: 0.5,
+          repeatDelay: 0.7,
           ease: "easeInOut" 
         }}
         style={{
