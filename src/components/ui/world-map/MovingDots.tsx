@@ -11,7 +11,7 @@ interface MovingDotsProps {
 export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
   return (
     <>
-      {/* Add moving dots along paths for more dynamic effect */}
+      {/* Fixed dots to avoid animation issues */}
       {dots.map((dot, i) => {
         const startPoint = projectPoint(dot.start.lat, dot.start.lng);
         const endPoint = projectPoint(dot.end.lat, dot.end.lng);
@@ -24,18 +24,10 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
             r="2"
             fill="#FFFFFF"
             initial={{ opacity: 0 }}
-            animate={{
-              cx: [startPoint.x, endPoint.x],
-              cy: [startPoint.y, endPoint.y],
-              opacity: [0, 1, 0]
-            }}
+            animate={{ opacity: 1 }}
             transition={{
-              duration: 4,
-              delay: 1 + (i * 0.5),
-              repeat: Infinity,
-              repeatDelay: 2 + (i * 0.5),
-              ease: "easeInOut",
-              times: [0, 0.5, 1]
+              duration: 0.5,
+              delay: i * 0.2
             }}
           />
         );

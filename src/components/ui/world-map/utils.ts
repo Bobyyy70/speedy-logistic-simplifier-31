@@ -16,8 +16,9 @@ export const createCurvedPath = (
   end: { x: number; y: number },
   index: number
 ) => {
-  // Vary the curve height based on the index to create different arcs
-  const heightVariation = [60, 80, 100, 70, 90][index % 5];
+  // Use more stable height calculation
+  const heightFactor = 0.5 + (index % 5) * 0.1;
+  const heightVariation = 60 + (index % 5) * 10;
   const midX = (start.x + end.x) / 2;
   const midY = Math.min(start.y, end.y) - heightVariation;
   return `M ${start.x} ${start.y} Q ${midX} ${midY} ${end.x} ${end.y}`;
