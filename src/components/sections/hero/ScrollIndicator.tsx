@@ -11,7 +11,7 @@ export function ScrollIndicator() {
       transition={{ duration: 1, delay: 1.5 }}
     >
       <motion.div 
-        className="w-7 h-12 border-2 border-white/40 rounded-full flex justify-center"
+        className="w-7 h-12 border-2 border-white/40 rounded-full flex justify-center overflow-hidden"
         animate={{ 
           boxShadow: [
             "0 0 0 rgba(255,255,255,0.1)", 
@@ -42,7 +42,7 @@ export function ScrollIndicator() {
       </motion.div>
       
       <motion.p 
-        className="text-xs mt-3 text-left font-light tracking-widest"
+        className="text-xs mt-3 text-center font-light tracking-widest overflow-hidden"
         initial={{ opacity: 0, y: 4 }}
         animate={{ 
           opacity: [0.5, 1, 0.5], 
