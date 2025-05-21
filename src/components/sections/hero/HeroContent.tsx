@@ -10,7 +10,7 @@ import { SocialProof } from "@/components/sections/hero/SocialProof";
 
 export function HeroContent() {
   return (
-    <div className="flex flex-col justify-center space-y-6 text-center lg:text-left px-[25px]">
+    <div className="flex flex-col justify-center space-y-6 text-center lg:text-left px-4 md:px-6">
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -23,12 +23,12 @@ export function HeroContent() {
       <div className="space-y-4">
         <AnimatedText
           text="La logistique E-commerce,"
-          className="text-3xl font-bold tracking-tighter xl:text-6xl/none sm:text-5xl text-white"
+          className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter text-white"
           delay={0.2}
         />
         <AnimatedText
           text="sans les tracas."
-          className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400 dark:from-blue-400 dark:to-orange-400 text-3xl font-bold tracking-tighter xl:text-6xl/none sm:text-5xl"
+          className="bg-clip-text text-transparent bg-gradient-to-r from-[#2F68F3] to-[#F3BA2F] text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter"
           delay={0.6}
         />
       </div>
@@ -37,7 +37,7 @@ export function HeroContent() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.7, delay: 1 }}
-        className="max-w-[600px] text-muted-foreground md:text-xl mx-auto lg:mx-0 text-gray-300"
+        className="max-w-[600px] text-gray-300 md:text-xl mx-auto lg:mx-0"
       >
         Externalisez votre logistique et concentrez-vous sereinement sur votre croissance. 
         <br />
@@ -48,9 +48,9 @@ export function HeroContent() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 1.3 }}
-        className="flex flex-col gap-3 min-[400px]:flex-row justify-center lg:justify-start px-[4px]"
+        className="flex flex-col gap-3 min-[400px]:flex-row justify-center lg:justify-start"
       >
-        <Button asChild size="lg" className="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 shadow-lg hover:shadow-blue-500/20 transition-all duration-300">
+        <Button asChild size="lg" className="group relative overflow-hidden bg-gradient-to-r from-[#2F68F3] to-[#2867e5] hover:from-[#2F68F3] hover:to-[#F3BA2F] shadow-lg transition-all duration-300">
           <Link to="/contact">
             <span className="relative z-10 flex items-center">
               Obtenir un devis personnalisé
@@ -67,10 +67,9 @@ export function HeroContent() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </motion.span>
             </span>
-            <span className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
           </Link>
         </Button>
-        <Button asChild variant="outline" size="lg" className="backdrop-blur-sm text-white border-white/20 hover:bg-white/10 hover:text-white transition-all duration-300">
+        <Button asChild variant="outline" size="lg" className="backdrop-blur-sm text-white border-white/20 hover:bg-white/10 hover:text-white hover:border-white/40 transition-all duration-300">
           <Link to="/services">
             Découvrir nos services
           </Link>

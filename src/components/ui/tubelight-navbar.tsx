@@ -1,26 +1,26 @@
 
-import React, { useEffect, useState } from "react"
-import { motion } from "framer-motion"
-import { NavLink } from "react-router-dom"
-import { LucideIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { NavLink } from "react-router-dom";
+import { LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { useLocation } from "react-router-dom";
 
 interface NavItem {
-  name: string
-  url: string
-  icon: LucideIcon
+  name: string;
+  url: string;
+  icon: LucideIcon;
 }
 
 interface NavBarProps {
-  items: NavItem[]
-  className?: string
+  items: NavItem[];
+  className?: string;
 }
 
 export function NavBar({ items, className }: NavBarProps) {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState<string>("");
-  const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     // Set active tab based on current location
@@ -35,13 +35,13 @@ export function NavBar({ items, className }: NavBarProps) {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
+      setIsMobile(window.innerWidth < 768);
+    };
 
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div
@@ -50,10 +50,10 @@ export function NavBar({ items, className }: NavBarProps) {
         className,
       )}
     >
-      <div className="flex items-center gap-3 bg-white/60 dark:bg-slate-900/60 border border-white/40 dark:border-slate-700/40 backdrop-blur-xl py-1 px-1 rounded-full shadow-lg">
+      <div className="flex items-center gap-3 bg-slate-900/70 border border-white/10 backdrop-blur-xl py-1 px-1 rounded-full shadow-xl">
         {items.map((item) => {
-          const Icon = item.icon
-          const isActive = activeTab === item.name
+          const Icon = item.icon;
+          const isActive = activeTab === item.name;
 
           return (
             <NavLink
@@ -62,8 +62,8 @@ export function NavBar({ items, className }: NavBarProps) {
               onClick={() => setActiveTab(item.name)}
               className={cn(
                 "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
-                "text-foreground/80 hover:text-primary",
-                isActive && "bg-white/70 dark:bg-slate-800/70 text-primary",
+                "text-white/70 hover:text-[#F3BA2F]",
+                isActive && "bg-slate-800/70 text-white",
               )}
             >
               <span className="hidden md:inline">{item.name}</span>
@@ -73,7 +73,7 @@ export function NavBar({ items, className }: NavBarProps) {
               {isActive && (
                 <motion.div
                   layoutId="lamp"
-                  className="absolute inset-0 w-full bg-primary/5 rounded-full -z-10"
+                  className="absolute inset-0 w-full bg-[#2F68F3]/10 rounded-full -z-10"
                   initial={false}
                   transition={{
                     type: "spring",
@@ -81,17 +81,17 @@ export function NavBar({ items, className }: NavBarProps) {
                     damping: 30,
                   }}
                 >
-                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-primary rounded-t-full">
-                    <div className="absolute w-12 h-6 bg-speedelog-400/60 rounded-full blur-md -top-2 -left-2" />
-                    <div className="absolute w-8 h-6 bg-speedelog-400/60 rounded-full blur-md -top-1" />
-                    <div className="absolute w-4 h-4 bg-speedelog-400/60 rounded-full blur-sm top-0 left-2" />
+                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-[#2F68F3] rounded-t-full">
+                    <div className="absolute w-12 h-6 bg-[#2F68F3]/60 rounded-full blur-md -top-2 -left-2" />
+                    <div className="absolute w-8 h-6 bg-[#2F68F3]/60 rounded-full blur-md -top-1" />
+                    <div className="absolute w-4 h-4 bg-[#2F68F3]/60 rounded-full blur-sm top-0 left-2" />
                   </div>
                 </motion.div>
               )}
             </NavLink>
-          )
+          );
         })}
       </div>
     </div>
-  )
+  );
 }

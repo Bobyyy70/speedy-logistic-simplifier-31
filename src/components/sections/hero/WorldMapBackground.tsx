@@ -1,5 +1,6 @@
 
 import React from "react";
+import { motion } from "framer-motion";
 import { WorldMap } from "@/components/ui/world-map/component";
 
 export function WorldMapBackground() {
@@ -32,13 +33,21 @@ export function WorldMapBackground() {
   ];
 
   return (
-    <div className="absolute inset-0 world-map-container transition-transform duration-200 ease-out">
+    <motion.div 
+      className="absolute inset-0 world-map-container transition-transform duration-200 ease-out opacity-90"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 0.9 }}
+      transition={{ duration: 1.5, delay: 0.5 }}
+    >
       <WorldMap 
         dots={shippingRoutes} 
         lineColor="#2F68F3" 
         secondaryLineColor="#F3BA2F"
-        opacity={0.65}
+        opacity={0.85}
       />
-    </div>
+      
+      {/* Overlay gradient for better contrast with content */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/30 via-transparent to-slate-900/50"></div>
+    </motion.div>
   );
 }

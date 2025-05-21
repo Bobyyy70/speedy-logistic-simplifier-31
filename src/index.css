@@ -8,8 +8,13 @@
     @apply backdrop-blur-sm bg-white/5 border border-white/10 shadow-glass-light;
   }
 
-  .glass-background {
-    @apply bg-speedelog-glass-50/40 backdrop-blur-sm;
+  .glass-card {
+    @apply relative overflow-hidden;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   }
   
   .section-container {
@@ -53,9 +58,9 @@
     @apply px-3 md:px-4; /* Conteneurs avec marges horizontales adaptatives */
   }
   
-  /* Fond de l'application - maintenant défini pour tout le site */
+  /* Fond de l'application - maintenant défini pour avoir un fond sombre */
   .site-background {
-    @apply bg-gradient-to-r from-green-200 via-white to-blue-100 dark:from-green-800 dark:via-slate-950 dark:to-blue-900;
+    @apply bg-slate-950;
   }
   
   /* Nouvelle animation pulse pour les vagues */
@@ -68,16 +73,7 @@
     50% { opacity: 0.8; }
   }
   
-  /* Nouveaux styles pour le design flashy et moderne */
-  .glass-card {
-    @apply relative overflow-hidden;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  }
-  
+  /* Styles pour le design flashy et moderne */
   .glass-card::before {
     content: '';
     position: absolute;
@@ -123,6 +119,15 @@
   
   .neon-text {
     text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
+  }
+  
+  /* Styles pour buttons modernes */
+  .modern-button {
+    @apply relative overflow-hidden transition-all duration-300 before:absolute before:inset-0 before:z-0 before:bg-gradient-to-r before:from-[#2F68F3] before:to-[#F3BA2F] before:opacity-0 before:transition-opacity hover:before:opacity-100;
+  }
+  
+  .modern-button span {
+    @apply relative z-10;
   }
 }
 

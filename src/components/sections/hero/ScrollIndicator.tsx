@@ -41,7 +41,6 @@ export function ScrollIndicator() {
         />
       </motion.div>
       
-      {/* Texte "Scroll" avec animation néon */}
       <motion.p 
         className="text-xs mt-3 text-center font-light tracking-widest"
         initial={{ opacity: 0, y: 5 }}

@@ -26,7 +26,7 @@ export function HeroSection() {
       if (worldMapElement) {
         // Subtle parallax movement for world map
         (worldMapElement as HTMLElement).style.transform = 
-          `translate3d(${moveX * 10}px, ${moveY * 10}px, 0)`;
+          `translate3d(${moveX * 15}px, ${moveY * 15}px, 0)`;
       }
     };
 
@@ -37,24 +37,28 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section ref={heroRef} className="relative py-0 md:py-0 lg:py-0 overflow-hidden xl:py-0 rounded-none mx-0 min-h-[100vh]">
+    <section ref={heroRef} className="relative w-full h-screen min-h-[100vh] overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 z-0"></div>
+      
       <BackgroundGradientAnimation 
         height="100vh"
-        gradientBackgroundStart="rgb(17, 24, 39)" // Dark blue background
-        gradientBackgroundEnd="rgb(2, 6, 23)"      // Almost black
-        firstColor="18, 113, 255"                  // Blue
-        secondColor="243, 186, 47"                 // Orange
-        thirdColor="45, 212, 191"                  // Teal
-        fourthColor="240, 171, 252"                // Purple
-        fifthColor="22, 78, 99"                    // Dark blue
-        pointerColor="243, 186, 47"                // Orange
+        gradientBackgroundStart="rgb(2, 6, 23)" 
+        gradientBackgroundEnd="rgb(1, 1, 15)"
+        firstColor="47, 104, 243"     // Primary blue
+        secondColor="243, 186, 47"    // Secondary orange/yellow
+        thirdColor="45, 212, 191"     // Teal
+        fourthColor="240, 171, 252"   // Purple
+        fifthColor="22, 78, 99"       // Dark blue
+        pointerColor="243, 186, 47"   // Orange
         interactive={true}
-        className="z-10"
+        className="absolute inset-0 z-10"
         preserveBackground={true}
       >
-        <WorldMapBackground />
+        <div className="absolute inset-0 z-10">
+          <WorldMapBackground />
+        </div>
         
-        <div className="container mx-auto relative z-20 px-0 pt-16 md:pt-0 flex items-center min-h-[100vh]">
+        <div className="container mx-auto relative z-20 h-full flex items-center">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_600px] gap-6 lg:gap-12 items-center">
             {/* Content Column */}
             <HeroContent />

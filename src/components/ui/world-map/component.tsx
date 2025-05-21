@@ -11,7 +11,7 @@ export function WorldMap({
   dots = [],
   lineColor = "#2F68F3",
   secondaryLineColor = "#F3BA2F",
-  opacity = 0.65,
+  opacity = 0.85,
 }: MapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const map = new DottedMap({ height: 100, grid: "diagonal" });
@@ -21,8 +21,8 @@ export function WorldMap({
   const isDarkMode = theme === "dark";
 
   const svgMap = map.getSVG({
-    radius: 0.28, // Slightly larger dots
-    color: isDarkMode ? "#FFFFFF80" : "#00000080", // More opaque dots
+    radius: 0.35, // Slightly larger dots
+    color: isDarkMode ? "#FFFFFF90" : "#00000090", // More opaque dots
     shape: "circle",
     backgroundColor: "transparent", // Transparent background to blend with the gradient
   });
@@ -44,7 +44,7 @@ export function WorldMap({
   ];
 
   return (
-    <div className="w-full aspect-[2/1] rounded-lg relative font-sans site-background">
+    <div className="w-full h-full rounded-lg relative font-sans">
       <img
         src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
         className={`h-full w-full [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] pointer-events-none select-none opacity-${Math.round(opacity * 100)}`}

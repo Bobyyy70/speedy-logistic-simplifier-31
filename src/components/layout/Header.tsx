@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/neon-button";
@@ -8,14 +9,17 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose 
 import { NavBar } from "@/components/ui/tubelight-navbar";
 import { Home, Briefcase, Info, FileQuestion, Contact, Laptop } from 'lucide-react';
 import { useIsMobile } from "@/hooks/use-mobile";
+
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const isMobile = useIsMobile();
+
   useEffect(() => {
     setOpen(false);
   }, [location]);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -23,33 +27,48 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  const navigationItems = [{
-    name: "Accueil",
-    url: "/",
-    icon: Home
-  }, {
-    name: "Services",
-    url: "/services",
-    icon: Briefcase
-  }, {
-    name: "Technologie",
-    url: "/technology",
-    icon: Laptop
-  }, {
-    name: "À Propos",
-    url: "/about",
-    icon: Info
-  }, {
-    name: "FAQ",
-    url: "/faq",
-    icon: FileQuestion
-  }, {
-    name: "Contact",
-    url: "/contact",
-    icon: Contact
-  }];
-  return <header className={cn("sticky top-0 z-50 w-full bg-transparent backdrop-blur-sm", isScrolled && "shadow-sm bg-white/10 dark:bg-slate-900/10")}>
-      <div className="container flex h-20 items-center justify-between py-0 my-[8px]">
+
+  const navigationItems = [
+    {
+      name: "Accueil",
+      url: "/",
+      icon: Home
+    },
+    {
+      name: "Services",
+      url: "/services",
+      icon: Briefcase
+    },
+    {
+      name: "Technologie",
+      url: "/technology",
+      icon: Laptop
+    },
+    {
+      name: "À Propos",
+      url: "/about",
+      icon: Info
+    },
+    {
+      name: "FAQ",
+      url: "/faq",
+      icon: FileQuestion
+    },
+    {
+      name: "Contact",
+      url: "/contact",
+      icon: Contact
+    }
+  ];
+
+  return (
+    <header className={cn(
+      "fixed top-0 z-50 w-full transition-all duration-300",
+      isScrolled 
+        ? "bg-slate-900/80 backdrop-blur-md shadow-md border-b border-white/5" 
+        : "bg-transparent"
+    )}>
+      <div className="container flex h-20 items-center justify-between">
         <NavLink to="/" className="flex items-center h-full py-0">
           <LogoIconWithText className="w-auto h-full" />
         </NavLink>
@@ -64,26 +83,35 @@ const Header = () => {
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[80%] sm:w-[350px] bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
+          <SheetContent side="right" className="w-[80%] sm:w-[350px] bg-slate-900/95 backdrop-blur-md border-white/10">
             <SheetHeader>
-              <SheetTitle className="text-left">Menu</SheetTitle>
+              <SheetTitle className="text-left text-white">Menu</SheetTitle>
             </SheetHeader>
             <div className="flex justify-center my-4">
               <LogoIconWithText />
             </div>
             <nav className="flex flex-col gap-4 mt-8">
-              {navigationItems.map(item => <SheetClose key={item.name} asChild>
-                  <NavLink to={item.url} className={({
-                isActive
-              }) => cn("text-base font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400 px-1 py-2", isActive ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-foreground")}>
+              {navigationItems.map(item => (
+                <SheetClose key={item.name} asChild>
+                  <NavLink 
+                    to={item.url} 
+                    className={({isActive}) => cn(
+                      "text-base font-medium transition-colors flex items-center gap-2 px-1 py-2",
+                      isActive 
+                        ? "text-[#F3BA2F] font-semibold" 
+                        : "text-white/80 hover:text-[#2F68F3]"
+                    )}
+                  >
+                    <item.icon className="h-5 w-5" />
                     {item.name}
                   </NavLink>
-                </SheetClose>)}
+                </SheetClose>
+              ))}
               
               <div className="mt-4">
                 <SheetClose>
                   <NavLink to="/contact" className="block">
-                    <Button variant="solid" size="default">
+                    <Button variant="solid" size="default" className="w-full">
                       Obtenir un devis
                     </Button>
                   </NavLink>
@@ -95,12 +123,16 @@ const Header = () => {
 
         <div className="hidden md:block">
           <NavLink to="/contact">
-            
+            <Button variant="solid" size="default">
+              Obtenir un devis
+            </Button>
           </NavLink>
         </div>
       </div>
       
       {isMobile && <NavBar items={navigationItems.slice(0, 5)} className="z-50" />}
-    </header>;
+    </header>
+  );
 };
+
 export default Header;

@@ -23,16 +23,16 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
             <motion.circle
               cx={startPoint.x}
               cy={startPoint.y}
-              r="3.5"
+              r="4"
               fill="url(#originGradient)"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ 
                 opacity: [0.7, 1, 0.7], 
                 scale: [1, 1.3, 1],
                 filter: [
-                  "drop-shadow(0 0 2px rgba(47, 104, 243, 0.8))", 
-                  "drop-shadow(0 0 8px rgba(47, 104, 243, 0.9))", 
-                  "drop-shadow(0 0 2px rgba(47, 104, 243, 0.8))"
+                  "drop-shadow(0 0 3px rgba(47, 104, 243, 0.9))", 
+                  "drop-shadow(0 0 10px rgba(47, 104, 243, 1))", 
+                  "drop-shadow(0 0 3px rgba(47, 104, 243, 0.9))"
                 ]
               }}
               transition={{
@@ -48,14 +48,14 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
             <motion.circle
               cx={startPoint.x}
               cy={startPoint.y}
-              r="6"
+              r="8"
               fill="none"
               stroke="url(#haloGradient)"
-              strokeWidth="1"
+              strokeWidth="1.5"
               initial={{ opacity: 0 }}
               animate={{ 
-                opacity: [0, 0.5, 0],
-                scale: [0.8, 1.5, 0.8],
+                opacity: [0, 0.7, 0],
+                scale: [0.8, 1.8, 0.8],
               }}
               transition={{
                 duration: 4,
@@ -71,16 +71,16 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
               <motion.circle
                 cx={endPoint.x}
                 cy={endPoint.y}
-                r="2.5"
+                r="3"
                 fill="url(#destinationGradient)"
                 initial={{ opacity: 0 }}
                 animate={{ 
                   opacity: [0.6, 1, 0.6],
                   scale: [1, 1.3, 1],
                   filter: [
-                    "drop-shadow(0 0 1px rgba(243, 186, 47, 0.6))",
-                    "drop-shadow(0 0 6px rgba(243, 186, 47, 0.8))",
-                    "drop-shadow(0 0 1px rgba(243, 186, 47, 0.6))"
+                    "drop-shadow(0 0 2px rgba(243, 186, 47, 0.7))",
+                    "drop-shadow(0 0 8px rgba(243, 186, 47, 0.9))",
+                    "drop-shadow(0 0 2px rgba(243, 186, 47, 0.7))"
                   ]
                 }}
                 transition={{
@@ -93,23 +93,23 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
               />
             )}
             
-            {/* Optional destination label with glow effect */}
+            {/* Improved destination label with glow effect */}
             {dot.end.label && (
               <motion.text
-                x={endPoint.x + 5}
-                y={endPoint.y - 5}
-                fontSize="8"
+                x={endPoint.x + 6}
+                y={endPoint.y - 6}
+                fontSize="9"
                 fill="#FFFFFF"
                 opacity="0.8"
                 fontFamily="sans-serif"
-                fontWeight="400"
+                fontWeight="500"
                 initial={{ opacity: 0 }}
                 animate={{ 
                   opacity: [0.6, 0.9, 0.6],
                   filter: [
-                    "drop-shadow(0 0 0px rgba(255,255,255,0.3))",
-                    "drop-shadow(0 0 2px rgba(255,255,255,0.9))",
-                    "drop-shadow(0 0 0px rgba(255,255,255,0.3))"
+                    "drop-shadow(0 0 1px rgba(255,255,255,0.5))",
+                    "drop-shadow(0 0 3px rgba(255,255,255,1))",
+                    "drop-shadow(0 0 1px rgba(255,255,255,0.5))"
                   ]
                 }}
                 transition={{
@@ -136,7 +136,7 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
         </radialGradient>
         
         <radialGradient id="haloGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-          <stop offset="0%" stopColor="#4C8DFF" stopOpacity="0.5" />
+          <stop offset="0%" stopColor="#4C8DFF" stopOpacity="0.7" />
           <stop offset="100%" stopColor="#4C8DFF" stopOpacity="0" />
         </radialGradient>
         

@@ -20,14 +20,13 @@ export const AuroraBackground = ({
     <div
       className={cn(
         "relative flex flex-col items-center justify-center transition-bg",
-        !keepExistingBackground && "h-[100vh] bg-zinc-50 dark:bg-zinc-900 text-slate-950",
+        !keepExistingBackground && "h-[100vh] bg-slate-950 text-slate-50",
         className
       )}
       {...props}
     >
       <div className="absolute inset-0 overflow-hidden">
         <div
-          //   I'm sorry but this is what peak developer performance looks like // trigger warning
           className={cn(
             `
             [--white-gradient:repeating-linear-gradient(100deg,var(--white)_0%,var(--white)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--white)_16%)]
