@@ -19,22 +19,20 @@ export const MapPoints: React.FC<MapPointsProps> = ({
     <>
       {dots.map((dot, i) => {
         const currentColor = getLineColor(i, lineColor, secondaryLineColor);
-        const startPoint = projectPoint(dot.start.lat, dot.start.lng);
-        const endPoint = projectPoint(dot.end.lat, dot.end.lng);
         
         return (
           <g key={`points-group-${i}`}>
             {/* Start point */}
             <g key={`start-${i}`}>
-              {/* France highlight - version simplifiée */}
+              {/* France highlight - special treatment for origin */}
               {dot.start.lat === 48.8566 && dot.start.lng === 2.3522 && (
                 <motion.circle
-                  cx={startPoint.x}
-                  cy={startPoint.y}
+                  cx={projectPoint(dot.start.lat, dot.start.lng).x}
+                  cy={projectPoint(dot.start.lat, dot.start.lng).y}
                   r="5" 
                   fill="#F3BA2F"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.7 }}
+                  initial={{ scale: 0.5, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
                   transition={{ 
                     duration: 1,
                     delay: 0.2,
@@ -42,29 +40,46 @@ export const MapPoints: React.FC<MapPointsProps> = ({
                 />
               )}
               <motion.circle
-                cx={startPoint.x}
-                cy={startPoint.y}
+                cx={projectPoint(dot.start.lat, dot.start.lng).x}
+                cy={projectPoint(dot.start.lat, dot.start.lng).y}
                 r="3.5"
                 fill={currentColor}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.7 }}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 0.9 }}
                 transition={{ 
                   duration: 0.5,
-                  delay: 0.2,
+                  delay: 0.2 * i,
                 }}
               />
-              
-              {/* Étiquette France */}
+              <motion.circle
+                cx={projectPoint(dot.start.lat, dot.start.lng).x}
+                cy={projectPoint(dot.start.lat, dot.start.lng).y}
+                r="3.5" 
+                fill={currentColor}
+                opacity="0.6"
+                initial={{ scale: 1 }}
+                animate={{ 
+                  scale: [1, 1.8, 1],
+                  opacity: [0.6, 0.2, 0.6],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                }}
+              />
+              {/* Add city label for France origin only */}
               {dot.start.lat === 48.8566 && dot.start.lng === 2.3522 && (
                 <motion.text
-                  x={startPoint.x + 8}
-                  y={startPoint.y - 8}
-                  fontSize="11"
-                  fontWeight="500"
+                  x={projectPoint(dot.start.lat, dot.start.lng).x + 8}
+                  y={projectPoint(dot.start.lat, dot.start.lng).y - 8}
+                  fontSize="10"
                   fill="#FFFFFF"
+                  opacity="0.8"
+                  textAnchor="start"
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.7 }}
-                  transition={{ duration: 1 }}
+                  animate={{ opacity: 0.8 }}
+                  transition={{ duration: 1, delay: 0.5 }}
                 >
                   France
                 </motion.text>
@@ -74,29 +89,47 @@ export const MapPoints: React.FC<MapPointsProps> = ({
             {/* End point */}
             <g key={`end-${i}`}>
               <motion.circle
-                cx={endPoint.x}
-                cy={endPoint.y}
+                cx={projectPoint(dot.end.lat, dot.end.lng).x}
+                cy={projectPoint(dot.end.lat, dot.end.lng).y}
                 r="3.5"
                 fill={currentColor}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.7 }}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 0.9 }}
                 transition={{ 
                   duration: 0.5,
-                  delay: 0.5,
+                  delay: 0.2 * i + 2, // Appear after path animation
                 }}
               />
-              
-              {/* Étiquettes de destination */}
+              <motion.circle
+                cx={projectPoint(dot.end.lat, dot.end.lng).x}
+                cy={projectPoint(dot.end.lat, dot.end.lng).y}
+                r="3.5" 
+                fill={currentColor}
+                opacity="0.6"
+                initial={{ scale: 1, opacity: 0 }}
+                animate={{ 
+                  scale: [1, 1.8, 1],
+                  opacity: [0.6, 0.2, 0.6],
+                }}
+                transition={{
+                  duration: 2,
+                  delay: 0.2 * i + 2,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                }}
+              />
+              {/* Add destination labels for notable destinations */}
               {dot.end.label && (
                 <motion.text
-                  x={endPoint.x + 8}
-                  y={endPoint.y - 5}
-                  fontSize="10"
-                  fontWeight="500"
+                  x={projectPoint(dot.end.lat, dot.end.lng).x + 8}
+                  y={projectPoint(dot.end.lat, dot.end.lng).y - 5}
+                  fontSize="9"
                   fill="#FFFFFF"
+                  opacity="0.7"
+                  textAnchor="start"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 0.7 }}
-                  transition={{ duration: 1 }}
+                  transition={{ duration: 1, delay: 0.2 * i + 2.5 }}
                 >
                   {dot.end.label}
                 </motion.text>
