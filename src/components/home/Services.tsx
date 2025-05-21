@@ -91,17 +91,13 @@ export function Services() {
           viewport={{ once: true }}
           className="flex justify-center mt-12 md:mt-16"
         >
-          <Button 
-            asChild 
-            size="lg" 
-            variant="gradient"
-            className="shadow-xl hover:shadow-blue-500/10 dark:hover:shadow-blue-800/20 group"
-          >
-            <Link to="/contact" className="flex items-center gap-2">
-              Demander un devis personnalisé
+          <Link to="/contact" className="group relative overflow-hidden rounded-full bg-gradient-to-r from-blue-600 via-blue-500 to-orange-400 p-0.5 shadow-lg hover:shadow-blue-500/25 dark:hover:shadow-blue-800/30 transition-all duration-300">
+            <div className="relative bg-gradient-to-r from-blue-600/5 to-orange-400/5 backdrop-blur-sm rounded-full px-6 py-3 flex items-center gap-2 text-white font-medium">
+              <span className="relative z-10">Demander un devis personnalisé</span>
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
-            </Link>
-          </Button>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600/90 to-orange-400/90 opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+          </Link>
         </motion.div>
       </div>
     </section>

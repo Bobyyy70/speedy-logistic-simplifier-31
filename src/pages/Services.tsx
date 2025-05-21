@@ -12,6 +12,37 @@ import { motion } from "framer-motion";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"; 
 import { Package, Truck, ArrowRight, CheckCircle2 } from "lucide-react";
 
+// Nouveau composant pour les boutons stylisés
+const GradientButton = ({ to, children, className = "", secondary = false }: { 
+  to: string; 
+  children: React.ReactNode; 
+  className?: string;
+  secondary?: boolean;
+}) => {
+  if (secondary) {
+    return (
+      <Link 
+        to={to} 
+        className={`group relative inline-flex items-center gap-2 rounded-full border border-blue-300/30 bg-white/5 backdrop-blur-sm px-6 py-3 text-base font-medium text-foreground transition-all duration-300 hover:bg-white/10 hover:border-blue-400/60 ${className}`}
+      >
+        {children}
+      </Link>
+    );
+  }
+  
+  return (
+    <Link 
+      to={to} 
+      className={`group relative overflow-hidden rounded-full bg-gradient-to-r from-blue-600 via-blue-500 to-orange-400 p-0.5 shadow-lg hover:shadow-blue-500/25 dark:hover:shadow-blue-800/30 transition-all duration-300 ${className}`}
+    >
+      <div className="relative bg-gradient-to-r from-blue-600/5 to-orange-400/5 backdrop-blur-sm rounded-full px-6 py-3 flex items-center gap-2 text-white font-medium">
+        <span className="relative z-10">{children}</span>
+        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600/90 to-orange-400/90 opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
+      </div>
+    </Link>
+  );
+};
+
 const Services = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -60,17 +91,13 @@ const Services = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <AnimatedButton 
-                asChild
-                className="shadow-lg px-6 py-3 text-base font-medium"
-              >
-                <Link to="/contact">Demander un devis</Link>
-              </AnimatedButton>
+              <GradientButton to="/contact">
+                Demander un devis
+              </GradientButton>
               
-              <Link to="#services" className="group inline-flex items-center gap-2 px-6 py-3 bg-transparent hover:bg-white/10 text-foreground border border-blue-500/30 rounded-full transition-all duration-300">
-                En savoir plus
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
+              <GradientButton to="#services" secondary>
+                En savoir plus <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </GradientButton>
             </div>
           </motion.div>
           
@@ -214,12 +241,9 @@ const Services = () => {
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
             Discutons de vos besoins spécifiques et voyons comment Speed E-Log peut vous aider à simplifier vos opérations et à vous concentrer sur votre croissance.
           </p>
-          <AnimatedButton 
-            asChild
-            className="shadow-lg hover:shadow-orange-200/20 dark:hover:shadow-orange-900/20 px-6 py-3 text-lg"
-          >
-            <Link to="/contact">Demander un Devis Personnalisé</Link>
-          </AnimatedButton>
+          <GradientButton to="/contact" className="mx-auto">
+            Demander un Devis Personnalisé
+          </GradientButton>
         </motion.div>
       </section>
     </div>
