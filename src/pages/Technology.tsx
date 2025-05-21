@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -354,7 +355,7 @@ const Technology = () => {
         </section>
         
         {/* Features Section with animated cards */}
-        <section ref={featuresRef} id="features" className="py-24 relative overflow-hidden">
+        <section id="features" className="py-24 relative overflow-hidden">
           <div className="container mx-auto px-6">
             <motion.div 
               className="text-center mb-16"
