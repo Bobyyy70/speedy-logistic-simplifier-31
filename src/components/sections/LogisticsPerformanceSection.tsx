@@ -157,7 +157,7 @@ export function LogisticsPerformanceSection() {
             transition={{ delay: 0.3 }}
           >
             <div className="relative">
-              <div className="absolute -inset-4 bg-blue-100/40 dark:bg-blue-900/20 rounded-full blur-xl" />
+              <div className="absolute -inset-4 rounded-full blur-xl" />
               <img 
                 alt="SupplyOS Logo" 
                 className="relative z-10 max-w-full h-auto" 
