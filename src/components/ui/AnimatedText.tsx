@@ -26,27 +26,26 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
   // Split the text into words or letters
   const items = type === "words" ? text.split(" ") : Array.from(text);
 
+  // Simpler animation variants to avoid the framer-motion error
   const container = {
     hidden: { opacity: 0 },
-    visible: (i = 1) => ({
+    visible: {
       opacity: 1,
-      transition: { staggerChildren, delayChildren: delay * i },
-    }),
+      transition: { 
+        staggerChildren: staggerChildren,
+        delayChildren: delay,
+      },
+    },
   };
 
   const child = {
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
-    },
     hidden: {
       opacity: 0,
       y: 20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
       transition: {
         type: "spring",
         damping: 12,
@@ -61,6 +60,7 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
+      variants={container}
     >
       {items.map((item, index) => {
         // Check if this word should be highlighted
