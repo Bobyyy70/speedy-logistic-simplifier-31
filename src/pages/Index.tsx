@@ -10,7 +10,6 @@ import { ContactCTA } from "@/components/home/ContactCTA";
 import { LogisticsFeatureSection } from "@/components/sections/LogisticsFeatureSection";
 import { LogisticsPerformanceSection } from "@/components/sections/LogisticsPerformanceSection";
 import { motion } from "framer-motion";
-import { BackgroundPaths } from "@/components/ui/background-paths";
 
 // Animation variants pour les transitions entre sections
 const sectionVariants = {
@@ -32,7 +31,7 @@ const Index = () => {
   }, []);
 
   return (
-    <BackgroundPaths className="min-h-screen bg-gradient-to-b from-slate-50 via-slate-50 to-white" opacity={0.2}>
+    <div className="min-h-screen bg-white">
       <motion.div
         initial="hidden"
         animate="visible"
@@ -87,7 +86,7 @@ const Index = () => {
           <ContactCTA />
         </motion.div>
       </motion.div>
-    </BackgroundPaths>
+    </div>
   );
 }
 

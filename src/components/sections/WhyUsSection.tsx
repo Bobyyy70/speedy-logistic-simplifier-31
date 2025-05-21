@@ -48,7 +48,7 @@ export function WhyUsSection() {
     <section 
       id="why-us" 
       ref={ref}
-      className="py-12 md:py-24 lg:py-32 bg-white dark:bg-slate-950 relative overflow-hidden"
+      className="py-12 md:py-24 lg:py-32 bg-white relative overflow-hidden"
     >
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-10">

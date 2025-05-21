@@ -55,7 +55,7 @@ export function HowItWorksSection() {
   };
   
   return (
-    <section id="how-it-works" className="py-12 md:py-24 relative overflow-hidden bg-white dark:bg-slate-950 lg:py-32">
+    <section id="how-it-works" className="py-12 md:py-24 relative overflow-hidden bg-white lg:py-32">
       <div className="container mx-auto px-4 relative z-10">
         {/* Introduction */}
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12 md:mb-16">
@@ -87,7 +87,7 @@ export function HowItWorksSection() {
         </div>
 
         {/* Tabs pour les étapes */}
-        <Card className="max-w-5xl mx-auto border-0 shadow-lg bg-white dark:bg-slate-900/70 backdrop-blur-sm">
+        <Card className="max-w-5xl mx-auto border-0 shadow-lg bg-white dark:bg-slate-900/70">
           <CardContent className="p-6 md:p-8">
             <Tabs defaultValue="step1" value={activeTab} onValueChange={handleTabChange} className="w-full h-full">
               {/* TabsList modifiée pour utiliser toute la largeur disponible */}
@@ -150,8 +150,6 @@ export function HowItWorksSection() {
             </Tabs>
           </CardContent>
         </Card>
-
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-200 dark:via-blue-800/30 to-transparent" />
       </div>
     </section>
   );

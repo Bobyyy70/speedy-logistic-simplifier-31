@@ -24,11 +24,7 @@ export function ChallengesSection() {
   ];
   
   return (
-    <section id="challenges" className="py-12 md:py-24 lg:py-32 bg-gradient-to-r from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900 relative overflow-hidden">
-      {/* Cercles décoratifs */}
-      <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-blue-400/5 blur-3xl" />
-      <div className="absolute bottom-10 right-10 w-72 h-72 rounded-full bg-green-400/5 blur-3xl" />
-      
+    <section id="challenges" className="py-12 md:py-24 lg:py-32 bg-white relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         {/* Introduction */}
         <motion.div 

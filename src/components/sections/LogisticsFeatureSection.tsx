@@ -41,9 +41,7 @@ export function LogisticsFeatureSection() {
   ];
 
   return (
-    <div className="py-16 site-background relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-green-100/10 to-blue-100/10 dark:from-green-900/10 dark:to-blue-900/10 pointer-events-none" />
-      
+    <div className="py-16 bg-white relative">
       <MapFeature 
         title="Infrastructure Optimisée sur une Portée Mondiale"
         description="Notre entrepôt est spécialement conçu pour traiter efficacement les commandes e-commerce à l'échelle internationale. Avec des processus optimisés et une technologie de pointe, nous garantissons rapidité et précision pour vos livraisons partout dans le monde."
@@ -69,7 +67,7 @@ export function LogisticsFeatureSection() {
           {checkItems.map((item, index) => (
             <motion.div
               key={index}
-              className="section-box bg-white align-center dark:bg-slate-800/20 backdrop-blur-sm rounded-10 rounded-lg p-6 shadow-sm border border-gray-100/20 dark:border-gray-700/20"
+              className="section-box bg-white align-center border border-gray-100/20 rounded-lg p-6 shadow-sm"
               custom={index}
               initial="hidden"
               whileInView="visible"

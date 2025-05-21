@@ -19,14 +19,11 @@ export function ContactCTA() {
   ];
 
   return (
-    <section className="py-16 md:py-24 lg:py-32 px-0 relative overflow-hidden bg-gradient-to-r from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
+    <section className="py-16 md:py-24 lg:py-32 px-0 relative overflow-hidden bg-white">
       {/* Fond subtil avec carte du monde */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
         <WorldMap dots={globalShippingPoints} opacity={0.35} />
       </div>
-      
-      {/* Overlay gradient pour améliorer la lisibilité */}
-      <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-transparent to-white/70 dark:from-slate-900/70 dark:via-transparent dark:to-slate-900/70 pointer-events-none" />
       
       <div className="section-container py-0 my-0 px-4 md:px-8 relative z-10">
         <motion.div 
