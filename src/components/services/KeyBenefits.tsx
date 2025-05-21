@@ -23,7 +23,7 @@ const benefitItems = [
 
 export const KeyBenefits: React.FC = () => {
   return (
-    <section className="py-8 md:py-8 relative bg-gradient-to-b from-transparent to-slate-50/30 dark:to-slate-900/30">
+    <section className="py-0 relative bg-gradient-to-b from-transparent to-slate-50/30 dark:to-slate-900/30">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {benefitItems.map((item, index) => (
