@@ -65,7 +65,7 @@ const Header = () => {
     <header className={cn(
       "fixed top-0 z-50 w-full transition-all duration-300",
       isScrolled 
-        ? "bg-slate-900/80 backdrop-blur-md shadow-md border-b border-white/5" 
+        ? "bg-white/90 backdrop-blur-md shadow-md border-b border-slate-200" 
         : "bg-transparent"
     )}>
       <div className="container flex h-20 items-center justify-between">
@@ -83,9 +83,9 @@ const Header = () => {
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[80%] sm:w-[350px] bg-slate-900/95 backdrop-blur-md border-white/10">
+          <SheetContent side="right" className="w-[80%] sm:w-[350px] bg-white border-slate-200">
             <SheetHeader>
-              <SheetTitle className="text-left text-white">Menu</SheetTitle>
+              <SheetTitle className="text-left text-slate-900">Menu</SheetTitle>
             </SheetHeader>
             <div className="flex justify-center my-4">
               <LogoIconWithText />
@@ -99,7 +99,7 @@ const Header = () => {
                       "text-base font-medium transition-colors flex items-center gap-2 px-1 py-2",
                       isActive 
                         ? "text-[#F3BA2F] font-semibold" 
-                        : "text-white/80 hover:text-[#2F68F3]"
+                        : "text-slate-700 hover:text-[#2F68F3]"
                     )}
                   >
                     <item.icon className="h-5 w-5" />

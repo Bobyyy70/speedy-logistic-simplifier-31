@@ -23,7 +23,7 @@ export function HeroContent() {
       <div className="space-y-4">
         <AnimatedText
           text="La logistique E-commerce,"
-          className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter text-white"
+          className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter text-slate-900"
           delay={0.2}
         />
         <AnimatedText
@@ -37,7 +37,7 @@ export function HeroContent() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.7, delay: 1 }}
-        className="max-w-[600px] text-gray-300 md:text-xl mx-auto lg:mx-0"
+        className="max-w-[600px] text-slate-700 md:text-xl mx-auto lg:mx-0"
       >
         Externalisez votre logistique et concentrez-vous sereinement sur votre croissance. 
         <br />

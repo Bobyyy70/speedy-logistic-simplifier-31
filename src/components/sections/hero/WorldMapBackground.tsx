@@ -43,11 +43,13 @@ export function WorldMapBackground() {
         dots={shippingRoutes} 
         lineColor="#2F68F3" 
         secondaryLineColor="#F3BA2F"
-        opacity={0.85}
+        opacity={0.6}
+        dotColor="#2F68F3"
+        secondaryDotColor="#F3BA2F"
       />
       
       {/* Overlay gradient for better contrast with content */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/30 via-transparent to-slate-900/50"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-50/50 via-transparent to-slate-50/50"></div>
     </motion.div>
   );
 }

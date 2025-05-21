@@ -38,21 +38,23 @@ export function HeroSection() {
 
   return (
     <section ref={heroRef} className="relative w-full h-screen min-h-[100vh] overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 z-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-slate-100 to-white z-0"></div>
       
       <BackgroundGradientAnimation 
         height="100vh"
-        gradientBackgroundStart="rgb(2, 6, 23)" 
-        gradientBackgroundEnd="rgb(1, 1, 15)"
+        gradientBackgroundStart="rgb(245, 247, 250)" 
+        gradientBackgroundEnd="rgb(240, 246, 255)"
         firstColor="47, 104, 243"     // Primary blue
         secondColor="243, 186, 47"    // Secondary orange/yellow
         thirdColor="45, 212, 191"     // Teal
-        fourthColor="240, 171, 252"   // Purple
-        fifthColor="22, 78, 99"       // Dark blue
+        fourthColor="150, 170, 252"   // Light purple
+        fifthColor="185, 215, 253"    // Light blue
         pointerColor="243, 186, 47"   // Orange
         interactive={true}
         className="absolute inset-0 z-10"
         preserveBackground={true}
+        size={450}
+        blur={25}
       >
         <div className="absolute inset-0 z-10">
           <WorldMapBackground />
