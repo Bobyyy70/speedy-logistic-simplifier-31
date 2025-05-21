@@ -37,7 +37,7 @@ export function WorldMapBackground() {
       className="absolute inset-0 world-map-container transition-transform duration-200 ease-out opacity-90"
       initial={{ opacity: 0 }}
       animate={{ opacity: 0.9 }}
-      transition={{ duration: 1, delay: 0.6 }}
+      transition={{ duration: 1, delay: 0.3 }}
     >
       <WorldMap 
         dots={shippingRoutes} 
