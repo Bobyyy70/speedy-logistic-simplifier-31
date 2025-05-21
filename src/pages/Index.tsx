@@ -95,40 +95,40 @@ const Index = () => {
       </div>
       
       {/* Hero Section */}
-      <motion.div variants={sectionVariants} style={{ opacity }}>
+      <motion.div style={{ opacity }}>
         <HeroSection />
       </motion.div>
       
       {/* Main Content Sections */}
-      <motion.div variants={sectionVariants}>
+      <motion.div>
         <LogisticsFeatureSection />
       </motion.div>
       
-      <motion.div variants={sectionVariants}>
+      <motion.div>
         <ChallengesSection />
       </motion.div>
       
-      <motion.div variants={sectionVariants}>
+      <motion.div>
         <HowItWorksSection />
       </motion.div>
       
-      <motion.div variants={sectionVariants}>
+      <motion.div>
         <WhyUsSection />
       </motion.div>
       
-      <motion.div variants={sectionVariants}>
+      <motion.div>
         <LogisticsPerformanceSection />
       </motion.div>
       
-      <motion.div variants={sectionVariants}>
+      <motion.div>
         <TestimonialsSection />
       </motion.div>
       
-      <motion.div variants={sectionVariants}>
+      <motion.div>
         <Testimonials />
       </motion.div>
       
-      <motion.div variants={sectionVariants}>
+      <motion.div>
         <ContactCTA />
       </motion.div>
       
@@ -188,9 +188,6 @@ const Index = () => {
         <div className="flex flex-col items-center gap-2">
           <motion.div 
             className="w-1 h-16 bg-gray-300/30 dark:bg-gray-600/30 rounded-full overflow-hidden"
-            style={{
-              scaleY: scrollYProgress
-            }}
           >
             <motion.div 
               className="w-full bg-blue-500 h-full origin-top"

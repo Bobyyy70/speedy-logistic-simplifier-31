@@ -73,8 +73,8 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
             variants={child}
             className={`inline-block ${type === "words" ? "mr-1.5" : ""} ${isHighlighted ? highlightColor : ""}`}
             style={{
-              display: type === "letters" && item === " " ? "inline-block" : "",
-              width: type === "letters" && item === " " ? "0.3em" : "",
+              display: type === "letters" && item === " " ? "inline-block" : undefined,
+              width: type === "letters" && item === " " ? "0.3em" : undefined,
             }}
           >
             {item}

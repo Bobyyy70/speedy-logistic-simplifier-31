@@ -21,11 +21,13 @@ export const MapPaths: React.FC<MapPathsProps> = ({
         const startPoint = projectPoint(dot.start.lat, dot.start.lng);
         const endPoint = projectPoint(dot.end.lat, dot.end.lng);
         const currentColor = getLineColor(i, lineColor, secondaryLineColor);
+        const pathId = `path-${i}`;
         
         return (
           <g key={`path-group-${i}`}>
             {/* Main visible path */}
             <motion.path
+              id={pathId}
               d={createCurvedPath(startPoint, endPoint, i)}
               fill="none"
               stroke={`url(#path-gradient-${i})`}
@@ -43,9 +45,6 @@ export const MapPaths: React.FC<MapPathsProps> = ({
                 duration: 2.5,
                 delay: 0.3 * i,
                 ease: "easeOut",
-                repeat: Infinity,
-                repeatType: "loop",
-                repeatDelay: 5,
               }}
             />
             
@@ -69,10 +68,6 @@ export const MapPaths: React.FC<MapPathsProps> = ({
                 duration: 3,
                 delay: 0.3 * i,
                 ease: "easeOut",
-                repeat: Infinity,
-                repeatType: "loop",
-                repeatDelay: 4.5,
-                times: [0, 0.5, 1]
               }}
             />
             
@@ -85,27 +80,18 @@ export const MapPaths: React.FC<MapPathsProps> = ({
                 <stop offset="100%" stopColor={currentColor} stopOpacity="0.3" />
               </linearGradient>
               
-              {/* Add animated dash effect */}
-              <motion.linearGradient
+              {/* Add simpler animated dash effect */}
+              <linearGradient
                 id={`dash-gradient-${i}`}
                 x1="0%"
                 y1="0%"
                 x2="100%"
                 y2="0%"
-                animate={{
-                  x1: ["0%", "100%"],
-                  x2: ["100%", "200%"],
-                }}
-                transition={{
-                  duration: 3 + (i * 0.5),
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
               >
                 <stop offset="0%" stopColor={currentColor} stopOpacity="0.1" />
                 <stop offset="50%" stopColor={currentColor} stopOpacity="0.6" />
                 <stop offset="100%" stopColor={currentColor} stopOpacity="0.1" />
-              </motion.linearGradient>
+              </linearGradient>
             </defs>
           </g>
         );
