@@ -47,7 +47,7 @@ export function HeroContent() {
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 1.3 }}
+        transition={{ duration: 0.5, delay: 0.9 }}
         className="flex flex-col gap-3 min-[400px]:flex-row justify-center lg:justify-start"
       >
         <Button asChild size="lg" className="modern-button relative overflow-hidden bg-[#2F68F3] hover:bg-[#2057E2] text-white shadow-lg transition-all duration-300">
