@@ -1,10 +1,10 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { BeamsBackgroundDemo } from "@/components/ui/beams-background-demo";
 import { Button } from "@/components/ui/button";
 
 // FAQ data array
@@ -54,8 +54,8 @@ const FaqPage = () => {
 
   return (
     <div className="relative py-12 min-h-screen">
-      {/* Fond de rayons animés appliqué à toute la page */}
-      <BeamsBackgroundDemo />
+      {/* Fond plus subtil avec un dégradé léger au lieu des animations */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-50/80 via-white to-blue-50/30 dark:from-slate-900/80 dark:via-slate-900 dark:to-blue-900/10 -z-10" />
       
       <Helmet>
         <title>FAQ - Questions Fréquentes Logistique | Speed E-Log</title>
@@ -64,75 +64,60 @@ const FaqPage = () => {
         <meta property="og:description" content="Trouvez les réponses à vos questions sur nos services logistiques pour e-commerce : types de produits gérés, transport, intégration, suivi et plus encore." />
       </Helmet>
       
-      <motion.div className="flex flex-col items-center justify-center space-y-4 text-center mb-8 md:mb-12 relative overflow-hidden min-h-[300px] py-12" 
-        initial={{
-          opacity: 0,
-          y: 20
-        }} 
-        animate={{
-          opacity: 1,
-          y: 0
-        }} 
-        transition={{
-          duration: 0.5
-        }}
-      >
-        {/* Fond de rayons animés avec intensité augmentée */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
-          <BeamsBackgroundDemo />
-        </div>
-        <div className="inline-block px-3 py-1 text-sm rounded-3xl bg-orange-100 relative z-10">FAQ</div>
-        <h1 className="text-3xl md:text-4xl font-bold tracking-tighter sm:text-5xl relative z-10">
-          Questions <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">Fréquentes</span>
-        </h1>
-        <p className="text-muted-foreground max-w-2xl mx-auto relative z-10">
-          Trouvez ici les réponses aux questions les plus couramment posées sur nos services de logistique e-commerce.
-        </p>
-      </motion.div>
-
-      <div className="max-w-3xl mx-auto relative z-10">
-        <Accordion type="single" collapsible className="w-full">
-          {faqs.map((faq, index) => <motion.div key={index} initial={{
-          opacity: 0,
-          y: 10
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.3,
-          delay: index * 0.05
-        }}>
-              <AccordionItem value={`item-${index}`}>
-                <AccordionTrigger className="text-left font-semibold">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            </motion.div>)}
-        </Accordion>
-
-        <motion.div initial={{
-        opacity: 0,
-        y: 10
-      }} animate={{
-        opacity: 1,
-        y: 0
-      }} transition={{
-        duration: 0.5,
-        delay: 0.5
-      }} className="mt-8 md:mt-12 text-center p-6 bg-gradient-to-r from-blue-100/90 via-white to-green-200/90 dark:from-slate-900 dark:via-slate-950 dark:to-green-800/90 rounded-3xl">
-          <p>Vous ne trouvez pas la réponse à votre question ?</p>
-          <Link to="/contact" className="text-primary hover:underline font-medium">
-            Contactez-nous directement
-          </Link>
+      <div className="container mx-auto px-4">
+        <motion.div className="flex flex-col items-center justify-center text-center mb-12" 
+          initial={{ opacity: 0, y: 20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.5 }}
+        >
+          <div className="inline-block px-3 py-1 mb-4 text-sm font-medium rounded-full bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300">FAQ</div>
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight sm:text-5xl mb-4">
+            Questions <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">Fréquentes</span>
+          </h1>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Trouvez ici les réponses aux questions les plus couramment posées sur nos services de logistique e-commerce.
+          </p>
         </motion.div>
-        
-        <div className="text-center mt-8">
-          <Button className="bg-blue-600 hover:bg-blue-700" asChild>
-            <Link to="/contact">Nous contacter</Link>
-          </Button>
+
+        <div className="max-w-3xl mx-auto">
+          <Accordion type="single" collapsible className="w-full bg-white dark:bg-slate-900/60 rounded-lg shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+            {faqs.map((faq, index) => (
+              <motion.div 
+                key={index} 
+                initial={{ opacity: 0, y: 10 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+              >
+                <AccordionItem value={`item-${index}`} className="border-b border-slate-200 dark:border-slate-700/70 last:border-0">
+                  <AccordionTrigger className="text-left font-semibold px-6 py-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground px-6">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              </motion.div>
+            ))}
+          </Accordion>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="mt-12 text-center p-6 bg-gradient-to-r from-blue-50 to-slate-50 dark:from-blue-900/20 dark:to-slate-900/40 rounded-xl border border-blue-100 dark:border-blue-900/30 shadow-sm"
+          >
+            <h3 className="text-xl font-semibold mb-3">Vous ne trouvez pas la réponse à votre question ?</h3>
+            <p className="mb-5 text-slate-600 dark:text-slate-300">Notre équipe est à votre disposition pour répondre à toutes vos interrogations.</p>
+            
+            <Button 
+              variant="blue" 
+              size="lg" 
+              className="rounded-full px-8 transition-all"
+              asChild
+            >
+              <Link to="/contact">Nous contacter</Link>
+            </Button>
+          </motion.div>
         </div>
       </div>
     </div>

@@ -38,7 +38,7 @@ export const ServicesFaq: React.FC = () => {
         </motion.div>
         
         <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className="w-full bg-white dark:bg-slate-900/60 rounded-lg shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
             {logisticsFaq.map((item, index) => (
               <motion.div
                 key={index}
@@ -47,11 +47,11 @@ export const ServicesFaq: React.FC = () => {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <AccordionItem value={`item-${index}`} className="border-b border-slate-200 dark:border-slate-700/50">
-                  <AccordionTrigger className="text-left hover:no-underline py-4 text-lg font-medium">
+                <AccordionItem value={`item-${index}`} className="border-b border-slate-200 dark:border-slate-700/70 last:border-0">
+                  <AccordionTrigger className="text-left hover:no-underline py-4 text-lg font-medium px-6">
                     {item.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pb-4">
+                  <AccordionContent className="text-muted-foreground pb-4 px-6">
                     {item.answer}
                   </AccordionContent>
                 </AccordionItem>
