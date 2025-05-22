@@ -53,9 +53,10 @@ const FaqPage = () => {
   }, []);
 
   return (
-    <div className="relative py-12 min-h-screen">
-      {/* Fond plus subtil avec un dégradé léger au lieu des animations */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-50/80 via-white to-blue-50/30 dark:from-slate-900/80 dark:via-slate-900 dark:to-blue-900/10 -z-10" />
+    // Ajout d'une classe pt-24 pour donner plus d'espace en haut et éviter que le contenu soit masqué par le header
+    <div className="relative py-12 pt-24 md:pt-28 min-h-screen">
+      {/* Fond simplifié sans animations étranges */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-white dark:from-slate-900 dark:to-slate-900/90 -z-10" />
       
       <Helmet>
         <title>FAQ - Questions Fréquentes Logistique | Speed E-Log</title>
@@ -70,9 +71,9 @@ const FaqPage = () => {
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 0.5 }}
         >
-          <div className="inline-block px-3 py-1 mb-4 text-sm font-medium rounded-full bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300">FAQ</div>
+          <div className="inline-block px-3 py-1 mb-4 text-sm font-medium rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">FAQ</div>
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight sm:text-5xl mb-4">
-            Questions <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">Fréquentes</span>
+            Questions <span className="text-blue-600 dark:text-blue-500">Fréquentes</span>
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Trouvez ici les réponses aux questions les plus couramment posées sur nos services de logistique e-commerce.
@@ -80,7 +81,7 @@ const FaqPage = () => {
         </motion.div>
 
         <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="w-full bg-white dark:bg-slate-900/60 rounded-lg shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+          <Accordion type="single" collapsible className="w-full bg-white dark:bg-slate-900/60 rounded-lg shadow-md border border-slate-200 dark:border-slate-800 overflow-hidden">
             {faqs.map((faq, index) => (
               <motion.div 
                 key={index} 
@@ -104,7 +105,7 @@ const FaqPage = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-12 text-center p-6 bg-gradient-to-r from-blue-50 to-slate-50 dark:from-blue-900/20 dark:to-slate-900/40 rounded-xl border border-blue-100 dark:border-blue-900/30 shadow-sm"
+            className="mt-12 text-center p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-100 dark:border-blue-900/30 shadow-md"
           >
             <h3 className="text-xl font-semibold mb-3">Vous ne trouvez pas la réponse à votre question ?</h3>
             <p className="mb-5 text-slate-600 dark:text-slate-300">Notre équipe est à votre disposition pour répondre à toutes vos interrogations.</p>
@@ -112,7 +113,7 @@ const FaqPage = () => {
             <Button 
               variant="blue" 
               size="lg" 
-              className="rounded-full px-8 transition-all"
+              className="rounded-md px-8 transition-all hover:shadow-lg"
               asChild
             >
               <Link to="/contact">Nous contacter</Link>

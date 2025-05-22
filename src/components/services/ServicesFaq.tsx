@@ -20,7 +20,7 @@ const logisticsFaq = [
 
 export const ServicesFaq: React.FC = () => {
   return (
-    <section className="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/50">
+    <section className="py-16 md:py-24 bg-blue-50/50 dark:bg-slate-900/50">
       <div className="container mx-auto px-4">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -38,7 +38,7 @@ export const ServicesFaq: React.FC = () => {
         </motion.div>
         
         <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="w-full bg-white dark:bg-slate-900/60 rounded-lg shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+          <Accordion type="single" collapsible className="w-full bg-white dark:bg-slate-900/60 rounded-lg shadow-md border border-slate-200 dark:border-slate-800 overflow-hidden">
             {logisticsFaq.map((item, index) => (
               <motion.div
                 key={index}
