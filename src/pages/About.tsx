@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { Target, Star, MapPin, History, Truck, Quote, Award, ChevronRight, HandHeart } from "lucide-react";
+import { Target, Star, MapPin, History, Truck, Quote, Award, ChevronRight, HandHeart, BadgeCheck, Receipt, CircleUser } from "lucide-react";
 import { AnimatedButton } from "@/components/ui/moving-border";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { useLazyImage } from "@/hooks/use-lazy-image";
@@ -104,7 +104,7 @@ const About = () => {
           </div>
 
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {/* Value Card 1 */}
+            {/* Value Card 1 - Updated icon from Award to Receipt */}
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -118,7 +118,7 @@ const About = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/5 transform group-hover:scale-105 transition-all duration-500 rounded-t-lg" />
                   <div className="flex items-center space-y-0 relative z-10">
                     <div className="flex items-center justify-center w-12 h-12 mr-4 rounded-lg bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-300">
-                      <Award className="w-6 h-6" />
+                      <Receipt className="w-6 h-6" />
                     </div>
                     <CardTitle className="text-xl font-bold text-slate-900 dark:text-white">Transparence</CardTitle>
                   </div>
@@ -131,7 +131,7 @@ const About = () => {
               </Card>
             </motion.div>
             
-            {/* Value Card 2 */}
+            {/* Value Card 2 - Updated icon from Star to BadgeCheck */}
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -145,7 +145,7 @@ const About = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-green-600/5 transform group-hover:scale-105 transition-all duration-500 rounded-t-lg" />
                   <div className="flex items-center space-y-0 relative z-10">
                     <div className="flex items-center justify-center w-12 h-12 mr-4 rounded-lg bg-green-100 text-green-600 dark:bg-green-900/50 dark:text-green-300">
-                      <Star className="w-6 h-6" />
+                      <BadgeCheck className="w-6 h-6" />
                     </div>
                     <CardTitle className="text-xl font-bold text-slate-900 dark:text-white">Fiabilité</CardTitle>
                   </div>
@@ -185,7 +185,7 @@ const About = () => {
               </Card>
             </motion.div>
             
-            {/* Value Card 4 */}
+            {/* Value Card 4 - Updated icon from Target to CircleUser */}
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -199,7 +199,7 @@ const About = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-600/5 transform group-hover:scale-105 transition-all duration-500 rounded-t-lg" />
                   <div className="flex items-center space-y-0 relative z-10">
                     <div className="flex items-center justify-center w-12 h-12 mr-4 rounded-lg bg-indigo-100 text-indigo-600 dark:bg-indigo-900/50 dark:text-indigo-300">
-                      <Target className="w-6 h-6" />
+                      <CircleUser className="w-6 h-6" />
                     </div>
                     <CardTitle className="text-xl font-bold text-slate-900 dark:text-white">Partenariat</CardTitle>
                   </div>
@@ -393,7 +393,7 @@ const About = () => {
       {/* Temoignages */}
       <TestimonialsSection />
       
-      {/* CTA Section - Remove box shadow from the button */}
+      {/* CTA Section - Box shadow removed from the button */}
       <section className="relative z-10 py-20 text-center bg-gradient-to-b from-blue-50/50 to-white dark:from-blue-950/20 dark:to-slate-950">
         <div className="container px-4 mx-auto">
           <motion.div
@@ -411,13 +411,11 @@ const About = () => {
               dans la croissance de votre entreprise e-commerce.
             </p>
             
-            <AnimatedButton asChild className="group">
-              <Link to="/contact" className="relative inline-flex items-center px-8 py-4 overflow-hidden text-lg font-medium bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500">
-                Demander un Devis Personnalisé
-                <ChevronRight className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-                <span className="sr-only">Contacter Speed E-Log</span>
-              </Link>
-            </AnimatedButton>
+            <Link to="/contact" className="relative inline-flex items-center px-8 py-4 overflow-hidden text-lg font-medium bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-md transition-all duration-300">
+              Demander un Devis Personnalisé
+              <ChevronRight className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+              <span className="sr-only">Contacter Speed E-Log</span>
+            </Link>
           </motion.div>
         </div>
       </section>
