@@ -34,9 +34,9 @@ export function WorldMapBackground() {
 
   return (
     <motion.div 
-      className="absolute inset-0 world-map-container transition-transform duration-200 ease-out opacity-90"
+      className="absolute inset-0 world-map-container transition-transform duration-200 ease-out opacity-80"
       initial={{ opacity: 0 }}
-      animate={{ opacity: 0.9 }}
+      animate={{ opacity: 0.8 }}
       transition={{ duration: 1, delay: 0.3 }}
     >
       <WorldMap 
