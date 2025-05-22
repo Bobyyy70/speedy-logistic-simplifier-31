@@ -118,7 +118,7 @@ const About = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/5 transform group-hover:scale-105 transition-all duration-500 rounded-t-lg" />
                   <div className="flex items-center space-y-0 relative z-10">
                     <div className="flex items-center justify-center w-12 h-12 mr-4 rounded-lg bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-300">
-                      Award className="w-6 h-6" />
+                      <Award className="w-6 h-6" />
                     </div>
                     <CardTitle className="text-xl font-bold text-slate-900 dark:text-white">Transparence</CardTitle>
                   </div>
