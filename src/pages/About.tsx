@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -6,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { Target, Star, MapPin, History, Truck, Quote, Award, ChevronRight } from "lucide-react";
+import { Target, Star, MapPin, History, Truck, Quote, Award, ChevronRight, HandHeart } from "lucide-react";
 import { AnimatedButton } from "@/components/ui/moving-border";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { useLazyImage } from "@/hooks/use-lazy-image";
@@ -119,7 +118,7 @@ const About = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/5 transform group-hover:scale-105 transition-all duration-500 rounded-t-lg" />
                   <div className="flex items-center space-y-0 relative z-10">
                     <div className="flex items-center justify-center w-12 h-12 mr-4 rounded-lg bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-300">
-                      <Award className="w-6 h-6" />
+                      Award className="w-6 h-6" />
                     </div>
                     <CardTitle className="text-xl font-bold text-slate-900 dark:text-white">Transparence</CardTitle>
                   </div>
@@ -341,7 +340,7 @@ const About = () => {
         </div>
       </section>
       
-      {/* Valeurs Section (with Image) */}
+      {/* Valeurs Section (with Image) - Updated Icon */}
       <section className="relative z-10 py-20 bg-gradient-to-b from-blue-50/30 to-white dark:from-blue-950/10 dark:to-slate-950">
         <div className="container px-4 mx-auto">
           <div className="flex flex-col items-center gap-12 md:flex-row md:gap-16">
@@ -354,7 +353,7 @@ const About = () => {
             >
               <div className="flex items-center mb-4">
                 <div className="flex items-center justify-center w-14 h-14 mr-4 rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-900/40 dark:text-indigo-300">
-                  <Star className="w-7 h-7" />
+                  <HandHeart className="w-7 h-7" />
                 </div>
                 <h2 className="text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">Nos Valeurs</h2>
               </div>
@@ -394,7 +393,7 @@ const About = () => {
       {/* Temoignages */}
       <TestimonialsSection />
       
-      {/* CTA Section */}
+      {/* CTA Section - Remove box shadow from the button */}
       <section className="relative z-10 py-20 text-center bg-gradient-to-b from-blue-50/50 to-white dark:from-blue-950/20 dark:to-slate-950">
         <div className="container px-4 mx-auto">
           <motion.div
@@ -412,7 +411,7 @@ const About = () => {
               dans la croissance de votre entreprise e-commerce.
             </p>
             
-            <AnimatedButton asChild className="group shadow-lg hover:shadow-blue-200/30 dark:hover:shadow-blue-900/30">
+            <AnimatedButton asChild className="group">
               <Link to="/contact" className="relative inline-flex items-center px-8 py-4 overflow-hidden text-lg font-medium bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500">
                 Demander un Devis Personnalisé
                 <ChevronRight className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
