@@ -17,7 +17,7 @@ const testimonials = [
     id: 1,
     content: "Tarifs justes, professionnalisme, et hyper sympa ! Il y a encore des gens passionnés et impliqués. A su gérer récemment un gros pic d'activité sans baisser la qualité du service.",
     author: "Cédric M.",
-    rating: 5
+    rating: 4
   },
   {
     id: 2,
