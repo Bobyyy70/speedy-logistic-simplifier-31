@@ -3,6 +3,7 @@ import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import AnimatedText from "@/components/ui/AnimatedText";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 // Styled Star component
 const Star = () => (
@@ -28,6 +29,25 @@ const testimonials = [
   {
     id: 3,
     content: "Pour mon activité e-commerce et trouver un logisticien avec le peu de moyens que nous avons... mais speedElog nous a tout de suite confiance en intégrant nos produits chez eux. Cerise sur le gâteau ils nous donnent de vrais conseils pour nous aider.",
+    author: "Mathieu M.",
+    rating: 5
+  },
+  {
+    id: 4,
+    content: "Je crois que je n'ai jamais eu un logisticien aussi fiable depuis le lancement de mon activité (en 2015), un taux d'erreurs quasiment nul, une super gestion des retours et un Sav existant contrairement a beaucoup d'autres ;) Merci beaucoup, grâce à speedElog je peux maintenant me consacrer pleinement à mon activité sans me soucier des contraintes logistiques. Allez y les yeux fermés",
+    name: "Julie B.",
+    rating: 5,
+    author: "Julie B."
+  },
+  {
+    id: 5,
+    content: "Entreprise à taille humaine, avec de vrais valeurs et proches de ses clients, qui sait nous conseiller sur les meilleures solutions de transport ! je fais clairement des économies depuis que j'ai externalisé ma logistique chez eux",
+    author: "Mathis H.",
+    rating: 4
+  },
+  {
+    id: 6,
+    content: "Je viens de lancer mon activité e-commerce et j'ai eu du mal à trouver un logisticien avec le peu d'expédition que nous avons.. mais speedElog nous a fait tout de suite confiance en intégrant notre stock chez eux. Cerise sur le gâteau ils nous donnent de vrais conseils pour nous développer",
     author: "Mathieu M.",
     rating: 5
   }
@@ -65,38 +85,45 @@ export function TestimonialsSection() {
           </motion.p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={testimonial.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5, transition: { duration: 0.2 } }}
-            >
-              <Card className="testimonial-card h-full">
-                <CardContent className="pt-6 pb-2 flex flex-col h-full">
-                  {/* Rating stars */}
-                  <div className="flex mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} />
-                    ))}
-                  </div>
-                  
-                  {/* Testimonial content */}
-                  <div className="flex-grow mb-4">
-                    <p className="text-slate-600 dark:text-slate-300 italic">"{testimonial.content}"</p>
-                  </div>
-                  
-                  {/* Author */}
-                  <div className="text-right">
-                    <p className="font-semibold text-slate-900 dark:text-white">{testimonial.author}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+        <div className="max-w-7xl mx-auto">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {testimonials.map((testimonial) => (
+                <CarouselItem key={testimonial.id} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                  <Card className="testimonial-card h-full">
+                    <CardContent className="pt-6 pb-2 flex flex-col h-full">
+                      {/* Rating stars */}
+                      <div className="flex mb-4">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star key={i} />
+                        ))}
+                      </div>
+                      
+                      {/* Testimonial content */}
+                      <div className="flex-grow mb-4">
+                        <p className="text-slate-600 dark:text-slate-300 italic">"{testimonial.content}"</p>
+                      </div>
+                      
+                      {/* Author */}
+                      <div className="text-right">
+                        <p className="font-semibold text-slate-900 dark:text-white">{testimonial.author}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-center mt-8">
+              <CarouselPrevious className="relative static md:absolute ml-0 mr-2" />
+              <CarouselNext className="relative static md:absolute ml-2" />
+            </div>
+          </Carousel>
         </div>
       </div>
     </section>
