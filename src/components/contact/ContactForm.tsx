@@ -519,7 +519,56 @@ export const ContactForm = () => {
         return null;
     }
   };
-  return (
-    <div>Backup of ContactForm</div>
-  );
+  return <motion.div className="bg-card rounded-lg p-6 shadow-md" initial={{
+    opacity: 0,
+    x: 20
+  }} animate={{
+    opacity: 1,
+    x: 0
+  }} transition={{
+    duration: 0.5,
+    delay: 0.2
+  }}>
+      <h2 className="text-xl font-semibold mb-2">Votre Devis</h2>
+      <p className="text-muted-foreground mb-6">Vous recevez votre devis dans peu de temps</p>
+      
+      {/* Étapes et progression */}
+      <div className="mb-6">
+        <div className="flex justify-between mb-2">
+          {steps.map((step, index) => <div key={index} className={`text-xs font-medium ${currentStep >= index ? "text-primary" : "text-muted-foreground"}`}>
+              Étape {index + 1}
+            </div>)}
+        </div>
+        <Progress value={(currentStep + 1) / totalSteps * 100} className="h-2" />
+        <p className="text-sm text-center mt-2 font-medium">{steps[currentStep].title}</p>
+      </div>
+      
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          {/* Contenu de l'étape actuelle */}
+          {renderStepContent()}
+          
+          {/* Navigation des étapes */}
+          <div className="flex justify-between mt-8">
+            <Button type="button" variant="outline" onClick={goToPreviousStep} disabled={currentStep === 0}>
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Précédent
+            </Button>
+            
+            {currentStep < totalSteps - 1 ? <Button type="button" onClick={goToNextStep}>
+                Suivant
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button> : <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Envoi en cours...
+                  </> : <>
+                    <Send className="mr-2 h-4 w-4" />
+                    Envoyer ma demande
+                  </>}
+              </Button>}
+          </div>
+        </form>
+      </Form>
+    </motion.div>;
 };

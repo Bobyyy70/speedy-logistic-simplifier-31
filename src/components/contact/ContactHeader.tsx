@@ -1,4 +1,4 @@
-// Backup of ContactHeader component
+
 import React from "react";
 import { motion } from "framer-motion";
 
