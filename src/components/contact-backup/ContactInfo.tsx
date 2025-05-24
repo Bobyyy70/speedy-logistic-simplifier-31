@@ -1,3 +1,4 @@
+// Backup of ContactInfo component
 import React, { useEffect } from "react";
 import { Mail, Phone, MapPin, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
@@ -5,6 +6,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getCalApi } from "@calcom/embed-react";
 import { SavForm } from "./SavForm";
+
 export const ContactInfo = () => {
   // Initialize Cal.com
   useEffect(() => {

@@ -1,0 +1,452 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Speed E-Log - Logistique E-commerce pour PME</title>
+    <meta name="description" content="Contactez Speed E-Log pour discuter de vos besoins en logistique e-commerce. Demandez un devis personnalisé ou posez vos questions.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* Animations CSS personnalisées reproduisant Framer Motion */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes letterAnimation {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes neonPulse {
+            0%, 100% { box-shadow: 0 0 5px rgba(243, 186, 47, 0); }
+            50% { box-shadow: 0 0 20px rgba(243, 186, 47, 0.3); }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .animate-fade-in-left {
+            animation: fadeInLeft 0.6s ease-out;
+        }
+        
+        .animate-fade-in-right {
+            animation: fadeInRight 0.6s ease-out 0.1s both;
+        }
+        
+        .animate-letter {
+            animation: letterAnimation 0.4s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .animate-neon-pulse {
+            animation: neonPulse 2s infinite;
+        }
+        
+        /* Badge néon personnalisé */
+        .neon-badge {
+            background: linear-gradient(135deg, rgba(243, 186, 47, 0.2) 0%, rgba(243, 186, 47, 0.6) 100%);
+            border: 1px solid rgba(243, 186, 47, 0.3);
+            box-shadow: 0 0 15px rgba(243, 186, 47, 0.2);
+            position: relative;
+        }
+        
+        /* Styles pour les cartes */
+        .card-gradient {
+            background: linear-gradient(to right, rgb(239 246 255), rgb(219 234 254));
+        }
+        
+        /* Styles HubSpot Forms */
+        .hs-form-field > label {
+            display: block !important;
+            font-size: 0.875rem !important;
+            font-weight: 500 !important;
+            color: rgb(55 65 81) !important;
+            margin-bottom: 0.25rem !important;
+        }
+        
+        .hs-form-field input,
+        .hs-form-field select,
+        .hs-form-field textarea {
+            width: 100% !important;
+            padding: 0.5rem 0.75rem !important;
+            border: 1px solid rgb(209 213 219) !important;
+            border-radius: 0.375rem !important;
+            font-size: 0.875rem !important;
+        }
+        
+        .hs-form-field input:focus,
+        .hs-form-field select:focus,
+        .hs-form-field textarea:focus {
+            outline: none !important;
+            border-color: rgb(59 130 246) !important;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1) !important;
+        }
+        
+        .hs-button {
+            width: 100% !important;
+            background-color: rgb(37 99 235) !important;
+            color: white !important;
+            font-weight: 500 !important;
+            padding: 0.5rem 1rem !important;
+            border-radius: 0.375rem !important;
+            border: none !important;
+            cursor: pointer !important;
+            transition: background-color 0.2s !important;
+        }
+        
+        .hs-button:hover {
+            background-color: rgb(29 78 216) !important;
+        }
+        
+        /* Styles pour le gradient de fond */
+        .contact-background {
+            background: linear-gradient(to bottom, rgba(239, 246, 255, 0.8), rgb(248, 250, 252));
+        }
+        
+        /* Animation des lettres du titre */
+        .title-letter {
+            opacity: 0;
+            animation: letterAnimation 0.4s ease-out forwards;
+        }
+        
+        .title-letter:nth-child(1) { animation-delay: 0s; }
+        .title-letter:nth-child(2) { animation-delay: 0.03s; }
+        .title-letter:nth-child(3) { animation-delay: 0.06s; }
+        .title-letter:nth-child(4) { animation-delay: 0.09s; }
+        .title-letter:nth-child(5) { animation-delay: 0.12s; }
+        .title-letter:nth-child(6) { animation-delay: 0.15s; }
+        /* Continue for all letters... */
+    </style>
+</head>
+<body class="contact-background min-h-screen">
+    <!-- Navigation Header (reproduit le header React) -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-slate-200">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <a href="/" class="flex items-center space-x-2">
+                    <div class="w-8 h-8 text-blue-600">
+                        <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold text-slate-900">Speed E-Log</span>
+                </a>
+                
+                <!-- Navigation centrée -->
+                <nav class="hidden md:flex items-center space-x-8 flex-1 justify-center">
+                    <a href="/services" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">Services</a>
+                    <a href="/technology" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">Technologie</a>
+                    <a href="/about" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">À propos</a>
+                    <a href="/faq" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">FAQ</a>
+                </nav>
+                
+                <!-- CTA Button -->
+                <a href="/contact" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded font-medium transition-colors">
+                    Obtenir un devis
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Container principal -->
+    <div class="relative min-h-screen pt-24 pb-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto animate-fade-in-up">
+                
+                <!-- En-tête de la page - SECTION IDENTIQUE -->
+                <div class="text-center mb-12">
+                    <div class="inline-flex items-center justify-center px-3 py-1 mb-4 text-sm font-medium rounded-full bg-blue-100 text-blue-800">
+                        Contactez-nous
+                    </div>
+                    <h1 class="text-3xl md:text-4xl font-bold mb-4">
+                        Discutons de vos <span class="text-blue-600">besoins logistiques</span>
+                    </h1>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        Notre équipe est à votre disposition pour répondre à toutes vos questions et vous accompagner dans votre projet.
+                    </p>
+                </div>
+                
+                <!-- Contenu principal avec grille responsive -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    
+                    <!-- Colonne gauche - Formulaire HubSpot -->
+                    <div class="bg-white rounded-xl shadow-md border border-slate-100 p-6 animate-fade-in-left">
+                        
+                        <!-- Header du formulaire identique au React -->
+                        <div class="flex flex-col items-start justify-center space-y-4 mb-8">
+                            <div class="relative">
+                                <div class="inline-block px-5 py-2 text-sm font-medium mb-3 rounded-full neon-badge relative animate-neon-pulse">
+                                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-orange-300 to-orange-500 font-semibold">
+                                        Contactez-Nous
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800">
+                                <span id="animated-title">Prêt à simplifier votre logistique ?</span>
+                            </h2>
+                            
+                            <p class="text-base md:text-lg text-gray-700 mb-4">
+                                <span class="relative">
+                                    Remplissez le formulaire ci-dessous pour obtenir un devis.
+                                    <span class="absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-blue-400 to-transparent w-full"></span>
+                                </span>
+                                <span class="font-medium text-orange-600">Nos devis sont standardisés, aucune surprise, transparence 100%</span>
+                            </p>
+                        </div>
+                        
+                        <!-- Formulaire HubSpot principal -->
+                        <div id="hubspot-form-container">
+                            <!-- Le formulaire HubSpot sera injecté ici -->
+                            <div class="text-center py-8">
+                                <p class="text-gray-500">Chargement du formulaire...</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Lien FAQ -->
+                        <div class="mt-6 text-center">
+                            <p class="text-sm text-gray-600 mb-2">
+                                Vous avez des questions sur nos services ?
+                            </p>
+                            <a href="/faq" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                Consultez notre FAQ
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Colonne droite - Informations de contact -->
+                    <div class="space-y-6 animate-fade-in-right">
+                        
+                        <!-- Carte de rendez-vous avec Google Calendar HubSpot -->
+                        <div class="overflow-hidden border-blue-200 shadow-lg card-gradient rounded-lg">
+                            <div class="pt-6 px-6 pb-6">
+                                <div class="text-center mb-4">
+                                    <h3 class="text-xl font-semibold mb-3 text-blue-700">Planifiez un rendez-vous</h3>
+                                    <p class="text-gray-600 mb-5">
+                                        Réservez une consultation de 15 minutes pour discuter de vos besoins logistiques
+                                    </p>
+                                    
+                                    <!-- Widget Google Calendar HubSpot -->
+                                    <div id="google-calendar-widget" class="mb-4">
+                                        <button onclick="openHubSpotBooking()" class="w-full md:w-auto px-8 py-6 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white shadow-md hover:shadow-lg transition-all duration-300 rounded-lg font-medium">
+                                            <svg class="inline w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                            </svg>
+                                            Prendre rendez-vous
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Formulaire SAV HubSpot -->
+                        <div class="bg-white rounded-lg p-6 shadow-md">
+                            <h2 class="text-xl font-semibold mb-2">Besoin d'assistance ?</h2>
+                            <p class="text-gray-600 mb-6">Remplissez ce formulaire pour toute demande de Service Après-Vente</p>
+                            
+                            <!-- Formulaire SAV HubSpot -->
+                            <div id="hubspot-sav-form-container">
+                                <!-- Le formulaire SAV HubSpot sera injecté ici -->
+                                <div class="text-center py-4">
+                                    <p class="text-gray-500">Chargement du formulaire SAV...</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Google Maps identique -->
+                        <div class="rounded-lg overflow-hidden h-[300px] shadow-md">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10805.55665035175!2d6.036526308525196!3d47.69024919081746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47920f4259cab0c7%3A0x409ce34b30d1220!2s70170%20Port-sur-Sa%C3%B4ne!5e0!3m2!1sfr!2sfr!4v1681578343811!5m2!1sfr!2sfr" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade" 
+                                title="Localisation de Speed E-Log à Port-sur-Saône"
+                                class="w-full h-full">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (reproduit le footer React) -->
+    <footer class="pt-12 pb-6 bg-white-900/60 backdrop-blur-sm border-t border-white/5">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <!-- Logo et description -->
+                <div class="flex flex-col gap-4">
+                    <div class="flex justify-start px-0">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 text-blue-600">
+                                <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                                </svg>
+                            </div>
+                            <span class="text-xl font-bold text-slate-900">Speed E-Log</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        Votre partenaire logistique pour simplifier vos opérations e-commerce et accélérer votre croissance.
+                    </p>
+                    <div class="flex items-center gap-2 text-sm text-gray-500">
+                        <svg class="h-4 w-4 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        Port-sur-Saône, France
+                    </div>
+                </div>
+
+                <!-- Liens principaux -->
+                <div class="flex flex-col gap-4">
+                    <h3 class="font-semibold text-black">Liens rapides</h3>
+                    <div class="grid grid-cols-2 gap-2">
+                        <a href="/" class="text-sm text-gray-400 hover:text-blue-600 transition-colors">Accueil</a>
+                        <a href="/services" class="text-sm text-gray-400 hover:text-blue-600 transition-colors">Services</a>
+                        <a href="/contact" class="text-sm text-gray-400 hover:text-blue-600 transition-colors">Tarification</a>
+                        <a href="/about" class="text-sm text-gray-400 hover:text-blue-600 transition-colors">À Propos</a>
+                        <a href="/faq" class="text-sm text-gray-400 hover:text-blue-600 transition-colors">FAQ</a>
+                        <a href="/contact" class="text-sm text-gray-400 hover:text-blue-600 transition-colors">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Liens légaux -->
+                <div class="flex flex-col gap-4">
+                    <h3 class="font-semibold text-black">Informations légales</h3>
+                    <div class="flex flex-col gap-2">
+                        <a href="/mentions-legales" class="text-sm text-gray-400 hover:text-blue-600 transition-colors">
+                            Mentions légales
+                        </a>
+                        <a href="/politique-confidentialite" class="text-sm text-gray-400 hover:text-blue-600 transition-colors">
+                            Politique de confidentialité
+                        </a>
+                        <a href="/cgv" class="text-sm text-gray-400 hover:text-blue-600 transition-colors">
+                            Conditions générales de vente
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="pt-4 text-center border-t border-white/5">
+                <p class="text-sm text-gray-500">
+                    © 2024 Speed E-Log. Tous droits réservés. 
+                    <span class="text-blue-600"> Réalisé avec passion à Port-sur-Saône.</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts HubSpot -->
+    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+    <script>
+        // Animation du titre lettre par lettre
+        document.addEventListener('DOMContentLoaded', function() {
+            const title = document.getElementById('animated-title');
+            const text = title.textContent;
+            title.innerHTML = '';
+            
+            text.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.className = 'title-letter';
+                span.style.animationDelay = `${index * 0.03}s`;
+                title.appendChild(span);
+            });
+        });
+        
+        // Configuration des formulaires HubSpot
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Vérifier si HubSpot est chargé
+            if (window.hbspt) {
+                // Formulaire principal de contact/devis
+                hbspt.forms.create({
+                    region: "eu1", // Remplacez par votre région HubSpot
+                    portalId: "YOUR_PORTAL_ID", // Remplacez par votre Portal ID HubSpot
+                    formId: "YOUR_CONTACT_FORM_ID", // Remplacez par l'ID de votre formulaire de contact
+                    target: '#hubspot-form-container',
+                    css: '',
+                    onFormReady: function($form) {
+                        console.log('Formulaire de contact HubSpot chargé');
+                    }
+                });
+                
+                // Formulaire SAV
+                hbspt.forms.create({
+                    region: "eu1", // Remplacez par votre région HubSpot
+                    portalId: "YOUR_PORTAL_ID", // Remplacez par votre Portal ID HubSpot
+                    formId: "YOUR_SAV_FORM_ID", // Remplacez par l'ID de votre formulaire SAV
+                    target: '#hubspot-sav-form-container',
+                    css: '',
+                    onFormReady: function($form) {
+                        console.log('Formulaire SAV HubSpot chargé');
+                    }
+                });
+            } else {
+                console.error('HubSpot script not loaded');
+            }
+        });
+        
+        // Fonction pour ouvrir la réservation HubSpot
+        function openHubSpotBooking() {
+            // Remplacez par l'URL de votre page de réservation HubSpot
+            window.open('YOUR_HUBSPOT_BOOKING_URL', '_blank');
+        }
+        
+        // Tracking HubSpot (optionnel)
+        (function(h,u,b,s,p,o,t){
+            h.hubspot=h.hubspot||{};h.hubspot.embed=h.hubspot.embed||[];
+            // Configuration de tracking additionnelle si nécessaire
+        })(window);
+    </script>
+</body>
+</html>

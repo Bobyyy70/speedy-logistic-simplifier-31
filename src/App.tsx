@@ -8,7 +8,7 @@ import { Layout } from "./components/layout/Layout";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
 import About from "./pages/About";
-import Contact from "./pages/Contact";
+import ContactStandalone from "./pages/ContactStandalone";
 import FaqPage from "./pages/FaqPage";
 import NotFound from "./pages/NotFound";
 import LegalMentions from "./pages/LegalMentions";
@@ -35,7 +35,7 @@ const App = () => (
             <Route path="/prix" element={<Navigate to="/contact" replace />} />
             <Route path="/about" element={<About />} />
             <Route path="/a-propos" element={<Navigate to="/about" replace />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/contact" element={<ContactStandalone />} />
             <Route path="/faq" element={<FaqPage />} />
             <Route path="/mentions-legales" element={<LegalMentions />} />
             <Route path="/politique-confidentialite" element={<PrivacyPolicy />} />
