@@ -88,7 +88,7 @@ const TermsOfService = () => {
               <li>Biens illégaux ou contrefaits</li>
               <li>Armes, munitions, substances stupéfiantes</li>
               <li>Espèces animales ou végétales protégées</li>
-              <li>Objets de valeur exceptionnelle (>50 000€ par unité)</li>
+              <li>Objets de valeur exceptionnelle (&gt;50 000€ par unité)</li>
             </ul>
             <p className="mt-2">Speed E-Log se réserve le droit de refuser ou suspendre la prise en charge de toute marchandise non conforme.</p>
           </div>
@@ -127,9 +127,11 @@ const TermsOfService = () => {
 
           <div className="mb-4">
             <h3 className="text-lg font-semibold mb-2">4.3. Modification de commande</h3>
-            <p className="bg-yellow-50 p-3 rounded border-l-4 border-yellow-400">
-              Toute modification doit être notifiée par écrit AVANT le début de la préparation. Une fois la préparation commencée ou les produits emballés, aucune modification n'est possible. Toute tentative de modification tardive sera facturée comme une nouvelle commande.
-            </p>
+            <div className="bg-yellow-50 p-3 rounded border-l-4 border-yellow-400">
+              <p>
+                Toute modification doit être notifiée par écrit AVANT le début de la préparation. Une fois la préparation commencée ou les produits emballés, aucune modification n'est possible. Toute tentative de modification tardive sera facturée comme une nouvelle commande.
+              </p>
+            </div>
           </div>
 
           <div className="mb-4">
@@ -359,7 +361,7 @@ const TermsOfService = () => {
                 <li><strong>Limite par article</strong> : valeur réelle plafonnée à 100€ par unité/article</li>
                 <li><strong>Limite par sinistre</strong> : maximum 5 000€ quel que soit le nombre d'articles</li>
                 <li><strong>Limite annuelle globale</strong> : 10 000€ tous sinistres confondus</li>
-                <li><strong>Marchandises haute valeur</strong> : le Client doit déclarer et assurer séparément tout article >100€</li>
+                <li><strong>Marchandises haute valeur</strong> : le Client doit déclarer et assurer séparément tout article &gt;100€</li>
               </ul>
               <p className="mt-2 text-sm">Ces limitations reflètent la réalité économique d'une jeune entreprise et l'obligation pour le Client d'assurer ses propres marchandises.</p>
             </div>
@@ -402,7 +404,7 @@ const TermsOfService = () => {
 
           <div className="mb-4">
             <h3 className="text-lg font-semibold mb-2">13.2. Effets</h3>
-            <p>Suspension des obligations affectées sans responsabilité. Si durée >60 jours : résiliation possible sans indemnité.</p>
+            <p>Suspension des obligations affectées sans responsabilité. Si durée &gt;60 jours : résiliation possible sans indemnité.</p>
           </div>
 
           <div className="mb-4">
