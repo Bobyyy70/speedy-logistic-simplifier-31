@@ -45,7 +45,7 @@ export function CarrierRatesAdmin() {
   const [isAddingRate, setIsAddingRate] = useState(false);
   const { toast } = useToast();
 
-  const { data: rates, isLoading, refetch } = useQuery({
+  const { data: rates, isLoading, error, refetch } = useQuery({
     queryKey: ["carrierRates"],
     queryFn: async () => {
       // Utiliser 'from' avec un type générique pour éviter les erreurs TypeScript
@@ -54,14 +54,20 @@ export function CarrierRatesAdmin() {
         .select("*")
         .order("carrier_name") as { data: CarrierBaseRate[] | null, error: any };
       
-      if (ratesError) throw ratesError;
+      if (ratesError) {
+        console.error("Error fetching carrier rates:", ratesError);
+        throw ratesError;
+      }
       
       // Même approche pour les services
       const { data: servicesData, error: servicesError } = await supabase
         .from('transport_services')
         .select("*") as { data: TransportService[] | null, error: any };
         
-      if (servicesError) throw servicesError;
+      if (servicesError) {
+        console.error("Error fetching transport services:", servicesError);
+        throw servicesError;
+      }
       
       // Map services by their service_code for easy lookup
       const servicesMap = (servicesData || []).reduce<Record<string, TransportService>>((acc, service) => {
@@ -76,6 +82,19 @@ export function CarrierRatesAdmin() {
       })) as RateWithService[];
     },
   });
+
+  if (error) {
+    return (
+      <div className="text-center py-8">
+        <p className="text-red-600 mb-4">
+          Erreur lors du chargement des tarifs.
+        </p>
+        <p className="text-sm text-gray-600">
+          Assurez-vous d'être connecté avec les bonnes permissions.
+        </p>
+      </div>
+    );
+  }
 
   if (isLoading) return <div>Chargement des tarifs...</div>;
 

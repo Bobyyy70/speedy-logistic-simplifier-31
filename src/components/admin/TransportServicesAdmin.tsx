@@ -29,7 +29,7 @@ export function TransportServicesAdmin() {
   const [isAddingService, setIsAddingService] = useState(false);
   const { toast } = useToast();
 
-  const { data: services, isLoading, refetch } = useQuery({
+  const { data: services, isLoading, error, refetch } = useQuery({
     queryKey: ["transportServices"],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -37,10 +37,26 @@ export function TransportServicesAdmin() {
         .select("*")
         .order("service_name") as { data: TransportService[] | null, error: any };
       
-      if (error) throw error;
+      if (error) {
+        console.error("Error fetching transport services:", error);
+        throw error;
+      }
       return data || [];
     },
   });
+
+  if (error) {
+    return (
+      <div className="text-center py-8">
+        <p className="text-red-600 mb-4">
+          Erreur lors du chargement des services de transport.
+        </p>
+        <p className="text-sm text-gray-600">
+          Assurez-vous d'être connecté avec les bonnes permissions.
+        </p>
+      </div>
+    );
+  }
 
   if (isLoading) return <div>Chargement des services...</div>;
 
