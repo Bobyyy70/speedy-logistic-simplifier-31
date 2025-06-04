@@ -37,13 +37,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           // Fetch user role when user is authenticated
           setTimeout(async () => {
             try {
-              const { data: roleData } = await supabase
+              const { data: roleData, error } = await supabase
                 .from('user_roles')
-                .select('role')
+                .select('role_name')
                 .eq('user_id', session.user.id)
                 .single();
               
-              setUserRole(roleData?.role || 'user');
+              if (error) {
+                console.error('Error fetching user role:', error);
+                setUserRole('user');
+              } else {
+                setUserRole((roleData?.role_name as UserRole) || 'user');
+              }
             } catch (error) {
               console.error('Error fetching user role:', error);
               setUserRole('user');
