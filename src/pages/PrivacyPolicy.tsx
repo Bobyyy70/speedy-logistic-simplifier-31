@@ -10,7 +10,7 @@ const PrivacyPolicy = () => {
 
   const companyName = "Speed E-Log";
   const companyAddress = "37 Rue de Rémaucourt, 70170 Port-sur-Saône, France"; // Utilisé pour identifier le responsable de traitement
-  const websiteUrl = "speedelog.fr"; // Assurez-vous que c'est la bonne URL
+  const websiteUrl = "speedelog.net"; // Assurez-vous que c'est la bonne URL
   const contactPageUrl = "/contact"; // !! Adaptez si l'URL de votre page contact est différente !!
   const lastUpdateDate = "04/05/2025"; // Date du jour
 
