@@ -258,8 +258,72 @@ export type Database = {
         }
         Relationships: []
       }
+      product_variants: {
+        Row: {
+          alternative_barcodes: string[] | null
+          barcode: string | null
+          cost_price: number | null
+          created_at: string | null
+          dimensions: Json | null
+          id: string
+          is_active: boolean | null
+          is_default: boolean | null
+          product_id: string
+          selling_price: number | null
+          unit_multiplier: number | null
+          unit_type: string | null
+          variant_name: string
+          variant_sku: string
+          weight_kg: number | null
+        }
+        Insert: {
+          alternative_barcodes?: string[] | null
+          barcode?: string | null
+          cost_price?: number | null
+          created_at?: string | null
+          dimensions?: Json | null
+          id?: string
+          is_active?: boolean | null
+          is_default?: boolean | null
+          product_id: string
+          selling_price?: number | null
+          unit_multiplier?: number | null
+          unit_type?: string | null
+          variant_name: string
+          variant_sku: string
+          weight_kg?: number | null
+        }
+        Update: {
+          alternative_barcodes?: string[] | null
+          barcode?: string | null
+          cost_price?: number | null
+          created_at?: string | null
+          dimensions?: Json | null
+          id?: string
+          is_active?: boolean | null
+          is_default?: boolean | null
+          product_id?: string
+          selling_price?: number | null
+          unit_multiplier?: number | null
+          unit_type?: string | null
+          variant_name?: string
+          variant_sku?: string
+          weight_kg?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_variants_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       products: {
         Row: {
+          alternative_barcodes: string[] | null
+          barcode: string | null
           created_at: string | null
           description: string | null
           dimensions: Json | null
@@ -271,6 +335,8 @@ export type Database = {
           weight: number | null
         }
         Insert: {
+          alternative_barcodes?: string[] | null
+          barcode?: string | null
           created_at?: string | null
           description?: string | null
           dimensions?: Json | null
@@ -282,6 +348,8 @@ export type Database = {
           weight?: number | null
         }
         Update: {
+          alternative_barcodes?: string[] | null
+          barcode?: string | null
           created_at?: string | null
           description?: string | null
           dimensions?: Json | null
@@ -373,28 +441,47 @@ export type Database = {
         Row: {
           id: string
           last_updated: string | null
+          location_id: string | null
+          max_stock: number | null
+          min_stock: number | null
           product_id: string
           quantity_allocated: number | null
           quantity_on_hand: number | null
+          variant_id: string | null
           warehouse_id: string
         }
         Insert: {
           id?: string
           last_updated?: string | null
+          location_id?: string | null
+          max_stock?: number | null
+          min_stock?: number | null
           product_id: string
           quantity_allocated?: number | null
           quantity_on_hand?: number | null
+          variant_id?: string | null
           warehouse_id: string
         }
         Update: {
           id?: string
           last_updated?: string | null
+          location_id?: string | null
+          max_stock?: number | null
+          min_stock?: number | null
           product_id?: string
           quantity_allocated?: number | null
           quantity_on_hand?: number | null
+          variant_id?: string | null
           warehouse_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "stock_levels_location_id_fkey"
+            columns: ["location_id"]
+            isOneToOne: false
+            referencedRelation: "warehouse_locations"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "stock_levels_product_id_fkey"
             columns: ["product_id"]
@@ -403,7 +490,100 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "stock_levels_variant_id_fkey"
+            columns: ["variant_id"]
+            isOneToOne: false
+            referencedRelation: "product_variants"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "stock_levels_warehouse_id_fkey"
+            columns: ["warehouse_id"]
+            isOneToOne: false
+            referencedRelation: "warehouses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      stock_movements: {
+        Row: {
+          created_at: string | null
+          id: string
+          location_id: string | null
+          movement_reason: string | null
+          movement_type: string
+          notes: string | null
+          product_id: string | null
+          quantity_after: number
+          quantity_before: number
+          quantity_change: number
+          reference_id: string | null
+          reference_type: string | null
+          unit_cost: number | null
+          user_id: string | null
+          variant_id: string | null
+          warehouse_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          location_id?: string | null
+          movement_reason?: string | null
+          movement_type: string
+          notes?: string | null
+          product_id?: string | null
+          quantity_after: number
+          quantity_before: number
+          quantity_change: number
+          reference_id?: string | null
+          reference_type?: string | null
+          unit_cost?: number | null
+          user_id?: string | null
+          variant_id?: string | null
+          warehouse_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          location_id?: string | null
+          movement_reason?: string | null
+          movement_type?: string
+          notes?: string | null
+          product_id?: string | null
+          quantity_after?: number
+          quantity_before?: number
+          quantity_change?: number
+          reference_id?: string | null
+          reference_type?: string | null
+          unit_cost?: number | null
+          user_id?: string | null
+          variant_id?: string | null
+          warehouse_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "stock_movements_location_id_fkey"
+            columns: ["location_id"]
+            isOneToOne: false
+            referencedRelation: "warehouse_locations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "stock_movements_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "stock_movements_variant_id_fkey"
+            columns: ["variant_id"]
+            isOneToOne: false
+            referencedRelation: "product_variants"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "stock_movements_warehouse_id_fkey"
             columns: ["warehouse_id"]
             isOneToOne: false
             referencedRelation: "warehouses"
@@ -485,6 +665,62 @@ export type Database = {
         }
         Relationships: []
       }
+      warehouse_locations: {
+        Row: {
+          aisle: string
+          bin: string
+          created_at: string | null
+          current_capacity: number | null
+          id: string
+          is_active: boolean | null
+          location_code: string | null
+          location_type: string | null
+          max_capacity: number | null
+          rack: string
+          shelf: number
+          warehouse_id: string
+          zone: string
+        }
+        Insert: {
+          aisle: string
+          bin: string
+          created_at?: string | null
+          current_capacity?: number | null
+          id?: string
+          is_active?: boolean | null
+          location_code?: string | null
+          location_type?: string | null
+          max_capacity?: number | null
+          rack: string
+          shelf: number
+          warehouse_id: string
+          zone: string
+        }
+        Update: {
+          aisle?: string
+          bin?: string
+          created_at?: string | null
+          current_capacity?: number | null
+          id?: string
+          is_active?: boolean | null
+          location_code?: string | null
+          location_type?: string | null
+          max_capacity?: number | null
+          rack?: string
+          shelf?: number
+          warehouse_id?: string
+          zone?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "warehouse_locations_warehouse_id_fkey"
+            columns: ["warehouse_id"]
+            isOneToOne: false
+            referencedRelation: "warehouses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       warehouses: {
         Row: {
           address: Json | null
@@ -511,6 +747,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      create_default_locations: {
+        Args: { warehouse_uuid: string }
+        Returns: undefined
+      }
       get_user_client_id: {
         Args: Record<PropertyKey, never>
         Returns: string
