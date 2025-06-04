@@ -48,21 +48,21 @@ const LegalMentions = () => {
         <section className="mb-8">
           <h2 className="text-xl md:text-2xl font-semibold mb-4">Hébergement</h2>
           <p className="mb-4">
-            Le site speedelog.fr est hébergé par un prestataire technique conforme aux standards européens de sécurité et de protection des données.
+            Le site speedelog.net est hébergé par un prestataire technique conforme aux standards européens de sécurité et de protection des données.
           </p>
         </section>
 
         <section className="mb-8">
           <h2 className="text-xl md:text-2xl font-semibold mb-4">Propriété intellectuelle</h2>
           <p className="mb-4">
-            L'ensemble du contenu du site speedelog.fr (textes, graphismes, logiciels, photographies, logos, marques) est propriété exclusive de Speed E-Log SAS ou de ses partenaires. Toute reproduction, représentation ou exploitation non autorisée est interdite et constitutive de contrefaçon (articles L.335-2 et suivants du Code de Propriété Intellectuelle).
+            L'ensemble du contenu du site speedelog.net (textes, graphismes, logiciels, photographies, logos, marques) est propriété exclusive de Speed E-Log SAS ou de ses partenaires. Toute reproduction, représentation ou exploitation non autorisée est interdite et constitutive de contrefaçon (articles L.335-2 et suivants du Code de Propriété Intellectuelle).
           </p>
         </section>
 
         <section className="mb-8">
           <h2 className="text-xl md:text-2xl font-semibold mb-4">Liens hypertextes</h2>
           <p className="mb-4">
-            Les liens vers speedelog.fr sont autorisés sous réserve d'information préalable et de non-atteinte aux intérêts de Speed E-Log. Speed E-Log se réserve le droit de demander la suppression de tout lien inapproprié.
+            Les liens vers speedelog.net sont autorisés sous réserve d'information préalable et de non-atteinte aux intérêts de Speed E-Log. Speed E-Log se réserve le droit de demander la suppression de tout lien inapproprié.
           </p>
           <p className="mb-4">
             Speed E-Log décline toute responsabilité quant au contenu des sites vers lesquels des liens sont établis depuis speedelog.fr.
