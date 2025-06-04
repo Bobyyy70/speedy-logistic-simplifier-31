@@ -16,7 +16,7 @@ export function Header() {
     { name: "Technologie", href: "/technology" },
     { name: "À Propos", href: "/about" },
     { name: "FAQ", href: "/faq" },
-    { name: "Contact", href: "/contact" },
+    { name: "Contact", href: "https://speedelog.net/contact", external: true },
   ];
 
   const isActive = (path: string) => {
@@ -33,21 +33,62 @@ export function Header() {
             <span className="font-bold text-xl">Speed E-Log</span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  isActive(item.href)
-                    ? "text-primary border-b-2 border-primary"
-                    : "text-muted-foreground"
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
+          {/* Desktop Navigation - Centré */}
+          <nav className="hidden md:flex items-center justify-center flex-1">
+            <div className="relative flex items-center space-x-8 bg-white/90 border border-slate-200 backdrop-blur-xl py-2 px-6 rounded-full shadow-md">
+              {navigation.map((item) => {
+                const isCurrentActive = isActive(item.href);
+                return (
+                  <div key={item.name} className="relative">
+                    {item.external ? (
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`relative cursor-pointer text-sm font-semibold px-4 py-2 rounded-full transition-all duration-300 ${
+                          isCurrentActive
+                            ? "text-slate-900 bg-blue-50"
+                            : "text-slate-500 hover:text-[#F3BA2F]"
+                        }`}
+                      >
+                        {item.name}
+                        {isCurrentActive && (
+                          <>
+                            <div className="absolute inset-0 w-full bg-[#2F68F3]/10 rounded-full -z-10" />
+                            <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-[#2F68F3] rounded-t-full">
+                              <div className="absolute w-12 h-6 bg-[#2F68F3]/60 rounded-full blur-md -top-2 -left-2" />
+                              <div className="absolute w-8 h-6 bg-[#2F68F3]/60 rounded-full blur-md -top-1" />
+                              <div className="absolute w-4 h-4 bg-[#2F68F3]/60 rounded-full blur-sm top-0 left-2" />
+                            </div>
+                          </>
+                        )}
+                      </a>
+                    ) : (
+                      <Link
+                        to={item.href}
+                        className={`relative cursor-pointer text-sm font-semibold px-4 py-2 rounded-full transition-all duration-300 ${
+                          isCurrentActive
+                            ? "text-slate-900 bg-blue-50"
+                            : "text-slate-500 hover:text-[#F3BA2F]"
+                        }`}
+                      >
+                        {item.name}
+                        {isCurrentActive && (
+                          <>
+                            <div className="absolute inset-0 w-full bg-[#2F68F3]/10 rounded-full -z-10" />
+                            <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-[#2F68F3] rounded-t-full">
+                              <div className="absolute w-12 h-6 bg-[#2F68F3]/60 rounded-full blur-md -top-2 -left-2" />
+                              <div className="absolute w-8 h-6 bg-[#2F68F3]/60 rounded-full blur-md -top-1" />
+                              <div className="absolute w-4 h-4 bg-[#2F68F3]/60 rounded-full blur-sm top-0 left-2" />
+                            </div>
+                          </>
+                        )}
+                      </Link>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </nav>
 
           {/* Desktop User Menu */}
@@ -71,18 +112,35 @@ export function Header() {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
               {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={`block px-3 py-2 text-base font-medium transition-colors hover:text-primary ${
-                    isActive(item.href)
-                      ? "text-primary bg-primary/10"
-                      : "text-muted-foreground"
-                  }`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
+                <div key={item.name}>
+                  {item.external ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`block px-3 py-2 text-base font-medium transition-colors hover:text-primary ${
+                        isActive(item.href)
+                          ? "text-primary bg-primary/10"
+                          : "text-muted-foreground"
+                      }`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </a>
+                  ) : (
+                    <Link
+                      to={item.href}
+                      className={`block px-3 py-2 text-base font-medium transition-colors hover:text-primary ${
+                        isActive(item.href)
+                          ? "text-primary bg-primary/10"
+                          : "text-muted-foreground"
+                      }`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  )}
+                </div>
               ))}
               <div className="px-3 py-2">
                 <UserMenu />
