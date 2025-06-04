@@ -46,8 +46,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               console.error('Error fetching user role:', error);
               setUserRole('user');
             } else {
-              const roleName = data?.role_name as string;
-              if (roleName === 'admin' || roleName === 'user' || roleName === 'client') {
+              const roleName = data?.role_name;
+              if (roleName && ['admin', 'user', 'client'].includes(roleName)) {
                 setUserRole(roleName as UserRole);
               } else {
                 setUserRole('user');
@@ -133,27 +133,29 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const isAdmin = () => {
+  const isAdmin = (): boolean => {
     return userRole === 'admin';
   };
 
+  const contextValue: AuthContextType = {
+    user,
+    session,
+    userRole,
+    loading,
+    signIn,
+    signUp,
+    signOut,
+    isAdmin,
+  };
+
   return (
-    <AuthContext.Provider value={{
-      user,
-      session,
-      userRole,
-      loading,
-      signIn,
-      signUp,
-      signOut,
-      isAdmin,
-    }}>
+    <AuthContext.Provider value={contextValue}>
       {children}
     </AuthContext.Provider>
   );
 }
 
-export function useAuth() {
+export function useAuth(): AuthContextType {
   const context = useContext(AuthContext);
   if (context === undefined) {
     throw new Error('useAuth must be used within an AuthProvider');
