@@ -64,7 +64,7 @@ const About = () => {
             <motion.h1 
               variants={fadeIn}
               custom={1}
-              className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 dark:from-blue-400 dark:via-blue-500 dark:to-indigo-400"
+              className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl text-slate-900 dark:text-white"
             >
               Qui Sommes-nous ?
             </motion.h1>
