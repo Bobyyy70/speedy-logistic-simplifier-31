@@ -28,33 +28,102 @@
     <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/144571109.js"></script>
     <!-- End of HubSpot Embed Code -->
 
-    <!-- Debug script pour HubSpot -->
+    <!-- Enhanced HubSpot Debug Script -->
     <script>
-      console.log('🔍 Démarrage du monitoring HubSpot...');
+      console.log('🚀 Initialisation du monitoring HubSpot avancé...');
       
-      // Vérifier le chargement périodiquement
-      const checkHubSpot = () => {
+      // Variables de suivi
+      let hubspotCheckInterval;
+      let hubspotLoadTime = Date.now();
+      
+      // Fonction de diagnostic complète
+      const runHubSpotDiagnostic = () => {
+        const now = Date.now();
+        const elapsed = (now - hubspotLoadTime) / 1000;
+        
+        console.group(`🔍 Diagnostic HubSpot (${elapsed.toFixed(1)}s)`);
+        
+        // Vérification des objets globaux
+        console.log('📊 Objets globaux:', {
+          '_hsp exists': !!window._hsp,
+          '_hsp array length': window._hsp ? window._hsp.length : 'N/A',
+          'hbspt exists': !!window.hbspt,
+          'hbspt.privacy exists': !!(window.hbspt && window.hbspt.privacy),
+          'hbspt.forms exists': !!(window.hbspt && window.hbspt.forms)
+        });
+        
+        // Vérification des cookies
+        const cookies = document.cookie.split(';').reduce((acc, cookie) => {
+          const [key, value] = cookie.trim().split('=');
+          if (key && key.includes('hs')) acc[key] = value;
+          return acc;
+        }, {});
+        
+        console.log('🍪 Cookies HubSpot:', cookies);
+        
+        // Vérification du script
+        const hsScript = document.getElementById('hs-script-loader');
+        console.log('📜 Script HubSpot:', {
+          'script exists': !!hsScript,
+          'script src': hsScript ? hsScript.src : 'N/A',
+          'script loaded': hsScript ? !hsScript.hasAttribute('async') || hsScript.readyState === 'complete' : false
+        });
+        
+        // Vérification des événements
+        console.log('📡 Événements disponibles:', {
+          'hsLoaded event': 'window.addEventListener("hsLoaded", ...)',
+          'hsFormReady event': 'window.addEventListener("hsFormReady", ...)'
+        });
+        
+        console.groupEnd();
+      };
+      
+      // Monitoring périodique
+      hubspotCheckInterval = setInterval(() => {
+        if (window._hsp || (window.hbspt && window.hbspt.privacy)) {
+          console.log('✅ HubSpot détecté! Arrêt du monitoring.');
+          clearInterval(hubspotCheckInterval);
+          runHubSpotDiagnostic();
+          
+          // Déclencher l'événement custom
+          window.dispatchEvent(new CustomEvent('hsLoaded', { 
+            detail: { timestamp: Date.now() } 
+          }));
+        } else {
+          console.log('⏳ Attente de HubSpot...');
+        }
+      }, 2000);
+      
+      // Diagnostic initial après le chargement de la page
+      window.addEventListener('load', () => {
+        console.log('📄 Page chargée, diagnostic initial...');
+        setTimeout(runHubSpotDiagnostic, 1000);
+      });
+      
+      // Écouter les erreurs de script
+      window.addEventListener('error', (event) => {
+        if (event.filename && event.filename.includes('hs-scripts')) {
+          console.error('💥 Erreur de chargement du script HubSpot:', event);
+        }
+      });
+      
+      // Fonction globale pour tests manuels
+      window.testHubSpot = () => {
+        console.log('🧪 Test manuel HubSpot...');
+        runHubSpotDiagnostic();
+        
         if (window._hsp) {
-          console.log('✅ HubSpot _hsp détecté:', window._hsp);
+          console.log('🎯 Test showBanner via _hsp...');
+          window._hsp.push(['showBanner']);
         }
-        if (window.hbspt) {
-          console.log('✅ HubSpot hbspt détecté:', window.hbspt);
-        }
-        if (!window._hsp && !window.hbspt) {
-          console.log('⏳ HubSpot pas encore chargé...');
+        
+        if (window.hbspt && window.hbspt.privacy && window.hbspt.privacy.showBanner) {
+          console.log('🎯 Test showBanner via hbspt.privacy...');
+          window.hbspt.privacy.showBanner();
         }
       };
-
-      // Vérification initiale
-      setTimeout(checkHubSpot, 1000);
-      setTimeout(checkHubSpot, 3000);
-      setTimeout(checkHubSpot, 5000);
-
-      // Écouter les événements de chargement
-      window.addEventListener('load', () => {
-        console.log('📄 Page chargée, vérification HubSpot...');
-        setTimeout(checkHubSpot, 1000);
-      });
+      
+      console.log('💡 Tapez "testHubSpot()" dans la console pour tester manuellement');
     </script>
   </body>
 </html>
