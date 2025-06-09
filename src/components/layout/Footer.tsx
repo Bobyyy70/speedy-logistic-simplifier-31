@@ -108,7 +108,7 @@ export const Footer: React.FC = () => {
                   <div className="flex items-center space-x-3">
                     <Mail className="h-5 w-5 text-blue-400 flex-shrink-0" />
                     <a href="mailto:contact@speedelog.fr" className="text-slate-300 hover:text-white transition-colors">
-                      contact@speedelog.fr
+                      contact@speedelog.net
                     </a>
                   </div>
                   
