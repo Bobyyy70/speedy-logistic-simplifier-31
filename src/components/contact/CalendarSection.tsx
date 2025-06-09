@@ -1,9 +1,31 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Calendar } from "lucide-react";
 
 export const CalendarSection = () => {
+  useEffect(() => {
+    // Load HubSpot meetings script only once
+    const loadHubSpotMeetings = () => {
+      if (window.HubSpotConversations || document.querySelector('script[src*="MeetingsEmbedCode"]')) {
+        return;
+      }
+      
+      const script = document.createElement('script');
+      script.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
+      script.async = true;
+      script.onload = () => {
+        console.log('HubSpot meetings script loaded');
+      };
+      document.head.appendChild(script);
+    };
+
+    // Small delay to ensure DOM is ready
+    const timer = setTimeout(loadHubSpotMeetings, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <motion.section 
       className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200 relative overflow-hidden"
@@ -23,9 +45,9 @@ export const CalendarSection = () => {
         </p>
       </div>
       
-      <div className="min-h-[600px] border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+      <div className="min-h-[600px] border border-slate-200 rounded-xl overflow-hidden bg-white">
         <div 
-          className="meetings-iframe-container w-full h-full" 
+          className="meetings-iframe-container w-full h-full min-h-[600px]" 
           data-src="https://meetings-eu1.hubspot.com/falmanzo?embed=true"
         ></div>
       </div>

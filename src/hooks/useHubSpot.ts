@@ -3,22 +3,16 @@ import { useEffect } from 'react';
 
 export const useHubSpot = () => {
   useEffect(() => {
-    let calendarScript: HTMLScriptElement | null = null;
     let formsScript: HTMLScriptElement | null = null;
 
-    // Script pour le calendrier HubSpot
-    if (!document.querySelector('script[src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"]')) {
-      calendarScript = document.createElement('script');
-      calendarScript.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
-      calendarScript.async = true;
-      document.head.appendChild(calendarScript);
-    }
-
-    // Script pour les formulaires HubSpot
-    if (!document.querySelector('script[src="//js-eu1.hsforms.net/forms/embed/v2.js"]')) {
+    // Script pour les formulaires HubSpot uniquement
+    if (!document.querySelector('script[src*="js-eu1.hsforms.net"]')) {
       formsScript = document.createElement('script');
       formsScript.src = '//js-eu1.hsforms.net/forms/embed/v2.js';
       formsScript.async = true;
+      formsScript.onload = () => {
+        console.log('HubSpot forms script loaded');
+      };
       document.head.appendChild(formsScript);
     }
 
@@ -41,7 +35,7 @@ export const useHubSpot = () => {
     }
 
     return () => {
-      // Cleanup logic if needed
+      // Cleanup if needed
     };
   }, []);
 
