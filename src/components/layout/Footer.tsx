@@ -18,10 +18,10 @@ export const Footer: React.FC = () => {
       {/* Bannière de cookies personnalisée si nécessaire */}
       {shouldShowCustomBanner && <CustomCookieBanner />}
       
-      <footer className="relative bg-slate-900 text-white overflow-hidden">
+      <footer className="relative bg-gray-50 text-slate-900 overflow-hidden">
         {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] bg-[size:24px_24px]" />
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgb(71_85_105)_1px,transparent_0)] bg-[size:24px_24px]" />
         </div>
 
         <div className="relative z-10">
@@ -37,9 +37,9 @@ export const Footer: React.FC = () => {
                     alt="Speed E-Log Logo"
                     className="w-8 h-8 object-contain"
                   />
-                  <span className="text-xl font-bold text-white">Speed E-Log</span>
+                  <span className="text-xl font-bold text-slate-900">Speed E-Log</span>
                 </div>
-                <p className="text-slate-300 leading-relaxed">
+                <p className="text-slate-600 leading-relaxed">
                   Votre partenaire logistique e-commerce de confiance. Nous simplifions votre chaîne d'approvisionnement pour que vous puissiez vous concentrer sur la croissance de votre entreprise.
                 </p>
                 
@@ -47,34 +47,34 @@ export const Footer: React.FC = () => {
 
               {/* Quick Links */}
               <div className="space-y-6">
-                <h3 className="text-lg font-semibold text-white">Liens Rapides</h3>
+                <h3 className="text-lg font-semibold text-slate-900">Liens Rapides</h3>
                 <ul className="space-y-3">
                   <li>
-                    <Link to="/services" className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center group">
+                    <Link to="/services" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       Nos Services
                       <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
                   </li>
                   <li>
-                    <Link to="/technology" className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center group">
+                    <Link to="/technology" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       Technologie
                       <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
                   </li>
                   <li>
-                    <Link to="/about" className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center group">
+                    <Link to="/about" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       À Propos
                       <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
                   </li>
                   <li>
-                    <Link to="/contact" className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center group">
+                    <Link to="/contact" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       Contact
                       <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
                   </li>
                   <li>
-                    <Link to="/faq" className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center group">
+                    <Link to="/faq" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       FAQ
                       <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
@@ -84,30 +84,30 @@ export const Footer: React.FC = () => {
 
               {/* Services */}
               <div className="space-y-6">
-                <h3 className="text-lg font-semibold text-white">Services</h3>
+                <h3 className="text-lg font-semibold text-slate-900">Services</h3>
                 <ul className="space-y-3">
-                  <li className="text-slate-300">Réception & Contrôle</li>
-                  <li className="text-slate-300">Stockage Sécurisé</li>
-                  <li className="text-slate-300">Préparation de Commandes</li>
-                  <li className="text-slate-300">Expédition Multi-Transporteurs</li>
-                  <li className="text-slate-300">Gestion des Retours</li>
+                  <li className="text-slate-600">Réception & Contrôle</li>
+                  <li className="text-slate-600">Stockage Sécurisé</li>
+                  <li className="text-slate-600">Préparation de Commandes</li>
+                  <li className="text-slate-600">Expédition Multi-Transporteurs</li>
+                  <li className="text-slate-600">Gestion des Retours</li>
                 </ul>
               </div>
 
               {/* Contact Info */}
               <div className="space-y-6">
-                <h3 className="text-lg font-semibold text-white">Contact</h3>
+                <h3 className="text-lg font-semibold text-slate-900">Contact</h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <MapPin className="h-5 w-5 text-blue-400 mt-0.5 flex-shrink-0" />
-                    <div className="text-slate-300">
+                    <MapPin className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <div className="text-slate-600">
                       <p>Port-sur-Saône</p>
                       <p>Bourgogne-Franche-Comté, France</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Mail className="h-5 w-5 text-blue-400 flex-shrink-0" />
-                    <a href="mailto:contact@speedelog.fr" className="text-slate-300 hover:text-white transition-colors">
+                    <Mail className="h-5 w-5 text-blue-600 flex-shrink-0" />
+                    <a href="mailto:contact@speedelog.fr" className="text-slate-600 hover:text-slate-900 transition-colors">
                       contact@speedelog.net
                     </a>
                   </div>
@@ -117,22 +117,22 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          <Separator className="bg-slate-700" />
+          <Separator className="bg-slate-200" />
 
           {/* Bottom Footer */}
           <div className="container mx-auto px-4 py-6">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <div className="text-sm text-slate-400">
+              <div className="text-sm text-slate-500">
                 <p>&copy; {currentYear} Speed E-Log. Tous droits réservés.</p>
               </div>
               <div className="flex flex-wrap items-center space-x-4 text-sm">
-                <Link to="/mentions-legales" className="text-slate-400 hover:text-white transition-colors">
+                <Link to="/mentions-legales" className="text-slate-500 hover:text-slate-900 transition-colors">
                   Mentions Légales
                 </Link>
-                <Link to="/politique-confidentialite" className="text-slate-400 hover:text-white transition-colors">
+                <Link to="/politique-confidentialite" className="text-slate-500 hover:text-slate-900 transition-colors">
                   Politique de Confidentialité
                 </Link>
-                <Link to="/cgv" className="text-slate-400 hover:text-white transition-colors">
+                <Link to="/cgv" className="text-slate-500 hover:text-slate-900 transition-colors">
                   CGV
                 </Link>
               </div>
