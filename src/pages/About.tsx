@@ -393,7 +393,7 @@ const About = () => {
       {/* Temoignages */}
       <TestimonialsSection />
       
-      {/* CTA Section - Box shadow removed from the button */}
+      {/* CTA Section - Updated button */}
       <section className="relative z-10 py-20 text-center bg-gradient-to-b from-blue-50/50 to-white dark:from-blue-950/20 dark:to-slate-950">
         <div className="container px-4 mx-auto">
           <motion.div
@@ -411,11 +411,17 @@ const About = () => {
               dans la croissance de votre entreprise e-commerce.
             </p>
             
-            <Link to="/contact" className="relative inline-flex items-center px-8 py-4 overflow-hidden text-lg font-medium bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-md transition-all duration-300">
-              Demander un Devis Personnalisé
-              <ChevronRight className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-              <span className="sr-only">Contacter Speed E-Log</span>
-            </Link>
+            <Button 
+              variant="blue" 
+              size="2xl" 
+              className="shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
+              asChild
+            >
+              <Link to="/contact" className="flex items-center gap-2">
+                Obtenir un devis personnalisé
+                <ChevronRight className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            </Button>
           </motion.div>
         </div>
       </section>

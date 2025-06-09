@@ -50,7 +50,12 @@ export function HeroContent() {
         transition={{ duration: 0.5, delay: 0.9 }}
         className="flex flex-col gap-3 min-[400px]:flex-row justify-center lg:justify-start"
       >
-        <Button asChild size="lg" className="modern-button relative overflow-hidden bg-[#2F68F3] hover:bg-[#2057E2] text-white shadow-lg transition-all duration-300">
+        <Button 
+          variant="blue" 
+          size="2xl" 
+          className="shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
+          asChild
+        >
           <Link to="/contact">
             <span className="relative z-10 flex items-center text-white">
               Obtenir un devis personnalisé

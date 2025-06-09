@@ -33,7 +33,7 @@ export const ServicesHero: React.FC = () => {
               asChild
             >
               <Link to="/contact">
-                Demander un devis
+                Obtenir un devis personnalisé
               </Link>
             </Button>
             
