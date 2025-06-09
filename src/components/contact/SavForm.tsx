@@ -32,37 +32,18 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-// Définition du schéma de validation avec Zod
+// Schéma de validation simplifié et plus robuste
 const savFormSchema = z.object({
-  // Étape 1: Informations personnelles
-  fullName: z.string().min(2, {
-    message: "Le nom doit contenir au moins 2 caractères.",
-  }),
-  email: z.string().email({
-    message: "Veuillez entrer une adresse email valide.",
-  }),
-  orderNumber: z.string().min(3, {
-    message: "Veuillez entrer un numéro de commande valide.",
-  }),
+  fullName: z.string().min(2, "Le nom doit contenir au moins 2 caractères."),
+  email: z.string().email("Veuillez entrer une adresse email valide."),
+  orderNumber: z.string().min(1, "Le numéro de commande est requis."),
   phone: z.string().optional(),
-  
-  // Étape 2: Détails de la commande
   purchaseDate: z.date({
     required_error: "Veuillez sélectionner une date d'achat.",
   }),
-  productReference: z.string().min(2, {
-    message: "Veuillez indiquer une référence produit.",
-  }),
-  issueCategory: z.string({
-    required_error: "Veuillez sélectionner une catégorie de problème.",
-  }),
-  
-  // Étape 3: Description du problème
-  description: z.string().min(10, {
-    message: "Veuillez décrire le problème en détail (10 caractères minimum).",
-  }),
-  
-  // Étape 4: Informations supplémentaires
+  productReference: z.string().min(1, "La référence produit est requise."),
+  issueCategory: z.string().min(1, "Veuillez sélectionner une catégorie."),
+  description: z.string().min(10, "Veuillez décrire le problème (minimum 10 caractères)."),
   preferredContact: z.enum(["email", "phone"], {
     required_error: "Veuillez sélectionner votre méthode de contact préférée.",
   }),
@@ -71,7 +52,6 @@ const savFormSchema = z.object({
 
 type SavFormValues = z.infer<typeof savFormSchema>;
 
-// Catégories de problèmes pour le menu déroulant
 const issueCategories = [
   { value: "defective-product", label: "Produit défectueux" },
   { value: "missing-parts", label: "Pièces manquantes" },
@@ -80,7 +60,6 @@ const issueCategories = [
   { value: "other", label: "Autre" },
 ];
 
-// Heures de contact pour le menu déroulant
 const contactTimes = [
   { value: "morning", label: "Matin (9h-12h)" },
   { value: "afternoon", label: "Après-midi (14h-17h)" },
@@ -95,77 +74,60 @@ export const SavForm = () => {
   const form = useForm<SavFormValues>({
     resolver: zodResolver(savFormSchema),
     defaultValues: {
-      // Étape 1: Informations personnelles
       fullName: "",
       email: "",
       orderNumber: "",
       phone: "",
-      
-      // Étape 2: Détails de la commande
-      purchaseDate: undefined,
       productReference: "",
       issueCategory: "",
-      
-      // Étape 3: Description du problème
       description: "",
-      
-      // Étape 4: Informations supplémentaires
       preferredContact: "email",
       bestTimeToContact: "",
     },
-    mode: "onBlur",
+    mode: "onChange",
   });
   
-  // Étapes du formulaire
   const steps = [
     {
       title: "Vos informations",
-      fields: ["fullName", "email", "orderNumber", "phone"],
+      fields: ["fullName", "email", "orderNumber", "phone"] as const,
     },
     {
       title: "Détails de la commande",
-      fields: ["purchaseDate", "productReference", "issueCategory"],
+      fields: ["purchaseDate", "productReference", "issueCategory"] as const,
     },
     {
       title: "Description du problème",
-      fields: ["description"],
+      fields: ["description"] as const,
     },
     {
       title: "Préférences de contact",
-      fields: ["preferredContact", "bestTimeToContact"],
+      fields: ["preferredContact", "bestTimeToContact"] as const,
     },
   ];
 
-  // Validation de l'étape actuelle
   const validateCurrentStep = async () => {
     const currentFields = steps[currentStep].fields;
-    const result = await form.trigger(currentFields as any);
-    return result;
+    return await form.trigger(currentFields);
   };
 
-  // Navigation vers l'étape suivante
   const goToNextStep = async () => {
     const isValid = await validateCurrentStep();
-    if (isValid) {
-      if (currentStep < totalSteps - 1) {
-        setCurrentStep(currentStep + 1);
-      }
+    if (isValid && currentStep < totalSteps - 1) {
+      setCurrentStep(currentStep + 1);
     }
   };
 
-  // Navigation vers l'étape précédente
   const goToPreviousStep = () => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
     }
   };
 
-  // Soumission du formulaire
   const onSubmit = async (data: SavFormValues) => {
     setIsSubmitting(true);
     
     try {
-      // Simuler API call avec timeout
       await new Promise((resolve) => setTimeout(resolve, 1500));
       
       console.log("SAV Form submitted:", data);
@@ -180,7 +142,7 @@ export const SavForm = () => {
     } catch (error) {
       toast({
         title: "Erreur",
-        description: "Un problème est survenu lors de l'envoi de votre demande. Veuillez réessayer.",
+        description: "Un problème est survenu. Veuillez réessayer.",
         variant: "destructive",
       });
       console.error("SAV Form submission error:", error);
@@ -189,7 +151,6 @@ export const SavForm = () => {
     }
   };
 
-  // Fonction pour rendre le contenu de chaque étape
   const renderStepContent = () => {
     switch (currentStep) {
       case 0:
@@ -197,7 +158,6 @@ export const SavForm = () => {
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
             className="space-y-4"
           >
@@ -206,12 +166,10 @@ export const SavForm = () => {
               name="fullName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Nom complet</FormLabel>
+                  <FormLabel>Nom complet *</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <span className="absolute left-3 top-3 text-muted-foreground">
-                        <User className="h-4 w-4" />
-                      </span>
+                      <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                       <Input className="pl-10" placeholder="Votre nom complet" {...field} />
                     </div>
                   </FormControl>
@@ -225,12 +183,10 @@ export const SavForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>E-mail</FormLabel>
+                  <FormLabel>E-mail *</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <span className="absolute left-3 top-3 text-muted-foreground">
-                        <Mail className="h-4 w-4" />
-                      </span>
+                      <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                       <Input className="pl-10" placeholder="votre@email.com" {...field} />
                     </div>
                   </FormControl>
@@ -244,12 +200,10 @@ export const SavForm = () => {
               name="orderNumber"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Numéro de commande</FormLabel>
+                  <FormLabel>Numéro de commande *</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <span className="absolute left-3 top-3 text-muted-foreground">
-                        <Package className="h-4 w-4" />
-                      </span>
+                      <Package className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                       <Input className="pl-10" placeholder="Ex: CMD-123456" {...field} />
                     </div>
                   </FormControl>
@@ -266,9 +220,7 @@ export const SavForm = () => {
                   <FormLabel>Téléphone (facultatif)</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <span className="absolute left-3 top-3 text-muted-foreground">
-                        <Phone className="h-4 w-4" />
-                      </span>
+                      <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                       <Input className="pl-10" placeholder="Votre numéro de téléphone" {...field} />
                     </div>
                   </FormControl>
@@ -284,7 +236,6 @@ export const SavForm = () => {
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
             className="space-y-4"
           >
@@ -293,19 +244,17 @@ export const SavForm = () => {
               name="purchaseDate"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
-                  <FormLabel>Date d'achat</FormLabel>
+                  <FormLabel>Date d'achat *</FormLabel>
                   <Popover>
                     <PopoverTrigger asChild>
                       <FormControl>
                         <Button
-                          variant={"outline"}
+                          variant="outline"
                           className={`w-full pl-10 text-left font-normal relative ${
                             !field.value && "text-muted-foreground"
                           }`}
                         >
-                          <span className="absolute left-3 top-2 text-muted-foreground">
-                            <Calendar className="h-4 w-4" />
-                          </span>
+                          <Calendar className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                           {field.value ? (
                             format(field.value, "PPP", { locale: fr })
                           ) : (
@@ -321,7 +270,6 @@ export const SavForm = () => {
                         onSelect={field.onChange}
                         disabled={(date) => date > new Date()}
                         initialFocus
-                        className="p-3 pointer-events-auto"
                       />
                     </PopoverContent>
                   </Popover>
@@ -335,12 +283,10 @@ export const SavForm = () => {
               name="productReference"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Référence produit</FormLabel>
+                  <FormLabel>Référence produit *</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <span className="absolute left-3 top-3 text-muted-foreground">
-                        <Package className="h-4 w-4" />
-                      </span>
+                      <Package className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                       <Input className="pl-10" placeholder="Ex: REF-123456" {...field} />
                     </div>
                   </FormControl>
@@ -354,12 +300,10 @@ export const SavForm = () => {
               name="issueCategory"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Catégorie du problème</FormLabel>
+                  <FormLabel>Catégorie du problème *</FormLabel>
                   <div className="relative">
-                    <span className="absolute left-3 top-3 text-muted-foreground z-10">
-                      <AlertTriangle className="h-4 w-4" />
-                    </span>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <AlertTriangle className="absolute left-3 top-3 h-4 w-4 text-muted-foreground z-10" />
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger className="pl-10">
                           <SelectValue placeholder="Sélectionnez une catégorie" />
@@ -386,7 +330,6 @@ export const SavForm = () => {
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
             className="space-y-4"
           >
@@ -395,12 +338,10 @@ export const SavForm = () => {
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Description détaillée du problème</FormLabel>
+                  <FormLabel>Description détaillée du problème *</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <span className="absolute left-3 top-3 text-muted-foreground">
-                        <MessageSquare className="h-4 w-4" />
-                      </span>
+                      <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                       <Textarea 
                         className="min-h-[150px] pl-10 pt-8" 
                         placeholder="Décrivez votre problème en détail..."
@@ -420,7 +361,6 @@ export const SavForm = () => {
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
             className="space-y-4"
           >
@@ -429,11 +369,11 @@ export const SavForm = () => {
               name="preferredContact"
               render={({ field }) => (
                 <FormItem className="space-y-3">
-                  <FormLabel>Méthode de contact préférée</FormLabel>
+                  <FormLabel>Méthode de contact préférée *</FormLabel>
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
-                      defaultValue={field.value}
+                      value={field.value}
                       className="flex flex-col space-y-1"
                     >
                       <div className="flex items-center space-x-2">
@@ -463,10 +403,8 @@ export const SavForm = () => {
                   <FormItem>
                     <FormLabel>Meilleur moment pour vous contacter</FormLabel>
                     <div className="relative">
-                      <span className="absolute left-3 top-3 text-muted-foreground z-10">
-                        <Clock className="h-4 w-4" />
-                      </span>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <Clock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground z-10" />
+                      <Select onValueChange={field.onChange} value={field.value}>
                         <FormControl>
                           <SelectTrigger className="pl-10">
                             <SelectValue placeholder="Sélectionnez un créneau horaire" />
@@ -492,11 +430,11 @@ export const SavForm = () => {
               <div className="space-y-1 text-sm">
                 <p><span className="font-medium">Nom:</span> {form.getValues("fullName")}</p>
                 <p><span className="font-medium">Email:</span> {form.getValues("email")}</p>
-                <p><span className="font-medium">Numéro de commande:</span> {form.getValues("orderNumber")}</p>
+                <p><span className="font-medium">Commande:</span> {form.getValues("orderNumber")}</p>
                 <p><span className="font-medium">Produit:</span> {form.getValues("productReference")}</p>
                 <p>
-                  <span className="font-medium">Catégorie du problème:</span> 
-                  {issueCategories.find(cat => cat.value === form.getValues("issueCategory"))?.label || form.getValues("issueCategory")}
+                  <span className="font-medium">Problème:</span> 
+                  {" " + (issueCategories.find(cat => cat.value === form.getValues("issueCategory"))?.label || form.getValues("issueCategory"))}
                 </p>
               </div>
             </div>
@@ -515,10 +453,9 @@ export const SavForm = () => {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
     >
-      <h2 className="text-xl font-semibold mb-2">Besoin d'assistance ?</h2>
-      <p className="text-muted-foreground mb-6">Remplissez ce formulaire pour toute demande de Service Après-Vente</p>
+      <h2 className="text-xl font-semibold mb-2">Service Après-Vente</h2>
+      <p className="text-muted-foreground mb-6">Remplissez ce formulaire pour toute demande SAV</p>
       
-      {/* Étapes et progression */}
       <div className="mb-6">
         <div className="flex justify-between mb-2">
           {steps.map((step, index) => (
@@ -538,10 +475,8 @@ export const SavForm = () => {
       
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          {/* Contenu de l'étape actuelle */}
           {renderStepContent()}
           
-          {/* Navigation des étapes */}
           <div className="flex justify-between mt-8">
             <Button
               type="button"
