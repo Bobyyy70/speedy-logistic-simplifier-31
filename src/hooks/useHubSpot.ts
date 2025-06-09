@@ -5,7 +5,7 @@ export const useHubSpot = () => {
   useEffect(() => {
     let formsScript: HTMLScriptElement | null = null;
 
-    // Script pour les formulaires HubSpot uniquement
+    // Script pour les formulaires HubSpot uniquement (pas le calendrier)
     if (!document.querySelector('script[src*="js-eu1.hsforms.net"]')) {
       formsScript = document.createElement('script');
       formsScript.src = '//js-eu1.hsforms.net/forms/embed/v2.js';
@@ -14,24 +14,6 @@ export const useHubSpot = () => {
         console.log('HubSpot forms script loaded');
       };
       document.head.appendChild(formsScript);
-    }
-
-    // Configuration du chat HubSpot
-    if (typeof (window as any).hsConversationsSettings === 'undefined') {
-      (window as any).hsConversationsSettings = {
-        loadImmediately: true,
-        enableWidgetCookieBanner: true,
-        disableAttachment: false,
-        widget: {
-          position: {
-            side: 'right',
-            offset: {
-              bottom: '20px',
-              right: '20px'
-            }
-          }
-        }
-      };
     }
 
     return () => {

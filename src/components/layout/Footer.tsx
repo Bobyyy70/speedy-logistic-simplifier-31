@@ -31,7 +31,7 @@ export function Footer() {
             <div className="grid grid-cols-2 gap-2">
               <Link to="/" className="text-sm text-gray-400 hover:text-[#2F68F3] transition-colors">Accueil</Link>
               <Link to="/services" className="text-sm text-gray-400 hover:text-[#2F68F3] transition-colors">Services</Link>
-              <Link to="/contact" className="text-sm text-gray-400 hover:text-[#2F68F3] transition-colors">Tarification</Link>
+              <Link to="/pricing" className="text-sm text-gray-400 hover:text-[#2F68F3] transition-colors">Tarification</Link>
               <Link to="/about" className="text-sm text-gray-400 hover:text-[#2F68F3] transition-colors">À Propos</Link>
               <Link to="/faq" className="text-sm text-gray-400 hover:text-[#2F68F3] transition-colors">FAQ</Link>
               <Link to="/contact" className="text-sm text-gray-400 hover:text-[#2F68F3] transition-colors">Contact</Link>

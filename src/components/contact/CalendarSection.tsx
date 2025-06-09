@@ -1,46 +1,74 @@
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Calendar } from "lucide-react";
+import { Calendar, AlertCircle } from "lucide-react";
 
 export const CalendarSection = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+
   useEffect(() => {
-    // Clean method to load HubSpot calendar
     const loadHubSpotCalendar = () => {
-      // Remove existing script if present
-      const existingScript = document.querySelector('script[src*="MeetingsEmbedCode"]');
-      if (existingScript) {
-        existingScript.remove();
+      console.log('Début du chargement du calendrier HubSpot...');
+      
+      // Nettoyer les anciens scripts
+      const existingScripts = document.querySelectorAll('script[src*="MeetingsEmbedCode"]');
+      existingScripts.forEach(script => script.remove());
+
+      // Nettoyer le conteneur
+      const container = document.getElementById('hubspot-calendar-embed');
+      if (container) {
+        container.innerHTML = '';
       }
 
-      // Create script element
       const script = document.createElement('script');
       script.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
       script.async = true;
       
       script.onload = () => {
-        console.log('HubSpot script loaded');
-        // Initialize with correct selector
-        setTimeout(() => {
+        console.log('Script HubSpot chargé avec succès');
+        
+        // Attendre que le script soit prêt
+        const initCalendar = () => {
           if (window.hbspt && window.hbspt.meetings) {
             try {
+              console.log('Initialisation du calendrier...');
               window.hbspt.meetings.create({
                 portalId: "144571109",
                 meetingId: "falmanzo",
                 target: "#hubspot-calendar-embed"
               });
+              setIsLoading(false);
+              console.log('Calendrier initialisé avec succès');
             } catch (error) {
-              console.error('HubSpot calendar error:', error);
+              console.error('Erreur lors de l\'initialisation du calendrier:', error);
+              setHasError(true);
+              setIsLoading(false);
             }
+          } else {
+            console.log('HubSpot meetings API pas encore disponible, nouvel essai...');
+            setTimeout(initCalendar, 500);
           }
-        }, 1000);
+        };
+
+        setTimeout(initCalendar, 100);
+      };
+
+      script.onerror = () => {
+        console.error('Échec du chargement du script HubSpot');
+        setHasError(true);
+        setIsLoading(false);
       };
 
       document.head.appendChild(script);
     };
 
-    const timer = setTimeout(loadHubSpotCalendar, 200);
-    return () => clearTimeout(timer);
+    // Démarrer le chargement après un court délai
+    const timer = setTimeout(loadHubSpotCalendar, 500);
+    
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
@@ -62,7 +90,31 @@ export const CalendarSection = () => {
         </p>
       </div>
       
-      <div className="min-h-[600px] border border-slate-200 rounded-xl overflow-hidden bg-white">
+      <div className="min-h-[600px] border border-slate-200 rounded-xl overflow-hidden bg-white relative">
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-white">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+              <p className="text-slate-600">Chargement du calendrier...</p>
+            </div>
+          </div>
+        )}
+        
+        {hasError && (
+          <div className="absolute inset-0 flex items-center justify-center bg-white">
+            <div className="text-center">
+              <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
+              <p className="text-slate-600 mb-4">Erreur lors du chargement du calendrier</p>
+              <button 
+                onClick={() => window.location.reload()} 
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Recharger la page
+              </button>
+            </div>
+          </div>
+        )}
+        
         <div 
           id="hubspot-calendar-embed"
           className="w-full h-full min-h-[600px]" 
