@@ -49,9 +49,13 @@ const Contact = () => {
 
     return () => {
       // Nettoyage des scripts
-      document.head.removeChild(calendarScript);
-      document.head.removeChild(formsScript);
-      document.head.removeChild(chatScript);
+      const existingCalendarScript = document.querySelector('script[src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"]');
+      const existingFormsScript = document.querySelector('script[src="//js-eu1.hsforms.net/forms/embed/v2.js"]');
+      const existingChatScript = document.querySelector('#hs-script-loader');
+      
+      if (existingCalendarScript) document.head.removeChild(existingCalendarScript);
+      if (existingFormsScript) document.head.removeChild(existingFormsScript);
+      if (existingChatScript) document.head.removeChild(existingChatScript);
     };
   }, []);
 
@@ -137,7 +141,7 @@ const Contact = () => {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
         <div className="container mx-auto px-4 py-8">
           {/* Page Header */}
           <motion.header 
@@ -149,13 +153,13 @@ const Contact = () => {
             <div className="inline-flex items-center bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 px-6 py-3 rounded-full text-sm font-semibold mb-6 shadow-sm">
               📞 Contactez-nous
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900">
               Réservez votre{" "}
               <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
                 consultation gratuite
               </span>
             </h1>
-            <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
               Discutons de vos besoins logistiques et trouvons ensemble la solution adaptée à votre e-commerce.
             </p>
           </motion.header>
@@ -163,7 +167,7 @@ const Contact = () => {
           <div className="space-y-8">
             {/* Hero Calendar Section */}
             <motion.section 
-              className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl border border-slate-200 dark:border-slate-700 relative overflow-hidden"
+              className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200 relative overflow-hidden"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -171,16 +175,16 @@ const Contact = () => {
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-blue-800"></div>
               
               <div className="text-center mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold mb-3 text-slate-900 dark:text-white flex items-center justify-center gap-3">
+                <h2 className="text-2xl md:text-3xl font-bold mb-3 text-slate-900 flex items-center justify-center gap-3">
                   <Calendar className="h-8 w-8 text-blue-600" />
                   Planifiez votre rendez-vous
                 </h2>
-                <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+                <p className="text-slate-600 max-w-2xl mx-auto">
                   Réservez un créneau de 15 minutes pour discuter de votre projet logistique avec notre équipe d'experts.
                 </p>
               </div>
               
-              <div className="min-h-[600px] border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-900">
+              <div className="min-h-[600px] border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
                 <div 
                   className="meetings-iframe-container w-full h-full" 
                   data-src="https://meetings-eu1.hubspot.com/falmanzo?embed=true"
@@ -195,32 +199,32 @@ const Contact = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <div className="bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-2xl p-8 text-center cursor-pointer transition-all duration-300 hover:border-blue-600 hover:shadow-xl hover:-translate-y-1 relative overflow-hidden group">
+              <div 
+                className="bg-white border-2 border-slate-200 rounded-3xl p-8 text-center cursor-pointer transition-all duration-300 hover:border-blue-600 hover:shadow-xl hover:-translate-y-1 relative overflow-hidden group"
+                onClick={() => setContactModalOpen(true)}
+              >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <MessageSquare className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-white">Formulaire de Contact</h3>
-                <p className="text-slate-600 dark:text-slate-300 mb-6 text-sm">
+                <span className="text-4xl mb-4 block">💬</span>
+                <h3 className="text-xl font-semibold mb-2 text-slate-900">Formulaire de Contact</h3>
+                <p className="text-slate-600 mb-6 text-sm">
                   Décrivez votre projet et recevez une réponse personnalisée sous 24h
                 </p>
-                <Button 
-                  onClick={() => setContactModalOpen(true)}
-                  className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:-translate-y-1 shadow-lg"
-                >
+                <Button className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:-translate-y-1 shadow-lg">
                   Nous contacter
                 </Button>
               </div>
 
-              <div className="bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-2xl p-8 text-center cursor-pointer transition-all duration-300 hover:border-blue-600 hover:shadow-xl hover:-translate-y-1 relative overflow-hidden group">
+              <div 
+                className="bg-white border-2 border-slate-200 rounded-3xl p-8 text-center cursor-pointer transition-all duration-300 hover:border-blue-600 hover:shadow-xl hover:-translate-y-1 relative overflow-hidden group"
+                onClick={() => setSavModalOpen(true)}
+              >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <Phone className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-white">Service Après-Vente</h3>
-                <p className="text-slate-600 dark:text-slate-300 mb-6 text-sm">
+                <span className="text-4xl mb-4 block">🛠️</span>
+                <h3 className="text-xl font-semibold mb-2 text-slate-900">Service Après-Vente</h3>
+                <p className="text-slate-600 mb-6 text-sm">
                   Un problème avec votre commande ? Notre équipe SAV est là pour vous aider
                 </p>
-                <Button 
-                  onClick={() => setSavModalOpen(true)}
-                  className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:-translate-y-1 shadow-lg"
-                >
+                <Button className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:-translate-y-1 shadow-lg">
                   Contacter le SAV
                 </Button>
               </div>
@@ -228,22 +232,22 @@ const Contact = () => {
 
             {/* Map Section */}
             <motion.section 
-              className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl border border-slate-200 dark:border-slate-700"
+              className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <div className="text-center mb-6">
-                <h2 className="text-2xl font-semibold mb-2 text-slate-900 dark:text-white flex items-center justify-center gap-3">
+                <h2 className="text-2xl font-semibold mb-2 text-slate-900 flex items-center justify-center gap-3">
                   <MapPin className="h-6 w-6 text-blue-600" />
                   Notre Localisation
                 </h2>
-                <p className="text-slate-600 dark:text-slate-300">
+                <p className="text-slate-600">
                   Speed E-Log - 37 Rue de Rémaucourt, 70170 Port-sur-Saône
                 </p>
               </div>
               
-              <div className="h-96 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
+              <div className="h-96 border border-slate-200 rounded-xl overflow-hidden">
                 <iframe 
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10805.55665035175!2d6.036526308525196!3d47.69024919081746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47920f4259cab0c7%3A0x409ce34b30d1220!2s70170%20Port-sur-Sa%C3%B4ne!5e0!3m2!1sfr!2sfr!4v1681578343811!5m2!1sfr!2sfr" 
                   width="100%" 
