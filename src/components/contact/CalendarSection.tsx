@@ -5,51 +5,42 @@ import { Calendar } from "lucide-react";
 
 export const CalendarSection = () => {
   useEffect(() => {
-    // Simple and clean HubSpot calendar loading
-    const loadCalendar = () => {
-      // Remove any existing scripts to avoid conflicts
+    // Clean method to load HubSpot calendar
+    const loadHubSpotCalendar = () => {
+      // Remove existing script if present
       const existingScript = document.querySelector('script[src*="MeetingsEmbedCode"]');
       if (existingScript) {
         existingScript.remove();
       }
 
-      // Create and load the script
+      // Create script element
       const script = document.createElement('script');
       script.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
       script.async = true;
-      script.defer = true;
       
       script.onload = () => {
-        console.log('HubSpot meetings script loaded successfully');
-        // Wait a bit for the script to initialize
+        console.log('HubSpot script loaded');
+        // Initialize with correct selector
         setTimeout(() => {
-          try {
-            if (window.hbspt && window.hbspt.meetings) {
+          if (window.hbspt && window.hbspt.meetings) {
+            try {
               window.hbspt.meetings.create({
                 portalId: "144571109",
                 meetingId: "falmanzo",
-                target: "#meetings-container"
+                target: "#hubspot-calendar-embed"
               });
+            } catch (error) {
+              console.error('HubSpot calendar error:', error);
             }
-          } catch (error) {
-            console.error('Error initializing HubSpot calendar:', error);
           }
-        }, 500);
-      };
-
-      script.onerror = () => {
-        console.error('Failed to load HubSpot meetings script');
+        }, 1000);
       };
 
       document.head.appendChild(script);
     };
 
-    // Load after component mounts
-    const timer = setTimeout(loadCalendar, 300);
-    
-    return () => {
-      clearTimeout(timer);
-    };
+    const timer = setTimeout(loadHubSpotCalendar, 200);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -73,7 +64,7 @@ export const CalendarSection = () => {
       
       <div className="min-h-[600px] border border-slate-200 rounded-xl overflow-hidden bg-white">
         <div 
-          id="meetings-container"
+          id="hubspot-calendar-embed"
           className="w-full h-full min-h-[600px]" 
         ></div>
       </div>
