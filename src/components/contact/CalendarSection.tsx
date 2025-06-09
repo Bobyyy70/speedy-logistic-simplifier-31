@@ -7,7 +7,8 @@ export const CalendarSection = () => {
   useEffect(() => {
     // Load HubSpot meetings script only once
     const loadHubSpotMeetings = () => {
-      if (window.HubSpotConversations || document.querySelector('script[src*="MeetingsEmbedCode"]')) {
+      // Check if script is already loaded
+      if (document.querySelector('script[src*="MeetingsEmbedCode"]')) {
         return;
       }
       
