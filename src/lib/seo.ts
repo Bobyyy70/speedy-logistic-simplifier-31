@@ -1,4 +1,3 @@
-import { Metadata } from 'next/dist/lib/metadata/api/types';
 
 export type SEOPageData = {
   title?: string;
