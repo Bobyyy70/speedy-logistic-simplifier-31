@@ -1,13 +1,15 @@
 
 import React, { useEffect, useState } from 'react';
+import { useCookieManagement } from '@/hooks/useCookieManagement';
 
 export const HubSpotCookieBanner: React.FC = () => {
   const [isHubSpotLoaded, setIsHubSpotLoaded] = useState(false);
   const [debugInfo, setDebugInfo] = useState<string>('');
+  const { isInIframe, isHubSpotBlocked, shouldShowCustomBanner } = useCookieManagement();
 
   useEffect(() => {
     let checkAttempts = 0;
-    const maxAttempts = 10;
+    const maxAttempts = 15; // Augmenté pour plus de chances
 
     const checkHubSpot = () => {
       checkAttempts++;
@@ -19,22 +21,24 @@ export const HubSpotCookieBanner: React.FC = () => {
         _hsp: hasHsp,
         hbspt: hasHbspt,
         privacy: hasPrivacy,
-        cookies: document.cookie.includes('hubspotutk')
+        cookies: document.cookie.includes('hubspotutk'),
+        iframe: isInIframe,
+        domain: window.location.hostname
       });
 
-      setDebugInfo(`Tentative ${checkAttempts}: _hsp=${hasHsp}, hbspt=${hasHbspt}, privacy=${hasPrivacy}`);
+      setDebugInfo(`${checkAttempts}/${maxAttempts}: _hsp=${hasHsp}, hbspt=${hasHbspt}, iframe=${isInIframe}`);
 
       if (hasHsp || (hasHbspt && hasPrivacy)) {
         console.log('✅ HubSpot est prêt !');
         setIsHubSpotLoaded(true);
-        setDebugInfo('HubSpot chargé avec succès');
+        setDebugInfo('HubSpot chargé');
         
-        // Forcer l'affichage de la bannière si aucun cookie de consentement n'est présent
-        if (!document.cookie.includes('__hs_cookie_cat_pref')) {
-          console.log('🍪 Aucun cookie de consentement détecté, tentative d\'affichage automatique...');
+        // Essayer d'afficher la bannière automatiquement
+        if (!document.cookie.includes('__hs_cookie_cat_pref') && !isInIframe) {
+          console.log('🍪 Tentative d\'affichage automatique de la bannière...');
           setTimeout(() => {
             tryShowBanner();
-          }, 1000);
+          }, 500);
         }
       } else if (checkAttempts < maxAttempts) {
         setTimeout(checkHubSpot, 1000);
@@ -59,10 +63,15 @@ export const HubSpotCookieBanner: React.FC = () => {
       window.removeEventListener('hsLoaded', handleHubSpotReady);
       window.removeEventListener('hsFormReady', handleHubSpotReady);
     };
-  }, []);
+  }, [isInIframe]);
 
   const tryShowBanner = () => {
     console.log('🎯 Tentative d\'affichage de la bannière de cookies...');
+    
+    if (isInIframe) {
+      console.log('⚠️ Affichage de bannière bloqué dans iframe');
+      return false;
+    }
     
     try {
       // Méthode 1: Via _hsp.push (recommandée)
@@ -79,10 +88,9 @@ export const HubSpotCookieBanner: React.FC = () => {
         return true;
       }
 
-      // Méthode 3: Forcer via l'API de consentement
+      // Méthode 3: Forcer via reset + reload
       if ((window as any).hbspt?.privacy) {
-        console.log('📤 Tentative de reset des préférences de cookies');
-        // Supprimer le cookie de préférence pour forcer l'affichage
+        console.log('📤 Tentative de reset + reload de la bannière');
         document.cookie = '__hs_cookie_cat_pref=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
         setTimeout(() => {
           if ((window as any).hbspt?.privacy?.showBanner) {
@@ -105,15 +113,25 @@ export const HubSpotCookieBanner: React.FC = () => {
     const success = tryShowBanner();
     
     if (!success) {
-      // Fallback: Afficher une alerte avec instructions
-      alert(
-        'La bannière de cookies HubSpot n\'est pas disponible.\n\n' +
-        'Vérifiez que :\n' +
-        '1. La bannière de cookies est activée dans HubSpot\n' +
-        '2. Les paramètres GDPR sont configurés\n' +
-        '3. Votre région est configurée pour l\'Europe\n\n' +
-        'Consultez la console pour plus de détails.'
-      );
+      // Afficher un message informatif selon le contexte
+      if (isInIframe) {
+        alert(
+          'ℹ️ Information bannière de cookies\n\n' +
+          'Vous êtes actuellement dans l\'environnement de prévisualisation.\n' +
+          'La bannière de cookies HubSpot ne peut pas s\'afficher dans ce contexte.\n\n' +
+          '✅ En production sur votre domaine, la bannière fonctionnera normalement.\n\n' +
+          'Vous pouvez tester avec la bannière alternative disponible sur cette page.'
+        );
+      } else {
+        alert(
+          'La bannière de cookies HubSpot n\'est pas disponible.\n\n' +
+          'Vérifiez que :\n' +
+          '1. La bannière de cookies est activée dans HubSpot\n' +
+          '2. Les paramètres GDPR sont configurés\n' +
+          '3. Votre région est configurée pour l\'Europe\n\n' +
+          'Consultez la console pour plus de détails.'
+        );
+      }
     }
   };
 
@@ -134,10 +152,26 @@ export const HubSpotCookieBanner: React.FC = () => {
       document.cookie = `${cookie}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${window.location.hostname};`;
     });
     
+    // Reset du localStorage aussi
+    localStorage.removeItem('cookie-consent');
+    
     setTimeout(() => {
       console.log('🔄 Rechargement de la page...');
       window.location.reload();
     }, 100);
+  };
+
+  // Message contextuel selon l'environnement
+  const getButtonTitle = () => {
+    if (!isHubSpotLoaded) return "HubSpot en cours de chargement...";
+    if (isInIframe) return "Test bannière (iframe détectée)";
+    if (shouldShowCustomBanner) return "HubSpot bloqué - bannière alternative disponible";
+    return "Afficher les paramètres des cookies";
+  };
+
+  const getButtonText = () => {
+    if (isInIframe) return "Test cookies (iframe)";
+    return "Paramètres des cookies";
   };
 
   return (
@@ -147,11 +181,14 @@ export const HubSpotCookieBanner: React.FC = () => {
         id="hs_show_banner_button"
         onClick={handleShowBanner}
         className="bg-[#425b76] border border-[#425b76] rounded-sm px-4 py-2.5 text-white text-sm font-normal leading-normal text-left hover:bg-[#3a4f66] transition-colors duration-200"
-        title={isHubSpotLoaded ? "Afficher les paramètres des cookies" : "HubSpot en cours de chargement..."}
+        title={getButtonTitle()}
       >
-        Paramètres des cookies
+        {getButtonText()}
         {!isHubSpotLoaded && (
           <span className="ml-2 text-xs opacity-70">(chargement...)</span>
+        )}
+        {isInIframe && (
+          <span className="ml-2 text-xs opacity-70">🖼️</span>
         )}
       </button>
       
