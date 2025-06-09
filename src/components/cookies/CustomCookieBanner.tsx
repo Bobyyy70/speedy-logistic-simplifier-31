@@ -86,7 +86,7 @@ export const CustomCookieBanner: React.FC = () => {
   if (!showBanner) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 p-4">
+    <div className="fixed bottom-0 left-0 right-0 z-30 p-4">
       <Card className="mx-auto max-w-4xl bg-white border border-border shadow-lg">
         <div className="p-4">
           {!showDetails ? (

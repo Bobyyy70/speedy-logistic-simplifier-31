@@ -73,7 +73,7 @@ export function ContactCTA() {
               asChild
             >
               <Link to="/contact" className="flex items-center gap-2">
-                Obtenir un devis gratuit 
+                Obtenir un devis personnalisé 
                 <ArrowRight className="ml-2 h-5 w-5 text-white transition-transform" />
               </Link>
             </Button>
