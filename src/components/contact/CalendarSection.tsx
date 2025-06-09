@@ -30,10 +30,10 @@ export const CalendarSection = () => {
         
         // Attendre que le script soit prêt
         const initCalendar = () => {
-          if (window.hbspt && window.hbspt.meetings) {
+          if ((window as any).hbspt && (window as any).hbspt.meetings) {
             try {
               console.log('Initialisation du calendrier...');
-              window.hbspt.meetings.create({
+              (window as any).hbspt.meetings.create({
                 portalId: "144571109",
                 meetingId: "falmanzo",
                 target: "#hubspot-calendar-embed"
