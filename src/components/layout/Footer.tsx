@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -29,7 +30,11 @@ export const Footer: React.FC = () => {
               <div className="lg:col-span-1 space-y-6">
                 <div className="flex items-center space-x-3">
                   <div className="p-2 bg-blue-600 rounded-lg">
-                    
+                    <img 
+                      src="/lovable-uploads/1b18704e-fe44-480f-98ac-cb0197f35d51.png" 
+                      alt="Speed E-Log Logo"
+                      className="w-8 h-8 object-contain"
+                    />
                   </div>
                   <span className="text-xl font-bold text-white">Speed E-Log</span>
                 </div>
