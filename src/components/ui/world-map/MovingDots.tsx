@@ -129,18 +129,18 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
 
       {/* Enhanced gradient definitions for dots with more vibrant colors */}
       <defs>
-        <radialGradient id="originGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+        <radialGradient id="originGradient" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#4C8DFF" stopOpacity="1" />
           <stop offset="70%" stopColor="#2F68F3" stopOpacity="0.8" />
           <stop offset="100%" stopColor="#2F68F3" stopOpacity="0" />
         </radialGradient>
         
-        <radialGradient id="haloGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+        <radialGradient id="haloGradient" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#4C8DFF" stopOpacity="0.7" />
           <stop offset="100%" stopColor="#4C8DFF" stopOpacity="0" />
         </radialGradient>
         
-        <radialGradient id="destinationGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+        <radialGradient id="destinationGradient" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#FFD700" stopOpacity="1" />
           <stop offset="70%" stopColor="#F3BA2F" stopOpacity="0.8" />
           <stop offset="100%" stopColor="#F3BA2F" stopOpacity="0" />

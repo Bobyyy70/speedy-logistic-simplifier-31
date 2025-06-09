@@ -27,5 +27,34 @@
     <!-- Start of HubSpot Embed Code -->
     <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/144571109.js"></script>
     <!-- End of HubSpot Embed Code -->
+
+    <!-- Debug script pour HubSpot -->
+    <script>
+      console.log('🔍 Démarrage du monitoring HubSpot...');
+      
+      // Vérifier le chargement périodiquement
+      const checkHubSpot = () => {
+        if (window._hsp) {
+          console.log('✅ HubSpot _hsp détecté:', window._hsp);
+        }
+        if (window.hbspt) {
+          console.log('✅ HubSpot hbspt détecté:', window.hbspt);
+        }
+        if (!window._hsp && !window.hbspt) {
+          console.log('⏳ HubSpot pas encore chargé...');
+        }
+      };
+
+      // Vérification initiale
+      setTimeout(checkHubSpot, 1000);
+      setTimeout(checkHubSpot, 3000);
+      setTimeout(checkHubSpot, 5000);
+
+      // Écouter les événements de chargement
+      window.addEventListener('load', () => {
+        console.log('📄 Page chargée, vérification HubSpot...');
+        setTimeout(checkHubSpot, 1000);
+      });
+    </script>
   </body>
 </html>
