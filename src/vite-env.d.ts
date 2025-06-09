@@ -14,6 +14,13 @@ declare global {
           target: string;
         }) => void;
       };
+      meetings?: {
+        create: (config: {
+          portalId: string;
+          meetingId: string;
+          target: string;
+        }) => void;
+      };
     };
     hsConversationsSettings?: any;
   }

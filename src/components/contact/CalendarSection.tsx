@@ -5,10 +5,18 @@ import { Calendar } from "lucide-react";
 
 export const CalendarSection = () => {
   useEffect(() => {
-    // Load HubSpot meetings script only once
-    const loadHubSpotMeetings = () => {
+    // Load HubSpot meetings script and initialize calendar
+    const loadHubSpotCalendar = () => {
       // Check if script is already loaded
       if (document.querySelector('script[src*="MeetingsEmbedCode"]')) {
+        // If script exists, try to initialize the calendar
+        if ((window as any).hbspt?.meetings) {
+          (window as any).hbspt.meetings.create({
+            portalId: "144571109",
+            meetingId: "falmanzo", 
+            target: ".meetings-iframe-container"
+          });
+        }
         return;
       }
       
@@ -17,12 +25,20 @@ export const CalendarSection = () => {
       script.async = true;
       script.onload = () => {
         console.log('HubSpot meetings script loaded');
+        // Initialize calendar after script loads
+        if ((window as any).hbspt?.meetings) {
+          (window as any).hbspt.meetings.create({
+            portalId: "144571109",
+            meetingId: "falmanzo",
+            target: ".meetings-iframe-container"
+          });
+        }
       };
       document.head.appendChild(script);
     };
 
     // Small delay to ensure DOM is ready
-    const timer = setTimeout(loadHubSpotMeetings, 100);
+    const timer = setTimeout(loadHubSpotCalendar, 100);
     
     return () => clearTimeout(timer);
   }, []);
@@ -49,7 +65,6 @@ export const CalendarSection = () => {
       <div className="min-h-[600px] border border-slate-200 rounded-xl overflow-hidden bg-white">
         <div 
           className="meetings-iframe-container w-full h-full min-h-[600px]" 
-          data-src="https://meetings-eu1.hubspot.com/falmanzo?embed=true"
         ></div>
       </div>
     </motion.section>
