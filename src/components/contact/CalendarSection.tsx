@@ -5,42 +5,51 @@ import { Calendar } from "lucide-react";
 
 export const CalendarSection = () => {
   useEffect(() => {
-    // Load HubSpot meetings script and initialize calendar
-    const loadHubSpotCalendar = () => {
-      // Check if script is already loaded
-      if (document.querySelector('script[src*="MeetingsEmbedCode"]')) {
-        // If script exists, try to initialize the calendar
-        if ((window as any).hbspt?.meetings) {
-          (window as any).hbspt.meetings.create({
-            portalId: "144571109",
-            meetingId: "falmanzo", 
-            target: ".meetings-iframe-container"
-          });
-        }
-        return;
+    // Simple and clean HubSpot calendar loading
+    const loadCalendar = () => {
+      // Remove any existing scripts to avoid conflicts
+      const existingScript = document.querySelector('script[src*="MeetingsEmbedCode"]');
+      if (existingScript) {
+        existingScript.remove();
       }
-      
+
+      // Create and load the script
       const script = document.createElement('script');
       script.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
       script.async = true;
+      script.defer = true;
+      
       script.onload = () => {
-        console.log('HubSpot meetings script loaded');
-        // Initialize calendar after script loads
-        if ((window as any).hbspt?.meetings) {
-          (window as any).hbspt.meetings.create({
-            portalId: "144571109",
-            meetingId: "falmanzo",
-            target: ".meetings-iframe-container"
-          });
-        }
+        console.log('HubSpot meetings script loaded successfully');
+        // Wait a bit for the script to initialize
+        setTimeout(() => {
+          try {
+            if (window.hbspt && window.hbspt.meetings) {
+              window.hbspt.meetings.create({
+                portalId: "144571109",
+                meetingId: "falmanzo",
+                target: "#meetings-container"
+              });
+            }
+          } catch (error) {
+            console.error('Error initializing HubSpot calendar:', error);
+          }
+        }, 500);
       };
+
+      script.onerror = () => {
+        console.error('Failed to load HubSpot meetings script');
+      };
+
       document.head.appendChild(script);
     };
 
-    // Small delay to ensure DOM is ready
-    const timer = setTimeout(loadHubSpotCalendar, 100);
+    // Load after component mounts
+    const timer = setTimeout(loadCalendar, 300);
     
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
@@ -64,7 +73,8 @@ export const CalendarSection = () => {
       
       <div className="min-h-[600px] border border-slate-200 rounded-xl overflow-hidden bg-white">
         <div 
-          className="meetings-iframe-container w-full h-full min-h-[600px]" 
+          id="meetings-container"
+          className="w-full h-full min-h-[600px]" 
         ></div>
       </div>
     </motion.section>
