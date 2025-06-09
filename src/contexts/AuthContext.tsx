@@ -2,7 +2,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
-import { toast } from 'sonner';
+import { useToast } from '@/hooks/use-toast';
 
 type UserRole = 'admin' | 'user' | 'client';
 
@@ -24,6 +24,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [userRole, setUserRole] = useState<UserRole | null>(null);
   const [loading, setLoading] = useState(true);
+  const { toast } = useToast();
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
@@ -78,8 +79,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     });
     
     if (error) {
-      toast.error("Erreur de connexion", {
+      toast({
+        title: "Erreur de connexion",
         description: error.message,
+        variant: "destructive",
       });
     }
     
@@ -101,11 +104,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     });
     
     if (error) {
-      toast.error("Erreur d'inscription", {
+      toast({
+        title: "Erreur d'inscription",
         description: error.message,
+        variant: "destructive",
       });
     } else {
-      toast.success("Inscription réussie", {
+      toast({
+        title: "Inscription réussie",
         description: "Vérifiez votre email pour confirmer votre compte.",
       });
     }
@@ -116,8 +122,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) {
-      toast.error("Erreur de déconnexion", {
+      toast({
+        title: "Erreur de déconnexion",
         description: error.message,
+        variant: "destructive",
       });
     }
   };
