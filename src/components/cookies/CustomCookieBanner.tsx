@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { X, Cookie, Settings, Check } from 'lucide-react';
+import { X, Settings, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 
@@ -86,14 +86,18 @@ export const CustomCookieBanner: React.FC = () => {
   if (!showBanner) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-4">
+    <div className="fixed bottom-0 left-0 right-0 z-40 p-4">
       <Card className="mx-auto max-w-4xl bg-white border border-border shadow-lg">
         <div className="p-4">
           {!showDetails ? (
             // Vue simplifiée
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <div className="flex items-center space-x-3 flex-1">
-                <Cookie className="h-5 w-5 text-primary flex-shrink-0" />
+                <img 
+                  src="/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png" 
+                  alt="Speed E-Log" 
+                  className="h-8 w-8 flex-shrink-0"
+                />
                 <div className="text-sm">
                   <span className="font-medium text-foreground">
                     Nous utilisons des cookies
@@ -146,7 +150,11 @@ export const CustomCookieBanner: React.FC = () => {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <Cookie className="h-5 w-5 text-primary" />
+                  <img 
+                    src="/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png" 
+                    alt="Speed E-Log" 
+                    className="h-6 w-6"
+                  />
                   <h3 className="font-medium text-foreground">Paramètres des cookies</h3>
                 </div>
                 <Button

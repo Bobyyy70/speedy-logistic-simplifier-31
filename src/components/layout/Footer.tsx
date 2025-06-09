@@ -1,8 +1,8 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { HubSpotCookieBanner } from "./HubSpotCookieBanner";
 import { CustomCookieBanner } from "@/components/cookies/CustomCookieBanner";
 import { useCookieManagement } from "@/hooks/useCookieManagement";
 import { Ship, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
@@ -140,12 +140,8 @@ export const Footer: React.FC = () => {
           {/* Bottom Footer */}
           <div className="container mx-auto px-4 py-6">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm text-slate-400">
+              <div className="text-sm text-slate-400">
                 <p>&copy; {currentYear} Speed E-Log. Tous droits réservés.</p>
-                <div className="flex items-center space-x-1">
-                  <span>•</span>
-                  <HubSpotCookieBanner />
-                </div>
               </div>
               <div className="flex flex-wrap items-center space-x-4 text-sm">
                 <Link to="/mentions-legales" className="text-slate-400 hover:text-white transition-colors">

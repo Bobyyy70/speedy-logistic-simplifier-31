@@ -89,8 +89,8 @@ export function Services() {
         >
           <Button 
             variant="blue" 
-            size="lg" 
-            className="group relative shadow-lg hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
+            size="2xl" 
+            className="shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
             asChild
           >
             <Link to="/contact" className="flex items-center gap-2">

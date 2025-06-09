@@ -1,5 +1,6 @@
 
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { Helmet } from "react-helmet-async";
@@ -11,6 +12,13 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({
   children
 }) => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Scroll vers le haut à chaque changement de route
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return <div className="flex flex-col min-h-screen site-background">
       <Helmet>
         <html lang="fr" />

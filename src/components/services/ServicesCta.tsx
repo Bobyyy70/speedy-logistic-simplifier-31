@@ -29,7 +29,7 @@ export const ServicesCta: React.FC = () => {
         <Button 
           variant="blue" 
           size="2xl" 
-          className="mx-auto shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 px-8 py-3 rounded-full"
+          className="shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
           asChild
         >
           <Link to="/contact">Demander un Devis Personnalisé <ArrowRight className="ml-2 h-5 w-5" /></Link>

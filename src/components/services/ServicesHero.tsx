@@ -6,40 +6,6 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 
-// Component for the primary action buttons
-const PrimaryActionButton = ({ to, children, className = "", secondary = false }: { 
-  to: string; 
-  children: React.ReactNode; 
-  className?: string;
-  secondary?: boolean;
-}) => {
-  if (secondary) {
-    return (
-      <Link to={to} className={className}>
-        <Button 
-          variant="outline" 
-          size="lg" 
-          className="flex items-center gap-2 group"
-        >
-          {children}
-        </Button>
-      </Link>
-    );
-  }
-  
-  return (
-    <Link to={to} className={className}>
-      <Button 
-        variant="blue" 
-        size="lg" 
-        className="flex items-center gap-2"
-      >
-        {children}
-      </Button>
-    </Link>
-  );
-};
-
 export const ServicesHero: React.FC = () => {
   return (
     <AuroraBackground className="min-h-[65vh] h-auto py-16 md:py-24" keepExistingBackground={true}>
@@ -60,13 +26,27 @@ export const ServicesHero: React.FC = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
-            <PrimaryActionButton to="/contact">
-              Demander un devis
-            </PrimaryActionButton>
+            <Button 
+              variant="blue" 
+              size="2xl" 
+              className="shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
+              asChild
+            >
+              <Link to="/contact">
+                Demander un devis
+              </Link>
+            </Button>
             
-            <PrimaryActionButton to="#services" secondary>
-              En savoir plus <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </PrimaryActionButton>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="flex items-center gap-2 group"
+              asChild
+            >
+              <Link to="#services">
+                En savoir plus <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
           </div>
         </motion.div>
         
