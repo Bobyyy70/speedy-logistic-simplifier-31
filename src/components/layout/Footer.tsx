@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -6,13 +5,12 @@ import { Separator } from "@/components/ui/separator";
 import { CustomCookieBanner } from "@/components/cookies/CustomCookieBanner";
 import { useCookieManagement } from "@/hooks/useCookieManagement";
 import { Ship, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
-
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  const { shouldShowCustomBanner } = useCookieManagement();
-
-  return (
-    <>
+  const {
+    shouldShowCustomBanner
+  } = useCookieManagement();
+  return <>
       {/* Bannière de cookies personnalisée si nécessaire */}
       {shouldShowCustomBanner && <CustomCookieBanner />}
       
@@ -31,31 +29,14 @@ export const Footer: React.FC = () => {
               <div className="lg:col-span-1 space-y-6">
                 <div className="flex items-center space-x-3">
                   <div className="p-2 bg-blue-600 rounded-lg">
-                    <Ship className="h-6 w-6 text-white" />
+                    
                   </div>
                   <span className="text-xl font-bold text-white">Speed E-Log</span>
                 </div>
                 <p className="text-slate-300 leading-relaxed">
                   Votre partenaire logistique e-commerce de confiance. Nous simplifions votre chaîne d'approvisionnement pour que vous puissiez vous concentrer sur la croissance de votre entreprise.
                 </p>
-                <div className="flex space-x-4">
-                  <Button variant="ghost" size="icon" className="text-slate-400 hover:text-white hover:bg-slate-800">
-                    <Facebook className="h-5 w-5" />
-                    <span className="sr-only">Facebook</span>
-                  </Button>
-                  <Button variant="ghost" size="icon" className="text-slate-400 hover:text-white hover:bg-slate-800">
-                    <Twitter className="h-5 w-5" />
-                    <span className="sr-only">Twitter</span>
-                  </Button>
-                  <Button variant="ghost" size="icon" className="text-slate-400 hover:text-white hover:bg-slate-800">
-                    <Linkedin className="h-5 w-5" />
-                    <span className="sr-only">LinkedIn</span>
-                  </Button>
-                  <Button variant="ghost" size="icon" className="text-slate-400 hover:text-white hover:bg-slate-800">
-                    <Instagram className="h-5 w-5" />
-                    <span className="sr-only">Instagram</span>
-                  </Button>
-                </div>
+                
               </div>
 
               {/* Quick Links */}
@@ -124,12 +105,7 @@ export const Footer: React.FC = () => {
                       contact@speedelog.fr
                     </a>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <Phone className="h-5 w-5 text-blue-400 flex-shrink-0" />
-                    <a href="tel:+33123456789" className="text-slate-300 hover:text-white transition-colors">
-                      +33 1 23 45 67 89
-                    </a>
-                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -158,6 +134,5 @@ export const Footer: React.FC = () => {
           </div>
         </div>
       </footer>
-    </>
-  );
+    </>;
 };
