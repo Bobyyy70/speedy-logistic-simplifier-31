@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 const faqs = [
   {
     question: "Quels types de produits gérez-vous ?",
-    answer: "Nous sommes spécialisés dans les produits non fragiles, non périssables, sans température dirigée, et dont le poids ne dépasse pas 30 kg. Nous sommes particulièrement adaptés aux produits à forte rotation ou exclusifs comme les compléments alimentaires, cosmétiques, accessoires, textile, etc."
+    answer: "Nous sommes spécialisés dans les produits non fragiles, non périssables, sans température dirigée, et dont le poids ne dépasse pas 30 kg. Nous sommes particulièrement adaptés aux produits à forte rotation comme les compléments alimentaires, cosmétiques, accessoires, etc."
   },
   {
     question: "Comment sont calculés les frais de transport ?",
@@ -27,7 +27,7 @@ const faqs = [
   },
   {
     question: "Comment s'effectue le suivi des stocks et des commandes ?",
-    answer: "Vous bénéficiez d'un accès à notre portail client où vous pouvez suivre en temps réel vos niveaux de stock, l'état de vos commandes et générer des rapports. Notre système met automatiquement à jour votre plateforme e-commerce pour refléter les niveaux de stock actuels."
+    answer: "Vous bénéficiez d'un accès à notre outil avec lequel vous pouvez suivre en temps réel vos niveaux de stock, l'état de vos commandes et générer des rapports. Notre système met automatiquement à jour votre plateforme e-commerce pour refléter les niveaux de stock actuels."
   },
   {
     question: "Comment gérez-vous les retours clients ?",
@@ -39,7 +39,7 @@ const faqs = [
   },
   {
     question: "Comment se déroule l'intégration initiale avec Speed E-Log ?",
-    answer: "L'intégration se fait en plusieurs étapes : analyse de vos besoins, configuration de notre système pour votre catalogue, mise en place des intégrations techniques, réception de vos stocks, et formation à notre plateforme. Un chef de projet dédié vous accompagne tout au long du processus."
+    answer: "L'intégration se fait en plusieurs étapes : analyse de vos besoins, configuration de notre système pour votre catalogue, mise en place des intégrations techniques, réception de vos stocks, Notre équipe vous accompagne tout au long du processus."
   },
 ];
 
