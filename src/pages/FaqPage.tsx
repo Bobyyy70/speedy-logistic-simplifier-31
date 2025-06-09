@@ -41,10 +41,6 @@ const faqs = [
     question: "Comment se déroule l'intégration initiale avec Speed E-Log ?",
     answer: "L'intégration se fait en plusieurs étapes : analyse de vos besoins, configuration de notre système pour votre catalogue, mise en place des intégrations techniques, réception de vos stocks, et formation à notre plateforme. Un chef de projet dédié vous accompagne tout au long du processus."
   },
-  {
-    question: "Proposez-vous des solutions d'assurance pour mes produits ?",
-    answer: "Oui, nous disposons d'une assurance professionnelle couvrant les produits stockés dans notre entrepôt. Des options d'assurance complémentaires peuvent être proposées selon la valeur de vos produits."
-  }
 ];
 
 const FaqPage = () => {
