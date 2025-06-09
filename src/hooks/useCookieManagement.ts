@@ -13,6 +13,7 @@ interface CookieManagementHook {
   isInIframe: boolean;
   shouldShowCustomBanner: boolean;
   isHubSpotBlocked: boolean;
+  isProduction: boolean;
   getConsent: () => CookieConsent | null;
   updateConsent: (consent: Partial<CookieConsent>) => void;
   resetConsent: () => void;
@@ -22,25 +23,31 @@ export const useCookieManagement = (): CookieManagementHook => {
   const [hasConsent, setHasConsent] = useState(false);
   const [isInIframe, setIsInIframe] = useState(false);
   const [isHubSpotBlocked, setIsHubSpotBlocked] = useState(false);
+  const [isProduction, setIsProduction] = useState(false);
 
   useEffect(() => {
-    // Détecter si on est dans un iframe
+    // Détecter l'environnement
     const inIframe = window !== window.top;
+    const isLovablePreview = window.location.hostname.includes('lovable');
+    const isProd = !isLovablePreview && !window.location.hostname.includes('localhost');
+    
     setIsInIframe(inIframe);
+    setIsProduction(isProd);
 
     // Vérifier le consentement existant
     const consent = getConsent();
     setHasConsent(!!consent);
 
-    // Détecter si HubSpot est bloqué
+    // Détecter si HubSpot est bloqué (plus conservateur)
     setTimeout(() => {
       const hubspotWorking = !!(window as any)._hsp && (window as any)._hsp.length >= 0;
-      const cookiesBlocked = document.cookie === '' || !document.cookie.includes('hubspotutk');
+      const cookiesBlocked = inIframe || document.cookie === '' || !document.cookie.includes('hubspotutk');
       setIsHubSpotBlocked(!hubspotWorking || cookiesBlocked);
     }, 2000);
 
     console.log('🍪 Cookie Management:', {
       inIframe,
+      isProduction: isProd,
       hasConsent: !!consent,
       domain: window.location.hostname
     });
@@ -92,13 +99,15 @@ export const useCookieManagement = (): CookieManagementHook => {
     console.log('🔄 Consentement réinitialisé');
   };
 
-  const shouldShowCustomBanner = !hasConsent && (isInIframe || isHubSpotBlocked);
+  // Logique d'affichage : custom banner seulement si HubSpot est bloqué
+  const shouldShowCustomBanner = !hasConsent && isHubSpotBlocked;
 
   return {
     hasConsent,
     isInIframe,
     shouldShowCustomBanner,
     isHubSpotBlocked,
+    isProduction,
     getConsent,
     updateConsent,
     resetConsent

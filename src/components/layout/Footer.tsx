@@ -1,9 +1,7 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { LogoIcon } from "@/components/ui/LogoIcon";
 import { HubSpotCookieBanner } from "./HubSpotCookieBanner";
 import { CustomCookieBanner } from "@/components/cookies/CustomCookieBanner";
 import { useCookieManagement } from "@/hooks/useCookieManagement";

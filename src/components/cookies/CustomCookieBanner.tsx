@@ -1,9 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import { X, Cookie, Shield, Settings } from 'lucide-react';
+import { X, Cookie, Settings, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
 
 interface CookiePreferences {
   necessary: boolean;
@@ -87,64 +86,89 @@ export const CustomCookieBanner: React.FC = () => {
   if (!showBanner) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/50 flex items-end justify-center p-4">
-      <Card className="w-full max-w-2xl max-h-[80vh] overflow-y-auto bg-white border border-gray-200 shadow-2xl">
-        <div className="p-6">
-          {/* Header */}
-          <div className="flex items-start justify-between mb-4">
-            <div className="flex items-center space-x-3">
-              <div className="p-2 bg-blue-100 rounded-lg">
-                <Cookie className="h-6 w-6 text-blue-600" />
+    <div className="fixed bottom-0 left-0 right-0 z-50 p-4">
+      <Card className="mx-auto max-w-4xl bg-white border border-border shadow-lg">
+        <div className="p-4">
+          {!showDetails ? (
+            // Vue simplifiée
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <div className="flex items-center space-x-3 flex-1">
+                <Cookie className="h-5 w-5 text-primary flex-shrink-0" />
+                <div className="text-sm">
+                  <span className="font-medium text-foreground">
+                    Nous utilisons des cookies
+                  </span>
+                  <span className="text-muted-foreground ml-1">
+                    pour améliorer votre expérience. Vous pouvez choisir vos préférences.
+                  </span>
+                </div>
               </div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900">
-                  Gestion des cookies
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Nous respectons votre vie privée
-                </p>
+              
+              <div className="flex items-center space-x-2 flex-shrink-0">
+                <Button
+                  onClick={() => setShowDetails(true)}
+                  variant="outline"
+                  size="sm"
+                  className="text-xs"
+                >
+                  <Settings className="h-3 w-3 mr-1" />
+                  Gérer
+                </Button>
+                <Button
+                  onClick={handleRejectAll}
+                  variant="outline"
+                  size="sm"
+                  className="text-xs"
+                >
+                  Refuser
+                </Button>
+                <Button
+                  onClick={handleAcceptAll}
+                  variant="default"
+                  size="sm"
+                  className="text-xs"
+                >
+                  <Check className="h-3 w-3 mr-1" />
+                  Accepter
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowBanner(false)}
+                  className="text-muted-foreground hover:text-foreground p-1"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
               </div>
             </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setShowBanner(false)}
-              className="text-gray-500 hover:text-gray-700"
-            >
-              <X className="h-5 w-5" />
-            </Button>
-          </div>
+          ) : (
+            // Vue détaillée
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <Cookie className="h-5 w-5 text-primary" />
+                  <h3 className="font-medium text-foreground">Paramètres des cookies</h3>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowBanner(false)}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
 
-          {/* Description */}
-          <div className="mb-6">
-            <p className="text-gray-700 leading-relaxed">
-              Nous utilisons des cookies pour améliorer votre expérience sur notre site, 
-              analyser le trafic et personnaliser le contenu. Vous pouvez choisir quels 
-              types de cookies autoriser.
-            </p>
-          </div>
-
-          {/* Options détaillées */}
-          {showDetails && (
-            <div className="mb-6 space-y-4">
-              <div className="space-y-3">
-                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <div>
-                    <h4 className="font-medium text-gray-900">Cookies nécessaires</h4>
-                    <p className="text-sm text-gray-600">
-                      Indispensables au fonctionnement du site
-                    </p>
-                  </div>
-                  <div className="text-sm font-medium text-green-600">Toujours actifs</div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+                <div className="p-3 rounded-lg bg-muted/50">
+                  <div className="font-medium text-foreground mb-1">Nécessaires</div>
+                  <div className="text-muted-foreground text-xs mb-2">Fonctionnement du site</div>
+                  <div className="text-xs font-medium text-green-600">Toujours actifs</div>
                 </div>
 
-                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <div>
-                    <h4 className="font-medium text-gray-900">Cookies analytiques</h4>
-                    <p className="text-sm text-gray-600">
-                      Nous aident à comprendre comment vous utilisez notre site
-                    </p>
-                  </div>
+                <div className="p-3 rounded-lg bg-muted/50">
+                  <div className="font-medium text-foreground mb-1">Analytiques</div>
+                  <div className="text-muted-foreground text-xs mb-2">Statistiques d'usage</div>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input
                       type="checkbox"
@@ -155,17 +179,13 @@ export const CustomCookieBanner: React.FC = () => {
                       }))}
                       className="sr-only peer"
                     />
-                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    <div className="w-9 h-5 bg-muted peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
                   </label>
                 </div>
 
-                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <div>
-                    <h4 className="font-medium text-gray-900">Cookies marketing</h4>
-                    <p className="text-sm text-gray-600">
-                      Utilisés pour vous proposer des publicités pertinentes
-                    </p>
-                  </div>
+                <div className="p-3 rounded-lg bg-muted/50">
+                  <div className="font-medium text-foreground mb-1">Marketing</div>
+                  <div className="text-muted-foreground text-xs mb-2">Publicités ciblées</div>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input
                       type="checkbox"
@@ -176,67 +196,31 @@ export const CustomCookieBanner: React.FC = () => {
                       }))}
                       className="sr-only peer"
                     />
-                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    <div className="w-9 h-5 bg-muted peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
                   </label>
                 </div>
               </div>
-            </div>
-          )}
 
-          <Separator className="my-4" />
-
-          {/* Actions */}
-          <div className="flex flex-col sm:flex-row gap-3">
-            {!showDetails ? (
-              <>
-                <Button
-                  onClick={handleAcceptAll}
-                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
-                >
-                  Accepter tous les cookies
-                </Button>
-                <Button
-                  onClick={handleRejectAll}
-                  variant="outline"
-                  className="flex-1"
-                >
-                  Refuser les cookies optionnels
-                </Button>
-                <Button
-                  onClick={() => setShowDetails(true)}
-                  variant="ghost"
-                  className="flex items-center space-x-2"
-                >
-                  <Settings className="h-4 w-4" />
-                  <span>Personnaliser</span>
-                </Button>
-              </>
-            ) : (
-              <>
+              <div className="flex flex-col sm:flex-row gap-2">
                 <Button
                   onClick={handleSavePreferences}
-                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
+                  variant="default"
+                  size="sm"
+                  className="flex-1"
                 >
-                  Sauvegarder mes préférences
+                  Sauvegarder les préférences
                 </Button>
                 <Button
                   onClick={() => setShowDetails(false)}
                   variant="outline"
+                  size="sm"
                   className="flex-1"
                 >
                   Retour
                 </Button>
-              </>
-            )}
-          </div>
-
-          {/* Footer info */}
-          <div className="mt-4 pt-4 border-t border-gray-200">
-            <p className="text-xs text-gray-500 text-center">
-              <Shield className="inline h-3 w-3 mr-1" />
-              Vos données sont protégées selon notre politique de confidentialité
-            </p>
-          </div>
+              </div>
+            </div>
+          )}
         </div>
       </Card>
     </div>
