@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
@@ -10,78 +9,81 @@ const Contact = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [savModalOpen, setSavModalOpen] = useState(false);
 
-  // Charger les scripts HubSpot
+  // Charger les scripts HubSpot uniquement si nécessaire
   useEffect(() => {
+    let calendarScript: HTMLScriptElement | null = null;
+    let formsScript: HTMLScriptElement | null = null;
+
     // Script pour le calendrier HubSpot
-    const calendarScript = document.createElement('script');
-    calendarScript.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
-    calendarScript.async = true;
-    document.head.appendChild(calendarScript);
+    if (!document.querySelector('script[src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"]')) {
+      calendarScript = document.createElement('script');
+      calendarScript.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
+      calendarScript.async = true;
+      document.head.appendChild(calendarScript);
+    }
 
     // Script pour les formulaires HubSpot
-    const formsScript = document.createElement('script');
-    formsScript.src = '//js-eu1.hsforms.net/forms/embed/v2.js';
-    formsScript.async = true;
-    document.head.appendChild(formsScript);
+    if (!document.querySelector('script[src="//js-eu1.hsforms.net/forms/embed/v2.js"]')) {
+      formsScript = document.createElement('script');
+      formsScript.src = '//js-eu1.hsforms.net/forms/embed/v2.js';
+      formsScript.async = true;
+      document.head.appendChild(formsScript);
+    }
 
-    // Script pour le chat HubSpot
-    const chatScript = document.createElement('script');
-    chatScript.src = '//js-eu1.hs-scripts.com/144571109.js';
-    chatScript.async = true;
-    chatScript.id = 'hs-script-loader';
-    document.head.appendChild(chatScript);
-
-    // Configuration du chat HubSpot
-    (window as any).hsConversationsSettings = {
-      loadImmediately: true,
-      enableWidgetCookieBanner: true,
-      disableAttachment: false,
-      widget: {
-        position: {
-          side: 'right',
-          offset: {
-            bottom: '20px',
-            right: '20px'
+    // Configuration du chat HubSpot (le script principal est déjà chargé dans index.html)
+    if (typeof (window as any).hsConversationsSettings === 'undefined') {
+      (window as any).hsConversationsSettings = {
+        loadImmediately: true,
+        enableWidgetCookieBanner: true,
+        disableAttachment: false,
+        widget: {
+          position: {
+            side: 'right',
+            offset: {
+              bottom: '20px',
+              right: '20px'
+            }
           }
         }
-      }
-    };
+      };
+    }
 
     return () => {
-      // Nettoyage des scripts
-      const existingCalendarScript = document.querySelector('script[src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"]');
-      const existingFormsScript = document.querySelector('script[src="//js-eu1.hsforms.net/forms/embed/v2.js"]');
-      const existingChatScript = document.querySelector('#hs-script-loader');
-      
-      if (existingCalendarScript) document.head.removeChild(existingCalendarScript);
-      if (existingFormsScript) document.head.removeChild(existingFormsScript);
-      if (existingChatScript) document.head.removeChild(existingChatScript);
+      // Pas de nettoyage nécessaire car le script principal reste dans index.html
     };
   }, []);
 
   // Initialiser les formulaires HubSpot dans les modales
   useEffect(() => {
-    if (contactModalOpen && (window as any).hbspt) {
+    if (contactModalOpen && (window as any).hbspt?.forms) {
       setTimeout(() => {
-        (window as any).hbspt.forms.create({
-          region: "eu1",
-          portalId: "144571109",
-          formId: "ebf2ad52-915e-4bfa-b4c0-a2ff8480054f",
-          target: "#contact-form-container"
-        });
+        try {
+          (window as any).hbspt.forms.create({
+            region: "eu1",
+            portalId: "144571109",
+            formId: "ebf2ad52-915e-4bfa-b4c0-a2ff8480054f",
+            target: "#contact-form-container"
+          });
+        } catch (error) {
+          console.error('Erreur lors du chargement du formulaire de contact:', error);
+        }
       }, 100);
     }
   }, [contactModalOpen]);
 
   useEffect(() => {
-    if (savModalOpen && (window as any).hbspt) {
+    if (savModalOpen && (window as any).hbspt?.forms) {
       setTimeout(() => {
-        (window as any).hbspt.forms.create({
-          region: "eu1",
-          portalId: "144571109",
-          formId: "434e2703-cd85-4a7d-a84b-69d4b12f04d6",
-          target: "#sav-form-container"
-        });
+        try {
+          (window as any).hbspt.forms.create({
+            region: "eu1",
+            portalId: "144571109",
+            formId: "434e2703-cd85-4a7d-a84b-69d4b12f04d6",
+            target: "#sav-form-container"
+          });
+        } catch (error) {
+          console.error('Erreur lors du chargement du formulaire SAV:', error);
+        }
       }, 100);
     }
   }, [savModalOpen]);

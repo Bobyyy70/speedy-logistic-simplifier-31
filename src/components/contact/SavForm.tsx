@@ -23,24 +23,14 @@ import { motion } from "framer-motion";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
-import { format } from "date-fns";
-import { fr } from "date-fns/locale";
-import { Calendar as CalendarComponent } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 
-// Schéma de validation simplifié et plus robuste
+// Schéma de validation simplifié
 const savFormSchema = z.object({
   fullName: z.string().min(2, "Le nom doit contenir au moins 2 caractères."),
   email: z.string().email("Veuillez entrer une adresse email valide."),
   orderNumber: z.string().min(1, "Le numéro de commande est requis."),
   phone: z.string().optional(),
-  purchaseDate: z.date({
-    required_error: "Veuillez sélectionner une date d'achat.",
-  }),
+  purchaseDate: z.string().min(1, "La date d'achat est requise."),
   productReference: z.string().min(1, "La référence produit est requise."),
   issueCategory: z.string().min(1, "Veuillez sélectionner une catégorie."),
   description: z.string().min(10, "Veuillez décrire le problème (minimum 10 caractères)."),
@@ -78,6 +68,7 @@ export const SavForm = () => {
       email: "",
       orderNumber: "",
       phone: "",
+      purchaseDate: "",
       productReference: "",
       issueCategory: "",
       description: "",
@@ -108,7 +99,23 @@ export const SavForm = () => {
 
   const validateCurrentStep = async () => {
     const currentFields = steps[currentStep].fields;
-    return await form.trigger(currentFields);
+    const isValid = await form.trigger(currentFields);
+    
+    // Pour l'étape 3 (préférences de contact), on vérifie si le téléphone est requis
+    if (currentStep === 3) {
+      const preferredContact = form.getValues("preferredContact");
+      const phone = form.getValues("phone");
+      
+      if (preferredContact === "phone" && !phone) {
+        form.setError("phone", {
+          type: "manual",
+          message: "Le numéro de téléphone est requis si vous choisissez d'être contacté par téléphone."
+        });
+        return false;
+      }
+    }
+    
+    return isValid;
   };
 
   const goToNextStep = async () => {
@@ -128,6 +135,7 @@ export const SavForm = () => {
     setIsSubmitting(true);
     
     try {
+      // Simulation d'envoi
       await new Promise((resolve) => setTimeout(resolve, 1500));
       
       console.log("SAV Form submitted:", data);
@@ -243,36 +251,19 @@ export const SavForm = () => {
               control={form.control}
               name="purchaseDate"
               render={({ field }) => (
-                <FormItem className="flex flex-col">
+                <FormItem>
                   <FormLabel>Date d'achat *</FormLabel>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <FormControl>
-                        <Button
-                          variant="outline"
-                          className={`w-full pl-10 text-left font-normal relative ${
-                            !field.value && "text-muted-foreground"
-                          }`}
-                        >
-                          <Calendar className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-                          {field.value ? (
-                            format(field.value, "PPP", { locale: fr })
-                          ) : (
-                            <span>Sélectionnez une date</span>
-                          )}
-                        </Button>
-                      </FormControl>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <CalendarComponent
-                        mode="single"
-                        selected={field.value}
-                        onSelect={field.onChange}
-                        disabled={(date) => date > new Date()}
-                        initialFocus
+                  <FormControl>
+                    <div className="relative">
+                      <Calendar className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <Input 
+                        className="pl-10" 
+                        type="date" 
+                        placeholder="Sélectionnez une date"
+                        {...field} 
                       />
-                    </PopoverContent>
-                  </Popover>
+                    </div>
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
