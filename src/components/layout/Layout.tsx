@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { Helmet } from "react-helmet-async";
@@ -11,6 +11,25 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({
   children
 }) => {
+  useEffect(() => {
+    // Charger le script HubSpot pour la gestion des cookies
+    const script = document.createElement('script');
+    script.src = '//js-eu1.hsforms.net/forms/embed/v2.js';
+    script.async = true;
+    script.onload = () => {
+      console.log('HubSpot script loaded');
+    };
+    document.head.appendChild(script);
+
+    // Cleanup
+    return () => {
+      const existingScript = document.querySelector('script[src*="hsforms.net"]');
+      if (existingScript) {
+        existingScript.remove();
+      }
+    };
+  }, []);
+
   return <div className="flex flex-col min-h-screen site-background">
       <Helmet>
         <html lang="fr" />
