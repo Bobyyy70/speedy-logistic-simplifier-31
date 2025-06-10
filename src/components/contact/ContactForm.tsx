@@ -12,57 +12,65 @@ import { motion } from "framer-motion";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
+import { useSecureFormSubmission } from "@/hooks/useSecureFormSubmission";
+import { sanitizeInput } from "@/lib/security";
 
-// Définition du schéma de validation avec Zod
+// Schéma de validation sécurisé avec sanitisation
 const contactFormSchema = z.object({
-  // Étape 1: Informations personnelles
-  firstName: z.string().min(2, {
-    message: "Le prénom doit contenir au moins 2 caractères."
-  }),
-  lastName: z.string().min(2, {
-    message: "Le nom doit contenir au moins 2 caractères."
-  }),
-  email: z.string().email({
-    message: "Veuillez entrer une adresse email valide."
-  }),
-  phone: z.string().min(10, {
-    message: "Veuillez entrer un numéro de téléphone valide."
-  }),
-  // Étape 2: Informations entreprise
-  companyName: z.string().min(2, {
-    message: "Le nom de l'entreprise doit contenir au moins 2 caractères."
-  }),
-  companyStatus: z.enum(["creation", "active"], {
-    required_error: "Veuillez sélectionner l'état de votre entreprise."
-  }),
-  city: z.string().min(2, {
-    message: "Veuillez indiquer votre ville."
-  }),
-  postalCode: z.string().min(5, {
-    message: "Veuillez entrer un code postal valide."
-  }),
-  website: z.string().url({
-    message: "Veuillez entrer une URL valide."
-  }).optional().or(z.literal('')),
-  // Étape 3: Informations activité
-  leadSource: z.string({
-    required_error: "Veuillez indiquer comment vous nous avez connu."
-  }),
-  averageBasket: z.string().min(1, {
-    message: "Veuillez indiquer le montant moyen du panier."
-  }),
-  productType: z.string({
-    required_error: "Veuillez sélectionner un type d'articles."
-  }),
-  annualOrders: z.string().min(1, {
-    message: "Veuillez indiquer le nombre de commandes par an."
-  }),
-  stockReferences: z.string().min(1, {
-    message: "Veuillez indiquer le nombre de références à stocker."
-  }),
-  // Étape 4: Message et confirmation
-  message: z.string().optional()
+  firstName: z.string()
+    .min(2, "Le prénom doit contenir au moins 2 caractères.")
+    .max(50, "Le prénom ne peut pas dépasser 50 caractères.")
+    .regex(/^[a-zA-ZÀ-ÿ\s'-]+$/, "Le prénom ne peut contenir que des lettres.")
+    .transform(sanitizeInput),
+  lastName: z.string()
+    .min(2, "Le nom doit contenir au moins 2 caractères.")
+    .max(50, "Le nom ne peut pas dépasser 50 caractères.")
+    .regex(/^[a-zA-ZÀ-ÿ\s'-]+$/, "Le nom ne peut contenir que des lettres.")
+    .transform(sanitizeInput),
+  email: z.string()
+    .email("Veuillez entrer une adresse email valide.")
+    .max(254, "L'email ne peut pas dépasser 254 caractères.")
+    .transform(sanitizeInput),
+  phone: z.string()
+    .regex(/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/, "Veuillez entrer un numéro de téléphone français valide.")
+    .transform(sanitizeInput),
+  companyName: z.string()
+    .min(2, "Le nom de l'entreprise doit contenir au moins 2 caractères.")
+    .max(100, "Le nom de l'entreprise ne peut pas dépasser 100 caractères.")
+    .transform(sanitizeInput),
+  companyStatus: z.enum(["creation", "active"]),
+  city: z.string()
+    .min(2, "Veuillez indiquer votre ville.")
+    .max(50, "Le nom de la ville ne peut pas dépasser 50 caractères.")
+    .transform(sanitizeInput),
+  postalCode: z.string()
+    .regex(/^[0-9]{5}$/, "Veuillez entrer un code postal français valide (5 chiffres).")
+    .transform(sanitizeInput),
+  website: z.string()
+    .url("Veuillez entrer une URL valide.")
+    .optional()
+    .or(z.literal(''))
+    .transform(val => val ? sanitizeInput(val) : ''),
+  leadSource: z.string().min(1, "Veuillez indiquer comment vous nous avez connu."),
+  averageBasket: z.string()
+    .min(1, "Veuillez indiquer le montant moyen du panier.")
+    .regex(/^\d+(\.\d{1,2})?$/, "Veuillez entrer un montant valide.")
+    .transform(sanitizeInput),
+  productType: z.string().min(1, "Veuillez sélectionner un type d'articles."),
+  annualOrders: z.string()
+    .min(1, "Veuillez indiquer le nombre de commandes par an.")
+    .regex(/^\d+$/, "Veuillez entrer un nombre valide.")
+    .transform(sanitizeInput),
+  stockReferences: z.string()
+    .min(1, "Veuillez indiquer le nombre de références à stocker.")
+    .regex(/^\d+$/, "Veuillez entrer un nombre valide.")
+    .transform(sanitizeInput),
+  message: z.string()
+    .max(1000, "Le message ne peut pas dépasser 1000 caractères.")
+    .optional()
+    .transform(val => val ? sanitizeInput(val) : ''),
 });
+
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 // Sources pour le menu déroulant "Connu via"
@@ -104,30 +112,27 @@ const productTypes = [{
   label: "Autre"
 }];
 export const ContactForm = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const totalSteps = 4;
+  const { submitContactForm, isSubmitting } = useSecureFormSubmission();
+  
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
-      // Étape 1: Informations personnelles
       firstName: "",
       lastName: "",
       email: "",
       phone: "",
-      // Étape 2: Informations entreprise
       companyName: "",
       companyStatus: "active",
       city: "",
       postalCode: "",
       website: "",
-      // Étape 3: Informations activité
       leadSource: "",
       averageBasket: "",
       productType: "",
       annualOrders: "",
       stockReferences: "",
-      // Étape 4: Message et confirmation
       message: ""
     },
     mode: "onBlur"
@@ -172,28 +177,39 @@ export const ContactForm = () => {
     }
   };
 
-  // Soumission du formulaire
+  // Soumission sécurisée du formulaire
   const onSubmit = async (data: ContactFormValues) => {
-    setIsSubmitting(true);
     try {
-      // Simuler API call avec timeout
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      console.log("Form submitted:", data);
-      toast({
-        title: "Demande de devis envoyée !",
-        description: "Nous vous recontacterons dans les plus brefs délais."
+      const result = await submitContactForm({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phone: data.phone,
+        companyName: data.companyName,
+        message: data.message,
       });
-      form.reset();
-      setCurrentStep(0);
+
+      if (result.success) {
+        toast({
+          title: "Demande de devis envoyée !",
+          description: "Nous vous recontacterons dans les plus brefs délais.",
+        });
+        form.reset();
+        setCurrentStep(0);
+      } else {
+        toast({
+          title: "Erreur",
+          description: result.error || "Un problème est survenu lors de l'envoi.",
+          variant: "destructive",
+        });
+      }
     } catch (error) {
+      console.error("Form submission error:", error);
       toast({
         title: "Erreur",
-        description: "Un problème est survenu lors de l'envoi du message. Veuillez réessayer.",
-        variant: "destructive"
+        description: "Une erreur inattendue s'est produite. Veuillez réessayer.",
+        variant: "destructive",
       });
-      console.error("Form submission error:", error);
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
