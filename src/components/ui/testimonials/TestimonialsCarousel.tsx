@@ -12,7 +12,7 @@ const DESKTOP_CARD_WIDTH = 400; // larger width on desktop
 
 const testimonials: TestimonialCardType[] = [
   {
-    quote: "Tarifs justes, professionnalisme, et hyper sympa ! Il y a encore des gens passionnés et impliqués. A su gérer récemment un gros pic d'activité sans baisser la qualité du service.",
+    quote: "Service au top ! Très satisfait de Speedelog : l’équipe est réactive, accessible et vraiment à l’écoute. À chaque imprévu, ils trouvent une solution rapidement. On sent qu’on peut compter sur eux, même en dernière minute. Autre point fort : les livraisons sont toujours rapides et ponctuelles, ce qui fait une vraie différence au quotidien.",
     name: "Cédric M.",
     rating: 4
   },
