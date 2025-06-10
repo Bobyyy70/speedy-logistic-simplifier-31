@@ -15,6 +15,10 @@ describe('Security utilities', () => {
       const expected = '&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;';
       expect(escapeHtml(input)).toBe(expected);
     });
+
+    it('should handle empty string', () => {
+      expect(escapeHtml('')).toBe('');
+    });
   });
 
   describe('sanitizeInput', () => {
@@ -28,6 +32,10 @@ describe('Security utilities', () => {
       const input = 'javascript:alert("xss")';
       const result = sanitizeInput(input);
       expect(result).toBe('alert("xss")');
+    });
+
+    it('should handle non-string input', () => {
+      expect(sanitizeInput('')).toBe('');
     });
   });
 

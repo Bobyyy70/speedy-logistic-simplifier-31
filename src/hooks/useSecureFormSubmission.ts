@@ -57,30 +57,32 @@ export const useSecureFormSubmission = () => {
 
       // Sanitisation des données
       const sanitizedData = {
-        firstName: sanitizeInput(data.firstName),
-        lastName: sanitizeInput(data.lastName),
+        first_name: sanitizeInput(data.firstName),
+        last_name: sanitizeInput(data.lastName),
         email: sanitizeInput(data.email),
         phone: data.phone ? sanitizeInput(data.phone) : null,
-        companyName: data.companyName ? sanitizeInput(data.companyName) : null,
+        company_name: data.companyName ? sanitizeInput(data.companyName) : null,
         message: data.message ? sanitizeInput(data.message) : null,
+        created_at: new Date().toISOString(),
       };
 
-      // Appel de la fonction Supabase sécurisée
-      const { data: result, error } = await supabase.rpc('submit_contact_form', {
-        p_first_name: sanitizedData.firstName,
-        p_last_name: sanitizedData.lastName,
-        p_email: sanitizedData.email,
-        p_phone: sanitizedData.phone,
-        p_company_name: sanitizedData.companyName,
-        p_message: sanitizedData.message,
-      });
+      // Insertion directe dans la table contact_submissions
+      const { data: result, error } = await supabase
+        .from('contact_submissions')
+        .insert([sanitizedData])
+        .select('id')
+        .single();
 
       if (error) {
         console.error('Supabase error:', error);
         return { success: false, error: "Erreur lors de l'envoi du formulaire." };
       }
 
-      return result as SubmissionResult;
+      return { 
+        success: true, 
+        id: result?.id,
+        error: undefined 
+      };
     } catch (error) {
       console.error('Submission error:', error);
       return { success: false, error: "Une erreur inattendue s'est produite." };
