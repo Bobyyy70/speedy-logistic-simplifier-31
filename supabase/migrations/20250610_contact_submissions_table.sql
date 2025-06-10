@@ -1,3 +1,0 @@
--- Contact submissions table migration
--- Currently disabled - using alternative form submission approach
--- This file is kept for future database integration if needed
