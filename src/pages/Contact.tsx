@@ -2,11 +2,9 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { ContactModal } from "@/components/contact/ContactModal";
-import { SavModal } from "@/components/contact/SavModal";
-import { CalendarSection } from "@/components/contact/CalendarSection";
-import { CtaButtonsSection } from "@/components/contact/CtaButtonsSection";
-import { MapSection } from "@/components/contact/MapSection";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Calendar, MessageSquare, Wrench, MapPin } from "lucide-react";
 
 const Contact = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -91,31 +89,158 @@ const Contact = () => {
           </motion.header>
 
           <div className="space-y-8">
-            {/* Hero Calendar Section */}
-            <CalendarSection />
+            {/* Calendrier principal */}
+            <motion.section 
+              className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200 relative overflow-hidden"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-blue-800"></div>
+              
+              <div className="text-center mb-8">
+                <h2 className="text-2xl md:text-3xl font-bold mb-3 text-slate-900 flex items-center justify-center gap-3">
+                  <Calendar className="h-8 w-8 text-blue-600" />
+                  Planifiez votre rendez-vous
+                </h2>
+                <p className="text-slate-600 max-w-2xl mx-auto">
+                  Réservez un créneau de 15 minutes pour discuter de votre projet logistique avec notre équipe d'experts.
+                </p>
+              </div>
+              
+              <div className="min-h-[600px] border border-slate-200 rounded-xl overflow-hidden bg-white">
+                <iframe 
+                  src="https://meetings-eu1.hubspot.com/falmanzo?embed=true"
+                  width="100%" 
+                  height="600" 
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  title="Calendrier de réservation Speed E-Log"
+                  className="w-full h-full"
+                />
+              </div>
+            </motion.section>
 
-            {/* CTA Buttons Section */}
-            <CtaButtonsSection 
-              onContactClick={() => setContactModalOpen(true)}
-              onSavClick={() => setSavModalOpen(true)}
-            />
+            {/* Boutons CTA */}
+            <motion.section 
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <div 
+                className="bg-white border-2 border-slate-200 rounded-3xl p-8 text-center cursor-pointer transition-all duration-300 hover:border-blue-600 hover:shadow-xl hover:-translate-y-1 relative overflow-hidden group"
+                onClick={() => setContactModalOpen(true)}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <MessageSquare className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-2 text-slate-900">Formulaire de Contact</h3>
+                <p className="text-slate-600 mb-6 text-sm">
+                  Décrivez votre projet et recevez une réponse personnalisée sous 24h
+                </p>
+                <Button className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:-translate-y-1 shadow-lg">
+                  Nous contacter
+                </Button>
+              </div>
 
-            {/* Map Section */}
-            <MapSection />
+              <div 
+                className="bg-white border-2 border-slate-200 rounded-3xl p-8 text-center cursor-pointer transition-all duration-300 hover:border-blue-600 hover:shadow-xl hover:-translate-y-1 relative overflow-hidden group"
+                onClick={() => setSavModalOpen(true)}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <Wrench className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-2 text-slate-900">Service Après-Vente</h3>
+                <p className="text-slate-600 mb-6 text-sm">
+                  Un problème avec votre commande ? Notre équipe SAV est là pour vous aider
+                </p>
+                <Button className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:-translate-y-1 shadow-lg">
+                  Contacter le SAV
+                </Button>
+              </div>
+            </motion.section>
+
+            {/* Carte */}
+            <motion.section 
+              className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <div className="text-center mb-6">
+                <h2 className="text-2xl font-semibold mb-2 text-slate-900 flex items-center justify-center gap-3">
+                  <MapPin className="h-6 w-6 text-blue-600" />
+                  Notre Localisation
+                </h2>
+                <p className="text-slate-600">
+                  Speed E-Log - 37 Rue de Rémaucourt, 70170 Port-sur-Saône
+                </p>
+              </div>
+              
+              <div className="h-96 border border-slate-200 rounded-xl overflow-hidden">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10805.55665035175!2d6.036526308525196!3d47.69024919081746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47920f4259cab0c7%3A0x409ce34b30d1220!2s70170%20Port-sur-Sa%C3%B4ne!5e0!3m2!1sfr!2sfr!4v1681578343811!5m2!1sfr!2sfr" 
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Localisation de Speed E-Log à Port-sur-Saône"
+                  className="w-full h-full"
+                />
+              </div>
+            </motion.section>
           </div>
         </div>
 
-        {/* Contact Modal */}
-        <ContactModal 
-          open={contactModalOpen} 
-          onOpenChange={setContactModalOpen} 
-        />
+        {/* Modal Contact */}
+        <Dialog open={contactModalOpen} onOpenChange={setContactModalOpen}>
+          <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>Formulaire de Contact</DialogTitle>
+              <DialogDescription>
+                Parlez-nous de votre projet et obtenez une réponse personnalisée sous 24h.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="min-h-[500px]">
+              <iframe 
+                src="https://share-eu1.hsforms.com/1ebf2ad52-915e-4bfa-b4c0-a2ff8480054fFalmanzo"
+                width="100%" 
+                height="500" 
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                title="Formulaire de contact Speed E-Log"
+                className="w-full h-full"
+              />
+            </div>
+          </DialogContent>
+        </Dialog>
 
-        {/* SAV Modal */}
-        <SavModal 
-          open={savModalOpen} 
-          onOpenChange={setSavModalOpen} 
-        />
+        {/* Modal SAV */}
+        <Dialog open={savModalOpen} onOpenChange={setSavModalOpen}>
+          <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>Service Après-Vente</DialogTitle>
+              <DialogDescription>
+                Un problème avec votre commande ? Contactez notre équipe SAV.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="min-h-[500px]">
+              <iframe 
+                src="https://share-eu1.hsforms.com/1434e2703-cd85-4a7d-a84b-69d4b12f04d6Falmanzo"
+                width="100%" 
+                height="500" 
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                title="Formulaire SAV Speed E-Log"
+                className="w-full h-full"
+              />
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </>
   );
