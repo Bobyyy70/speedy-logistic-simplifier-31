@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,6 +22,7 @@ import { motion } from "framer-motion";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
+import { supabase } from "@/integrations/supabase/client";
 
 // Schéma de validation simplifié
 const savFormSchema = z.object({
@@ -135,10 +135,14 @@ export const SavForm = () => {
     setIsSubmitting(true);
     
     try {
-      // Simulation d'envoi
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      
-      console.log("SAV Form submitted:", data);
+      // Call secure Edge Function for SAV form
+      const { data: result, error } = await supabase.functions.invoke('secure-sav-form', {
+        body: data
+      });
+
+      if (error) {
+        throw error;
+      }
       
       toast({
         title: "Demande SAV envoyée !",
@@ -153,7 +157,8 @@ export const SavForm = () => {
         description: "Un problème est survenu. Veuillez réessayer.",
         variant: "destructive",
       });
-      console.error("SAV Form submission error:", error);
+      // Only log non-sensitive error information
+      console.error("SAV Form submission error:", error instanceof Error ? error.message : 'Unknown error');
     } finally {
       setIsSubmitting(false);
     }
@@ -505,3 +510,5 @@ export const SavForm = () => {
     </motion.div>
   );
 };
+
+export default SavForm;

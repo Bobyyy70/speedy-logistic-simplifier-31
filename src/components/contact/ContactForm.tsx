@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
+import { supabase } from "@/integrations/supabase/client";
 
 // Définition du schéma de validation avec Zod
 const contactFormSchema = z.object({
@@ -176,13 +177,20 @@ export const ContactForm = () => {
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
     try {
-      // Simuler API call avec timeout
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      console.log("Form submitted:", data);
+      // Call the secure Edge Function instead of logging sensitive data
+      const { data: result, error } = await supabase.functions.invoke('secure-contact-form', {
+        body: data
+      });
+
+      if (error) {
+        throw error;
+      }
+
       toast({
         title: "Demande de devis envoyée !",
         description: "Nous vous recontacterons dans les plus brefs délais."
       });
+      
       form.reset();
       setCurrentStep(0);
     } catch (error) {
@@ -191,7 +199,8 @@ export const ContactForm = () => {
         description: "Un problème est survenu lors de l'envoi du message. Veuillez réessayer.",
         variant: "destructive"
       });
-      console.error("Form submission error:", error);
+      // Only log non-sensitive error information
+      console.error("Form submission error:", error instanceof Error ? error.message : 'Unknown error');
     } finally {
       setIsSubmitting(false);
     }
