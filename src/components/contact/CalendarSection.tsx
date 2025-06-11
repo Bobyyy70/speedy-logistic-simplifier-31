@@ -1,48 +1,9 @@
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { Calendar, AlertCircle } from "lucide-react";
+import { Calendar } from "lucide-react";
 
 export const CalendarSection = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
-
-  useEffect(() => {
-    const loadHubSpotCalendar = () => {
-      console.log('Chargement du calendrier HubSpot avec la nouvelle approche...');
-      
-      // Nettoyer les anciens scripts HubSpot
-      const existingScripts = document.querySelectorAll('script[src*="MeetingsEmbedCode"]');
-      existingScripts.forEach(script => script.remove());
-
-      // Créer et charger le script HubSpot
-      const script = document.createElement('script');
-      script.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
-      script.type = 'text/javascript';
-      script.async = true;
-      
-      script.onload = () => {
-        console.log('Script HubSpot chargé avec succès');
-        setIsLoading(false);
-      };
-
-      script.onerror = () => {
-        console.error('Échec du chargement du script HubSpot');
-        setHasError(true);
-        setIsLoading(false);
-      };
-
-      document.head.appendChild(script);
-    };
-
-    // Démarrer le chargement
-    const timer = setTimeout(loadHubSpotCalendar, 100);
-    
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
-
   return (
     <motion.section 
       className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200 relative overflow-hidden"
@@ -62,36 +23,18 @@ export const CalendarSection = () => {
         </p>
       </div>
       
-      <div className="min-h-[600px] border border-slate-200 rounded-xl overflow-hidden bg-white relative">
-        {isLoading && (
-          <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-              <p className="text-slate-600">Chargement du calendrier...</p>
-            </div>
-          </div>
-        )}
-        
-        {hasError && (
-          <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
-            <div className="text-center">
-              <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-              <p className="text-slate-600 mb-4">Erreur lors du chargement du calendrier</p>
-              <button 
-                onClick={() => window.location.reload()} 
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                Recharger la page
-              </button>
-            </div>
-          </div>
-        )}
-        
-        {/* Nouveau conteneur HubSpot avec l'approche recommandée */}
-        <div 
-          className="meetings-iframe-container w-full h-full min-h-[600px]" 
-          data-src="https://meetings-eu1.hubspot.com/falmanzo?embed=true"
-        ></div>
+      <div className="min-h-[600px] border border-slate-200 rounded-xl overflow-hidden bg-white">
+        <iframe 
+          src="https://meetings-eu1.hubspot.com/falmanzo?embed=true"
+          width="100%" 
+          height="600" 
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          title="Calendrier de réservation Speed E-Log - Consultation logistique gratuite"
+          className="w-full h-full min-h-[600px]"
+          sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+        />
       </div>
     </motion.section>
   );

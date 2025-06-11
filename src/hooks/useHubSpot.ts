@@ -3,22 +3,19 @@ import { useEffect } from 'react';
 
 export const useHubSpot = () => {
   useEffect(() => {
-    let formsScript: HTMLScriptElement | null = null;
-
-    // Script pour les formulaires HubSpot uniquement (pas le calendrier)
+    // Script pour les formulaires HubSpot uniquement
     if (!document.querySelector('script[src*="js-eu1.hsforms.net"]')) {
-      formsScript = document.createElement('script');
+      const formsScript = document.createElement('script');
       formsScript.src = '//js-eu1.hsforms.net/forms/embed/v2.js';
       formsScript.async = true;
       formsScript.onload = () => {
-        console.log('HubSpot forms script loaded');
+        console.log('HubSpot forms script chargé avec succès');
+      };
+      formsScript.onerror = () => {
+        console.error('Erreur lors du chargement du script HubSpot forms');
       };
       document.head.appendChild(formsScript);
     }
-
-    return () => {
-      // Cleanup if needed
-    };
   }, []);
 
   const createContactForm = (containerId: string) => {

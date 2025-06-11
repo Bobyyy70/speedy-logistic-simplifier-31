@@ -33,10 +33,10 @@ export const Layout: React.FC<LayoutProps> = ({
         
         {/* Security Headers */}
         <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-        <meta httpEquiv="X-Frame-Options" content="DENY" />
+        <meta httpEquiv="X-Frame-Options" content="SAMEORIGIN" />
         <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
         <meta httpEquiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains" />
-        <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://js-eu1.hs-scripts.com https://js-eu1.hsforms.net https://cdn.gpteng.co; connect-src 'self' https://*.supabase.co https://*.hubspot.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self' https:; frame-src 'self' https://*.hubspot.com;" />
+        <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://js-eu1.hs-scripts.com https://js-eu1.hsforms.net https://meetings-eu1.hubspot.com https://cdn.gpteng.co; connect-src 'self' https://*.supabase.co https://*.hubspot.com https://meetings-eu1.hubspot.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self' https:; frame-src 'self' https://*.hubspot.com https://meetings-eu1.hubspot.com https://www.google.com;" />
         <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
         <meta httpEquiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
       </Helmet>
