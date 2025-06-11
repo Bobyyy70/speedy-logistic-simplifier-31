@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { useHubSpot } from "@/hooks/useHubSpot";
 import { ContactModal } from "@/components/contact/ContactModal";
 import { SavModal } from "@/components/contact/SavModal";
 import { CalendarSection } from "@/components/contact/CalendarSection";
@@ -12,9 +11,6 @@ import { MapSection } from "@/components/contact/MapSection";
 const Contact = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [savModalOpen, setSavModalOpen] = useState(false);
-
-  // Initialize HubSpot scripts (forms only)
-  useHubSpot();
 
   return (
     <>

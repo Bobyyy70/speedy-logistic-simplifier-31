@@ -1,5 +1,5 @@
 
-import React, { useEffect } from "react";
+import React from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 interface ContactModalProps {
@@ -8,32 +8,6 @@ interface ContactModalProps {
 }
 
 export const ContactModal = ({ open, onOpenChange }: ContactModalProps) => {
-  useEffect(() => {
-    if (open) {
-      // Load the HubSpot script when modal opens
-      const script = document.createElement('script');
-      script.src = 'https://js-eu1.hsforms.net/forms/embed/144571109.js';
-      script.defer = true;
-      script.id = 'hs-contact-script';
-      
-      // Remove existing script if any
-      const existingScript = document.getElementById('hs-contact-script');
-      if (existingScript) {
-        existingScript.remove();
-      }
-      
-      document.head.appendChild(script);
-      
-      return () => {
-        // Cleanup script when modal closes
-        const scriptToRemove = document.getElementById('hs-contact-script');
-        if (scriptToRemove) {
-          scriptToRemove.remove();
-        }
-      };
-    }
-  }, [open]);
-
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
@@ -43,13 +17,17 @@ export const ContactModal = ({ open, onOpenChange }: ContactModalProps) => {
             Parlez-nous de votre projet et obtenez une réponse personnalisée sous 24h.
           </DialogDescription>
         </DialogHeader>
-        <div className="min-h-[400px]">
-          <div 
-            className="hs-form-frame" 
-            data-region="eu1" 
-            data-form-id="ebf2ad52-915e-4bfa-b4c0-a2ff8480054f" 
-            data-portal-id="144571109"
-          ></div>
+        <div className="min-h-[500px]">
+          <iframe 
+            src="https://share-eu1.hsforms.com/1ebf2ad52-915e-4bfa-b4c0-a2ff8480054fFalmanzo"
+            width="100%" 
+            height="500" 
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            title="Formulaire de contact Speed E-Log"
+            className="w-full h-full"
+          />
         </div>
       </DialogContent>
     </Dialog>
