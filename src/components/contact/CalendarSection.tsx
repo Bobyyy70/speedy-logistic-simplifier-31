@@ -1,20 +1,9 @@
 
-import React, { useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Calendar } from "lucide-react";
 
 export const CalendarSection = () => {
-  useEffect(() => {
-    // Charger le script HubSpot Meetings une seule fois
-    if (!document.querySelector('script[src*="MeetingsEmbedCode"]')) {
-      const script = document.createElement('script');
-      script.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
-      script.type = 'text/javascript';
-      script.async = true;
-      document.head.appendChild(script);
-    }
-  }, []);
-
   return (
     <motion.section 
       className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200 relative overflow-hidden"
