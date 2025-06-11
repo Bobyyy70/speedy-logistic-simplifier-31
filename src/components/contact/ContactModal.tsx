@@ -10,13 +10,13 @@ interface ContactModalProps {
 export const ContactModal = ({ open, onOpenChange }: ContactModalProps) => {
   useEffect(() => {
     if (open) {
-      // Charger le script HubSpot quand la modal s'ouvre
+      // Load the HubSpot script when modal opens
       const script = document.createElement('script');
-      script.src = '//js-eu1.hsforms.net/forms/embed/v2.js';
+      script.src = 'https://js-eu1.hsforms.net/forms/embed/144571109.js';
       script.defer = true;
       script.id = 'hs-contact-script';
       
-      // Supprimer le script existant s'il y en a un
+      // Remove existing script if any
       const existingScript = document.getElementById('hs-contact-script');
       if (existingScript) {
         existingScript.remove();
@@ -24,26 +24,8 @@ export const ContactModal = ({ open, onOpenChange }: ContactModalProps) => {
       
       document.head.appendChild(script);
       
-      // Créer le formulaire une fois le script chargé
-      script.onload = () => {
-        if ((window as any).hbspt?.forms) {
-          setTimeout(() => {
-            try {
-              (window as any).hbspt.forms.create({
-                region: "eu1",
-                portalId: "144571109",
-                formId: "ebf2ad52-915e-4bfa-b4c0-a2ff8480054f",
-                target: "#hubspot-contact-form"
-              });
-            } catch (error) {
-              console.error('Erreur lors du chargement du formulaire de contact HubSpot:', error);
-            }
-          }, 100);
-        }
-      };
-      
       return () => {
-        // Nettoyage du script quand la modal se ferme
+        // Cleanup script when modal closes
         const scriptToRemove = document.getElementById('hs-contact-script');
         if (scriptToRemove) {
           scriptToRemove.remove();
@@ -56,13 +38,18 @@ export const ContactModal = ({ open, onOpenChange }: ContactModalProps) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Demande de Devis - Speed E-Log</DialogTitle>
+          <DialogTitle>Formulaire de Contact</DialogTitle>
           <DialogDescription>
-            Parlez-nous de votre projet logistique et obtenez une réponse personnalisée sous 24h.
+            Parlez-nous de votre projet et obtenez une réponse personnalisée sous 24h.
           </DialogDescription>
         </DialogHeader>
         <div className="min-h-[400px]">
-          <div id="hubspot-contact-form"></div>
+          <div 
+            className="hs-form-frame" 
+            data-region="eu1" 
+            data-form-id="ebf2ad52-915e-4bfa-b4c0-a2ff8480054f" 
+            data-portal-id="144571109"
+          ></div>
         </div>
       </DialogContent>
     </Dialog>

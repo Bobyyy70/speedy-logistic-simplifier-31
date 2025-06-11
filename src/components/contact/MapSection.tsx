@@ -23,14 +23,14 @@ export const MapSection = () => {
       
       <div className="h-96 border border-slate-200 rounded-xl overflow-hidden">
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2679.5!2d6.0422744!3d47.6902737!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47920f4259cab0c7%3A0x40ae34b30d1220!2s37%20Rue%20de%20R%C3%A9maucourt%2C%2070170%20Port-sur-Sa%C3%B4ne%2C%20France!5e0!3m2!1sfr!2sfr!4v1681578343811!5m2!1sfr!2sfr" 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10805.55665035175!2d6.036526308525196!3d47.69024919081746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47920f4259cab0c7%3A0x409ce34b30d1220!2s70170%20Port-sur-Sa%C3%B4ne!5e0!3m2!1sfr!2sfr!4v1681578343811!5m2!1sfr!2sfr" 
           width="100%" 
           height="100%" 
           style={{ border: 0 }}
           allowFullScreen
           loading="lazy" 
           referrerPolicy="no-referrer-when-downgrade"
-          title="Localisation Speed E-Log - 37 Rue de Rémaucourt, Port-sur-Saône"
+          title="Localisation de Speed E-Log à Port-sur-Saône"
           className="w-full h-full"
         />
       </div>
