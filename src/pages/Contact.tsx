@@ -13,7 +13,7 @@ const Contact = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [savModalOpen, setSavModalOpen] = useState(false);
 
-  // Initialize HubSpot scripts (forms only)
+  // Initialize HubSpot scripts
   useHubSpot();
 
   return (
