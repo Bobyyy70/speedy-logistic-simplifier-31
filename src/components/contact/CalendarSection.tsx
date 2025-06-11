@@ -9,25 +9,39 @@ export const CalendarSection = () => {
 
   useEffect(() => {
     const loadHubSpotCalendar = () => {
-      console.log('Chargement du calendrier HubSpot avec la nouvelle approche...');
+      console.log('Chargement du calendrier HubSpot...');
+      setIsLoading(true);
+      setHasError(false);
       
-      // Nettoyer les anciens scripts HubSpot
+      // Nettoyer les anciens scripts HubSpot meetings
       const existingScripts = document.querySelectorAll('script[src*="MeetingsEmbedCode"]');
       existingScripts.forEach(script => script.remove());
 
-      // Créer et charger le script HubSpot
+      // Supprimer les anciens conteneurs meetings
+      const existingContainers = document.querySelectorAll('[data-src*="meetings-eu1.hubspot.com"]');
+      existingContainers.forEach(container => {
+        if (container.id !== 'hubspot-calendar-container') {
+          container.remove();
+        }
+      });
+
+      // Créer et charger le script HubSpot Meetings
       const script = document.createElement('script');
       script.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
       script.type = 'text/javascript';
       script.async = true;
+      script.id = 'hs-meetings-script';
       
       script.onload = () => {
-        console.log('Script HubSpot chargé avec succès');
-        setIsLoading(false);
+        console.log('Script HubSpot Meetings chargé avec succès');
+        // Petit délai pour laisser le script s'initialiser
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
       };
 
       script.onerror = () => {
-        console.error('Échec du chargement du script HubSpot');
+        console.error('Échec du chargement du script HubSpot Meetings');
         setHasError(true);
         setIsLoading(false);
       };
@@ -35,13 +49,20 @@ export const CalendarSection = () => {
       document.head.appendChild(script);
     };
 
-    // Démarrer le chargement
-    const timer = setTimeout(loadHubSpotCalendar, 100);
+    // Démarrer le chargement avec un petit délai
+    const timer = setTimeout(loadHubSpotCalendar, 200);
     
     return () => {
       clearTimeout(timer);
     };
   }, []);
+
+  const handleRetry = () => {
+    setHasError(false);
+    setIsLoading(true);
+    // Recharger la page pour réinitialiser complètement HubSpot
+    window.location.reload();
+  };
 
   return (
     <motion.section 
@@ -62,12 +83,12 @@ export const CalendarSection = () => {
         </p>
       </div>
       
-      <div className="min-h-[600px] border border-slate-200 rounded-xl overflow-hidden bg-white relative">
+      <div className="min-h-[650px] border border-slate-200 rounded-xl overflow-hidden bg-white relative">
         {isLoading && (
           <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-              <p className="text-slate-600">Chargement du calendrier...</p>
+              <p className="text-slate-600">Chargement du calendrier HubSpot...</p>
             </div>
           </div>
         )}
@@ -78,18 +99,19 @@ export const CalendarSection = () => {
               <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
               <p className="text-slate-600 mb-4">Erreur lors du chargement du calendrier</p>
               <button 
-                onClick={() => window.location.reload()} 
+                onClick={handleRetry}
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
-                Recharger la page
+                Réessayer
               </button>
             </div>
           </div>
         )}
         
-        {/* Nouveau conteneur HubSpot avec l'approche recommandée */}
+        {/* Conteneur HubSpot Calendar avec l'approche recommandée */}
         <div 
-          className="meetings-iframe-container w-full h-full min-h-[600px]" 
+          id="hubspot-calendar-container"
+          className="meetings-iframe-container w-full h-full min-h-[650px]" 
           data-src="https://meetings-eu1.hubspot.com/falmanzo?embed=true"
         ></div>
       </div>
