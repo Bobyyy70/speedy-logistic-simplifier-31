@@ -1,20 +1,13 @@
-
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-
 const TermsOfService = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  return (
-    <div className="container mx-auto py-16 px-4">
+  return <div className="container mx-auto py-16 px-4">
       <Helmet>
         <title>Conditions Générales de Vente | Speed E-Log</title>
-        <meta
-          name="description"
-          content="Conditions générales de vente des services logistiques et transport de Speed E-Log."
-        />
+        <meta name="description" content="Conditions générales de vente des services logistiques et transport de Speed E-Log." />
       </Helmet>
 
       <h1 className="text-3xl md:text-4xl font-bold mb-12 text-center">CONDITIONS GÉNÉRALES DE VENTE - SPEED E-LOG</h1>
@@ -502,7 +495,7 @@ const TermsOfService = () => {
         </section>
 
         <div className="mt-12 p-6 bg-blue-50 rounded-lg border-2 border-blue-200 text-center">
-          <p className="font-semibold text-lg mb-2">Version 2.0 - Applicable au 1er janvier 2025</p>
+          <p className="font-semibold text-lg mb-2">Applicable au 1er janvier 2025</p>
           <div className="text-sm text-gray-600">
             <p><strong>Speed E-Log SAS</strong></p>
             <p>37 Rue de Rémaucourt, 70170 Port-sur-Saône</p>
@@ -510,8 +503,6 @@ const TermsOfService = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default TermsOfService;
