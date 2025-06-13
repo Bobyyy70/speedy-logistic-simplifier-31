@@ -16,6 +16,9 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@speedelog" />
     <meta name="twitter:image" content="https://speedelog.net/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png" />
+
+    <!-- HubSpot Forms Script - Une seule instance -->
+    <script src="https://js-eu1.hsforms.net/forms/embed/144571109.js" defer></script>
   </head>
 
   <body>
@@ -24,178 +27,57 @@
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Start of HubSpot Embed Code -->
+    <!-- HubSpot Tracking Code -->
     <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/144571109.js"></script>
-    <!-- End of HubSpot Embed Code -->
 
-    <!-- Enhanced HubSpot Debug Script avec détection d'environnement -->
+    <!-- Simplified HubSpot Debug Script -->
     <script>
-      console.log('🚀 Démarrage du monitoring HubSpot avancé...');
+      console.log('🚀 HubSpot Forms - Version simplifiée avec data-attributes');
       
-      // Détection de l'environnement
-      const isInIframe = window !== window.top;
-      const isLovablePreview = window.location.hostname.includes('lovable');
-      const isProduction = !isLovablePreview && !window.location.hostname.includes('localhost');
-      
-      console.log('🌍 Environnement détecté:', {
-        iframe: isInIframe,
-        lovablePreview: isLovablePreview,
-        production: isProduction,
-        hostname: window.location.hostname,
-        protocol: window.location.protocol
-      });
-      
-      // Variables de suivi
-      let hubspotCheckInterval;
-      let hubspotLoadTime = Date.now();
-      
-      // Fonction de diagnostic complète
-      const runHubSpotDiagnostic = () => {
-        const now = Date.now();
-        const elapsed = (now - hubspotLoadTime) / 1000;
-        
-        console.group(`🔍 Diagnostic HubSpot (${elapsed.toFixed(1)}s)`);
-        
-        // Vérification des objets globaux
-        console.log('📊 Objets globaux:', {
-          '_hsp exists': !!window._hsp,
-          '_hsp array length': window._hsp ? window._hsp.length : 'N/A',
-          'hbspt exists': !!window.hbspt,
-          'hbspt.privacy exists': !!(window.hbspt && window.hbspt.privacy),
-          'hbspt.forms exists': !!(window.hbspt && window.hbspt.forms)
-        });
-        
-        // Vérification de l'environnement
-        console.log('🌐 Contexte:', {
-          iframe: isInIframe,
-          lovable: isLovablePreview,
-          production: isProduction,
-          cookiesEnabled: navigator.cookieEnabled,
-          thirdPartyCookies: !isInIframe || isProduction
-        });
-        
-        // Vérification des cookies
-        const cookies = document.cookie.split(';').reduce((acc, cookie) => {
-          const [key, value] = cookie.trim().split('=');
-          if (key && key.includes('hs')) acc[key] = value;
-          return acc;
-        }, {});
-        
-        console.log('🍪 Cookies HubSpot:', cookies);
-        
-        // Vérification du script
-        const hsScript = document.getElementById('hs-script-loader');
-        console.log('📜 Script HubSpot:', {
-          'script exists': !!hsScript,
-          'script src': hsScript ? hsScript.src : 'N/A',
-          'script loaded': hsScript ? !hsScript.hasAttribute('async') || hsScript.readyState === 'complete' : false
-        });
-        
-        // Recommandations selon l'environnement
-        if (isInIframe) {
-          console.log('⚠️ Recommandation: Bannière HubSpot limitée en iframe, utiliser la bannière alternative');
+      // Simple check for HubSpot forms initialization
+      const checkHubSpotForms = () => {
+        if (window.hbspt && window.hbspt.forms) {
+          console.log('✅ HubSpot Forms API détectée');
+          return true;
         }
-        if (isLovablePreview) {
-          console.log('ℹ️ Note: Test en environnement Lovable, déployer en production pour test complet');
-        }
-        
-        console.groupEnd();
+        return false;
       };
       
-      // Monitoring périodique avec logique adaptée à l'environnement
-      hubspotCheckInterval = setInterval(() => {
-        if (window._hsp || (window.hbspt && window.hbspt.privacy)) {
-          console.log('✅ HubSpot détecté! Arrêt du monitoring.');
-          clearInterval(hubspotCheckInterval);
-          runHubSpotDiagnostic();
-          
-          // Déclencher l'événement custom
-          window.dispatchEvent(new CustomEvent('hsLoaded', { 
-            detail: { 
-              timestamp: Date.now(),
-              environment: {
-                iframe: isInIframe,
-                lovable: isLovablePreview,
-                production: isProduction
-              }
-            } 
-          }));
-          
-          // Essayer d'afficher la bannière automatiquement si en production
-          if (isProduction && !isInIframe && !document.cookie.includes('__hs_cookie_cat_pref')) {
-            setTimeout(() => {
-              if (window._hsp) {
-                console.log('🎯 Affichage automatique de la bannière HubSpot...');
-                window._hsp.push(['showBanner']);
-              }
-            }, 1000);
-          }
-          
-        } else {
-          const elapsed = (Date.now() - hubspotLoadTime) / 1000;
-          if (elapsed > 10) {
-            console.log(`⏳ Attente de HubSpot... (${elapsed.toFixed(1)}s)`);
-          }
+      // Check every 2 seconds for the first 30 seconds
+      let checkCount = 0;
+      const maxChecks = 15;
+      
+      const interval = setInterval(() => {
+        checkCount++;
+        
+        if (checkHubSpotForms()) {
+          console.log('🎯 HubSpot Forms prêt - Les formulaires avec data-attributes se chargeront automatiquement');
+          clearInterval(interval);
+        } else if (checkCount >= maxChecks) {
+          console.warn('⚠️ HubSpot Forms non détecté après 30s');
+          clearInterval(interval);
         }
       }, 2000);
       
-      // Diagnostic initial après le chargement de la page
-      window.addEventListener('load', () => {
-        console.log('📄 Page chargée, diagnostic initial...');
-        setTimeout(runHubSpotDiagnostic, 1000);
-      });
-      
-      // Écouter les erreurs de script
-      window.addEventListener('error', (event) => {
-        if (event.filename && event.filename.includes('hs-scripts')) {
-          console.error('💥 Erreur de chargement du script HubSpot:', event);
-        }
-      });
-      
-      // Fonction globale pour tests manuels améliorée
+      // Global test function
       window.testHubSpot = () => {
-        console.log('🧪 Test manuel HubSpot...');
-        runHubSpotDiagnostic();
+        console.log('🧪 Test HubSpot Forms:');
+        console.log('- API disponible:', !!window.hbspt);
+        console.log('- Forms disponible:', !!(window.hbspt && window.hbspt.forms));
         
-        if (isInIframe) {
-          console.log('⚠️ Test en iframe - bannière HubSpot peut être bloquée');
-          console.log('💡 Suggestion: Utiliser la bannière alternative disponible');
-        }
-        
-        if (window._hsp) {
-          console.log('🎯 Test showBanner via _hsp...');
-          window._hsp.push(['showBanner']);
-        }
-        
-        if (window.hbspt && window.hbspt.privacy && window.hbspt.privacy.showBanner) {
-          console.log('🎯 Test showBanner via hbspt.privacy...');
-          window.hbspt.privacy.showBanner();
-        }
-        
-        // Test de tracking
-        if (window._hsp) {
-          console.log('📊 Test trackPageView...');
-          window._hsp.push(['trackPageView']);
-        }
+        const forms = document.querySelectorAll('.hs-form-frame');
+        console.log(`- Formulaires détectés: ${forms.length}`);
+        forms.forEach((form, index) => {
+          console.log(`  Form ${index + 1}:`, {
+            id: form.id,
+            formId: form.getAttribute('data-form-id'),
+            region: form.getAttribute('data-region'),
+            portalId: form.getAttribute('data-portal-id')
+          });
+        });
       };
       
-      // Timeout de sécurité pour éviter le monitoring infini
-      setTimeout(() => {
-        if (hubspotCheckInterval) {
-          clearInterval(hubspotCheckInterval);
-          console.log('⏰ Arrêt du monitoring après 30s');
-          if (!window._hsp && !window.hbspt) {
-            console.warn('⚠️ HubSpot non détecté après 30s - vérifier la configuration');
-          }
-        }
-      }, 30000);
-      
-      console.log('💡 Commandes disponibles:');
-      console.log('- testHubSpot() : Test manuel complet');
-      console.log('- window._hsp : Array des commandes HubSpot');
-      if (isInIframe) {
-        console.log('🖼️ Mode iframe détecté - bannière alternative recommandée');
-      }
+      console.log('💡 Commande disponible: testHubSpot()');
     </script>
   </body>
 </html>
