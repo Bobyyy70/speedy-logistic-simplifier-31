@@ -3,22 +3,31 @@ import React, { useEffect } from "react";
 
 export const HubSpotContactForm = () => {
   useEffect(() => {
-    // Charger le script HubSpot pour les formulaires
-    const script = document.createElement('script');
-    script.src = 'https://js-eu1.hsforms.net/forms/embed/144571109.js';
-    script.defer = true;
-    script.onload = () => {
-      console.log('HubSpot Contact script loaded');
-    };
-    document.head.appendChild(script);
-
-    return () => {
-      // Cleanup si nécessaire
-      const existingScript = document.querySelector('script[src*="144571109.js"]');
-      if (existingScript) {
-        existingScript.remove();
+    console.log('HubSpotContactForm: Initialisation...');
+    
+    // Attendre que HubSpot soit chargé
+    const initializeForm = () => {
+      if (window.hbspt && window.hbspt.forms) {
+        console.log('HubSpotContactForm: HubSpot détecté, création du formulaire...');
+        try {
+          window.hbspt.forms.create({
+            region: "eu1",
+            portalId: "144571109",
+            formId: "ebf2ad52-915e-4bfa-b4c0-a2ff8480054f",
+            target: "#contact-form-container"
+          });
+          console.log('HubSpotContactForm: Formulaire contact créé avec succès');
+        } catch (error) {
+          console.error('HubSpotContactForm: Erreur lors de la création du formulaire:', error);
+        }
+      } else {
+        console.log('HubSpotContactForm: HubSpot pas encore chargé, nouvelle tentative...');
+        setTimeout(initializeForm, 500);
       }
     };
+
+    // Démarrer l'initialisation après un court délai
+    setTimeout(initializeForm, 1000);
   }, []);
 
   return (
@@ -26,12 +35,7 @@ export const HubSpotContactForm = () => {
       <h2 className="text-xl font-semibold mb-2">Contactez-nous</h2>
       <p className="text-muted-foreground mb-6">Remplissez ce formulaire pour nous contacter</p>
       
-      <div 
-        className="hs-form-frame" 
-        data-region="eu1" 
-        data-form-id="ebf2ad52-915e-4bfa-b4c0-a2ff8480054f" 
-        data-portal-id="144571109"
-      ></div>
+      <div id="contact-form-container"></div>
     </div>
   );
 };
