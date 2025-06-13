@@ -2,9 +2,8 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { useHubSpot } from "@/hooks/useHubSpot";
-import { ContactModal } from "@/components/contact/ContactModal";
-import { SavModal } from "@/components/contact/SavModal";
+import { SimpleContactModal } from "@/components/contact/SimpleContactModal";
+import { SimpleSavModal } from "@/components/contact/SimpleSavModal";
 import { CalendarSection } from "@/components/contact/CalendarSection";
 import { CtaButtonsSection } from "@/components/contact/CtaButtonsSection";
 import { MapSection } from "@/components/contact/MapSection";
@@ -12,9 +11,6 @@ import { MapSection } from "@/components/contact/MapSection";
 const Contact = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [savModalOpen, setSavModalOpen] = useState(false);
-
-  // Initialize HubSpot scripts
-  useHubSpot();
 
   return (
     <>
@@ -141,13 +137,13 @@ const Contact = () => {
         </div>
 
         {/* Contact Modal */}
-        <ContactModal 
+        <SimpleContactModal 
           open={contactModalOpen} 
           onOpenChange={setContactModalOpen} 
         />
 
         {/* SAV Modal */}
-        <SavModal 
+        <SimpleSavModal 
           open={savModalOpen} 
           onOpenChange={setSavModalOpen} 
         />
