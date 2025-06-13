@@ -1,6 +1,7 @@
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useHubSpot } from "@/hooks/useHubSpot";
 
 interface ContactModalProps {
   open: boolean;
@@ -8,6 +9,21 @@ interface ContactModalProps {
 }
 
 export const ContactModal = ({ open, onOpenChange }: ContactModalProps) => {
+  const { createContactForm } = useHubSpot();
+  const formContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (open && formContainerRef.current) {
+      // Clear any existing form
+      formContainerRef.current.innerHTML = '';
+      
+      // Create the HubSpot form
+      setTimeout(() => {
+        createContactForm('hubspot-contact-form');
+      }, 100);
+    }
+  }, [open, createContactForm]);
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
@@ -18,8 +34,7 @@ export const ContactModal = ({ open, onOpenChange }: ContactModalProps) => {
           </DialogDescription>
         </DialogHeader>
         <div className="min-h-[400px] w-full">
-          {/* Formulaire de contact HubSpot avec votre code d'intégration */}
-          <div className="hs-form-frame" data-region="eu1" data-form-id="ebf2ad52-915e-4bfa-b4c0-a2ff8480054f" data-portal-id="144571109"></div>
+          <div id="hubspot-contact-form" ref={formContainerRef}></div>
         </div>
       </DialogContent>
     </Dialog>
