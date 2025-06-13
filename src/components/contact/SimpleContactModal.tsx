@@ -15,7 +15,7 @@ export const SimpleContactModal = ({ open, onOpenChange }: SimpleContactModalPro
         <DialogHeader>
           <DialogTitle>Nous contacter</DialogTitle>
         </DialogHeader>
-        <HubSpotContactForm />
+        <HubSpotContactForm isModalOpen={open} />
       </DialogContent>
     </Dialog>
   );

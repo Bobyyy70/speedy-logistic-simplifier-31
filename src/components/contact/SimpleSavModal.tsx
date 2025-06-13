@@ -15,7 +15,7 @@ export const SimpleSavModal = ({ open, onOpenChange }: SimpleSavModalProps) => {
         <DialogHeader>
           <DialogTitle>Service Après-Vente</DialogTitle>
         </DialogHeader>
-        <HubSpotSavForm />
+        <HubSpotSavForm isModalOpen={open} />
       </DialogContent>
     </Dialog>
   );

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
@@ -44,8 +43,7 @@ const Contact = () => {
         {/* Canonical URL */}
         <link rel="canonical" href="https://speedelog.net/contact" />
         
-        {/* Scripts HubSpot - Chargement global pour tous les formulaires et calendrier */}
-        <script src="https://js-eu1.hsforms.net/forms/embed/144571109.js" defer></script>
+        {/* Scripts pour Cal.com seulement - HubSpot est maintenant géré dynamiquement */}
         <script src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js" type="text/javascript" async></script>
         
         {/* Schema.org JSON-LD avec données enrichies */}
