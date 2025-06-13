@@ -9,8 +9,14 @@ export const useHubSpotScript = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // Vérifier si le script est déjà chargé
-    if (window.hbspt && window.hbspt.forms) {
+    // Fonction pour vérifier si l'API HubSpot est complètement disponible
+    const checkHubSpotAPI = () => {
+      return window.hbspt && window.hbspt.forms && typeof window.hbspt.forms.create === 'function';
+    };
+
+    // Si l'API est déjà disponible
+    if (checkHubSpotAPI()) {
+      console.log('HubSpot API déjà disponible');
       setIsLoaded(true);
       return;
     }
@@ -19,13 +25,31 @@ export const useHubSpotScript = () => {
     const existingScript = document.getElementById(HUBSPOT_SCRIPT_ID);
     if (existingScript) {
       if (existingScript.hasAttribute('data-loaded')) {
-        setIsLoaded(true);
+        // Attendre que l'API soit disponible avec un polling
+        const pollForAPI = () => {
+          if (checkHubSpotAPI()) {
+            setIsLoaded(true);
+            setIsLoading(false);
+          } else {
+            setTimeout(pollForAPI, 100);
+          }
+        };
+        pollForAPI();
       } else {
-        // Script en cours de chargement, attendre qu'il se charge
+        // Script en cours de chargement
         setIsLoading(true);
         const handleLoad = () => {
-          setIsLoaded(true);
-          setIsLoading(false);
+          // Attendre que l'API soit disponible après le chargement du script
+          const pollForAPI = () => {
+            if (checkHubSpotAPI()) {
+              console.log('HubSpot API maintenant disponible après chargement');
+              setIsLoaded(true);
+              setIsLoading(false);
+            } else {
+              setTimeout(pollForAPI, 100);
+            }
+          };
+          pollForAPI();
         };
         existingScript.addEventListener('load', handleLoad);
         return () => existingScript.removeEventListener('load', handleLoad);
@@ -34,6 +58,7 @@ export const useHubSpotScript = () => {
     }
 
     // Injecter le script
+    console.log('Injection du script HubSpot');
     setIsLoading(true);
     const script = document.createElement('script');
     script.id = HUBSPOT_SCRIPT_ID;
@@ -42,9 +67,23 @@ export const useHubSpotScript = () => {
     script.defer = true;
 
     script.onload = () => {
+      console.log('Script HubSpot chargé, vérification de l\'API...');
       script.setAttribute('data-loaded', 'true');
-      setIsLoaded(true);
-      setIsLoading(false);
+      
+      // Polling pour attendre que l'API soit disponible
+      const pollForAPI = () => {
+        if (checkHubSpotAPI()) {
+          console.log('HubSpot API maintenant disponible');
+          setIsLoaded(true);
+          setIsLoading(false);
+        } else {
+          console.log('API pas encore prête, nouvelle tentative...');
+          setTimeout(pollForAPI, 100);
+        }
+      };
+      
+      // Délai initial pour laisser le temps à HubSpot de s'initialiser
+      setTimeout(pollForAPI, 200);
     };
 
     script.onerror = () => {
@@ -56,7 +95,6 @@ export const useHubSpotScript = () => {
 
     return () => {
       // Ne pas supprimer le script au unmount pour éviter de le recharger
-      // Il sera réutilisé par d'autres composants
     };
   }, []);
 
