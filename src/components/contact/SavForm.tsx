@@ -132,17 +132,24 @@ export const SavForm = () => {
   };
 
   const onSubmit = async (data: SavFormValues) => {
+    console.log("📋 Début de soumission du formulaire SAV", data);
     setIsSubmitting(true);
     
     try {
-      // Call secure Edge Function for SAV form
+      console.log("🔄 Appel de la fonction Supabase SAV...");
+      
       const { data: result, error } = await supabase.functions.invoke('secure-sav-form', {
         body: data
       });
 
+      console.log("📨 Réponse de la fonction SAV:", { result, error });
+
       if (error) {
+        console.error("❌ Erreur de la fonction SAV:", error);
         throw error;
       }
+
+      console.log("✅ Formulaire SAV soumis avec succès");
       
       toast({
         title: "Demande SAV envoyée !",
@@ -152,13 +159,13 @@ export const SavForm = () => {
       form.reset();
       setCurrentStep(0);
     } catch (error) {
+      console.error("💥 Erreur lors de la soumission SAV:", error);
+      
       toast({
         title: "Erreur",
         description: "Un problème est survenu. Veuillez réessayer.",
         variant: "destructive",
       });
-      // Only log non-sensitive error information
-      console.error("SAV Form submission error:", error instanceof Error ? error.message : 'Unknown error');
     } finally {
       setIsSubmitting(false);
     }
