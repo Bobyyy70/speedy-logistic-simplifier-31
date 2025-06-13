@@ -13,6 +13,7 @@ const securityHeaders = {
   'X-Frame-Options': 'DENY',
   'X-XSS-Protection': '1; mode=block',
   'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+  'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' https://js-eu1.hs-scripts.com https://js-eu1.hsforms.net https://js.hs-analytics.net https://js.usemessages.com https://js.hs-banner.com https://static.hsappstatic.net; connect-src 'self' https://*.supabase.co https://*.hubspot.com https://*.hsforms.com https://*.hs-analytics.net https://api.hubapi.com https://meetings-eu1.hubspot.com https://maps.googleapis.com https://www.google.com; img-src 'self' data: https: blob:; style-src 'self' 'unsafe-inline' https://*.hsforms.com https://*.hubspot.com; font-src 'self' https: data:; frame-src 'self' https://*.hubspot.com https://meetings-eu1.hubspot.com https://www.google.com https://maps.google.com; worker-src 'self' blob:; child-src 'self' https://*.hubspot.com https://www.google.com; object-src 'none';",
 }
 
 interface SavFormData {
@@ -24,16 +25,18 @@ interface SavFormData {
   productReference: string
   issueCategory: string
   description: string
-  preferredContact: 'email' | 'phone'
+  preferredContact: string
   bestTimeToContact?: string
 }
 
 serve(async (req) => {
+  // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
   }
 
   try {
+    // Validate request method
     if (req.method !== 'POST') {
       return new Response(
         JSON.stringify({ error: 'Method not allowed' }),
@@ -44,6 +47,7 @@ serve(async (req) => {
       )
     }
 
+    // Parse and validate form data
     const formData: SavFormData = await req.json()
     
     // Input validation
@@ -69,17 +73,19 @@ serve(async (req) => {
       )
     }
 
+    // Initialize Supabase client
     const supabase = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     )
 
-    // Log SAV submission securely
+    // Log the SAV form submission securely
     const { error: logError } = await supabase
       .from('sav_submissions')
       .insert({
-        order_number: formData.orderNumber,
+        full_name: formData.fullName,
         email: formData.email,
+        order_number: formData.orderNumber,
         issue_category: formData.issueCategory,
         submitted_at: new Date().toISOString(),
         ip_address: req.headers.get('x-forwarded-for') || 'unknown',
@@ -93,7 +99,7 @@ serve(async (req) => {
     return new Response(
       JSON.stringify({ 
         success: true, 
-        message: 'SAV request submitted successfully' 
+        message: 'SAV form submitted successfully' 
       }),
       { 
         status: 200, 
