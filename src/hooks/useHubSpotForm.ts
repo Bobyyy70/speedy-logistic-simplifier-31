@@ -19,7 +19,7 @@ export const useHubSpotForm = ({ formId, isModalOpen }: UseHubSpotFormProps) => 
       return;
     }
 
-    console.log(`Tentative de création du formulaire HubSpot: ${formId}`);
+    console.log(`Création du formulaire HubSpot: ${formId}`);
     
     // Nettoyer le contenu existant
     containerRef.current.innerHTML = '';
@@ -48,30 +48,35 @@ export const useHubSpotForm = ({ formId, isModalOpen }: UseHubSpotFormProps) => 
       formCreatedRef.current = false;
     }
 
-    // Créer le formulaire immédiatement si l'API est prête
-    if (window.hbspt && window.hbspt.forms) {
-      createForm();
-    } else {
-      // Système de retry si l'API n'est pas encore prête
-      let retryCount = 0;
-      const maxRetries = 20; // 10 secondes max (20 * 500ms)
-      
-      const retryCreateForm = () => {
-        if (window.hbspt && window.hbspt.forms) {
-          createForm();
-        } else if (retryCount < maxRetries) {
+    // Délai minimal pour s'assurer que le DOM est prêt
+    const createFormWithDelay = () => {
+      if (window.hbspt && window.hbspt.forms) {
+        createForm();
+      } else {
+        // Retry immédiat toutes les 100ms pendant 10 secondes max
+        let retryCount = 0;
+        const maxRetries = 100; // 10 secondes (100 * 100ms)
+        
+        const retryInterval = setInterval(() => {
+          if (window.hbspt && window.hbspt.forms) {
+            createForm();
+            clearInterval(retryInterval);
+          } else if (retryCount >= maxRetries) {
+            console.error(`Échec de la création du formulaire ${formId} après ${maxRetries} tentatives`);
+            clearInterval(retryInterval);
+          }
           retryCount++;
-          console.log(`Retry ${retryCount} pour créer le formulaire ${formId}`);
-          setTimeout(retryCreateForm, 500);
-        } else {
-          console.error(`Échec de la création du formulaire ${formId} après ${maxRetries} tentatives`);
-        }
-      };
+        }, 100);
 
-      retryCreateForm();
-    }
+        return () => clearInterval(retryInterval);
+      }
+    };
+
+    // Petit délai pour laisser le temps au DOM de se mettre à jour
+    const timeoutId = setTimeout(createFormWithDelay, 100);
 
     return () => {
+      clearTimeout(timeoutId);
       // Cleanup à la fermeture du modal
       if (containerRef.current) {
         containerRef.current.innerHTML = '';
