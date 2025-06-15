@@ -8,6 +8,17 @@
     <meta name="description" content="Externalisez votre logistique e-commerce avec Speed E Log. Services fiables et transparents pour PME." />
     <meta name="author" content="Speed E Log" />
 
+    <!-- Content Security Policy pour autoriser HubSpot -->
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.hsforms.net https://*.hubspot.com https://*.hs-scripts.com https://cdn.gpteng.co;
+      style-src 'self' 'unsafe-inline' https://*.hsforms.net https://*.hubspot.com;
+      frame-src 'self' https://*.hsforms.net https://*.hubspot.com;
+      connect-src 'self' https://*.hsforms.net https://*.hubspot.com https://*.hs-scripts.com;
+      img-src 'self' data: https: blob:;
+      font-src 'self' https: data:;
+    ">
+
     <meta property="og:title" content="Speed E Log - Logistique E-commerce Simplifiée pour PME" />
     <meta property="og:description" content="Externalisez votre logistique e-commerce avec Speed E Log. Services fiables et transparents pour PME." />
     <meta property="og:type" content="website" />
