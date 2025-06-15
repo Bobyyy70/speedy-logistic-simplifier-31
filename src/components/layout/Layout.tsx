@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { FloatingChatButton } from "../contact/FloatingChatButton";
 import { Helmet } from "react-helmet-async";
 
 interface LayoutProps {
@@ -38,11 +39,46 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://js-eu1.hs-scripts.com https://js-eu1.hsforms.net https://js.hs-analytics.net https://js.usemessages.com https://js.hs-banner.com https://static.hsappstatic.net https://cdn.gpteng.co; connect-src 'self' https://*.hubspot.com https://*.hsforms.com https://*.hs-analytics.net https://api.hubapi.com https://meetings-eu1.hubspot.com https://maps.googleapis.com https://www.google.com; img-src 'self' data: https: blob:; style-src 'self' 'unsafe-inline' https://*.hsforms.com https://*.hubspot.com; font-src 'self' https: data:; frame-src 'self' https://*.hubspot.com https://meetings-eu1.hubspot.com https://www.google.com https://maps.google.com; worker-src 'self' blob:; child-src 'self' https://*.hubspot.com https://www.google.com; object-src 'none';" />
         <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
         <meta httpEquiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+
+        {/* HubSpot Tracking Code et Widget Chat - Global */}
+        <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/144571109.js"></script>
+        
+        {/* CSS personnalisé pour masquer le branding HubSpot - Global */}
+        <style>{`
+          /* Masquer le branding HubSpot du widget chat */
+          #hubspot-messages-iframe-container .VizExIcon,
+          #hubspot-messages-iframe-container [data-test-id="chat-widget-header"] .VizExIcon,
+          iframe[title*="HubSpot"] + .VizExIcon,
+          .hubspot-link,
+          [href*="hubspot.com"] {
+            display: none !important;
+          }
+
+          /* Personnaliser les couleurs du widget chat */
+          #hubspot-messages-iframe-container {
+            --primary-color: #2563eb;
+            --secondary-color: #1d4ed8;
+          }
+
+          /* Masquer le logo "Powered by HubSpot" */
+          iframe[title*="HubSpot"] ~ div[class*="branding"],
+          iframe[title*="HubSpot"] ~ div[class*="powered"],
+          .hubspot-widget-footer,
+          .widget-footer,
+          [class*="powered-by"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+          }
+        `}</style>
       </Helmet>
 
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />
+      
+      {/* Chat flottant global */}
+      <FloatingChatButton />
     </div>
   );
 };

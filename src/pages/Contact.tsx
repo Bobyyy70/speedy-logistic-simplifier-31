@@ -1,10 +1,11 @@
+
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { CalendarSection } from "@/components/contact/CalendarSection";
 import { MapSection } from "@/components/contact/MapSection";
-import { FloatingChatButton } from "@/components/contact/FloatingChatButton";
 import { Clock, MapPin, Phone, Mail } from "lucide-react";
+
 const Contact = () => {
   return <>
       <Helmet>
@@ -34,7 +35,7 @@ const Contact = () => {
         {/* Canonical URL */}
         <link rel="canonical" href="https://speedelog.net/contact" />
         
-        {/* Scripts pour HubSpot - Chat et Meetings */}
+        {/* Scripts pour HubSpot - Meetings uniquement (le chat est maintenant global) */}
         <script src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js" type="text/javascript" async></script>
         
         {/* Schema.org JSON-LD avec données enrichies */}
@@ -80,38 +81,6 @@ const Contact = () => {
           }
         })}
         </script>
-
-        {/* HubSpot Tracking Code et Widget Chat */}
-        <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/144571109.js"></script>
-        
-        {/* CSS personnalisé pour masquer le branding HubSpot */}
-        <style>{`
-          /* Masquer le branding HubSpot du widget chat */
-          #hubspot-messages-iframe-container .VizExIcon,
-          #hubspot-messages-iframe-container [data-test-id="chat-widget-header"] .VizExIcon,
-          iframe[title*="HubSpot"] + .VizExIcon,
-          .hubspot-link,
-          [href*="hubspot.com"] {
-            display: none !important;
-          }
-
-          /* Personnaliser les couleurs du widget chat */
-          #hubspot-messages-iframe-container {
-            --primary-color: #2563eb;
-            --secondary-color: #1d4ed8;
-          }
-
-          /* Masquer le logo "Powered by HubSpot" */
-          iframe[title*="HubSpot"] ~ div[class*="branding"],
-          iframe[title*="HubSpot"] ~ div[class*="powered"],
-          .hubspot-widget-footer,
-          .widget-footer,
-          [class*="powered-by"] {
-            display: none !important;
-            visibility: hidden !important;
-            opacity: 0 !important;
-          }
-        `}</style>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
@@ -207,10 +176,8 @@ const Contact = () => {
             <MapSection />
           </div>
         </div>
-        
-        {/* Chatbot flottant */}
-        <FloatingChatButton />
       </div>
     </>;
 };
+
 export default Contact;
