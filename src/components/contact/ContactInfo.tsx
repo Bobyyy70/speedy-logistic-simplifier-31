@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getCalApi } from "@calcom/embed-react";
-import { HubSpotSavForm } from "./HubSpotSavForm";
 
 export const ContactInfo = () => {
   // Initialize Cal.com
@@ -51,9 +50,6 @@ export const ContactInfo = () => {
           </div>
         </CardContent>
       </Card>
-
-      {/* Service Après-Vente (SAV) Form */}
-      <HubSpotSavForm />
       
       {/* Carte Google Maps */}
       <motion.div 
