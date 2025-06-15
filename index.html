@@ -17,7 +17,7 @@
     <meta name="twitter:site" content="@speedelog" />
     <meta name="twitter:image" content="https://speedelog.net/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png" />
 
-    <!-- HubSpot Forms Script - Un seul script -->
+    <!-- HubSpot Forms Script -->
     <script src="https://js-eu1.hsforms.net/forms/embed/144571109.js" defer></script>
   </head>
 
@@ -26,25 +26,5 @@
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
-    
-    <!-- Script de debug simplifié -->
-    <script>
-      console.log('🚀 HubSpot Forms - Initialisation');
-      
-      let checkCount = 0;
-      const maxChecks = 20;
-      
-      const interval = setInterval(() => {
-        checkCount++;
-        
-        if (window.hbspt && window.hbspt.forms) {
-          console.log('✅ HubSpot Forms API prête');
-          clearInterval(interval);
-        } else if (checkCount >= maxChecks) {
-          console.error('❌ HubSpot Forms non chargé après 40s');
-          clearInterval(interval);
-        }
-      }, 2000);
-    </script>
   </body>
 </html>
