@@ -11,6 +11,13 @@ declare global {
         }) => void;
       };
     };
+    HubSpotConversations?: {
+      widget: {
+        open: () => void;
+        close: () => void;
+        toggle: () => void;
+      };
+    };
   }
 }
 

@@ -1,15 +1,22 @@
+
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { SimpleContactModal } from "@/components/contact/SimpleContactModal";
-import { SimpleSavModal } from "@/components/contact/SimpleSavModal";
 import { CalendarSection } from "@/components/contact/CalendarSection";
 import { CtaButtonsSection } from "@/components/contact/CtaButtonsSection";
 import { MapSection } from "@/components/contact/MapSection";
+import { ContactFaqSection } from "@/components/contact/ContactFaqSection";
+import { WhyChooseUsSection } from "@/components/contact/WhyChooseUsSection";
 
 const Contact = () => {
-  const [contactModalOpen, setContactModalOpen] = useState(false);
-  const [savModalOpen, setSavModalOpen] = useState(false);
+  // Fonctions vides pour compatibilité avec CtaButtonsSection
+  const handleContactClick = () => {
+    // Redirection gérée dans le composant CtaButtonsSection
+  };
+
+  const handleSavClick = () => {
+    // Redirection gérée dans le composant CtaButtonsSection
+  };
 
   return (
     <>
@@ -43,7 +50,7 @@ const Contact = () => {
         {/* Canonical URL */}
         <link rel="canonical" href="https://speedelog.net/contact" />
         
-        {/* Scripts pour Cal.com seulement - HubSpot est maintenant géré dynamiquement */}
+        {/* Scripts pour HubSpot - Chat et Meetings */}
         <script src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js" type="text/javascript" async></script>
         
         {/* Schema.org JSON-LD avec données enrichies */}
@@ -92,8 +99,37 @@ const Contact = () => {
           })}
         </script>
 
-        {/* HubSpot Tracking Code */}
+        {/* HubSpot Tracking Code et Widget Chat */}
         <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/144571109.js"></script>
+        
+        {/* CSS personnalisé pour masquer le branding HubSpot */}
+        <style>{`
+          /* Masquer le branding HubSpot du widget chat */
+          #hubspot-messages-iframe-container .VizExIcon,
+          #hubspot-messages-iframe-container [data-test-id="chat-widget-header"] .VizExIcon,
+          iframe[title*="HubSpot"] + .VizExIcon,
+          .hubspot-link,
+          [href*="hubspot.com"] {
+            display: none !important;
+          }
+
+          /* Personnaliser les couleurs du widget chat */
+          #hubspot-messages-iframe-container {
+            --primary-color: #2563eb;
+            --secondary-color: #1d4ed8;
+          }
+
+          /* Masquer le logo "Powered by HubSpot" */
+          iframe[title*="HubSpot"] ~ div[class*="branding"],
+          iframe[title*="HubSpot"] ~ div[class*="powered"],
+          .hubspot-widget-footer,
+          .widget-footer,
+          [class*="powered-by"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+          }
+        `}</style>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
@@ -125,26 +161,20 @@ const Contact = () => {
 
             {/* CTA Buttons Section */}
             <CtaButtonsSection 
-              onContactClick={() => setContactModalOpen(true)}
-              onSavClick={() => setSavModalOpen(true)}
+              onContactClick={handleContactClick}
+              onSavClick={handleSavClick}
             />
+
+            {/* Why Choose Us Section */}
+            <WhyChooseUsSection />
+
+            {/* FAQ Section */}
+            <ContactFaqSection />
 
             {/* Map Section */}
             <MapSection />
           </div>
         </div>
-
-        {/* Contact Modal */}
-        <SimpleContactModal 
-          open={contactModalOpen} 
-          onOpenChange={setContactModalOpen} 
-        />
-
-        {/* SAV Modal */}
-        <SimpleSavModal 
-          open={savModalOpen} 
-          onOpenChange={setSavModalOpen} 
-        />
       </div>
     </>
   );
