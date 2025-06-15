@@ -17,7 +17,7 @@
     <meta name="twitter:site" content="@speedelog" />
     <meta name="twitter:image" content="https://speedelog.net/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png" />
 
-    <!-- HubSpot Forms Script - Une seule instance -->
+    <!-- HubSpot Forms Script - Un seul script -->
     <script src="https://js-eu1.hsforms.net/forms/embed/144571109.js" defer></script>
   </head>
 
@@ -27,57 +27,24 @@
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- HubSpot Tracking Code -->
-    <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/144571109.js"></script>
-
-    <!-- Simplified HubSpot Debug Script -->
+    <!-- Script de debug simplifié -->
     <script>
-      console.log('🚀 HubSpot Forms - Version simplifiée avec data-attributes');
+      console.log('🚀 HubSpot Forms - Initialisation');
       
-      // Simple check for HubSpot forms initialization
-      const checkHubSpotForms = () => {
-        if (window.hbspt && window.hbspt.forms) {
-          console.log('✅ HubSpot Forms API détectée');
-          return true;
-        }
-        return false;
-      };
-      
-      // Check every 2 seconds for the first 30 seconds
       let checkCount = 0;
-      const maxChecks = 15;
+      const maxChecks = 20;
       
       const interval = setInterval(() => {
         checkCount++;
         
-        if (checkHubSpotForms()) {
-          console.log('🎯 HubSpot Forms prêt - Les formulaires avec data-attributes se chargeront automatiquement');
+        if (window.hbspt && window.hbspt.forms) {
+          console.log('✅ HubSpot Forms API prête');
           clearInterval(interval);
         } else if (checkCount >= maxChecks) {
-          console.warn('⚠️ HubSpot Forms non détecté après 30s');
+          console.error('❌ HubSpot Forms non chargé après 40s');
           clearInterval(interval);
         }
       }, 2000);
-      
-      // Global test function
-      window.testHubSpot = () => {
-        console.log('🧪 Test HubSpot Forms:');
-        console.log('- API disponible:', !!window.hbspt);
-        console.log('- Forms disponible:', !!(window.hbspt && window.hbspt.forms));
-        
-        const forms = document.querySelectorAll('.hs-form-frame');
-        console.log(`- Formulaires détectés: ${forms.length}`);
-        forms.forEach((form, index) => {
-          console.log(`  Form ${index + 1}:`, {
-            id: form.id,
-            formId: form.getAttribute('data-form-id'),
-            region: form.getAttribute('data-region'),
-            portalId: form.getAttribute('data-portal-id')
-          });
-        });
-      };
-      
-      console.log('💡 Commande disponible: testHubSpot()');
     </script>
   </body>
 </html>
