@@ -18,6 +18,7 @@ declare global {
         toggle: () => void;
       };
     };
+    _hsp?: any[];
   }
 }
 
