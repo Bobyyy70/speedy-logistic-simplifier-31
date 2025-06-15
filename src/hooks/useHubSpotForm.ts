@@ -32,7 +32,7 @@ export const useHubSpotForm = ({ portalId, formId, region = 'eu1', isOpen }: Use
             region,
             portalId,
             formId,
-            target: containerRef.current
+            target: `#${containerRef.current.id}`
           });
           
           formCreated.current = true;
