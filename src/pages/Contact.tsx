@@ -1,23 +1,13 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { CalendarSection } from "@/components/contact/CalendarSection";
-import { CtaButtonsSection } from "@/components/contact/CtaButtonsSection";
 import { MapSection } from "@/components/contact/MapSection";
-import { ContactFaqSection } from "@/components/contact/ContactFaqSection";
-import { WhyChooseUsSection } from "@/components/contact/WhyChooseUsSection";
+import { FloatingChatButton } from "@/components/contact/FloatingChatButton";
+import { Clock, MapPin, Phone, Mail } from "lucide-react";
 
 const Contact = () => {
-  // Fonctions vides pour compatibilité avec CtaButtonsSection
-  const handleContactClick = () => {
-    // Redirection gérée dans le composant CtaButtonsSection
-  };
-
-  const handleSavClick = () => {
-    // Redirection gérée dans le composant CtaButtonsSection
-  };
-
   return (
     <>
       <Helmet>
@@ -150,31 +140,83 @@ const Contact = () => {
                 consultation gratuite
               </span>
             </h1>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
               Discutons de vos besoins logistiques et trouvons ensemble la solution adaptée à votre e-commerce.
             </p>
+            
+            {/* Informations pratiques */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+              <div className="flex items-center justify-center gap-2 text-slate-600">
+                <Clock className="h-5 w-5 text-blue-600" />
+                <span className="text-sm">Réponse sous 24h</span>
+              </div>
+              <div className="flex items-center justify-center gap-2 text-slate-600">
+                <Phone className="h-5 w-5 text-blue-600" />
+                <span className="text-sm">06 35 58 40 04</span>
+              </div>
+              <div className="flex items-center justify-center gap-2 text-slate-600">
+                <Mail className="h-5 w-5 text-blue-600" />
+                <span className="text-sm">contact@speedelog.net</span>
+              </div>
+              <div className="flex items-center justify-center gap-2 text-slate-600">
+                <MapPin className="h-5 w-5 text-blue-600" />
+                <span className="text-sm">Port-sur-Saône (70)</span>
+              </div>
+            </div>
           </motion.header>
 
+          {/* Contenu principal */}
           <div className="space-y-8">
+            {/* Section d'introduction SEO */}
+            <motion.section 
+              className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="text-2xl font-bold mb-4 text-slate-900">
+                  Votre Partenaire Logistique E-commerce en Bourgogne-Franche-Comté
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                  <div>
+                    <h3 className="font-semibold text-slate-900 mb-3">🎯 Consultation personnalisée</h3>
+                    <p className="text-slate-600 mb-4">
+                      Lors de notre entretien de 15 minutes, nous analysons vos volumes, vos contraintes et vos objectifs 
+                      pour vous proposer une solution logistique sur-mesure.
+                    </p>
+                    <h3 className="font-semibold text-slate-900 mb-3">📦 Expertise e-commerce PME</h3>
+                    <p className="text-slate-600">
+                      Spécialisés dans l'accompagnement des petites et moyennes entreprises, nous comprenons 
+                      vos enjeux de croissance et vos contraintes budgétaires.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-slate-900 mb-3">🚀 Service client réactif</h3>
+                    <p className="text-slate-600 mb-4">
+                      Notre équipe est disponible du lundi au vendredi de 9h à 18h. 
+                      Utilisez le chat en bas à droite pour une réponse immédiate !
+                    </p>
+                    <h3 className="font-semibold text-slate-900 mb-3">💡 Des questions ?</h3>
+                    <p className="text-slate-600">
+                      Consultez notre <a href="/faq" className="text-blue-600 hover:text-blue-800 underline">page FAQ</a> pour 
+                      trouver rapidement des réponses aux questions les plus courantes sur nos services.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.section>
+
             {/* Hero Calendar Section */}
             <CalendarSection />
-
-            {/* CTA Buttons Section */}
-            <CtaButtonsSection 
-              onContactClick={handleContactClick}
-              onSavClick={handleSavClick}
-            />
-
-            {/* Why Choose Us Section */}
-            <WhyChooseUsSection />
-
-            {/* FAQ Section */}
-            <ContactFaqSection />
 
             {/* Map Section */}
             <MapSection />
           </div>
         </div>
+        
+        {/* Chatbot flottant */}
+        <FloatingChatButton />
       </div>
     </>
   );
