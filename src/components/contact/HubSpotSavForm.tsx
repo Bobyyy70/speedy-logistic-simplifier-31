@@ -1,11 +1,19 @@
 
 import React from "react";
+import { useHubSpotForm } from "@/hooks/useHubSpotForm";
 
 interface HubSpotSavFormProps {
   isModalOpen?: boolean;
 }
 
 export const HubSpotSavForm = ({ isModalOpen = true }: HubSpotSavFormProps) => {
+  const containerRef = useHubSpotForm({
+    portalId: "144571109",
+    formId: "434e2703-cd85-4a7d-a84b-69d4b12f04d6",
+    region: "eu1",
+    isOpen: isModalOpen
+  });
+
   if (!isModalOpen) {
     return null;
   }
@@ -16,17 +24,10 @@ export const HubSpotSavForm = ({ isModalOpen = true }: HubSpotSavFormProps) => {
       <p className="text-muted-foreground mb-6">Remplissez ce formulaire pour toute demande SAV</p>
       
       <div 
-        className="hs-form-frame min-h-[400px]"
-        data-hs-src-iframe="true"
-        data-target="#hubspot-sav-form"
-        data-hs-form-portal-id="144571109"
-        data-hs-form-id="434e2703-cd85-4a7d-a84b-69d4b12f04d6"
-        data-hs-form-region="eu1"
-      >
-        <div className="flex items-center justify-center h-20">
-          <div className="text-muted-foreground">Chargement du formulaire...</div>
-        </div>
-      </div>
+        ref={containerRef}
+        className="min-h-[400px]"
+        id="hubspot-sav-form-container"
+      />
     </div>
   );
 };

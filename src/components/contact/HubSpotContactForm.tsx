@@ -1,11 +1,19 @@
 
 import React from "react";
+import { useHubSpotForm } from "@/hooks/useHubSpotForm";
 
 interface HubSpotContactFormProps {
   isModalOpen?: boolean;
 }
 
 export const HubSpotContactForm = ({ isModalOpen = true }: HubSpotContactFormProps) => {
+  const containerRef = useHubSpotForm({
+    portalId: "144571109",
+    formId: "ebf2ad52-915e-4bfa-b4c0-a2ff8480054f",
+    region: "eu1",
+    isOpen: isModalOpen
+  });
+
   if (!isModalOpen) {
     return null;
   }
@@ -16,17 +24,10 @@ export const HubSpotContactForm = ({ isModalOpen = true }: HubSpotContactFormPro
       <p className="text-muted-foreground mb-6">Remplissez ce formulaire pour nous contacter</p>
       
       <div 
-        className="hs-form-frame min-h-[400px]"
-        data-hs-src-iframe="true"
-        data-target="#hubspot-contact-form"
-        data-hs-form-portal-id="144571109"
-        data-hs-form-id="ebf2ad52-915e-4bfa-b4c0-a2ff8480054f"
-        data-hs-form-region="eu1"
-      >
-        <div className="flex items-center justify-center h-20">
-          <div className="text-muted-foreground">Chargement du formulaire...</div>
-        </div>
-      </div>
+        ref={containerRef}
+        className="min-h-[400px]"
+        id="hubspot-contact-form-container"
+      />
     </div>
   );
 };

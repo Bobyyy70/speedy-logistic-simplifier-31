@@ -1,9 +1,14 @@
 
 declare global {
   interface Window {
-    hbspt: {
+    hbspt?: {
       forms: {
-        create: (options: any) => void;
+        create: (config: {
+          region: string;
+          portalId: string;
+          formId: string;
+          target: HTMLElement;
+        }) => void;
       };
     };
   }
