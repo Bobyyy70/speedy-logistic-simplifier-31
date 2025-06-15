@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
@@ -6,16 +5,11 @@ import { CalendarSection } from "@/components/contact/CalendarSection";
 import { MapSection } from "@/components/contact/MapSection";
 import { FloatingChatButton } from "@/components/contact/FloatingChatButton";
 import { Clock, MapPin, Phone, Mail } from "lucide-react";
-
 const Contact = () => {
-  return (
-    <>
+  return <>
       <Helmet>
         <title>Contact Speed E-Log - Réservez votre consultation logistique gratuite</title>
-        <meta
-          name="description"
-          content="Contactez Speed E-Log pour optimiser votre logistique e-commerce. Réservez une consultation gratuite, utilisez nos formulaires de contact et SAV. Réponse sous 24h garantie. Rendez-vous au 37 Rue de Rémaucourt, Port-sur-Saône."
-        />
+        <meta name="description" content="Contactez Speed E-Log pour optimiser votre logistique e-commerce. Réservez une consultation gratuite, utilisez nos formulaires de contact et SAV. Réponse sous 24h garantie. Rendez-vous au 37 Rue de Rémaucourt, Port-sur-Saône." />
         <meta name="keywords" content="contact speed e-log, consultation logistique, service client, SAV, rendez-vous, Port-sur-Saône, 37 rue rémaucourt, formulaire contact, calendrier" />
         <meta name="geo.region" content="FR-70" />
         <meta name="geo.placename" content="Port-sur-Saône" />
@@ -46,47 +40,45 @@ const Contact = () => {
         {/* Schema.org JSON-LD avec données enrichies */}
         <script type="application/ld+json">
           {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ContactPage",
-            "name": "Contact Speed E-Log",
-            "description": "Page de contact pour Speed E-Log, spécialiste en logistique e-commerce",
-            "url": "https://speedelog.net/contact",
-            "mainEntity": {
-              "@type": "LocalBusiness",
-              "name": "Speed E-Log",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "37 Rue de Rémaucourt",
-                "addressLocality": "Port-sur-Saône",
-                "postalCode": "70170",
-                "addressRegion": "Bourgogne-Franche-Comté",
-                "addressCountry": "FR"
-              },
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 47.690249,
-                "longitude": 6.042856
-              },
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          "name": "Contact Speed E-Log",
+          "description": "Page de contact pour Speed E-Log, spécialiste en logistique e-commerce",
+          "url": "https://speedelog.net/contact",
+          "mainEntity": {
+            "@type": "LocalBusiness",
+            "name": "Speed E-Log",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "37 Rue de Rémaucourt",
+              "addressLocality": "Port-sur-Saône",
+              "postalCode": "70170",
+              "addressRegion": "Bourgogne-Franche-Comté",
+              "addressCountry": "FR"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 47.690249,
+              "longitude": 6.042856
+            },
+            "telephone": "+33635584004",
+            "email": "contact@speedelog.net",
+            "url": "https://speedelog.net",
+            "openingHours": "Mo-Fr 09:00-18:00",
+            "contactPoint": {
+              "@type": "ContactPoint",
               "telephone": "+33635584004",
-              "email": "contact@speedelog.net",
-              "url": "https://speedelog.net",
-              "openingHours": "Mo-Fr 09:00-18:00",
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+33635584004",
-                "contactType": "customer service",
-                "availableLanguage": "French"
-              },
-              "sameAs": [
-                "https://www.linkedin.com/company/speed-e-log"
-              ],
-              "areaServed": {
-                "@type": "Country",
-                "name": "France"
-              },
-              "serviceType": "Logistique e-commerce"
-            }
-          })}
+              "contactType": "customer service",
+              "availableLanguage": "French"
+            },
+            "sameAs": ["https://www.linkedin.com/company/speed-e-log"],
+            "areaServed": {
+              "@type": "Country",
+              "name": "France"
+            },
+            "serviceType": "Logistique e-commerce"
+          }
+        })}
         </script>
 
         {/* HubSpot Tracking Code et Widget Chat */}
@@ -125,12 +117,15 @@ const Contact = () => {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
         <div className="container mx-auto px-4 py-8">
           {/* Page Header */}
-          <motion.header 
-            className="text-center mb-12 pt-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.header className="text-center mb-12 pt-8" initial={{
+          opacity: 0,
+          y: 20
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          duration: 0.6
+        }}>
             <div className="inline-flex items-center bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 px-6 py-3 rounded-full text-sm font-semibold mb-6 shadow-sm">
               📞 Contactez-nous
             </div>
@@ -146,34 +141,32 @@ const Contact = () => {
             
             {/* Informations pratiques */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+              
               <div className="flex items-center justify-center gap-2 text-slate-600">
-                <Clock className="h-5 w-5 text-blue-600" />
-                <span className="text-sm">Réponse sous 24h</span>
+                
+                
               </div>
               <div className="flex items-center justify-center gap-2 text-slate-600">
-                <Phone className="h-5 w-5 text-blue-600" />
-                <span className="text-sm">06 35 58 40 04</span>
+                
+                
               </div>
-              <div className="flex items-center justify-center gap-2 text-slate-600">
-                <Mail className="h-5 w-5 text-blue-600" />
-                <span className="text-sm">contact@speedelog.net</span>
-              </div>
-              <div className="flex items-center justify-center gap-2 text-slate-600">
-                <MapPin className="h-5 w-5 text-blue-600" />
-                <span className="text-sm">Port-sur-Saône (70)</span>
-              </div>
+              
             </div>
           </motion.header>
 
           {/* Contenu principal */}
           <div className="space-y-8">
             {/* Section d'introduction SEO */}
-            <motion.section 
-              className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
+            <motion.section className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200" initial={{
+            opacity: 0,
+            y: 30
+          }} animate={{
+            opacity: 1,
+            y: 0
+          }} transition={{
+            duration: 0.6,
+            delay: 0.2
+          }}>
               <div className="max-w-4xl mx-auto text-center">
                 <h2 className="text-2xl font-bold mb-4 text-slate-900">
                   Votre Partenaire Logistique E-commerce en Bourgogne-Franche-Comté
@@ -218,8 +211,6 @@ const Contact = () => {
         {/* Chatbot flottant */}
         <FloatingChatButton />
       </div>
-    </>
-  );
+    </>;
 };
-
 export default Contact;
