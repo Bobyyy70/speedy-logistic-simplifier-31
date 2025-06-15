@@ -8,6 +8,8 @@ declare global {
           portalId: string;
           formId: string;
           target: string;
+          onFormReady?: () => void;
+          onFormSubmit?: () => void;
         }) => void;
       };
     };

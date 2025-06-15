@@ -41,15 +41,18 @@ export const HubSpotSavForm = ({ isModalOpen = true }: HubSpotSavFormProps) => {
     if (window.hbspt && window.hbspt.forms) {
       initializeForm();
     } else {
-      // Attendre que HubSpot soit chargé
+      // Attendre que HubSpot soit chargé avec retry
       let attempts = 0;
       const checkInterval = setInterval(() => {
         attempts++;
+        console.log(`🔍 Tentative ${attempts} de chargement HubSpot SAV`);
+        
         if (window.hbspt && window.hbspt.forms) {
+          console.log('✅ HubSpot API détectée pour SAV');
           initializeForm();
           clearInterval(checkInterval);
-        } else if (attempts > 15) {
-          console.error('❌ Impossible de charger HubSpot Forms pour SAV');
+        } else if (attempts > 10) {
+          console.error('❌ Impossible de charger HubSpot Forms pour SAV après 10 tentatives');
           clearInterval(checkInterval);
         }
       }, 1000);

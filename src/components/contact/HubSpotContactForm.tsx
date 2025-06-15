@@ -41,15 +41,18 @@ export const HubSpotContactForm = ({ isModalOpen = true }: HubSpotContactFormPro
     if (window.hbspt && window.hbspt.forms) {
       initializeForm();
     } else {
-      // Attendre que HubSpot soit chargé
+      // Attendre que HubSpot soit chargé avec retry
       let attempts = 0;
       const checkInterval = setInterval(() => {
         attempts++;
+        console.log(`🔍 Tentative ${attempts} de chargement HubSpot Contact`);
+        
         if (window.hbspt && window.hbspt.forms) {
+          console.log('✅ HubSpot API détectée pour Contact');
           initializeForm();
           clearInterval(checkInterval);
-        } else if (attempts > 15) {
-          console.error('❌ Impossible de charger HubSpot Forms pour Contact');
+        } else if (attempts > 10) {
+          console.error('❌ Impossible de charger HubSpot Forms pour Contact après 10 tentatives');
           clearInterval(checkInterval);
         }
       }, 1000);
