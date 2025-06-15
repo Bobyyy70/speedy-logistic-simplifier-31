@@ -22,7 +22,10 @@ export const HubSpotIframeForm = ({
     return null;
   }
 
-  const iframeUrl = `https://share-${region}.hsforms.com/form/${portalId}/${formId}`;
+  // URL correcte pour les formulaires HubSpot
+  const iframeUrl = `https://share-${region}.hsforms.com/${portalId}/${formId}`;
+
+  console.log('🔗 URL iframe HubSpot:', iframeUrl);
 
   return (
     <div className="bg-card rounded-lg p-6 shadow-md">
@@ -39,8 +42,11 @@ export const HubSpotIframeForm = ({
           marginWidth={0}
           title={title}
           style={{ border: 'none' }}
-          onError={() => {
-            console.error('Erreur de chargement du formulaire HubSpot');
+          onLoad={() => {
+            console.log('✅ Formulaire HubSpot chargé avec succès');
+          }}
+          onError={(e) => {
+            console.error('❌ Erreur de chargement du formulaire HubSpot:', e);
           }}
         />
       </div>
