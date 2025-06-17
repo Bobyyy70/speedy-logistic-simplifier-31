@@ -9,9 +9,7 @@ import { Ship, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, Arro
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  const {
-    shouldShowCustomBanner
-  } = useCookieManagement();
+  const { shouldShowCustomBanner } = useCookieManagement();
 
   return (
     <>
