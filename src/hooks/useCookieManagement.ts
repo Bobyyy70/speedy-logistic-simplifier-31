@@ -11,6 +11,10 @@ interface CookieConsent {
 interface CookieManagementHook {
   hasConsent: boolean;
   shouldShowBanner: boolean;
+  shouldShowCustomBanner: boolean;
+  isInIframe: boolean;
+  isHubSpotBlocked: boolean;
+  isProduction: boolean;
   getConsent: () => CookieConsent | null;
   updateConsent: (consent: Partial<CookieConsent>) => void;
   resetConsent: () => void;
@@ -19,6 +23,11 @@ interface CookieManagementHook {
 export const useCookieManagement = (): CookieManagementHook => {
   const [hasConsent, setHasConsent] = useState(false);
 
+  // Detect environment
+  const isInIframe = window !== window.parent;
+  const isProduction = window.location.hostname === 'speedelog.fr' || window.location.hostname === 'www.speedelog.fr';
+  const isHubSpotBlocked = false; // Can be enhanced later if needed
+
   useEffect(() => {
     // Vérifier le consentement existant
     const consent = getConsent();
@@ -26,9 +35,11 @@ export const useCookieManagement = (): CookieManagementHook => {
 
     console.log('🍪 Cookie Management initialisé:', {
       hasConsent: !!consent,
-      domain: window.location.hostname
+      domain: window.location.hostname,
+      isProduction,
+      isInIframe
     });
-  }, []);
+  }, [isProduction, isInIframe]);
 
   const getConsent = (): CookieConsent | null => {
     try {
@@ -78,10 +89,15 @@ export const useCookieManagement = (): CookieManagementHook => {
 
   // Logique simple : afficher la bannière si pas de consentement
   const shouldShowBanner = !hasConsent;
+  const shouldShowCustomBanner = !hasConsent;
 
   return {
     hasConsent,
     shouldShowBanner,
+    shouldShowCustomBanner,
+    isInIframe,
+    isHubSpotBlocked,
+    isProduction,
     getConsent,
     updateConsent,
     resetConsent
