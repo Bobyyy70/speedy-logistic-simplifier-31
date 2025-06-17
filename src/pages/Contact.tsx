@@ -161,7 +161,7 @@ const Contact = () => {
                         🕒 <span className="ml-2">Horaires de disponibilité</span>
                       </h3>
                       <p className="text-slate-600 mb-3">
-                        <strong>Lundi au vendredi : 9h - 18h</strong>
+                        <strong>Lundi au vendredi : 9h - 16h30</strong>
                       </p>
                       <ul className="text-sm text-slate-600 space-y-1">
                         <li>• Chat en direct disponible</li>
