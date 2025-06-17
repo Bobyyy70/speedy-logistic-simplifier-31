@@ -457,12 +457,14 @@ const Technology = () => {
                       Demander une démo
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
-                    <Link 
-                      to="/services" 
+                    <a 
+                      href="http://supplyos.com/" 
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="flex items-center justify-center py-3 px-6 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-blue-500/30 text-blue-600 dark:text-blue-400 font-medium rounded-lg transition-colors duration-300"
                     >
                       Découvrir nos services
-                    </Link>
+                    </a>
                     <div className="text-center mt-3">
                       <span className="text-sm text-slate-500 dark:text-slate-400">
                         Pas d'engagement. Pas de frais cachés.
