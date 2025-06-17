@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
@@ -98,33 +99,19 @@ const Contact = () => {
               📞 Contactez-nous
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900">
-              Réservez votre{" "}
+              Comment pouvons-nous{" "}
               <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-                consultation gratuite
+                vous aider ?
               </span>
             </h1>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
-              Discutons de vos besoins logistiques et trouvons ensemble la solution adaptée à votre e-commerce.
+              Choisissez le moyen de contact qui vous convient le mieux. Notre équipe est là pour vous accompagner.
             </p>
-            
-            {/* Informations pratiques */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
-              
-              <div className="flex items-center justify-center gap-2 text-slate-600">
-                
-                
-              </div>
-              <div className="flex items-center justify-center gap-2 text-slate-600">
-                
-                
-              </div>
-              
-            </div>
           </motion.header>
 
           {/* Contenu principal */}
           <div className="space-y-8">
-            {/* Section d'introduction SEO */}
+            {/* Section des moyens de contact */}
             <motion.section className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200" initial={{
             opacity: 0,
             y: 30
@@ -135,34 +122,67 @@ const Contact = () => {
             duration: 0.6,
             delay: 0.2
           }}>
-              <div className="max-w-4xl mx-auto text-center">
-                <h2 className="text-2xl font-bold mb-4 text-slate-900">
-                  Votre Partenaire Logistique E-commerce en Bourgogne-Franche-Comté
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-                  <div>
-                    <h3 className="font-semibold text-slate-900 mb-3">🎯 Consultation personnalisée</h3>
-                    <p className="text-slate-600 mb-4">
-                      Lors de notre entretien de 15 minutes, nous analysons vos volumes, vos contraintes et vos objectifs 
-                      pour vous proposer une solution logistique sur-mesure.
-                    </p>
-                    <h3 className="font-semibold text-slate-900 mb-3">📦 Expertise e-commerce PME</h3>
-                    <p className="text-slate-600">
-                      Spécialisés dans l'accompagnement des petites et moyennes entreprises, nous comprenons 
-                      vos enjeux de croissance et vos contraintes budgétaires.
-                    </p>
+              <div className="max-w-4xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  
+                  {/* Colonne gauche - Actions principales */}
+                  <div className="space-y-6">
+                    <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl p-6 border border-blue-200">
+                      <h3 className="font-semibold text-slate-900 mb-3 flex items-center">
+                        📞 <span className="ml-2">Prise de rendez-vous</span>
+                      </h3>
+                      <p className="text-slate-600 mb-4">
+                        Planifiez votre consultation gratuite de 15 minutes pour analyser vos besoins logistiques. 
+                        Nos experts vous accompagnent dans votre projet e-commerce.
+                      </p>
+                      <div className="text-sm text-blue-700 font-medium">
+                        → Consultation personnalisée et sans engagement
+                      </div>
+                    </div>
+                    
+                    <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-2xl p-6 border border-green-200">
+                      <h3 className="font-semibold text-slate-900 mb-3 flex items-center">
+                        💬 <span className="ml-2">Support client instantané</span>
+                      </h3>
+                      <p className="text-slate-600 mb-4">
+                        Notre équipe SAV est disponible via le chat en bas à droite de votre écran. 
+                        Réponse immédiate garantie pendant les heures d'ouverture !
+                      </p>
+                      <div className="text-sm text-green-700 font-medium">
+                        → Idéal pour le SAV et les questions techniques
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-900 mb-3">🚀 Service client réactif</h3>
-                    <p className="text-slate-600 mb-4">
-                      Notre équipe est disponible du lundi au vendredi de 9h à 18h. 
-                      Utilisez le chat en bas à droite pour une réponse immédiate !
-                    </p>
-                    <h3 className="font-semibold text-slate-900 mb-3">💡 Des questions ?</h3>
-                    <p className="text-slate-600">
-                      Consultez notre <a href="/faq" className="text-blue-600 hover:text-blue-800 underline">page FAQ</a> pour 
-                      trouver rapidement des réponses aux questions les plus courantes sur nos services.
-                    </p>
+
+                  {/* Colonne droite - Informations pratiques */}
+                  <div className="space-y-6">
+                    <div className="bg-gradient-to-r from-orange-50 to-orange-100 rounded-2xl p-6 border border-orange-200">
+                      <h3 className="font-semibold text-slate-900 mb-3 flex items-center">
+                        🕒 <span className="ml-2">Horaires de disponibilité</span>
+                      </h3>
+                      <p className="text-slate-600 mb-3">
+                        <strong>Lundi au vendredi : 9h - 18h</strong>
+                      </p>
+                      <ul className="text-sm text-slate-600 space-y-1">
+                        <li>• Chat en direct disponible</li>
+                        <li>• Consultations téléphoniques</li>
+                        <li>• Réponse emails sous 24h</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-2xl p-6 border border-purple-200">
+                      <h3 className="font-semibold text-slate-900 mb-3 flex items-center">
+                        ❓ <span className="ml-2">Questions fréquentes</span>
+                      </h3>
+                      <p className="text-slate-600 mb-4">
+                        Consultez notre <a href="/faq" className="text-purple-600 hover:text-purple-800 underline font-medium">page FAQ</a> pour 
+                        les réponses aux questions courantes, ou contactez-nous directement via le chat 
+                        pour des questions spécifiques à votre situation.
+                      </p>
+                      <div className="text-sm text-purple-700 font-medium">
+                        → Gain de temps assuré
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
