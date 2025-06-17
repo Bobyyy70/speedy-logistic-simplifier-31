@@ -10,10 +10,7 @@ interface CookieConsent {
 
 interface CookieManagementHook {
   hasConsent: boolean;
-  isInIframe: boolean;
-  shouldShowCustomBanner: boolean;
-  isHubSpotBlocked: boolean;
-  isProduction: boolean;
+  shouldShowBanner: boolean;
   getConsent: () => CookieConsent | null;
   updateConsent: (consent: Partial<CookieConsent>) => void;
   resetConsent: () => void;
@@ -21,33 +18,13 @@ interface CookieManagementHook {
 
 export const useCookieManagement = (): CookieManagementHook => {
   const [hasConsent, setHasConsent] = useState(false);
-  const [isInIframe, setIsInIframe] = useState(false);
-  const [isHubSpotBlocked, setIsHubSpotBlocked] = useState(false);
-  const [isProduction, setIsProduction] = useState(false);
 
   useEffect(() => {
-    // Détecter l'environnement
-    const inIframe = window !== window.top;
-    const isLovablePreview = window.location.hostname.includes('lovable');
-    const isProd = !isLovablePreview && !window.location.hostname.includes('localhost');
-    
-    setIsInIframe(inIframe);
-    setIsProduction(isProd);
-
     // Vérifier le consentement existant
     const consent = getConsent();
     setHasConsent(!!consent);
 
-    // Détecter si HubSpot est bloqué (plus conservateur)
-    setTimeout(() => {
-      const hubspotWorking = !!(window as any)._hsp && (window as any)._hsp.length >= 0;
-      const cookiesBlocked = inIframe || document.cookie === '' || !document.cookie.includes('hubspotutk');
-      setIsHubSpotBlocked(!hubspotWorking || cookiesBlocked);
-    }, 2000);
-
-    console.log('🍪 Cookie Management:', {
-      inIframe,
-      isProduction: isProd,
+    console.log('🍪 Cookie Management initialisé:', {
       hasConsent: !!consent,
       domain: window.location.hostname
     });
@@ -79,7 +56,7 @@ export const useCookieManagement = (): CookieManagementHook => {
     localStorage.setItem('cookie-consent', JSON.stringify(updated));
     setHasConsent(true);
 
-    // Appliquer les préférences à HubSpot
+    // Appliquer les préférences à HubSpot si disponible
     if ((window as any)._hsp) {
       (window as any)._hsp.push(['setPrivacyConsent', { 
         analyticsConsent: updated.analytics 
@@ -99,15 +76,12 @@ export const useCookieManagement = (): CookieManagementHook => {
     console.log('🔄 Consentement réinitialisé');
   };
 
-  // Logique d'affichage : custom banner seulement si HubSpot est bloqué
-  const shouldShowCustomBanner = !hasConsent && isHubSpotBlocked;
+  // Logique simple : afficher la bannière si pas de consentement
+  const shouldShowBanner = !hasConsent;
 
   return {
     hasConsent,
-    isInIframe,
-    shouldShowCustomBanner,
-    isHubSpotBlocked,
-    isProduction,
+    shouldShowBanner,
     getConsent,
     updateConsent,
     resetConsent

@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { FloatingChatButton } from "../contact/FloatingChatButton";
+import { CustomCookieBanner } from "../cookies/CustomCookieBanner";
 import { Helmet } from "react-helmet-async";
 
 interface LayoutProps {
@@ -67,6 +68,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       
       {/* Chat flottant global */}
       <FloatingChatButton />
+      
+      {/* Bannière de cookies globale */}
+      <CustomCookieBanner />
     </div>
   );
 };

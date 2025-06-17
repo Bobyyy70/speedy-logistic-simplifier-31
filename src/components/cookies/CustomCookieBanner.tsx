@@ -1,8 +1,9 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { X, Settings, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { useCookieManagement } from '@/hooks/useCookieManagement';
 
 interface CookiePreferences {
   necessary: boolean;
@@ -11,7 +12,7 @@ interface CookiePreferences {
 }
 
 export const CustomCookieBanner: React.FC = () => {
-  const [showBanner, setShowBanner] = useState(false);
+  const { shouldShowBanner, updateConsent } = useCookieManagement();
   const [showDetails, setShowDetails] = useState(false);
   const [preferences, setPreferences] = useState<CookiePreferences>({
     necessary: true,
@@ -19,74 +20,33 @@ export const CustomCookieBanner: React.FC = () => {
     marketing: false,
   });
 
-  useEffect(() => {
-    // Vérifier si l'utilisateur a déjà fait un choix
-    const cookieConsent = localStorage.getItem('cookie-consent');
-    if (!cookieConsent) {
-      // Délai pour éviter l'affichage immédiat
-      setTimeout(() => setShowBanner(true), 1000);
-    }
-  }, []);
-
   const handleAcceptAll = () => {
-    const fullConsent = {
+    updateConsent({
       necessary: true,
       analytics: true,
       marketing: true,
-      timestamp: Date.now(),
-    };
-    
-    localStorage.setItem('cookie-consent', JSON.stringify(fullConsent));
-    
-    // Déclencher le tracking HubSpot si disponible
-    if ((window as any)._hsp) {
-      (window as any)._hsp.push(['setPrivacyConsent', { analyticsConsent: true }]);
-      (window as any)._hsp.push(['trackPageView']);
-    }
-    
-    setShowBanner(false);
-    console.log('✅ Cookies acceptés (tous)');
+    });
+    console.log('✅ Tous les cookies acceptés');
   };
 
   const handleRejectAll = () => {
-    const minimalConsent = {
+    updateConsent({
       necessary: true,
       analytics: false,
       marketing: false,
-      timestamp: Date.now(),
-    };
-    
-    localStorage.setItem('cookie-consent', JSON.stringify(minimalConsent));
-    setShowBanner(false);
+    });
     console.log('❌ Cookies rejetés (sauf nécessaires)');
   };
 
   const handleSavePreferences = () => {
-    const consent = {
-      ...preferences,
-      timestamp: Date.now(),
-    };
-    
-    localStorage.setItem('cookie-consent', JSON.stringify(consent));
-    
-    // Configurer HubSpot selon les préférences
-    if ((window as any)._hsp) {
-      (window as any)._hsp.push(['setPrivacyConsent', { 
-        analyticsConsent: preferences.analytics 
-      }]);
-      if (preferences.analytics) {
-        (window as any)._hsp.push(['trackPageView']);
-      }
-    }
-    
-    setShowBanner(false);
-    console.log('⚙️ Préférences sauvegardées:', consent);
+    updateConsent(preferences);
+    console.log('⚙️ Préférences sauvegardées:', preferences);
   };
 
-  if (!showBanner) return null;
+  if (!shouldShowBanner) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-30 p-4">
+    <div className="fixed bottom-0 left-0 right-0 z-50 p-4">
       <Card className="mx-auto max-w-4xl bg-white border border-border shadow-lg">
         <div className="p-4">
           {!showDetails ? (
@@ -94,7 +54,7 @@ export const CustomCookieBanner: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <div className="flex items-center space-x-3 flex-1">
                 <img 
-                  src="/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png" 
+                  src="/lovable-uploads/583cb018-5db6-4b86-9bdb-5a79a00ed5c4.png" 
                   alt="Speed E-Log" 
                   className="h-8 w-8 flex-shrink-0"
                 />
@@ -135,14 +95,6 @@ export const CustomCookieBanner: React.FC = () => {
                   <Check className="h-3 w-3 mr-1" />
                   Accepter
                 </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setShowBanner(false)}
-                  className="text-muted-foreground hover:text-foreground p-1"
-                >
-                  <X className="h-4 w-4" />
-                </Button>
               </div>
             </div>
           ) : (
@@ -151,7 +103,7 @@ export const CustomCookieBanner: React.FC = () => {
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <img 
-                    src="/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png" 
+                    src="/lovable-uploads/583cb018-5db6-4b86-9bdb-5a79a00ed5c4.png" 
                     alt="Speed E-Log" 
                     className="h-6 w-6"
                   />
@@ -160,7 +112,7 @@ export const CustomCookieBanner: React.FC = () => {
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => setShowBanner(false)}
+                  onClick={() => setShowDetails(false)}
                   className="text-muted-foreground hover:text-foreground"
                 >
                   <X className="h-4 w-4" />
