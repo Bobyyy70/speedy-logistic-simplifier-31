@@ -142,11 +142,11 @@ const Contact = () => {
                     
                     <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-2xl p-6 border border-green-200">
                       <h3 className="font-semibold text-slate-900 mb-3 flex items-center">
-                        💬 <span className="ml-2">Support client instantané</span>
+                        💬 <span className="ml-2">Support client via chat</span>
                       </h3>
                       <p className="text-slate-600 mb-4">
                         Notre équipe SAV est disponible via le chat en bas à droite de votre écran. 
-                        Réponse immédiate garantie pendant les heures d'ouverture !
+                        Réponse sous 2 heures pendant les heures d'ouverture.
                       </p>
                       <div className="text-sm text-green-700 font-medium">
                         → Idéal pour le SAV et les questions techniques
