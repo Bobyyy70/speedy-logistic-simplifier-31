@@ -15,9 +15,7 @@ const TermsOfService = () => {
       <div className="prose max-w-none">
         <section className="mb-8 p-6 bg-slate-50 rounded-lg shadow">
           <h2 className="text-xl md:text-2xl font-semibold mb-4 border-b pb-2">Préambule</h2>
-          <p className="mb-4">
-            Speed E-Log, Société par Actions Simplifiée (SAS) au capital de 1 000 euros, immatriculée au Registre du Commerce et des Sociétés de Gray-Vesoul sous le numéro B 934 758 020, dont le siège social est situé au 37 Rue de Rémaucourt, 70170 Port-sur-Saône, France, représentée par son Président Monsieur Francesco Almanzo, propose des services de logistique et de transport aux professionnels. La SAS Speed E-Log est détenue à 67% par Francesco Almanzo et d'autres associés. Les présentes Conditions Générales de Vente (CGV) régissent les relations contractuelles entre Speed E-Log (ci-après « le Prestataire ») et ses clients professionnels (ci-après « le Client »).
-          </p>
+          <p className="mb-4">Speed E-Log, Société par Actions Simplifiée (SAS) au capital de 1 000 euros, immatriculée au Registre du Commerce et des Sociétés de Gray-Vesoul sous le numéro B 934 758 020, dont le siège social est situé au 37 Rue de Rémaucourt, 70170 Port-sur-Saône, France, représentée par son Président Monsieur Francesco Almanzo, propose des services de logistique et de transport aux professionnels. La SAS Speed E-Log est détenue  par Francesco Almanzo et d'autres associés. Les présentes Conditions Générales de Vente (CGV) régissent les relations contractuelles entre Speed E-Log (ci-après « le Prestataire ») et ses clients professionnels (ci-après « le Client »).</p>
           <div className="bg-blue-50 p-4 rounded-lg mt-4">
             <h3 className="font-semibold mb-2">Coordonnées :</h3>
             <ul className="list-disc pl-5">
