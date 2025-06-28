@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
@@ -44,8 +43,15 @@ const Contact = () => {
         {/* Canonical URL */}
         <link rel="canonical" href="https://speedelog.net/contact" />
         
-        {/* Scripts pour HubSpot Meetings uniquement */}
+        {/* Scripts pour HubSpot Meetings - Version améliorée */}
         <script src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js" type="text/javascript" async></script>
+        <script type="text/javascript">
+          {`
+            window.hsConversationsSettings = {
+              loadImmediately: false
+            };
+          `}
+        </script>
         
         {/* Schema.org JSON-LD avec données enrichies */}
         <script type="application/ld+json">
