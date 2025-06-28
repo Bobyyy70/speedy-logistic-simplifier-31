@@ -11,6 +11,8 @@ declare global {
           onFormReady?: () => void;
           onFormSubmit?: (form: any) => void;
           onFormSubmitted?: (form: any) => void;
+          onFormDefinitionFetchError?: (error: any) => void;
+          onFormRender?: () => void;
         }) => void;
       };
     };
