@@ -12,6 +12,7 @@ declare global {
           portalId: string;
           formId: string;
           target: string;
+          onFormSubmitted?: (form: any) => void;
         }) => void;
       };
       meetings?: {
@@ -21,8 +22,12 @@ declare global {
           target: string;
         }) => void;
       };
+      cta?: {
+        load: () => void;
+      };
     };
     hsConversationsSettings?: any;
+    openHubSpotForm?: () => void;
   }
 }
 
