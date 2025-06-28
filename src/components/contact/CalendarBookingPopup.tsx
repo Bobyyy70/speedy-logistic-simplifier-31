@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Calendar, Loader2 } from "lucide-react";
@@ -53,7 +52,7 @@ export const CalendarBookingPopup = ({ isOpen, onClose }: CalendarBookingPopupPr
       // Attendre que le conteneur soit dans le DOM
       setTimeout(() => {
         const container = document.getElementById('hubspot-form-container');
-        if (container) {
+        if (container && window.hbspt && window.hbspt.forms) {
           // Nettoyer le conteneur avant de créer le formulaire
           container.innerHTML = '';
           
@@ -76,7 +75,7 @@ export const CalendarBookingPopup = ({ isOpen, onClose }: CalendarBookingPopupPr
             }
           });
         } else {
-          throw new Error('Conteneur du formulaire introuvable');
+          throw new Error('Conteneur du formulaire introuvable ou HubSpot non disponible');
         }
       }, 100);
       
@@ -93,31 +92,6 @@ export const CalendarBookingPopup = ({ isOpen, onClose }: CalendarBookingPopupPr
       loadHubSpotForm();
     }
   }, [isOpen, showCalendar]);
-
-  useEffect(() => {
-    // Écouter les événements HubSpot pour détecter la soumission du formulaire
-    const handleHubSpotMessage = (event: MessageEvent) => {
-      if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormSubmitted') {
-        console.log('📋 Formulaire HubSpot soumis:', event.data);
-        
-        // Stocker les données soumises pour affichage
-        setSubmittedData(event.data.data || {});
-        
-        // Afficher le calendrier après un court délai
-        setTimeout(() => {
-          setShowCalendar(true);
-        }, 500);
-      }
-    };
-
-    // Ajouter l'écouteur d'événement
-    window.addEventListener('message', handleHubSpotMessage);
-
-    // Nettoyer l'écouteur lors du démontage
-    return () => {
-      window.removeEventListener('message', handleHubSpotMessage);
-    };
-  }, []);
 
   // Réinitialiser l'état lors de la fermeture
   const handleClose = () => {

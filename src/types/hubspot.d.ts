@@ -7,7 +7,9 @@ declare global {
           region: string;
           portalId: string;
           formId: string;
-          target: HTMLElement;
+          target: string;
+          onFormReady?: () => void;
+          onFormSubmitted?: (form: any) => void;
         }) => void;
       };
     };
