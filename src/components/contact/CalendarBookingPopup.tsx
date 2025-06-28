@@ -1,12 +1,7 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Calendar, User, Building, DollarSign, MessageSquare } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { X, Calendar } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 interface CalendarBookingPopupProps {
@@ -16,49 +11,58 @@ interface CalendarBookingPopupProps {
 
 export const CalendarBookingPopup = ({ isOpen, onClose }: CalendarBookingPopupProps) => {
   const [showCalendar, setShowCalendar] = useState(false);
-  const [formData, setFormData] = useState({
-    nom: '',
-    entreprise: '',
-    secteur: '',
-    besoins: '',
-    budget: '',
-    email: '',
-    telephone: ''
-  });
+  const [submittedData, setSubmittedData] = useState<any>(null);
 
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('📋 Données de pré-qualification:', formData);
-    
-    // Store form data in localStorage for HubSpot integration
-    localStorage.setItem('prequalification_data', JSON.stringify(formData));
-    
-    // Show the calendar
-    setShowCalendar(true);
-  };
+  useEffect(() => {
+    // Écouter les événements HubSpot pour détecter la soumission du formulaire
+    const handleHubSpotMessage = (event: MessageEvent) => {
+      if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormSubmitted') {
+        console.log('📋 Formulaire HubSpot soumis:', event.data);
+        
+        // Stocker les données soumises pour affichage
+        setSubmittedData(event.data.data || {});
+        
+        // Afficher le calendrier après un court délai
+        setTimeout(() => {
+          setShowCalendar(true);
+        }, 500);
+      }
+    };
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
-  };
+    // Ajouter l'écouteur d'événement
+    window.addEventListener('message', handleHubSpotMessage);
 
-  const isFormValid = formData.nom && formData.entreprise && formData.email && formData.besoins;
+    // Nettoyer l'écouteur lors du démontage
+    return () => {
+      window.removeEventListener('message', handleHubSpotMessage);
+    };
+  }, []);
 
+  // Réinitialiser l'état lors de la fermeture
   const handleClose = () => {
     setShowCalendar(false);
-    setFormData({
-      nom: '',
-      entreprise: '',
-      secteur: '',
-      besoins: '',
-      budget: '',
-      email: '',
-      telephone: ''
-    });
+    setSubmittedData(null);
     onClose();
   };
+
+  // Charger le formulaire HubSpot quand la popup s'ouvre
+  useEffect(() => {
+    if (isOpen && !showCalendar && window.hbspt) {
+      // Attendre un peu que la popup soit complètement ouverte
+      setTimeout(() => {
+        try {
+          window.hbspt.forms.create({
+            region: "eu1",
+            portalId: "144571109",
+            formId: "ebf2ad52-915e-4bfa-b4c0-a2ff8480054f",
+            target: "#hubspot-form-container"
+          });
+        } catch (error) {
+          console.error('Erreur lors du chargement du formulaire HubSpot:', error);
+        }
+      }, 300);
+    }
+  }, [isOpen, showCalendar]);
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
@@ -85,117 +89,64 @@ export const CalendarBookingPopup = ({ isOpen, onClose }: CalendarBookingPopupPr
                 </p>
               </div>
 
-              <form onSubmit={handleFormSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-2 flex items-center gap-2">
-                      <User className="h-4 w-4 text-blue-600" />
-                      Nom complet *
-                    </label>
-                    <Input
-                      value={formData.nom}
-                      onChange={(e) => handleInputChange('nom', e.target.value)}
-                      placeholder="Votre nom et prénom"
-                      required
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium mb-2 flex items-center gap-2">
-                      <Building className="h-4 w-4 text-blue-600" />
-                      Entreprise *
-                    </label>
-                    <Input
-                      value={formData.entreprise}
-                      onChange={(e) => handleInputChange('entreprise', e.target.value)}
-                      placeholder="Nom de votre entreprise"
-                      required
-                    />
-                  </div>
-                </div>
+              {/* Conteneur pour le formulaire HubSpot */}
+              <div 
+                id="hubspot-form-container" 
+                className="hubspot-form-wrapper"
+                style={{
+                  minHeight: '400px'
+                }}
+              >
+                {/* Le formulaire HubSpot sera injecté ici */}
+              </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Email *</label>
-                    <Input
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => handleInputChange('email', e.target.value)}
-                      placeholder="votre@email.com"
-                      required
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Téléphone</label>
-                    <Input
-                      type="tel"
-                      value={formData.telephone}
-                      onChange={(e) => handleInputChange('telephone', e.target.value)}
-                      placeholder="06 12 34 56 78"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">Secteur d'activité</label>
-                  <Select value={formData.secteur} onValueChange={(value) => handleInputChange('secteur', value)}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Sélectionnez votre secteur" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="ecommerce">E-commerce</SelectItem>
-                      <SelectItem value="retail">Retail / Distribution</SelectItem>
-                      <SelectItem value="mode">Mode / Textile</SelectItem>
-                      <SelectItem value="cosmetique">Cosmétique / Beauté</SelectItem>
-                      <SelectItem value="alimentaire">Alimentaire</SelectItem>
-                      <SelectItem value="electronique">Électronique</SelectItem>
-                      <SelectItem value="sport">Sport / Loisirs</SelectItem>
-                      <SelectItem value="autre">Autre</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2 flex items-center gap-2">
-                    <DollarSign className="h-4 w-4 text-blue-600" />
-                    Budget mensuel logistique
-                  </label>
-                  <Select value={formData.budget} onValueChange={(value) => handleInputChange('budget', value)}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Estimation de votre budget" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="moins-1000">Moins de 1 000€/mois</SelectItem>
-                      <SelectItem value="1000-3000">1 000€ - 3 000€/mois</SelectItem>
-                      <SelectItem value="3000-5000">3 000€ - 5 000€/mois</SelectItem>
-                      <SelectItem value="5000-10000">5 000€ - 10 000€/mois</SelectItem>
-                      <SelectItem value="plus-10000">Plus de 10 000€/mois</SelectItem>
-                      <SelectItem value="non-defini">Non défini</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">Décrivez vos besoins *</label>
-                  <Textarea
-                    value={formData.besoins}
-                    onChange={(e) => handleInputChange('besoins', e.target.value)}
-                    placeholder="Quels sont vos défis logistiques actuels ? Que cherchez-vous à améliorer ?"
-                    rows={4}
-                    required
-                  />
-                </div>
-
-                <Button 
-                  type="submit" 
-                  size="lg" 
-                  className="w-full bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900"
-                  disabled={!isFormValid}
-                >
-                  Accéder au calendrier
-                </Button>
-              </form>
+              {/* Style personnalisé pour le formulaire HubSpot */}
+              <style jsx>{`
+                .hubspot-form-wrapper :global(.hs-form) {
+                  font-family: inherit !important;
+                }
+                
+                .hubspot-form-wrapper :global(.hs-form fieldset) {
+                  max-width: none !important;
+                }
+                
+                .hubspot-form-wrapper :global(.hs-form .hs-field-desc) {
+                  color: #64748b !important;
+                  font-size: 14px !important;
+                }
+                
+                .hubspot-form-wrapper :global(.hs-form .hs-input) {
+                  border: 1px solid #e2e8f0 !important;
+                  border-radius: 8px !important;
+                  padding: 12px !important;
+                  font-size: 16px !important;
+                  transition: border-color 0.2s ease !important;
+                }
+                
+                .hubspot-form-wrapper :global(.hs-form .hs-input:focus) {
+                  border-color: #3b82f6 !important;
+                  outline: none !important;
+                  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+                }
+                
+                .hubspot-form-wrapper :global(.hs-form .hs-button) {
+                  background: linear-gradient(to right, #2563eb, #1d4ed8) !important;
+                  border: none !important;
+                  border-radius: 8px !important;
+                  color: white !important;
+                  font-weight: 600 !important;
+                  padding: 12px 24px !important;
+                  font-size: 16px !important;
+                  cursor: pointer !important;
+                  transition: all 0.2s ease !important;
+                  width: 100% !important;
+                }
+                
+                .hubspot-form-wrapper :global(.hs-form .hs-button:hover) {
+                  background: linear-gradient(to right, #1d4ed8, #1e40af) !important;
+                  transform: translateY(-1px) !important;
+                }
+              `}</style>
             </motion.div>
           ) : (
             <motion.div
@@ -208,7 +159,7 @@ export const CalendarBookingPopup = ({ isOpen, onClose }: CalendarBookingPopupPr
             >
               <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
                 <p className="text-green-800 font-medium">
-                  ✅ Merci {formData.nom} ! Nous avons bien reçu vos informations.
+                  ✅ Merci ! Nous avons bien reçu vos informations.
                 </p>
                 <p className="text-green-700 text-sm mt-1">
                   Choisissez maintenant votre créneau de rendez-vous.
@@ -216,7 +167,7 @@ export const CalendarBookingPopup = ({ isOpen, onClose }: CalendarBookingPopupPr
               </div>
               
               <div className="min-h-[650px] border border-slate-200 rounded-xl overflow-hidden bg-white">
-                {/* Calendrier HubSpot avec données pré-remplies */}
+                {/* Calendrier HubSpot */}
                 <div className="meetings-iframe-container w-full h-full min-h-[650px]" data-src="https://meetings-eu1.hubspot.com/falmanzo?embed=true"></div>
               </div>
             </motion.div>
