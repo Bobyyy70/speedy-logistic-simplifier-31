@@ -45,25 +45,6 @@ export const CalendarBookingPopup = ({ isOpen, onClose }: CalendarBookingPopupPr
     onClose();
   };
 
-  // Charger le formulaire HubSpot quand la popup s'ouvre
-  useEffect(() => {
-    if (isOpen && !showCalendar && window.hbspt) {
-      // Attendre un peu que la popup soit complètement ouverte
-      setTimeout(() => {
-        try {
-          window.hbspt.forms.create({
-            region: "eu1",
-            portalId: "144571109",
-            formId: "ebf2ad52-915e-4bfa-b4c0-a2ff8480054f",
-            target: "#hubspot-form-container"
-          });
-        } catch (error) {
-          console.error('Erreur lors du chargement du formulaire HubSpot:', error);
-        }
-      }, 300);
-    }
-  }, [isOpen, showCalendar]);
-
   // Styles pour le formulaire HubSpot
   const hubspotFormStyles = `
     .hubspot-form-wrapper .hs-form {
@@ -140,15 +121,16 @@ export const CalendarBookingPopup = ({ isOpen, onClose }: CalendarBookingPopupPr
                 </p>
               </div>
 
-              {/* Conteneur pour le formulaire HubSpot */}
-              <div 
-                id="hubspot-form-container" 
-                className="hubspot-form-wrapper"
-                style={{
-                  minHeight: '400px'
-                }}
-              >
-                {/* Le formulaire HubSpot sera injecté ici */}
+              {/* Formulaire HubSpot avec attributs data-* */}
+              <div className="hubspot-form-wrapper">
+                <div 
+                  data-portal-id="144571109"
+                  data-form-id="ebf2ad52-915e-4bfa-b4c0-a2ff8480054f"
+                  data-region="eu1"
+                  style={{
+                    minHeight: '400px'
+                  }}
+                ></div>
               </div>
             </motion.div>
           ) : (
