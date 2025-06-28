@@ -9,6 +9,7 @@ declare global {
           formId: string;
           target: string;
           onFormReady?: () => void;
+          onFormSubmit?: (form: any) => void;
           onFormSubmitted?: (form: any) => void;
         }) => void;
       };

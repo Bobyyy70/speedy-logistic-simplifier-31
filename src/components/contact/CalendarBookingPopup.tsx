@@ -57,23 +57,53 @@ export const CalendarBookingPopup = ({ isOpen, onClose }: CalendarBookingPopupPr
           container.innerHTML = '';
           
           console.log('📋 Création du formulaire HubSpot...');
-          window.hbspt.forms.create({
+          
+          // Configuration du formulaire sans callbacks pour éviter les erreurs TypeScript
+          const formConfig = {
             region: "eu1",
             portalId: "144571109",
             formId: "ebf2ad52-915e-4bfa-b4c0-a2ff8480054f",
-            target: "#hubspot-form-container",
-            onFormReady: () => {
-              console.log('✅ Formulaire HubSpot prêt');
-              setFormLoading(false);
-            },
-            onFormSubmitted: (form: any) => {
-              console.log('📋 Formulaire soumis:', form);
-              setSubmittedData(form);
-              setTimeout(() => {
-                setShowCalendar(true);
-              }, 500);
+            target: "#hubspot-form-container"
+          };
+          
+          window.hbspt.forms.create(formConfig);
+          
+          // Attendre un peu puis marquer le formulaire comme prêt
+          setTimeout(() => {
+            console.log('✅ Formulaire HubSpot créé');
+            setFormLoading(false);
+            
+            // Surveiller la soumission du formulaire via l'observation du DOM
+            const observer = new MutationObserver((mutations) => {
+              mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                  if (node.nodeType === Node.ELEMENT_NODE) {
+                    const element = node as Element;
+                    // Vérifier si un message de confirmation HubSpot apparaît
+                    if (element.classList?.contains('submitted-message') || 
+                        element.textContent?.includes('Merci') ||
+                        element.textContent?.includes('Thank you')) {
+                      console.log('📋 Formulaire soumis détecté via DOM');
+                      setSubmittedData({ submitted: true });
+                      setTimeout(() => {
+                        setShowCalendar(true);
+                      }, 1000);
+                      observer.disconnect();
+                    }
+                  }
+                });
+              });
+            });
+            
+            // Observer les changements dans le conteneur du formulaire
+            if (container) {
+              observer.observe(container, { 
+                childList: true, 
+                subtree: true 
+              });
             }
-          });
+          }, 1000);
+          
         } else {
           throw new Error('Conteneur du formulaire introuvable ou HubSpot non disponible');
         }
