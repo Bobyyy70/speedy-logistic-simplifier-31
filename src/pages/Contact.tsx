@@ -4,10 +4,19 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { CalendarSection } from "@/components/contact/CalendarSection";
 import { MapSection } from "@/components/contact/MapSection";
+import { HubSpotChatConfig } from "@/components/contact/HubSpotChatConfig";
 import { Clock, MapPin, Phone, Mail } from "lucide-react";
 
 const Contact = () => {
   return <>
+      {/* HubSpot Chat Configuration */}
+      <HubSpotChatConfig 
+        welcomeMessage="💬 Bonjour ! Prêt à optimiser votre logistique ? Parlons-en !"
+        awayMessage="Nous reviendrons vers vous rapidement ! Décrivez votre projet logistique."
+        theme="light"
+        position="bottom-right"
+      />
+
       <Helmet>
         <title>Contact Speed E-Log - Réservez votre consultation logistique gratuite</title>
         <meta name="description" content="Contactez Speed E-Log pour optimiser votre logistique e-commerce. Réservez une consultation gratuite, utilisez nos formulaires de contact et SAV. Réponse sous 24h garantie. Rendez-vous au 37 Rue de Rémaucourt, Port-sur-Saône." />
@@ -146,7 +155,7 @@ const Contact = () => {
                       </h3>
                       <p className="text-slate-600 mb-4">
                         Notre équipe SAV est disponible via le chat en bas à droite de votre écran. 
-                        Réponse sous 2 heures pendant les heures d'ouverture.
+                        Réponse rapide pendant les heures d'ouverture, sinon laissez un message.
                       </p>
                       <div className="text-sm text-green-700 font-medium">
                         → Idéal pour le SAV et les questions techniques
@@ -167,6 +176,7 @@ const Contact = () => {
                         <li>• Chat en direct disponible</li>
                         <li>• Consultations téléphoniques</li>
                         <li>• Réponse emails sous 24h</li>
+                        <li>• Messages hors horaires traités le lendemain</li>
                       </ul>
                     </div>
                     
@@ -188,7 +198,7 @@ const Contact = () => {
               </div>
             </motion.section>
 
-            {/* Hero Calendar Section */}
+            {/* Hero Calendar Section avec formulaire de pré-qualification */}
             <CalendarSection />
 
             {/* Map Section */}
