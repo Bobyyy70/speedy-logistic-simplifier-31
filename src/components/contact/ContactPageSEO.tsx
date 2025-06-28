@@ -31,9 +31,7 @@ export const ContactPageSEO = () => {
       {/* Canonical URL */}
       <link rel="canonical" href="https://speedelog.net/contact" />
       
-      {/* Scripts pour HubSpot - Forms, CTA et Meetings */}
-      <script src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js" type="text/javascript" async></script>
-      <script src="//js.hs-scripts.com/8676264.js" type="text/javascript" async></script>
+      {/* Script principal HubSpot */}
       <script src="//js.hs-scripts.com/8676264.js" type="text/javascript" async defer></script>
       
       <script type="text/javascript">
@@ -43,76 +41,49 @@ export const ContactPageSEO = () => {
             loadImmediately: false
           };
           
-          // Fonction pour gérer l'ouverture du formulaire et redirection vers calendrier
+          // Écouter les événements de soumission de formulaire HubSpot
+          window.addEventListener('message', function(event) {
+            if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormSubmitted') {
+              console.log('Formulaire HubSpot soumis, ouverture du calendrier...');
+              // Attendre un peu puis ouvrir le calendrier
+              setTimeout(function() {
+                const calendarEvent = new CustomEvent('openCalendarAfterForm');
+                window.dispatchEvent(calendarEvent);
+              }, 1000);
+            }
+          });
+          
+          // Alternative: écouter les événements globaux HubSpot
           window.addEventListener('load', function() {
             // Attendre que HubSpot soit chargé
             var checkHubSpot = setInterval(function() {
-              if (window.hbspt && window.hbspt.forms) {
+              if (window.hbspt) {
                 clearInterval(checkHubSpot);
-                console.log('HubSpot forms loaded');
+                console.log('HubSpot loaded, setting up form callback listeners');
                 
-                // Créer le formulaire avec callback
-                window.hbspt.forms.create({
-                  region: "eu1",
-                  portalId: "8676264",
-                  formId: "245222962418",
-                  target: "#hubspot-form-container",
-                  onFormSubmitted: function(form) {
-                    console.log('Formulaire soumis, ouverture du calendrier...');
-                    // Attendre un peu puis ouvrir le calendrier
-                    setTimeout(function() {
-                      const calendarEvent = new CustomEvent('openCalendarAfterForm');
-                      window.dispatchEvent(calendarEvent);
-                    }, 1000);
-                  }
-                });
+                // Écouter les soumissions de formulaire via l'API HubSpot
+                if (window.hbspt.forms) {
+                  // Surcharger la méthode create pour ajouter automatiquement le callback
+                  var originalCreate = window.hbspt.forms.create;
+                  window.hbspt.forms.create = function(config) {
+                    var originalCallback = config.onFormSubmitted;
+                    config.onFormSubmitted = function(form) {
+                      console.log('Form submitted via HubSpot callback');
+                      if (originalCallback) {
+                        originalCallback(form);
+                      }
+                      // Ouvrir le calendrier automatiquement
+                      setTimeout(function() {
+                        const calendarEvent = new CustomEvent('openCalendarAfterForm');
+                        window.dispatchEvent(calendarEvent);
+                      }, 1000);
+                    };
+                    return originalCreate.call(this, config);
+                  };
+                }
               }
             }, 500);
           });
-          
-          // Fonction pour déclencher l'ouverture du formulaire
-          window.openHubSpotForm = function() {
-            console.log('Tentative d\'ouverture du formulaire HubSpot');
-            
-            // Créer et afficher le conteneur du formulaire
-            var existingContainer = document.getElementById('hubspot-form-container');
-            if (!existingContainer) {
-              var container = document.createElement('div');
-              container.id = 'hubspot-form-container';
-              container.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); max-width: 500px; width: 90%;';
-              
-              // Ajouter bouton fermer
-              var closeBtn = document.createElement('button');
-              closeBtn.innerHTML = '×';
-              closeBtn.style.cssText = 'position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666;';
-              closeBtn.onclick = function() {
-                document.body.removeChild(container);
-              };
-              container.appendChild(closeBtn);
-              
-              document.body.appendChild(container);
-              
-              // Créer le formulaire dans le conteneur
-              if (window.hbspt && window.hbspt.forms) {
-                window.hbspt.forms.create({
-                  region: "eu1",
-                  portalId: "8676264",
-                  formId: "245222962418",
-                  target: "#hubspot-form-container",
-                  onFormSubmitted: function(form) {
-                    console.log('Formulaire soumis, fermeture et ouverture du calendrier...');
-                    // Fermer le formulaire
-                    document.body.removeChild(container);
-                    // Ouvrir le calendrier
-                    setTimeout(function() {
-                      const calendarEvent = new CustomEvent('openCalendarAfterForm');
-                      window.dispatchEvent(calendarEvent);
-                    }, 500);
-                  }
-                });
-              }
-            }
-          };
         `}
       </script>
       

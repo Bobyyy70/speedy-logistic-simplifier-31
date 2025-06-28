@@ -22,18 +22,6 @@ export const CalendarSection = () => {
     };
   }, []);
 
-  // Fonction pour ouvrir le formulaire HubSpot
-  const handleOpenForm = () => {
-    console.log('Clic sur le bouton, ouverture du formulaire...');
-    if (window.openHubSpotForm) {
-      window.openHubSpotForm();
-    } else {
-      console.error('Fonction openHubSpotForm non disponible');
-      // Fallback : ouvrir directement le calendrier
-      setIsPopupOpen(true);
-    }
-  };
-
   const benefits = [
     {
       icon: <CheckCircle className="h-5 w-5 text-green-600" />,
@@ -95,19 +83,18 @@ export const CalendarSection = () => {
             ))}
           </div>
 
-          {/* Main CTA Button - Déclenchement du formulaire HubSpot */}
+          {/* Main CTA Button - Utilisation des classes HubSpot CTA */}
           <motion.div
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <Button
-              onClick={handleOpenForm}
-              className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-bold shadow-xl hover:shadow-2xl transition-all duration-300 h-14 rounded-full px-12 py-4 text-lg"
+            <button
+              className="hs-cta-trigger-button hs-cta-trigger-button-248269354213 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-bold shadow-xl hover:shadow-2xl transition-all duration-300 h-14 rounded-full px-12 py-4 text-lg flex items-center justify-center mx-auto"
             >
               <Calendar className="h-6 w-6 mr-3" />
               Commencer mon analyse logistique gratuite
               <ArrowRight className="h-6 w-6 ml-3" />
-            </Button>
+            </button>
           </motion.div>
 
           <div className="mt-4 text-sm text-slate-500">

@@ -27,7 +27,6 @@ declare global {
       };
     };
     hsConversationsSettings?: any;
-    openHubSpotForm?: () => void;
   }
 }
 
