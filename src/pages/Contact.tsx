@@ -43,12 +43,20 @@ const Contact = () => {
         {/* Canonical URL */}
         <link rel="canonical" href="https://speedelog.net/contact" />
         
-        {/* Scripts pour HubSpot Meetings - Version améliorée */}
+        {/* Scripts pour HubSpot - CTA et Meetings */}
         <script src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js" type="text/javascript" async></script>
+        <script src="//js.hs-scripts.com/8676264.js" type="text/javascript" async></script>
         <script type="text/javascript">
           {`
             window.hsConversationsSettings = {
               loadImmediately: false
+            };
+            
+            // Configuration pour redirection automatique après soumission du formulaire
+            window.hubspotFormSubmissionHandler = function() {
+              // Déclencher l'ouverture du calendrier après soumission
+              const calendarEvent = new CustomEvent('openCalendarAfterForm');
+              window.dispatchEvent(calendarEvent);
             };
           `}
         </script>

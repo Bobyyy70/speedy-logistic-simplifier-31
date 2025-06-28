@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Star, CheckCircle, Clock, Users, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,19 @@ import { CalendarBookingPopup } from "./CalendarBookingPopup";
 
 export const CalendarSection = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  useEffect(() => {
+    // Écouter l'événement de redirection automatique après soumission du formulaire
+    const handleFormSubmission = () => {
+      setIsPopupOpen(true);
+    };
+
+    window.addEventListener('openCalendarAfterForm', handleFormSubmission);
+
+    return () => {
+      window.removeEventListener('openCalendarAfterForm', handleFormSubmission);
+    };
+  }, []);
 
   const benefits = [
     {
@@ -50,7 +63,7 @@ export const CalendarSection = () => {
           </h2>
           
           <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-            Réservez votre consultation personnalisée avec nos experts. 
+            Commencez par notre analyse rapide, puis réservez votre consultation personnalisée. 
             Analysons ensemble vos défis logistiques et trouvons les solutions adaptées à votre e-commerce.
           </p>
 
@@ -70,21 +83,23 @@ export const CalendarSection = () => {
             ))}
           </div>
 
-          {/* Main CTA Button */}
+          {/* Main CTA Button - HubSpot Form + Auto Calendar */}
           <motion.div
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
             <Button
-              onClick={() => setIsPopupOpen(true)}
-              size="2xl"
-              className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-bold shadow-xl hover:shadow-2xl transition-all duration-300"
+              className="hs-cta-trigger-button hs-cta-trigger-button-245222962418 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-bold shadow-xl hover:shadow-2xl transition-all duration-300 h-14 rounded-full px-12 py-4 text-lg"
             >
               <Calendar className="h-6 w-6 mr-3" />
-              Réserver ma consultation gratuite
+              Commencer mon analyse logistique gratuite
               <ArrowRight className="h-6 w-6 ml-3" />
             </Button>
           </motion.div>
+
+          <div className="mt-4 text-sm text-slate-500">
+            📋 Étape 1: Analyse rapide → 📅 Étape 2: Rendez-vous automatique
+          </div>
 
           {/* Trust indicators */}
           <div className="mt-8 pt-6 border-t border-slate-200">
