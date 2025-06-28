@@ -22,6 +22,18 @@ export const CalendarSection = () => {
     };
   }, []);
 
+  // Fonction pour ouvrir le formulaire HubSpot
+  const handleOpenForm = () => {
+    console.log('Clic sur le bouton, ouverture du formulaire...');
+    if (window.openHubSpotForm) {
+      window.openHubSpotForm();
+    } else {
+      console.error('Fonction openHubSpotForm non disponible');
+      // Fallback : ouvrir directement le calendrier
+      setIsPopupOpen(true);
+    }
+  };
+
   const benefits = [
     {
       icon: <CheckCircle className="h-5 w-5 text-green-600" />,
@@ -83,13 +95,14 @@ export const CalendarSection = () => {
             ))}
           </div>
 
-          {/* Main CTA Button - HubSpot Form + Auto Calendar */}
+          {/* Main CTA Button - Déclenchement du formulaire HubSpot */}
           <motion.div
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
             <Button
-              className="hs-cta-trigger-button hs-cta-trigger-button-245222962418 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-bold shadow-xl hover:shadow-2xl transition-all duration-300 h-14 rounded-full px-12 py-4 text-lg"
+              onClick={handleOpenForm}
+              className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-bold shadow-xl hover:shadow-2xl transition-all duration-300 h-14 rounded-full px-12 py-4 text-lg"
             >
               <Calendar className="h-6 w-6 mr-3" />
               Commencer mon analyse logistique gratuite

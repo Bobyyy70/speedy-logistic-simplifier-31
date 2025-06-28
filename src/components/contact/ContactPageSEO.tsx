@@ -31,20 +31,87 @@ export const ContactPageSEO = () => {
       {/* Canonical URL */}
       <link rel="canonical" href="https://speedelog.net/contact" />
       
-      {/* Scripts pour HubSpot - CTA et Meetings */}
+      {/* Scripts pour HubSpot - Forms, CTA et Meetings */}
       <script src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js" type="text/javascript" async></script>
       <script src="//js.hs-scripts.com/8676264.js" type="text/javascript" async></script>
+      <script src="//js.hs-scripts.com/8676264.js" type="text/javascript" async defer></script>
+      
       <script type="text/javascript">
         {`
+          // Configuration HubSpot
           window.hsConversationsSettings = {
             loadImmediately: false
           };
           
-          // Configuration pour redirection automatique après soumission du formulaire
-          window.hubspotFormSubmissionHandler = function() {
-            // Déclencher l'ouverture du calendrier après soumission
-            const calendarEvent = new CustomEvent('openCalendarAfterForm');
-            window.dispatchEvent(calendarEvent);
+          // Fonction pour gérer l'ouverture du formulaire et redirection vers calendrier
+          window.addEventListener('load', function() {
+            // Attendre que HubSpot soit chargé
+            var checkHubSpot = setInterval(function() {
+              if (window.hbspt && window.hbspt.forms) {
+                clearInterval(checkHubSpot);
+                console.log('HubSpot forms loaded');
+                
+                // Créer le formulaire avec callback
+                window.hbspt.forms.create({
+                  region: "eu1",
+                  portalId: "8676264",
+                  formId: "245222962418",
+                  target: "#hubspot-form-container",
+                  onFormSubmitted: function(form) {
+                    console.log('Formulaire soumis, ouverture du calendrier...');
+                    // Attendre un peu puis ouvrir le calendrier
+                    setTimeout(function() {
+                      const calendarEvent = new CustomEvent('openCalendarAfterForm');
+                      window.dispatchEvent(calendarEvent);
+                    }, 1000);
+                  }
+                });
+              }
+            }, 500);
+          });
+          
+          // Fonction pour déclencher l'ouverture du formulaire
+          window.openHubSpotForm = function() {
+            console.log('Tentative d\'ouverture du formulaire HubSpot');
+            
+            // Créer et afficher le conteneur du formulaire
+            var existingContainer = document.getElementById('hubspot-form-container');
+            if (!existingContainer) {
+              var container = document.createElement('div');
+              container.id = 'hubspot-form-container';
+              container.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); max-width: 500px; width: 90%;';
+              
+              // Ajouter bouton fermer
+              var closeBtn = document.createElement('button');
+              closeBtn.innerHTML = '×';
+              closeBtn.style.cssText = 'position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666;';
+              closeBtn.onclick = function() {
+                document.body.removeChild(container);
+              };
+              container.appendChild(closeBtn);
+              
+              document.body.appendChild(container);
+              
+              // Créer le formulaire dans le conteneur
+              if (window.hbspt && window.hbspt.forms) {
+                window.hbspt.forms.create({
+                  region: "eu1",
+                  portalId: "8676264",
+                  formId: "245222962418",
+                  target: "#hubspot-form-container",
+                  onFormSubmitted: function(form) {
+                    console.log('Formulaire soumis, fermeture et ouverture du calendrier...');
+                    // Fermer le formulaire
+                    document.body.removeChild(container);
+                    // Ouvrir le calendrier
+                    setTimeout(function() {
+                      const calendarEvent = new CustomEvent('openCalendarAfterForm');
+                      window.dispatchEvent(calendarEvent);
+                    }, 500);
+                  }
+                });
+              }
+            }
           };
         `}
       </script>
