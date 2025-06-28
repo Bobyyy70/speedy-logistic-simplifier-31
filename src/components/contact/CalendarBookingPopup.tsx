@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Calendar } from "lucide-react";
+import { X, Calendar, Loader2 } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 interface CalendarBookingPopupProps {
@@ -12,6 +12,87 @@ interface CalendarBookingPopupProps {
 export const CalendarBookingPopup = ({ isOpen, onClose }: CalendarBookingPopupProps) => {
   const [showCalendar, setShowCalendar] = useState(false);
   const [submittedData, setSubmittedData] = useState<any>(null);
+  const [formLoading, setFormLoading] = useState(true);
+  const [formError, setFormError] = useState<string | null>(null);
+
+  // Fonction pour attendre que HubSpot soit chargé
+  const waitForHubSpot = (): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      let attempts = 0;
+      const maxAttempts = 20;
+      
+      const checkHubSpot = () => {
+        attempts++;
+        console.log(`🔍 Tentative ${attempts} de chargement HubSpot...`);
+        
+        if (window.hbspt && window.hbspt.forms) {
+          console.log('✅ HubSpot chargé avec succès');
+          resolve();
+        } else if (attempts >= maxAttempts) {
+          console.error('❌ Timeout: HubSpot ne s\'est pas chargé');
+          reject(new Error('HubSpot failed to load'));
+        } else {
+          setTimeout(checkHubSpot, 500);
+        }
+      };
+      
+      checkHubSpot();
+    });
+  };
+
+  // Charger le formulaire HubSpot
+  const loadHubSpotForm = async () => {
+    if (!isOpen || showCalendar) return;
+    
+    setFormLoading(true);
+    setFormError(null);
+    
+    try {
+      await waitForHubSpot();
+      
+      // Attendre que le conteneur soit dans le DOM
+      setTimeout(() => {
+        const container = document.getElementById('hubspot-form-container');
+        if (container) {
+          // Nettoyer le conteneur avant de créer le formulaire
+          container.innerHTML = '';
+          
+          console.log('📋 Création du formulaire HubSpot...');
+          window.hbspt.forms.create({
+            region: "eu1",
+            portalId: "144571109",
+            formId: "ebf2ad52-915e-4bfa-b4c0-a2ff8480054f",
+            target: "#hubspot-form-container",
+            onFormReady: () => {
+              console.log('✅ Formulaire HubSpot prêt');
+              setFormLoading(false);
+            },
+            onFormSubmitted: (form: any) => {
+              console.log('📋 Formulaire soumis:', form);
+              setSubmittedData(form);
+              setTimeout(() => {
+                setShowCalendar(true);
+              }, 500);
+            }
+          });
+        } else {
+          throw new Error('Conteneur du formulaire introuvable');
+        }
+      }, 100);
+      
+    } catch (error) {
+      console.error('❌ Erreur lors du chargement du formulaire:', error);
+      setFormError('Erreur de chargement du formulaire. Veuillez rafraîchir la page.');
+      setFormLoading(false);
+    }
+  };
+
+  // Charger le formulaire quand la popup s'ouvre
+  useEffect(() => {
+    if (isOpen && !showCalendar) {
+      loadHubSpotForm();
+    }
+  }, [isOpen, showCalendar]);
 
   useEffect(() => {
     // Écouter les événements HubSpot pour détecter la soumission du formulaire
@@ -42,6 +123,8 @@ export const CalendarBookingPopup = ({ isOpen, onClose }: CalendarBookingPopupPr
   const handleClose = () => {
     setShowCalendar(false);
     setSubmittedData(null);
+    setFormLoading(true);
+    setFormError(null);
     onClose();
   };
 
@@ -121,16 +204,36 @@ export const CalendarBookingPopup = ({ isOpen, onClose }: CalendarBookingPopupPr
                 </p>
               </div>
 
-              {/* Formulaire HubSpot avec attributs data-* */}
+              {/* Conteneur pour le formulaire HubSpot */}
               <div className="hubspot-form-wrapper">
                 <div 
-                  data-portal-id="144571109"
-                  data-form-id="ebf2ad52-915e-4bfa-b4c0-a2ff8480054f"
-                  data-region="eu1"
-                  style={{
-                    minHeight: '400px'
-                  }}
-                ></div>
+                  id="hubspot-form-container"
+                  style={{ minHeight: '400px' }}
+                  className="relative"
+                >
+                  {formLoading && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-white/80">
+                      <div className="flex flex-col items-center gap-3">
+                        <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+                        <p className="text-slate-600">Chargement du formulaire...</p>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {formError && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-white">
+                      <div className="text-center p-6">
+                        <p className="text-red-600 mb-4">{formError}</p>
+                        <button 
+                          onClick={loadHubSpotForm}
+                          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                        >
+                          Réessayer
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </motion.div>
           ) : (
