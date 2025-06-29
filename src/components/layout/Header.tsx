@@ -4,7 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { LogoIcon } from "@/components/ui/LogoIcon";
 import { UserMenu } from "@/components/layout/UserMenu";
-import { GlobalHubSpotCTA } from "@/components/contact/GlobalHubSpotCTA";
 import { Menu, X } from "lucide-react";
 
 export function Header() {
@@ -67,9 +66,8 @@ export function Header() {
             </div>
           </nav>
 
-          {/* Desktop User Menu avec CTA HubSpot */}
+          {/* Desktop User Menu */}
           <div className="hidden md:flex items-center space-x-4">
-            <GlobalHubSpotCTA />
             <UserMenu />
           </div>
 
@@ -104,7 +102,6 @@ export function Header() {
                 </div>
               ))}
               <div className="px-3 py-2 border-t">
-                <GlobalHubSpotCTA className="mb-2" />
                 <UserMenu />
               </div>
             </div>
