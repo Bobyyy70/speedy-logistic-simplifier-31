@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Star, CheckCircle, Clock, Users, ArrowRight } from "lucide-react";
@@ -108,7 +109,7 @@ export const CalendarSection = () => {
                        alt="Réserver ma consultation gratuite" />
                 </a>
               </span>
-              <script charset="utf-8" src="https://js-eu1.hs-scripts.com/144571109.js"></script>
+              <script charSet="utf-8" src="https://js-eu1.hs-scripts.com/144571109.js"></script>
               <script type="text/javascript">
                 {`
                   hbspt.cta.load(144571109, '248269354213', {
@@ -152,3 +153,4 @@ export const CalendarSection = () => {
     </>
   );
 };
+
