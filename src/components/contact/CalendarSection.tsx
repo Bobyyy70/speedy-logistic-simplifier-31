@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Star, CheckCircle, Clock, Users, ArrowRight } from "lucide-react";
@@ -15,6 +16,11 @@ export const CalendarSection = () => {
     };
 
     window.addEventListener('openCalendarAfterForm', handleFormSubmission);
+
+    // Charger les CTAs HubSpot si pas déjà fait
+    if (window.hbspt && window.hbspt.cta) {
+      window.hbspt.cta.load();
+    }
 
     return () => {
       window.removeEventListener('openCalendarAfterForm', handleFormSubmission);
@@ -87,7 +93,34 @@ export const CalendarSection = () => {
             ))}
           </div>
 
-          {/* Main CTA Button */}
+          {/* HubSpot CTA Button */}
+          <div className="mb-4">
+            <span className="hs-cta-wrapper" id="hs-cta-wrapper-248269354213">
+              <span className="hs-cta-node hs-cta-248269354213" id="hs-cta-248269354213">
+                <div id="hs-cta-ie-element"></div>
+                <a href="https://cta-redirect.hubspot.com/cta/redirect/144571109/248269354213" 
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                  <img className="hs-cta-img" 
+                       id="hs-cta-img-248269354213" 
+                       style={{borderWidth: 0}} 
+                       src="https://no-cache.hubspot.com/cta/default/144571109/248269354213.png" 
+                       alt="Réserver ma consultation gratuite" />
+                </a>
+              </span>
+              <script charset="utf-8" src="https://js-eu1.hs-scripts.com/144571109.js"></script>
+              <script type="text/javascript">
+                {`
+                  hbspt.cta.load(144571109, '248269354213', {
+                    "useNewLoader":"true",
+                    "region":"eu1"
+                  });
+                `}
+              </script>
+            </span>
+          </div>
+
+          {/* Alternative button for backup */}
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
             <button 
               onClick={handleButtonClick}

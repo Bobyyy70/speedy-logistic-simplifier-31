@@ -32,7 +32,7 @@ export const ContactPageSEO = () => {
       <link rel="canonical" href="https://speedelog.net/contact" />
       
       {/* Script principal HubSpot */}
-      <script src="//js.hs-scripts.com/8676264.js" type="text/javascript" async defer></script>
+      <script src="//js-eu1.hs-scripts.com/144571109.js" type="text/javascript" async defer></script>
       
       {/* Script HubSpot Meetings Embed */}
       <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js" async defer></script>
@@ -43,6 +43,16 @@ export const ContactPageSEO = () => {
           window.hsConversationsSettings = {
             loadImmediately: false
           };
+          
+          // Charger les CTAs HubSpot quand disponible
+          window.addEventListener('load', function() {
+            var checkHubSpot = setInterval(function() {
+              if (window.hbspt && window.hbspt.cta) {
+                clearInterval(checkHubSpot);
+                window.hbspt.cta.load();
+              }
+            }, 500);
+          });
           
           // Écouter les événements de soumission de formulaire HubSpot
           window.addEventListener('message', function(event) {
