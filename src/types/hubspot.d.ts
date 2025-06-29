@@ -16,7 +16,10 @@ declare global {
         }) => void;
       };
       cta: {
-        load: (portalId: string, ctaId: string, options?: any) => void;
+        load: (portalId: string, ctaId: string, options?: {
+          region?: string;
+          useNewLoader?: string;
+        }) => void;
       };
     };
     HubSpotConversations?: {
