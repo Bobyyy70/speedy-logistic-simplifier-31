@@ -1,9 +1,11 @@
+
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Star, CheckCircle, Clock, Users, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CalendarBookingPopup } from "./CalendarBookingPopup";
+import { HubSpotCTA } from "@/components/ui/HubSpotCTA";
 
 export const CalendarSection = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -16,40 +18,10 @@ export const CalendarSection = () => {
 
     window.addEventListener('openCalendarAfterForm', handleFormSubmission);
 
-    // Charger le CTA HubSpot
-    const loadHubSpotCTA = () => {
-      if (window.hbspt && window.hbspt.cta) {
-        window.hbspt.cta.load();
-      }
-    };
-
-    // Charger immédiatement si HubSpot est déjà disponible
-    if (window.hbspt) {
-      loadHubSpotCTA();
-    } else {
-      // Sinon attendre que HubSpot soit chargé
-      const checkHubSpot = setInterval(() => {
-        if (window.hbspt && window.hbspt.cta) {
-          clearInterval(checkHubSpot);
-          loadHubSpotCTA();
-        }
-      }, 500);
-
-      return () => {
-        clearInterval(checkHubSpot);
-        window.removeEventListener('openCalendarAfterForm', handleFormSubmission);
-      };
-    }
-
     return () => {
       window.removeEventListener('openCalendarAfterForm', handleFormSubmission);
     };
   }, []);
-
-  const handleButtonClick = () => {
-    console.log('Bouton cliqué - ouverture du calendrier');
-    setIsPopupOpen(true);
-  };
 
   const benefits = [
     {
@@ -112,34 +84,15 @@ export const CalendarSection = () => {
             ))}
           </div>
 
-          {/* HubSpot CTA Button avec style personnalisé */}
+          {/* HubSpot CTA Button */}
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <span className="hs-cta-wrapper" id="hs-cta-wrapper-248429698260">
-              <span className="hs-cta-node hs-cta-248429698260 hs-cta-trigger-button hs-cta-trigger-button-248429698260" 
-                    id="hs-cta-248429698260"
-                    style={{
-                      background: 'linear-gradient(to right, #2563eb, #1d4ed8)',
-                      color: 'white',
-                      fontWeight: 'bold',
-                      boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-                      transition: 'all 0.3s ease',
-                      height: '56px',
-                      borderRadius: '9999px',
-                      padding: '16px 48px',
-                      fontSize: '18px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      margin: '0 auto',
-                      cursor: 'pointer',
-                      border: 'none',
-                      textDecoration: 'none'
-                    }}>
+            <HubSpotCTA ctaId="248429698260">
+              <span className="flex items-center text-white">
                 <Calendar className="h-6 w-6 mr-3" />
                 Commencer mon analyse logistique gratuite
                 <ArrowRight className="h-6 w-6 ml-3" />
               </span>
-            </span>
+            </HubSpotCTA>
           </motion.div>
 
           <div className="mt-4 text-sm text-slate-500">
@@ -148,7 +101,6 @@ export const CalendarSection = () => {
 
           {/* Trust indicators */}
           <div className="mt-8 pt-6 border-t border-slate-200">
-            
           </div>
         </div>
 

@@ -35,6 +35,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         {/* Scripts HubSpot globaux */}
         <script src="//js-eu1.hs-scripts.com/144571109.js" type="text/javascript" async defer></script>
         
+        {/* Script CTA HubSpot */}
+        <script src="//js-eu1.hsforms.net/forms/v2.js" type="text/javascript" async defer></script>
+        
         {/* CSS personnalisé pour masquer le branding HubSpot */}
         <style>{`
           /* Masquer le branding HubSpot du widget chat */
@@ -62,6 +65,34 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             visibility: hidden !important;
             opacity: 0 !important;
           }
+
+          /* Styles pour les CTAs HubSpot */
+          .hs-cta-wrapper {
+            display: inline-block;
+          }
+          
+          .hs-cta-node {
+            background: linear-gradient(to right, #2563eb, #1d4ed8) !important;
+            color: white !important;
+            font-weight: bold !important;
+            box-shadow: 0 25px 50px -12px rgba(47, 104, 243, 0.25) !important;
+            transition: all 0.3s ease !important;
+            height: 56px !important;
+            border-radius: 9999px !important;
+            padding: 16px 48px !important;
+            font-size: 18px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer !important;
+            border: none !important;
+            text-decoration: none !important;
+          }
+          
+          .hs-cta-node:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 32px 64px -12px rgba(47, 104, 243, 0.35) !important;
+          }
         `}</style>
 
         <script type="text/javascript">
@@ -70,6 +101,29 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             window.hsConversationsSettings = {
               loadImmediately: false
             };
+
+            // Initialiser les CTAs une fois HubSpot chargé
+            window.addEventListener('load', function() {
+              console.log('🚀 Initialisation des CTAs HubSpot...');
+              
+              var checkHubSpot = setInterval(function() {
+                if (window.hbspt && window.hbspt.cta) {
+                  clearInterval(checkHubSpot);
+                  console.log('✅ HubSpot CTA API disponible');
+                  
+                  // Charger tous les CTAs
+                  try {
+                    window.hbspt.cta.load('144571109', '248429698260', {
+                      region: 'eu1',
+                      useNewLoader: 'true'
+                    });
+                    console.log('✅ CTA principal chargé');
+                  } catch (error) {
+                    console.error('❌ Erreur chargement CTA:', error);
+                  }
+                }
+              }, 500);
+            });
           `}
         </script>
       </Helmet>

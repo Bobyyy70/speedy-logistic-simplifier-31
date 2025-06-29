@@ -15,6 +15,9 @@ declare global {
           onFormRender?: () => void;
         }) => void;
       };
+      cta: {
+        load: (portalId: string, ctaId: string, options?: any) => void;
+      };
     };
     HubSpotConversations?: {
       widget: {
