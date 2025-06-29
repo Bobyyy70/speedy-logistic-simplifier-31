@@ -19,6 +19,13 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
+  useEffect(() => {
+    // Charger les CTAs HubSpot si pas déjà fait
+    if (window.hbspt && window.hbspt.cta) {
+      window.hbspt.cta.load();
+    }
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen site-background">
       <Helmet>
@@ -31,6 +38,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        
+        {/* Scripts HubSpot globaux */}
+        <script src="//js-eu1.hs-scripts.com/144571109.js" type="text/javascript" async defer></script>
         
         {/* CSS personnalisé pour masquer le branding HubSpot */}
         <style>{`
@@ -59,7 +69,45 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             visibility: hidden !important;
             opacity: 0 !important;
           }
+
+          /* Style pour le CTA global */
+          .global-hubspot-cta {
+            display: inline-block;
+          }
+          
+          .global-hubspot-cta img {
+            max-height: 40px;
+            width: auto;
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+          }
+          
+          .global-hubspot-cta:hover img {
+            transform: scale(1.05);
+          }
         `}</style>
+
+        <script type="text/javascript">
+          {`
+            // Configuration HubSpot globale
+            window.hsConversationsSettings = {
+              loadImmediately: false
+            };
+            
+            // Charger les CTAs HubSpot quand disponible
+            window.addEventListener('load', function() {
+              var checkHubSpot = setInterval(function() {
+                if (window.hbspt && window.hbspt.cta) {
+                  clearInterval(checkHubSpot);
+                  window.hbspt.cta.load(144571109, '248269354213', {
+                    "useNewLoader":"true",
+                    "region":"eu1"
+                  });
+                }
+              }, 500);
+            });
+          `}
+        </script>
       </Helmet>
 
       <Header />
