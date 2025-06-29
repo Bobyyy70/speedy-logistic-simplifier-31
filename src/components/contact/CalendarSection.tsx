@@ -17,6 +17,34 @@ export const CalendarSection = () => {
 
     window.addEventListener('openCalendarAfterForm', handleFormSubmission);
 
+    // Charger le CTA HubSpot
+    const loadHubSpotCTA = () => {
+      if (window.hbspt && window.hbspt.cta) {
+        window.hbspt.cta.load(144571109, '248429698260', {
+          "useNewLoader": "true",
+          "region": "eu1"
+        });
+      }
+    };
+
+    // Charger immédiatement si HubSpot est déjà disponible
+    if (window.hbspt) {
+      loadHubSpotCTA();
+    } else {
+      // Sinon attendre que HubSpot soit chargé
+      const checkHubSpot = setInterval(() => {
+        if (window.hbspt && window.hbspt.cta) {
+          clearInterval(checkHubSpot);
+          loadHubSpotCTA();
+        }
+      }, 500);
+
+      return () => {
+        clearInterval(checkHubSpot);
+        window.removeEventListener('openCalendarAfterForm', handleFormSubmission);
+      };
+    }
+
     return () => {
       window.removeEventListener('openCalendarAfterForm', handleFormSubmission);
     };
@@ -88,16 +116,34 @@ export const CalendarSection = () => {
             ))}
           </div>
 
-          {/* Bouton principal React */}
+          {/* HubSpot CTA Button avec style personnalisé */}
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <button 
-              onClick={handleButtonClick}
-              className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-bold shadow-xl hover:shadow-2xl transition-all duration-300 h-14 rounded-full px-12 py-4 text-lg flex items-center justify-center mx-auto"
-            >
-              <Calendar className="h-6 w-6 mr-3" />
-              Commencer mon analyse logistique gratuite
-              <ArrowRight className="h-6 w-6 ml-3" />
-            </button>
+            <span className="hs-cta-wrapper" id="hs-cta-wrapper-248429698260">
+              <span className="hs-cta-node hs-cta-248429698260 hs-cta-trigger-button hs-cta-trigger-button-248429698260" 
+                    id="hs-cta-248429698260"
+                    style={{
+                      background: 'linear-gradient(to right, #2563eb, #1d4ed8)',
+                      color: 'white',
+                      fontWeight: 'bold',
+                      boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                      transition: 'all 0.3s ease',
+                      height: '56px',
+                      borderRadius: '9999px',
+                      padding: '16px 48px',
+                      fontSize: '18px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      margin: '0 auto',
+                      cursor: 'pointer',
+                      border: 'none',
+                      textDecoration: 'none'
+                    }}>
+                <Calendar className="h-6 w-6 mr-3" />
+                Commencer mon analyse logistique gratuite
+                <ArrowRight className="h-6 w-6 ml-3" />
+              </span>
+            </span>
           </motion.div>
 
           <div className="mt-4 text-sm text-slate-500">

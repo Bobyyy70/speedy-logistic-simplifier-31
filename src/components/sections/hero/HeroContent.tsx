@@ -9,6 +9,33 @@ import { AnimatedText } from "@/components/ui/AnimatedText";
 import { SocialProof } from "@/components/sections/hero/SocialProof";
 
 export function HeroContent() {
+  React.useEffect(() => {
+    // Charger le CTA HubSpot
+    const loadHubSpotCTA = () => {
+      if (window.hbspt && window.hbspt.cta) {
+        window.hbspt.cta.load(144571109, '248429698260', {
+          "useNewLoader": "true",
+          "region": "eu1"
+        });
+      }
+    };
+
+    // Charger immédiatement si HubSpot est déjà disponible
+    if (window.hbspt) {
+      loadHubSpotCTA();
+    } else {
+      // Sinon attendre que HubSpot soit chargé
+      const checkHubSpot = setInterval(() => {
+        if (window.hbspt && window.hbspt.cta) {
+          clearInterval(checkHubSpot);
+          loadHubSpotCTA();
+        }
+      }, 500);
+
+      return () => clearInterval(checkHubSpot);
+    }
+  }, []);
+
   return (
     <div className="flex flex-col justify-center space-y-6 text-center lg:text-left px-4 md:px-6">
       <motion.div 
@@ -50,13 +77,26 @@ export function HeroContent() {
         transition={{ duration: 0.5, delay: 0.9 }}
         className="flex flex-col gap-3 min-[400px]:flex-row justify-center lg:justify-start"
       >
-        <Button 
-          variant="blue" 
-          size="2xl" 
-          className="shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
-          asChild
-        >
-          <Link to="/contact">
+        <span className="hs-cta-wrapper" id="hs-cta-wrapper-248429698260">
+          <span className="hs-cta-node hs-cta-248429698260 hs-cta-trigger-button hs-cta-trigger-button-248429698260" 
+                id="hs-cta-248429698260"
+                style={{
+                  background: 'linear-gradient(to right, #2563eb, #1d4ed8)',
+                  color: 'white',
+                  fontWeight: 'bold',
+                  boxShadow: '0 25px 50px -12px rgba(47, 104, 243, 0.25)',
+                  transition: 'all 0.3s ease',
+                  height: '56px',
+                  borderRadius: '9999px',
+                  padding: '16px 48px',
+                  fontSize: '18px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  border: 'none',
+                  textDecoration: 'none'
+                }}>
             <span className="relative z-10 flex items-center text-white">
               Obtenir un devis personnalisé
               <motion.span
@@ -72,8 +112,8 @@ export function HeroContent() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </motion.span>
             </span>
-          </Link>
-        </Button>
+          </span>
+        </span>
       </motion.div>
       
       {/* Social Proof - With animation */}
