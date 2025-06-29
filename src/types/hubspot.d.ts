@@ -16,16 +16,7 @@ declare global {
         }) => void;
       };
       cta: {
-        load: (
-          portalId: string,
-          ctaId: string,
-          region: string,
-          useNewLoader: string,
-          target: string,
-          callback: () => void,
-          options: any,
-          additionalOptions: any
-        ) => void;
+        load: () => void;
       };
     };
     HubSpotConversations?: {

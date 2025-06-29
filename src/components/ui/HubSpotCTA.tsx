@@ -22,18 +22,8 @@ export const HubSpotCTA: React.FC<HubSpotCTAProps> = ({
       
       if (window.hbspt && window.hbspt.cta) {
         try {
-          window.hbspt.cta.load(
-            portalId,
-            ctaId,
-            "eu1",
-            "true",
-            `#${uniqueId}`,
-            () => {
-              console.log(`✅ CTA ${ctaId} chargé avec succès`);
-            },
-            {},
-            {}
-          );
+          window.hbspt.cta.load();
+          console.log(`✅ CTA ${ctaId} chargé avec succès`);
         } catch (error) {
           console.error(`❌ Erreur lors du chargement du CTA ${ctaId}:`, error);
         }
