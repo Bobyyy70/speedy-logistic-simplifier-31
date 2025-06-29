@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -13,10 +12,7 @@ export function HeroContent() {
     // Charger le CTA HubSpot
     const loadHubSpotCTA = () => {
       if (window.hbspt && window.hbspt.cta) {
-        window.hbspt.cta.load(144571109, '248429698260', {
-          "useNewLoader": "true",
-          "region": "eu1"
-        });
+        window.hbspt.cta.load();
       }
     };
 

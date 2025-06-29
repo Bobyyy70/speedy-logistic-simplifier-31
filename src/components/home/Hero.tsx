@@ -1,4 +1,3 @@
-
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -9,10 +8,7 @@ export function Hero() {
     // Charger le CTA HubSpot
     const loadHubSpotCTA = () => {
       if (window.hbspt && window.hbspt.cta) {
-        window.hbspt.cta.load(144571109, '248429698260', {
-          "useNewLoader": "true",
-          "region": "eu1"
-        });
+        window.hbspt.cta.load();
       }
     };
 
