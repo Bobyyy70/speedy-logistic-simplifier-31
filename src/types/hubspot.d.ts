@@ -19,12 +19,12 @@ declare global {
         load: (
           portalId: string,
           ctaId: string,
-          region?: string,
-          useNewLoader?: string,
-          target?: string,
-          callback?: () => void,
-          options?: any,
-          additionalOptions?: any
+          region: string,
+          useNewLoader: string,
+          target: string,
+          callback: () => void,
+          options: any,
+          additionalOptions: any
         ) => void;
       };
     };
