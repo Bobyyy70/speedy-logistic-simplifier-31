@@ -34,6 +34,9 @@ export const ContactPageSEO = () => {
       {/* Script principal HubSpot */}
       <script src="//js.hs-scripts.com/8676264.js" type="text/javascript" async defer></script>
       
+      {/* Script HubSpot Meetings Embed */}
+      <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js" async defer></script>
+      
       <script type="text/javascript">
         {`
           // Configuration HubSpot
