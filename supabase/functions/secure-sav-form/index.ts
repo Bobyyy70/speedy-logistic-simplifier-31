@@ -29,6 +29,52 @@ interface SavFormData {
   bestTimeToContact?: string
 }
 
+// Rate limiting helper
+const checkRateLimit = async (supabase: any, ip: string, endpoint: string) => {
+  const now = new Date()
+  const windowStart = new Date(now.getTime() - 15 * 60 * 1000) // 15 minutes window
+  
+  // Clean old entries
+  await supabase
+    .from('rate_limits')
+    .delete()
+    .lt('window_start', windowStart.toISOString())
+  
+  // Check current rate
+  const { data: rateLimitData } = await supabase
+    .from('rate_limits')
+    .select('request_count')
+    .eq('ip_address', ip)
+    .eq('endpoint', endpoint)
+    .gte('window_start', windowStart.toISOString())
+    .single()
+  
+  if (rateLimitData && rateLimitData.request_count >= 5) {
+    return false // Rate limit exceeded
+  }
+  
+  // Update or create rate limit entry
+  await supabase
+    .from('rate_limits')
+    .upsert({
+      ip_address: ip,
+      endpoint: endpoint,
+      request_count: (rateLimitData?.request_count || 0) + 1,
+      window_start: rateLimitData ? undefined : now.toISOString()
+    }, { onConflict: 'ip_address,endpoint' })
+  
+  return true
+}
+
+// Input sanitization helper
+const sanitizeInput = (input: string): string => {
+  return input
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/<[^>]*>/g, '')
+    .trim()
+    .substring(0, 1000) // Limit length
+}
+
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
@@ -47,8 +93,72 @@ serve(async (req) => {
       )
     }
 
+    // Initialize Supabase client
+    const supabase = createClient(
+      Deno.env.get('SUPABASE_URL') ?? '',
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
+    )
+
+    // Rate limiting check
+    const clientIP = req.headers.get('x-forwarded-for') || 'unknown'
+    const rateLimitOk = await checkRateLimit(supabase, clientIP, 'sav-form')
+    
+    if (!rateLimitOk) {
+      // Log rate limit violation
+      await supabase.rpc('log_security_event', {
+        p_event_type: 'rate_limit_exceeded',
+        p_ip_address: clientIP,
+        p_user_agent: req.headers.get('user-agent'),
+        p_endpoint: 'sav-form',
+        p_severity: 'medium'
+      })
+      
+      return new Response(
+        JSON.stringify({ error: 'Rate limit exceeded. Please try again later.' }),
+        { 
+          status: 429, 
+          headers: { ...corsHeaders, ...securityHeaders, 'Content-Type': 'application/json' }
+        }
+      )
+    }
+
     // Parse and validate form data
-    const formData: SavFormData = await req.json()
+    const rawData = await req.json()
+    
+    // Check for honeypot field (bot protection)
+    if (rawData.website_confirm || rawData.honeypot) {
+      // Log spam attempt
+      await supabase.rpc('log_security_event', {
+        p_event_type: 'spam_attempt',
+        p_ip_address: clientIP,
+        p_user_agent: req.headers.get('user-agent'),
+        p_endpoint: 'sav-form',
+        p_details: { honeypot_fields: Object.keys(rawData).filter(k => k.includes('honeypot') || k.includes('website_confirm')) },
+        p_severity: 'medium'
+      })
+      
+      return new Response(
+        JSON.stringify({ error: 'Spam detected' }),
+        { 
+          status: 400, 
+          headers: { ...corsHeaders, ...securityHeaders, 'Content-Type': 'application/json' }
+        }
+      )
+    }
+    
+    // Sanitize input data
+    const formData: SavFormData = {
+      fullName: sanitizeInput(rawData.fullName || ''),
+      email: sanitizeInput(rawData.email || ''),
+      orderNumber: sanitizeInput(rawData.orderNumber || ''),
+      phone: rawData.phone ? sanitizeInput(rawData.phone) : undefined,
+      purchaseDate: sanitizeInput(rawData.purchaseDate || ''),
+      productReference: sanitizeInput(rawData.productReference || ''),
+      issueCategory: sanitizeInput(rawData.issueCategory || ''),
+      description: sanitizeInput(rawData.description || ''),
+      preferredContact: sanitizeInput(rawData.preferredContact || ''),
+      bestTimeToContact: rawData.bestTimeToContact ? sanitizeInput(rawData.bestTimeToContact) : undefined
+    }
     
     // Input validation
     if (!formData.fullName || !formData.email || !formData.orderNumber || !formData.description) {
@@ -72,12 +182,6 @@ serve(async (req) => {
         }
       )
     }
-
-    // Initialize Supabase client
-    const supabase = createClient(
-      Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
-    )
 
     // Log the SAV form submission securely
     const { error: logError } = await supabase
