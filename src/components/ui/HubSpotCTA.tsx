@@ -14,62 +14,86 @@ export const HubSpotCTA: React.FC<HubSpotCTAProps> = ({
   className = "",
   children 
 }) => {
-  const uniqueId = `hs-cta-${ctaId}-${Math.random().toString(36).substr(2, 9)}`;
+  const [isHubSpotLoaded, setIsHubSpotLoaded] = React.useState(false);
+  const [loadAttempts, setLoadAttempts] = React.useState(0);
 
   useEffect(() => {
-    const loadCTA = () => {
-      console.log(`🎯 Tentative de chargement CTA ${ctaId}...`);
-      
-      if (window.hbspt && window.hbspt.cta) {
-        try {
-          window.hbspt.cta.load();
-          console.log(`✅ CTA ${ctaId} chargé avec succès`);
-        } catch (error) {
-          console.error(`❌ Erreur lors du chargement du CTA ${ctaId}:`, error);
-        }
-      } else {
-        console.warn(`⚠️ HubSpot CTA API non disponible pour ${ctaId}`);
+    const checkHubSpot = () => {
+      if (window.hbspt) {
+        console.log(`✅ HubSpot détecté pour CTA ${ctaId}`);
+        setIsHubSpotLoaded(true);
+        
+        // Injecter le CTA dans le DOM
+        setTimeout(() => {
+          const wrapper = document.getElementById(`hs-cta-wrapper-${ctaId}`);
+          if (wrapper && !wrapper.querySelector('.hs-cta-embed')) {
+            wrapper.innerHTML = `
+              <span class="hs-cta-wrapper" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
+                <span class="hs-cta-node hs-cta-${ctaId}" id="hs-cta-${ctaId}" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
+                  <a href="https://cta-redirect.hubspot.com/${portalId}/${ctaId}" target="_blank" rel="noopener">
+                    <img class="hs-cta-img" id="hs-cta-img-${ctaId}" style="border-width:0px;" src="https://no-cache.hubspot.com/cta/default/${portalId}/${ctaId}.png" alt=""/>
+                  </a>
+                </span>
+              </span>
+            `;
+          }
+        }, 100);
+        
+        return true;
       }
+      return false;
     };
 
-    // Charger immédiatement si HubSpot est disponible
-    if (window.hbspt && window.hbspt.cta) {
-      loadCTA();
-    } else {
-      // Sinon attendre que HubSpot soit chargé
-      let attempts = 0;
-      const maxAttempts = 20;
-      
-      const checkHubSpot = setInterval(() => {
-        attempts++;
-        console.log(`🔄 Tentative ${attempts}/${maxAttempts} de chargement HubSpot pour CTA ${ctaId}`);
-        
-        if (window.hbspt && window.hbspt.cta) {
-          clearInterval(checkHubSpot);
-          loadCTA();
-        } else if (attempts >= maxAttempts) {
-          clearInterval(checkHubSpot);
-          console.error(`❌ Impossible de charger HubSpot après ${maxAttempts} tentatives pour CTA ${ctaId}`);
-        }
-      }, 500);
+    // Vérification immédiate
+    if (checkHubSpot()) return;
 
-      return () => clearInterval(checkHubSpot);
-    }
-  }, [ctaId, portalId, uniqueId]);
+    // Sinon essayer périodiquement
+    const interval = setInterval(() => {
+      setLoadAttempts(prev => prev + 1);
+      
+      if (checkHubSpot() || loadAttempts >= 10) {
+        clearInterval(interval);
+        if (loadAttempts >= 10) {
+          console.warn(`⚠️ Timeout HubSpot pour CTA ${ctaId} - utilisation du fallback`);
+        }
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [ctaId, portalId, loadAttempts]);
+
+  // Fallback si HubSpot ne charge pas
+  if (!isHubSpotLoaded && loadAttempts >= 10) {
+    return (
+      <div className={className}>
+        <button 
+          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-3"
+          onClick={() => {
+            // Déclencher l'ouverture du calendrier directement
+            const event = new CustomEvent('openCalendarAfterForm');
+            window.dispatchEvent(event);
+          }}
+        >
+          {children}
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className={className}>
       {/* Conteneur pour le CTA HubSpot */}
-      <span className="hs-cta-wrapper" id={`hs-cta-wrapper-${ctaId}`}>
-        <span 
-          className={`hs-cta-node hs-cta-${ctaId}`} 
-          id={uniqueId}
-          data-hs-cos-general-type="widget" 
-          data-hs-cos-type="cta"
-        >
-          {children}
-        </span>
-      </span>
+      <div className="hs-cta-wrapper" id={`hs-cta-wrapper-${ctaId}`}>
+        {!isHubSpotLoaded && (
+          <button 
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-3"
+            disabled
+          >
+            <div className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></div>
+            Chargement...
+          </button>
+        )}
+      </div>
     </div>
   );
 };

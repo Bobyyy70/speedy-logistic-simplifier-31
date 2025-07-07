@@ -4,26 +4,40 @@ export const useHubSpotCTA = (ctaId: string = '248429698260') => {
   const triggerCTA = useCallback(() => {
     console.log(`🎯 Déclenchement du CTA HubSpot ${ctaId}`);
     
-    if (window.hbspt && window.hbspt.cta) {
-      try {
-        // Rechercher le bouton CTA par classe CSS
-        const ctaTrigger = document.querySelector(`.hs-cta-trigger-button-${ctaId}`);
-        if (ctaTrigger) {
-          // Déclencher le clic sur le CTA
-          (ctaTrigger as HTMLElement).click();
-          console.log(`✅ CTA ${ctaId} déclenché avec succès`);
-          return true;
-        } else {
-          console.warn(`⚠️ Bouton CTA ${ctaId} non trouvé dans le DOM`);
-        }
-      } catch (error) {
-        console.error(`❌ Erreur lors du déclenchement du CTA ${ctaId}:`, error);
+    // Essayer plusieurs méthodes pour déclencher le CTA
+    try {
+      // Méthode 1: Rechercher le bouton CTA par classe CSS
+      const ctaTrigger = document.querySelector(`.hs-cta-trigger-button-${ctaId}`);
+      if (ctaTrigger) {
+        (ctaTrigger as HTMLElement).click();
+        console.log(`✅ CTA ${ctaId} déclenché avec succès (méthode 1)`);
+        return true;
       }
-    } else {
-      console.warn(`⚠️ HubSpot CTA API non disponible pour ${ctaId}`);
+
+      // Méthode 2: Rechercher par attributs HubSpot
+      const ctaNode = document.querySelector(`[id*="hs-cta-${ctaId}"]`);
+      if (ctaNode) {
+        (ctaNode as HTMLElement).click();
+        console.log(`✅ CTA ${ctaId} déclenché avec succès (méthode 2)`);
+        return true;
+      }
+
+      // Méthode 3: Déclencher l'événement directement si HubSpot est disponible
+      if (window.hbspt) {
+        // Déclencher l'ouverture du calendrier via l'événement personnalisé
+        const event = new CustomEvent('openCalendarAfterForm');
+        window.dispatchEvent(event);
+        console.log(`✅ Événement calendrier déclenché pour CTA ${ctaId}`);
+        return true;
+      }
+
+      console.warn(`⚠️ Aucune méthode disponible pour CTA ${ctaId}`);
+      return false;
+      
+    } catch (error) {
+      console.error(`❌ Erreur lors du déclenchement du CTA ${ctaId}:`, error);
+      return false;
     }
-    
-    return false;
   }, [ctaId]);
 
   return { triggerCTA };

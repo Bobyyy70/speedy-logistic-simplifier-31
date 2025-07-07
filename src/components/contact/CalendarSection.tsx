@@ -84,15 +84,26 @@ export const CalendarSection = () => {
             ))}
           </div>
 
-          {/* HubSpot CTA Button */}
+          {/* HubSpot CTA Button avec fallback */}
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <HubSpotCTA ctaId="248429698260">
-              <span className="flex items-center text-white">
-                <Calendar className="h-6 w-6 mr-3" />
-                Commencer mon analyse logistique gratuite
-                <ArrowRight className="h-6 w-6 ml-3" />
-              </span>
+            <HubSpotCTA ctaId="248429698260" className="w-full">
+              <Calendar className="h-6 w-6 mr-3" />
+              Commencer mon analyse logistique gratuite
+              <ArrowRight className="h-6 w-6 ml-3" />
             </HubSpotCTA>
+          </motion.div>
+          
+          {/* Bouton de fallback pour ouvrir directement le calendrier */}
+          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="mt-4">
+            <Button
+              onClick={() => setIsPopupOpen(true)}
+              variant="outline"
+              size="lg"
+              className="w-full bg-white/10 border-white/20 text-white hover:bg-white/20"
+            >
+              <Calendar className="h-5 w-5 mr-2" />
+              Accès direct au calendrier
+            </Button>
           </motion.div>
 
           <div className="mt-4 text-sm text-slate-500">

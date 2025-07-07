@@ -24,12 +24,16 @@ export const CTALinkButton: React.FC<CTALinkButtonProps> = ({
     // Déclencher le CTA HubSpot
     const ctaTriggered = triggerCTA();
     
-    // Rediriger vers la page après un court délai (ou immédiatement si le CTA échoue)
-    const redirectDelay = ctaTriggered ? 500 : 0;
+    if (!ctaTriggered) {
+      // Si le CTA HubSpot échoue, ouvrir directement le calendrier
+      const event = new CustomEvent('openCalendarAfterForm');
+      window.dispatchEvent(event);
+    }
     
+    // Rediriger vers la page après un court délai
     setTimeout(() => {
       navigate(to);
-    }, redirectDelay);
+    }, 300);
   };
 
   return (

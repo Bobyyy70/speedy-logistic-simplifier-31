@@ -4,20 +4,34 @@ import React, { useEffect } from "react";
 export const CalendarContainer = () => {
   useEffect(() => {
     // Charger le script HubSpot Meetings s'il n'est pas déjà chargé
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
-    script.async = true;
-    
-    // Vérifier si le script n'est pas déjà présent
-    const existingScript = document.querySelector('script[src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"]');
-    if (!existingScript) {
-      document.head.appendChild(script);
-    }
-
-    return () => {
-      // Cleanup si nécessaire
+    const loadMeetingsScript = () => {
+      const existingScript = document.querySelector('script[src*="MeetingsEmbedCode.js"]');
+      if (!existingScript) {
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
+        script.async = true;
+        script.onload = () => {
+          console.log('✅ Script HubSpot Meetings chargé avec succès');
+          // Forcer le chargement de l'iframe
+          setTimeout(() => {
+            const container = document.querySelector('.meetings-iframe-container');
+            if (container && !(container as any).hasChildNodes()) {
+              console.log('🔄 Rechargement du calendrier HubSpot...');
+              window.location.reload();
+            }
+          }, 2000);
+        };
+        script.onerror = () => {
+          console.error('❌ Erreur lors du chargement du script HubSpot Meetings');
+        };
+        document.head.appendChild(script);
+      } else {
+        console.log('✅ Script HubSpot Meetings déjà présent');
+      }
     };
+
+    loadMeetingsScript();
   }, []);
 
   return (
