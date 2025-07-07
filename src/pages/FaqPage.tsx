@@ -6,6 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { CTALinkButton } from "@/components/ui/CTALinkButton";
 
 // FAQ data array
 const faqs = [
@@ -106,14 +107,14 @@ const FaqPage = () => {
             <h3 className="text-xl font-semibold mb-3">Vous ne trouvez pas la réponse à votre question ?</h3>
             <p className="mb-5 text-slate-600 dark:text-slate-300">Notre équipe est à votre disposition pour répondre à toutes vos interrogations.</p>
             
-            <Button 
+            <CTALinkButton 
+              to="/contact"
               variant="blue" 
               size="lg" 
               className="rounded-md px-8 transition-all hover:shadow-lg"
-              asChild
             >
-              <Link to="/contact">Nous contacter</Link>
-            </Button>
+              Nous contacter
+            </CTALinkButton>
           </motion.div>
         </div>
       </div>
