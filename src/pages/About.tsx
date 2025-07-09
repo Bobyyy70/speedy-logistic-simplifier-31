@@ -11,7 +11,6 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { useLazyImage } from "@/hooks/use-lazy-image";
 import { BackgroundPaths } from "@/components/ui/background-paths";
 import { motion } from "framer-motion";
-import { CTALinkButton } from "@/components/ui/CTALinkButton";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -412,17 +411,17 @@ const About = () => {
               dans la croissance de votre entreprise e-commerce.
             </p>
             
-            <CTALinkButton 
-              to="/contact"
+            <Button 
               variant="blue" 
               size="2xl" 
               className="shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
+              asChild
             >
-              <span className="flex items-center gap-2">
+              <Link to="/contact" className="flex items-center gap-2">
                 Obtenir un devis personnalisé
                 <ChevronRight className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-              </span>
-            </CTALinkButton>
+              </Link>
+            </Button>
           </motion.div>
         </div>
       </section>

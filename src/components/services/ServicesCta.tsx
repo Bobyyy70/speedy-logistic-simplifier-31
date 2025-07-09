@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { HubSpotCTA } from "@/components/ui/HubSpotCTA";
 
 export const ServicesCta: React.FC = () => {
   return (
@@ -27,13 +26,14 @@ export const ServicesCta: React.FC = () => {
         <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
           Discutons de vos besoins spécifiques et voyons comment Speed E-Log peut vous aider à simplifier vos opérations et à vous concentrer sur votre croissance.
         </p>
-        
-        <HubSpotCTA ctaId="248429698260">
-          <span className="flex items-center text-white">
-            Demander un Devis Personnalisé
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </span>
-        </HubSpotCTA>
+        <Button 
+          variant="blue" 
+          size="2xl" 
+          className="shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
+          asChild
+        >
+          <Link to="/contact">Demander un Devis Personnalisé <ArrowRight className="ml-2 h-5 w-5" /></Link>
+        </Button>
       </motion.div>
     </section>
   );

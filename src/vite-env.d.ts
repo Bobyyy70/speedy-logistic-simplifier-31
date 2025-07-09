@@ -12,7 +12,6 @@ declare global {
           portalId: string;
           formId: string;
           target: string;
-          onFormSubmitted?: (form: any) => void;
         }) => void;
       };
       meetings?: {
@@ -21,9 +20,6 @@ declare global {
           meetingId: string;
           target: string;
         }) => void;
-      };
-      cta?: {
-        load: () => void;
       };
     };
     hsConversationsSettings?: any;

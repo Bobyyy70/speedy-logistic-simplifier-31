@@ -1,127 +1,33 @@
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { Calendar, Star, CheckCircle, Clock, Users, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { CalendarBookingPopup } from "./CalendarBookingPopup";
-import { HubSpotCTA } from "@/components/ui/HubSpotCTA";
+import { Calendar } from "lucide-react";
 
 export const CalendarSection = () => {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-
-  useEffect(() => {
-    // Écouter l'événement de redirection automatique après soumission du formulaire
-    const handleFormSubmission = () => {
-      setIsPopupOpen(true);
-    };
-
-    window.addEventListener('openCalendarAfterForm', handleFormSubmission);
-
-    return () => {
-      window.removeEventListener('openCalendarAfterForm', handleFormSubmission);
-    };
-  }, []);
-
-  const benefits = [
-    {
-      icon: <CheckCircle className="h-5 w-5 text-green-600" />,
-      text: "Consultation gratuite de 15 minutes"
-    },
-    {
-      icon: <Users className="h-5 w-5 text-blue-600" />,
-      text: "Échange avec un expert logistique"
-    },
-    {
-      icon: <Clock className="h-5 w-5 text-purple-600" />,
-      text: "Réponse sous 24h garantie"
-    }
-  ];
-
   return (
-    <>
-      <motion.section 
-        className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200 relative overflow-hidden"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        data-calendar-section
-      >
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-blue-800"></div>
-        
-        {/* Hero CTA Section */}
-        <div className="text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-            <Calendar className="h-4 w-4 mr-2" />
-            Consultation gratuite
-          </div>
-
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
-            Optimisez votre logistique en{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-              15 minutes
-            </span>
-          </h2>
-          
-          <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-            Commencez par notre analyse rapide, puis réservez votre consultation personnalisée. 
-            Analysons ensemble vos défis logistiques et trouvons les solutions adaptées à votre e-commerce.
-          </p>
-
-          {/* Benefits */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-            {benefits.map((benefit, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                className="flex items-center justify-center gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200"
-              >
-                {benefit.icon}
-                <span className="text-sm font-medium text-slate-700">{benefit.text}</span>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* HubSpot CTA Button avec fallback */}
-          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <HubSpotCTA ctaId="248429698260" className="w-full">
-              <Calendar className="h-6 w-6 mr-3" />
-              Commencer mon analyse logistique gratuite
-              <ArrowRight className="h-6 w-6 ml-3" />
-            </HubSpotCTA>
-          </motion.div>
-          
-          {/* Bouton de fallback pour ouvrir directement le calendrier */}
-          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="mt-4">
-            <Button
-              onClick={() => setIsPopupOpen(true)}
-              variant="outline"
-              size="lg"
-              className="w-full bg-white/10 border-white/20 text-white hover:bg-white/20"
-            >
-              <Calendar className="h-5 w-5 mr-2" />
-              Accès direct au calendrier
-            </Button>
-          </motion.div>
-
-          <div className="mt-4 text-sm text-slate-500">
-            📋 Étape 1: Analyse rapide → 📅 Étape 2: Rendez-vous automatique
-          </div>
-
-          {/* Trust indicators */}
-          <div className="mt-8 pt-6 border-t border-slate-200">
-          </div>
-        </div>
-
-        {/* Decorative elements */}
-        <div className="absolute top-10 right-10 w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full opacity-50 blur-xl"></div>
-        <div className="absolute bottom-10 left-10 w-16 h-16 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full opacity-50 blur-xl"></div>
-      </motion.section>
-
-      {/* Popup Component */}
-      <CalendarBookingPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
-    </>
+    <motion.section 
+      className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200 relative overflow-hidden"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.2 }}
+      data-calendar-section
+    >
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-blue-800"></div>
+      
+      <div className="text-center mb-8">
+        <h2 className="text-2xl md:text-3xl font-bold mb-3 text-slate-900 flex items-center justify-center gap-3">
+          <Calendar className="h-8 w-8 text-blue-600" />
+          Planifiez votre rendez-vous
+        </h2>
+        <p className="text-slate-600 max-w-2xl mx-auto">
+          Réservez un créneau de 15 minutes pour discuter de votre projet logistique avec notre équipe d'experts.
+        </p>
+      </div>
+      
+      <div className="min-h-[650px] border border-slate-200 rounded-xl overflow-hidden bg-white">
+        {/* Calendrier HubSpot avec votre code d'intégration */}
+        <div className="meetings-iframe-container w-full h-full min-h-[650px]" data-src="https://meetings-eu1.hubspot.com/falmanzo?embed=true"></div>
+      </div>
+    </motion.section>
   );
 };

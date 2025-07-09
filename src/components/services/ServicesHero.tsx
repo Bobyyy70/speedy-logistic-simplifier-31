@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AuroraBackground } from "@/components/ui/aurora-background";
-import { HubSpotCTA } from "@/components/ui/HubSpotCTA";
 
 export const ServicesHero: React.FC = () => {
   return (
@@ -27,9 +26,16 @@ export const ServicesHero: React.FC = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
-            <HubSpotCTA ctaId="248429698260">
-              <span className="text-white">Obtenir un devis personnalisé</span>
-            </HubSpotCTA>
+            <Button 
+              variant="blue" 
+              size="2xl" 
+              className="shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
+              asChild
+            >
+              <Link to="/contact">
+                Obtenir un devis personnalisé
+              </Link>
+            </Button>
             
             <Button 
               variant="outline" 

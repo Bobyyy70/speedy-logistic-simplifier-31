@@ -17,58 +17,49 @@ import { supabase } from "@/integrations/supabase/client";
 
 // Définition du schéma de validation avec Zod
 const contactFormSchema = z.object({
-  firstName: z.string()
-    .min(2, "Le prénom doit contenir au moins 2 caractères.")
-    .max(50, "Le prénom ne peut pas dépasser 50 caractères.")
-    .regex(/^[a-zA-ZÀ-ÿ\s-']+$/, "Le prénom ne peut contenir que des lettres, espaces, tirets et apostrophes."),
-  lastName: z.string()
-    .min(2, "Le nom doit contenir au moins 2 caractères.")
-    .max(50, "Le nom ne peut pas dépasser 50 caractères.")
-    .regex(/^[a-zA-ZÀ-ÿ\s-']+$/, "Le nom ne peut contenir que des lettres, espaces, tirets et apostrophes."),
-  email: z.string()
-    .email("Veuillez entrer une adresse email valide.")
-    .max(100, "L'email ne peut pas dépasser 100 caractères."),
-  phone: z.string()
-    .min(10, "Le numéro de téléphone doit contenir au moins 10 caractères.")
-    .max(15, "Le numéro de téléphone ne peut pas dépasser 15 caractères.")
-    .regex(/^[\d\s+()-]+$/, "Format de téléphone invalide."),
-  companyName: z.string()
-    .min(2, "Le nom de l'entreprise doit contenir au moins 2 caractères.")
-    .max(100, "Le nom de l'entreprise ne peut pas dépasser 100 caractères."),
+  firstName: z.string().min(2, {
+    message: "Le prénom doit contenir au moins 2 caractères."
+  }),
+  lastName: z.string().min(2, {
+    message: "Le nom doit contenir au moins 2 caractères."
+  }),
+  email: z.string().email({
+    message: "Veuillez entrer une adresse email valide."
+  }),
+  phone: z.string().min(10, {
+    message: "Veuillez entrer un numéro de téléphone valide."
+  }),
+  companyName: z.string().min(2, {
+    message: "Le nom de l'entreprise doit contenir au moins 2 caractères."
+  }),
   companyStatus: z.enum(["creation", "active"], {
     required_error: "Veuillez sélectionner l'état de votre entreprise."
   }),
-  city: z.string()
-    .min(2, "Veuillez indiquer votre ville.")
-    .max(50, "Le nom de la ville ne peut pas dépasser 50 caractères.")
-    .regex(/^[a-zA-ZÀ-ÿ\s-']+$/, "Le nom de la ville ne peut contenir que des lettres, espaces, tirets et apostrophes."),
-  postalCode: z.string()
-    .min(5, "Le code postal doit contenir au moins 5 caractères.")
-    .max(10, "Le code postal ne peut pas dépasser 10 caractères.")
-    .regex(/^[\d\s-]+$/, "Le code postal ne peut contenir que des chiffres, espaces et tirets."),
-  website: z.string()
-    .url("Veuillez entrer une URL valide.")
-    .max(200, "L'URL ne peut pas dépasser 200 caractères.")
-    .optional()
-    .or(z.literal('')),
+  city: z.string().min(2, {
+    message: "Veuillez indiquer votre ville."
+  }),
+  postalCode: z.string().min(5, {
+    message: "Veuillez entrer un code postal valide."
+  }),
+  website: z.string().url({
+    message: "Veuillez entrer une URL valide."
+  }).optional().or(z.literal('')),
   leadSource: z.string({
     required_error: "Veuillez indiquer comment vous nous avez connu."
   }),
-  averageBasket: z.string()
-    .min(1, "Veuillez indiquer le montant moyen du panier.")
-    .regex(/^\d+$/, "Le montant doit être un nombre entier."),
+  averageBasket: z.string().min(1, {
+    message: "Veuillez indiquer le montant moyen du panier."
+  }),
   productType: z.string({
     required_error: "Veuillez sélectionner un type d'articles."
   }),
-  annualOrders: z.string()
-    .min(1, "Veuillez indiquer le nombre de commandes par an.")
-    .regex(/^\d+$/, "Le nombre de commandes doit être un nombre entier."),
-  stockReferences: z.string()
-    .min(1, "Veuillez indiquer le nombre de références à stocker.")
-    .regex(/^\d+$/, "Le nombre de références doit être un nombre entier."),
-  message: z.string()
-    .max(1000, "Le message ne peut pas dépasser 1000 caractères.")
-    .optional()
+  annualOrders: z.string().min(1, {
+    message: "Veuillez indiquer le nombre de commandes par an."
+  }),
+  stockReferences: z.string().min(1, {
+    message: "Veuillez indiquer le nombre de références à stocker."
+  }),
+  message: z.string().optional()
 });
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;

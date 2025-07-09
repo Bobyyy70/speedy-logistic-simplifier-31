@@ -7,16 +7,8 @@ declare global {
           region: string;
           portalId: string;
           formId: string;
-          target: string;
-          onFormReady?: () => void;
-          onFormSubmit?: (form: any) => void;
-          onFormSubmitted?: (form: any) => void;
-          onFormDefinitionFetchError?: (error: any) => void;
-          onFormRender?: () => void;
+          target: HTMLElement;
         }) => void;
-      };
-      cta: {
-        load: () => void;
       };
     };
     HubSpotConversations?: {

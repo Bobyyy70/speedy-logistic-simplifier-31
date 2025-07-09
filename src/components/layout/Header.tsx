@@ -101,7 +101,7 @@ export function Header() {
                   </Link>
                 </div>
               ))}
-              <div className="px-3 py-2 border-t">
+              <div className="px-3 py-2">
                 <UserMenu />
               </div>
             </div>

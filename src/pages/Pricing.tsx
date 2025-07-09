@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Truck } from "lucide-react";
 import { StaticPricingTable } from "@/components/client-portal/pricing/StaticPricingTable";
-import { CTALinkButton } from "@/components/ui/CTALinkButton";
 
 const Pricing = () => {
   return (
@@ -47,14 +46,12 @@ const Pricing = () => {
               <p className="text-muted-foreground mb-4">
                 Besoin d'un devis personnalisé ?
               </p>
-              <CTALinkButton
+              <Link
                 to="/contact"
-                variant="blue"
-                size="lg"
-                className="inline-flex items-center px-6 py-3 rounded-lg transition-colors"
+                className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
                 Demander un devis
-              </CTALinkButton>
+              </Link>
             </div>
           </motion.div>
         </div>
