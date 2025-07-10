@@ -14,6 +14,7 @@ import LegalMentions from "./pages/LegalMentions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Technology from "./pages/Technology";
+import Sitemap from "./pages/Sitemap";
 
 const App = () => (
   <TooltipProvider>
@@ -32,6 +33,8 @@ const App = () => (
           <Route path="/a-propos" element={<Navigate to="/about" replace />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FaqPage />} />
+          <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="/plan-du-site" element={<Navigate to="/sitemap" replace />} />
           <Route path="/mentions-legales" element={<LegalMentions />} />
           <Route path="/politique-confidentialite" element={<PrivacyPolicy />} />
           <Route path="/cgv" element={<TermsOfService />} />

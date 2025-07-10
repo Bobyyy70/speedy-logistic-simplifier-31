@@ -22,8 +22,9 @@ Disallow: /api/
 Disallow: /_/
 Disallow: /tmp/
 
-# XML Sitemap
+# Sitemaps
 Sitemap: https://speedelog.net/sitemap.xml
+Sitemap: https://speedelog.net/sitemap
 
 # Cache directives
 Cache-control: max-age=86400

@@ -133,6 +133,9 @@ export const Footer: React.FC = () => {
                 <Link to="/cgv" className="text-slate-500 hover:text-slate-900 transition-colors">
                   CGV
                 </Link>
+                <Link to="/sitemap" className="text-slate-500 hover:text-slate-900 transition-colors">
+                  Plan du Site
+                </Link>
               </div>
             </div>
           </div>

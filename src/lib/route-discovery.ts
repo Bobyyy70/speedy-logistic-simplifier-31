@@ -61,6 +61,12 @@ export const discoverRoutes = (): RouteInfo[] => {
       component: 'TermsOfService',
       priority: 0.3,
       changefreq: 'yearly'
+    },
+    {
+      path: '/sitemap',
+      component: 'Sitemap',
+      priority: 0.5,
+      changefreq: 'monthly'
     }
   ];
 };
