@@ -33,29 +33,41 @@
     @apply backdrop-blur-md bg-white/80 dark:bg-slate-900/80;
   }
   
-  /* Nouvelles classes pour l'optimisation mobile */
+  /* Enhanced mobile optimization classes */
   .mobile-touch-target {
-    @apply p-3 sm:p-2; /* Cibles tactiles plus grandes sur mobile */
+    @apply min-h-[48px] min-w-[48px] p-3 sm:p-2 touch-manipulation;
   }
 
   .mobile-spacing-y {
-    @apply space-y-6 md:space-y-8; /* Espacement vertical adaptatif */
+    @apply space-y-4 md:space-y-6 lg:space-y-8;
   }
 
   .mobile-text {
-    @apply text-base md:text-lg; /* Taille de texte adaptative */
+    @apply text-sm md:text-base lg:text-lg leading-relaxed;
   }
 
   .mobile-heading {
-    @apply text-2xl md:text-3xl lg:text-4xl; /* Titres adaptatifs */
+    @apply text-lg md:text-xl lg:text-2xl font-semibold;
   }
 
   .mobile-card {
-    @apply p-4 md:p-6; /* Cards avec padding adaptatif */
+    @apply p-4 md:p-6 lg:p-8 rounded-xl;
   }
 
   .mobile-container {
-    @apply px-3 md:px-4; /* Conteneurs avec marges horizontales adaptatives */
+    @apply px-4 md:px-6 lg:px-8 mx-auto;
+  }
+
+  .mobile-button {
+    @apply min-h-[48px] text-base px-6 py-3 touch-manipulation;
+  }
+
+  .mobile-input {
+    @apply min-h-[48px] text-base px-4 py-3 touch-manipulation;
+  }
+
+  .mobile-nav-link {
+    @apply min-h-[48px] px-4 py-3 touch-manipulation flex items-center;
   }
   
   /* Fond de l'application - maintenant avec couleur claire pour le texte sombre */

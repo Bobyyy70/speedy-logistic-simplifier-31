@@ -26,11 +26,11 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-14 md:h-16 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <LogoIcon className="h-8 w-8" />
-            <span className="font-bold text-xl">Speed E-Log</span>
+            <LogoIcon className="h-6 w-6 md:h-8 md:w-8" />
+            <span className="font-bold text-lg md:text-xl">Speed E-Log</span>
           </Link>
 
           {/* Desktop Navigation - Centré */}
@@ -75,25 +75,25 @@ export function Header() {
           <Button
             variant="ghost"
             size="sm"
-            className="md:hidden"
+            className="md:hidden min-h-[44px] min-w-[44px] p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
+            <div className="px-4 pt-4 pb-4 space-y-2 border-t bg-white/95 backdrop-blur-sm">
               {navigation.map((item) => (
                 <div key={item.name}>
                   <Link
                     to={item.href}
-                    className={`block px-3 py-2 text-base font-medium transition-colors hover:text-primary ${
+                    className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors min-h-[44px] flex items-center ${
                       isActive(item.href)
                         ? "text-primary bg-primary/10"
-                        : "text-muted-foreground"
+                        : "text-muted-foreground hover:bg-gray-50"
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -101,7 +101,7 @@ export function Header() {
                   </Link>
                 </div>
               ))}
-              <div className="px-3 py-2">
+              <div className="px-4 py-3 border-t mt-4 pt-4">
                 <UserMenu />
               </div>
             </div>
