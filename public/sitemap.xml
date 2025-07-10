@@ -41,6 +41,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://speedelog.net/pricing</loc>
+    <lastmod>2025-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://speedelog.net/mentions-legales</loc>
     <lastmod>2025-07-10</lastmod>
     <changefreq>yearly</changefreq>

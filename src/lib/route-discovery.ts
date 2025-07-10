@@ -45,6 +45,12 @@ export const discoverRoutes = (): RouteInfo[] => {
       changefreq: 'monthly'
     },
     {
+      path: '/pricing',
+      component: 'Pricing',
+      priority: 0.8,
+      changefreq: 'monthly'
+    },
+    {
       path: '/mentions-legales',
       component: 'LegalMentions',
       priority: 0.3,

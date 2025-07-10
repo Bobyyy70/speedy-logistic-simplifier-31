@@ -16,6 +16,7 @@ const routes = [
   { path: '/contact', priority: 0.9, changefreq: 'monthly' },
   { path: '/about', priority: 0.7, changefreq: 'monthly' },
   { path: '/faq', priority: 0.8, changefreq: 'monthly' },
+  { path: '/pricing', priority: 0.8, changefreq: 'monthly' },
   { path: '/mentions-legales', priority: 0.3, changefreq: 'yearly' },
   { path: '/politique-confidentialite', priority: 0.3, changefreq: 'yearly' },
   { path: '/cgv', priority: 0.3, changefreq: 'yearly' }
