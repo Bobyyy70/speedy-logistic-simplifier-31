@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useCallback } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,184 +9,99 @@ import { toast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { useCalculatorState } from "@/hooks/use-calculator-state";
+import { useDebounce } from "@/hooks/use-debounce";
 
 export function DynamicCalculatorSection() {
-  // États pour le formulaire
-  const [zipCode, setZipCode] = useState("");
-  const [weight, setWeight] = useState("");
-  const [service, setService] = useState("");
+  const {
+    state,
+    volumetricWeight,
+    useVolumetricWeight,
+    updateField,
+    calculatePrice,
+    setError
+  } = useCalculatorState();
 
-  // États pour les dimensions (poids volumétrique)
-  const [length, setLength] = useState("");
-  const [width, setWidth] = useState("");
-  const [height, setHeight] = useState("");
+  // Debounce form validation for better UX
+  const debouncedZipCode = useDebounce(state.zipCode, 300);
+  const debouncedWeight = useDebounce(state.weight, 300);
 
-  // État pour la signature à la livraison
-  const [withSignature, setWithSignature] = useState(false);
-
-  // États pour la logique de calcul
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [calculationResult, setCalculationResult] = useState<string | null>(null);
-  const [volumetricWeight, setVolumetricWeight] = useState<number | null>(null);
-  const [useVolumetricWeight, setUseVolumetricWeight] = useState(false);
-
-  // Calcul du poids volumétrique à chaque modification des dimensions
-  useEffect(() => {
-    const volWeight = calculateVolumetricWeight();
-    setVolumetricWeight(volWeight);
-  }, [length, width, height]);
-
-  // Déterminer si le poids volumétrique doit être utilisé
-  useEffect(() => {
-    if (volumetricWeight && parseFloat(weight)) {
-      setUseVolumetricWeight(volumetricWeight > parseFloat(weight));
-    } else {
-      setUseVolumetricWeight(false);
-    }
-  }, [volumetricWeight, weight]);
-
-  const calculateVolumetricWeight = () => {
-    if (!length || !width || !height) return null;
-    const l = parseFloat(length);
-    const w = parseFloat(width);
-    const h = parseFloat(height);
-    if (isNaN(l) || isNaN(w) || isNaN(h)) return null;
-
-    // Formule standard: (L x l x h en cm) / 5000 = poids volumétrique en kg
-    const volumeWeight = l * w * h / 5000;
-    return volumeWeight;
-  };
-
-  const handleCalculate = (e: React.FormEvent) => {
+  const handleCalculate = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validation basique
-    if (!zipCode || zipCode.length < 5) {
-      setError("Veuillez entrer un code postal valide");
+    // Optimized validation
+    if (!state.zipCode || state.zipCode.length < 5) {
+      const error = "Veuillez entrer un code postal valide";
+      setError(error);
       toast({
         title: "Erreur de validation",
-        description: "Veuillez entrer un code postal valide",
+        description: error,
         variant: "destructive"
       });
       return;
     }
-    if (!service) {
-      setError("Veuillez sélectionner un type de service");
+
+    if (!state.service) {
+      const error = "Veuillez sélectionner un type de service";
+      setError(error);
       toast({
         title: "Erreur de validation",
-        description: "Veuillez sélectionner un type de service",
+        description: error,
         variant: "destructive"
       });
       return;
     }
-    let weightNum: number;
 
-    // Vérification du poids réel
-    if (!weight || parseFloat(weight) <= 0 || parseFloat(weight) > 30) {
-      setError("Le poids doit être entre 0.1 et 30 kg");
+    const weightNum = parseFloat(state.weight);
+    if (isNaN(weightNum) || weightNum <= 0 || weightNum > 30) {
+      const error = "Le poids doit être entre 0.1 et 30 kg";
+      setError(error);
       toast({
         title: "Erreur de validation",
-        description: "Le poids doit être entre 0.1 et 30 kg",
+        description: error,
         variant: "destructive"
       });
       return;
     }
-    weightNum = parseFloat(weight);
 
-    // Si les dimensions sont remplies, calculer et comparer le poids volumétrique
-    const volWeight = calculateVolumetricWeight();
-    if (volWeight !== null) {
-      if (volWeight > weightNum) {
-        weightNum = volWeight; // On utilise le poids le plus élevé
-      }
+    await calculatePrice();
+    
+    if (state.calculationResult) {
+      toast({
+        title: "Estimation réussie",
+        description: `Tarif estimé : ${state.calculationResult} € TTC${useVolumetricWeight ? ' (basé sur le poids volumétrique)' : ''}`
+      });
     }
+  }, [state.zipCode, state.service, state.weight, state.calculationResult, calculatePrice, setError, useVolumetricWeight]);
 
-    // Réinitialiser les états
-    setError(null);
-    setCalculationResult(null);
-    setLoading(true);
+  // Memoized field update handlers
+  const handleZipCodeChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    updateField('zipCode', e.target.value);
+  }, [updateField]);
 
-    // Simuler un appel API avec setTimeout
-    setTimeout(() => {
-      try {
-        // Logique de calcul simulée
-        let basePrice: number;
+  const handleWeightChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    updateField('weight', e.target.value);
+  }, [updateField]);
 
-        // Calcul selon le type de service
-        switch (service) {
-          case "relay":
-            basePrice = 4.5 + weightNum * 0.8;
-            break;
-          case "express":
-            basePrice = 8.9 + weightNum * 1.5;
-            break;
-          case "international":
-            basePrice = 12.5 + weightNum * 2.0;
-            // Surcoût pour signature internationale
-            if (withSignature) {
-              basePrice += 3.5;
-            }
-            break;
-          default:
-            // Service à domicile standard
-            basePrice = 5.9 + weightNum * 1.2;
-            // Surcoût pour signature nationale
-            if (withSignature) {
-              basePrice += 2.0;
-            }
-            break;
-        }
+  const handleServiceChange = useCallback((value: string) => {
+    updateField('service', value);
+  }, [updateField]);
 
-        // Ajustement selon le code postal (simulé)
-        const zipNum = parseInt(zipCode.substring(0, 2));
-        if (service === "international") {
-          // Ajustements pour les destinations internationales basés sur le code postal
-          if (zipNum <= 20) {
-            // Europe proche (simulation)
-            basePrice = basePrice * 1.2;
-          } else if (zipNum <= 50) {
-            // Europe éloignée (simulation)
-            basePrice = basePrice * 1.5;
-          } else if (zipNum <= 80) {
-            // USA/Canada (simulation)
-            basePrice = basePrice * 2.0;
-          } else {
-            // Reste du monde (simulation)
-            basePrice = basePrice * 2.5;
-          }
-        } else {
-          // Pour les livraisons nationales
-          if (zipNum >= 97) {
-            // DOM-TOM
-            basePrice = basePrice * 2.5;
-          } else if (zipNum >= 20 && zipNum <= 20) {
-            // Corse
-            basePrice = basePrice * 1.5;
-          }
-        }
+  const handleLengthChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    updateField('length', e.target.value);
+  }, [updateField]);
 
-        // Arrondir et formatter le résultat
-        const finalPrice = Math.round(basePrice * 100) / 100;
-        setCalculationResult(finalPrice.toFixed(2));
+  const handleWidthChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    updateField('width', e.target.value);
+  }, [updateField]);
 
-        // Notification de succès
-        toast({
-          title: "Estimation réussie",
-          description: `Tarif estimé : ${finalPrice.toFixed(2)} € TTC${useVolumetricWeight ? ' (basé sur le poids volumétrique)' : ''}`
-        });
-      } catch (err) {
-        setError("Une erreur est survenue lors du calcul. Veuillez réessayer.");
-        toast({
-          title: "Erreur",
-          description: "Une erreur est survenue lors du calcul",
-          variant: "destructive"
-        });
-      } finally {
-        setLoading(false);
-      }
-    }, 1000);
-  };
+  const handleHeightChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    updateField('height', e.target.value);
+  }, [updateField]);
+
+  const handleSignatureChange = useCallback((checked: boolean) => {
+    updateField('withSignature', checked);
+  }, [updateField]);
 
   return <section id="calculator" className="bg-gradient-to-r from-orange-200/50 via-white to-blue-100 
                     dark:from-orange-900/30 dark:via-slate-950 dark:to-blue-900/30 py-12 md:py-24 lg:py-32">
@@ -242,9 +157,9 @@ export function DynamicCalculatorSection() {
                   {/* Poids */}
                   <div className="grid gap-2 py-0">
                     <Label htmlFor="weight">Poids (en kg)</Label>
-                    <Input id="weight" type="number" step="0.1" min="0.1" max="30" placeholder="Ex: 1.5" value={weight} onChange={e => setWeight(e.target.value)} aria-describedby="weight-error" required className="py-0" />
+                    <Input id="weight" type="number" step="0.1" min="0.1" max="30" placeholder="Ex: 1.5" value={state.weight} onChange={handleWeightChange} aria-describedby="weight-error" required className="py-0" />
                     <p className="text-xs text-muted-foreground">Maximum 30 kg</p>
-                    {error && error.includes("poids") && <p id="weight-error" className="text-sm text-destructive">{error}</p>}
+                    {state.error && state.error.includes("poids") && <p id="weight-error" className="text-sm text-destructive">{state.error}</p>}
                   </div>
                   
                   <div className="space-y-2">
@@ -271,19 +186,19 @@ export function DynamicCalculatorSection() {
                       {/* Longueur */}
                       <div className="space-y-2">
                         <Label htmlFor="length">Longueur (cm)</Label>
-                        <Input id="length" type="number" min="1" step="0.1" placeholder="Ex: 30" value={length} onChange={e => setLength(e.target.value)} />
+                        <Input id="length" type="number" min="1" step="0.1" placeholder="Ex: 30" value={state.length} onChange={handleLengthChange} />
                       </div>
                       
                       {/* Largeur */}
                       <div className="space-y-2">
                         <Label htmlFor="width">Largeur (cm)</Label>
-                        <Input id="width" type="number" min="1" step="0.1" placeholder="Ex: 20" value={width} onChange={e => setWidth(e.target.value)} />
+                        <Input id="width" type="number" min="1" step="0.1" placeholder="Ex: 20" value={state.width} onChange={handleWidthChange} />
                       </div>
                       
                       {/* Hauteur */}
                       <div className="space-y-2">
                         <Label htmlFor="height">Hauteur (cm)</Label>
-                        <Input id="height" type="number" min="1" step="0.1" placeholder="Ex: 15" value={height} onChange={e => setHeight(e.target.value)} />
+                        <Input id="height" type="number" min="1" step="0.1" placeholder="Ex: 15" value={state.height} onChange={handleHeightChange} />
                       </div>
                     </div>
                     
@@ -299,15 +214,15 @@ export function DynamicCalculatorSection() {
                 {/* Code Postal */}
                 <div className="grid gap-2">
                   <Label htmlFor="zip-code">Code Postal de destination</Label>
-                  <Input id="zip-code" type="text" placeholder="Ex: 75001" value={zipCode} onChange={e => setZipCode(e.target.value)} aria-describedby="zip-code-error" required />
-                  {error && error.includes("code postal") && <p id="zip-code-error" className="text-sm text-destructive">{error}</p>}
+                  <Input id="zip-code" type="text" placeholder="Ex: 75001" value={state.zipCode} onChange={handleZipCodeChange} aria-describedby="zip-code-error" required />
+                  {state.error && state.error.includes("code postal") && <p id="zip-code-error" className="text-sm text-destructive">{state.error}</p>}
                 </div>
                 
                 {/* Type de Service */}
                 <div className="space-y-4">
                   <div className="grid gap-2">
                     <Label htmlFor="service">Type de Service</Label>
-                    <Select value={service} onValueChange={setService} required>
+                    <Select value={state.service} onValueChange={handleServiceChange} required>
                       <SelectTrigger id="service" aria-describedby="service-error">
                         <SelectValue placeholder="Sélectionnez un service" />
                       </SelectTrigger>
@@ -318,14 +233,14 @@ export function DynamicCalculatorSection() {
                         <SelectItem value="international">Livraison Internationale</SelectItem>
                       </SelectContent>
                     </Select>
-                    {error && error.includes("service") && <p id="service-error" className="text-sm text-destructive">{error}</p>}
+                    {state.error && state.error.includes("service") && <p id="service-error" className="text-sm text-destructive">{state.error}</p>}
                   </div>
                   
                   {/* Option de signature conditionnelle */}
-                  {(service === "home" || service === "international") && <div className="flex items-center space-x-2">
-                      <Checkbox id="signature" checked={withSignature} onCheckedChange={checked => setWithSignature(checked === true)} />
+                  {(state.service === "home" || state.service === "international") && <div className="flex items-center space-x-2">
+                      <Checkbox id="signature" checked={state.withSignature} onCheckedChange={handleSignatureChange} />
                       <Label htmlFor="signature" className="text-sm font-normal cursor-pointer">
-                        Avec signature à la livraison {service === "international" ? "(+3.50€)" : "(+2.00€)"}
+                        Avec signature à la livraison {state.service === "international" ? "(+3.50€)" : "(+2.00€)"}
                       </Label>
                     </div>}
                 </div>
@@ -343,28 +258,28 @@ export function DynamicCalculatorSection() {
               }} whileTap={{
                 scale: 0.98
               }}>
-                  <Button type="submit" className="w-full" disabled={loading}>
+                  <Button type="submit" className="w-full" disabled={state.loading}>
                     <Calculator className="mr-2 h-4 w-4" />
-                    {loading ? "Calcul en cours..." : "Estimer le tarif"}
+                    {state.loading ? "Calcul en cours..." : "Estimer le tarif"}
                   </Button>
                 </motion.div>
               </form>
               
               {/* Zone de Résultat */}
               <div className="mt-6 pt-4 border-t">
-                {loading && <p className="text-center text-muted-foreground">Calcul en cours...</p>}
+                {state.loading && <p className="text-center text-muted-foreground">Calcul en cours...</p>}
                 
-                {error && !error.includes("code postal") && !error.includes("poids") && !error.includes("dimensions") && !error.includes("service") && <motion.div initial={{
+                {state.error && !state.error.includes("code postal") && !state.error.includes("poids") && !state.error.includes("dimensions") && !state.error.includes("service") && <motion.div initial={{
                 opacity: 0,
                 scale: 0.95
               }} animate={{
                 opacity: 1,
                 scale: 1
               }} className="p-3 bg-destructive/10 text-destructive rounded-md text-center">
-                    {error}
+                    {state.error}
                   </motion.div>}
                 
-                {!loading && !error && calculationResult && <motion.div className="text-center space-y-2" initial={{
+                {!state.loading && !state.error && state.calculationResult && <motion.div className="text-center space-y-2" initial={{
                 opacity: 0,
                 scale: 0.9
               }} animate={{
@@ -376,7 +291,7 @@ export function DynamicCalculatorSection() {
                 stiffness: 120
               }}>
                     <div className="font-bold text-2xl">
-                      Tarif estimé : {calculationResult} € TTC
+                      Tarif estimé : {state.calculationResult} € TTC
                     </div>
                     <p className="text-xs text-muted-foreground max-w-md mx-auto">
                       *Tarif indicatif TTC, basé sur les informations fournies. Le tarif final dépendra des dimensions exactes 
@@ -384,7 +299,7 @@ export function DynamicCalculatorSection() {
                       {useVolumetricWeight && volumetricWeight && <span className="block mt-1">
                           Calcul effectué sur le poids volumétrique de {volumetricWeight.toFixed(2)} kg.
                         </span>}
-                      {withSignature && <span className="block mt-1">
+                      {state.withSignature && <span className="block mt-1">
                           Incluant le supplément pour livraison avec signature.
                         </span>}
                     </p>

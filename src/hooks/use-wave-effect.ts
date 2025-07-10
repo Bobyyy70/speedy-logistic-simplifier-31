@@ -192,8 +192,18 @@ export function useWaveEffect({
       ctx.stroke();
     }
 
-    // Animation loop
+    // Optimized animation loop with frame limiting
+    let lastFrameTime = 0;
+    const targetFPS = 60;
+    const frameInterval = 1000 / targetFPS;
+    
     function tick(t: number) {
+      if (t - lastFrameTime < frameInterval) {
+        requestAnimationFrame(tick);
+        return;
+      }
+      
+      lastFrameTime = t;
       const mouse = mouseRef.current;
 
       mouse.sx += (mouse.x - mouse.sx) * 0.1;

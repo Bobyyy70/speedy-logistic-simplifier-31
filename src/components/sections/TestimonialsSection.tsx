@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import AnimatedText from "@/components/ui/AnimatedText";
-import { TestimonialsCarousel } from "@/components/ui/testimonials/TestimonialsCarousel";
+import { OptimizedTestimonialsCarousel } from "@/components/ui/testimonials/OptimizedTestimonialsCarousel";
 
 export function TestimonialsSection() {
   return (
@@ -37,7 +37,7 @@ export function TestimonialsSection() {
         </div>
         
         <div className="max-w-7xl mx-auto">
-          <TestimonialsCarousel />
+          <OptimizedTestimonialsCarousel />
         </div>
       </div>
     </section>

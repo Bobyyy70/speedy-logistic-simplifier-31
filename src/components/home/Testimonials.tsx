@@ -1,5 +1,5 @@
 
-import { TestimonialsCarousel } from "@/components/ui/testimonials/TestimonialsCarousel";
+import { OptimizedTestimonialsCarousel } from "@/components/ui/testimonials/OptimizedTestimonialsCarousel";
 export function Testimonials() {
   return <section className="py-12 md:py-[26px]">
       <div className="section-container py-0 my-0">
@@ -9,7 +9,7 @@ export function Testimonials() {
         </p>
 
         <div className="mt-12">
-          <TestimonialsCarousel />
+          <OptimizedTestimonialsCarousel />
         </div>
       </div>
     </section>;
