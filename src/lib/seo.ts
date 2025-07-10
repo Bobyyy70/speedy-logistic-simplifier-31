@@ -262,7 +262,7 @@ export const generateDefaultStructuredData = () => ({
 
 export const defaultSEO: SEOPageData = {
   title: "Speed E-Log | Logistique E-commerce Simplifiée pour PME",
-  description: "Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé.",
+  description: "Externalisez votre logistique e-commerce avec Speed E-Log. Solutions fiables et transparentes pour PME. Devis personnalisé gratuit.",
   keywords: "logistique e-commerce, externalisation logistique, 3PL, fulfillment, préparation commandes, PME logistique",
   image: "/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png",
 };
@@ -270,7 +270,7 @@ export const defaultSEO: SEOPageData = {
 export const seoPages: { [key: string]: SEOPageData } = {
   "/": {
     title: "Speed E-Log | Logistique E-commerce Simplifiée pour PME",
-    description: "Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé.",
+    description: "Externalisez votre logistique e-commerce avec Speed E-Log. Solutions fiables et transparentes pour PME. Devis personnalisé gratuit.",
     keywords: "logistique e-commerce PME, externalisation logistique, fulfillment France, 3PL e-commerce",
     structuredData: [
       {

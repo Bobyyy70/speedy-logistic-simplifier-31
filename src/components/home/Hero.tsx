@@ -56,6 +56,9 @@ export function Hero() {
                     src="/placeholder.svg" 
                     alt="Entrepôt moderne Speed E-Log équipé pour la logistique e-commerce avec zones de stockage et préparation de commandes" 
                     className="w-full h-full object-cover"
+                    width="400"
+                    height="300"
+                    loading="eager"
                   />
                 </div>
                 <h3 className="font-semibold text-lg mb-2">Une logistique moderne et efficace</h3>
