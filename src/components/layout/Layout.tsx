@@ -74,9 +74,17 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         
         {/* Structured Data */}
         {metadata.structuredData && (
-          <script type="application/ld+json">
-            {JSON.stringify(metadata.structuredData)}
-          </script>
+          Array.isArray(metadata.structuredData) 
+            ? metadata.structuredData.map((schema, index) => (
+                <script key={index} type="application/ld+json">
+                  {JSON.stringify(schema)}
+                </script>
+              ))
+            : (
+                <script type="application/ld+json">
+                  {JSON.stringify(metadata.structuredData)}
+                </script>
+              )
         )}
         
         {/* CSS personnalisé pour masquer le branding HubSpot */}
