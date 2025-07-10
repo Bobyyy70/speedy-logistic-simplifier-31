@@ -54,7 +54,7 @@ export function Hero() {
                 <div className="aspect-[4/3] bg-gray-100 rounded-md mb-4 overflow-hidden">
                   <img 
                     src="/placeholder.svg" 
-                    alt="Entrepôt Speed E-Log" 
+                    alt="Entrepôt moderne Speed E-Log équipé pour la logistique e-commerce avec zones de stockage et préparation de commandes" 
                     className="w-full h-full object-cover"
                   />
                 </div>

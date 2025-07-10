@@ -55,7 +55,7 @@ export const CustomCookieBanner: React.FC = () => {
               <div className="flex items-center space-x-3 flex-1">
                 <img 
                   src="/lovable-uploads/583cb018-5db6-4b86-9bdb-5a79a00ed5c4.png" 
-                  alt="Speed E-Log" 
+                  alt="Speed E-Log - Icône entreprise de logistique e-commerce"
                   className="h-8 w-8 flex-shrink-0"
                 />
                 <div className="text-sm">
@@ -104,7 +104,7 @@ export const CustomCookieBanner: React.FC = () => {
                 <div className="flex items-center space-x-3">
                   <img 
                     src="/lovable-uploads/583cb018-5db6-4b86-9bdb-5a79a00ed5c4.png" 
-                    alt="Speed E-Log" 
+                    alt="Speed E-Log - Icône entreprise de logistique e-commerce" 
                     className="h-6 w-6"
                   />
                   <h3 className="font-medium text-foreground">Paramètres des cookies</h3>

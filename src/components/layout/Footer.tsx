@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
                 <div className="flex items-center space-x-3">
                   <img 
                     src="/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png" 
-                    alt="Speed E-Log Logo"
+                    alt="Speed E-Log - Spécialiste logistique e-commerce France"
                     className="w-8 h-8 object-contain"
                   />
                   <span className="text-xl font-bold text-slate-900">Speed E-Log</span>

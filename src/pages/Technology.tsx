@@ -169,7 +169,7 @@ const Technology = () => {
                   </div>
                   <img 
                     src="/lovable-uploads/78d7ab9f-306b-4854-a6c6-a1863ac47cf4.png" 
-                    alt="SupplyOS Dashboard" 
+                    alt="Interface SupplyOS montrant les KPIs logistiques - commandes, coûts et performance des transporteurs" 
                     className="w-full object-cover pt-12" 
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
@@ -202,7 +202,7 @@ const Technology = () => {
               <div className="relative mb-12">
                 <img 
                   src="/lovable-uploads/9e3dc511-3aec-4dc9-840f-187ab8de7235.png" 
-                  alt="SupplyOS Logo" 
+                  alt="SupplyOS - Plateforme logistique intégrée de Speed E-Log" 
                   className="h-28 sm:h-32 object-contain relative z-10" 
                 />
                 <div className="absolute inset-0 bg-blue-400/10 dark:bg-blue-400/5 rounded-full filter blur-3xl"></div>

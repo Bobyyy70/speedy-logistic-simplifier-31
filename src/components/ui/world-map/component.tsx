@@ -50,7 +50,7 @@ export function WorldMap({
       <img
         src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
         className={`h-full w-full [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] pointer-events-none select-none opacity-${Math.round(opacity * 100)}`}
-        alt="world map"
+        alt="Carte mondiale illustrant la portée internationale des services logistiques Speed E-Log"
         height="495"
         width="1056"
         draggable={false}

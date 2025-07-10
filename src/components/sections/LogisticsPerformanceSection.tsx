@@ -159,7 +159,7 @@ export function LogisticsPerformanceSection() {
             <div className="relative">
               <div className="absolute -inset-4 rounded-full" />
               <img 
-                alt="SupplyOS Logo" 
+                alt="SupplyOS - Plateforme logistique intégrée de Speed E-Log pour gestion complète des opérations" 
                 className="relative z-10 max-w-full h-auto" 
                 src="/lovable-uploads/9e3dc511-3aec-4dc9-840f-187ab8de7235.png" 
               />
