@@ -29,6 +29,16 @@ interface SavFormData {
   bestTimeToContact?: string
 }
 
+// Input sanitization function
+function sanitizeInput(input: string): string {
+  return input
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/<[^>]*>/g, '')
+    .replace(/javascript:/gi, '')
+    .replace(/on\w+\s*=/gi, '')
+    .trim()
+}
+
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
@@ -39,7 +49,7 @@ serve(async (req) => {
     // Validate request method
     if (req.method !== 'POST') {
       return new Response(
-        JSON.stringify({ error: 'Method not allowed' }),
+        JSON.stringify({ error: 'Invalid request' }),
         { 
           status: 405, 
           headers: { ...corsHeaders, ...securityHeaders, 'Content-Type': 'application/json' }
@@ -47,13 +57,34 @@ serve(async (req) => {
       )
     }
 
-    // Parse and validate form data
+    // Parse and validate request body with size limit
+    const contentLength = req.headers.get('content-length')
+    if (contentLength && parseInt(contentLength) > 5000) { // 5KB limit for SAV form
+      return new Response(
+        JSON.stringify({ error: 'Request too large' }),
+        { 
+          status: 413, 
+          headers: { ...corsHeaders, ...securityHeaders, 'Content-Type': 'application/json' }
+        }
+      )
+    }
+
     const formData: SavFormData = await req.json()
     
+    // Sanitize all inputs
+    const sanitizedData = {
+      ...formData,
+      fullName: sanitizeInput(formData.fullName),
+      email: sanitizeInput(formData.email),
+      orderNumber: sanitizeInput(formData.orderNumber),
+      phone: formData.phone ? sanitizeInput(formData.phone) : undefined,
+      description: sanitizeInput(formData.description),
+    }
+    
     // Input validation
-    if (!formData.fullName || !formData.email || !formData.orderNumber || !formData.description) {
+    if (!sanitizedData.fullName || !sanitizedData.email || !sanitizedData.orderNumber || !sanitizedData.description) {
       return new Response(
-        JSON.stringify({ error: 'Missing required fields' }),
+        JSON.stringify({ error: 'Required information missing' }),
         { 
           status: 400, 
           headers: { ...corsHeaders, ...securityHeaders, 'Content-Type': 'application/json' }
@@ -61,9 +92,9 @@ serve(async (req) => {
       )
     }
 
-    // Email validation
+    // Enhanced email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(formData.email)) {
+    if (!emailRegex.test(sanitizedData.email) || sanitizedData.email.length > 254) {
       return new Response(
         JSON.stringify({ error: 'Invalid email format' }),
         { 
@@ -79,27 +110,34 @@ serve(async (req) => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     )
 
-    // Log the SAV form submission securely
+    // Log the SAV form submission securely with sanitized data
     const { error: logError } = await supabase
       .from('sav_submissions')
       .insert({
-        full_name: formData.fullName,
-        email: formData.email,
-        order_number: formData.orderNumber,
-        issue_category: formData.issueCategory,
+        full_name: sanitizedData.fullName,
+        email: sanitizedData.email,
+        order_number: sanitizedData.orderNumber,
+        issue_category: sanitizedData.issueCategory,
         submitted_at: new Date().toISOString(),
         ip_address: req.headers.get('x-forwarded-for') || 'unknown',
-        user_agent: req.headers.get('user-agent')
+        user_agent: req.headers.get('user-agent')?.substring(0, 500) || 'Unknown'
       })
 
     if (logError) {
-      console.error('Failed to log SAV submission:', logError)
+      console.error('Database error:', logError)
+      return new Response(
+        JSON.stringify({ error: 'Unable to process request' }),
+        { 
+          status: 500, 
+          headers: { ...corsHeaders, ...securityHeaders, 'Content-Type': 'application/json' }
+        }
+      )
     }
 
     return new Response(
       JSON.stringify({ 
         success: true, 
-        message: 'SAV form submitted successfully' 
+        message: 'Request processed successfully' 
       }),
       { 
         status: 200, 
@@ -111,7 +149,7 @@ serve(async (req) => {
     console.error('SAV form error:', error)
     
     return new Response(
-      JSON.stringify({ error: 'Internal server error' }),
+      JSON.stringify({ error: 'An error occurred while processing your request' }),
       { 
         status: 500, 
         headers: { ...corsHeaders, ...securityHeaders, 'Content-Type': 'application/json' }

@@ -14,6 +14,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
+import { sanitizeInput, validateContent, generateHoneypot, generateCSRFToken, ClientRateLimiter } from "@/lib/security-utils";
 
 // Définition du schéma de validation avec Zod
 const contactFormSchema = z.object({
@@ -102,9 +103,14 @@ const productTypes = [{
   label: "Autre"
 }];
 
+// Rate limiter instance
+const rateLimiter = new ClientRateLimiter(3, 10 * 60 * 1000); // 3 attempts per 10 minutes
+
 export const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
+  const [honeypot, setHoneypot] = useState(generateHoneypot());
+  const [csrfToken] = useState(generateCSRFToken());
   const totalSteps = 4;
   
   const form = useForm<ContactFormValues>({
@@ -167,39 +173,100 @@ export const ContactForm = () => {
   };
 
   const onSubmit = async (data: ContactFormValues) => {
-    console.log("📋 Début de soumission du formulaire contact", data);
     setIsSubmitting(true);
     
     try {
-      console.log("🔄 Appel de la fonction Supabase...");
-      
-      const { data: result, error } = await supabase.functions.invoke('secure-contact-form', {
-        body: data
-      });
+      // Check honeypot
+      if (honeypot.value !== '') {
+        console.warn("🍯 Honeypot triggered - potential bot");
+        toast({
+          title: "Erreur",
+          description: "Une erreur est survenue. Veuillez réessayer.",
+          variant: "destructive",
+        });
+        return;
+      }
 
-      console.log("📨 Réponse de la fonction:", { result, error });
+      // Rate limiting check
+      const clientId = `form_${Date.now()}`;
+      if (!rateLimiter.isAllowed(clientId)) {
+        toast({
+          title: "Trop de tentatives",
+          description: "Veuillez patienter avant de renvoyer le formulaire.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      console.log("📝 Envoi du formulaire:", data);
+      
+      // Sanitize all inputs
+      const sanitizedData = {
+        ...data,
+        firstName: sanitizeInput(data.firstName),
+        lastName: sanitizeInput(data.lastName),
+        email: sanitizeInput(data.email),
+        phone: sanitizeInput(data.phone),
+        companyName: sanitizeInput(data.companyName),
+        city: sanitizeInput(data.city),
+        postalCode: sanitizeInput(data.postalCode),
+        website: data.website ? sanitizeInput(data.website) : undefined,
+        message: data.message ? sanitizeInput(data.message) : undefined,
+        csrfToken
+      };
+
+      // Validate content
+      const contentValidation = validateContent(sanitizedData.message || '');
+      if (!contentValidation.isValid) {
+        toast({
+          title: "Contenu non valide",
+          description: "Le message contient du contenu non autorisé.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Validation côté client
+      const result = contactFormSchema.safeParse(sanitizedData);
+      if (!result.success) {
+        toast({
+          title: "Erreur de validation",
+          description: "Veuillez vérifier vos informations et réessayer.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const { data: submitData, error } = await supabase.functions.invoke(
+        'secure-contact-form',
+        {
+          body: result.data,
+        }
+      );
 
       if (error) {
-        console.error("❌ Erreur de la fonction:", error);
+        console.error("❌ Erreur Supabase:", error);
         throw error;
       }
 
-      console.log("✅ Formulaire soumis avec succès");
+      console.log("✅ Réponse:", submitData);
       
       toast({
         title: "Demande de devis envoyée !",
         description: "Nous vous recontacterons dans les plus brefs délais."
       });
-      
+
+      // Reset du formulaire
       form.reset();
       setCurrentStep(0);
-    } catch (error) {
-      console.error("💥 Erreur lors de la soumission:", error);
+      setHoneypot(generateHoneypot());
       
+    } catch (error) {
+      console.error("❌ Erreur lors de l'envoi:", error);
       toast({
-        title: "Erreur",
-        description: "Un problème est survenu lors de l'envoi du message. Veuillez réessayer.",
-        variant: "destructive"
+        title: "Erreur lors de l'envoi",
+        description: "Une erreur est survenue. Veuillez réessayer plus tard.",
+        variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
@@ -618,6 +685,17 @@ export const ContactForm = () => {
       
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          {/* Honeypot field */}
+          <input
+            type="text"
+            name={honeypot.name}
+            value={honeypot.value}
+            onChange={(e) => setHoneypot({...honeypot, value: e.target.value})}
+            style={honeypot.style}
+            tabIndex={-1}
+            autoComplete="off"
+          />
+          
           {renderStepContent()}
           
           <div className="flex justify-between mt-8">
