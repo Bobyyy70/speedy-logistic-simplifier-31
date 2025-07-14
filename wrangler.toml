@@ -1,4 +1,4 @@
-name = "speedelog-real-site"
+name = "site-web-speedelog"
 compatibility_date = "2025-07-14"
 
 [build]
