@@ -131,7 +131,7 @@ const TermsOfService = () => {
               <ul className="list-disc pl-5 space-y-1">
                 <li><strong>SUSPENSION DES SERVICES :</strong> Speed E-Log se réserve le droit de suspendre l'exécution de ses prestations</li>
                 <li><strong>DROIT DE RÉTENTION :</strong> Exercice du droit de rétention conformément à l'article 6</li>
-                <li><strong>FRAIS DE STOCKAGE :</strong> Facturation de frais supplémentaires de 15€/jour/palette après notification</li>
+                <li><strong>FRAIS DE STOCKAGE :</strong> Facturation de frais supplémentaires de 1€/jour/palette après notification</li>
                 <li><strong>CLAUSE PÉNALE :</strong> En cas de recouvrement judiciaire, indemnité de 10% du montant impayé (minimum 250€)</li>
               </ul>
             </div>

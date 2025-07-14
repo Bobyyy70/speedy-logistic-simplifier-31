@@ -1,5 +1,8 @@
-name = "snowy-bar-6ee8"
+name = "speedelog-real-site"
 compatibility_date = "2025-07-14"
+
+[build]
+command = "npm run build"
 
 [assets]
 directory = "./dist"
