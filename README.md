@@ -1,69 +1,113 @@
-# Welcome to your Lovable project
+# Speed E-Log - Guide de Déploiement
 
-## Project info
+## Vue d'ensemble
 
-**URL**: https://lovable.dev/projects/e308ac2e-8439-4c80-9876-755666da7981
+Site web Speed E-Log déployé sur **Cloudflare Workers** avec le domaine speedelog.net.
 
-## How can I edit this code?
+**Dernière mise à jour :** 14 juillet 2025 - Force deploy
 
-There are several ways of editing your application.
+## 🚀 Déploiement Automatique
 
-**Use Lovable**
+### Prérequis
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e308ac2e-8439-4c80-9876-755666da7981) and start prompting.
+- Repository GitHub connecté à Cloudflare Workers
+- Node.js v20+ configuré dans `.nvmrc`
+- Configuration Cloudflare avec npm (pas bun)
+- Wrangler configuré pour le déploiement
 
-Changes made via Lovable will be committed automatically to this repo.
+### Étapes pour déployer une nouvelle version
 
-**Use your preferred IDE**
+1. **Faire vos modifications localement**
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+   ```bash
+   # Développement local
+   npm install
+   npm run dev
+   ```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+2. **Tester le build localement**
 
-Follow these steps:
+   ```bash
+   npm run build
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+3. **Committer et pousser les changements**
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+   ```bash
+   git add .
+   git commit -m "Description des changements"
+   git push
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+4. **Le déploiement se fait automatiquement** ⏳
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+   - Cloudflare détecte le push GitHub
+   - Build automatique avec `npm run build`
+   - Déploiement via `npx wrangler deploy`
+   - Attendre 3-5 minutes pour la propagation
+
+## 🔧 Configuration Cloudflare Workers
+
+### Paramètres de Build
+
+- **Commande de build :** `npm install && npm run build`
+- **Commande de déploiement :** `npx wrangler deploy`
+- **Répertoire de sortie :** `dist`
+- **Version Node.js :** `20.10.0` (via `.nvmrc`)
+- **Gestionnaire de paquets :** npm (pas bun)
+
+### URLs
+
+- **Production :** <https://www.speedelog.net>
+- **Aperçu Workers :** <https://speedelog-real-site.red-hill-ec42.workers.dev>
+
+## 🐛 Résolution de problèmes
+
+### Si le déploiement échoue
+
+1. Vérifier que le build fonctionne localement : `npm run build`
+2. S'assurer qu'il n'y a pas de fichier `bun.lockb`
+3. Vérifier que `.nvmrc` contient `20.10.0`
+4. Vérifier la configuration `wrangler.toml`
+5. Forcer un nouveau déploiement en modifiant la version dans `package.json`
+
+### Si l'ancien site est encore visible
+
+1. **Vider le cache Cloudflare :**
+   - Dashboard Cloudflare → Domaine → Mise en cache → Purger tout
+2. **Tester en navigation privée**
+3. **Forcer le refresh :** Ctrl+F5 (Windows) ou Cmd+Shift+R (Mac)
+4. **Attendre 5-10 minutes** pour la propagation DNS
+
+### Si le site affiche "There is nothing here yet"
+
+- **Normal pendant le déploiement** - attendre 3-5 minutes
+- Vérifier les logs de build dans Cloudflare Workers Dashboard
+
+## 📁 Structure du projet
+
+```text
+├── src/                 # Code source React
+├── public/             # Assets statiques
+├── dist/               # Build de production (généré)
+├── .nvmrc              # Version Node.js (20.10.0)
+├── package.json        # Dépendances et scripts
+├── wrangler.toml       # Configuration Cloudflare Workers
+└── README.md           # Ce fichier
 ```
 
-**Edit a file directly in GitHub**
+## 🔄 Workflow de développement
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. **Développement local :** `npm run dev`
+2. **Test du build :** `npm run build`
+3. **Push vers main :** Déploiement automatique via Wrangler
+4. **Vérification :** Attendre et tester sur speedelog.net
 
-**Use GitHub Codespaces**
+## 📞 Support
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+En cas de problème, vérifier :
 
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/e308ac2e-8439-4c80-9876-755666da7981) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+- Les logs de build dans Cloudflare Workers Dashboard
+- Que le repository GitHub est bien connecté
+- Que les paramètres de build utilisent npm et non bun
+- La configuration `wrangler.toml`
