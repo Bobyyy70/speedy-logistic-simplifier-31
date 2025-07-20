@@ -1,4 +1,3 @@
-import { generateBreadcrumbStructuredData, generateProductCatalogStructuredData, generateReviewStructuredData, generateServiceStructuredData, generateWebsiteStructuredData } from "./structured-data";
 
 export type SEOPageData = {
   title?: string;
@@ -270,21 +269,19 @@ export const defaultSEO: SEOPageData = {
 
 export const seoPages: { [key: string]: SEOPageData } = {
   "/": {
-    title: "Speed E-Log | La logistique sans les tracas - PME E-commerce",
-    description: "Externalisez votre logistique e-commerce avec Speed E-Log. Solutions fiables et transparentes pour PME. Fulfillment France, dès 6,50€ TTC. Devis gratuit.",
-    keywords: "logistique e-commerce PME, externalisation logistique, fulfillment France, 3PL e-commerce, préparation commandes",
+    title: "Speed E-Log | Logistique E-commerce Simplifiée pour PME",
+    description: "Externalisez votre logistique e-commerce avec Speed E-Log. Solutions fiables et transparentes pour PME. Devis personnalisé gratuit.",
+    keywords: "logistique e-commerce PME, externalisation logistique, fulfillment France, 3PL e-commerce",
     structuredData: [
       {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "Speed E-Log",
-        "description": "La logistique sans les tracas - Expert en logistique e-commerce pour PME",
+        "description": "Expert en logistique e-commerce pour PME",
         "url": "https://speedelog.net",
-        "telephone": "+33-6-35-58-40-04",
-        "priceRange": "À partir de 6,50€ TTC",
+        "telephone": "+33-XXX-XXX-XXX",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "37 Rue de Rémaucourt",
           "addressLocality": "Port-sur-Saône",
           "addressRegion": "Haute-Saône",
           "postalCode": "70170",
@@ -296,45 +293,10 @@ export const seoPages: { [key: string]: SEOPageData } = {
           "longitude": "6.0456"
         },
         "openingHours": "Mo-Fr 09:00-18:00",
-        "serviceArea": "France",
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Services de logistique e-commerce",
-          "itemListElement": [
-            {
-              "@type": "Service",
-              "name": "Réception et stockage",
-              "description": "Réception, contrôle qualité et stockage sécurisé"
-            },
-            {
-              "@type": "Service",
-              "name": "Préparation de commandes",
-              "description": "Picking et emballage professionnel"
-            },
-            {
-              "@type": "Service",
-              "name": "Expédition multi-transporteurs",
-              "description": "Livraison optimisée avec 10+ transporteurs partenaires"
-            },
-            {
-              "@type": "Service",
-              "name": "Gestion des retours",
-              "description": "Traitement complet des retours clients"
-            },
-            {
-              "@type": "Service",
-              "name": "Intégrations e-commerce",
-              "description": "40+ connecteurs CMS, marketplaces et transporteurs"
-            },
-            {
-              "@type": "Service",
-              "name": "Solutions écoresponsables",
-              "description": "Emballages durables et optimisation des livraisons"
-            }
-          ]
-        }
+        "serviceArea": "France"
       },
       generateWebsiteStructuredData(),
+      generateProductCatalogStructuredData(),
       generateReviewStructuredData([
         { quote: "Service au top ! Très satisfait de Speedelog", name: "Alexandre. Z.", rating: 4 },
         { quote: "En tant qu'e-commerçant actif sur Amazon, Cdiscount et d'autres plateformes, j'ai besoin d'un logisticien sur qui je peux vraiment compter.", name: "Fred P.", rating: 5 },
@@ -344,71 +306,76 @@ export const seoPages: { [key: string]: SEOPageData } = {
       ])
     ]
   },
-  "/suivi-colis": {
-    title: "Suivi Colis E-commerce | Speed E-Log - Tracking en Temps Réel",
-    description: "Suivez vos colis en temps réel avec Speed E-Log. Saisissez votre numéro de suivi pour connaître le statut de votre commande e-commerce. Service de tracking professionnel.",
-    keywords: "suivi colis, tracking, livraison e-commerce, Speed E-Log, statut commande, suivi temps réel",
+  "/services": {
+    title: "Services Logistiques E-commerce | Speed E-Log - Externalisation 3PL",
+    description: "Découvrez nos services logistiques e-commerce: réception, stockage, préparation de commandes, expédition et gestion des retours. Solutions complètes pour PME.",
+    keywords: "services logistique e-commerce, 3PL France, fulfillment, préparation commandes, stockage e-commerce",
+    structuredData: generateServiceStructuredData(
+      "Services de Logistique E-commerce",
+      "Solutions complètes de logistique externalisée pour e-commerce: réception, stockage, préparation de commandes, expédition et gestion des retours.",
+      [
+        "Réception et contrôle qualité",
+        "Stockage sécurisé",
+        "Préparation de commandes",
+        "Expédition multi-transporteurs",
+        "Gestion des retours",
+        "Reporting et analytiques"
+      ]
+    )
+  },
+  "/contact": {
+    title: "Contact Speed E-Log - Consultation Logistique Gratuite | Devis 24h",
+    description: "Contactez Speed E-Log pour optimiser votre logistique e-commerce. Réservez une consultation gratuite ou utilisez nos formulaires. Réponse sous 24h garantie.",
+    keywords: "contact logistique e-commerce, consultation gratuite, devis logistique PME, Speed E-Log contact",
     structuredData: {
       "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Suivi Colis Speed E-Log",
-      "description": "Application de suivi de colis en temps réel",
-      "url": "https://speedelog.net/suivi-colis",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web",
-      "featureList": [
-        "Suivi temps réel",
-        "Historique des statuts",
-        "Notifications automatiques",
-        "Interface intuitive"
-      ]
+      "@type": "ContactPage",
+      "name": "Contact Speed E-Log",
+      "description": "Page de contact pour consultation logistique gratuite"
     }
   },
-  "/integrations": {
-    title: "Intégrations E-commerce | Speed E-Log - 40+ Connecteurs CMS & Marketplaces",
-    description: "Connectez Speed E-Log à plus de 40 plateformes : Shopify, WooCommerce, Amazon, Cdiscount, DPD, UPS. Intégrations e-commerce, marketplaces et transporteurs. API REST disponible.",
-    keywords: "intégrations e-commerce, connecteur Shopify Speed E-Log, plugin WooCommerce expédition, API logistique, webhooks, marketplace Amazon",
+  "/about": {
+    title: "À propos Speed E-Log - Expert Logistique E-commerce PME | Histoire",
+    description: "Découvrez Speed E-Log, votre partenaire logistique e-commerce. Notre histoire, mission et expertise au service des PME françaises depuis Port-sur-Saône.",
+    keywords: "à propos Speed E-Log, histoire entreprise logistique, expert e-commerce PME, Port-sur-Saône",
     structuredData: [
       {
         "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": "Intégrations Speed E-Log",
-        "description": "Liste complète des intégrations e-commerce, marketplaces et transporteurs",
-        "numberOfItems": 37,
-        "itemListElement": [
-          {
-            "@type": "SoftwareApplication",
-            "position": 1,
-            "name": "Shopify",
-            "description": "Synchronisation automatique des commandes",
-            "applicationCategory": "eCommercePlatform"
+        "@type": "AboutPage",
+        "name": "À propos de Speed E-Log",
+        "description": "Histoire et mission de Speed E-Log, expert en logistique e-commerce pour PME",
+        "mainEntity": {
+          "@type": "Organization",
+          "name": "Speed E-Log",
+          "foundingDate": "2020",
+          "founder": {
+            "@type": "Person",
+            "name": "Équipe Speed E-Log"
           },
-          {
-            "@type": "SoftwareApplication",
-            "position": 2,
-            "name": "WooCommerce",
-            "description": "Plugin officiel Speed E-Log",
-            "applicationCategory": "eCommercePlatform"
-          },
-          {
-            "@type": "SoftwareApplication",
-            "position": 3,
-            "name": "Amazon",
-            "description": "FBA/FBM synchronisé",
-            "applicationCategory": "Marketplace"
+          "mission": "Simplifier la logistique e-commerce pour les PME françaises",
+          "knowsAbout": [
+            "Logistique e-commerce",
+            "Fulfillment",
+            "Gestion des stocks",
+            "Expédition",
+            "Solutions 3PL"
+          ],
+          "areaServed": {
+            "@type": "Country",
+            "name": "France"
           }
-        ]
+        }
       },
       generateBreadcrumbStructuredData([
         { name: "Accueil", url: "https://speedelog.net" },
-        { name: "Intégrations", url: "https://speedelog.net/integrations" }
+        { name: "À propos", url: "https://speedelog.net/about" }
       ])
     ]
   },
   "/faq": {
     title: "FAQ Logistique E-commerce PME | Speed E-Log - Questions Fréquentes",
     description: "Réponses expertes aux questions sur l'externalisation logistique e-commerce, coûts, délais et avantages pour PME. Guide complet Speed E-Log.",
-    keywords: "FAQ logistique e-commerce, questions externalisation, coûts 3PL, avantages fulfillment PME, Speed E-Log questions",
+    keywords: "FAQ logistique e-commerce, questions externalisation, coûts 3PL, avantages fulfillment PME",
     structuredData: generateFAQStructuredData([
       {
         question: "Quels types de produits gérez-vous ?",
@@ -424,11 +391,11 @@ export const seoPages: { [key: string]: SEOPageData } = {
       },
       {
         question: "Quelles plateformes e-commerce sont compatibles avec votre système ?",
-        answer: "Nous nous intégrons avec plus de 40 plateformes e-commerce : Shopify, WooCommerce, Prestashop, Magento, ainsi que les marketplaces comme Amazon, Cdiscount, Fnac ou eBay."
+        answer: "Nous nous intégrons avec la plupart des principales plateformes e-commerce : Shopify, WooCommerce, Prestashop, Magento, ainsi que les marketplaces comme Amazon ou Cdiscount."
       },
       {
         question: "Comment s'effectue le suivi des stocks et des commandes ?",
-        answer: "Vous bénéficiez d'un accès à notre outil avec lequel vous pouvez suivre en temps réel vos niveaux de stock, l'état de vos commandes et générer des rapports détaillés."
+        answer: "Vous bénéficiez d'un accès à notre outil avec lequel vous pouvez suivre en temps réel vos niveaux de stock, l'état de vos commandes et générer des rapports."
       },
       {
         question: "Comment gérez-vous les retours clients ?",
@@ -436,30 +403,68 @@ export const seoPages: { [key: string]: SEOPageData } = {
       },
       {
         question: "Quelles sont vos zones de livraison ?",
-        answer: "Nous assurons la livraison en France métropolitaine, dans les DOM-TOM, en Europe et à l'international grâce à notre réseau de 10+ transporteurs partenaires."
+        answer: "Nous assurons la livraison en France métropolitaine, dans les DOM-TOM, en Europe et à l'international."
       },
       {
         question: "Comment se déroule l'intégration initiale avec Speed E-Log ?",
-        answer: "L'intégration se fait en plusieurs étapes : analyse de vos besoins, configuration de notre système pour votre catalogue, mise en place des intégrations techniques, réception de vos stocks. Le processus prend généralement 5 à 10 jours."
-      },
-      {
-        question: "Proposez-vous des solutions écoresponsables ?",
-        answer: "Oui, nous proposons des emballages durables, optimisons les trajets de livraison et offrons des options de consolidation pour réduire l'impact environnemental."
-      },
-      {
-        question: "Quel est le prix minimum pour commencer ?",
-        answer: "Nos tarifs démarrent à partir de 6,50€ TTC selon vos besoins. Nous proposons un devis personnalisé gratuit pour adapter nos services à votre volume et vos spécificités."
-      },
-      {
-        question: "Puis-je suivre mes colis en temps réel ?",
-        answer: "Absolument ! Notre interface de suivi permet de suivre vos colis en temps réel. Vous et vos clients recevez des notifications automatiques à chaque étape de la livraison."
-      },
-      {
-        question: "Qu'est-ce qui différencie Speed E-Log des autres prestataires 3PL ?",
-        answer: "Notre approche 'sans les tracas' : intégrations simplifiées, tarification transparente dès 6,50€, 40+ connecteurs natifs, et une équipe dédiée aux PME e-commerce. Nous privilégions la proximité et la réactivité."
+        answer: "L'intégration se fait en plusieurs étapes : analyse de vos besoins, configuration de notre système pour votre catalogue, mise en place des intégrations techniques, réception de vos stocks."
       }
     ])
-  }
+  },
+  "/technology": {
+    title: "Technologie Logistique Avancée | Speed E-Log - Innovation E-commerce",
+    description: "Découvrez notre technologie de pointe pour optimiser votre logistique e-commerce. Solutions innovantes et automatisation pour PME performantes.",
+    keywords: "technologie logistique, automatisation e-commerce, innovation 3PL, solutions technologiques PME",
+    structuredData: [
+      generateServiceStructuredData(
+        "Technologie Logistique Avancée",
+        "Plateforme technologique innovante pour optimiser la logistique e-commerce avec automatisation et suivi en temps réel.",
+        [
+          "Plateforme SupplyOS",
+          "Intégrations e-commerce automatisées",
+          "Suivi temps réel des stocks",
+          "Analytiques et reporting avancés",
+          "API pour développeurs",
+          "Automatisation des processus"
+        ]
+      ),
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "SupplyOS",
+        "description": "Plateforme logistique intégrée pour e-commerce",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "offers": {
+          "@type": "Offer",
+          "price": "Inclus dans nos services",
+          "priceCurrency": "EUR"
+        },
+        "featureList": [
+          "Gestion des stocks en temps réel",
+          "Intégration multiplateforme",
+          "Reporting avancé",
+          "API REST",
+          "Dashboard analytiques"
+        ]
+      }
+    ]
+  },
+  "/mentions-legales": {
+    title: "Mentions Légales | Speed E-Log - Logistique E-commerce Port-sur-Saône",
+    description: "Mentions légales Speed E-Log, société de logistique e-commerce basée à Port-sur-Saône, Haute-Saône. Informations légales et réglementaires.",
+    keywords: "mentions légales Speed E-Log, société logistique Port-sur-Saône, informations légales",
+  },
+  "/politique-confidentialite": {
+    title: "Politique Confidentialité | Speed E-Log - Protection Données RGPD",
+    description: "Politique de confidentialité Speed E-Log conforme RGPD. Protection et traitement des données personnelles pour nos services logistique e-commerce.",
+    keywords: "politique confidentialité, protection données RGPD, confidentialité Speed E-Log",
+  },
+  "/cgv": {
+    title: "CGV Speed E-Log | Conditions Générales Logistique E-commerce",
+    description: "Conditions générales de vente Speed E-Log pour services de logistique e-commerce. Tarifs, engagements et modalités de nos prestations 3PL.",
+    keywords: "CGV Speed E-Log, conditions générales logistique, tarifs 3PL, conditions services e-commerce",
+  },
 };
 
 // Generate sitemap data
