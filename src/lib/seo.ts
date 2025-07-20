@@ -1,4 +1,4 @@
-// SEO utilities for Speed E-Log
+import { generateBreadcrumbStructuredData, generateProductCatalogStructuredData, generateReviewStructuredData, generateServiceStructuredData, generateWebsiteStructuredData } from "./structured-data";
 
 export type SEOPageData = {
   title?: string;
