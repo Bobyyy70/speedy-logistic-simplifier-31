@@ -10,13 +10,13 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
+  // Navigation selon le cahier des charges : seulement /, /suivi-colis, /integrations, /faq, /blog
   const navigation = [
     { name: "Accueil", href: "/" },
-    { name: "Services", href: "/services" },
-    { name: "Technologie", href: "/technology" },
-    { name: "À Propos", href: "/about" },
+    { name: "Intégrations", href: "/integrations" },
+    { name: "Suivi Colis", href: "/suivi-colis" },
     { name: "FAQ", href: "/faq" },
-    { name: "Contact", href: "/contact" },
+    // { name: "Blog", href: "/blog" }, // À activer quand HubSpot CMS sera configuré
   ];
 
   const isActive = (path: string) => {
@@ -66,9 +66,11 @@ export function Header() {
             </div>
           </nav>
 
-          {/* Desktop User Menu */}
+          {/* Desktop CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
-            <UserMenu />
+            <Button variant="blue" size="sm" asChild>
+              <Link to="/#contact">Devis gratuit</Link>
+            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -102,7 +104,11 @@ export function Header() {
                 </div>
               ))}
               <div className="px-4 py-3 border-t mt-4 pt-4">
-                <UserMenu />
+                <Button variant="blue" size="sm" className="w-full" asChild>
+                  <Link to="/#contact" onClick={() => setIsMenuOpen(false)}>
+                    Devis gratuit
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
