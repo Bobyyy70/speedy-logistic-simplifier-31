@@ -1,4 +1,4 @@
-import { generateBreadcrumbStructuredData, generateProductCatalogStructuredData, generateReviewStructuredData, generateServiceStructuredData, generateWebsiteStructuredData } from "./structured-data";
+// SEO utilities for Speed E-Log
 
 export type SEOPageData = {
   title?: string;
