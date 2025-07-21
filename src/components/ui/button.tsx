@@ -25,10 +25,10 @@ const buttonVariants = cva(
         blue: "bg-[#2F68F3] hover:bg-[#2057E2] text-white border-0 shadow-md hover:shadow-lg transition-all duration-300"
       },
       size: {
-        default: "h-10 px-4 py-2 min-h-[40px]",
-        sm: "h-9 rounded-md px-3 min-h-[36px]",
+        default: "h-10 px-4 py-2 min-h-[44px] md:min-h-[40px]",
+        sm: "h-9 rounded-md px-3 min-h-[44px] md:min-h-[36px]",
         lg: "h-11 rounded-md px-8 min-h-[48px]",
-        icon: "h-10 w-10 min-h-[40px] min-w-[40px]",
+        icon: "h-10 w-10 min-h-[44px] min-w-[44px] md:min-h-[40px] md:min-w-[40px]",
         xl: "h-12 rounded-full px-10 py-3 text-base min-h-[48px]",
         "2xl": "h-14 rounded-full px-12 py-4 text-lg min-h-[56px]",
       },

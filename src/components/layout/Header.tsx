@@ -28,7 +28,7 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex h-14 md:h-16 items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2 min-h-[44px] touch-manipulation">
             <LogoIcon className="h-6 w-6 md:h-8 md:w-8" />
             <span className="font-bold text-lg md:text-xl">Speed E-Log</span>
           </Link>
@@ -42,7 +42,7 @@ export function Header() {
                   <div key={item.name} className="relative">
                     <Link
                       to={item.href}
-                      className={`relative cursor-pointer text-sm font-semibold px-4 py-2 rounded-full transition-all duration-300 ${
+                      className={`relative cursor-pointer text-sm font-semibold px-4 py-2 rounded-full transition-all duration-300 min-h-[40px] flex items-center touch-manipulation ${
                         isCurrentActive
                           ? "text-slate-900 bg-blue-50"
                           : "text-slate-500 hover:text-[#F3BA2F]"
@@ -74,8 +74,8 @@ export function Header() {
           {/* Mobile menu button */}
           <Button
             variant="ghost"
-            size="sm"
-            className="md:hidden min-h-[44px] min-w-[44px] p-2"
+            size="icon"
+            className="md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -90,7 +90,7 @@ export function Header() {
                 <div key={item.name}>
                   <Link
                     to={item.href}
-                    className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors min-h-[44px] flex items-center ${
+                    className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors min-h-[48px] flex items-center touch-manipulation ${
                       isActive(item.href)
                         ? "text-primary bg-primary/10"
                         : "text-muted-foreground hover:bg-gray-50"

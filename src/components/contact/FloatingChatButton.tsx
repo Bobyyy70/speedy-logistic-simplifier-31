@@ -73,7 +73,7 @@ export const FloatingChatButton = () => {
   return (
     <motion.button
       onClick={openHubSpotChat}
-      className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white p-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 group"
+      className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white p-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 group min-h-[56px] min-w-[56px] touch-manipulation"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 0.5, delay: 1 }}
