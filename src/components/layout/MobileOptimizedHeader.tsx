@@ -6,9 +6,8 @@ import { LogoIcon } from "@/components/ui/LogoIcon";
 import { UserMenu } from "@/components/layout/UserMenu";
 import { Menu, X } from "lucide-react";
 import { useMobileOptimization } from "@/hooks/use-mobile-optimization";
-import { cn } from "@/lib/utils";
 
-export function Header() {
+export function MobileOptimizedHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const { isMobile, getMobileSpacing } = useMobileOptimization();
@@ -46,7 +45,7 @@ export function Header() {
                     <Link
                       to={item.href}
                       className={cn(
-                        "relative cursor-pointer text-sm font-semibold px-4 py-2 rounded-full transition-all duration-300 min-h-[40px] flex items-center touch-manipulation",
+                        "relative cursor-pointer text-sm font-semibold px-4 py-2 rounded-full transition-all duration-300 min-h-[40px] flex items-center",
                         isCurrentActive
                           ? "text-slate-900 bg-blue-50"
                           : "text-slate-500 hover:text-[#F3BA2F]"

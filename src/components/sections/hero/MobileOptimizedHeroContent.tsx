@@ -3,14 +3,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { MobileOptimizedButton } from "@/components/ui/mobile-optimized-button";
 import { HomeLogoWithText } from "@/components/ui/LogoIcon";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { SocialProof } from "@/components/sections/hero/SocialProof";
 import { useMobileOptimization } from "@/hooks/use-mobile-optimization";
-import { cn } from "@/lib/utils";
 
-export function HeroContent() {
+export function MobileOptimizedHeroContent() {
   const { isMobile, getMobileSpacing } = useMobileOptimization();
 
   return (
@@ -18,7 +17,6 @@ export function HeroContent() {
       "flex flex-col justify-center text-center lg:text-left px-4 md:px-6",
       getMobileSpacing("space-y-6")
     )}>
-      {/* Logo */}
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -31,7 +29,6 @@ export function HeroContent() {
         )} />
       </motion.div>
 
-      {/* Headlines */}
       <div className={cn(getMobileSpacing("space-y-4"))}>
         <AnimatedText
           text="La logistique E-commerce,"
@@ -55,7 +52,6 @@ export function HeroContent() {
         />
       </div>
 
-      {/* Description */}
       <motion.p 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -70,7 +66,6 @@ export function HeroContent() {
         Speed E-Log simplifie vos expéditions vers le monde entier.
       </motion.p>
 
-      {/* CTA Button */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -80,13 +75,10 @@ export function HeroContent() {
           isMobile ? "gap-4" : "gap-3 min-[400px]:flex-row"
         )}
       >
-        <Button 
+        <MobileOptimizedButton 
           variant="blue" 
           size={isMobile ? "xl" : "2xl"}
-          className={cn(
-            "shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full touch-manipulation",
-            isMobile ? "min-h-[56px] text-base px-8" : ""
-          )}
+          className="shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
           asChild
         >
           <Link to="/contact">
@@ -106,10 +98,10 @@ export function HeroContent() {
               </motion.span>
             </span>
           </Link>
-        </Button>
+        </MobileOptimizedButton>
       </motion.div>
       
-      {/* Social Proof */}
+      {/* Social Proof - With enhanced mobile spacing */}
       <div className={cn(isMobile ? "pt-6" : "")}>
         <SocialProof />
       </div>

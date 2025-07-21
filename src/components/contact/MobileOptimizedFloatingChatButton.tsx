@@ -3,9 +3,8 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 import { useMobileOptimization } from "@/hooks/use-mobile-optimization";
-import { cn } from "@/lib/utils";
 
-export const FloatingChatButton = () => {
+export const MobileOptimizedFloatingChatButton = () => {
   const [isHubSpotLoaded, setIsHubSpotLoaded] = useState(false);
   const { isMobile, getOptimalTouchTarget } = useMobileOptimization();
 
