@@ -1,11 +1,14 @@
 
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { WorldMap } from "@/components/ui/world-map/component";
 import { Button } from "@/components/ui/button";
+import { QuoteFormModal } from "@/components/contact/QuoteFormModal";
+import { useQuoteModal } from "@/hooks/useQuoteModal";
 
 export function ContactCTA() {
+  const { isOpen, openModal, closeModal } = useQuoteModal();
+
   // Points de livraison internationaux pour la carte simplifiée
   const globalShippingPoints = [
     {
@@ -70,12 +73,10 @@ export function ContactCTA() {
               variant="blue" 
               size="2xl" 
               className="mx-auto shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
-              asChild
+              onClick={openModal}
             >
-              <Link to="/contact" className="flex items-center gap-2">
-                Obtenir un devis personnalisé 
-                <ArrowRight className="ml-2 h-5 w-5 text-white transition-transform" />
-              </Link>
+              Obtenir un devis personnalisé 
+              <ArrowRight className="ml-2 h-5 w-5 text-white transition-transform" />
             </Button>
           </motion.div>
           
@@ -111,6 +112,9 @@ export function ContactCTA() {
           </div>
         </motion.div>
       </div>
+
+      {/* Quote Form Modal */}
+      <QuoteFormModal isOpen={isOpen} onClose={closeModal} />
     </section>
   );
 }

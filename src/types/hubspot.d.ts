@@ -7,7 +7,7 @@ declare global {
           region: string;
           portalId: string;
           formId: string;
-          target: HTMLElement;
+          target: HTMLElement | string;
         }) => void;
       };
     };

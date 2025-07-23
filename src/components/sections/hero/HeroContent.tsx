@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -7,8 +6,12 @@ import { Button } from "@/components/ui/button";
 import { HomeLogoWithText } from "@/components/ui/LogoIcon";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { SocialProof } from "@/components/sections/hero/SocialProof";
+import { QuoteFormModal } from "@/components/contact/QuoteFormModal";
+import { useQuoteModal } from "@/hooks/useQuoteModal";
 
 export function HeroContent() {
+  const { isOpen, openModal, closeModal } = useQuoteModal();
+
   return (
     <div className="flex flex-col justify-center space-y-6 text-center lg:text-left px-4 md:px-6">
       <motion.div 
@@ -55,30 +58,31 @@ export function HeroContent() {
           variant="blue" 
           size="2xl" 
           className="shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
-          asChild
+          onClick={openModal}
         >
-          <Link to="/contact">
-            <span className="relative z-10 flex items-center text-white">
-              Obtenir un devis personnalisé
-              <motion.span
-                initial={{ x: 0 }}
-                animate={{ x: [0, 5, 0] }}
-                transition={{ 
-                  duration: 1.2, 
-                  repeat: Infinity, 
-                  repeatDelay: 3,
-                  ease: "easeInOut" 
-                }}
-              >
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </motion.span>
-            </span>
-          </Link>
+          <span className="relative z-10 flex items-center text-white">
+            Obtenir un devis personnalisé
+            <motion.span
+              initial={{ x: 0 }}
+              animate={{ x: [0, 5, 0] }}
+              transition={{ 
+                duration: 1.2, 
+                repeat: Infinity, 
+                repeatDelay: 3,
+                ease: "easeInOut" 
+              }}
+            >
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </motion.span>
+          </span>
         </Button>
       </motion.div>
       
       {/* Social Proof - With animation */}
       <SocialProof />
+
+      {/* Quote Form Modal */}
+      <QuoteFormModal isOpen={isOpen} onClose={closeModal} />
     </div>
   );
 }

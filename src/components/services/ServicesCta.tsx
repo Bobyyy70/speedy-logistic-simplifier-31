@@ -1,11 +1,13 @@
-
 import React from "react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { QuoteFormModal } from "@/components/contact/QuoteFormModal";
+import { useQuoteModal } from "@/hooks/useQuoteModal";
 
 export const ServicesCta: React.FC = () => {
+  const { isOpen, openModal, closeModal } = useQuoteModal();
+
   return (
     <section className="container mx-auto mt-8 md:mt-16 lg:mt-20 text-center px-4 py-16 md:py-24 relative">
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -30,11 +32,14 @@ export const ServicesCta: React.FC = () => {
           variant="blue" 
           size="2xl" 
           className="shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
-          asChild
+          onClick={openModal}
         >
-          <Link to="/contact">Demander un Devis Personnalisé <ArrowRight className="ml-2 h-5 w-5" /></Link>
+          Demander un Devis Personnalisé <ArrowRight className="ml-2 h-5 w-5" />
         </Button>
       </motion.div>
+
+      {/* Quote Form Modal */}
+      <QuoteFormModal isOpen={isOpen} onClose={closeModal} />
     </section>
   );
 };

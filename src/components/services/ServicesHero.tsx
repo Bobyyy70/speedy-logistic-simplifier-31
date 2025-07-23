@@ -1,12 +1,15 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AuroraBackground } from "@/components/ui/aurora-background";
+import { QuoteFormModal } from "@/components/contact/QuoteFormModal";
+import { useQuoteModal } from "@/hooks/useQuoteModal";
 
 export const ServicesHero: React.FC = () => {
+  const { isOpen, openModal, closeModal } = useQuoteModal();
+
   return (
     <AuroraBackground className="min-h-[65vh] h-auto py-16 md:py-24" keepExistingBackground={true}>
       <div className="container mx-auto relative px-4 flex flex-col items-center justify-center h-full">
@@ -30,11 +33,9 @@ export const ServicesHero: React.FC = () => {
               variant="blue" 
               size="2xl" 
               className="shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
-              asChild
+              onClick={openModal}
             >
-              <Link to="/contact">
-                Obtenir un devis personnalisé
-              </Link>
+              Obtenir un devis personnalisé
             </Button>
             
             <Button 
@@ -55,6 +56,9 @@ export const ServicesHero: React.FC = () => {
           <div className="w-[300px] h-[300px] rounded-full bg-orange-500/5 blur-[80px] absolute -top-20 right-[20%]"></div>
         </div>
       </div>
+
+      {/* Quote Form Modal */}
+      <QuoteFormModal isOpen={isOpen} onClose={closeModal} />
     </AuroraBackground>
   );
 };
