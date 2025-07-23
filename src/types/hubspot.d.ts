@@ -10,6 +10,13 @@ declare global {
           target: HTMLElement | string;
         }) => void;
       };
+      meetings?: {
+        create: (config: {
+          portalId: string;
+          meetingId: string;
+          target: string;
+        }) => void;
+      };
     };
     HubSpotConversations?: {
       widget: {
@@ -18,6 +25,7 @@ declare global {
         toggle: () => void;
       };
     };
+    hsConversationsSettings?: any;
     _hsp?: any[];
   }
 }
