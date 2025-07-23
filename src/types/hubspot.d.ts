@@ -8,6 +8,7 @@ declare global {
           portalId: string;
           formId: string;
           target: HTMLElement | string;
+          onFormReady?: () => void;
         }) => void;
       };
       meetings?: {
