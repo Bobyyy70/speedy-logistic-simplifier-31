@@ -8,95 +8,45 @@ interface HubSpotQuoteFormProps {
 
 export const HubSpotQuoteForm: React.FC<HubSpotQuoteFormProps> = ({ onFormReady }) => {
   const formRef = useRef<HTMLDivElement>(null);
+  const scriptLoadedRef = useRef(false);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  const mountedRef = useRef(true);
 
   useEffect(() => {
-    mountedRef.current = true;
-    
-    const initializeForm = () => {
-      console.log('Initializing HubSpot form...');
-      
-      // Check if HubSpot is already available
-      if (window.hbspt?.forms) {
-        console.log('HubSpot already loaded, creating form');
+    const loadHubSpotForm = async () => {
+      setIsLoading(true);
+      setHasError(false);
+
+      // Check if script is already loaded
+      if (scriptLoadedRef.current || window.hbspt?.forms) {
         createForm();
         return;
       }
 
-      // Check if script is already being loaded
-      const existingScript = document.querySelector('script[src*="hsforms.net"]');
-      if (existingScript) {
-        console.log('HubSpot script already exists, waiting for load');
-        waitForHubSpot();
-        return;
-      }
-
-      // Load the HubSpot script
-      console.log('Loading HubSpot script');
-      loadHubSpotScript();
-    };
-
-    const loadHubSpotScript = () => {
-      const script = document.createElement('script');
-      script.src = 'https://js-eu1.hsforms.net/forms/embed/144571109.js';
-      script.defer = true;
-      
-      script.onload = () => {
-        console.log('HubSpot script loaded successfully');
-        waitForHubSpot();
-      };
-      
-      script.onerror = () => {
-        console.error('Failed to load HubSpot script');
-        if (mountedRef.current) {
+      try {
+        // Load the HubSpot script
+        const script = document.createElement('script');
+        script.src = 'https://js-eu1.hsforms.net/forms/embed/144571109.js';
+        script.defer = true;
+        script.onload = () => {
+          scriptLoadedRef.current = true;
+          createForm();
+        };
+        script.onerror = () => {
+          console.error('Failed to load HubSpot form script');
           setHasError(true);
           setIsLoading(false);
-        }
-      };
-      
-      document.head.appendChild(script);
-    };
-
-    const waitForHubSpot = () => {
-      let attempts = 0;
-      const maxAttempts = 50; // 5 seconds with 100ms intervals
-      
-      const checkHubSpot = () => {
-        attempts++;
-        console.log(`Checking HubSpot availability, attempt ${attempts}`);
-        
-        if (window.hbspt?.forms) {
-          console.log('HubSpot forms API available');
-          createForm();
-          return;
-        }
-        
-        if (attempts >= maxAttempts) {
-          console.error('HubSpot failed to load after maximum attempts');
-          if (mountedRef.current) {
-            setHasError(true);
-            setIsLoading(false);
-          }
-          return;
-        }
-        
-        setTimeout(checkHubSpot, 100);
-      };
-      
-      checkHubSpot();
+        };
+        document.head.appendChild(script);
+      } catch (error) {
+        console.error('Error loading HubSpot form:', error);
+        setHasError(true);
+        setIsLoading(false);
+      }
     };
 
     const createForm = () => {
-      if (!window.hbspt?.forms || !formRef.current || !mountedRef.current) {
-        console.error('Cannot create form: missing requirements');
-        return;
-      }
-
-      try {
-        console.log('Creating HubSpot form');
-        
+      if (window.hbspt?.forms && formRef.current) {
         // Clear any existing content
         formRef.current.innerHTML = '';
         
@@ -106,27 +56,14 @@ export const HubSpotQuoteForm: React.FC<HubSpotQuoteFormProps> = ({ onFormReady 
           formId: 'ebf2ad52-915e-4bfa-b4c0-a2ff8480054f',
           target: formRef.current,
           onFormReady: () => {
-            console.log('HubSpot form ready');
-            if (mountedRef.current) {
-              setIsLoading(false);
-              onFormReady?.();
-            }
+            setIsLoading(false);
+            onFormReady?.();
           }
         });
-      } catch (error) {
-        console.error('Error creating HubSpot form:', error);
-        if (mountedRef.current) {
-          setHasError(true);
-          setIsLoading(false);
-        }
       }
     };
 
-    initializeForm();
-
-    return () => {
-      mountedRef.current = false;
-    };
+    loadHubSpotForm();
   }, [onFormReady]);
 
   if (hasError) {
