@@ -182,23 +182,50 @@ export function DynamicCalculatorSection() {
                       </TooltipProvider>
                     </div>
                     
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                       {/* Longueur */}
                       <div className="space-y-2">
                         <Label htmlFor="length">Longueur (cm)</Label>
-                        <Input id="length" type="number" min="1" step="0.1" placeholder="Ex: 30" value={state.length} onChange={handleLengthChange} />
+                        <Input 
+                          id="length" 
+                          type="number" 
+                          min="1" 
+                          step="0.1" 
+                          placeholder="Ex: 30" 
+                          value={state.length} 
+                          onChange={handleLengthChange}
+                          className="text-overflow-safe"
+                        />
                       </div>
                       
                       {/* Largeur */}
                       <div className="space-y-2">
                         <Label htmlFor="width">Largeur (cm)</Label>
-                        <Input id="width" type="number" min="1" step="0.1" placeholder="Ex: 20" value={state.width} onChange={handleWidthChange} />
+                        <Input 
+                          id="width" 
+                          type="number" 
+                          min="1" 
+                          step="0.1" 
+                          placeholder="Ex: 20" 
+                          value={state.width} 
+                          onChange={handleWidthChange}
+                          className="text-overflow-safe"
+                        />
                       </div>
                       
                       {/* Hauteur */}
                       <div className="space-y-2">
                         <Label htmlFor="height">Hauteur (cm)</Label>
-                        <Input id="height" type="number" min="1" step="0.1" placeholder="Ex: 15" value={state.height} onChange={handleHeightChange} />
+                        <Input 
+                          id="height" 
+                          type="number" 
+                          min="1" 
+                          step="0.1" 
+                          placeholder="Ex: 15" 
+                          value={state.height} 
+                          onChange={handleHeightChange}
+                          className="text-overflow-safe"
+                        />
                       </div>
                     </div>
                     

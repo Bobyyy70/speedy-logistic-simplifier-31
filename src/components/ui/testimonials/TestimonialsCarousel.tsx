@@ -7,7 +7,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 const SCROLL_SPEED = 25; // pixels per second
 const PAUSE_ON_HOVER = true;
-const MOBILE_CARD_WIDTH = 280; // smaller width on mobile
+const MOBILE_CARD_WIDTH = 320; // optimized width on mobile
 const DESKTOP_CARD_WIDTH = 400; // larger width on desktop
 
 const testimonials: TestimonialCardType[] = [
@@ -126,7 +126,7 @@ export function TestimonialsCarousel() {
   return (
     <div
       ref={carouselRef}
-      className="overflow-hidden relative touch-none"
+      className="overflow-hidden relative touch-none container-safe"
       onMouseEnter={() => PAUSE_ON_HOVER && setIsPaused(true)}
       onMouseLeave={() => PAUSE_ON_HOVER && setIsPaused(false)}
       onTouchStart={handleTouchStart}
@@ -135,7 +135,10 @@ export function TestimonialsCarousel() {
     >
       <motion.div
         className="flex gap-5 py-4"
-        style={{ x: scrollX }}
+        style={{ 
+          x: scrollX,
+          minWidth: `${duplicatedTestimonials.length * (cardWidth + 20)}px`
+        }}
         transition={{ type: "tween", ease: "linear" }}
       >
         {duplicatedTestimonials.map((testimonial, index) => (

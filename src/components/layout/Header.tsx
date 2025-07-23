@@ -34,21 +34,21 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation - Centré */}
-          <nav className="hidden md:flex items-center justify-center flex-1">
-            <div className="relative flex items-center space-x-8 bg-white/90 border border-slate-200 backdrop-blur-xl py-2 px-6 rounded-full shadow-md">
+          <nav className="hidden xl:flex items-center justify-center flex-1">
+            <div className="relative flex items-center space-x-6 lg:space-x-8 bg-white/90 border border-slate-200 backdrop-blur-xl py-2 px-4 lg:px-6 rounded-full shadow-md container-safe">
               {navigation.map((item) => {
                 const isCurrentActive = isActive(item.href);
                 return (
                   <div key={item.name} className="relative">
                     <Link
                       to={item.href}
-                      className={`relative cursor-pointer text-sm font-semibold px-4 py-2 rounded-full transition-all duration-300 min-h-[40px] flex items-center touch-manipulation ${
+                      className={`relative cursor-pointer text-sm font-semibold px-3 lg:px-4 py-2 rounded-full transition-all duration-300 min-h-[40px] flex items-center touch-manipulation text-overflow-safe ${
                         isCurrentActive
                           ? "text-slate-900 bg-blue-50"
                           : "text-slate-500 hover:text-[#F3BA2F]"
                       }`}
                     >
-                      {item.name}
+                      <span className="text-overflow-safe">{item.name}</span>
                       {isCurrentActive && (
                         <>
                           <div className="absolute inset-0 w-full bg-[#2F68F3]/10 rounded-full -z-10" />
@@ -67,7 +67,7 @@ export function Header() {
           </nav>
 
           {/* Desktop User Menu */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden xl:flex items-center space-x-4">
             <UserMenu />
           </div>
 
@@ -75,7 +75,7 @@ export function Header() {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden"
+            className="xl:hidden min-h-[44px] min-w-[44px]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -84,20 +84,20 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-4 pt-4 pb-4 space-y-2 border-t bg-white/95 backdrop-blur-sm">
+          <div className="xl:hidden">
+            <div className="px-4 pt-4 pb-4 space-y-2 border-t bg-white/95 backdrop-blur-sm container-safe">
               {navigation.map((item) => (
                 <div key={item.name}>
                   <Link
                     to={item.href}
-                    className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors min-h-[48px] flex items-center touch-manipulation ${
+                    className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors min-h-[48px] flex items-center touch-manipulation text-overflow-safe ${
                       isActive(item.href)
                         ? "text-primary bg-primary/10"
                         : "text-muted-foreground hover:bg-gray-50"
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    {item.name}
+                    <span className="text-overflow-safe">{item.name}</span>
                   </Link>
                 </div>
               ))}

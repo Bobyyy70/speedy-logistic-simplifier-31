@@ -23,12 +23,12 @@ export function HeroContent() {
       <div className="space-y-4">
         <AnimatedText
           text="La logistique E-commerce,"
-          className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter text-slate-900"
+          className="text-fluid-3xl md:text-fluid-4xl lg:text-fluid-5xl xl:text-fluid-6xl font-bold tracking-tighter text-slate-900"
           delay={0.2}
         />
         <AnimatedText
           text="sans les tracas."
-          className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter text-[#2F68F3]"
+          className="text-fluid-3xl md:text-fluid-4xl lg:text-fluid-5xl xl:text-fluid-6xl font-bold tracking-tighter text-[#2F68F3]"
           delay={0.6}
         />
       </div>
@@ -37,10 +37,11 @@ export function HeroContent() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.7, delay: 1 }}
-        className="max-w-[600px] text-slate-700 md:text-xl mx-auto lg:mx-0"
+        className="max-w-[600px] text-slate-700 text-fluid-base md:text-fluid-lg mx-auto lg:mx-0 leading-relaxed"
       >
         Externalisez votre logistique et concentrez-vous sereinement sur votre croissance. 
-        <br />
+        <br className="hidden sm:block" />
+        <span className="sm:hidden"> </span>
         Speed E-Log simplifie vos expéditions vers le monde entier.
       </motion.p>
 
