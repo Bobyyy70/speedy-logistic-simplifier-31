@@ -16,6 +16,10 @@ import TermsOfService from "./pages/TermsOfService";
 import Technology from "./pages/Technology";
 import Sitemap from "./pages/Sitemap";
 import RoiCalculator from "./pages/RoiCalculator";
+import GuideLogistiquePME from "./pages/GuideLogistiquePME";
+import IntegrationsEcommerce from "./pages/IntegrationsEcommerce";
+import OptimisationPreparationCommande from "./pages/OptimisationPreparationCommande";
+import GestionRetoursEcommerce from "./pages/GestionRetoursEcommerce";
 
 const App = () => (
   <TooltipProvider>
@@ -34,6 +38,10 @@ const App = () => (
           <Route path="/a-propos" element={<Navigate to="/about" replace />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/calculateur-roi-logistique" element={<RoiCalculator />} />
+          <Route path="/guide-logistique-ecommerce-pme" element={<GuideLogistiquePME />} />
+          <Route path="/integrations-ecommerce-logistique" element={<IntegrationsEcommerce />} />
+          <Route path="/optimisation-preparation-commande" element={<OptimisationPreparationCommande />} />
+          <Route path="/gestion-retours-ecommerce" element={<GestionRetoursEcommerce />} />
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/sitemap" element={<Sitemap />} />
           <Route path="/plan-du-site" element={<Navigate to="/sitemap" replace />} />

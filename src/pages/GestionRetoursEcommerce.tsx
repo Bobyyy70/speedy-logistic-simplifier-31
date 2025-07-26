@@ -418,7 +418,7 @@ const GestionRetoursEcommerce: React.FC = () => {
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle className="h-4 w-4 text-primary mt-0.5" />
-                      <span>Collecte à domicile pour commandes > 100€</span>
+                      <span>Collecte à domicile pour commandes {'>'}100€</span>
                     </li>
                   </ul>
                 </Card>
