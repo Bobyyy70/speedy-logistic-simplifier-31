@@ -23,14 +23,12 @@ export const MapSection = () => {
       
       <div className="h-[300px] md:h-[400px] lg:h-[500px] border border-slate-200 rounded-xl overflow-hidden shadow-lg">
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2683.234!2d6.042856!3d47.690249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47920f425a6b8c7d%3A0x6789abc123def456!2s37%20Rue%20de%20R%C3%A9maucourt%2C%2070170%20Port-sur-Sa%C3%B4ne!5e0!3m2!1sfr!2sfr!4v1681578343811!5m2!1sfr!2sfr&zoom=15&maptype=roadmap" 
+          src="https://storage.googleapis.com/maps-solutions-e7nc7kb2tn/address-selection/nb7a/address-selection.html"
           width="100%" 
           height="100%" 
           style={{ border: 0 }}
-          allowFullScreen
-          loading="lazy" 
-          referrerPolicy="no-referrer-when-downgrade"
-          title="Localisation de Speed E-Log à Port-sur-Saône - 37 Rue de Rémaucourt"
+          loading="lazy"
+          title="Sélection d'adresse - Speed E-Log"
           className="w-full h-full"
         />
       </div>
