@@ -39,6 +39,30 @@ export const discoverRoutes = (): RouteInfo[] => {
       changefreq: 'monthly'
     },
     {
+      path: '/guide-logistique-ecommerce-pme',
+      component: 'GuideLogistiquePME',
+      priority: 0.9,
+      changefreq: 'monthly'
+    },
+    {
+      path: '/integrations-ecommerce-logistique',
+      component: 'IntegrationsEcommerce',
+      priority: 0.8,
+      changefreq: 'monthly'
+    },
+    {
+      path: '/optimisation-preparation-commande',
+      component: 'OptimisationPreparationCommande',
+      priority: 0.7,
+      changefreq: 'monthly'
+    },
+    {
+      path: '/gestion-retours-ecommerce',
+      component: 'GestionRetoursEcommerce',
+      priority: 0.7,
+      changefreq: 'monthly'
+    },
+    {
       path: '/about',
       component: 'About',
       priority: 0.7,
