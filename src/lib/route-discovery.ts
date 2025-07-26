@@ -33,6 +33,12 @@ export const discoverRoutes = (): RouteInfo[] => {
       changefreq: 'monthly'
     },
     {
+      path: '/calculateur-roi-logistique',
+      component: 'RoiCalculator',
+      priority: 0.8,
+      changefreq: 'monthly'
+    },
+    {
       path: '/about',
       component: 'About',
       priority: 0.7,
