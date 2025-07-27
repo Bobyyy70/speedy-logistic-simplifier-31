@@ -1,6 +1,9 @@
 
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
+import { AIChatbot } from "@/components/ai/AIChatbot";
+import { AdvancedSEO } from "@/components/seo/AdvancedSEO";
+import { usePersonalization } from "@/hooks/use-personalization";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ChallengesSection } from "@/components/sections/ChallengesSection";
 import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
@@ -28,9 +31,12 @@ const sectionVariants = {
 };
 
 const Index = () => {
+  const { trackPageView, trackInteraction } = usePersonalization();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    trackPageView('/');
+  }, [trackPageView]);
 
   return (
     <div className="min-h-screen bg-white relative">
@@ -108,6 +114,9 @@ const Index = () => {
           <ContactCTA />
         </motion.div>
       </motion.div>
+      
+      <AdvancedSEO />
+      <AIChatbot onLeadQualified={(score) => trackInteraction(`chatbot_lead_${score}`)} />
     </div>
   );
 }
