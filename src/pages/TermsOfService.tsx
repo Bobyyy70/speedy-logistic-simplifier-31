@@ -1,14 +1,10 @@
-
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-
 const TermsOfService = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  return (
-    <div className="container mx-auto py-16 px-4">
+  return <div className="container mx-auto py-16 px-4">
       <Helmet>
         <title>Conditions Générales de Vente | Speed E-Log</title>
         <meta name="description" content="Conditions générales de vente de Speed E-Log - Services logistiques, stockage et préparation de commandes. CGV version du 13 juillet 2025." />
@@ -196,7 +192,7 @@ const TermsOfService = () => {
 
           <div className="mb-4">
             <h3 className="text-lg font-semibold mb-2">7.3 Transfert de responsabilité - CLAUSE ESSENTIELLE</h3>
-            <div className="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+            <div className="mb-8 p-6 bg-slate-50 rounded-lg shadow ">
               <p className="mb-2 font-semibold">Le client reconnaît expressément que :</p>
               <ul className="list-disc pl-5 space-y-1">
                 <li>Speed E-Log n'est PAS transporteur et n'assume AUCUNE responsabilité de transport</li>
@@ -363,8 +359,6 @@ const TermsOfService = () => {
           </p>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default TermsOfService;
