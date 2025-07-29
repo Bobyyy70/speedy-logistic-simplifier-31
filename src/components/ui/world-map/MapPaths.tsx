@@ -29,21 +29,10 @@ export const MapPaths: React.FC<MapPathsProps> = ({
               fill="none"
               stroke={`url(#path-gradient-${i})`}
               strokeWidth="2.5"
-              initial={{
-                pathLength: 0,
-                opacity: 0.1,
-              }}
-              animate={{
+              // Animations disabled for TBT optimization
+              style={{
                 pathLength: 1,
-                opacity: 0.8,
-              }}
-              transition={{
-                duration: 2.5,
-                delay: 0.3 * i,
-                ease: "easeOut",
-                repeat: Infinity,
-                repeatType: "loop",
-                repeatDelay: 5,
+                opacity: 0.6,
               }}
               key={`start-upper-${i}`}
             ></motion.path>

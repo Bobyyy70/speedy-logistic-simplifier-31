@@ -26,7 +26,7 @@ export const CustomCookieBanner: React.FC = () => {
       analytics: true,
       marketing: true,
     });
-    console.log('✅ Tous les cookies acceptés');
+    // Cookies accepted (removed for TBT optimization)
   };
 
   const handleRejectAll = () => {
@@ -35,12 +35,12 @@ export const CustomCookieBanner: React.FC = () => {
       analytics: false,
       marketing: false,
     });
-    console.log('❌ Cookies rejetés (sauf nécessaires)');
+    // Cookies rejected (removed for TBT optimization)
   };
 
   const handleSavePreferences = () => {
     updateConsent(preferences);
-    console.log('⚙️ Préférences sauvegardées:', preferences);
+    // Preferences saved (removed for TBT optimization)
   };
 
   if (!shouldShowBanner) return null;
