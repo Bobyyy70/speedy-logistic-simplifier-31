@@ -9,8 +9,8 @@ import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { LogisticsFeatureSection } from "@/components/sections/LogisticsFeatureSection";
 import { LogisticsPerformanceSection } from "@/components/sections/LogisticsPerformanceSection";
-import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
-import { motion } from "framer-motion";
+import { LazyMotionDiv } from "@/components/ui/lazy-motion";
+import { CriticalResourcePreloader } from "@/components/performance/CriticalResourcePreloader";
 
 // Animation variants pour les transitions entre sections
 const sectionVariants = {
@@ -33,28 +33,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white relative">
-      <BackgroundGradientAnimation
-        gradientBackgroundStart="#ffffff"
-        gradientBackgroundEnd="#f8fafc"
-        firstColor="18, 113, 255"
-        secondColor="80, 70, 230"
-        thirdColor="100, 220, 255"
-        fourthColor="120, 119, 198"
-        fifthColor="180, 180, 50"
-        pointerColor="140, 100, 255"
-        size="100%"
-        blendingValue="normal"
-        interactive={false}
-        className="absolute inset-0 z-0 opacity-10"
-        height="300%"
-      />
+      <CriticalResourcePreloader />
+      {/* Removed duplicate BackgroundGradientAnimation - only one in HeroSection */}
 
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={sectionVariants}
-        className="relative overflow-x-hidden z-10"
-      >
+      <div className="relative overflow-x-hidden z-10">
         <Helmet>
           <title>Speed E-Log | Logistique E-commerce Simplifiée pour PME</title>
           <meta 
@@ -69,40 +51,38 @@ const Index = () => {
           <meta name="keywords" content="logistique e-commerce, externalisation logistique, 3PL, fulfillment, préparation commandes, PME logistique" />
         </Helmet>
         
-        {/* Hero Section */}
-        <motion.div variants={sectionVariants}>
-          <HeroSection />
-        </motion.div>
+        {/* Hero Section - No lazy loading for above-fold content */}
+        <HeroSection />
         
-        {/* Main Content Sections */}
-        <motion.div variants={sectionVariants}>
+        {/* Main Content Sections - Lazy loaded */}
+        <LazyMotionDiv variants={sectionVariants}>
           <LogisticsFeatureSection />
-        </motion.div>
+        </LazyMotionDiv>
         
-        <motion.div variants={sectionVariants}>
+        <LazyMotionDiv variants={sectionVariants}>
           <ChallengesSection />
-        </motion.div>
+        </LazyMotionDiv>
         
-        <motion.div variants={sectionVariants}>
+        <LazyMotionDiv variants={sectionVariants}>
           <HowItWorksSection />
-        </motion.div>
+        </LazyMotionDiv>
         
-        <motion.div variants={sectionVariants}>
+        <LazyMotionDiv variants={sectionVariants}>
           <WhyUsSection />
-        </motion.div>
+        </LazyMotionDiv>
         
-        <motion.div variants={sectionVariants}>
+        <LazyMotionDiv variants={sectionVariants}>
           <LogisticsPerformanceSection />
-        </motion.div>
+        </LazyMotionDiv>
         
-        <motion.div variants={sectionVariants}>
+        <LazyMotionDiv variants={sectionVariants}>
           <TestimonialsSection />
-        </motion.div>
+        </LazyMotionDiv>
         
-        <motion.div variants={sectionVariants}>
+        <LazyMotionDiv variants={sectionVariants}>
           <ContactCTA />
-        </motion.div>
-      </motion.div>
+        </LazyMotionDiv>
+      </div>
     </div>
   );
 }

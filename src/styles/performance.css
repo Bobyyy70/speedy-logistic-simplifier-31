@@ -1,0 +1,76 @@
+/* Performance optimizations for smoother animations and reduced TBT */
+
+/* GPU acceleration for common animated elements */
+.world-map-container,
+.gradients-container,
+.hero-content,
+.hero-card {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+/* Optimize for motion animations */
+.motion-div {
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Reduce paint operations */
+.bg-gradient-animation {
+  will-change: transform;
+  contain: layout style paint;
+}
+
+/* Optimize scrolling performance */
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+/* Reduce reflow/repaint on hover states */
+.hover-optimized {
+  will-change: transform;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-optimized:hover {
+  transform: translate3d(0, -2px, 0);
+}
+
+/* Critical loading state improvements */
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Reduce layout shifts */
+.aspect-ratio-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+}
+
+.aspect-ratio-container::before {
+  content: "";
+  display: block;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+}
+
+.aspect-ratio-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

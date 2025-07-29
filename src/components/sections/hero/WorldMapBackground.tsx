@@ -38,6 +38,10 @@ export function WorldMapBackground() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 0.8 }}
       transition={{ duration: 1, delay: 0.3 }}
+      style={{
+        willChange: 'transform',
+        transform: 'translate3d(0, 0, 0)' // GPU acceleration for parallax
+      }}
     >
       <WorldMap 
         dots={shippingRoutes} 

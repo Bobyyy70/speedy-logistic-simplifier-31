@@ -33,5 +33,5 @@ export const updateSitemapFile = (): void => {
   
   // This would typically write to the file system in a Node.js environment
   // For now, we'll export the content for build-time generation
-  console.log('Generated sitemap content:', sitemapContent);
+  // Sitemap content generated
 };

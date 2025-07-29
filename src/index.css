@@ -3,6 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Performance optimizations */
+@import "./styles/performance.css";
+
 @layer utilities {
   .glass-effect {
     @apply backdrop-blur-sm bg-white/15 border border-white/20 shadow-glass-light;

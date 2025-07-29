@@ -198,7 +198,7 @@ export const ContactForm = () => {
         return;
       }
 
-      console.log("📝 Envoi du formulaire:", data);
+      // Form submission data prepared
       
       // Sanitize all inputs
       const sanitizedData = {
@@ -245,11 +245,11 @@ export const ContactForm = () => {
       );
 
       if (error) {
-        console.error("❌ Erreur Supabase:", error);
+        // Supabase error handled
         throw error;
       }
 
-      console.log("✅ Réponse:", submitData);
+      // Form submitted successfully
       
       toast({
         title: "Demande de devis envoyée !",

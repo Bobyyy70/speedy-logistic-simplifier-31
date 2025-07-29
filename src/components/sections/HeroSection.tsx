@@ -7,38 +7,37 @@ import { ScrollIndicator } from "@/components/sections/ScrollIndicator";
 import { WorldMapBackground } from "@/components/sections/hero/WorldMapBackground";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import { motion } from "framer-motion";
+import { useThrottledParallax } from "@/hooks/use-throttled-parallax";
 
 export function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
+  const throttledParallax = useThrottledParallax({ intensity: 15, fps: 60 });
 
-  // Enable parallax effect on mouse move
+  // Enable optimized parallax effect
   useEffect(() => {
     const hero = heroRef.current;
     if (!hero) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-      
-      const moveX = clientX / innerWidth - 0.5;
-      const moveY = clientY / innerHeight - 0.5;
-      
-      const worldMapElement = hero.querySelector(".world-map-container");
-      if (worldMapElement) {
-        // Subtle parallax movement for world map
-        (worldMapElement as HTMLElement).style.transform = 
-          `translate3d(${moveX * 15}px, ${moveY * 15}px, 0)`;
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
+    const worldMapElement = hero.querySelector(".world-map-container") as HTMLElement;
+    const handleMouseMove = throttledParallax(worldMapElement);
+    
+    if (handleMouseMove) {
+      window.addEventListener("mousemove", handleMouseMove, { passive: true });
+      return () => {
+        window.removeEventListener("mousemove", handleMouseMove);
+      };
+    }
+  }, [throttledParallax]);
 
   return (
-    <section ref={heroRef} className="relative w-full h-screen min-h-[100vh] overflow-hidden">
+    <section 
+      ref={heroRef} 
+      className="relative w-full h-screen min-h-[100vh] overflow-hidden"
+      style={{
+        willChange: 'transform',
+        transform: 'translate3d(0, 0, 0)' // Force GPU layer
+      }}
+    >
       {/* Background gradient animation with enhanced colors and subtlety */}
       <BackgroundGradientAnimation
         gradientBackgroundStart="#ffffff"
