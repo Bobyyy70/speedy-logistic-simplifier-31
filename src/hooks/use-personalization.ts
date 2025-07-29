@@ -121,12 +121,23 @@ export const usePersonalization = () => {
     // Load from localStorage
     const stored = localStorage.getItem('speedelog_user_behavior');
     if (stored) {
-      const storedBehavior = JSON.parse(stored);
-      setBehavior(prev => ({
-        ...prev,
-        ...storedBehavior,
-        visitCount: storedBehavior.visitCount + 1
-      }));
+      try {
+        const storedBehavior = JSON.parse(stored);
+        setBehavior({
+          ...storedBehavior,
+          visitCount: storedBehavior.visitCount + 1,
+          deviceType: detectDeviceType(),
+          trafficSource: document.referrer ? 'referral' : 'direct'
+        });
+      } catch (error) {
+        console.warn('Failed to parse stored behavior, using defaults');
+        setBehavior(prev => ({
+          ...prev,
+          visitCount: 1,
+          deviceType: detectDeviceType(),
+          trafficSource: document.referrer ? 'referral' : 'direct'
+        }));
+      }
     } else {
       setBehavior(prev => ({
         ...prev,
@@ -135,21 +146,31 @@ export const usePersonalization = () => {
         trafficSource: document.referrer ? 'referral' : 'direct'
       }));
     }
-  }, []);
+  }, []); // Empty dependency array to run only once
 
-  // Update personalization when behavior changes
+  // Update personalization when behavior changes (with optimization to prevent loops)
   useEffect(() => {
     const persona = determinePersona(behavior);
     const content = getPersonalizedContent(persona);
     
-    setPersonalization({
-      persona,
-      ...content
+    setPersonalization(prev => {
+      // Only update if persona actually changed
+      if (prev.persona !== persona) {
+        return {
+          persona,
+          ...content
+        };
+      }
+      return prev;
     });
 
-    // Save to localStorage
-    localStorage.setItem('speedelog_user_behavior', JSON.stringify(behavior));
-  }, [behavior]);
+    // Debounce localStorage saves to prevent excessive writes
+    const timeoutId = setTimeout(() => {
+      localStorage.setItem('speedelog_user_behavior', JSON.stringify(behavior));
+    }, 1000);
+
+    return () => clearTimeout(timeoutId);
+  }, [behavior.pageViews, behavior.interactions, behavior.visitCount]); // Only specific behavior props
 
   // Pre-fill calculator based on persona
   const getCalculatorDefaults = () => {
