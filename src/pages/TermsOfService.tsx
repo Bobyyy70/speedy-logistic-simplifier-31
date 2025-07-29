@@ -276,7 +276,7 @@ const TermsOfService = () => {
         <section className="mb-8 p-6 bg-slate-50 rounded-lg shadow">
           <h2 className="text-xl md:text-2xl font-semibold mb-4 border-b pb-2">ARTICLE 10 - PRESTATIONS EXPRESSÉMENT EXCLUES</h2>
           
-          <div className="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+          <div className="mb-8 p-6 bg-slate-50 rounded-lg shadow ">
             <p className="mb-2 font-semibold">Speed E-Log précise qu'elle N'EFFECTUE PAS :</p>
             <ul className="list-disc pl-5 space-y-1">
               <li>Le transport de marchandises</li>
