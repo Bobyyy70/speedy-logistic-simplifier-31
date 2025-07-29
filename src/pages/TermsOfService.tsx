@@ -38,7 +38,7 @@ const TermsOfService = () => {
             <li>Solutions logistiques personnalisées et sur-mesure</li>
             <li>Services à valeur ajoutée (étiquetage, assemblage, contrôle qualité)</li>
           </ul>
-          <div className="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+          <div className="mb-8 p-6 bg-slate-50 rounded-lg shadow ">
             <p className="font-semibold text-red-800">
               Speed E-Log n'effectue PAS de transport et n'est pas responsable des marchandises dès leur remise au transporteur.
             </p>
