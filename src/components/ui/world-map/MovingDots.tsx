@@ -35,7 +35,6 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
                   "drop-shadow(0 0 3px rgba(47, 104, 243, 0.9))"
                 ]
               }}
-              style={{ willChange: 'transform', transform: 'translate3d(0,0,0)' }}
               transition={{
                 duration: 3,
                 delay: i * 0.3,
@@ -56,9 +55,8 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
               initial={{ opacity: 0 }}
               animate={{ 
                 opacity: [0, 0.7, 0],
-                scale: [0.8, 1.8, 0.8]
+                scale: [0.8, 1.8, 0.8],
               }}
-              style={{ willChange: 'transform', transform: 'translate3d(0,0,0)' }}
               transition={{
                 duration: 4,
                 delay: i * 0.3 + 0.2,
@@ -85,7 +83,6 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
                     "drop-shadow(0 0 2px rgba(243, 186, 47, 0.7))"
                   ]
                 }}
-                style={{ willChange: 'transform', transform: 'translate3d(0,0,0)' }}
                 transition={{
                   duration: 3.5,
                   delay: i * 0.4 + 0.7,
@@ -115,7 +112,6 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
                     "drop-shadow(0 0 1px rgba(255,255,255,0.5))"
                   ]
                 }}
-                style={{ willChange: 'transform', transform: 'translate3d(0,0,0)' }}
                 transition={{
                   duration: 3,
                   delay: i * 0.3 + 1.2,
@@ -134,23 +130,20 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
       {/* Enhanced gradient definitions for dots with more vibrant colors */}
       <defs>
         <radialGradient id="originGradient" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#6BA6FF" stopOpacity="1" />
-          <stop offset="30%" stopColor="#4C8DFF" stopOpacity="1" />
-          <stop offset="70%" stopColor="#2F68F3" stopOpacity="0.9" />
-          <stop offset="100%" stopColor="#1D4ED8" stopOpacity="0" />
-        </radialGradient>
-        
-        <radialGradient id="haloGradient" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#6BA6FF" stopOpacity="0.8" />
-          <stop offset="50%" stopColor="#4C8DFF" stopOpacity="0.6" />
+          <stop offset="0%" stopColor="#4C8DFF" stopOpacity="1" />
+          <stop offset="70%" stopColor="#2F68F3" stopOpacity="0.8" />
           <stop offset="100%" stopColor="#2F68F3" stopOpacity="0" />
         </radialGradient>
         
+        <radialGradient id="haloGradient" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#4C8DFF" stopOpacity="0.7" />
+          <stop offset="100%" stopColor="#4C8DFF" stopOpacity="0" />
+        </radialGradient>
+        
         <radialGradient id="destinationGradient" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#FFF700" stopOpacity="1" />
-          <stop offset="30%" stopColor="#FFD700" stopOpacity="1" />
-          <stop offset="70%" stopColor="#F3BA2F" stopOpacity="0.9" />
-          <stop offset="100%" stopColor="#D97706" stopOpacity="0" />
+          <stop offset="0%" stopColor="#FFD700" stopOpacity="1" />
+          <stop offset="70%" stopColor="#F3BA2F" stopOpacity="0.8" />
+          <stop offset="100%" stopColor="#F3BA2F" stopOpacity="0" />
         </radialGradient>
       </defs>
     </>

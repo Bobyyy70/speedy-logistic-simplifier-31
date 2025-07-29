@@ -198,7 +198,7 @@ export const ContactForm = () => {
         return;
       }
 
-      // Form submission logged (removed for TBT optimization)
+      console.log("📝 Envoi du formulaire:", data);
       
       // Sanitize all inputs
       const sanitizedData = {
@@ -245,11 +245,11 @@ export const ContactForm = () => {
       );
 
       if (error) {
-        // Error logged (removed for TBT optimization)
+        console.error("❌ Erreur Supabase:", error);
         throw error;
       }
 
-      // Response logged (removed for TBT optimization)
+      console.log("✅ Réponse:", submitData);
       
       toast({
         title: "Demande de devis envoyée !",

@@ -33,7 +33,12 @@ export const useCookieManagement = (): CookieManagementHook => {
     const consent = getConsent();
     setHasConsent(!!consent);
 
-    // Cookie management initialized (removed for TBT optimization)
+    console.log('🍪 Cookie Management initialisé:', {
+      hasConsent: !!consent,
+      domain: window.location.hostname,
+      isProduction,
+      isInIframe
+    });
   }, [isProduction, isInIframe]);
 
   const getConsent = (): CookieConsent | null => {
@@ -73,13 +78,13 @@ export const useCookieManagement = (): CookieManagementHook => {
       }
     }
 
-    // Consent updated (removed for TBT optimization)
+    console.log('✅ Consentement mis à jour:', updated);
   };
 
   const resetConsent = () => {
     localStorage.removeItem('cookie-consent');
     setHasConsent(false);
-    // Consent reset (removed for TBT optimization)
+    console.log('🔄 Consentement réinitialisé');
   };
 
   // Logique simple : afficher la bannière si pas de consentement

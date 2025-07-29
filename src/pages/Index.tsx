@@ -9,8 +9,22 @@ import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { LogisticsFeatureSection } from "@/components/sections/LogisticsFeatureSection";
 import { LogisticsPerformanceSection } from "@/components/sections/LogisticsPerformanceSection";
-// import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation"; // Disabled for TBT optimization
-// Removed heavy Framer Motion animations for TBT optimization
+import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
+import { motion } from "framer-motion";
+
+// Animation variants pour les transitions entre sections
+const sectionVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { 
+      duration: 0.6, 
+      ease: "easeOut",
+      when: "beforeChildren",
+      staggerChildren: 0.1 
+    }
+  }
+};
 
 const Index = () => {
   useEffect(() => {
@@ -19,9 +33,28 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white relative">
-      {/* Background animation disabled for TBT optimization */}
+      <BackgroundGradientAnimation
+        gradientBackgroundStart="#ffffff"
+        gradientBackgroundEnd="#f8fafc"
+        firstColor="18, 113, 255"
+        secondColor="80, 70, 230"
+        thirdColor="100, 220, 255"
+        fourthColor="120, 119, 198"
+        fifthColor="180, 180, 50"
+        pointerColor="140, 100, 255"
+        size="100%"
+        blendingValue="normal"
+        interactive={false}
+        className="absolute inset-0 z-0 opacity-10"
+        height="300%"
+      />
 
-      <div className="relative overflow-x-hidden z-10">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={sectionVariants}
+        className="relative overflow-x-hidden z-10"
+      >
         <Helmet>
           <title>Speed E-Log | Logistique E-commerce Simplifiée pour PME</title>
           <meta 
@@ -37,39 +70,39 @@ const Index = () => {
         </Helmet>
         
         {/* Hero Section */}
-        <div>
+        <motion.div variants={sectionVariants}>
           <HeroSection />
-        </div>
+        </motion.div>
         
         {/* Main Content Sections */}
-        <div>
+        <motion.div variants={sectionVariants}>
           <LogisticsFeatureSection />
-        </div>
+        </motion.div>
         
-        <div>
+        <motion.div variants={sectionVariants}>
           <ChallengesSection />
-        </div>
+        </motion.div>
         
-        <div>
+        <motion.div variants={sectionVariants}>
           <HowItWorksSection />
-        </div>
+        </motion.div>
         
-        <div>
+        <motion.div variants={sectionVariants}>
           <WhyUsSection />
-        </div>
+        </motion.div>
         
-        <div>
+        <motion.div variants={sectionVariants}>
           <LogisticsPerformanceSection />
-        </div>
+        </motion.div>
         
-        <div>
+        <motion.div variants={sectionVariants}>
           <TestimonialsSection />
-        </div>
+        </motion.div>
         
-        <div>
+        <motion.div variants={sectionVariants}>
           <ContactCTA />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }

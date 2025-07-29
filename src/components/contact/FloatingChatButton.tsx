@@ -9,11 +9,15 @@ export const FloatingChatButton = () => {
   useEffect(() => {
     // Vérifier périodiquement si HubSpot est chargé
     const checkHubSpot = () => {
-      // HubSpot check logged (removed for TBT optimization)
+      console.log('🔍 Vérification HubSpot...', {
+        HubSpotConversations: !!window.HubSpotConversations,
+        widget: !!window.HubSpotConversations?.widget,
+        open: !!window.HubSpotConversations?.widget?.open
+      });
 
       if (window.HubSpotConversations?.widget?.open) {
         setIsHubSpotLoaded(true);
-        // HubSpot ready logged (removed for TBT optimization)
+        console.log('✅ HubSpot chat prêt !');
         return true;
       }
       return false;
@@ -30,7 +34,7 @@ export const FloatingChatButton = () => {
         if (checkHubSpot() || attempts >= maxAttempts) {
           clearInterval(interval);
           if (attempts >= maxAttempts) {
-            // HubSpot timeout logged (removed for TBT optimization)
+            console.log('⚠️ HubSpot chat non disponible après 10 secondes');
           }
         }
       }, 500);
@@ -40,17 +44,20 @@ export const FloatingChatButton = () => {
   }, []);
 
   const openHubSpotChat = () => {
-    // Chat opening attempt logged (removed for TBT optimization)
+    console.log('🚀 Tentative d\'ouverture du chat...', { 
+      isLoaded: isHubSpotLoaded,
+      HubSpotConversations: !!window.HubSpotConversations 
+    });
 
     if (window.HubSpotConversations?.widget?.open) {
       try {
         window.HubSpotConversations.widget.open();
-        // Chat opened successfully (removed for TBT optimization)
+        console.log('✅ Chat ouvert avec succès');
       } catch (error) {
-        // Chat error logged (removed for TBT optimization)
+        console.error('❌ Erreur lors de l\'ouverture du chat:', error);
       }
     } else {
-      // Chat unavailable fallback (removed for TBT optimization)
+      console.log('⚠️ Chat HubSpot non disponible - redirection vers contact');
       // Fallback : scroll vers le calendrier sur la page contact
       if (window.location.pathname === '/contact') {
         const calendarSection = document.querySelector('[data-calendar-section]');
