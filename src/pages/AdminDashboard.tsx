@@ -18,8 +18,6 @@ import {
   Eye,
   MousePointer
 } from 'lucide-react';
-import { PredictiveAnalytics } from "@/components/analytics/PredictiveAnalytics";
-import { ReferralProgram } from "@/components/referral/ReferralProgram";
 
 const AdminDashboard = () => {
   const { metrics, alerts, performanceScore, clearAlerts } = usePerformanceMonitoring();
@@ -85,13 +83,11 @@ const AdminDashboard = () => {
           )}
 
           <Tabs defaultValue="overview" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-6">
+            <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="overview">Vue d'ensemble</TabsTrigger>
               <TabsTrigger value="performance">Performance</TabsTrigger>
               <TabsTrigger value="conversions">Conversions</TabsTrigger>
               <TabsTrigger value="content">Contenu</TabsTrigger>
-              <TabsTrigger value="analytics">Analytics IA</TabsTrigger>
-              <TabsTrigger value="referral">Parrainage</TabsTrigger>
             </TabsList>
 
             {/* Vue d'ensemble */}
@@ -279,14 +275,6 @@ const AdminDashboard = () => {
                   </div>
                 </CardContent>
               </Card>
-            </TabsContent>
-
-            <TabsContent value="analytics">
-              <PredictiveAnalytics />
-            </TabsContent>
-
-            <TabsContent value="referral">
-              <ReferralProgram />
             </TabsContent>
           </Tabs>
         </div>

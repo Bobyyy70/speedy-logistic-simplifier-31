@@ -26,13 +26,18 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
               r="4"
               fill="url(#originGradient)"
               initial={{ opacity: 0, scale: 0 }}
-            animate={{ 
-                opacity: [0.7, 0.9, 0.7], 
-                scale: [1, 1.1, 1],
+              animate={{ 
+                opacity: [0.7, 1, 0.7], 
+                scale: [1, 1.3, 1],
+                filter: [
+                  "drop-shadow(0 0 3px rgba(47, 104, 243, 0.9))", 
+                  "drop-shadow(0 0 10px rgba(47, 104, 243, 1))", 
+                  "drop-shadow(0 0 3px rgba(47, 104, 243, 0.9))"
+                ]
               }}
               transition={{
-                duration: 4,
-                delay: i * 0.5,
+                duration: 3,
+                delay: i * 0.3,
                 repeat: Infinity,
                 repeatType: "reverse",
                 ease: "easeInOut"
@@ -49,12 +54,12 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
               strokeWidth="1.5"
               initial={{ opacity: 0 }}
               animate={{ 
-                opacity: [0, 0.5, 0],
-                scale: [0.9, 1.4, 0.9],
+                opacity: [0, 0.7, 0],
+                scale: [0.8, 1.8, 0.8],
               }}
               transition={{
-                duration: 5,
-                delay: i * 0.5 + 0.3,
+                duration: 4,
+                delay: i * 0.3 + 0.2,
                 repeat: Infinity,
                 repeatType: "reverse",
                 ease: "easeInOut"
@@ -70,12 +75,17 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
                 fill="url(#destinationGradient)"
                 initial={{ opacity: 0 }}
                 animate={{ 
-                  opacity: [0.6, 0.8, 0.6],
-                  scale: [1, 1.15, 1],
+                  opacity: [0.6, 1, 0.6],
+                  scale: [1, 1.3, 1],
+                  filter: [
+                    "drop-shadow(0 0 2px rgba(243, 186, 47, 0.7))",
+                    "drop-shadow(0 0 8px rgba(243, 186, 47, 0.9))",
+                    "drop-shadow(0 0 2px rgba(243, 186, 47, 0.7))"
+                  ]
                 }}
                 transition={{
-                  duration: 4.5,
-                  delay: i * 0.6 + 0.8,
+                  duration: 3.5,
+                  delay: i * 0.4 + 0.7,
                   repeat: Infinity,
                   repeatType: "reverse",
                   ease: "easeInOut"
@@ -95,11 +105,16 @@ export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {
                 fontWeight="500"
                 initial={{ opacity: 0 }}
                 animate={{ 
-                  opacity: [0.6, 0.8, 0.6],
+                  opacity: [0.6, 0.9, 0.6],
+                  filter: [
+                    "drop-shadow(0 0 1px rgba(255,255,255,0.5))",
+                    "drop-shadow(0 0 3px rgba(255,255,255,1))",
+                    "drop-shadow(0 0 1px rgba(255,255,255,0.5))"
+                  ]
                 }}
                 transition={{
-                  duration: 4,
-                  delay: i * 0.5 + 1.5,
+                  duration: 3,
+                  delay: i * 0.3 + 1.2,
                   repeat: Infinity,
                   repeatType: "reverse",
                   ease: "easeInOut"
