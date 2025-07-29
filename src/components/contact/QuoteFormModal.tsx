@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { MultiStepQuoteForm } from "./MultiStepQuoteForm";
+import { HubSpotQuoteForm } from "./HubSpotQuoteForm";
 import { X } from "lucide-react";
 
 interface QuoteFormModalProps {
@@ -31,7 +31,7 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({ isOpen, onClose 
             Remplissez ce formulaire pour recevoir un devis personnalisé adapté à vos besoins logistiques.
           </p>
           
-          <MultiStepQuoteForm />
+          <HubSpotQuoteForm />
         </div>
       </DialogContent>
     </Dialog>

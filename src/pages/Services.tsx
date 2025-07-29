@@ -8,7 +8,6 @@ import { LogisticsPerformanceSection } from "@/components/sections/LogisticsPerf
 import { MapFeature } from "@/components/ui/MapFeature";
 import { ServicesFaq } from "@/components/services/ServicesFaq";
 import { ServicesCta } from "@/components/services/ServicesCta";
-import { ROICalculatorCTA } from "@/components/sections/ROICalculatorCTA";
 
 const Services: React.FC = () => {
   useEffect(() => {
@@ -62,9 +61,6 @@ const Services: React.FC = () => {
       
       {/* FAQ Section */}
       <ServicesFaq />
-      
-      {/* ROI Calculator CTA */}
-      <ROICalculatorCTA variant="compact" className="mx-auto max-w-4xl px-4 mb-8" />
       
       {/* CTA Section */}
       <ServicesCta />

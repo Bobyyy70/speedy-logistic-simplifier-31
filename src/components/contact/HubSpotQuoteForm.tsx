@@ -18,11 +18,10 @@ export const HubSpotQuoteForm: React.FC<HubSpotQuoteFormProps> = ({ onFormReady 
       }
 
       try {
-        // Load the HubSpot script with defer for performance
+        // Load the HubSpot script
         const script = document.createElement('script');
         script.src = 'https://js-eu1.hsforms.net/forms/embed/144571109.js';
         script.defer = true;
-        script.async = false;
         script.onload = () => {
           scriptLoadedRef.current = true;
           createForm();

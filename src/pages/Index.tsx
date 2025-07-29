@@ -10,7 +10,6 @@ import { ContactCTA } from "@/components/home/ContactCTA";
 import { LogisticsFeatureSection } from "@/components/sections/LogisticsFeatureSection";
 import { LogisticsPerformanceSection } from "@/components/sections/LogisticsPerformanceSection";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
-import { ROICalculatorCTA } from "@/components/sections/ROICalculatorCTA";
 import { motion } from "framer-motion";
 
 // Animation variants pour les transitions entre sections
@@ -98,10 +97,6 @@ const Index = () => {
         
         <motion.div variants={sectionVariants}>
           <TestimonialsSection />
-        </motion.div>
-        
-        <motion.div variants={sectionVariants}>
-          <ROICalculatorCTA />
         </motion.div>
         
         <motion.div variants={sectionVariants}>
