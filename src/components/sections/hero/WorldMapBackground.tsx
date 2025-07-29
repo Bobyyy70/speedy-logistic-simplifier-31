@@ -3,7 +3,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import { WorldMap } from "@/components/ui/world-map/component";
 
-export function WorldMapBackground() {
+interface WorldMapBackgroundProps {
+  reduceAnimations?: boolean;
+}
+
+export function WorldMapBackground({ reduceAnimations = false }: WorldMapBackgroundProps) {
   // Define our international shipping routes
   const shippingRoutes = [
     {
@@ -34,22 +38,22 @@ export function WorldMapBackground() {
 
   return (
     <motion.div 
-      className="absolute inset-0 world-map-container transition-transform duration-200 ease-out opacity-80"
+      className="absolute inset-0 world-map-container will-change-transform opacity-60"
       initial={{ opacity: 0 }}
-      animate={{ opacity: 0.8 }}
-      transition={{ duration: 1, delay: 0.3 }}
+      animate={{ opacity: reduceAnimations ? 0.4 : 0.6 }}
+      transition={{ duration: reduceAnimations ? 0.5 : 1, delay: reduceAnimations ? 0 : 0.3 }}
     >
       <WorldMap 
-        dots={shippingRoutes} 
+        dots={reduceAnimations ? shippingRoutes.slice(0, 3) : shippingRoutes} 
         lineColor="#2F68F3" 
         secondaryLineColor="#F3BA2F"
-        opacity={0.75}
+        opacity={reduceAnimations ? 0.5 : 0.75}
         dotColor="#2F68F3"
         secondaryDotColor="#F3BA2F"
       />
       
       {/* Overlay gradient for better contrast with content */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-50/50 via-transparent to-slate-50/50"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-50/30 via-transparent to-slate-50/30"></div>
     </motion.div>
   );
 }

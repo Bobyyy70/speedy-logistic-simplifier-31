@@ -38,12 +38,12 @@ export const MapPaths: React.FC<MapPathsProps> = ({
                 opacity: 0.8,
               }}
               transition={{
-                duration: 2.5,
-                delay: 0.3 * i,
+                duration: 4,
+                delay: 0.5 * i,
                 ease: "easeOut",
                 repeat: Infinity,
                 repeatType: "loop",
-                repeatDelay: 5,
+                repeatDelay: 8,
               }}
               key={`start-upper-${i}`}
             ></motion.path>

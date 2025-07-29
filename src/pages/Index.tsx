@@ -16,16 +16,16 @@ import { BackgroundGradientAnimation } from "@/components/ui/background-gradient
 import { ROICalculatorCTA } from "@/components/sections/ROICalculatorCTA";
 import { motion } from "framer-motion";
 
-// Animation variants pour les transitions entre sections
+// Optimized animation variants
 const sectionVariants = {
   hidden: { opacity: 0 },
   visible: { 
     opacity: 1,
     transition: { 
-      duration: 0.6, 
+      duration: 0.3, 
       ease: "easeOut",
       when: "beforeChildren",
-      staggerChildren: 0.1 
+      staggerChildren: 0.05 
     }
   }
 };
@@ -49,11 +49,11 @@ const Index = () => {
         fourthColor="120, 119, 198"
         fifthColor="180, 180, 50"
         pointerColor="140, 100, 255"
-        size="100%"
+        size="60%"
         blendingValue="normal"
         interactive={false}
-        className="absolute inset-0 z-0 opacity-10"
-        height="300%"
+        className="absolute inset-0 z-0 opacity-5"
+        height="200%"
       />
 
       <motion.div
@@ -77,42 +77,19 @@ const Index = () => {
         </Helmet>
         
         {/* Hero Section */}
-        <motion.div variants={sectionVariants}>
-          <HeroSection />
-        </motion.div>
+        <HeroSection />
         
-        {/* Main Content Sections */}
-        <motion.div variants={sectionVariants}>
+        {/* Main Content Sections - Simplified animations */}
+        <div className="relative z-10">
           <LogisticsFeatureSection />
-        </motion.div>
-        
-        <motion.div variants={sectionVariants}>
           <ChallengesSection />
-        </motion.div>
-        
-        <motion.div variants={sectionVariants}>
           <HowItWorksSection />
-        </motion.div>
-        
-        <motion.div variants={sectionVariants}>
           <WhyUsSection />
-        </motion.div>
-        
-        <motion.div variants={sectionVariants}>
           <LogisticsPerformanceSection />
-        </motion.div>
-        
-        <motion.div variants={sectionVariants}>
           <TestimonialsSection />
-        </motion.div>
-        
-        <motion.div variants={sectionVariants}>
           <ROICalculatorCTA />
-        </motion.div>
-        
-        <motion.div variants={sectionVariants}>
           <ContactCTA />
-        </motion.div>
+        </div>
       </motion.div>
       
       <AdvancedSEO />
