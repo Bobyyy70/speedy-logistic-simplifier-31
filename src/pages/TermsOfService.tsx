@@ -122,7 +122,7 @@ const TermsOfService = () => {
 
           <div className="mb-4">
             <h3 className="text-lg font-semibold mb-2">5.4 Conséquences du non-paiement</h3>
-            <div className="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+            <div className="mb-8 p-6 bg-slate-50 rounded-lg shadow ">
               <p className="mb-2">En cas de défaut de paiement après mise en demeure par LRAR restée sans effet pendant 8 jours :</p>
               <ul className="list-disc pl-5 space-y-1">
                 <li><strong>SUSPENSION DES SERVICES :</strong> Speed E-Log se réserve le droit de suspendre l'exécution de ses prestations</li>
