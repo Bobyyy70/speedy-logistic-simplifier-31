@@ -130,6 +130,9 @@ export const Footer: React.FC = () => {
                 <Link to="/politique-confidentialite" className="text-slate-500 hover:text-slate-900 transition-colors">
                   Politique de Confidentialité
                 </Link>
+                <Link to="/politique-cookies" className="text-slate-500 hover:text-slate-900 transition-colors">
+                  Politique de Cookies
+                </Link>
                 <Link to="/cgv" className="text-slate-500 hover:text-slate-900 transition-colors">
                   CGV
                 </Link>

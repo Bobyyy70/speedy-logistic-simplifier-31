@@ -12,6 +12,7 @@ import FaqPage from "./pages/FaqPage";
 import NotFound from "./pages/NotFound";
 import LegalMentions from "./pages/LegalMentions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import CookiePolicy from "./pages/CookiePolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Technology from "./pages/Technology";
 import Sitemap from "./pages/Sitemap";
@@ -37,6 +38,7 @@ const App = () => (
           <Route path="/plan-du-site" element={<Navigate to="/sitemap" replace />} />
           <Route path="/mentions-legales" element={<LegalMentions />} />
           <Route path="/politique-confidentialite" element={<PrivacyPolicy />} />
+          <Route path="/politique-cookies" element={<CookiePolicy />} />
           <Route path="/cgv" element={<TermsOfService />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
