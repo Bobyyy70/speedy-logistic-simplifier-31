@@ -1,212 +1,391 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-// Si vous utilisez react-router-dom, décommentez et utilisez Link ci-dessous
-// import { Link } from "react-router-dom";
 
 const PrivacyPolicy = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const companyName = "Speed E-Log";
-  const companyAddress = "37 Rue de Rémaucourt, 70170 Port-sur-Saône, France"; // Utilisé pour identifier le responsable de traitement
-  const websiteUrl = "speedelog.net"; // Assurez-vous que c'est la bonne URL
-  const contactPageUrl = "/contact"; // !! Adaptez si l'URL de votre page contact est différente !!
-  const lastUpdateDate = "04/05/2025"; // Date du jour
-
   return (
     <div className="container mx-auto py-16 px-4">
       <Helmet>
-        <title>Politique de Confidentialité | {companyName}</title>
+        <title>Politique de Protection des Données Personnelles | Speed E-Log</title>
         <meta
           name="description"
-          content={`Politique de confidentialité et protection des données de ${companyName}, votre partenaire logistique pour le e-commerce.`}
+          content="Politique RGPD complète de Speed E-Log - Protection des données, droits des utilisateurs et conformité CNIL 2025."
         />
       </Helmet>
 
-      <h1 className="text-3xl md:text-4xl font-bold mb-8">Politique de Confidentialité</h1>
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+            Politique de Protection des Données Personnelles
+          </h1>
+          <p className="text-xl text-muted-foreground mb-2">Speed E-Log SAS - speedelog.net</p>
+          <p className="text-lg text-muted-foreground">
+            Dernière mise à jour : 01/08/2025<br />
+            Conforme RGPD et dernières exigences CNIL 2024-2025
+          </p>
+        </div>
 
-      <div className="prose max-w-none">
-        {/* Introduction clarifiée */}
-        <section className="mb-8">
-           <p className="text-lg">
-             Chez {companyName} (SAS), située au {companyAddress}, nous prenons très au sérieux la protection de vos données personnelles. Cette politique vous informe sur la manière dont nous collectons, utilisons et protégeons vos informations lorsque vous utilisez notre site web {websiteUrl} et nos services.
-           </p>
-           <p className="mb-4">
-            Nous agissons en tant que **Responsable de traitement** pour les données personnelles de nos clients professionnels (vous), prospects et visiteurs de notre site web.
-          </p>
-          <p className="mb-4">
-            Nous agissons également en tant que **Sous-traitant** pour votre compte lorsque nous traitons les données personnelles de vos clients finaux (destinataires des colis) dans le cadre de nos prestations logistiques (stockage, préparation, expédition, retours). Les conditions de ce traitement sont définies dans nos Conditions Générales de Vente (Article 14.2) et/ou nos accords spécifiques.
-          </p>
-        </section>
+        <div className="prose prose-lg max-w-none">
+          {/* Section 1 */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-6 text-foreground">1. RESPONSABLE DE TRAITEMENT</h2>
+            <div className="bg-card p-6 rounded-lg border">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <p className="mb-2"><strong>Speed E-Log SAS</strong></p>
+                  <p className="mb-2">SIRET : 93475802000010</p>
+                  <p className="mb-2">Adresse : 37 Rue de Rémaucourt, 70170 Port-sur-Saône, France</p>
+                  <p className="mb-2">Téléphone : 06 35 58 40 04</p>
+                  <p>Email : contact@speedelog.net</p>
+                </div>
+                <div>
+                  <p className="mb-2"><strong>Délégué à la Protection des Données :</strong></p>
+                  <p className="mb-2">Email : dpo@speedelog.net</p>
+                  <p>Courrier : Speed E-Log SAS - DPO, 37 Rue de Rémaucourt, 70170 Port-sur-Saône</p>
+                </div>
+              </div>
+            </div>
+          </section>
 
-        {/* Collecte des données précisée */}
-        <section className="mb-8">
-          <h2 className="text-xl md:text-2xl font-semibold mb-4">Collecte des données personnelles</h2>
-          <p className="mb-4">
-            Nous collectons différentes catégories de données :
-          </p>
-          <ul className="list-disc pl-6 mb-4">
-            <li><strong>En tant que Responsable de traitement (vous concernant) :</strong>
-                <ul className="list-disc pl-6 mt-2">
-                    <li>Informations d'identification (nom, prénom, raison sociale)</li>
-                    <li>Coordonnées (adresse email, numéro de téléphone, adresse postale)</li>
-                    <li>Informations professionnelles (poste, entreprise)</li>
-                    <li>Données de connexion et de navigation sur notre site ({websiteUrl})</li>
-                    <li>Informations relatives à nos échanges, devis, contrats et facturation</li>
+          {/* Section 2 */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-6 text-foreground">2. DONNÉES COLLECTÉES ET FINALITÉS</h2>
+            
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-foreground">2.1 Gestion des commandes et relation client</h3>
+              <ul className="list-disc pl-6 mb-4 space-y-2">
+                <li><strong>Données traitées :</strong> Civilité, nom, prénom, adresse de facturation, adresse de livraison, téléphone, email, historique de commandes, préférences produits</li>
+                <li><strong>Base légale :</strong> Exécution du contrat (Article 6.1.b RGPD)</li>
+                <li><strong>Finalité :</strong> Traitement des commandes, facturation, livraison, service après-vente, gestion des retours et garanties</li>
+                <li><strong>Destinataires :</strong> Services internes habilités, transporteurs (données livraison uniquement), processeurs de paiement</li>
+                <li><strong>Conservation :</strong> Durée de la relation commerciale + 3 ans (réclamations/garanties)</li>
+              </ul>
+            </div>
+
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-foreground">2.2 Données comptables et fiscales</h3>
+              <ul className="list-disc pl-6 mb-4 space-y-2">
+                <li><strong>Données traitées :</strong> Informations de facturation, données de paiement (hors cryptogramme), historique financier</li>
+                <li><strong>Base légale :</strong> Obligation légale (Article 6.1.c RGPD - Code de commerce)</li>
+                <li><strong>Finalité :</strong> Tenue de la comptabilité, obligations fiscales et déclaratives</li>
+                <li><strong>Conservation :</strong> 10 ans à compter de la clôture de l'exercice (obligation légale)</li>
+              </ul>
+            </div>
+
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-foreground">2.3 Prospection commerciale et marketing</h3>
+              <ul className="list-disc pl-6 mb-4 space-y-2">
+                <li><strong>Données traitées :</strong> Email, préférences de communication, historique d'achat, comportement de navigation, données d'engagement</li>
+                <li><strong>Base légale :</strong>
+                  <ul className="list-disc pl-6 mt-2">
+                    <li>Clients : Intérêt légitime (Article 6.1.f RGPD)</li>
+                    <li>Prospects : Consentement (Article 6.1.a RGPD)</li>
+                  </ul>
+                </li>
+                <li><strong>Finalité :</strong> Envoi d'offres commerciales, newsletters, recommandations personnalisées, amélioration de l'expérience client</li>
+                <li><strong>Conservation :</strong>
+                  <ul className="list-disc pl-6 mt-2">
+                    <li>Clients : 3 ans après fin de la relation commerciale</li>
+                    <li>Prospects : Jusqu'au retrait du consentement ou 3 ans après dernier contact du prospect</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-foreground">2.4 Données de navigation et cookies techniques</h3>
+              <ul className="list-disc pl-6 mb-4 space-y-2">
+                <li><strong>Données traitées :</strong> Adresse IP, données de navigation, cookies techniques, logs de sécurité</li>
+                <li><strong>Base légale :</strong> Intérêt légitime (Article 6.1.f RGPD)</li>
+                <li><strong>Finalité :</strong> Sécurité du site, protection contre les attaques, optimisation des performances, statistiques anonymes</li>
+                <li><strong>Conservation :</strong> 6 mois pour les logs, durées variables pour les cookies (voir politique cookies)</li>
+              </ul>
+            </div>
+
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-foreground">2.5 Données analytiques et comportementales (HubSpot)</h3>
+              <ul className="list-disc pl-6 mb-4 space-y-2">
+                <li><strong>Données traitées :</strong> Comportement de navigation, interactions marketing, scores d'engagement, données de profilage</li>
+                <li><strong>Base légale :</strong> Consentement (Article 6.1.a RGPD)</li>
+                <li><strong>Finalité :</strong> Analyse d'audience, personnalisation du contenu, optimisation marketing</li>
+                <li><strong>Conservation :</strong> 6 mois maximum avec renouvellement du consentement</li>
+              </ul>
+            </div>
+          </section>
+
+          {/* Section 3 */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-6 text-foreground">3. SOUS-TRAITANCE ET DESTINATAIRES</h2>
+            
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-foreground">3.1 Services d'hébergement et sécurité</h3>
+              <div className="bg-card p-4 rounded-lg border mb-4">
+                <p className="font-semibold mb-2">Cloudflare Inc. (États-Unis)</p>
+                <ul className="list-disc pl-6 space-y-1">
+                  <li><strong>Finalité :</strong> CDN, sécurité web, protection DDoS, optimisation performances</li>
+                  <li><strong>Base transfert :</strong> Data Privacy Framework EU-US (certification active)</li>
+                  <li><strong>Données :</strong> Adresse IP, données de navigation, métadonnées techniques</li>
+                  <li><strong>DPA :</strong> Contrat de sous-traitance RGPD signé</li>
                 </ul>
-            </li>
-             <li className="mt-2"><strong>En tant que Sous-traitant (concernant vos clients finaux) :</strong>
-                 <ul className="list-disc pl-6 mt-2">
-                    <li>Coordonnées du destinataire (nom, prénom, adresse postale, email, téléphone)</li>
-                    <li>Informations nécessaires à la livraison et au suivi des colis</li>
-                    <li>Informations relatives aux retours éventuels</li>
-                 </ul>
-                 Ces données nous sont transmises par vous via nos systèmes connectés (API, OMS...).
-             </li>
-          </ul>
-          <p className="mb-4">
-            Ces informations sont collectées (pour les données dont nous sommes Responsable de traitement) lorsque vous :
-          </p>
-          <ul className="list-disc pl-6 mb-4">
-            <li>Remplissez un formulaire sur notre site</li>
-            <li>Demandez un devis ou échangez avec nous</li>
-            <li>Créez ou utilisez un compte client sur nos plateformes</li>
-            <li>Naviguez sur notre site (via cookies notamment)</li>
-          </ul>
-        </section>
+              </div>
+            </div>
 
-        {/* Utilisation des données précisée */}
-        <section className="mb-8">
-          <h2 className="text-xl md:text-2xl font-semibold mb-4">Utilisation des données personnelles</h2>
-          <p className="mb-4">
-            Nous utilisons ces données pour :
-          </p>
-          <ul className="list-disc pl-6 mb-4">
-             <li><strong>Vous fournir nos services logistiques (en tant que sous-traitant) :</strong> Gérer les stocks, préparer et expédier les commandes de vos clients finaux, gérer les retours, conformément à vos instructions et notre contrat.</li>
-            <li><strong>Gérer notre relation commerciale avec vous (en tant que responsable de traitement) :</strong> Gérer votre compte client, répondre à vos demandes, établir des devis, assurer la facturation.</li>
-            <li><strong>Améliorer nos services et notre site web :</strong> Analyser l'utilisation, réaliser des statistiques.</li>
-            <li><strong>Communiquer avec vous :</strong> Vous envoyer des informations relatives à nos services (mises à jour, maintenance) ou des communications commerciales (si vous y avez consenti).</li>
-            <li><strong>Respecter nos obligations légales et réglementaires :</strong> Obligations comptables, fiscales, etc.</li>
-          </ul>
-        </section>
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-foreground">3.2 Services marketing et CRM</h3>
+              <div className="bg-card p-4 rounded-lg border mb-4">
+                <p className="font-semibold mb-2">HubSpot Inc. (États-Unis)</p>
+                <ul className="list-disc pl-6 space-y-1">
+                  <li><strong>Finalité :</strong> Marketing automation, gestion relation client, analytics</li>
+                  <li><strong>Base transfert :</strong> Data Privacy Framework EU-US + Clauses Contractuelles Types</li>
+                  <li><strong>Données :</strong> Données contact, comportement, historique interactions</li>
+                  <li><strong>Consentement :</strong> Requis pour cookies analytics et marketing</li>
+                </ul>
+              </div>
+            </div>
 
-        {/* Base légale complétée */}
-        <section className="mb-8">
-          <h2 className="text-xl md:text-2xl font-semibold mb-4">Base légale du traitement</h2>
-          <p className="mb-4">
-            Le traitement de vos données est justifié par :
-          </p>
-          <ul className="list-disc pl-6 mb-4">
-            <li>L'**exécution du contrat** qui nous lie (pour la gestion de votre compte et des prestations logistiques convenues).</li>
-            <li>Le **respect de nos obligations légales** (notamment pour la facturation et la comptabilité).</li>
-            <li>Notre **intérêt légitime** (pour répondre à vos demandes de prospect, améliorer nos services, assurer la sécurité).</li>
-            <li>Votre **consentement** (pour les cookies non essentiels, l'envoi de newsletters ou d'offres commerciales).</li>
-             <li>Concernant les données de vos clients finaux (traitées en tant que sous-traitant), la base légale est l'**exécution du contrat entre vous et votre client final**, et nous agissons sur **vos instructions documentées**.</li>
-          </ul>
-        </section>
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-foreground">3.3 Services de livraison</h3>
+              <div className="bg-card p-4 rounded-lg border mb-4">
+                <p className="font-semibold mb-2">Transporteurs nationaux et internationaux (dont FedEx pour international)</p>
+                <ul className="list-disc pl-6 space-y-1">
+                  <li><strong>Finalité :</strong> Livraison des commandes, suivi des expéditions</li>
+                  <li><strong>Données :</strong> Nom, adresse livraison, téléphone, références commande</li>
+                  <li><strong>Transferts internationaux :</strong> Clauses Contractuelles Types + mesures supplémentaires</li>
+                  <li><strong>Conservation :</strong> Suppression après livraison + délai réclamation (3 mois)</li>
+                </ul>
+              </div>
+            </div>
 
-        {/* Conservation des données mise à jour */}
-        <section className="mb-8">
-          <h2 className="text-xl md:text-2xl font-semibold mb-4">Conservation des données</h2>
-          <p className="mb-4">
-            Nous conservons les données uniquement le temps nécessaire aux finalités :
-          </p>
-          <ul className="list-disc pl-6 mb-4">
-            <li>**Données clients (vous) :** Pendant la durée de la relation commerciale + 5 ans après la fin du contrat (prescription légale, preuve).</li>
-            <li>**Données prospects :** 3 ans après le dernier contact pertinent de votre part.</li>
-            <li>**Données de connexion (logs serveur) :** Généralement 1 an maximum (à vérifier selon la configuration serveur).</li>
-             <li>**Données de cookies/traceurs :** Maximum 13 mois après le dépôt initial, suite à votre consentement.</li>
-            <li>**Données de facturation :** 10 ans à compter de la clôture de l'exercice comptable (obligation légale).</li>
-            <li>**Données de vos clients finaux (traitées en tant que sous-traitant) :** Selon vos instructions et pour la durée nécessaire à l'exécution des prestations et à la gestion des litiges éventuels (en respectant les délais de prescription).</li>
-          </ul>
-        </section>
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-foreground">3.4 Services de paiement</h3>
+              <div className="bg-card p-4 rounded-lg border mb-4">
+                <p className="font-semibold mb-2">Processeurs de paiement sécurisés</p>
+                <ul className="list-disc pl-6 space-y-1">
+                  <li><strong>Finalité :</strong> Traitement sécurisé des paiements</li>
+                  <li><strong>Données :</strong> Données carte (cryptogramme jamais conservé)</li>
+                  <li><strong>Conservation :</strong> 15 mois maximum (contestations)</li>
+                </ul>
+              </div>
+            </div>
+          </section>
 
-        {/* Partage des données précisé */}
-        <section className="mb-8">
-          <h2 className="text-xl md:text-2xl font-semibold mb-4">Partage des données personnelles</h2>
-          <p className="mb-4">
-            Nous pouvons partager des données avec :
-          </p>
-          <ul className="list-disc pl-6 mb-4">
-            <li>Nos prestataires techniques (hébergement - Hostinger, maintenance, fournisseurs de logiciels WMS/OMS/TMS si externalisés).</li>
-             <li>Les **transporteurs** (FedEx, Colissimo, Mondial Relay, etc.) pour l'exécution des livraisons de vos clients finaux.</li>
-            <li>Les autorités compétentes, sur demande légale.</li>
-          </ul>
-          <p className="mb-4">
-             Nous nous assurons que nos prestataires et les transporteurs offrent des garanties appropriées en matière de protection des données. Concernant les données de vos clients finaux, le partage avec les transporteurs est nécessaire à l'exécution du service que vous nous confiez.
-          </p>
-        </section>
+          {/* Section 4 */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-6 text-foreground">4. TRANSFERTS INTERNATIONAUX</h2>
+            
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-foreground">4.1 États-Unis (Cloudflare, HubSpot)</h3>
+              <div className="bg-card p-4 rounded-lg border mb-4">
+                <p className="mb-4"><strong>Mécanisme principal :</strong> Data Privacy Framework EU-US (10 juillet 2023)</p>
+                <ul className="list-disc pl-6 mb-4 space-y-1">
+                  <li>Cloudflare certifié : 5666</li>
+                  <li>HubSpot certifié : 5812</li>
+                  <li>Vérification statut : https://www.dataprivacyframework.gov/</li>
+                </ul>
+                <p className="mb-2"><strong>Garanties supplémentaires :</strong></p>
+                <ul className="list-disc pl-6 space-y-1">
+                  <li>Clauses Contractuelles Types (Décision 2021/914)</li>
+                  <li>Mesures techniques : chiffrement, contrôles d'accès</li>
+                  <li>Analyses d'impact des transferts réalisées</li>
+                  <li>Mécanismes de recours indépendants</li>
+                </ul>
+              </div>
+            </div>
 
-        {/* Sécurité */}
-        <section className="mb-8">
-          <h2 className="text-xl md:text-2xl font-semibold mb-4">Sécurité des données</h2>
-          <p className="mb-4">
-            Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger les données personnelles contre toute
-            perte, accès non autorisé, divulgation, altération ou destruction.
-          </p>
-        </section>
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-foreground">4.2 Autres pays tiers (livraisons internationales)</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                <li><strong>Base légale :</strong> Clauses Contractuelles Types + mesures supplémentaires</li>
+                <li><strong>Évaluation :</strong> Analyse d'impact spécifique par pays de livraison</li>
+                <li><strong>Données limitées :</strong> Strictement nécessaires à la livraison</li>
+              </ul>
+            </div>
+          </section>
 
-        {/* Vos droits mis à jour (contact et distinction client/client final) */}
-        <section className="mb-8">
-          <h2 className="text-xl md:text-2xl font-semibold mb-4">Vos droits</h2>
-          <p className="mb-4">
-            Concernant les données que nous traitons sur vous en tant que Responsable de Traitement, vous disposez des droits suivants (accès, rectification, effacement, limitation, portabilité, opposition, retrait du consentement, directives post-mortem) conformément au RGPD.
-          </p>
-          {/* <ul className="list-disc pl-6 mb-4">
-             Copier la liste détaillée des droits si souhaité
-          </ul> */}
-          <p className="mb-4">
-             Pour exercer ces droits, veuillez utiliser les options disponibles sur notre <a href={contactPageUrl}>page de contact</a>.
-             {/* Alternative react-router-dom:
-             Pour exercer ces droits, veuillez utiliser les options disponibles sur notre <Link to={contactPageUrl} className="text-blue-600 hover:underline">page de contact</Link>.
-             */}
-             Un justificatif d'identité pourra être demandé.
-          </p>
-          <p className="mb-4">
-            Si vous êtes un **client final** d'un de nos clients e-commerçants, pour exercer vos droits sur les données utilisées pour votre livraison/retour, veuillez contacter directement l'e-commerçant concerné (le Responsable de traitement).
-          </p>
-           <p className="mb-4">
-             Vous avez également le droit d'introduire une réclamation auprès de la CNIL (Commission Nationale de l'Informatique et des Libertés - www.cnil.fr).
-           </p>
-        </section>
+          {/* Section 5 */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-6 text-foreground">5. DURÉES DE CONSERVATION DÉTAILLÉES</h2>
+            
+            <div className="overflow-x-auto">
+              <table className="min-w-full bg-card rounded-lg border">
+                <thead className="bg-muted">
+                  <tr>
+                    <th className="px-6 py-3 text-left font-semibold">Catégorie de données</th>
+                    <th className="px-6 py-3 text-left font-semibold">Durée base active</th>
+                    <th className="px-6 py-3 text-left font-semibold">Archivage intermédiaire</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border">
+                  <tr>
+                    <td className="px-6 py-4">Données commande</td>
+                    <td className="px-6 py-4">Relation commerciale</td>
+                    <td className="px-6 py-4">3 ans (garanties/réclamations)</td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4">Données comptables</td>
+                    <td className="px-6 py-4">Relation commerciale</td>
+                    <td className="px-6 py-4">10 ans (obligation légale)</td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4">Prospects actifs</td>
+                    <td className="px-6 py-4">Jusqu'au retrait consentement</td>
+                    <td className="px-6 py-4">3 ans après dernier contact</td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4">Clients inactifs</td>
+                    <td className="px-6 py-4">3 ans après dernier achat</td>
+                    <td className="px-6 py-4">-</td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4">Cookies marketing</td>
+                    <td className="px-6 py-4">13 mois maximum</td>
+                    <td className="px-6 py-4">-</td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4">Logs sécurité</td>
+                    <td className="px-6 py-4">6 mois</td>
+                    <td className="px-6 py-4">-</td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4">Données paiement</td>
+                    <td className="px-6 py-4">Fin transaction</td>
+                    <td className="px-6 py-4">15 mois (contestations)</td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4">Comptes utilisateurs</td>
+                    <td className="px-6 py-4">Jusqu'à suppression</td>
+                    <td className="px-6 py-4">2 ans d'inactivité</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
-        {/* Cookies mis à jour */}
-        <section className="mb-8">
-          <h2 className="text-xl md:text-2xl font-semibold mb-4">Cookies et autres traceurs</h2>
-           <p className="mb-4">
-            Notre site web {websiteUrl} utilise des cookies et autres traceurs pour améliorer votre expérience, analyser le trafic et assurer son bon fonctionnement. Conformément à la réglementation, certains traceurs nécessitent votre consentement préalable.
-          </p>
-           <p className="mb-4">
-             Vous pouvez à tout moment gérer vos préférences (accepter, refuser, paramétrer) via le module de gestion de consentement accessible sur notre site [Préciser où : bandeau, lien pied de page...].
-           </p>
-           <p className="mb-4">
-             Pour une information détaillée, veuillez consulter notre Politique de Cookies dédiée [Lien vers la page Politique Cookies - à créer].
-           </p>
-        </section>
+            <div className="mt-6 bg-card p-4 rounded-lg border">
+              <p className="font-semibold mb-2">Points de départ des durées :</p>
+              <ul className="list-disc pl-6 space-y-1">
+                <li><strong>Clients :</strong> Dernier achat ou dernière interaction contractuelle</li>
+                <li><strong>Prospects :</strong> Dernier contact émanant du prospect</li>
+                <li><strong>Comptabilité :</strong> Clôture de l'exercice</li>
+              </ul>
+            </div>
+          </section>
 
-        {/* Modifications */}
-        <section className="mb-8">
-          <h2 className="text-xl md:text-2xl font-semibold mb-4">Modifications de la politique de confidentialité</h2>
-          <p className="mb-4">
-            Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment. Les modifications prendront effet dès leur publication sur notre site web. Nous vous encourageons à consulter régulièrement cette page.
-          </p>
-        </section>
+          {/* Section 6 */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-6 text-foreground">6. MESURES DE SÉCURITÉ</h2>
+            
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-foreground">6.1 Mesures techniques</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Chiffrement des données sensibles en transit (TLS) et au repos</li>
+                <li>Authentification renforcée avec double facteur recommandée</li>
+                <li>Contrôles d'accès basés sur le principe du moindre privilège</li>
+                <li>Surveillance continue et détection d'intrusion</li>
+                <li>Sauvegardes chiffrées avec tests de restauration réguliers</li>
+                <li>Mise à jour automatique des systèmes de sécurité</li>
+              </ul>
+            </div>
 
-        {/* Contact mis à jour */}
-         <section>
-          <h2 className="text-xl md:text-2xl font-semibold mb-4">Contact</h2>
-          <p className="mb-4">
-            Pour toute question relative à cette politique ou au traitement de vos données par {companyName}, veuillez utiliser les moyens proposés sur notre <a href={contactPageUrl}>page de contact</a>.
-             {/* Alternative react-router-dom:
-             [...] sur notre <Link to={contactPageUrl} className="text-blue-600 hover:underline">page de contact</Link>.
-             */}
-          </p>
-           <p className="mb-4">
-            <strong>Dernière mise à jour :</strong> {lastUpdateDate}
-          </p>
-        </section>
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-foreground">6.2 Mesures organisationnelles</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Formation annuelle du personnel sur le RGPD</li>
+                <li>Procédures documentées de gestion des incidents</li>
+                <li>Audits de sécurité réguliers par tiers indépendants</li>
+                <li>Politique de mots de passe renforcée</li>
+                <li>Journalisation des accès aux données personnelles</li>
+              </ul>
+            </div>
 
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-foreground">6.3 Notification des violations</h3>
+              <p className="mb-4">En cas de violation de données susceptible d'engendrer un risque pour vos droits et libertés :</p>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Notification CNIL sous 72 heures</li>
+                <li>Information directe si risque élevé</li>
+                <li>Mesures correctives immédiates</li>
+              </ul>
+            </div>
+          </section>
+
+          {/* Section 7 */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-6 text-foreground">7. VOS DROITS RGPD</h2>
+            
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-foreground">7.1 Droits garantis</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                <li><strong>Droit d'accès :</strong> Obtenir confirmation du traitement et copie de vos données</li>
+                <li><strong>Droit de rectification :</strong> Faire corriger les données inexactes</li>
+                <li><strong>Droit à l'effacement :</strong> Obtenir la suppression de vos données (sous conditions)</li>
+                <li><strong>Droit à la limitation :</strong> Demander la restriction du traitement</li>
+                <li><strong>Droit à la portabilité :</strong> Récupérer vos données dans un format structuré</li>
+                <li><strong>Droit d'opposition :</strong> Vous opposer aux traitements (sauf motif légitime impérieux)</li>
+                <li><strong>Droit de retrait :</strong> Retirer votre consentement à tout moment (cookies, marketing)</li>
+              </ul>
+            </div>
+
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-foreground">7.2 Modalités d'exercice</h3>
+              <div className="bg-card p-4 rounded-lg border">
+                <ul className="list-disc pl-6 space-y-2">
+                  <li><strong>Contact privilégié :</strong> dpo@speedelog.net</li>
+                  <li><strong>Courrier postal :</strong> Speed E-Log SAS - Exercice des droits, 37 Rue de Rémaucourt, 70170 Port-sur-Saône</li>
+                  <li><strong>Délai de réponse :</strong> 1 mois (prorogeable 2 mois si demande complexe)</li>
+                  <li><strong>Justificatif d'identité :</strong> Peut être demandé en cas de doute raisonnable</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-foreground">7.3 Procédure type</h3>
+              <ol className="list-decimal pl-6 space-y-2">
+                <li>Accusé de réception sous 72 heures</li>
+                <li>Vérification identité si nécessaire (suppression du justificatif après contrôle)</li>
+                <li>Traitement dans les délais légaux</li>
+                <li>Réponse motivée avec justifications en cas de refus partiel</li>
+              </ol>
+            </div>
+          </section>
+
+          {/* Section 8 */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-6 text-foreground">8. DROIT DE RÉCLAMATION</h2>
+            <p className="mb-4">
+              Si vous estimez que le traitement de vos données ne respecte pas la réglementation, vous pouvez introduire une réclamation auprès de la CNIL :
+            </p>
+            <div className="bg-card p-4 rounded-lg border">
+              <p className="font-semibold mb-2">Commission Nationale de l'Informatique et des Libertés</p>
+              <p className="mb-1">3 Place de Fontenoy - TSA 80715 - 75334 PARIS CEDEX 07</p>
+              <p className="mb-1">Téléphone : 01 53 73 22 22</p>
+              <p>En ligne : <a href="https://www.cnil.fr/fr/plaintes" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">https://www.cnil.fr/fr/plaintes</a></p>
+            </div>
+          </section>
+
+          {/* Section 9 */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-6 text-foreground">9. ÉVOLUTION DE LA POLITIQUE</h2>
+            <p className="mb-4">
+              Cette politique est mise à jour régulièrement pour rester conforme à l'évolution réglementaire. Toute modification substantielle vous sera notifiée par email ou via un bandeau d'information sur le site.
+            </p>
+            <div className="bg-card p-4 rounded-lg border">
+              <p className="mb-1"><strong>Version actuelle :</strong> 2025.1</p>
+              <p><strong>Prochaine révision prévue :</strong> 01/02/2026</p>
+            </div>
+          </section>
+
+          {/* Contact */}
+          <section className="mb-8">
+            <h2 className="text-2xl font-bold mb-6 text-foreground">Contact</h2>
+            <p className="mb-4">
+              Pour toute question relative à cette politique ou au traitement de vos données, contactez-nous via notre{" "}
+              <a href="/contact" className="text-primary hover:underline">page de contact</a>.
+            </p>
+          </section>
+        </div>
       </div>
     </div>
   );
