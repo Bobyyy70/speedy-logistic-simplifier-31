@@ -342,7 +342,7 @@ export const SinglePageQuoteForm: React.FC<SinglePageQuoteFormProps> = ({ onForm
             <span>Presque terminé ! Plus que quelques champs...</span>
           </motion.div>
         )}
-      </div>
+      </motion.div>
       
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">

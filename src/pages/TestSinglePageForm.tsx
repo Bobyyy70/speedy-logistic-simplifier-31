@@ -96,7 +96,7 @@ export const TestSinglePageForm = () => {
                 <li>• Sections colorées par thème</li>
                 <li>• Animations au focus des champs</li>
                 <li>• Validation en temps réel</li>
-                <li>• Désactivation bouton < 80% complet</li>
+                <li>• Désactivation bouton &lt; 80% complet</li>
                 <li>• Écran de succès animé</li>
               </ul>
             </div>
