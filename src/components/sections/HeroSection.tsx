@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HeroContent } from "@/components/sections/hero/HeroContent";
@@ -6,19 +5,20 @@ import { HeroCard } from "@/components/sections/hero/HeroCard";
 import { ScrollIndicator } from "@/components/sections/ScrollIndicator";
 import { WorldMapBackground } from "@/components/sections/hero/WorldMapBackground";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
-import { motion } from "framer-motion";
+import { UltraLazyMotion, performanceVariants } from "@/components/ui/ultra-lazy-motion";
 import { useThrottledParallax } from "@/hooks/use-throttled-parallax";
+import { usePerformanceMonitor } from "@/hooks/use-performance-monitor";
 
 export function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const throttledParallax = useThrottledParallax({ intensity: 15, fps: 60 });
+  const throttledParallax = useThrottledParallax({ intensity: 8, fps: 30 });
+  const { metrics } = usePerformanceMonitor();
 
-  // Enable optimized parallax effect
+  // Enable optimized parallax effect only on performant devices
   useEffect(() => {
-    const hero = heroRef.current;
-    if (!hero) return;
+    if (!heroRef.current || metrics.isLowEndDevice) return;
 
-    const worldMapElement = hero.querySelector(".world-map-container") as HTMLElement;
+    const worldMapElement = heroRef.current.querySelector(".world-map-container") as HTMLElement;
     const handleMouseMove = throttledParallax(worldMapElement);
     
     if (handleMouseMove) {
@@ -27,7 +27,7 @@ export function HeroSection() {
         window.removeEventListener("mousemove", handleMouseMove);
       };
     }
-  }, [throttledParallax]);
+  }, [throttledParallax, metrics.isLowEndDevice]);
 
   return (
     <section 
@@ -54,38 +54,57 @@ export function HeroSection() {
         interactive={true}
       />
       
-      {/* Animated gradient orbs */}
-      <div className="absolute inset-0 z-[1] overflow-hidden">
-        <motion.div
-          className="absolute w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-[120px]"
-          animate={{
-            x: ["-20%", "10%", "-10%", "5%", "-20%"],
-            y: ["0%", "15%", "-5%", "10%", "0%"],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute w-[400px] h-[400px] top-[20%] right-[10%] rounded-full bg-yellow-500/10 blur-[100px]"
-          animate={{
-            x: ["10%", "-15%", "5%", "-5%", "10%"],
-            y: ["5%", "-10%", "15%", "0%", "5%"],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut",
-          }}
-        />
-      </div>
+      {/* Animated gradient orbs - only for high-performance devices */}
+      {!metrics.isLowEndDevice && (
+        <div className="absolute inset-0 z-[1] overflow-hidden">
+          <UltraLazyMotion
+            className="absolute w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-[120px]"
+            variants={{
+              hidden: { opacity: 0, x: "-20%", y: "0%" },
+              visible: { 
+                opacity: 1, 
+                x: ["-20%", "10%", "-10%", "5%", "-20%"],
+                y: ["0%", "15%", "-5%", "10%", "0%"],
+                transition: {
+                  duration: 25,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  ease: "easeInOut",
+                }
+              }
+            }}
+            respectConnection={true}
+          >
+            <div className="w-full h-full" />
+          </UltraLazyMotion>
+          <UltraLazyMotion
+            className="absolute w-[400px] h-[400px] top-[20%] right-[10%] rounded-full bg-yellow-500/10 blur-[100px]"
+            variants={{
+              hidden: { opacity: 0, x: "10%", y: "5%" },
+              visible: { 
+                opacity: 1, 
+                x: ["10%", "-15%", "5%", "-5%", "10%"],
+                y: ["5%", "-10%", "15%", "0%", "5%"],
+                transition: {
+                  duration: 20,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  ease: "easeInOut",
+                }
+              }
+            }}
+            respectConnection={true}
+          >
+            <div className="w-full h-full" />
+          </UltraLazyMotion>
+        </div>
+      )}
       
+      {/* World Map Background - conditional rendering based on performance */}
       <div className="absolute inset-0 z-10">
-        <WorldMapBackground />
+        {!metrics.isLowEndDevice && metrics.networkSpeed !== 'slow' && (
+          <WorldMapBackground />
+        )}
       </div>
       
       <div className="container mx-auto relative z-20 h-full flex items-center">
