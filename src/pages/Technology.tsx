@@ -458,7 +458,7 @@ const Technology = () => {
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                     <a 
-                      href="http://supplyos.com/" 
+                      href="https://supplyos.com/" 
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-center py-3 px-6 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-blue-500/30 text-blue-600 dark:text-blue-400 font-medium rounded-lg transition-colors duration-300"
