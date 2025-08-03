@@ -6,8 +6,8 @@ interface ThrottledParallaxOptions {
 }
 
 export const useThrottledParallax = ({
-  intensity = 15,
-  fps = 60
+  intensity = 8, // Reduced intensity for better performance
+  fps = 30 // Reduced FPS for better TBT
 }: ThrottledParallaxOptions = {}) => {
   const lastTimeRef = useRef<number>(0);
   const intervalRef = useRef<number>(1000 / fps);
@@ -31,7 +31,8 @@ export const useThrottledParallax = ({
       const moveX = (clientX / innerWidth - 0.5) * intensity;
       const moveY = (clientY / innerHeight - 0.5) * intensity;
       
-      // Use transform3d for GPU acceleration
+      // Use transform3d for GPU acceleration with will-change
+      element.style.willChange = 'transform';
       element.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
     };
 

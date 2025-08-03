@@ -1,6 +1,6 @@
 
 import React from "react";
-import { motion } from "framer-motion";
+import { LazyMotionWrapper } from "@/components/ui/lazy-motion-wrapper";
 import { WorldMap } from "@/components/ui/world-map/component";
 
 export function WorldMapBackground() {
@@ -33,11 +33,13 @@ export function WorldMapBackground() {
   ];
 
   return (
-    <motion.div 
+    <LazyMotionWrapper
       className="absolute inset-0 world-map-container transition-transform duration-200 ease-out opacity-80"
       initial={{ opacity: 0 }}
       animate={{ opacity: 0.8 }}
       transition={{ duration: 1, delay: 0.3 }}
+      threshold={0.05}
+      rootMargin="100px"
       style={{
         willChange: 'transform',
         transform: 'translate3d(0, 0, 0)' // GPU acceleration for parallax
@@ -54,6 +56,6 @@ export function WorldMapBackground() {
       
       {/* Overlay gradient for better contrast with content */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-50/50 via-transparent to-slate-50/50"></div>
-    </motion.div>
+    </LazyMotionWrapper>
   );
 }

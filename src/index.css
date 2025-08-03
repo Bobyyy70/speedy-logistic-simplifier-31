@@ -5,6 +5,7 @@
 
 /* Performance optimizations */
 @import "./styles/performance.css";
+@import "./styles/performance-tbt.css";
 
 @layer utilities {
   .glass-effect {

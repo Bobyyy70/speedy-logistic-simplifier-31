@@ -1,0 +1,44 @@
+/* Critical TBT optimizations */
+
+/* Reduce paint operations for heavy animations */
+.motion-div,
+.world-map-container,
+.hero-content {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  contain: layout style paint;
+}
+
+/* Optimize Framer Motion components */
+.motion-optimized {
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Throttle expensive operations */
+.parallax-element {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.1s linear;
+}
+
+/* Reduce layout thrashing */
+.no-layout-shift {
+  contain: layout;
+  position: relative;
+}
+
+/* Critical loading optimizations */
+.critical-above-fold {
+  will-change: auto;
+  contain: layout style;
+}
+
+/* Animation performance hints */
+@media (prefers-reduced-motion: no-preference) {
+  .performance-animation {
+    animation-duration: 0.3s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
