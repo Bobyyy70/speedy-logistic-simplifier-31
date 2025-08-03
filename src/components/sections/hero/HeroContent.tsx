@@ -6,15 +6,17 @@ import { Button } from "@/components/ui/button";
 import { HomeLogoWithText } from "@/components/ui/LogoIcon";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { SocialProof } from "@/components/sections/hero/SocialProof";
-import { QuoteFormModal } from "@/components/contact/QuoteFormModal";
-import { useQuoteModal } from "@/hooks/useQuoteModal";
+import { AttractiveQuoteModal } from "@/components/contact/AttractiveQuoteModal";
+import { useState } from "react";
 
 export function HeroContent() {
-  const { isOpen, openModal, closeModal } = useQuoteModal();
+  const [isOpen, setIsOpen] = useState(false);
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
 
   return (
     <div className="flex flex-col justify-center space-y-6 text-center lg:text-left px-4 md:px-6">
-      <UltraLazyMotion 
+      <UltraLazyMotion
         variants={performanceVariants}
         transition={{ duration: 0.6 }}
         className="mb-2"
@@ -22,16 +24,23 @@ export function HeroContent() {
         <HomeLogoWithText className="w-36 lg:self-start mx-auto lg:mx-0" />
       </UltraLazyMotion>
 
-      <div className="space-y-4">
+      {/* SEO H1 - Structure sémantique appropriée */}
+      <h1 className="sr-only">
+        Speed E-Log - La logistique E-commerce, sans les tracas
+      </h1>
+
+      <div className="space-y-4" role="banner" aria-labelledby="hero-title">
         <AnimatedText
           text="La logistique E-commerce,"
           className="text-fluid-3xl md:text-fluid-4xl lg:text-fluid-5xl xl:text-fluid-6xl font-bold tracking-tighter text-slate-900"
           delay={0.2}
+          aria-hidden="true"
         />
         <AnimatedText
           text="sans les tracas."
           className="text-fluid-3xl md:text-fluid-4xl lg:text-fluid-5xl xl:text-fluid-6xl font-bold tracking-tighter text-[#2F68F3]"
           delay={0.6}
+          aria-hidden="true"
         />
       </div>
 
@@ -71,8 +80,8 @@ export function HeroContent() {
       {/* Social Proof - With animation */}
       <SocialProof />
 
-      {/* Quote Form Modal */}
-      <QuoteFormModal isOpen={isOpen} onClose={closeModal} />
+      {/* Attractive Quote Form Modal */}
+      <AttractiveQuoteModal isOpen={isOpen} onClose={closeModal} />
     </div>
   );
 }

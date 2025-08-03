@@ -425,11 +425,12 @@
                         </p>
                     </div>
 
-                    <!-- HubSpot form placeholder -->
-                    <div class="hubspot-placeholder">
-                        <h3>Formulaire de Contact HubSpot</h3>
-                        <p>Ce module sera remplacé par le formulaire HubSpot dans l'éditeur.</p>
-                        <p>Les champs incluront : Nom/Société, Email, Téléphone, Type de produits, Volume mensuel, Message</p>
+                    <!-- Formulaire HubSpot principal de contact -->
+                    <div id="hubspot-contact-form" class="hubspot-form-container">
+                        <div id="hubspot-form-loading" class="text-center py-8">
+                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                            <p class="mt-2 text-gray-600">Chargement du formulaire...</p>
+                        </div>
                     </div>
 
                     <p class="footer-note">
@@ -446,10 +447,12 @@
                             Réservez une consultation de 15 minutes pour discuter de vos besoins logistiques
                         </p>
                         
-                        <!-- HubSpot meetings placeholder -->
-                        <div class="hubspot-placeholder" style="min-height: 120px;">
-                            <h3>Module Meetings HubSpot</h3>
-                            <p>Planification de rendez-vous intégrée</p>
+                        <!-- Module de planification de rendez-vous HubSpot -->
+                        <div id="hubspot-meetings" class="hubspot-meetings-container">
+                            <div id="meetings-loading" class="text-center py-4">
+                                <div class="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                                <p class="mt-2 text-sm text-gray-600">Chargement du planning...</p>
+                            </div>
                         </div>
                     </div>
 
@@ -460,10 +463,12 @@
                             Vous êtes déjà client ? Utilisez notre formulaire SAV pour toute demande d'assistance.
                         </p>
                         
-                        <!-- HubSpot SAV form placeholder -->
-                        <div class="hubspot-placeholder" style="min-height: 100px;">
-                            <h3>Formulaire SAV HubSpot</h3>
-                            <p>Support client dédié</p>
+                        <!-- Formulaire SAV HubSpot -->
+                        <div id="hubspot-sav-form" class="hubspot-sav-container">
+                            <div id="sav-loading" class="text-center py-4">
+                                <div class="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                                <p class="mt-2 text-sm text-gray-600">Chargement du formulaire SAV...</p>
+                            </div>
                         </div>
                     </div>
 
@@ -504,23 +509,28 @@
         <p style="padding:1rem; text-align:center;">Chargement du footer...</p>
     </iframe>
 
+    <!-- Script HubSpot et initialisation -->
+    <script charset="utf-8" type="text/javascript" src="//js-eu1.hsforms.net/forms/embed/v2.js"></script>
     <script>
         // Animation on scroll pour les éléments qui ne sont pas visibles au chargement
         document.addEventListener('DOMContentLoaded', function() {
-            // Simulation d'interaction pour les placeholders HubSpot
-            const placeholders = document.querySelectorAll('.hubspot-placeholder');
+            console.log('🔍 [DEBUG] Initialisation des formulaires HubSpot...');
             
-            placeholders.forEach(placeholder => {
-                placeholder.addEventListener('click', function() {
-                    this.style.borderColor = 'var(--blue-500)';
-                    this.style.backgroundColor = 'var(--blue-50)';
-                    
-                    setTimeout(() => {
-                        this.style.borderColor = 'var(--slate-200)';
-                        this.style.backgroundColor = 'var(--slate-50)';
-                    }, 2000);
-                });
-            });
+            // Charger le formulaire principal de contact
+            if (window.hbspt) {
+                console.log('✅ [DEBUG] HubSpot script chargé, création des formulaires...');
+                initializeHubSpotForms();
+            } else {
+                console.log('⏳ [DEBUG] En attente du chargement HubSpot...');
+                // Attendre que HubSpot soit chargé
+                const checkHubSpot = setInterval(() => {
+                    if (window.hbspt) {
+                        console.log('✅ [DEBUG] HubSpot chargé, initialisation...');
+                        clearInterval(checkHubSpot);
+                        initializeHubSpotForms();
+                    }
+                }, 100);
+            }
 
             // Animation d'apparition pour les cartes
             const observer = new IntersectionObserver((entries) => {
@@ -542,14 +552,199 @@
             });
         });
 
+        // Fonction d'initialisation des formulaires HubSpot
+        function initializeHubSpotForms() {
+            try {
+                // Formulaire principal de contact/devis
+                console.log('🔍 [DEBUG] Création du formulaire principal...');
+                window.hbspt.forms.create({
+                    region: 'eu1',
+                    portalId: '144571109',
+                    formId: 'ebf2ad52-915e-4bfa-b4c0-a2ff8480054f',
+                    target: '#hubspot-contact-form',
+                    onFormReady: function() {
+                        console.log('✅ [DEBUG] Formulaire principal prêt');
+                        document.getElementById('hubspot-form-loading').style.display = 'none';
+                        document.getElementById('hubspot-contact-form').classList.add('loaded');
+                    },
+                    onFormSubmit: function() {
+                        console.log('📤 [DEBUG] Formulaire principal soumis');
+                    },
+                    onFormSubmitted: function() {
+                        console.log('✅ [DEBUG] Formulaire principal envoyé avec succès');
+                    }
+                });
+
+                // Formulaire SAV (utilise le même pour l'instant, pourra être différencié plus tard)
+                console.log('🔍 [DEBUG] Création du formulaire SAV...');
+                window.hbspt.forms.create({
+                    region: 'eu1',
+                    portalId: '144571109',
+                    formId: 'ebf2ad52-915e-4bfa-b4c0-a2ff8480054f', // Même formulaire pour l'instant
+                    target: '#hubspot-sav-form',
+                    onFormReady: function() {
+                        console.log('✅ [DEBUG] Formulaire SAV prêt');
+                        document.getElementById('sav-loading').style.display = 'none';
+                        document.getElementById('hubspot-sav-form').classList.add('loaded');
+                        
+                        // Customiser le formulaire SAV avec un titre différent
+                        const savForm = document.querySelector('#hubspot-sav-form form');
+                        if (savForm) {
+                            const title = document.createElement('h4');
+                            title.textContent = 'Support Client - Demande d\'assistance';
+                            title.style.marginBottom = '1rem';
+                            title.style.color = 'var(--blue-700)';
+                            title.style.fontWeight = '600';
+                            savForm.insertBefore(title, savForm.firstChild);
+                        }
+                    },
+                    onFormSubmit: function() {
+                        console.log('📤 [DEBUG] Formulaire SAV soumis');
+                    },
+                    onFormSubmitted: function() {
+                        console.log('✅ [DEBUG] Formulaire SAV envoyé avec succès');
+                    }
+                });
+
+                // Masquer les indicateurs de chargement pour meetings (temporairement)
+                setTimeout(() => {
+                    const meetingsLoading = document.getElementById('meetings-loading');
+                    if (meetingsLoading) {
+                        meetingsLoading.innerHTML = `
+                            <div class="text-center p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                <p class="text-sm text-blue-700 font-medium">📅 Module de planification</p>
+                                <p class="text-xs text-blue-600 mt-1">Contactez-nous directement pour planifier un rendez-vous</p>
+                                <a href="mailto:contact@speedelog.net" class="inline-block mt-2 px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors">
+                                    Prendre rendez-vous
+                                </a>
+                            </div>
+                        `;
+                        document.getElementById('hubspot-meetings').classList.add('loaded');
+                    }
+                }, 2000);
+
+            } catch (error) {
+                console.error('❌ [DEBUG] Erreur lors de l\'initialisation HubSpot:', error);
+            }
+        }
+
         // Gestion responsive pour les iframes
         function adjustIframeHeights() {
-            // Cette fonction peut être utilisée pour ajuster dynamiquement les hauteurs
-            // des iframes si nécessaire
             console.log('Ajustement des hauteurs d\'iframe');
         }
 
         window.addEventListener('resize', adjustIframeHeights);
     </script>
+
+    <!-- Styles supplémentaires pour les formulaires HubSpot -->
+    <style>
+        .hubspot-form-container,
+        .hubspot-meetings-container,
+        .hubspot-sav-container {
+            min-height: 200px;
+        }
+
+        /* Personnalisation des formulaires HubSpot pour correspondre au design */
+        .hs-form-field > label {
+            color: var(--slate-700) !important;
+            font-weight: 500 !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .hs-input {
+            border: 2px solid var(--slate-200) !important;
+            border-radius: 0.5rem !important;
+            padding: 0.75rem !important;
+            font-size: 1rem !important;
+            transition: all 0.2s ease !important;
+        }
+
+        .hs-input:focus {
+            border-color: var(--blue-500) !important;
+            outline: none !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+        }
+
+        .hs-button {
+            background: linear-gradient(to right, var(--blue-600), var(--blue-800)) !important;
+            border: none !important;
+            border-radius: 0.5rem !important;
+            padding: 1rem 2rem !important;
+            color: white !important;
+            font-weight: 500 !important;
+            font-size: 1rem !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3) !important;
+        }
+
+        .hs-button:hover {
+            background: linear-gradient(to right, var(--blue-700), var(--blue-900)) !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 6px 8px -1px rgba(59, 130, 246, 0.4) !important;
+        }
+
+        .hs-form .hs-error-msgs {
+            color: #ef4444 !important;
+            font-size: 0.875rem !important;
+            margin-top: 0.25rem !important;
+        }
+
+        /* Animation d'apparition pour les formulaires */
+        .hubspot-form-container,
+        .hubspot-meetings-container,
+        .hubspot-sav-container {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .hubspot-form-container.loaded,
+        .hubspot-meetings-container.loaded,
+        .hubspot-sav-container.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animation de chargement */
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Styles pour améliorer l'apparence des formulaires HubSpot */
+        .hs-form {
+            max-width: 100% !important;
+        }
+
+        .hs-form-field {
+            margin-bottom: 1.5rem !important;
+        }
+
+        .hs-form .hs-submit {
+            text-align: center !important;
+            margin-top: 1.5rem !important;
+        }
+
+        /* Responsive pour les formulaires */
+        @media (max-width: 768px) {
+            .hs-form-field {
+                margin-bottom: 1rem !important;
+            }
+            
+            .hs-button {
+                width: 100% !important;
+                padding: 0.875rem 1.5rem !important;
+            }
+        }
+    </style>
 </body>
 </html>

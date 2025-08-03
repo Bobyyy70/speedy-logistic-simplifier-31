@@ -2,11 +2,13 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { QuoteFormModal } from "@/components/contact/QuoteFormModal";
-import { useQuoteModal } from "@/hooks/useQuoteModal";
+import { AttractiveQuoteModal } from "@/components/contact/AttractiveQuoteModal";
+import { useState } from "react";
 
 export const ServicesCta: React.FC = () => {
-  const { isOpen, openModal, closeModal } = useQuoteModal();
+  const [isOpen, setIsOpen] = useState(false);
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
 
   return (
     <section className="container mx-auto mt-8 md:mt-16 lg:mt-20 text-center px-4 py-16 md:py-24 relative">
@@ -38,8 +40,8 @@ export const ServicesCta: React.FC = () => {
         </Button>
       </motion.div>
 
-      {/* Quote Form Modal */}
-      <QuoteFormModal isOpen={isOpen} onClose={closeModal} />
+      {/* Attractive Quote Form Modal */}
+      <AttractiveQuoteModal isOpen={isOpen} onClose={closeModal} />
     </section>
   );
 };
