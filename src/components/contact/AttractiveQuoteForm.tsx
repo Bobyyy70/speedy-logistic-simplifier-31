@@ -299,22 +299,22 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({
   };
   const renderStepContent = () => {
     return <motion.div initial={{
-        opacity: 0,
-        y: 20
-      }} animate={{
-        opacity: 1,
-        y: 0
-      }} exit={{
-        opacity: 0,
-        y: -20
-      }} transition={{
-        duration: 0.4
-      }} className="space-y-6">
+      opacity: 0,
+      y: 20
+    }} animate={{
+      opacity: 1,
+      y: 0
+    }} exit={{
+      opacity: 0,
+      y: -20
+    }} transition={{
+      duration: 0.4
+    }} className="space-y-6">
         {/* Informations personnelles */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FormField control={form.control} name="firstName" render={({
-            field
-          }) => <FormItem>
+          field
+        }) => <FormItem>
                   <FormLabel className="text-gray-700 font-medium">Prénom</FormLabel>
                   <FormControl>
                     <div className="relative group">
@@ -328,8 +328,8 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({
                 </FormItem>} />
 
           <FormField control={form.control} name="lastName" render={({
-            field
-          }) => <FormItem>
+          field
+        }) => <FormItem>
                   <FormLabel className="text-gray-700 font-medium">Nom</FormLabel>
                   <FormControl>
                     <div className="relative group">
@@ -344,8 +344,8 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({
         </div>
 
         <FormField control={form.control} name="email" render={({
-          field
-        }) => <FormItem>
+        field
+      }) => <FormItem>
                 <FormLabel className="text-gray-700 font-medium">E-mail professionnel</FormLabel>
                 <FormControl>
                   <div className="relative group">
@@ -359,8 +359,8 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({
               </FormItem>} />
 
         <FormField control={form.control} name="phone" render={({
-          field
-        }) => <FormItem>
+        field
+      }) => <FormItem>
                 <FormLabel className="text-gray-700 font-medium">Téléphone</FormLabel>
                 <FormControl>
                   <div className="relative group">
@@ -375,8 +375,8 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({
 
         {/* Informations entreprise */}
         <FormField control={form.control} name="companyName" render={({
-          field
-        }) => <FormItem>
+        field
+      }) => <FormItem>
                 <FormLabel className="text-gray-700 font-medium">Nom de l'entreprise</FormLabel>
                 <FormControl>
                   <div className="relative group">
@@ -390,185 +390,41 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({
               </FormItem>} />
 
         <FormField control={form.control} name="companyStatus" render={({
-          field
-        }) => <FormItem className="space-y-3">
-                <FormLabel className="text-gray-700 font-medium">État de l'entreprise</FormLabel>
-                <FormControl>
-                  <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-2">
-                    <div className="flex items-center space-x-2 p-3 border-2 border-gray-200 rounded-lg hover:border-blue-300 transition-colors">
-                      <RadioGroupItem value="creation" id="creation" />
-                      <FormLabel htmlFor="creation" className="font-normal cursor-pointer">
-                        🚀 En cours de création
-                      </FormLabel>
-                    </div>
-                    <div className="flex items-center space-x-2 p-3 border-2 border-gray-200 rounded-lg hover:border-blue-300 transition-colors">
-                      <RadioGroupItem value="active" id="active" />
-                      <FormLabel htmlFor="active" className="font-normal cursor-pointer">
-                        ✅ En activité
-                      </FormLabel>
-                    </div>
-                  </RadioGroup>
-                </FormControl>
-                <FormMessage />
-              </FormItem>} />
+        field
+      }) => {}} />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FormField control={form.control} name="city" render={({
-            field
-          }) => <FormItem>
-                  <FormLabel className="text-gray-700 font-medium">Ville</FormLabel>
-                  <FormControl>
-                    <div className="relative group">
-                      <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-                        <MapPin className="h-4 w-4" />
-                      </span>
-                      <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Votre ville" {...field} />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>} />
+          field
+        }) => {}} />
 
           <FormField control={form.control} name="postalCode" render={({
-            field
-          }) => <FormItem>
-                  <FormLabel className="text-gray-700 font-medium">Code postal</FormLabel>
-                  <FormControl>
-                    <div className="relative group">
-                      <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-                        <MapPin className="h-4 w-4" />
-                      </span>
-                      <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Code postal" {...field} />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>} />
+          field
+        }) => {}} />
         </div>
 
         <FormField control={form.control} name="website" render={({
-          field
-        }) => <FormItem>
-                <FormLabel className="text-gray-700 font-medium">Site Web (facultatif)</FormLabel>
-                <FormControl>
-                  <div className="relative group">
-                    <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-                      <Globe className="h-4 w-4" />
-                    </span>
-                    <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="https://votre-site.com" {...field} />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>} />
+        field
+      }) => {}} />
 
         {/* Informations activité */}
         <FormField control={form.control} name="leadSource" render={({
-          field
-        }) => <FormItem>
-                <FormLabel className="text-gray-700 font-medium">Comment nous avez-vous connu ?</FormLabel>
-                <div className="relative">
-                  <span className="absolute left-3 top-3 text-gray-400 z-10">
-                    <List className="h-4 w-4" />
-                  </span>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200">
-                        <SelectValue placeholder="Choisir dans le menu déroulant" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {leadSources.map(source => <SelectItem key={source.value} value={source.value}>
-                          {source.label}
-                        </SelectItem>)}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <FormMessage />
-              </FormItem>} />
+        field
+      }) => {}} />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <FormField control={form.control} name="averageBasket" render={({
-            field
-          }) => <FormItem>
-                  <FormLabel className="text-gray-700 font-medium">Valeur moyenne du panier (€)</FormLabel>
-                  <FormControl>
-                    <div className="relative group">
-                      <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-                        <DollarSign className="h-4 w-4" />
-                      </span>
-                      <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" type="number" placeholder="Montant en €" {...field} />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>} />
-
-          <FormField control={form.control} name="annualOrders" render={({
-            field
-          }) => <FormItem>
-                  <FormLabel className="text-gray-700 font-medium">Commandes par an</FormLabel>
-                  <FormControl>
-                    <div className="relative group">
-                      <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-                        <Database className="h-4 w-4" />
-                      </span>
-                      <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" type="number" placeholder="Nombre estimé" {...field} />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>} />
-        </div>
+        
 
         <FormField control={form.control} name="productType" render={({
-          field
-        }) => <FormItem>
-                <FormLabel className="text-gray-700 font-medium">Type d'articles</FormLabel>
-                <div className="relative">
-                  <span className="absolute left-3 top-3 text-gray-400 z-10">
-                    <List className="h-4 w-4" />
-                  </span>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200">
-                        <SelectValue placeholder="Choisir dans le menu déroulant" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {productTypes.map(type => <SelectItem key={type.value} value={type.value}>
-                          {type.label}
-                        </SelectItem>)}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <FormMessage />
-              </FormItem>} />
+        field
+      }) => {}} />
 
         <FormField control={form.control} name="stockReferences" render={({
-          field
-        }) => <FormItem>
-                <FormLabel className="text-gray-700 font-medium">Nombre de références à stocker</FormLabel>
-                <FormControl>
-                  <div className="relative group">
-                    <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-                      <Database className="h-4 w-4" />
-                    </span>
-                    <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" type="number" placeholder="Nombre total de références" {...field} />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>} />
+        field
+      }) => {}} />
 
         <FormField control={form.control} name="message" render={({
-          field
-        }) => <FormItem>
-                <FormLabel className="text-gray-700 font-medium">Votre message (facultatif)</FormLabel>
-                <FormControl>
-                  <div className="relative group">
-                    <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-                      <FileText className="h-4 w-4" />
-                    </span>
-                    <Textarea className="min-h-[120px] pl-10 pt-8 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Informations complémentaires pour votre devis..." {...field} />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>} />
+        field
+      }) => {}} />
       </motion.div>;
   };
   if (showHubSpotForm) {
