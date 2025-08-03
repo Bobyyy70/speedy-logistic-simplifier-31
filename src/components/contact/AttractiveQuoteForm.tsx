@@ -115,7 +115,7 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({
   const [showHubSpotForm, setShowHubSpotForm] = useState(false);
   const hubspotFormRef = useRef<HTMLDivElement>(null);
   const scriptLoadedRef = useRef(false);
-  const totalSteps = 4;
+  const totalSteps = 1;
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -298,342 +298,278 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({
     }
   };
   const renderStepContent = () => {
-    switch (currentStep) {
-      case 0:
-        return <motion.div initial={{
-          opacity: 0,
-          y: 20
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} exit={{
-          opacity: 0,
-          y: -20
-        }} transition={{
-          duration: 0.4
-        }} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FormField control={form.control} name="firstName" render={({
-              field
-            }) => <FormItem>
-                    <FormLabel className="text-gray-700 font-medium">Prénom</FormLabel>
-                    <FormControl>
-                      <div className="relative group">
-                        <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-                          <User className="h-4 w-4" />
-                        </span>
-                        <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Votre prénom" {...field} />
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>} />
-
-              <FormField control={form.control} name="lastName" render={({
-              field
-            }) => <FormItem>
-                    <FormLabel className="text-gray-700 font-medium">Nom</FormLabel>
-                    <FormControl>
-                      <div className="relative group">
-                        <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-                          <User className="h-4 w-4" />
-                        </span>
-                        <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Votre nom" {...field} />
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>} />
-            </div>
-
-            <FormField control={form.control} name="email" render={({
+    return <motion.div initial={{
+        opacity: 0,
+        y: 20
+      }} animate={{
+        opacity: 1,
+        y: 0
+      }} exit={{
+        opacity: 0,
+        y: -20
+      }} transition={{
+        duration: 0.4
+      }} className="space-y-6">
+        {/* Informations personnelles */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <FormField control={form.control} name="firstName" render={({
             field
           }) => <FormItem>
-                  <FormLabel className="text-gray-700 font-medium">E-mail professionnel</FormLabel>
+                  <FormLabel className="text-gray-700 font-medium">Prénom</FormLabel>
                   <FormControl>
                     <div className="relative group">
                       <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-                        <Mail className="h-4 w-4" />
+                        <User className="h-4 w-4" />
                       </span>
-                      <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="votre@email.com" {...field} />
+                      <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Votre prénom" {...field} />
                     </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>} />
 
-            <FormField control={form.control} name="phone" render={({
+          <FormField control={form.control} name="lastName" render={({
             field
           }) => <FormItem>
-                  <FormLabel className="text-gray-700 font-medium">Téléphone</FormLabel>
+                  <FormLabel className="text-gray-700 font-medium">Nom</FormLabel>
                   <FormControl>
                     <div className="relative group">
                       <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-                        <Phone className="h-4 w-4" />
+                        <User className="h-4 w-4" />
                       </span>
-                      <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Votre numéro de téléphone" {...field} />
+                      <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Votre nom" {...field} />
                     </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>} />
-          </motion.div>;
-      case 1:
-        return <motion.div initial={{
-          opacity: 0,
-          y: 20
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} exit={{
-          opacity: 0,
-          y: -20
-        }} transition={{
-          duration: 0.4
-        }} className="space-y-6">
-            <FormField control={form.control} name="companyName" render={({
-            field
-          }) => <FormItem>
-                  <FormLabel className="text-gray-700 font-medium">Nom de l'entreprise</FormLabel>
-                  <FormControl>
-                    <div className="relative group">
-                      <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-                        <Building className="h-4 w-4" />
-                      </span>
-                      <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Nom de votre entreprise" {...field} />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>} />
+        </div>
 
-            <FormField control={form.control} name="companyStatus" render={({
-            field
-          }) => <FormItem className="space-y-3">
-                  <FormLabel className="text-gray-700 font-medium">État de l'entreprise</FormLabel>
-                  <FormControl>
-                    <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-2">
-                      <div className="flex items-center space-x-2 p-3 border-2 border-gray-200 rounded-lg hover:border-blue-300 transition-colors">
-                        <RadioGroupItem value="creation" id="creation" />
-                        <FormLabel htmlFor="creation" className="font-normal cursor-pointer">
-                          🚀 En cours de création
-                        </FormLabel>
-                      </div>
-                      <div className="flex items-center space-x-2 p-3 border-2 border-gray-200 rounded-lg hover:border-blue-300 transition-colors">
-                        <RadioGroupItem value="active" id="active" />
-                        <FormLabel htmlFor="active" className="font-normal cursor-pointer">
-                          ✅ En activité
-                        </FormLabel>
-                      </div>
-                    </RadioGroup>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>} />
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FormField control={form.control} name="city" render={({
-              field
-            }) => <FormItem>
-                    <FormLabel className="text-gray-700 font-medium">Ville</FormLabel>
-                    <FormControl>
-                      <div className="relative group">
-                        <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-                          <MapPin className="h-4 w-4" />
-                        </span>
-                        <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Votre ville" {...field} />
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>} />
-
-              <FormField control={form.control} name="postalCode" render={({
-              field
-            }) => <FormItem>
-                    <FormLabel className="text-gray-700 font-medium">Code postal</FormLabel>
-                    <FormControl>
-                      <div className="relative group">
-                        <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-                          <MapPin className="h-4 w-4" />
-                        </span>
-                        <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Code postal" {...field} />
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>} />
-            </div>
-
-            <FormField control={form.control} name="website" render={({
-            field
-          }) => <FormItem>
-                  <FormLabel className="text-gray-700 font-medium">Site Web (facultatif)</FormLabel>
-                  <FormControl>
-                    <div className="relative group">
-                      <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-                        <Globe className="h-4 w-4" />
-                      </span>
-                      <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="https://votre-site.com" {...field} />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>} />
-          </motion.div>;
-      case 2:
-        return <motion.div initial={{
-          opacity: 0,
-          y: 20
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} exit={{
-          opacity: 0,
-          y: -20
-        }} transition={{
-          duration: 0.4
-        }} className="space-y-6">
-            <FormField control={form.control} name="leadSource" render={({
-            field
-          }) => <FormItem>
-                  <FormLabel className="text-gray-700 font-medium">Comment nous avez-vous connu ?</FormLabel>
-                  <div className="relative">
-                    <span className="absolute left-3 top-3 text-gray-400 z-10">
-                      <List className="h-4 w-4" />
+        <FormField control={form.control} name="email" render={({
+          field
+        }) => <FormItem>
+                <FormLabel className="text-gray-700 font-medium">E-mail professionnel</FormLabel>
+                <FormControl>
+                  <div className="relative group">
+                    <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
+                      <Mail className="h-4 w-4" />
                     </span>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200">
-                          <SelectValue placeholder="Choisir dans le menu déroulant" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {leadSources.map(source => <SelectItem key={source.value} value={source.value}>
-                            {source.label}
-                          </SelectItem>)}
-                      </SelectContent>
-                    </Select>
+                    <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="votre@email.com" {...field} />
                   </div>
-                  <FormMessage />
-                </FormItem>} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>} />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FormField control={form.control} name="averageBasket" render={({
-              field
-            }) => <FormItem>
-                    <FormLabel className="text-gray-700 font-medium">Valeur moyenne du panier (€)</FormLabel>
-                    <FormControl>
-                      <div className="relative group">
-                        <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-                          <DollarSign className="h-4 w-4" />
-                        </span>
-                        <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" type="number" placeholder="Montant en €" {...field} />
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>} />
-
-              <FormField control={form.control} name="annualOrders" render={({
-              field
-            }) => <FormItem>
-                    <FormLabel className="text-gray-700 font-medium">Commandes par an</FormLabel>
-                    <FormControl>
-                      <div className="relative group">
-                        <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-                          <Database className="h-4 w-4" />
-                        </span>
-                        <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" type="number" placeholder="Nombre estimé" {...field} />
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>} />
-            </div>
-
-            <FormField control={form.control} name="productType" render={({
-            field
-          }) => <FormItem>
-                  <FormLabel className="text-gray-700 font-medium">Type d'articles</FormLabel>
-                  <div className="relative">
-                    <span className="absolute left-3 top-3 text-gray-400 z-10">
-                      <List className="h-4 w-4" />
+        <FormField control={form.control} name="phone" render={({
+          field
+        }) => <FormItem>
+                <FormLabel className="text-gray-700 font-medium">Téléphone</FormLabel>
+                <FormControl>
+                  <div className="relative group">
+                    <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
+                      <Phone className="h-4 w-4" />
                     </span>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200">
-                          <SelectValue placeholder="Choisir dans le menu déroulant" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {productTypes.map(type => <SelectItem key={type.value} value={type.value}>
-                            {type.label}
-                          </SelectItem>)}
-                      </SelectContent>
-                    </Select>
+                    <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Votre numéro de téléphone" {...field} />
                   </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>} />
+
+        {/* Informations entreprise */}
+        <FormField control={form.control} name="companyName" render={({
+          field
+        }) => <FormItem>
+                <FormLabel className="text-gray-700 font-medium">Nom de l'entreprise</FormLabel>
+                <FormControl>
+                  <div className="relative group">
+                    <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
+                      <Building className="h-4 w-4" />
+                    </span>
+                    <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Nom de votre entreprise" {...field} />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>} />
+
+        <FormField control={form.control} name="companyStatus" render={({
+          field
+        }) => <FormItem className="space-y-3">
+                <FormLabel className="text-gray-700 font-medium">État de l'entreprise</FormLabel>
+                <FormControl>
+                  <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-2">
+                    <div className="flex items-center space-x-2 p-3 border-2 border-gray-200 rounded-lg hover:border-blue-300 transition-colors">
+                      <RadioGroupItem value="creation" id="creation" />
+                      <FormLabel htmlFor="creation" className="font-normal cursor-pointer">
+                        🚀 En cours de création
+                      </FormLabel>
+                    </div>
+                    <div className="flex items-center space-x-2 p-3 border-2 border-gray-200 rounded-lg hover:border-blue-300 transition-colors">
+                      <RadioGroupItem value="active" id="active" />
+                      <FormLabel htmlFor="active" className="font-normal cursor-pointer">
+                        ✅ En activité
+                      </FormLabel>
+                    </div>
+                  </RadioGroup>
+                </FormControl>
+                <FormMessage />
+              </FormItem>} />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <FormField control={form.control} name="city" render={({
+            field
+          }) => <FormItem>
+                  <FormLabel className="text-gray-700 font-medium">Ville</FormLabel>
+                  <FormControl>
+                    <div className="relative group">
+                      <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
+                        <MapPin className="h-4 w-4" />
+                      </span>
+                      <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Votre ville" {...field} />
+                    </div>
+                  </FormControl>
                   <FormMessage />
                 </FormItem>} />
 
-            <FormField control={form.control} name="stockReferences" render={({
+          <FormField control={form.control} name="postalCode" render={({
             field
           }) => <FormItem>
-                  <FormLabel className="text-gray-700 font-medium">Nombre de références à stocker</FormLabel>
+                  <FormLabel className="text-gray-700 font-medium">Code postal</FormLabel>
+                  <FormControl>
+                    <div className="relative group">
+                      <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
+                        <MapPin className="h-4 w-4" />
+                      </span>
+                      <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Code postal" {...field} />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>} />
+        </div>
+
+        <FormField control={form.control} name="website" render={({
+          field
+        }) => <FormItem>
+                <FormLabel className="text-gray-700 font-medium">Site Web (facultatif)</FormLabel>
+                <FormControl>
+                  <div className="relative group">
+                    <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
+                      <Globe className="h-4 w-4" />
+                    </span>
+                    <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="https://votre-site.com" {...field} />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>} />
+
+        {/* Informations activité */}
+        <FormField control={form.control} name="leadSource" render={({
+          field
+        }) => <FormItem>
+                <FormLabel className="text-gray-700 font-medium">Comment nous avez-vous connu ?</FormLabel>
+                <div className="relative">
+                  <span className="absolute left-3 top-3 text-gray-400 z-10">
+                    <List className="h-4 w-4" />
+                  </span>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200">
+                        <SelectValue placeholder="Choisir dans le menu déroulant" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {leadSources.map(source => <SelectItem key={source.value} value={source.value}>
+                          {source.label}
+                        </SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <FormMessage />
+              </FormItem>} />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <FormField control={form.control} name="averageBasket" render={({
+            field
+          }) => <FormItem>
+                  <FormLabel className="text-gray-700 font-medium">Valeur moyenne du panier (€)</FormLabel>
+                  <FormControl>
+                    <div className="relative group">
+                      <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
+                        <DollarSign className="h-4 w-4" />
+                      </span>
+                      <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" type="number" placeholder="Montant en €" {...field} />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>} />
+
+          <FormField control={form.control} name="annualOrders" render={({
+            field
+          }) => <FormItem>
+                  <FormLabel className="text-gray-700 font-medium">Commandes par an</FormLabel>
                   <FormControl>
                     <div className="relative group">
                       <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
                         <Database className="h-4 w-4" />
                       </span>
-                      <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" type="number" placeholder="Nombre total de références" {...field} />
+                      <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" type="number" placeholder="Nombre estimé" {...field} />
                     </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>} />
-          </motion.div>;
-      case 3:
-        return <motion.div initial={{
-          opacity: 0,
-          y: 20
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} exit={{
-          opacity: 0,
-          y: -20
-        }} transition={{
-          duration: 0.4
-        }} className="space-y-6">
-            <FormField control={form.control} name="message" render={({
-            field
-          }) => <FormItem>
-                  <FormLabel className="text-gray-700 font-medium">Votre message (facultatif)</FormLabel>
-                  <FormControl>
-                    <div className="relative group">
-                      <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-                        <FileText className="h-4 w-4" />
-                      </span>
-                      <Textarea className="min-h-[120px] pl-10 pt-8 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Informations complémentaires pour votre devis..." {...field} />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>} />
+        </div>
 
-            <motion.div className="mt-6 p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-200" initial={{
-            opacity: 0,
-            scale: 0.95
-          }} animate={{
-            opacity: 1,
-            scale: 1
-          }} transition={{
-            delay: 0.2
-          }}>
-              <div className="flex items-center gap-2 mb-3">
-                <Shield className="h-5 w-5 text-blue-600" />
-                <h3 className="font-semibold text-blue-900">Récapitulatif de votre demande</h3>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-                <p><span className="font-medium text-gray-700">Nom:</span> <span className="text-gray-900">{form.getValues("lastName")}</span></p>
-                <p><span className="font-medium text-gray-700">Prénom:</span> <span className="text-gray-900">{form.getValues("firstName")}</span></p>
-                <p><span className="font-medium text-gray-700">E-mail:</span> <span className="text-gray-900">{form.getValues("email")}</span></p>
-                <p><span className="font-medium text-gray-700">Entreprise:</span> <span className="text-gray-900">{form.getValues("companyName")}</span></p>
-                <p><span className="font-medium text-gray-700">Panier moyen:</span> <span className="text-gray-900">{form.getValues("averageBasket")}€</span></p>
-                <p><span className="font-medium text-gray-700">Commandes/an:</span> <span className="text-gray-900">{form.getValues("annualOrders")}</span></p>
-              </div>
-            </motion.div>
-          </motion.div>;
-      default:
-        return null;
-    }
+        <FormField control={form.control} name="productType" render={({
+          field
+        }) => <FormItem>
+                <FormLabel className="text-gray-700 font-medium">Type d'articles</FormLabel>
+                <div className="relative">
+                  <span className="absolute left-3 top-3 text-gray-400 z-10">
+                    <List className="h-4 w-4" />
+                  </span>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200">
+                        <SelectValue placeholder="Choisir dans le menu déroulant" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {productTypes.map(type => <SelectItem key={type.value} value={type.value}>
+                          {type.label}
+                        </SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <FormMessage />
+              </FormItem>} />
+
+        <FormField control={form.control} name="stockReferences" render={({
+          field
+        }) => <FormItem>
+                <FormLabel className="text-gray-700 font-medium">Nombre de références à stocker</FormLabel>
+                <FormControl>
+                  <div className="relative group">
+                    <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
+                      <Database className="h-4 w-4" />
+                    </span>
+                    <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" type="number" placeholder="Nombre total de références" {...field} />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>} />
+
+        <FormField control={form.control} name="message" render={({
+          field
+        }) => <FormItem>
+                <FormLabel className="text-gray-700 font-medium">Votre message (facultatif)</FormLabel>
+                <FormControl>
+                  <div className="relative group">
+                    <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
+                      <FileText className="h-4 w-4" />
+                    </span>
+                    <Textarea className="min-h-[120px] pl-10 pt-8 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Informations complémentaires pour votre devis..." {...field} />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>} />
+      </motion.div>;
   };
   if (showHubSpotForm) {
     return <motion.div initial={{
@@ -722,18 +658,15 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({
           <div className="flex justify-between items-center pt-6 border-t border-gray-200">
             
             
-            {currentStep < totalSteps - 1 ? <Button type="button" onClick={goToNextStep} className="flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium rounded-lg shadow-lg shadow-blue-600/25 transition-all duration-200 transform hover:scale-105">
-                Suivant
-                <ArrowRight className="h-4 w-4" />
-              </Button> : <Button type="submit" disabled={isSubmitting} className="flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-medium rounded-lg shadow-lg shadow-green-600/25 transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:transform-none">
-                {isSubmitting ? <>
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                    Envoi en cours...
-                  </> : <>
-                    <Send className="h-4 w-4" />
-                    Obtenir mon devis gratuit
-                  </>}
-              </Button>}
+            <Button type="submit" disabled={isSubmitting} className="flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-medium rounded-lg shadow-lg shadow-green-600/25 transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:transform-none ml-auto">
+              {isSubmitting ? <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Envoi en cours...
+                </> : <>
+                  <Send className="h-4 w-4" />
+                  Obtenir mon devis gratuit
+                </>}
+            </Button>
           </div>
         </form>
       </Form>
