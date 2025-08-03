@@ -31,6 +31,16 @@ interface PerformanceInfo {
   };
 }
 
+// Interfaces pour les entrées de performance spécialisées
+interface LayoutShiftEntry extends PerformanceEntry {
+  value: number;
+  hadRecentInput?: boolean;
+}
+
+interface FirstInputEntry extends PerformanceEntry {
+  processingStart: number;
+}
+
 // Hook pour détecter le type d'appareil
 const useDeviceType = () => {
   const [deviceType, setDeviceType] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
@@ -147,9 +157,9 @@ const useWebVitals = () => {
         let clsValue = 0;
         const observer = new PerformanceObserver((list) => {
           for (const entry of list.getEntries()) {
-            // @ts-ignore - types PerformanceEntry incomplètes
-            if (!entry.hadRecentInput) {
-              clsValue += entry.value;
+            const layoutShiftEntry = entry as LayoutShiftEntry;
+            if (!layoutShiftEntry.hadRecentInput) {
+              clsValue += layoutShiftEntry.value;
               setMetrics(prev => ({ ...prev, cls: clsValue }));
             }
           }

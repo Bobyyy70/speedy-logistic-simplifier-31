@@ -1,5 +1,28 @@
+
 import React, { useState, useRef, useEffect } from 'react';
-import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
+
+// Hook simple pour l'intersection observer
+const useIntersectionObserver = (ref: React.RefObject<HTMLElement>, options: IntersectionObserverInit = {}) => {
+  const [isIntersecting, setIsIntersecting] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      const [entry] = entries;
+      setIsIntersecting(entry.isIntersecting);
+    }, options);
+
+    observer.observe(element);
+
+    return () => {
+      observer.unobserve(element);
+    };
+  }, [ref, options.threshold, options.rootMargin]);
+
+  return isIntersecting;
+};
 
 interface OptimizedImageProps {
   src: string;

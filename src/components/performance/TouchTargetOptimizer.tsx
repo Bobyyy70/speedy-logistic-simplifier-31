@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import { forwardRef } from 'react';
 
-interface TouchTargetProps extends React.HTMLAttributes<HTMLElement> {
+interface TouchTargetProps {
   children: React.ReactNode;
   as?: keyof JSX.IntrinsicElements;
   minSize?: number;
@@ -14,10 +14,12 @@ interface TouchTargetProps extends React.HTMLAttributes<HTMLElement> {
  * - Ajoute du padding invisible si nécessaire
  * - Maintient l'apparence visuelle tout en améliorant l'accessibilité
  */
-export const TouchTargetOptimizer = forwardRef<HTMLElement, TouchTargetProps>(
+export const TouchTargetOptimizer = forwardRef<HTMLElement, TouchTargetProps & React.HTMLAttributes<HTMLElement>>(
   ({ children, as: Component = 'div', minSize = 48, className, ...props }, ref) => {
+    const TagName = Component as any;
+    
     return (
-      <Component
+      <TagName
         ref={ref}
         className={cn(
           // Assure une taille minimale pour les cibles tactiles
@@ -33,7 +35,7 @@ export const TouchTargetOptimizer = forwardRef<HTMLElement, TouchTargetProps>(
         {...props}
       >
         {children}
-      </Component>
+      </TagName>
     );
   }
 );

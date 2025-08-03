@@ -4,6 +4,11 @@ import { AnimationOptimizer } from './AnimationOptimizer';
 import { TouchTargetOptimizer } from './TouchTargetOptimizer';
 import { setupIntelligentPreloading } from './BundleOptimizer';
 
+// Interface pour les entrées FID
+interface FirstInputEntry extends PerformanceEntry {
+  processingStart: number;
+}
+
 // Hook pour optimiser le LCP (Largest Contentful Paint)
 const useLCPOptimization = () => {
   useEffect(() => {
@@ -149,7 +154,8 @@ const usePerformanceMetrics = () => {
         new PerformanceObserver((entryList) => {
           const entries = entryList.getEntries();
           entries.forEach((entry) => {
-            console.log('FID:', entry.processingStart - entry.startTime);
+            const fidEntry = entry as FirstInputEntry;
+            console.log('FID:', fidEntry.processingStart - fidEntry.startTime);
           });
         }).observe({ entryTypes: ['first-input'] });
 
@@ -192,7 +198,9 @@ export const PerformanceOptimizer: React.FC = () => {
       </AnimationOptimizer>
       
       {/* Optimisation des cibles tactiles */}
-      <TouchTargetOptimizer />
+      <TouchTargetOptimizer>
+        <div />
+      </TouchTargetOptimizer>
     </>
   );
 };
