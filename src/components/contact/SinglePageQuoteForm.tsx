@@ -225,43 +225,43 @@ export const SinglePageQuoteForm: React.FC<SinglePageQuoteFormProps> = ({ onForm
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100 max-w-2xl mx-auto text-center"
+        className="bg-white rounded-xl p-4 shadow-lg border border-gray-100 max-w-md mx-auto text-center"
       >
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-          className="inline-flex items-center justify-center w-20 h-20 bg-green-100 rounded-full mb-6"
+          className="inline-flex items-center justify-center w-12 h-12 bg-green-100 rounded-full mb-3"
         >
-          <CheckCircle className="h-10 w-10 text-green-600" />
+          <CheckCircle className="h-6 w-6 text-green-600" />
         </motion.div>
         
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="text-3xl font-bold text-gray-900 mb-4"
+          className="text-xl font-bold text-gray-900 mb-2"
         >
-          Demande envoyée avec succès ! 🎉
+          Demande envoyée ! 🎉
         </motion.h2>
         
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="text-gray-600 text-lg mb-6"
+          className="text-gray-600 text-sm mb-3"
         >
-          Nous vous recontacterons sous <span className="font-semibold text-blue-600">2h ouvrées</span> pour votre devis personnalisé.
+          Réponse sous <span className="font-semibold text-blue-600">2h ouvrées</span>
         </motion.p>
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
-          className="flex items-center justify-center gap-2 text-sm text-gray-500"
+          className="flex items-center justify-center gap-2 text-xs text-gray-500"
         >
-          <Shield className="h-4 w-4" />
-          <span>Vos données sont sécurisées</span>
+          <Shield className="h-3 w-3" />
+          <span>Données sécurisées</span>
         </motion.div>
       </motion.div>
     );
@@ -269,36 +269,36 @@ export const SinglePageQuoteForm: React.FC<SinglePageQuoteFormProps> = ({ onForm
 
   return (
     <motion.div 
-      className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 max-w-2xl mx-auto"
+      className="bg-white rounded-xl p-4 shadow-lg border border-gray-100 max-w-md mx-auto"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Header compact */}
-      <div className="text-center mb-6">
-        <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-600 rounded-full mb-3">
-          <Sparkles className="h-6 w-6 text-white" />
+      {/* Header ultra compact */}
+      <div className="text-center mb-3">
+        <div className="inline-flex items-center justify-center w-8 h-8 bg-blue-600 rounded-full mb-2">
+          <Sparkles className="h-4 w-4 text-white" />
         </div>
         
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">
-          Votre Devis Personnalisé
+        <h2 className="text-xl font-bold text-gray-900 mb-1">
+          Devis personnalisé
         </h2>
         
-        <p className="text-gray-600 text-sm">
-          Réponse sous 2h • 100% gratuit • Sans engagement
+        <p className="text-gray-600 text-xs">
+          Réponse sous 2h
         </p>
       </div>
 
-      {/* Barre de progression compacte */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-medium text-gray-600">Progression</span>
+      {/* Barre de progression ultra compacte */}
+      <div className="mb-3">
+        <div className="flex items-center justify-between mb-1">
+          <span className="text-xs text-gray-600">Progression</span>
           <span className="text-xs font-bold text-blue-600">
             {completionPercentage}%
           </span>
         </div>
         
-        <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+        <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
           <motion.div 
             className="h-full bg-blue-600 rounded-full"
             initial={{ width: 0 }}
@@ -322,9 +322,9 @@ export const SinglePageQuoteForm: React.FC<SinglePageQuoteFormProps> = ({ onForm
           />
 
           {/* Tous les champs dans un seul bloc unifié */}
-          <div className="space-y-4">
-            {/* Informations personnelles */}
-            <div className="grid grid-cols-1 gap-4">
+          <div className="space-y-2">
+            {/* Tous les champs en colonne unique */}
+            <div className="space-y-2">
               <FormField
                 control={form.control}
                 name="firstName"
@@ -336,11 +336,11 @@ export const SinglePageQuoteForm: React.FC<SinglePageQuoteFormProps> = ({ onForm
                         <span className="absolute left-3 top-3 text-gray-400">
                           <User className="h-4 w-4" />
                         </span>
-                        <Input 
-                          className="pl-10 h-10 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
-                          placeholder="Votre prénom" 
-                          {...field}
-                        />
+                         <Input 
+                           className="pl-10 h-8 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
+                           placeholder="Votre prénom" 
+                           {...field}
+                         />
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -359,11 +359,11 @@ export const SinglePageQuoteForm: React.FC<SinglePageQuoteFormProps> = ({ onForm
                         <span className="absolute left-3 top-3 text-gray-400">
                           <User className="h-4 w-4" />
                         </span>
-                        <Input 
-                          className="pl-10 h-10 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
-                          placeholder="Votre nom" 
-                          {...field}
-                        />
+                         <Input 
+                           className="pl-10 h-8 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
+                           placeholder="Votre nom" 
+                           {...field}
+                         />
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -382,11 +382,11 @@ export const SinglePageQuoteForm: React.FC<SinglePageQuoteFormProps> = ({ onForm
                         <span className="absolute left-3 top-3 text-gray-400">
                           <Mail className="h-4 w-4" />
                         </span>
-                        <Input 
-                          className="pl-10 h-10 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
-                          placeholder="votre@email.com" 
-                          {...field}
-                        />
+                         <Input 
+                           className="pl-10 h-8 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
+                           placeholder="votre@email.com" 
+                           {...field}
+                         />
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -405,11 +405,11 @@ export const SinglePageQuoteForm: React.FC<SinglePageQuoteFormProps> = ({ onForm
                         <span className="absolute left-3 top-3 text-gray-400">
                           <Phone className="h-4 w-4" />
                         </span>
-                        <Input 
-                          className="pl-10 h-10 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
-                          placeholder="Votre téléphone" 
-                          {...field}
-                        />
+                         <Input 
+                           className="pl-10 h-8 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
+                           placeholder="Votre téléphone" 
+                           {...field}
+                         />
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -429,11 +429,11 @@ export const SinglePageQuoteForm: React.FC<SinglePageQuoteFormProps> = ({ onForm
                         <span className="absolute left-3 top-3 text-gray-400">
                           <Building className="h-4 w-4" />
                         </span>
-                        <Input 
-                          className="pl-10 h-10 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
-                          placeholder="Nom de votre entreprise" 
-                          {...field} 
-                        />
+                         <Input 
+                           className="pl-10 h-8 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
+                           placeholder="Nom de votre entreprise" 
+                           {...field} 
+                         />
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -472,53 +472,51 @@ export const SinglePageQuoteForm: React.FC<SinglePageQuoteFormProps> = ({ onForm
                 )}
               />
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="city"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-gray-700 text-sm">Ville *</FormLabel>
-                      <FormControl>
-                        <div className="relative">
-                          <span className="absolute left-3 top-3 text-gray-400">
-                            <MapPin className="h-4 w-4" />
-                          </span>
-                          <Input 
-                            className="pl-10 h-10 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
-                            placeholder="Votre ville" 
-                            {...field} 
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+              <FormField
+                control={form.control}
+                name="city"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-gray-700 text-sm">Ville *</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <span className="absolute left-3 top-3 text-gray-400">
+                          <MapPin className="h-4 w-4" />
+                        </span>
+                        <Input 
+                          className="pl-10 h-8 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
+                          placeholder="Votre ville" 
+                          {...field} 
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                <FormField
-                  control={form.control}
-                  name="postalCode"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-gray-700 text-sm">Code postal *</FormLabel>
-                      <FormControl>
-                        <div className="relative">
-                          <span className="absolute left-3 top-3 text-gray-400">
-                            <MapPin className="h-4 w-4" />
-                          </span>
-                          <Input 
-                            className="pl-10 h-10 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
-                            placeholder="Code postal" 
-                            {...field} 
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
+              <FormField
+                control={form.control}
+                name="postalCode"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-gray-700 text-sm">Code postal *</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <span className="absolute left-3 top-3 text-gray-400">
+                          <MapPin className="h-4 w-4" />
+                        </span>
+                        <Input 
+                          className="pl-10 h-8 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
+                          placeholder="Code postal" 
+                          {...field} 
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
               <FormField
                 control={form.control}
@@ -532,7 +530,7 @@ export const SinglePageQuoteForm: React.FC<SinglePageQuoteFormProps> = ({ onForm
                           <Globe className="h-4 w-4" />
                         </span>
                         <Input 
-                          className="pl-10 h-10 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
+                          className="pl-10 h-8 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
                           placeholder="https://votre-site.com" 
                           {...field} 
                         />
@@ -543,144 +541,138 @@ export const SinglePageQuoteForm: React.FC<SinglePageQuoteFormProps> = ({ onForm
                 )}
               />
 
-              {/* Activité */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="leadSource"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-gray-700 text-sm">Comment nous avez-vous connu ? *</FormLabel>
+              <FormField
+                control={form.control}
+                name="leadSource"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-gray-700 text-sm">Comment nous avez-vous connu ? *</FormLabel>
+                    <div className="relative">
+                      <span className="absolute left-3 top-3 text-gray-400 z-10">
+                        <List className="h-4 w-4" />
+                      </span>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className="pl-10 h-8 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
+                            <SelectValue placeholder="Choisir..." />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {leadSources.map((source) => (
+                            <SelectItem key={source.value} value={source.value}>
+                              {source.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="productType"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-gray-700 text-sm">Type d'articles *</FormLabel>
+                    <div className="relative">
+                      <span className="absolute left-3 top-3 text-gray-400 z-10">
+                        <List className="h-4 w-4" />
+                      </span>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className="pl-10 h-8 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
+                            <SelectValue placeholder="Choisir..." />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {productTypes.map((type) => (
+                            <SelectItem key={type.value} value={type.value}>
+                              {type.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="averageBasket"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-gray-700 text-sm">Panier moyen (€) *</FormLabel>
+                    <FormControl>
                       <div className="relative">
-                        <span className="absolute left-3 top-3 text-gray-400 z-10">
-                          <List className="h-4 w-4" />
+                        <span className="absolute left-3 top-3 text-gray-400">
+                          <DollarSign className="h-4 w-4" />
                         </span>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger className="pl-10 h-10 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
-                              <SelectValue placeholder="Choisir..." />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {leadSources.map((source) => (
-                              <SelectItem key={source.value} value={source.value}>
-                                {source.label}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                        <Input 
+                          className="pl-10 h-8 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
+                          type="number" 
+                          placeholder="Montant" 
+                          {...field} 
+                        />
                       </div>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                <FormField
-                  control={form.control}
-                  name="productType"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-gray-700 text-sm">Type d'articles *</FormLabel>
+              <FormField
+                control={form.control}
+                name="annualOrders"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-gray-700 text-sm">Commandes/an *</FormLabel>
+                    <FormControl>
                       <div className="relative">
-                        <span className="absolute left-3 top-3 text-gray-400 z-10">
-                          <List className="h-4 w-4" />
+                        <span className="absolute left-3 top-3 text-gray-400">
+                          <Database className="h-4 w-4" />
                         </span>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger className="pl-10 h-10 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
-                              <SelectValue placeholder="Choisir..." />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {productTypes.map((type) => (
-                              <SelectItem key={type.value} value={type.value}>
-                                {type.label}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                        <Input 
+                          className="pl-10 h-8 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
+                          type="number" 
+                          placeholder="Nombre" 
+                          {...field} 
+                        />
                       </div>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <FormField
-                  control={form.control}
-                  name="averageBasket"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-gray-700 text-sm">Panier moyen (€) *</FormLabel>
-                      <FormControl>
-                        <div className="relative">
-                          <span className="absolute left-3 top-3 text-gray-400">
-                            <DollarSign className="h-4 w-4" />
-                          </span>
-                          <Input 
-                            className="pl-10 h-10 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
-                            type="number" 
-                            placeholder="Montant" 
-                            {...field} 
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+              <FormField
+                control={form.control}
+                name="stockReferences"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-gray-700 text-sm">Références stock *</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <span className="absolute left-3 top-3 text-gray-400">
+                          <Database className="h-4 w-4" />
+                        </span>
+                        <Input 
+                          className="pl-10 h-8 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
+                          type="number" 
+                          placeholder="Nombre" 
+                          {...field} 
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                <FormField
-                  control={form.control}
-                  name="annualOrders"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-gray-700 text-sm">Commandes/an *</FormLabel>
-                      <FormControl>
-                        <div className="relative">
-                          <span className="absolute left-3 top-3 text-gray-400">
-                            <Database className="h-4 w-4" />
-                          </span>
-                          <Input 
-                            className="pl-10 h-10 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
-                            type="number" 
-                            placeholder="Nombre" 
-                            {...field} 
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="stockReferences"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-gray-700 text-sm">Références stock *</FormLabel>
-                      <FormControl>
-                        <div className="relative">
-                          <span className="absolute left-3 top-3 text-gray-400">
-                            <Database className="h-4 w-4" />
-                          </span>
-                          <Input 
-                            className="pl-10 h-10 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
-                            type="number" 
-                            placeholder="Nombre" 
-                            {...field} 
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
-              {/* Message */}
               <FormField
                 control={form.control}
                 name="message"
@@ -693,7 +685,7 @@ export const SinglePageQuoteForm: React.FC<SinglePageQuoteFormProps> = ({ onForm
                           <FileText className="h-4 w-4" />
                         </span>
                         <Textarea 
-                          className="min-h-[80px] pl-10 pt-8 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
+                          className="min-h-[60px] pl-10 pt-8 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" 
                           placeholder="Décrivez vos besoins spécifiques..." 
                           {...field} 
                         />
