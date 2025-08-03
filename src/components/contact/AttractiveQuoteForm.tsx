@@ -7,26 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "@/hooks/use-toast";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { 
-  Loader2, 
-  Send, 
-  ArrowLeft, 
-  ArrowRight, 
-  User, 
-  Mail, 
-  Phone, 
-  Building, 
-  MapPin, 
-  Globe, 
-  List, 
-  DollarSign, 
-  FileText, 
-  Database,
-  Sparkles,
-  Target,
-  TrendingUp,
-  Shield
-} from "lucide-react";
+import { Loader2, Send, ArrowLeft, ArrowRight, User, Mail, Phone, Building, MapPin, Globe, List, DollarSign, FileText, Database, Sparkles, Target, TrendingUp, Shield } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -80,35 +61,53 @@ const contactFormSchema = z.object({
   }),
   message: z.string().optional()
 });
-
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 // Mêmes options que le formulaire original
-const leadSources = [
-  { value: "social-media", label: "Réseaux sociaux" },
-  { value: "search-engine", label: "Moteur de recherche" },
-  { value: "recommendation", label: "Recommandation" },
-  { value: "other", label: "Autre" }
-];
-
-const productTypes = [
-  { value: "cosmetics", label: "Cosmétiques" },
-  { value: "fashion", label: "Mode et accessoires" },
-  { value: "food-supplements", label: "Compléments alimentaires" },
-  { value: "electronics", label: "Électronique" },
-  { value: "home-decor", label: "Décoration" },
-  { value: "adult-products", label: "Produits pour adultes" },
-  { value: "other", label: "Autre" }
-];
+const leadSources = [{
+  value: "social-media",
+  label: "Réseaux sociaux"
+}, {
+  value: "search-engine",
+  label: "Moteur de recherche"
+}, {
+  value: "recommendation",
+  label: "Recommandation"
+}, {
+  value: "other",
+  label: "Autre"
+}];
+const productTypes = [{
+  value: "cosmetics",
+  label: "Cosmétiques"
+}, {
+  value: "fashion",
+  label: "Mode et accessoires"
+}, {
+  value: "food-supplements",
+  label: "Compléments alimentaires"
+}, {
+  value: "electronics",
+  label: "Électronique"
+}, {
+  value: "home-decor",
+  label: "Décoration"
+}, {
+  value: "adult-products",
+  label: "Produits pour adultes"
+}, {
+  value: "other",
+  label: "Autre"
+}];
 
 // Rate limiter identique
 const rateLimiter = new ClientRateLimiter(3, 10 * 60 * 1000);
-
 interface AttractiveQuoteFormProps {
   onFormReady?: () => void;
 }
-
-export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({ onFormReady }) => {
+export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({
+  onFormReady
+}) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [honeypot, setHoneypot] = useState(generateHoneypot());
@@ -117,7 +116,6 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({ onForm
   const hubspotFormRef = useRef<HTMLDivElement>(null);
   const scriptLoadedRef = useRef(false);
   const totalSteps = 4;
-  
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -147,7 +145,6 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({ onForm
         createHubSpotForm();
         return;
       }
-
       try {
         const script = document.createElement('script');
         script.src = 'https://js-eu1.hsforms.net/forms/embed/144571109.js';
@@ -164,7 +161,6 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({ onForm
         console.error('Error loading HubSpot form:', error);
       }
     };
-
     const createHubSpotForm = () => {
       if (window.hbspt?.forms && hubspotFormRef.current) {
         window.hbspt.forms.create({
@@ -176,46 +172,38 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({ onForm
         onFormReady?.();
       }
     };
-
     if (showHubSpotForm) {
       loadHubSpotForm();
     }
   }, [showHubSpotForm, onFormReady]);
 
   // Étapes du formulaire
-  const steps = [
-    {
-      title: "🙋‍♂️ Qui êtes-vous ?",
-      subtitle: "Commençons par faire connaissance",
-      fields: ["firstName", "lastName", "email", "phone"],
-      icon: <User className="h-6 w-6" />
-    },
-    {
-      title: "🏢 Votre entreprise",
-      subtitle: "Parlez-nous de votre activité",
-      fields: ["companyName", "companyStatus", "city", "postalCode", "website"],
-      icon: <Building className="h-6 w-6" />
-    },
-    {
-      title: "📊 Votre activité",
-      subtitle: "Aidez-nous à mieux vous comprendre",
-      fields: ["leadSource", "averageBasket", "productType", "annualOrders", "stockReferences"],
-      icon: <TrendingUp className="h-6 w-6" />
-    },
-    {
-      title: "✨ Finalisation",
-      subtitle: "Derniers détails et récapitulatif",
-      fields: ["message"],
-      icon: <Target className="h-6 w-6" />
-    }
-  ];
-
+  const steps = [{
+    title: "🙋‍♂️ Qui êtes-vous ?",
+    subtitle: "Commençons par faire connaissance",
+    fields: ["firstName", "lastName", "email", "phone"],
+    icon: <User className="h-6 w-6" />
+  }, {
+    title: "🏢 Votre entreprise",
+    subtitle: "Parlez-nous de votre activité",
+    fields: ["companyName", "companyStatus", "city", "postalCode", "website"],
+    icon: <Building className="h-6 w-6" />
+  }, {
+    title: "📊 Votre activité",
+    subtitle: "Aidez-nous à mieux vous comprendre",
+    fields: ["leadSource", "averageBasket", "productType", "annualOrders", "stockReferences"],
+    icon: <TrendingUp className="h-6 w-6" />
+  }, {
+    title: "✨ Finalisation",
+    subtitle: "Derniers détails et récapitulatif",
+    fields: ["message"],
+    icon: <Target className="h-6 w-6" />
+  }];
   const validateCurrentStep = async () => {
     const currentFields = steps[currentStep].fields;
     const result = await form.trigger(currentFields as any);
     return result;
   };
-
   const goToNextStep = async () => {
     const isValid = await validateCurrentStep();
     if (isValid) {
@@ -224,16 +212,13 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({ onForm
       }
     }
   };
-
   const goToPreviousStep = () => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
     }
   };
-
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
-    
     try {
       // Vérifications de sécurité identiques au formulaire original
       if (honeypot.value !== '') {
@@ -241,21 +226,19 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({ onForm
         toast({
           title: "Erreur",
           description: "Une erreur est survenue. Veuillez réessayer.",
-          variant: "destructive",
+          variant: "destructive"
         });
         return;
       }
-
       const clientId = `form_${Date.now()}`;
       if (!rateLimiter.isAllowed(clientId)) {
         toast({
           title: "Trop de tentatives",
           description: "Veuillez patienter avant de renvoyer le formulaire.",
-          variant: "destructive",
+          variant: "destructive"
         });
         return;
       }
-
       const sanitizedData = {
         ...data,
         firstName: sanitizeInput(data.firstName),
@@ -269,38 +252,33 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({ onForm
         message: data.message ? sanitizeInput(data.message) : undefined,
         csrfToken
       };
-
       const contentValidation = validateContent(sanitizedData.message || '');
       if (!contentValidation.isValid) {
         toast({
           title: "Contenu non valide",
           description: "Le message contient du contenu non autorisé.",
-          variant: "destructive",
+          variant: "destructive"
         });
         return;
       }
-
       const result = contactFormSchema.safeParse(sanitizedData);
       if (!result.success) {
         toast({
           title: "Erreur de validation",
           description: "Veuillez vérifier vos informations et réessayer.",
-          variant: "destructive",
+          variant: "destructive"
         });
         return;
       }
-
-      const { data: submitData, error } = await supabase.functions.invoke(
-        'secure-contact-form',
-        {
-          body: result.data,
-        }
-      );
-
+      const {
+        data: submitData,
+        error
+      } = await supabase.functions.invoke('secure-contact-form', {
+        body: result.data
+      });
       if (error) {
         throw error;
       }
-
       toast({
         title: "🎉 Demande de devis envoyée !",
         description: "Nous vous recontacterons dans les plus brefs délais."
@@ -308,170 +286,128 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({ onForm
 
       // Afficher le formulaire HubSpot pour la connexion
       setShowHubSpotForm(true);
-      
     } catch (error) {
       console.error("❌ Erreur lors de l'envoi:", error);
       toast({
         title: "Erreur lors de l'envoi",
         description: "Une erreur est survenue. Veuillez réessayer plus tard.",
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setIsSubmitting(false);
     }
   };
-
   const renderStepContent = () => {
     switch (currentStep) {
       case 0:
-        return (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
-            className="space-y-6"
-          >
+        return <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} exit={{
+          opacity: 0,
+          y: -20
+        }} transition={{
+          duration: 0.4
+        }} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FormField
-                control={form.control}
-                name="firstName"
-                render={({ field }) => (
-                  <FormItem>
+              <FormField control={form.control} name="firstName" render={({
+              field
+            }) => <FormItem>
                     <FormLabel className="text-gray-700 font-medium">Prénom</FormLabel>
                     <FormControl>
                       <div className="relative group">
                         <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
                           <User className="h-4 w-4" />
                         </span>
-                        <Input 
-                          className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" 
-                          placeholder="Votre prénom" 
-                          {...field} 
-                        />
+                        <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Votre prénom" {...field} />
                       </div>
                     </FormControl>
                     <FormMessage />
-                  </FormItem>
-                )}
-              />
+                  </FormItem>} />
 
-              <FormField
-                control={form.control}
-                name="lastName"
-                render={({ field }) => (
-                  <FormItem>
+              <FormField control={form.control} name="lastName" render={({
+              field
+            }) => <FormItem>
                     <FormLabel className="text-gray-700 font-medium">Nom</FormLabel>
                     <FormControl>
                       <div className="relative group">
                         <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
                           <User className="h-4 w-4" />
                         </span>
-                        <Input 
-                          className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" 
-                          placeholder="Votre nom" 
-                          {...field} 
-                        />
+                        <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Votre nom" {...field} />
                       </div>
                     </FormControl>
                     <FormMessage />
-                  </FormItem>
-                )}
-              />
+                  </FormItem>} />
             </div>
 
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
+            <FormField control={form.control} name="email" render={({
+            field
+          }) => <FormItem>
                   <FormLabel className="text-gray-700 font-medium">E-mail professionnel</FormLabel>
                   <FormControl>
                     <div className="relative group">
                       <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
                         <Mail className="h-4 w-4" />
                       </span>
-                      <Input 
-                        className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" 
-                        placeholder="votre@email.com" 
-                        {...field} 
-                      />
+                      <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="votre@email.com" {...field} />
                     </div>
                   </FormControl>
                   <FormMessage />
-                </FormItem>
-              )}
-            />
+                </FormItem>} />
 
-            <FormField
-              control={form.control}
-              name="phone"
-              render={({ field }) => (
-                <FormItem>
+            <FormField control={form.control} name="phone" render={({
+            field
+          }) => <FormItem>
                   <FormLabel className="text-gray-700 font-medium">Téléphone</FormLabel>
                   <FormControl>
                     <div className="relative group">
                       <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
                         <Phone className="h-4 w-4" />
                       </span>
-                      <Input 
-                        className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" 
-                        placeholder="Votre numéro de téléphone" 
-                        {...field} 
-                      />
+                      <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Votre numéro de téléphone" {...field} />
                     </div>
                   </FormControl>
                   <FormMessage />
-                </FormItem>
-              )}
-            />
-          </motion.div>
-        );
-
+                </FormItem>} />
+          </motion.div>;
       case 1:
-        return (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
-            className="space-y-6"
-          >
-            <FormField
-              control={form.control}
-              name="companyName"
-              render={({ field }) => (
-                <FormItem>
+        return <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} exit={{
+          opacity: 0,
+          y: -20
+        }} transition={{
+          duration: 0.4
+        }} className="space-y-6">
+            <FormField control={form.control} name="companyName" render={({
+            field
+          }) => <FormItem>
                   <FormLabel className="text-gray-700 font-medium">Nom de l'entreprise</FormLabel>
                   <FormControl>
                     <div className="relative group">
                       <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
                         <Building className="h-4 w-4" />
                       </span>
-                      <Input 
-                        className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" 
-                        placeholder="Nom de votre entreprise" 
-                        {...field} 
-                      />
+                      <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Nom de votre entreprise" {...field} />
                     </div>
                   </FormControl>
                   <FormMessage />
-                </FormItem>
-              )}
-            />
+                </FormItem>} />
 
-            <FormField
-              control={form.control}
-              name="companyStatus"
-              render={({ field }) => (
-                <FormItem className="space-y-3">
+            <FormField control={form.control} name="companyStatus" render={({
+            field
+          }) => <FormItem className="space-y-3">
                   <FormLabel className="text-gray-700 font-medium">État de l'entreprise</FormLabel>
                   <FormControl>
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                      className="flex flex-col space-y-2"
-                    >
+                    <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-2">
                       <div className="flex items-center space-x-2 p-3 border-2 border-gray-200 rounded-lg hover:border-blue-300 transition-colors">
                         <RadioGroupItem value="creation" id="creation" />
                         <FormLabel htmlFor="creation" className="font-normal cursor-pointer">
@@ -487,97 +423,71 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({ onForm
                     </RadioGroup>
                   </FormControl>
                   <FormMessage />
-                </FormItem>
-              )}
-            />
+                </FormItem>} />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FormField
-                control={form.control}
-                name="city"
-                render={({ field }) => (
-                  <FormItem>
+              <FormField control={form.control} name="city" render={({
+              field
+            }) => <FormItem>
                     <FormLabel className="text-gray-700 font-medium">Ville</FormLabel>
                     <FormControl>
                       <div className="relative group">
                         <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
                           <MapPin className="h-4 w-4" />
                         </span>
-                        <Input 
-                          className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" 
-                          placeholder="Votre ville" 
-                          {...field} 
-                        />
+                        <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Votre ville" {...field} />
                       </div>
                     </FormControl>
                     <FormMessage />
-                  </FormItem>
-                )}
-              />
+                  </FormItem>} />
 
-              <FormField
-                control={form.control}
-                name="postalCode"
-                render={({ field }) => (
-                  <FormItem>
+              <FormField control={form.control} name="postalCode" render={({
+              field
+            }) => <FormItem>
                     <FormLabel className="text-gray-700 font-medium">Code postal</FormLabel>
                     <FormControl>
                       <div className="relative group">
                         <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
                           <MapPin className="h-4 w-4" />
                         </span>
-                        <Input 
-                          className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" 
-                          placeholder="Code postal" 
-                          {...field} 
-                        />
+                        <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Code postal" {...field} />
                       </div>
                     </FormControl>
                     <FormMessage />
-                  </FormItem>
-                )}
-              />
+                  </FormItem>} />
             </div>
 
-            <FormField
-              control={form.control}
-              name="website"
-              render={({ field }) => (
-                <FormItem>
+            <FormField control={form.control} name="website" render={({
+            field
+          }) => <FormItem>
                   <FormLabel className="text-gray-700 font-medium">Site Web (facultatif)</FormLabel>
                   <FormControl>
                     <div className="relative group">
                       <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
                         <Globe className="h-4 w-4" />
                       </span>
-                      <Input 
-                        className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" 
-                        placeholder="https://votre-site.com" 
-                        {...field} 
-                      />
+                      <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="https://votre-site.com" {...field} />
                     </div>
                   </FormControl>
                   <FormMessage />
-                </FormItem>
-              )}
-            />
-          </motion.div>
-        );
-
+                </FormItem>} />
+          </motion.div>;
       case 2:
-        return (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
-            className="space-y-6"
-          >
-            <FormField
-              control={form.control}
-              name="leadSource"
-              render={({ field }) => (
-                <FormItem>
+        return <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} exit={{
+          opacity: 0,
+          y: -20
+        }} transition={{
+          duration: 0.4
+        }} className="space-y-6">
+            <FormField control={form.control} name="leadSource" render={({
+            field
+          }) => <FormItem>
                   <FormLabel className="text-gray-700 font-medium">Comment nous avez-vous connu ?</FormLabel>
                   <div className="relative">
                     <span className="absolute left-3 top-3 text-gray-400 z-10">
@@ -590,74 +500,50 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({ onForm
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {leadSources.map((source) => (
-                          <SelectItem key={source.value} value={source.value}>
+                        {leadSources.map(source => <SelectItem key={source.value} value={source.value}>
                             {source.label}
-                          </SelectItem>
-                        ))}
+                          </SelectItem>)}
                       </SelectContent>
                     </Select>
                   </div>
                   <FormMessage />
-                </FormItem>
-              )}
-            />
+                </FormItem>} />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FormField
-                control={form.control}
-                name="averageBasket"
-                render={({ field }) => (
-                  <FormItem>
+              <FormField control={form.control} name="averageBasket" render={({
+              field
+            }) => <FormItem>
                     <FormLabel className="text-gray-700 font-medium">Valeur moyenne du panier (€)</FormLabel>
                     <FormControl>
                       <div className="relative group">
                         <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
                           <DollarSign className="h-4 w-4" />
                         </span>
-                        <Input 
-                          className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" 
-                          type="number" 
-                          placeholder="Montant en €" 
-                          {...field} 
-                        />
+                        <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" type="number" placeholder="Montant en €" {...field} />
                       </div>
                     </FormControl>
                     <FormMessage />
-                  </FormItem>
-                )}
-              />
+                  </FormItem>} />
 
-              <FormField
-                control={form.control}
-                name="annualOrders"
-                render={({ field }) => (
-                  <FormItem>
+              <FormField control={form.control} name="annualOrders" render={({
+              field
+            }) => <FormItem>
                     <FormLabel className="text-gray-700 font-medium">Commandes par an</FormLabel>
                     <FormControl>
                       <div className="relative group">
                         <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
                           <Database className="h-4 w-4" />
                         </span>
-                        <Input 
-                          className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" 
-                          type="number" 
-                          placeholder="Nombre estimé" 
-                          {...field} 
-                        />
+                        <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" type="number" placeholder="Nombre estimé" {...field} />
                       </div>
                     </FormControl>
                     <FormMessage />
-                  </FormItem>
-                )}
-              />
+                  </FormItem>} />
             </div>
 
-            <FormField
-              control={form.control}
-              name="productType"
-              render={({ field }) => (
-                <FormItem>
+            <FormField control={form.control} name="productType" render={({
+            field
+          }) => <FormItem>
                   <FormLabel className="text-gray-700 font-medium">Type d'articles</FormLabel>
                   <div className="relative">
                     <span className="absolute left-3 top-3 text-gray-400 z-10">
@@ -670,83 +556,67 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({ onForm
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {productTypes.map((type) => (
-                          <SelectItem key={type.value} value={type.value}>
+                        {productTypes.map(type => <SelectItem key={type.value} value={type.value}>
                             {type.label}
-                          </SelectItem>
-                        ))}
+                          </SelectItem>)}
                       </SelectContent>
                     </Select>
                   </div>
                   <FormMessage />
-                </FormItem>
-              )}
-            />
+                </FormItem>} />
 
-            <FormField
-              control={form.control}
-              name="stockReferences"
-              render={({ field }) => (
-                <FormItem>
+            <FormField control={form.control} name="stockReferences" render={({
+            field
+          }) => <FormItem>
                   <FormLabel className="text-gray-700 font-medium">Nombre de références à stocker</FormLabel>
                   <FormControl>
                     <div className="relative group">
                       <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
                         <Database className="h-4 w-4" />
                       </span>
-                      <Input 
-                        className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" 
-                        type="number" 
-                        placeholder="Nombre total de références" 
-                        {...field} 
-                      />
+                      <Input className="pl-10 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" type="number" placeholder="Nombre total de références" {...field} />
                     </div>
                   </FormControl>
                   <FormMessage />
-                </FormItem>
-              )}
-            />
-          </motion.div>
-        );
-
+                </FormItem>} />
+          </motion.div>;
       case 3:
-        return (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
-            className="space-y-6"
-          >
-            <FormField
-              control={form.control}
-              name="message"
-              render={({ field }) => (
-                <FormItem>
+        return <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} exit={{
+          opacity: 0,
+          y: -20
+        }} transition={{
+          duration: 0.4
+        }} className="space-y-6">
+            <FormField control={form.control} name="message" render={({
+            field
+          }) => <FormItem>
                   <FormLabel className="text-gray-700 font-medium">Votre message (facultatif)</FormLabel>
                   <FormControl>
                     <div className="relative group">
                       <span className="absolute left-3 top-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
                         <FileText className="h-4 w-4" />
                       </span>
-                      <Textarea 
-                        className="min-h-[120px] pl-10 pt-8 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" 
-                        placeholder="Informations complémentaires pour votre devis..." 
-                        {...field} 
-                      />
+                      <Textarea className="min-h-[120px] pl-10 pt-8 border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200" placeholder="Informations complémentaires pour votre devis..." {...field} />
                     </div>
                   </FormControl>
                   <FormMessage />
-                </FormItem>
-              )}
-            />
+                </FormItem>} />
 
-            <motion.div 
-              className="mt-6 p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-200"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
-            >
+            <motion.div className="mt-6 p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-200" initial={{
+            opacity: 0,
+            scale: 0.95
+          }} animate={{
+            opacity: 1,
+            scale: 1
+          }} transition={{
+            delay: 0.2
+          }}>
               <div className="flex items-center gap-2 mb-3">
                 <Shield className="h-5 w-5 text-blue-600" />
                 <h3 className="font-semibold text-blue-900">Récapitulatif de votre demande</h3>
@@ -760,21 +630,19 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({ onForm
                 <p><span className="font-medium text-gray-700">Commandes/an:</span> <span className="text-gray-900">{form.getValues("annualOrders")}</span></p>
               </div>
             </motion.div>
-          </motion.div>
-        );
-
+          </motion.div>;
       default:
         return null;
     }
   };
-
   if (showHubSpotForm) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="bg-white rounded-2xl p-8 shadow-xl border border-gray-200"
-      >
+    return <motion.div initial={{
+      opacity: 0,
+      y: 20
+    }} animate={{
+      opacity: 1,
+      y: 0
+    }} className="bg-white rounded-2xl p-8 shadow-xl border border-gray-200">
         <div className="text-center mb-6">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
             <Sparkles className="h-8 w-8 text-green-600" />
@@ -784,33 +652,30 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({ onForm
         </div>
         
         <div className="w-full">
-          <div 
-            ref={hubspotFormRef}
-            className="hs-form-frame w-full"
-            data-region="eu1" 
-            data-form-id="ebf2ad52-915e-4bfa-b4c0-a2ff8480054f" 
-            data-portal-id="144571109"
-          />
+          <div ref={hubspotFormRef} className="hs-form-frame w-full" data-region="eu1" data-form-id="ebf2ad52-915e-4bfa-b4c0-a2ff8480054f" data-portal-id="144571109" />
         </div>
-      </motion.div>
-    );
+      </motion.div>;
   }
-
-  return (
-    <motion.div 
-      className="bg-white rounded-2xl p-8 shadow-xl border border-gray-200 max-w-4xl mx-auto"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
+  return <motion.div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-200 max-w-4xl mx-auto" initial={{
+    opacity: 0,
+    y: 20
+  }} animate={{
+    opacity: 1,
+    y: 0
+  }} transition={{
+    duration: 0.6
+  }}>
       {/* En-tête attractif */}
       <div className="text-center mb-8">
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-          className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full mb-4"
-        >
+        <motion.div initial={{
+        scale: 0
+      }} animate={{
+        scale: 1
+      }} transition={{
+        delay: 0.2,
+        type: "spring",
+        stiffness: 200
+      }} className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full mb-4">
           <Sparkles className="h-8 w-8 text-white" />
         </motion.div>
         <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2">
@@ -821,57 +686,20 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({ onForm
       
       {/* Indicateur de progression moderne */}
       <div className="mb-8">
-        <div className="flex justify-between items-center mb-4">
-          {steps.map((step, index) => (
-            <motion.div 
-              key={index} 
-              className={`flex flex-col items-center transition-all duration-300 ${
-                currentStep >= index ? "text-blue-600" : "text-gray-400"
-              }`}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 transition-all duration-300 ${
-                currentStep >= index 
-                  ? "bg-blue-600 text-white shadow-lg shadow-blue-600/25" 
-                  : "bg-gray-200 text-gray-400"
-              }`}>
-                {currentStep > index ? (
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 500 }}
-                  >
-                    ✓
-                  </motion.div>
-                ) : (
-                  step.icon
-                )}
-              </div>
-              <span className="text-xs font-medium hidden sm:block">Étape {index + 1}</span>
-            </motion.div>
-          ))}
-        </div>
+        
         
         <div className="relative">
-          <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-            <motion.div 
-              className="h-full bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full"
-              initial={{ width: 0 }}
-              animate={{ width: `${((currentStep + 1) / totalSteps) * 100}%` }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            />
-          </div>
+          
         </div>
         
-        <motion.div
-          key={currentStep}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mt-4"
-        >
-          <h3 className="text-lg font-semibold text-gray-900">{steps[currentStep].title}</h3>
+        <motion.div key={currentStep} initial={{
+        opacity: 0,
+        y: 10
+      }} animate={{
+        opacity: 1,
+        y: 0
+      }} className="text-center mt-4">
+          
           <p className="text-gray-600 text-sm">{steps[currentStep].subtitle}</p>
         </motion.div>
       </div>
@@ -879,15 +707,10 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({ onForm
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           {/* Honeypot field */}
-          <input
-            type="text"
-            name={honeypot.name}
-            value={honeypot.value}
-            onChange={(e) => setHoneypot({...honeypot, value: e.target.value})}
-            style={honeypot.style}
-            tabIndex={-1}
-            autoComplete="off"
-          />
+          <input type="text" name={honeypot.name} value={honeypot.value} onChange={e => setHoneypot({
+          ...honeypot,
+          value: e.target.value
+        })} style={honeypot.style} tabIndex={-1} autoComplete="off" />
           
           <AnimatePresence mode="wait">
             <motion.div key={currentStep}>
@@ -897,59 +720,34 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({ onForm
           
           {/* Boutons de navigation */}
           <div className="flex justify-between items-center pt-6 border-t border-gray-200">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={goToPreviousStep}
-              disabled={currentStep === 0}
-              className="flex items-center gap-2 px-6 py-3 text-gray-600 border-2 border-gray-300 hover:border-gray-400 transition-all duration-200 disabled:opacity-50"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Précédent
-            </Button>
             
-            {currentStep < totalSteps - 1 ? (
-              <Button 
-                type="button" 
-                onClick={goToNextStep}
-                className="flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium rounded-lg shadow-lg shadow-blue-600/25 transition-all duration-200 transform hover:scale-105"
-              >
+            
+            {currentStep < totalSteps - 1 ? <Button type="button" onClick={goToNextStep} className="flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium rounded-lg shadow-lg shadow-blue-600/25 transition-all duration-200 transform hover:scale-105">
                 Suivant
                 <ArrowRight className="h-4 w-4" />
-              </Button>
-            ) : (
-              <Button 
-                type="submit" 
-                disabled={isSubmitting}
-                className="flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-medium rounded-lg shadow-lg shadow-green-600/25 transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:transform-none"
-              >
-                {isSubmitting ? (
-                  <>
+              </Button> : <Button type="submit" disabled={isSubmitting} className="flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-medium rounded-lg shadow-lg shadow-green-600/25 transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:transform-none">
+                {isSubmitting ? <>
                     <Loader2 className="h-4 w-4 animate-spin" />
                     Envoi en cours...
-                  </>
-                ) : (
-                  <>
+                  </> : <>
                     <Send className="h-4 w-4" />
                     Obtenir mon devis gratuit
-                  </>
-                )}
-              </Button>
-            )}
+                  </>}
+              </Button>}
           </div>
         </form>
       </Form>
       
       {/* Badge de confiance */}
-      <motion.div 
-        className="flex items-center justify-center gap-2 mt-6 pt-6 border-t border-gray-100 text-sm text-gray-500"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8 }}
-      >
+      <motion.div className="flex items-center justify-center gap-2 mt-6 pt-6 border-t border-gray-100 text-sm text-gray-500" initial={{
+      opacity: 0
+    }} animate={{
+      opacity: 1
+    }} transition={{
+      delay: 0.8
+    }}>
         <Shield className="h-4 w-4" />
         <span>Vos données sont sécurisées et ne seront jamais partagées</span>
       </motion.div>
-    </motion.div>
-  );
+    </motion.div>;
 };
