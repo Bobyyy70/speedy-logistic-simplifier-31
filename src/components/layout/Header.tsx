@@ -15,7 +15,7 @@ export function Header() {
     { name: "Services", href: "/services" },
     { name: "Technologie", href: "/technology" },
     
-    { name: "Suivi colis", href: "/suivi-colis" },
+    
     { name: "À Propos", href: "/about" },
     { name: "FAQ", href: "/faq" },
     { name: "Contact", href: "/contact" },

@@ -20,7 +20,7 @@ import Technology from "./pages/Technology";
 
 import Sitemap from "./pages/Sitemap";
 import TestAttractiveForm from "./pages/TestAttractiveForm";
-import SuiviColis from "./pages/SuiviColis";
+
 
 const App = () => (
   <TooltipProvider>
@@ -35,7 +35,7 @@ const App = () => (
           <Route path="/technology" element={<Technology />} />
           <Route path="/technologie" element={<Navigate to="/technology" replace />} />
           <Route path="/integrations" element={<Navigate to="/services" replace />} />
-          <Route path="/suivi-colis" element={<SuiviColis />} />
+          
           {/* Redirection of all pricing routes to contact page */}
           <Route path="/pricing" element={<Navigate to="/contact" replace />} />
           <Route path="/tarifs" element={<Navigate to="/contact" replace />} />
