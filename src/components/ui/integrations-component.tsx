@@ -238,7 +238,7 @@ export default function IntegrationsSection({ onCTAClick }: { onCTAClick?: () =>
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="container mx-auto px-6 py-24 text-center"
+                        className="container mx-auto px-6 py-16 text-center"
                     >
                         <motion.h1 
                             initial={{ opacity: 0, y: 30 }}
@@ -271,9 +271,9 @@ export default function IntegrationsSection({ onCTAClick }: { onCTAClick?: () =>
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, delay: 0.6 }}
-                        className="relative mx-auto max-w-[1400px] px-6 py-24"
+                        className="relative mx-auto max-w-[1400px] px-6 py-12"
                     >
-                        <div className="relative mx-auto max-w-[1200px] space-y-20 [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_60%,transparent_100%)]">
+                        <div className="relative mx-auto max-w-[1200px] space-y-16 [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_60%,transparent_100%)]">
                             <div
                                 role="presentation"
                                 className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:60px_60px] opacity-20"
@@ -282,7 +282,7 @@ export default function IntegrationsSection({ onCTAClick }: { onCTAClick?: () =>
                             {/* Slider Row 1 - E-commerce platforms */}
                             <div className="py-6">
                                 <InfiniteSlider
-                                    gap={80}
+                                    gap={70}
                                     speed={15}
                                     speedOnHover={8}>
                                     <IntegrationCard className="size-32 border-white/30 bg-white/15 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300"><ShopifyLogo /></IntegrationCard>
@@ -297,7 +297,7 @@ export default function IntegrationsSection({ onCTAClick }: { onCTAClick?: () =>
                             {/* Slider Row 2 - Mixed platforms (reverse) */}
                             <div className="py-6">
                                 <InfiniteSlider
-                                    gap={80}
+                                    gap={70}
                                     speed={15}
                                     speedOnHover={8}
                                     reverse>
@@ -313,7 +313,7 @@ export default function IntegrationsSection({ onCTAClick }: { onCTAClick?: () =>
                             {/* Slider Row 3 - Logistics & e-commerce */}
                             <div className="py-6">
                                 <InfiniteSlider
-                                    gap={80}
+                                    gap={70}
                                     speed={15}
                                     speedOnHover={8}>
                                     <IntegrationCard className="size-32 border-white/30 bg-white/15 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300"><MagentoLogo /></IntegrationCard>
@@ -341,7 +341,7 @@ export default function IntegrationsSection({ onCTAClick }: { onCTAClick?: () =>
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 1 }}
-                        className="container mx-auto px-6 py-16"
+                        className="container mx-auto px-6 py-12"
                     >
                         <div className="mx-auto max-w-4xl space-y-8 text-center">
                             <h2 className="text-balance text-3xl font-bold text-white md:text-5xl lg:text-6xl">
