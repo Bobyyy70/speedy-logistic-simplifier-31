@@ -7,8 +7,6 @@ import { Search, Package, ExternalLink } from "lucide-react";
 const TrackingInterface = () => {
   const [trackingNumber, setTrackingNumber] = useState("");
   const [postCode, setPostCode] = useState("");
-  const [showIframe, setShowIframe] = useState(false);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -17,8 +15,8 @@ const TrackingInterface = () => {
       return;
     }
 
-    // Show the iframe with tracking results
-    setShowIframe(true);
+    // Open tracking in new tab
+    window.open(getTrackingUrl(), '_blank');
   };
 
   const getTrackingUrl = () => {
@@ -93,32 +91,17 @@ const TrackingInterface = () => {
         </CardContent>
       </Card>
 
-      {/* Tracking Results */}
-      {showIframe && trackingNumber && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Résultats de suivi pour: {trackingNumber}</CardTitle>
-            <p className="text-muted-foreground">
-              Service de tracking fourni par 17Track - Compatible avec tous les transporteurs
+      {/* Information Notice */}
+      <Card className="mb-8 bg-muted/30">
+        <CardContent className="pt-6">
+          <div className="flex items-center gap-3 text-sm text-muted-foreground">
+            <ExternalLink className="h-4 w-4" />
+            <p>
+              Le suivi s'ouvrira dans un nouvel onglet via 17Track - service gratuit compatible avec tous les transporteurs français et internationaux.
             </p>
-          </CardHeader>
-          <CardContent>
-            <div className="rounded-lg border overflow-hidden">
-              <iframe
-                src={getTrackingUrl()}
-                className="w-full h-96 border-0"
-                title="Suivi de colis"
-                sandbox="allow-scripts allow-same-origin allow-forms"
-              />
-            </div>
-            <div className="mt-4 text-sm text-muted-foreground">
-              <p>
-                <strong>Transporteurs supportés:</strong> La Poste, Colissimo, Chronopost, DPD, UPS, FedEx, DHL, GLS, et plus de 170 autres transporteurs dans le monde.
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-      )}
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Information Cards */}
       <div className="grid md:grid-cols-2 gap-6 mt-8">
