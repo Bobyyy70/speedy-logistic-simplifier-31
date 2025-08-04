@@ -3,7 +3,7 @@ import { Package } from "lucide-react";
 
 const TrackingInterface = () => {
   return (
-    <div className="w-full">
+    <div className="max-w-3xl mx-auto">
       <div className="mb-6">
         <h2 className="flex items-center gap-2 text-2xl font-semibold">
           <Package className="h-5 w-5" />
@@ -14,7 +14,7 @@ const TrackingInterface = () => {
         <iframe 
           src="https://tracking.eu-central-1-0.sendcloud.sc/" 
           width="100%" 
-          height="600px" 
+          height="450px" 
           frameBorder="0" 
           style={{border: 0}}
           title="Suivi de colis SendCloud"
