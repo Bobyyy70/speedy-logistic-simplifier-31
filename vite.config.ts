@@ -35,77 +35,44 @@ export default defineConfig(({ mode }) => ({
           compress: {
             drop_console: true,
             drop_debugger: true,
-            pure_funcs: ['console.log', 'console.info', 'console.warn'],
-            passes: 2,
-            unsafe_arrows: true,
-            unsafe_methods: true,
-            unsafe_proto: true,
-          },
-          mangle: {
-            safari10: true,
+            pure_funcs: ['console.log'],
           },
           format: {
             comments: false,
-            ecma: 2020,
           },
         }),
       ].filter(Boolean),
       output: {
-        manualChunks: (id) => {
-          // Core React - Priorité haute
-          if (id.includes('react') || id.includes('react-dom')) {
-            return 'react-core';
-          }
+        manualChunks: {
+          // Core React chunks
+          'react-vendor': ['react', 'react-dom'],
+          'react-router': ['react-router-dom'],
           
-          // Router - Chunk séparé pour lazy loading
-          if (id.includes('react-router')) {
-            return 'router';
-          }
+          // UI Library chunks
+          'radix-ui': [
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-dropdown-menu',
+            '@radix-ui/react-accordion',
+            '@radix-ui/react-tabs',
+            '@radix-ui/react-popover',
+          ],
+          'form-libs': ['react-hook-form', '@hookform/resolvers', 'zod'],
           
-          // Animations lourdes - Lazy loading
-          if (id.includes('framer-motion')) {
-            return 'animations';
-          }
+          // Animation chunks (lazy loaded)
+          'framer-motion': ['framer-motion'],
           
-          // UI Libraries - Groupées par fréquence d'utilisation
-          if (id.includes('@radix-ui')) {
-            return 'ui-radix';
-          }
+          // Chart and data visualization
+          'charts': ['recharts'],
           
-          // Form libraries
-          if (id.includes('react-hook-form') || id.includes('@hookform') || id.includes('zod')) {
-            return 'forms';
-          }
+          // Utility libraries
+          'utils': ['clsx', 'tailwind-merge', 'date-fns'],
+          'icons': ['lucide-react'],
           
-          // Charts et visualisation - Lazy loading
-          if (id.includes('recharts') || id.includes('dotted-map') || id.includes('simplex-noise')) {
-            return 'charts-viz';
-          }
+          // Map and specialized components
+          'map-libs': ['dotted-map', 'simplex-noise'],
           
-          // Utilities fréquemment utilisées
-          if (id.includes('clsx') || id.includes('tailwind-merge') || id.includes('date-fns')) {
-            return 'utils';
-          }
-          
-          // Icons
-          if (id.includes('lucide-react')) {
-            return 'icons';
-          }
-          
-          // External integrations - Lazy loading
-          if (id.includes('@calcom') || id.includes('@supabase')) {
-            return 'integrations';
-          }
-          
-          // Helmet pour SEO - Critical
-          if (id.includes('react-helmet')) {
-            return 'seo';
-          }
-          
-          // Node modules vendor
-          if (id.includes('node_modules')) {
-            return 'vendor';
-          }
+          // External integrations
+          'external': ['@calcom/embed-react', '@supabase/supabase-js'],
         },
         // Optimize chunk naming for better caching
         chunkFileNames: (chunkInfo) => {

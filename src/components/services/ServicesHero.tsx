@@ -4,13 +4,11 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AuroraBackground } from "@/components/ui/aurora-background";
-import { AttractiveQuoteModal } from "@/components/contact/AttractiveQuoteModal";
-import { useState } from "react";
+import { QuoteFormModal } from "@/components/contact/QuoteFormModal";
+import { useQuoteModal } from "@/hooks/useQuoteModal";
 
 export const ServicesHero: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+  const { isOpen, openModal, closeModal } = useQuoteModal();
 
   return (
     <AuroraBackground className="min-h-[65vh] h-auto py-16 md:py-24" keepExistingBackground={true}>
@@ -59,8 +57,8 @@ export const ServicesHero: React.FC = () => {
         </div>
       </div>
 
-      {/* Attractive Quote Form Modal */}
-      <AttractiveQuoteModal isOpen={isOpen} onClose={closeModal} />
+      {/* Quote Form Modal */}
+      <QuoteFormModal isOpen={isOpen} onClose={closeModal} />
     </AuroraBackground>
   );
 };

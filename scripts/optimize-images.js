@@ -1,174 +1,190 @@
-const sharp = require('sharp');
+#!/usr/bin/env node
+
 const fs = require('fs');
 const path = require('path');
+const sharp = require('sharp');
 
-// Configuration des formats et qualités d'optimisation
-const OPTIMIZATION_CONFIG = {
-  webp: {
-    quality: 85,
-    effort: 6, // Plus d'effort pour une meilleure compression
-  },
-  avif: {
-    quality: 75,
-    effort: 9, // Maximum d'effort pour AVIF
-  },
-  jpeg: {
-    quality: 85,
-    progressive: true,
-    mozjpeg: true,
-  },
-  png: {
-    compressionLevel: 9,
-    adaptiveFiltering: true,
-  }
-};
+// Configuration
+const INPUT_DIR = './public/lovable-uploads';
+const OUTPUT_DIR = './public/optimized';
+const WEBP_QUALITY = 85;
+const JPEG_QUALITY = 80;
+const PNG_COMPRESSION = 9;
 
-// Dossiers source et destination
-const SOURCE_DIR = path.join(__dirname, '../public/lovable-uploads');
-const OUTPUT_DIR = path.join(__dirname, '../public/lovable-uploads/optimized');
-
-// Créer le dossier de sortie s'il n'existe pas
+// Ensure output directory exists
 if (!fs.existsSync(OUTPUT_DIR)) {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 }
 
-// Fonction pour obtenir la taille d'un fichier
-function getFileSize(filePath) {
-  const stats = fs.statSync(filePath);
-  return stats.size;
-}
+// Statistics tracking
+let stats = {
+  processed: 0,
+  originalSize: 0,
+  optimizedSize: 0,
+  errors: 0
+};
 
-// Fonction pour formater la taille en octets
-function formatBytes(bytes, decimals = 2) {
-  if (bytes === 0) return '0 Bytes';
-  const k = 1024;
-  const dm = decimals < 0 ? 0 : decimals;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-}
-
-// Fonction pour optimiser une image
-async function optimizeImage(inputPath, outputPath, format) {
+/**
+ * Convert and optimize a single image
+ */
+async function optimizeImage(inputPath, filename) {
   try {
-    let pipeline = sharp(inputPath);
+    const originalStats = fs.statSync(inputPath);
+    const ext = path.extname(filename).toLowerCase();
+    const baseName = path.basename(filename, ext);
     
-    // Obtenir les métadonnées de l'image originale
-    const metadata = await pipeline.metadata();
-    const originalSize = getFileSize(inputPath);
-    
-    console.log(`\n🔄 Optimisation: ${path.basename(inputPath)}`);
-    console.log(`   Dimensions: ${metadata.width}x${metadata.height}`);
-    console.log(`   Taille originale: ${formatBytes(originalSize)}`);
-    
-    // Appliquer les optimisations selon le format
-    switch (format) {
-      case 'webp':
-        pipeline = pipeline.webp(OPTIMIZATION_CONFIG.webp);
-        break;
-      case 'avif':
-        pipeline = pipeline.avif(OPTIMIZATION_CONFIG.avif);
-        break;
-      case 'jpeg':
-        pipeline = pipeline.jpeg(OPTIMIZATION_CONFIG.jpeg);
-        break;
-      case 'png':
-        pipeline = pipeline.png(OPTIMIZATION_CONFIG.png);
-        break;
+    console.log(`Processing: ${filename} (${(originalStats.size / 1024).toFixed(2)} KB)`);
+
+    // Generate WebP version (primary)
+    const webpPath = path.join(OUTPUT_DIR, `${baseName}.webp`);
+    await sharp(inputPath)
+      .resize(1920, 1920, { 
+        fit: 'inside', 
+        withoutEnlargement: true 
+      })
+      .webp({ 
+        quality: WEBP_QUALITY,
+        effort: 6 // Max compression effort
+      })
+      .toFile(webpPath);
+
+    // Generate optimized fallback
+    let fallbackPath;
+    let optimizedBuffer;
+
+    if (['.jpg', '.jpeg'].includes(ext)) {
+      fallbackPath = path.join(OUTPUT_DIR, `${baseName}.jpg`);
+      optimizedBuffer = await sharp(inputPath)
+        .resize(1920, 1920, { 
+          fit: 'inside', 
+          withoutEnlargement: true 
+        })
+        .jpeg({ 
+          quality: JPEG_QUALITY,
+          progressive: true,
+          mozjpeg: true
+        })
+        .toBuffer();
+    } else {
+      fallbackPath = path.join(OUTPUT_DIR, `${baseName}.png`);
+      optimizedBuffer = await sharp(inputPath)
+        .resize(1920, 1920, { 
+          fit: 'inside', 
+          withoutEnlargement: true 
+        })
+        .png({ 
+          compressionLevel: PNG_COMPRESSION,
+          progressive: true
+        })
+        .toBuffer();
     }
+
+    fs.writeFileSync(fallbackPath, optimizedBuffer);
+
+    // Calculate savings
+    const webpStats = fs.statSync(webpPath);
+    const fallbackStats = fs.statSync(fallbackPath);
+    const bestOptimized = webpStats.size < fallbackStats.size ? webpStats : fallbackStats;
     
-    // Sauvegarder l'image optimisée
-    await pipeline.toFile(outputPath);
+    const savings = ((originalStats.size - bestOptimized.size) / originalStats.size * 100).toFixed(1);
     
-    const optimizedSize = getFileSize(outputPath);
-    const compressionRatio = ((originalSize - optimizedSize) / originalSize * 100).toFixed(1);
+    console.log(`✅ ${filename}: ${(originalStats.size / 1024).toFixed(2)} KB → ${(bestOptimized.size / 1024).toFixed(2)} KB (${savings}% saved)`);
     
-    console.log(`   ✅ ${format.toUpperCase()} généré: ${formatBytes(optimizedSize)}`);
-    console.log(`   📊 Compression: ${compressionRatio}% de réduction`);
-    
-    return {
-      original: originalSize,
-      optimized: optimizedSize,
-      ratio: compressionRatio
-    };
+    // Update stats
+    stats.processed++;
+    stats.originalSize += originalStats.size;
+    stats.optimizedSize += bestOptimized.size;
+
   } catch (error) {
-    console.error(`   ❌ Erreur lors de l'optimisation en ${format}:`, error.message);
-    return null;
+    console.error(`❌ Error processing ${filename}:`, error.message);
+    stats.errors++;
   }
 }
 
-// Fonction principale
-async function optimizeAllImages() {
-  console.log('Debut de l\'optimisation des images...\n');
+/**
+ * Process all images in input directory
+ */
+async function processAllImages() {
+  console.log('🚀 Starting image optimization...\n');
   
-  try {
-    const files = fs.readdirSync(SOURCE_DIR);
-    const imageFiles = files.filter(file => 
-      /\.(jpg|jpeg|png|gif)$/i.test(file)
+  const files = fs.readdirSync(INPUT_DIR);
+  const imageFiles = files.filter(file => 
+    /\.(jpe?g|png|webp)$/i.test(file)
+  );
+
+  console.log(`Found ${imageFiles.length} images to process\n`);
+
+  // Process images in batches to avoid memory issues
+  const BATCH_SIZE = 5;
+  for (let i = 0; i < imageFiles.length; i += BATCH_SIZE) {
+    const batch = imageFiles.slice(i, i + BATCH_SIZE);
+    await Promise.all(
+      batch.map(filename => 
+        optimizeImage(path.join(INPUT_DIR, filename), filename)
+      )
     );
-    
-    if (imageFiles.length === 0) {
-      console.log('Aucune image trouvee dans le dossier source.');
-      return;
-    }
-    
-    console.log(`${imageFiles.length} images trouvees a optimiser\n`);
-    
-    let totalOriginalSize = 0;
-    let totalOptimizedSize = 0;
-    let processedImages = 0;
-    
-    for (const file of imageFiles) {
-      const inputPath = path.join(SOURCE_DIR, file);
-      const baseName = path.parse(file).name;
-      
-      console.log(`📁 Traitement: ${file}`);
-      
-      // Générer les versions WebP et AVIF
-      const formats = ['webp', 'avif'];
-      
-      for (const format of formats) {
-        const outputPath = path.join(OUTPUT_DIR, `${baseName}.${format}`);
-        const result = await optimizeImage(inputPath, outputPath, format);
-        
-        if (result && format === 'webp') { // Compter seulement pour WebP pour éviter le double comptage
-          totalOriginalSize += result.original;
-          totalOptimizedSize += result.optimized;
-          processedImages++;
-        }
-      }
-      
-      // Générer aussi une version JPEG optimisée si l'original n'est pas déjà JPEG
-      if (!/\.(jpg|jpeg)$/i.test(file)) {
-        const outputPath = path.join(OUTPUT_DIR, `${baseName}.jpg`);
-        await optimizeImage(inputPath, outputPath, 'jpeg');
-      }
-    }
-    
-    // Statistiques finales
-    console.log('\n' + '='.repeat(50));
-    console.log('RESUME DE L\'OPTIMISATION');
-    console.log('='.repeat(50));
-    console.log(`Images traitees: ${processedImages}`);
-    console.log(`Taille originale totale: ${formatBytes(totalOriginalSize)}`);
-    console.log(`Taille optimisee totale: ${formatBytes(totalOptimizedSize)}`);
-    
-    if (totalOriginalSize > 0) {
-      const globalReduction = ((totalOriginalSize - totalOptimizedSize) / totalOriginalSize * 100).toFixed(1);
-      console.log(`Reduction globale: ${globalReduction}%`);
-      console.log(`Espace economise: ${formatBytes(totalOriginalSize - totalOptimizedSize)}`);
-    }
-    
-    console.log(`\nImages optimisees sauvegardees dans: ${OUTPUT_DIR}`);
-    
-  } catch (error) {
-    console.error('Erreur lors de l\'optimisation:', error);
   }
+
+  // Print summary
+  console.log('\n📊 Optimization Summary:');
+  console.log(`Images processed: ${stats.processed}`);
+  console.log(`Errors: ${stats.errors}`);
+  console.log(`Original total size: ${(stats.originalSize / 1024 / 1024).toFixed(2)} MB`);
+  console.log(`Optimized total size: ${(stats.optimizedSize / 1024 / 1024).toFixed(2)} MB`);
+  
+  if (stats.originalSize > 0) {
+    const totalSavings = ((stats.originalSize - stats.optimizedSize) / stats.originalSize * 100).toFixed(1);
+    console.log(`Total savings: ${totalSavings}%`);
+  }
+
+  // Generate usage instructions
+  generateUsageInstructions();
 }
 
-// Exécuter le script
-if (require.main === module) {
-  optimizeAllImages();
+/**
+ * Generate instructions for using optimized images
+ */
+function generateUsageInstructions() {
+  const instructions = `
+# Optimized Images Usage Guide
+
+## Implementation in React Components
+
+Replace your image imports with the optimized versions:
+
+\`\`\`tsx
+import { OptimizedImage } from '@/components/ui/optimized-image';
+
+// Instead of:
+<img src="/lovable-uploads/image.png" alt="Description" />
+
+// Use:
+<OptimizedImage
+  src="/optimized/image"
+  alt="Description"
+  className="w-full h-auto"
+  loading="lazy"
+/>
+\`\`\`
+
+## Benefits
+- 60-80% smaller file sizes
+- WebP format with fallbacks
+- Lazy loading by default
+- Responsive sizing
+- Better Core Web Vitals scores
+
+## Generated Files
+Each original image now has:
+- \`.webp\` version (modern browsers)
+- \`.jpg/.png\` optimized fallback (legacy browsers)
+
+Total space savings: ${stats.originalSize > 0 ? ((stats.originalSize - stats.optimizedSize) / stats.originalSize * 100).toFixed(1) : 0}%
+`;
+
+  fs.writeFileSync(path.join(OUTPUT_DIR, 'README.md'), instructions);
+  console.log('\n📖 Usage instructions saved to /public/optimized/README.md');
 }
 
-module.exports = { optimizeAllImages, optimizeImage };
+// Run the optimization
+processAllImages().catch(console.error);

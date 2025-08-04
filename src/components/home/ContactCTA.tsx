@@ -3,19 +3,11 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { WorldMap } from "@/components/ui/world-map/component";
 import { Button } from "@/components/ui/button";
-import { AttractiveQuoteModal } from "@/components/contact/AttractiveQuoteModal";
-import { useState } from "react";
+import { QuoteFormModal } from "@/components/contact/QuoteFormModal";
+import { useQuoteModal } from "@/hooks/useQuoteModal";
 
 export function ContactCTA() {
-  const [isOpen, setIsOpen] = useState(false);
-  const openModal = () => {
-    console.log("🔍 [DEBUG] ContactCTA: Opening quote modal...");
-    setIsOpen(true);
-  };
-  const closeModal = () => {
-    console.log("🔍 [DEBUG] ContactCTA: Closing quote modal...");
-    setIsOpen(false);
-  };
+  const { isOpen, openModal, closeModal } = useQuoteModal();
 
   // Points de livraison internationaux pour la carte simplifiée
   const globalShippingPoints = [
@@ -121,8 +113,8 @@ export function ContactCTA() {
         </motion.div>
       </div>
 
-      {/* Attractive Quote Form Modal */}
-      <AttractiveQuoteModal isOpen={isOpen} onClose={closeModal} />
+      {/* Quote Form Modal */}
+      <QuoteFormModal isOpen={isOpen} onClose={closeModal} />
     </section>
   );
 }
