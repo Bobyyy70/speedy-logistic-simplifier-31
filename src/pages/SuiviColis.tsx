@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
+import { TrackingInterface } from "@/components/tracking/TrackingInterface";
 
 const SuiviColis = () => {
   useEffect(() => {
@@ -32,23 +33,7 @@ const SuiviColis = () => {
 
         {/* Tracking Interface */}
         <div className="max-w-6xl mx-auto">
-          <div className="bg-card rounded-lg shadow-lg border p-6">
-            <h2 className="text-2xl font-semibold text-center mb-6">
-              Interface de Suivi
-            </h2>
-            
-            <div className="relative w-full h-[450px] border rounded-lg overflow-hidden">
-              <iframe 
-                src="https://tracking.eu-central-1-0.sendcloud.sc/" 
-                width="100%" 
-                height="450px" 
-                frameBorder="0" 
-                style={{ border: 0 }}
-                title="Interface de suivi de colis Speed E Log"
-                loading="lazy"
-              />
-            </div>
-          </div>
+          <TrackingInterface />
         </div>
 
         {/* Info Section */}
