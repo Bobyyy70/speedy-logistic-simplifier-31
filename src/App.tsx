@@ -17,6 +17,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import CookiePolicy from "./pages/CookiePolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Technology from "./pages/Technology";
+import Integrations from "./pages/Integrations";
 import Sitemap from "./pages/Sitemap";
 import TestAttractiveForm from "./pages/TestAttractiveForm";
 
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/services" element={<Services />} />
           <Route path="/technology" element={<Technology />} />
           <Route path="/technologie" element={<Navigate to="/technology" replace />} />
+          <Route path="/integrations" element={<Integrations />} />
           {/* Redirection of all pricing routes to contact page */}
           <Route path="/pricing" element={<Navigate to="/contact" replace />} />
           <Route path="/tarifs" element={<Navigate to="/contact" replace />} />

@@ -27,6 +27,12 @@ export const discoverRoutes = (): RouteInfo[] => {
       changefreq: 'monthly'
     },
     {
+      path: '/integrations',
+      component: 'Integrations',
+      priority: 0.9,
+      changefreq: 'monthly'
+    },
+    {
       path: '/contact',
       component: 'Contact',
       priority: 0.9,
