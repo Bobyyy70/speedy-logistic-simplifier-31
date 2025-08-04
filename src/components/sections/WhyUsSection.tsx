@@ -116,7 +116,7 @@ export function WhyUsSection() {
             <Card className="overflow-hidden border-0 shadow-lg">
               <CardContent className="p-0">
                 <div className="bg-gradient-to-br from-blue-600 to-blue-400 dark:from-blue-500 dark:to-blue-700 text-white p-8">
-                  <h3 className="text-2xl font-bold mb-4">Spécialisés pour votre niche</h3>
+                  <h2 className="text-2xl font-bold mb-4">Spécialisés pour votre niche</h2>
                   <p className="mb-6 opacity-90">Notre expertise est concentrée sur les produits à fort potentiel e-commerce :</p>
                   
                   <ul className="space-y-4">

@@ -121,9 +121,9 @@ export function DynamicCalculatorSection() {
           <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm dark:bg-slate-800">
             Estimation Tarif Transport
           </div>
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             Estimez votre coût d'expédition TTC
-          </h1>
+          </h2>
           <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
             Le juste prix pour chaque envoi. Notre calculateur dynamique sélectionne automatiquement le transporteur le plus économique, avec tarifs TTC variables selon la destination et les surcharges en vigueur.
           </p>

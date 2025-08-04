@@ -57,7 +57,7 @@ export function LogisticsFeatureSection() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-2xl font-semibold mb-3">Nos avantages clés</h3>
+          <h2 className="text-2xl font-semibold mb-3">Nos avantages clés</h2>
           <p className="text-muted-foreground max-w-2xl">
             Des solutions adaptées aux besoins spécifiques de votre e-commerce
           </p>

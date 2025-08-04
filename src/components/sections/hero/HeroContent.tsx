@@ -22,7 +22,7 @@ export function HeroContent() {
         <HomeLogoWithText className="w-36 lg:self-start mx-auto lg:mx-0" />
       </UltraLazyMotion>
 
-      <div className="space-y-4">
+      <h1 className="space-y-4">
         <AnimatedText
           text="La logistique E-commerce,"
           className="text-fluid-3xl md:text-fluid-4xl lg:text-fluid-5xl xl:text-fluid-6xl font-bold tracking-tighter text-slate-900"
@@ -33,7 +33,7 @@ export function HeroContent() {
           className="text-fluid-3xl md:text-fluid-4xl lg:text-fluid-5xl xl:text-fluid-6xl font-bold tracking-tighter text-[#2F68F3]"
           delay={0.6}
         />
-      </div>
+      </h1>
 
       <UltraLazyMotion 
         variants={performanceVariants}

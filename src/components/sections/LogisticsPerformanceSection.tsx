@@ -108,7 +108,7 @@ export function LogisticsPerformanceSection() {
 
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <h3 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white">Notre Technologie</h3>
+            <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white">Notre Technologie</h2>
             <Card className="border-0 shadow-lg overflow-hidden">
               <CardContent className="p-6">
                 <h4 className="font-semibold text-xl mb-4 text-slate-800 dark:text-white">Supplyos - Notre Partenaire Technologique</h4>
