@@ -24,25 +24,19 @@ export function HeroContent() {
         <HomeLogoWithText className="w-36 lg:self-start mx-auto lg:mx-0" />
       </UltraLazyMotion>
 
-      {/* SEO H1 - Structure sémantique appropriée */}
-      <h1 className="sr-only">
-        Speed E-Log - La logistique E-commerce, sans les tracas
-      </h1>
-
-      <div className="space-y-4" role="banner" aria-labelledby="hero-title">
+      {/* H1 visible et SEO-friendly avec animation */}
+      <h1 className="text-fluid-3xl md:text-fluid-4xl lg:text-fluid-5xl xl:text-fluid-6xl font-bold tracking-tighter space-y-4">
         <AnimatedText
           text="La logistique E-commerce,"
-          className="text-fluid-3xl md:text-fluid-4xl lg:text-fluid-5xl xl:text-fluid-6xl font-bold tracking-tighter text-slate-900"
+          className="text-slate-900 block"
           delay={0.2}
-          aria-hidden="true"
         />
         <AnimatedText
           text="sans les tracas."
-          className="text-fluid-3xl md:text-fluid-4xl lg:text-fluid-5xl xl:text-fluid-6xl font-bold tracking-tighter text-[#2F68F3]"
+          className="text-[#2F68F3] block"
           delay={0.6}
-          aria-hidden="true"
         />
-      </div>
+      </h1>
 
       <UltraLazyMotion 
         variants={performanceVariants}
