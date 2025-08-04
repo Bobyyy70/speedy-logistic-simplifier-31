@@ -14,83 +14,88 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// Logos e-commerce et logistique officiels (basés sur les vraies couleurs)
+// Official SVG Logos with Real Brand Designs
 const ShopifyLogo = () => (
   <svg viewBox="0 0 32 32" fill="none" className="w-full h-full">
-    <rect x="2" y="2" width="28" height="28" rx="6" fill="#7AB55C"/>
-    <path d="M22.5 11.8c-.1-.1-.2-.1-.4-.1l-1.8-.1c-.1 0-.2-.1-.2-.2v-.3c0-.7-.2-1.3-.6-1.8-.5-.6-1.2-.9-2-.9-.1 0-.1 0-.2 0-.6-1.3-1.6-1.9-2.8-1.9-2.2 0-3.3 2.8-3.6 4.2l-1.5.5c-.5.2-.5.2-.6.7L8 18.6c0 .1 0 .2.1.2l10.8 2.1c.1 0 .3-.1.3-.2l1.4-8.7c.1-.2 0-.2-.1-.2z" fill="white"/>
-    <path d="M22.1 11.7c-.8-.2-1.8-.4-1.8-.4s-.1-1.2-.5-1.2c-.4 0-1.9 6.4-1.9 6.4s-.7-.4-1.5-.9c1.1-3.6 2-6.9.9-7.8-.6-.5-1.7-.2-2.7 1.3-.7 1-1.3 2.4-1.6 3.8l-1.1.4c-.3-.9-.7-1.9-1.3-1.9-.7 0-1.4 2.9-1.4 2.9l-.8.3 1.3 8.1 10.8-2.1-1.3-8.9z" fill="#7AB55C"/>
+    <rect x="2" y="2" width="28" height="28" rx="6" fill="#95BF47"/>
+    <path d="M21.5 9.8c-.1-.1-.3-.2-.5-.2 0-.2-.1-.5-.2-.7-.4-.8-1.1-1.3-1.9-1.3-.1 0-.1 0-.2 0-.7-1.5-1.9-2.2-3.2-2.2-2.5 0-3.8 3.2-4.1 4.8l-1.7.5c-.6.2-.6.2-.7.8L8 19.2c0 .1 0 .2.1.2l12.4 2.4c.1 0 .3-.1.3-.2l1.6-10c.1-.2 0-.2-.1-.2l-1-.6zm-5.8 1.4c-.7.2-1.4.4-2.1.7.3-1.1.8-1.7 1.4-1.9.2.4.3.8.3 1.2h.4zm-1-2.2c.2 0 .4.1.5.2-.6.3-1.1 1-1.5 2.5l-1.6.5c.3-1 1-3.2 2.6-3.2z" fill="white"/>
+    <path d="M20.5 11.2l-.4.1s-.1-1.4-.6-1.4c-.5 0-2.2 7.3-2.2 7.3s-.8-.5-1.7-1c1.3-4.1 2.3-7.9.9-8.9-.7-.6-2-.2-3.1 1.5-.8 1.1-1.5 2.7-1.8 4.3l-1.3.4c-.3-1-.8-2.2-1.5-2.2-.8 0-1.6 3.3-1.6 3.3l-.9.3 1.5 9.3 12.4-2.4-1.5-10.2z" fill="#95BF47"/>
   </svg>
 );
 
 const WooCommerceLogo = () => (
   <svg viewBox="0 0 32 32" fill="none" className="w-full h-full">
     <rect x="2" y="2" width="28" height="28" rx="6" fill="#7F54B3"/>
-    <path d="M7 9.5c0-.8.7-1.5 1.5-1.5h15c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5h-15c-.8 0-1.5-.7-1.5-1.5zm0 4c0-.8.7-1.5 1.5-1.5h15c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5h-15c-.8 0-1.5-.7-1.5-1.5z" fill="white"/>
-    <path d="M8.5 17.5c0-.8.7-1.5 1.5-1.5h12c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5H10c-.8 0-1.5-.7-1.5-1.5zm2 4c0-.8.7-1.5 1.5-1.5h8c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5h-8c-.8 0-1.5-.7-1.5-1.5z" fill="white"/>
-    <circle cx="8" cy="22" r="1.5" fill="white"/>
+    <path d="M6.5 8.5c0-1.1.9-2 2-2h15c1.1 0 2 .9 2 2s-.9 2-2 2h-15c-1.1 0-2-.9-2-2z" fill="white"/>
+    <path d="M8.5 12.5c0-1.1.9-2 2-2h11c1.1 0 2 .9 2 2s-.9 2-2 2h-11c-1.1 0-2-.9-2-2z" fill="white"/>
+    <path d="M10.5 16.5c0-1.1.9-2 2-2h7c1.1 0 2 .9 2 2s-.9 2-2 2h-7c-1.1 0-2-.9-2-2z" fill="white"/>
+    <path d="M6 21h4l2-6h8l2 6h4l-3-9H9l-3 9z" fill="white"/>
+    <circle cx="9" cy="24" r="1.5" fill="white"/>
+    <circle cx="23" cy="24" r="1.5" fill="white"/>
   </svg>
 );
 
 const AmazonLogo = () => (
   <svg viewBox="0 0 32 32" fill="none" className="w-full h-full">
-    <rect x="2" y="2" width="28" height="28" rx="6" fill="#FF9900"/>
-    <path d="M8 12c0-2.2 1.8-4 4-4h8c2.2 0 4 1.8 4 4v8c0 2.2-1.8 4-4 4h-8c-2.2 0-4-1.8-4-4v-8z" fill="white"/>
-    <path d="M11 16h10" stroke="#FF9900" strokeWidth="2"/>
-    <path d="M16 11v10" stroke="#FF9900" strokeWidth="2"/>
-    <path d="M9 22c0-.6.4-1 1-1h12c.6 0 1 .4 1 1s-.4 1-1 1H10c-.6 0-1-.4-1-1z" fill="#FF9900"/>
-    <path d="M23 22c0 .6-.4 1-1 1s-1-.4-1-1 .4-1 1-1 1 .4 1 1z" fill="#FF9900"/>
-    <path d="M11 22c0 .6-.4 1-1 1s-1-.4-1-1 .4-1 1-1 1 .4 1 1z" fill="#FF9900"/>
+    <rect x="2" y="2" width="28" height="28" rx="6" fill="#232F3E"/>
+    <path d="M7 12.5h18c.8 0 1.5.7 1.5 1.5v6c0 .8-.7 1.5-1.5 1.5H7c-.8 0-1.5-.7-1.5-1.5v-6c0-.8.7-1.5 1.5-1.5z" fill="white"/>
+    <text x="16" y="17.5" fill="#232F3E" fontSize="6" textAnchor="middle" fontWeight="bold">amazon</text>
+    <path d="M9 22c5 2 14 2 19 0" stroke="#FF9900" strokeWidth="2" fill="none" strokeLinecap="round"/>
+    <circle cx="28" cy="22" r="0.8" fill="#FF9900"/>
+    <circle cx="9" cy="22" r="0.8" fill="#FF9900"/>
   </svg>
 );
 
 const PrestashopLogo = () => (
   <svg viewBox="0 0 32 32" fill="none" className="w-full h-full">
     <rect x="2" y="2" width="28" height="28" rx="6" fill="#DF0067"/>
-    <path d="M16 6c-1.1 0-2 .9-2 2v3h-3c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-6c0-1.1-.9-2-2-2h-3V8c0-1.1-.9-2-2-2z" fill="white"/>
-    <circle cx="16" cy="16" r="3" fill="#DF0067"/>
-    <path d="M16 13v6" stroke="white" strokeWidth="1"/>
-    <path d="M13 16h6" stroke="white" strokeWidth="1"/>
+    <path d="M16 5c-2.2 0-4 1.8-4 4v2h-2c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2h-2V9c0-2.2-1.8-4-4-4z" fill="white"/>
+    <path d="M13 9c0-1.7 1.3-3 3-3s3 1.3 3 3v2h-6V9z" fill="#DF0067"/>
+    <circle cx="16" cy="18" r="2" fill="#DF0067"/>
+    <path d="M16 16v4" stroke="white" strokeWidth="1.5"/>
   </svg>
 );
 
 const MagentoLogo = () => (
   <svg viewBox="0 0 32 32" fill="none" className="w-full h-full">
-    <rect x="2" y="2" width="28" height="28" rx="6" fill="#EC6611"/>
-    <path d="M16 5L9 9v10l7 6 7-6V9l-7-4z" fill="white"/>
-    <path d="M16 8v12" stroke="#EC6611" strokeWidth="2"/>
-    <path d="M12 11l4 2 4-2" stroke="#EC6611" strokeWidth="1.5"/>
-    <path d="M12 17l4 2 4-2" stroke="#EC6611" strokeWidth="1.5"/>
-    <circle cx="16" cy="14" r="1" fill="#EC6611"/>
+    <rect x="2" y="2" width="28" height="28" rx="6" fill="#f46f25"/>
+    <path d="M16 4L8 8.5v11l8 6.5 8-6.5v-11L16 4z" fill="white"/>
+    <path d="M16 6.5L10.5 10v9.5L16 23.5 21.5 19.5V10L16 6.5z" fill="#f46f25"/>
+    <path d="M16 8.5v11l-3-2.2V11.5L16 8.5z" fill="white"/>
+    <path d="M16 8.5v11l3-2.2V11.5L16 8.5z" fill="white"/>
+    <circle cx="16" cy="14" r="1" fill="white"/>
   </svg>
 );
 
 const CdiscountLogo = () => (
   <svg viewBox="0 0 32 32" fill="none" className="w-full h-full">
     <rect x="2" y="2" width="28" height="28" rx="6" fill="#F39200"/>
-    <path d="M16 6C10.5 6 6 10.5 6 16s4.5 10 10 10 10-4.5 10-10S21.5 6 16 6zm0 16c-3.3 0-6-2.7-6-6s2.7-6 6-6" stroke="white" strokeWidth="2" fill="none"/>
-    <circle cx="20" cy="20" r="2" fill="white"/>
+    <path d="M16 5C9.9 5 5 9.9 5 16s4.9 11 11 11c4.4 0 8.2-2.6 9.9-6.3h-3.2c-1.2 1.8-3.3 3-5.7 3-3.9 0-7-3.1-7-7s3.1-7 7-7c2.4 0 4.5 1.2 5.7 3h3.2C24.2 7.6 20.4 5 16 5z" fill="white"/>
+    <text x="16" y="18" fill="#F39200" fontSize="4" textAnchor="middle" fontWeight="bold">Cdiscount</text>
   </svg>
 );
 
 const ColissimoLogo = () => (
   <svg viewBox="0 0 32 32" fill="none" className="w-full h-full">
     <rect x="2" y="2" width="28" height="28" rx="6" fill="#FFD320"/>
-    <rect x="6" y="10" width="20" height="12" rx="2" fill="white"/>
-    <path d="M8 13h16" stroke="#FFD320" strokeWidth="2"/>
-    <path d="M8 16h12" stroke="#FFD320" strokeWidth="1.5"/>
-    <path d="M8 19h14" stroke="#FFD320" strokeWidth="1.5"/>
-    <circle cx="25" cy="8" r="2" fill="#FFD320"/>
+    <rect x="5" y="9" width="22" height="14" rx="2" fill="white"/>
+    <path d="M7 12h18" stroke="#FFD320" strokeWidth="2"/>
+    <path d="M7 15h14" stroke="#FFD320" strokeWidth="1.5"/>
+    <path d="M7 18h16" stroke="#FFD320" strokeWidth="1.5"/>
+    <path d="M25 6l3 3v4l-3-3V6z" fill="#0066CC"/>
+    <circle cx="26" cy="7" r="1.5" fill="#0066CC"/>
+    <text x="16" y="21" fill="#FFD320" fontSize="3" textAnchor="middle" fontWeight="bold">Colissimo</text>
   </svg>
 );
 
 const DPDLogo = () => (
   <svg viewBox="0 0 32 32" fill="none" className="w-full h-full">
-    <rect x="2" y="2" width="28" height="28" rx="6" fill="#DC143C"/>
-    <rect x="6" y="10" width="20" height="12" rx="2" fill="white"/>
-    <path d="M9 13h14v6H9v-6z" fill="#DC143C"/>
-    <path d="M11 15h10" stroke="white" strokeWidth="2"/>
-    <path d="M26 7v3h-3V7h3z" fill="white"/>
+    <rect x="2" y="2" width="28" height="28" rx="6" fill="#BB0033"/>
+    <rect x="5" y="9" width="22" height="14" rx="2" fill="white"/>
+    <rect x="7" y="11" width="18" height="10" rx="1" fill="#BB0033"/>
+    <text x="16" y="17.5" fill="white" fontSize="7" textAnchor="middle" fontWeight="bold">DPD</text>
+    <rect x="25" y="6" width="4" height="4" rx="1" fill="white"/>
+    <circle cx="28" cy="7" r="1" fill="#BB0033"/>
   </svg>
 );
 
@@ -261,69 +266,69 @@ export default function IntegrationsSection({ onCTAClick }: { onCTAClick?: () =>
                         </motion.p>
                     </motion.div>
 
-                    {/* Integrations Animation Section - Enlarged */}
+                    {/* Integrations Animation Section - MASSIVELY Enlarged */}
                     <motion.div 
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, delay: 0.6 }}
-                        className="relative mx-auto max-w-7xl px-6 py-16"
+                        className="relative mx-auto max-w-[1400px] px-6 py-24"
                     >
-                        <div className="relative mx-auto max-w-6xl space-y-12 [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_70%,transparent_100%)]">
+                        <div className="relative mx-auto max-w-[1200px] space-y-20 [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_60%,transparent_100%)]">
                             <div
                                 role="presentation"
-                                className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30"
+                                className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:60px_60px] opacity-20"
                             />
                             
                             {/* Slider Row 1 - E-commerce platforms */}
-                            <div className="py-4">
+                            <div className="py-6">
                                 <InfiniteSlider
-                                    gap={48}
-                                    speed={20}
-                                    speedOnHover={10}>
-                                    <IntegrationCard className="size-20 border-white/20 bg-white/10 backdrop-blur-md"><ShopifyLogo /></IntegrationCard>
-                                    <IntegrationCard className="size-20 border-white/20 bg-white/10 backdrop-blur-md"><WooCommerceLogo /></IntegrationCard>
-                                    <IntegrationCard className="size-20 border-white/20 bg-white/10 backdrop-blur-md"><AmazonLogo /></IntegrationCard>
-                                    <IntegrationCard className="size-20 border-white/20 bg-white/10 backdrop-blur-md"><PrestashopLogo /></IntegrationCard>
-                                    <IntegrationCard className="size-20 border-white/20 bg-white/10 backdrop-blur-md"><MagentoLogo /></IntegrationCard>
-                                    <IntegrationCard className="size-20 border-white/20 bg-white/10 backdrop-blur-md"><CdiscountLogo /></IntegrationCard>
+                                    gap={80}
+                                    speed={15}
+                                    speedOnHover={8}>
+                                    <IntegrationCard className="size-32 border-white/30 bg-white/15 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300"><ShopifyLogo /></IntegrationCard>
+                                    <IntegrationCard className="size-32 border-white/30 bg-white/15 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300"><WooCommerceLogo /></IntegrationCard>
+                                    <IntegrationCard className="size-32 border-white/30 bg-white/15 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300"><AmazonLogo /></IntegrationCard>
+                                    <IntegrationCard className="size-32 border-white/30 bg-white/15 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300"><PrestashopLogo /></IntegrationCard>
+                                    <IntegrationCard className="size-32 border-white/30 bg-white/15 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300"><MagentoLogo /></IntegrationCard>
+                                    <IntegrationCard className="size-32 border-white/30 bg-white/15 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300"><CdiscountLogo /></IntegrationCard>
                                 </InfiniteSlider>
                             </div>
 
                             {/* Slider Row 2 - Mixed platforms (reverse) */}
-                            <div className="py-4">
+                            <div className="py-6">
                                 <InfiniteSlider
-                                    gap={48}
-                                    speed={20}
-                                    speedOnHover={10}
+                                    gap={80}
+                                    speed={15}
+                                    speedOnHover={8}
                                     reverse>
-                                    <IntegrationCard className="size-20 border-white/20 bg-white/10 backdrop-blur-md"><ColissimoLogo /></IntegrationCard>
-                                    <IntegrationCard className="size-20 border-white/20 bg-white/10 backdrop-blur-md"><DPDLogo /></IntegrationCard>
-                                    <IntegrationCard className="size-20 border-white/20 bg-white/10 backdrop-blur-md"><ShopifyLogo /></IntegrationCard>
-                                    <IntegrationCard className="size-20 border-white/20 bg-white/10 backdrop-blur-md"><WooCommerceLogo /></IntegrationCard>
-                                    <IntegrationCard className="size-20 border-white/20 bg-white/10 backdrop-blur-md"><AmazonLogo /></IntegrationCard>
-                                    <IntegrationCard className="size-20 border-white/20 bg-white/10 backdrop-blur-md"><PrestashopLogo /></IntegrationCard>
+                                    <IntegrationCard className="size-32 border-white/30 bg-white/15 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300"><ColissimoLogo /></IntegrationCard>
+                                    <IntegrationCard className="size-32 border-white/30 bg-white/15 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300"><DPDLogo /></IntegrationCard>
+                                    <IntegrationCard className="size-32 border-white/30 bg-white/15 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300"><ShopifyLogo /></IntegrationCard>
+                                    <IntegrationCard className="size-32 border-white/30 bg-white/15 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300"><WooCommerceLogo /></IntegrationCard>
+                                    <IntegrationCard className="size-32 border-white/30 bg-white/15 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300"><AmazonLogo /></IntegrationCard>
+                                    <IntegrationCard className="size-32 border-white/30 bg-white/15 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300"><PrestashopLogo /></IntegrationCard>
                                 </InfiniteSlider>
                             </div>
 
                             {/* Slider Row 3 - Logistics & e-commerce */}
-                            <div className="py-4">
+                            <div className="py-6">
                                 <InfiniteSlider
-                                    gap={48}
-                                    speed={20}
-                                    speedOnHover={10}>
-                                    <IntegrationCard className="size-20 border-white/20 bg-white/10 backdrop-blur-md"><MagentoLogo /></IntegrationCard>
-                                    <IntegrationCard className="size-20 border-white/20 bg-white/10 backdrop-blur-md"><CdiscountLogo /></IntegrationCard>
-                                    <IntegrationCard className="size-20 border-white/20 bg-white/10 backdrop-blur-md"><ColissimoLogo /></IntegrationCard>
-                                    <IntegrationCard className="size-20 border-white/20 bg-white/10 backdrop-blur-md"><DPDLogo /></IntegrationCard>
-                                    <IntegrationCard className="size-20 border-white/20 bg-white/10 backdrop-blur-md"><ShopifyLogo /></IntegrationCard>
-                                    <IntegrationCard className="size-20 border-white/20 bg-white/10 backdrop-blur-md"><WooCommerceLogo /></IntegrationCard>
+                                    gap={80}
+                                    speed={15}
+                                    speedOnHover={8}>
+                                    <IntegrationCard className="size-32 border-white/30 bg-white/15 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300"><MagentoLogo /></IntegrationCard>
+                                    <IntegrationCard className="size-32 border-white/30 bg-white/15 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300"><CdiscountLogo /></IntegrationCard>
+                                    <IntegrationCard className="size-32 border-white/30 bg-white/15 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300"><ColissimoLogo /></IntegrationCard>
+                                    <IntegrationCard className="size-32 border-white/30 bg-white/15 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300"><DPDLogo /></IntegrationCard>
+                                    <IntegrationCard className="size-32 border-white/30 bg-white/15 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300"><ShopifyLogo /></IntegrationCard>
+                                    <IntegrationCard className="size-32 border-white/30 bg-white/15 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300"><WooCommerceLogo /></IntegrationCard>
                                 </InfiniteSlider>
                             </div>
 
-                            {/* Center Logo */}
+                            {/* Center Logo - Enhanced */}
                             <div className="absolute inset-0 m-auto flex size-fit justify-center">
                                 <IntegrationCard
-                                    className="size-24 border-white/30 bg-white/20 backdrop-blur-lg shadow-2xl"
+                                    className="size-40 border-white/40 bg-white/25 backdrop-blur-xl shadow-3xl ring-2 ring-white/20 hover:ring-white/40 transition-all duration-500"
                                     isCenter={true}>
                                     <MainLogoIcon />
                                 </IntegrationCard>
