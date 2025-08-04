@@ -27,12 +27,6 @@ export const discoverRoutes = (): RouteInfo[] => {
       changefreq: 'monthly'
     },
     {
-      path: '/integrations',
-      component: 'Integrations',
-      priority: 0.9,
-      changefreq: 'monthly'
-    },
-    {
       path: '/suivi-colis',
       component: 'SuiviColis',
       priority: 0.8,

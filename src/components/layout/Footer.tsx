@@ -60,12 +60,6 @@ export const Footer: React.FC = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/integrations" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
-                      Intégrations
-                      <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </Link>
-                  </li>
-                  <li>
                     <Link to="/suivi-colis" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       Suivi colis
                       <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
