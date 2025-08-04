@@ -389,18 +389,44 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({
                 <FormMessage />
               </FormItem>} />
 
-        <FormField control={form.control} name="companyStatus" render={({
-        field
-      }) => {}} />
+        <FormField control={form.control} name="companyStatus" render={({ field }) => (
+          <FormItem>
+            <FormLabel>Statut de l'entreprise</FormLabel>
+            <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <FormControl>
+                <SelectTrigger className="h-8">
+                  <SelectValue placeholder="Choisissez le statut" />
+                </SelectTrigger>
+              </FormControl>
+              <SelectContent>
+                <SelectItem value="creation">En création</SelectItem>
+                <SelectItem value="active">Déjà active</SelectItem>
+              </SelectContent>
+            </Select>
+            <FormMessage />
+          </FormItem>
+        )} />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <FormField control={form.control} name="city" render={({
-          field
-        }) => {}} />
+          <FormField control={form.control} name="city" render={({ field }) => (
+            <FormItem>
+              <FormLabel>Ville</FormLabel>
+              <FormControl>
+                <Input placeholder="Paris" {...field} className="h-8" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )} />
 
-          <FormField control={form.control} name="postalCode" render={({
-          field
-        }) => {}} />
+          <FormField control={form.control} name="postalCode" render={({ field }) => (
+            <FormItem>
+              <FormLabel>Code postal</FormLabel>
+              <FormControl>
+                <Input placeholder="75001" {...field} className="h-8" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )} />
         </div>
 
         <FormField control={form.control} name="website" render={({
@@ -414,21 +440,59 @@ export const AttractiveQuoteForm: React.FC<AttractiveQuoteFormProps> = ({
           </FormItem>} />
 
         {/* Informations activité */}
-        <FormField control={form.control} name="leadSource" render={({
-        field
-      }) => {}} />
+        <FormField control={form.control} name="leadSource" render={({ field }) => (
+          <FormItem>
+            <FormLabel>Comment avez-vous entendu parler de nous ?</FormLabel>
+            <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <FormControl>
+                <SelectTrigger className="h-8">
+                  <SelectValue placeholder="Sélectionnez une source" />
+                </SelectTrigger>
+              </FormControl>
+              <SelectContent>
+                <SelectItem value="google">Google</SelectItem>
+                <SelectItem value="social">Réseaux sociaux</SelectItem>
+                <SelectItem value="referral">Recommandation</SelectItem>
+                <SelectItem value="other">Autre</SelectItem>
+              </SelectContent>
+            </Select>
+            <FormMessage />
+          </FormItem>
+        )} />
 
-        <FormField control={form.control} name="productType" render={({
-        field
-      }) => {}} />
+        <FormField control={form.control} name="productType" render={({ field }) => (
+          <FormItem>
+            <FormLabel>Type de produits</FormLabel>
+            <FormControl>
+              <Input placeholder="Mode, électronique, beauté..." {...field} className="h-8" />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )} />
 
-        <FormField control={form.control} name="stockReferences" render={({
-        field
-      }) => {}} />
+        <FormField control={form.control} name="stockReferences" render={({ field }) => (
+          <FormItem>
+            <FormLabel>Nombre de références</FormLabel>
+            <FormControl>
+              <Input placeholder="Ex: 100 références" {...field} className="h-8" />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )} />
 
-        <FormField control={form.control} name="message" render={({
-        field
-      }) => {}} />
+        <FormField control={form.control} name="message" render={({ field }) => (
+          <FormItem>
+            <FormLabel>Message (optionnel)</FormLabel>
+            <FormControl>
+              <Textarea 
+                placeholder="Décrivez votre projet, vos besoins spécifiques..."
+                className="min-h-[100px] resize-none"
+                {...field}
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )} />
       </motion.div>;
   };
   if (showHubSpotForm) {
