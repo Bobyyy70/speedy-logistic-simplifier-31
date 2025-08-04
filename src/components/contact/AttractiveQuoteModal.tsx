@@ -85,9 +85,7 @@ export const AttractiveQuoteModal: React.FC<AttractiveQuoteModalProps> = ({
               y: 0
             }} transition={{
               delay: 0.4
-            }}>
-                Transformez votre logistique
-              </motion.h1>
+            }}>           Transformez votre logistique</motion.h1>
 
               {/* Sous-titre */}
               <motion.p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed" initial={{
@@ -173,7 +171,7 @@ export const AttractiveQuoteModal: React.FC<AttractiveQuoteModalProps> = ({
                     <Star className="h-6 w-6 text-white" />
                   </div>
                   <h3 className="font-semibold text-gray-900">Expertise reconnue</h3>
-                  <p className="text-sm text-gray-600">+500 entreprises nous font confiance</p>
+                  <p className="text-sm text-gray-600">+20 entreprises nous font confiance</p>
                 </div>
                 
                 <div className="flex flex-col items-center space-y-2">
