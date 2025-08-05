@@ -11,6 +11,7 @@ export const HubSpotQuoteForm: React.FC<HubSpotQuoteFormProps> = ({ onFormReady 
   const scriptLoadedRef = useRef(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isBlocked, setIsBlocked] = useState(false);
   
   // Security monitoring
   const { reportSecurityEvent } = useSecurityMonitoring({
@@ -49,12 +50,22 @@ export const HubSpotQuoteForm: React.FC<HubSpotQuoteFormProps> = ({ onFormReady 
           createForm();
         };
         script.onerror = () => {
-          const errorMsg = 'Échec du chargement du formulaire HubSpot';
-          console.error(errorMsg);
-          reportSecurityEvent('hubspot_script_load_failed', { scriptUrl: config.scriptUrl });
-          setError(errorMsg);
+          console.error('Script HubSpot bloqué par le navigateur');
+          reportSecurityEvent('hubspot_blocked_by_browser', { scriptUrl: config.scriptUrl });
+          setIsBlocked(true);
+          setError('Le formulaire est bloqué par votre navigateur');
           setIsLoading(false);
         };
+        
+        // Détection de timeout pour script bloqué
+        setTimeout(() => {
+          if (isLoading && !scriptLoadedRef.current && !window.hbspt) {
+            console.warn('Timeout: Script HubSpot probablement bloqué');
+            setIsBlocked(true);
+            setError('Le formulaire est bloqué par votre navigateur');
+            setIsLoading(false);
+          }
+        }, 5000);
         
         // Éviter les doublons de script
         if (!document.querySelector(`script[src="${config.scriptUrl}"]`)) {
@@ -101,11 +112,39 @@ export const HubSpotQuoteForm: React.FC<HubSpotQuoteFormProps> = ({ onFormReady 
 
   if (error) {
     return (
-      <div className="w-full p-4 text-center text-destructive">
-        <p>{error}</p>
-        <p className="text-sm text-muted-foreground mt-2">
-          Veuillez rafraîchir la page ou nous contacter directement.
-        </p>
+      <div className="w-full p-6 border border-orange-200 bg-orange-50 rounded-lg">
+        <div className="text-center">
+          <p className="text-orange-800 font-medium mb-2">{error}</p>
+          {isBlocked && (
+            <div className="space-y-3 mt-4">
+              <p className="text-sm text-orange-700">
+                Votre navigateur bloque les formulaires externes pour votre sécurité.
+              </p>
+              <div className="bg-white p-4 rounded border border-orange-200">
+                <h4 className="font-medium text-orange-800 mb-2">Solutions :</h4>
+                <ul className="text-sm text-orange-700 space-y-1 text-left">
+                  <li>• Désactivez temporairement le blocage des publicités</li>
+                  <li>• Autorisez hsforms.net dans vos paramètres</li>
+                  <li>• Contactez-nous directement par email</li>
+                </ul>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-2 justify-center">
+                <a 
+                  href="mailto:contact@speedelog.fr" 
+                  className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                >
+                  📧 Nous contacter
+                </a>
+                <a 
+                  href="tel:+33123456789" 
+                  className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+                >
+                  📞 Nous appeler
+                </a>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     );
   }
