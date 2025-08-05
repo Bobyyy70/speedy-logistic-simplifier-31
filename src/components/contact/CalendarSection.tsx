@@ -34,6 +34,7 @@ export const CalendarSection = () => {
             className="border-0"
             loading="lazy"
             title="Planifier un rendez-vous"
+            data-expected="hubspot-calendar"
           />
         </div>
       </div>

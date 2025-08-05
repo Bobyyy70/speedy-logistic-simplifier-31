@@ -167,10 +167,30 @@ export const useSecurityMonitoring = (options: SecurityMonitoringOptions = {}) =
               
               // Check for suspicious iframe injections
               if (element.tagName === 'IFRAME' && !element.hasAttribute('data-expected')) {
-                logSecurityEvent('suspicious_iframe_injection', {
-                  src: element.getAttribute('src'),
-                  sandbox: element.getAttribute('sandbox')
-                });
+                const src = element.getAttribute('src') || '';
+                
+                // Liste blanche des domaines autorisés
+                const authorizedDomains = [
+                  'meetings-eu1.hubspot.com',
+                  'forms.hubspot.com',
+                  'js.hubspot.com',
+                  'storage.googleapis.com',
+                  'maps.googleapis.com',
+                  'google.com',
+                  'calendly.com'
+                ];
+                
+                // Vérifier si l'iframe provient d'un domaine autorisé
+                const isAuthorized = authorizedDomains.some(domain => 
+                  src.includes(domain)
+                );
+                
+                if (!isAuthorized) {
+                  logSecurityEvent('suspicious_iframe_injection', {
+                    src: src.substring(0, 100),
+                    sandbox: element.getAttribute('sandbox')
+                  });
+                }
               }
             }
           });

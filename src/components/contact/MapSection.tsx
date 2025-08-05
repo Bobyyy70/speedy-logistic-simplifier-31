@@ -30,6 +30,7 @@ export const MapSection = () => {
           loading="lazy"
           title="Sélection d'adresse - Speed E-Log"
           className="w-full h-full"
+          data-expected="google-maps"
         />
       </div>
     </motion.section>
