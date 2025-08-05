@@ -1,11 +1,11 @@
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* Performance optimizations */
 @import "./styles/performance.css";
 @import "./styles/performance-tbt.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer utilities {
   .glass-effect {

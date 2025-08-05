@@ -106,7 +106,7 @@ export const hubSpotUtils = {
 };
 
 // Environment validation (run in development)
-if (isDevelopment) {
+if (isDevelopment && import.meta.env.VITE_DEBUG_MODE !== 'false') {
   console.log('HubSpot Configuration:', {
     environment: 'development',
     config: getHubSpotConfig(),

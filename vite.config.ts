@@ -72,7 +72,7 @@ export default defineConfig(({ mode }) => ({
           'map-libs': ['dotted-map', 'simplex-noise'],
           
           // External integrations
-          'external': ['@calcom/embed-react', '@supabase/supabase-js'],
+          'external': ['@calcom/embed-react'],
         },
         // Optimize chunk naming for better caching
         chunkFileNames: (chunkInfo) => {
