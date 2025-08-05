@@ -1,6 +1,5 @@
 
-import React, { useEffect, useRef } from "react";
-import { getHubSpotConfig, hubSpotUtils } from "@/lib/hubspot-config";
+import React, { useEffect, useRef, useState } from "react";
 
 interface HubSpotQuoteFormProps {
   onFormReady?: () => void;
@@ -9,56 +8,109 @@ interface HubSpotQuoteFormProps {
 export const HubSpotQuoteForm: React.FC<HubSpotQuoteFormProps> = ({ onFormReady }) => {
   const formRef = useRef<HTMLDivElement>(null);
   const scriptLoadedRef = useRef(false);
-  const config = getHubSpotConfig();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Configuration spécifique fournie par l'utilisateur
+  const config = {
+    portalId: "144571109",
+    region: "eu1",
+    formId: "ebf2ad52-915e-4bfa-b4c0-a2ff8480054f",
+    scriptUrl: "https://js-eu1.hsforms.net/forms/embed/144571109.js"
+  };
 
   useEffect(() => {
     const loadHubSpotForm = async () => {
-      // Check if script is already loaded
-      if (scriptLoadedRef.current || hubSpotUtils.isHubSpotLoaded()) {
+      // Vérifier si le script est déjà chargé
+      if (scriptLoadedRef.current || (window.hbspt && typeof window.hbspt.forms === 'object')) {
         createForm();
         return;
       }
 
       try {
-        // Load the HubSpot script using configuration
+        setIsLoading(true);
+        setError(null);
+
+        // Charger le script HubSpot optimisé
         const script = document.createElement('script');
-        script.src = hubSpotUtils.getScriptUrl(config);
+        script.src = config.scriptUrl;
         script.defer = true;
         script.onload = () => {
           scriptLoadedRef.current = true;
           createForm();
         };
         script.onerror = () => {
-          console.error('Failed to load HubSpot form script');
+          const errorMsg = 'Échec du chargement du formulaire HubSpot';
+          console.error(errorMsg);
+          setError(errorMsg);
+          setIsLoading(false);
         };
-        document.head.appendChild(script);
+        
+        // Éviter les doublons de script
+        if (!document.querySelector(`script[src="${config.scriptUrl}"]`)) {
+          document.head.appendChild(script);
+        } else {
+          createForm();
+        }
       } catch (error) {
-        console.error('Error loading HubSpot form:', error);
+        console.error('Erreur lors du chargement du formulaire HubSpot:', error);
+        setError('Erreur lors du chargement du formulaire');
+        setIsLoading(false);
       }
     };
 
     const createForm = async () => {
-      if (formRef.current) {
+      if (formRef.current && window.hbspt?.forms) {
         try {
-          await hubSpotUtils.createForm(config.forms.quote, formRef.current, config);
+          // Vider le conteneur avant de créer le nouveau formulaire
+          formRef.current.innerHTML = '';
+          
+          window.hbspt.forms.create({
+            region: config.region,
+            portalId: config.portalId,
+            formId: config.formId,
+            target: formRef.current
+          });
+          
+          setIsLoading(false);
           onFormReady?.();
         } catch (error) {
-          console.error('Failed to create HubSpot form:', error);
+          console.error('Échec de la création du formulaire HubSpot:', error);
+          setError('Erreur lors de la création du formulaire');
+          setIsLoading(false);
         }
       }
     };
 
     loadHubSpotForm();
-  }, [onFormReady, config]);
+  }, [onFormReady]);
+
+  if (error) {
+    return (
+      <div className="w-full p-4 text-center text-destructive">
+        <p>{error}</p>
+        <p className="text-sm text-muted-foreground mt-2">
+          Veuillez rafraîchir la page ou nous contacter directement.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full">
+      {isLoading && (
+        <div className="w-full p-8 text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Chargement du formulaire...</p>
+        </div>
+      )}
       <div 
         ref={formRef}
         className="hs-form-frame w-full"
         data-region={config.region}
-        data-form-id={config.forms.quote}
+        data-form-id={config.formId}
         data-portal-id={config.portalId}
+        style={{ display: isLoading ? 'none' : 'block' }}
       />
     </div>
   );
