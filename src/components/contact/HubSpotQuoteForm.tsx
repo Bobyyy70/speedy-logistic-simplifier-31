@@ -1,5 +1,6 @@
 
 import React, { useEffect, useRef } from "react";
+import { getHubSpotConfig, hubSpotUtils } from "@/lib/hubspot-config";
 
 interface HubSpotQuoteFormProps {
   onFormReady?: () => void;
@@ -8,19 +9,20 @@ interface HubSpotQuoteFormProps {
 export const HubSpotQuoteForm: React.FC<HubSpotQuoteFormProps> = ({ onFormReady }) => {
   const formRef = useRef<HTMLDivElement>(null);
   const scriptLoadedRef = useRef(false);
+  const config = getHubSpotConfig();
 
   useEffect(() => {
     const loadHubSpotForm = async () => {
       // Check if script is already loaded
-      if (scriptLoadedRef.current || window.hbspt?.forms) {
+      if (scriptLoadedRef.current || hubSpotUtils.isHubSpotLoaded()) {
         createForm();
         return;
       }
 
       try {
-        // Load the HubSpot script
+        // Load the HubSpot script using configuration
         const script = document.createElement('script');
-        script.src = 'https://js-eu1.hsforms.net/forms/embed/144571109.js';
+        script.src = hubSpotUtils.getScriptUrl(config);
         script.defer = true;
         script.onload = () => {
           scriptLoadedRef.current = true;
@@ -35,29 +37,28 @@ export const HubSpotQuoteForm: React.FC<HubSpotQuoteFormProps> = ({ onFormReady 
       }
     };
 
-    const createForm = () => {
-      if (window.hbspt?.forms && formRef.current) {
-        window.hbspt.forms.create({
-          region: 'eu1',
-          portalId: '144571109',
-          formId: 'ebf2ad52-915e-4bfa-b4c0-a2ff8480054f',
-          target: formRef.current
-        });
-        onFormReady?.();
+    const createForm = async () => {
+      if (formRef.current) {
+        try {
+          await hubSpotUtils.createForm(config.forms.quote, formRef.current, config);
+          onFormReady?.();
+        } catch (error) {
+          console.error('Failed to create HubSpot form:', error);
+        }
       }
     };
 
     loadHubSpotForm();
-  }, [onFormReady]);
+  }, [onFormReady, config]);
 
   return (
     <div className="w-full">
       <div 
         ref={formRef}
         className="hs-form-frame w-full"
-        data-region="eu1" 
-        data-form-id="ebf2ad52-915e-4bfa-b4c0-a2ff8480054f" 
-        data-portal-id="144571109"
+        data-region={config.region}
+        data-form-id={config.forms.quote}
+        data-portal-id={config.portalId}
       />
     </div>
   );

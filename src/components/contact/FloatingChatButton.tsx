@@ -2,14 +2,15 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
+import { hubSpotUtils } from "@/lib/hubspot-config";
 
 export const FloatingChatButton = () => {
   const [isHubSpotLoaded, setIsHubSpotLoaded] = useState(false);
 
   useEffect(() => {
-    // Optimized HubSpot check with reduced frequency
+    // Optimized HubSpot check with reduced frequency using utility
     const checkHubSpot = () => {
-      if (window.HubSpotConversations?.widget?.open) {
+      if (hubSpotUtils.isChatAvailable()) {
         setIsHubSpotLoaded(true);
         return true;
       }
@@ -34,16 +35,10 @@ export const FloatingChatButton = () => {
   }, []);
 
   const openHubSpotChat = () => {
-    // Opening HubSpot chat
+    // Try to open HubSpot chat using utility function
+    const opened = hubSpotUtils.openChat();
 
-    if (window.HubSpotConversations?.widget?.open) {
-      try {
-        window.HubSpotConversations.widget.open();
-        // Chat opened successfully
-      } catch (error) {
-        // Chat opening error handled
-      }
-    } else {
+    if (!opened) {
       // HubSpot chat unavailable - fallback to contact
       // Fallback : scroll vers le calendrier sur la page contact
       if (window.location.pathname === '/contact') {

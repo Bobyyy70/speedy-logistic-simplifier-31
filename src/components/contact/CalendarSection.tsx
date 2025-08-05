@@ -25,8 +25,11 @@ export const CalendarSection = () => {
       </div>
       
       <div className="min-h-[500px] md:min-h-[650px] border border-slate-200 rounded-xl overflow-hidden bg-white">
-        {/* Calendrier HubSpot avec votre code d'intégration */}
-        <div className="meetings-iframe-container w-full h-full min-h-[500px] md:min-h-[650px]" data-src="https://meetings-eu1.hubspot.com/falmanzo?embed=true"></div>
+        {/* Calendrier HubSpot avec configuration dynamique */}
+        <div className="meetings-iframe-container w-full h-full min-h-[500px] md:min-h-[650px]" data-src={(() => {
+          const config = require('@/lib/hubspot-config').getHubSpotConfig();
+          return config.meetingsUrl;
+        })()}></div>
       </div>
     </motion.section>
   );
