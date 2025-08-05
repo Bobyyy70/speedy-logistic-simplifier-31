@@ -1,7 +1,7 @@
 
-import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { InlineQuoteForm } from "@/components/contact/InlineQuoteForm";
 
 export function Hero() {
   return (
@@ -16,19 +16,15 @@ export function Hero() {
             <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl px-2 md:px-0">
               Externalisez votre logistique et concentrez-vous sereinement sur votre croissance. Solution spécialisée pour PME e-commerce.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4 px-2 md:px-0">
-              <Button 
-                variant="blue" 
-                size="lg" 
-                className="shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full md:size-2xl min-h-[48px] text-sm md:text-base"
-                asChild
-              >
-                <Link to="/contact">
-                  Obtenir un devis personnalisé <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Link to="/services">
-                <Button variant="outline" size="lg" className="min-h-[48px] text-sm md:text-base">
+            <div className="flex flex-col gap-6 pt-4 px-2 md:px-0">
+              <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-100">
+                <InlineQuoteForm 
+                  title="Obtenir un devis personnalisé"
+                  description="Remplissez ce formulaire pour recevoir un devis adapté à vos besoins logistiques."
+                />
+              </div>
+              <Link to="/services" className="inline-block">
+                <Button variant="outline" size="lg" className="min-h-[48px] text-sm md:text-base w-full">
                   Découvrir nos services
                 </Button>
               </Link>

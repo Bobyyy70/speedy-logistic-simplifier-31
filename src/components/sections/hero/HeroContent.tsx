@@ -1,17 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { UltraLazyMotion, performanceVariants } from "@/components/ui/ultra-lazy-motion";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { HomeLogoWithText } from "@/components/ui/LogoIcon";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { SocialProof } from "@/components/sections/hero/SocialProof";
-import { QuoteFormModal } from "@/components/contact/QuoteFormModal";
-import { useQuoteModal } from "@/hooks/useQuoteModal";
+import { InlineQuoteForm } from "@/components/contact/InlineQuoteForm";
 
 export function HeroContent() {
-  const { isOpen, openModal, closeModal } = useQuoteModal();
-
   return (
     <div className="flex flex-col justify-center space-y-6 text-center lg:text-left px-4 md:px-6">
       <UltraLazyMotion 
@@ -51,28 +46,16 @@ export function HeroContent() {
       <UltraLazyMotion 
         variants={performanceVariants}
         transition={{ duration: 0.5, delay: 0.9 }}
-        className="flex flex-col gap-3 min-[400px]:flex-row justify-center lg:justify-start"
+        className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-gray-100"
       >
-        <Button 
-          variant="blue" 
-          size="2xl" 
-          className="shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
-          onClick={openModal}
-        >
-          <span className="relative z-10 flex items-center text-white">
-            Obtenir un devis personnalisé
-            <span className="ml-2 inline-block">
-              <ArrowRight className="h-4 w-4 animate-[bounce_1.2s_ease-in-out_infinite]" />
-            </span>
-          </span>
-        </Button>
+        <InlineQuoteForm 
+          title="Obtenir un devis personnalisé"
+          description="Remplissez ce formulaire pour recevoir un devis adapté à vos besoins logistiques."
+        />
       </UltraLazyMotion>
       
       {/* Social Proof - With animation */}
       <SocialProof />
-
-      {/* Quote Form Modal */}
-      <QuoteFormModal isOpen={isOpen} onClose={closeModal} />
     </div>
   );
 }

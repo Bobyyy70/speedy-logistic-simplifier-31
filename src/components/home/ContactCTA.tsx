@@ -1,14 +1,8 @@
-
-import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { WorldMap } from "@/components/ui/world-map/component";
-import { Button } from "@/components/ui/button";
-import { QuoteFormModal } from "@/components/contact/QuoteFormModal";
-import { useQuoteModal } from "@/hooks/useQuoteModal";
+import { InlineQuoteForm } from "@/components/contact/InlineQuoteForm";
 
 export function ContactCTA() {
-  const { isOpen, openModal, closeModal } = useQuoteModal();
-
   // Points de livraison internationaux pour la carte simplifiée
   const globalShippingPoints = [
     {
@@ -68,16 +62,12 @@ export function ContactCTA() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.6 }}
             whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+            className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-gray-100"
           >
-            <Button 
-              variant="blue" 
-              size="2xl" 
-              className="mx-auto shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
-              onClick={openModal}
-            >
-              Obtenir un devis personnalisé 
-              <ArrowRight className="ml-2 h-5 w-5 text-white transition-transform" />
-            </Button>
+            <InlineQuoteForm 
+              title="Obtenir un devis personnalisé"
+              description="Contactez-nous dès aujourd'hui pour découvrir comment Speed E Log peut transformer votre chaîne logistique."
+            />
           </motion.div>
           
           {/* Effets de particules flottantes */}
@@ -112,9 +102,6 @@ export function ContactCTA() {
           </div>
         </motion.div>
       </div>
-
-      {/* Quote Form Modal */}
-      <QuoteFormModal isOpen={isOpen} onClose={closeModal} />
     </section>
   );
 }
