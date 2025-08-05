@@ -25,11 +25,11 @@ const requiredEnvVars = [
   'VITE_HUBSPOT_QUOTE_FORM_ID'
 ];
 
-// Validate required environment variables in production
+// Log missing environment variables in production (non-blocking)
 if (isProduction) {
   const missingVars = requiredEnvVars.filter(varName => !import.meta.env[varName]);
   if (missingVars.length > 0) {
-    throw new Error(`Missing required environment variables: ${missingVars.join(', ')}`);
+    console.warn(`⚠️ Missing environment variables (using defaults): ${missingVars.join(', ')}`);
   }
 }
 
