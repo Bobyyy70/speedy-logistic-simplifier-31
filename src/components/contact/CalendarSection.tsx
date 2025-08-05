@@ -26,10 +26,16 @@ export const CalendarSection = () => {
       
       <div className="min-h-[500px] md:min-h-[650px] border border-slate-200 rounded-xl overflow-hidden bg-white">
         {/* Calendrier HubSpot avec configuration dynamique */}
-        <div className="meetings-iframe-container w-full h-full min-h-[500px] md:min-h-[650px]" data-src={(() => {
-          const config = require('@/lib/hubspot-config').getHubSpotConfig();
-          return config.meetingsUrl;
-        })()}></div>
+        <div className="meetings-iframe-container w-full h-full min-h-[500px] md:min-h-[650px]">
+          <iframe 
+            src="https://meetings-eu1.hubspot.com/contact-speedelog" 
+            width="100%" 
+            height="100%" 
+            className="border-0"
+            loading="lazy"
+            title="Planifier un rendez-vous"
+          />
+        </div>
       </div>
     </motion.section>
   );

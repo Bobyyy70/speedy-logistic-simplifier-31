@@ -13,8 +13,47 @@ import { motion } from "framer-motion";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
-import { supabase } from "@/integrations/supabase/client";
-import { sanitizeInput, validateContent, generateHoneypot, generateCSRFToken, ClientRateLimiter } from "@/lib/security-utils";
+// Simple client-side rate limiting
+class SimpleRateLimiter {
+  private attempts: Map<string, { count: number; lastAttempt: number }> = new Map();
+  
+  constructor(private maxAttempts: number, private windowMs: number) {}
+  
+  isAllowed(clientId: string): boolean {
+    const now = Date.now();
+    const record = this.attempts.get(clientId);
+    
+    if (!record || now - record.lastAttempt > this.windowMs) {
+      this.attempts.set(clientId, { count: 1, lastAttempt: now });
+      return true;
+    }
+    
+    if (record.count >= this.maxAttempts) {
+      return false;
+    }
+    
+    record.count++;
+    record.lastAttempt = now;
+    return true;
+  }
+}
+
+// Simple security functions
+const sanitizeInput = (input: string): string => {
+  return input
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/<[^>]*>/g, '')
+    .replace(/javascript:/gi, '')
+    .trim();
+};
+
+const generateHoneypot = () => ({
+  name: 'website_url',
+  value: '',
+  style: { position: 'absolute' as const, left: '-9999px', opacity: 0 }
+});
+
+const generateCSRFToken = () => Math.random().toString(36).substring(2);
 
 // Définition du schéma de validation avec Zod
 const contactFormSchema = z.object({
@@ -104,7 +143,7 @@ const productTypes = [{
 }];
 
 // Rate limiter instance
-const rateLimiter = new ClientRateLimiter(3, 10 * 60 * 1000); // 3 attempts per 10 minutes
+const rateLimiter = new SimpleRateLimiter(3, 10 * 60 * 1000); // 3 attempts per 10 minutes
 
 export const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -215,17 +254,6 @@ export const ContactForm = () => {
         csrfToken
       };
 
-      // Validate content
-      const contentValidation = validateContent(sanitizedData.message || '');
-      if (!contentValidation.isValid) {
-        toast({
-          title: "Contenu non valide",
-          description: "Le message contient du contenu non autorisé.",
-          variant: "destructive",
-        });
-        return;
-      }
-
       // Validation côté client
       const result = contactFormSchema.safeParse(sanitizedData);
       if (!result.success) {
@@ -237,17 +265,38 @@ export const ContactForm = () => {
         return;
       }
 
-      const { data: submitData, error } = await supabase.functions.invoke(
-        'secure-contact-form',
-        {
-          body: result.data,
-        }
-      );
+      // Create email body with form data
+      const emailBody = `
+Nouvelle demande de devis
 
-      if (error) {
-        // Supabase error handled
-        throw error;
-      }
+Informations personnelles:
+- Nom: ${sanitizedData.lastName}
+- Prénom: ${sanitizedData.firstName}
+- Email: ${sanitizedData.email}
+- Téléphone: ${sanitizedData.phone}
+
+Entreprise:
+- Nom: ${sanitizedData.companyName}
+- Statut: ${sanitizedData.companyStatus === 'active' ? 'En activité' : 'En cours de création'}
+- Ville: ${sanitizedData.city}
+- Code postal: ${sanitizedData.postalCode}
+- Site web: ${sanitizedData.website || 'Non renseigné'}
+
+Activité:
+- Connu via: ${leadSources.find(s => s.value === sanitizedData.leadSource)?.label}
+- Panier moyen: ${sanitizedData.averageBasket}€
+- Type de produits: ${productTypes.find(p => p.value === sanitizedData.productType)?.label}
+- Commandes/an: ${sanitizedData.annualOrders}
+- Références à stocker: ${sanitizedData.stockReferences}
+
+Message: ${sanitizedData.message || 'Aucun message'}
+      `.trim();
+
+      // Create mailto link
+      const mailtoLink = `mailto:contact@speedelog.fr?subject=Nouvelle demande de devis - ${sanitizedData.companyName}&body=${encodeURIComponent(emailBody)}`;
+      
+      // Open default email client
+      window.location.href = mailtoLink;
 
       // Form submitted successfully
       
