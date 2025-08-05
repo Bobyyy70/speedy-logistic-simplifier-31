@@ -1,5 +1,6 @@
 
 import React, { useEffect, useRef, useState } from "react";
+import { useSecurityMonitoring } from "@/hooks/use-security-monitoring";
 
 interface HubSpotQuoteFormProps {
   onFormReady?: () => void;
@@ -10,6 +11,12 @@ export const HubSpotQuoteForm: React.FC<HubSpotQuoteFormProps> = ({ onFormReady 
   const scriptLoadedRef = useRef(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  
+  // Security monitoring
+  const { reportSecurityEvent } = useSecurityMonitoring({
+    enableDeviceFingerprinting: true,
+    enablePerformanceMonitoring: true
+  });
 
   // Configuration spécifique fournie par l'utilisateur
   const config = {
@@ -37,11 +44,13 @@ export const HubSpotQuoteForm: React.FC<HubSpotQuoteFormProps> = ({ onFormReady 
         script.defer = true;
         script.onload = () => {
           scriptLoadedRef.current = true;
+          reportSecurityEvent('hubspot_script_loaded', { scriptUrl: config.scriptUrl });
           createForm();
         };
         script.onerror = () => {
           const errorMsg = 'Échec du chargement du formulaire HubSpot';
           console.error(errorMsg);
+          reportSecurityEvent('hubspot_script_load_failed', { scriptUrl: config.scriptUrl });
           setError(errorMsg);
           setIsLoading(false);
         };
@@ -62,8 +71,10 @@ export const HubSpotQuoteForm: React.FC<HubSpotQuoteFormProps> = ({ onFormReady 
     const createForm = async () => {
       if (formRef.current && window.hbspt?.forms) {
         try {
-          // Vider le conteneur avant de créer le nouveau formulaire
-          formRef.current.innerHTML = '';
+          // Vider le conteneur de manière sécurisée avant de créer le nouveau formulaire
+          while (formRef.current.firstChild) {
+            formRef.current.removeChild(formRef.current.firstChild);
+          }
           
           window.hbspt.forms.create({
             region: config.region,
@@ -73,9 +84,11 @@ export const HubSpotQuoteForm: React.FC<HubSpotQuoteFormProps> = ({ onFormReady 
           });
           
           setIsLoading(false);
+          reportSecurityEvent('hubspot_form_created', { formId: config.formId });
           onFormReady?.();
         } catch (error) {
           console.error('Échec de la création du formulaire HubSpot:', error);
+          reportSecurityEvent('hubspot_form_creation_failed', { formId: config.formId, error: String(error) });
           setError('Erreur lors de la création du formulaire');
           setIsLoading(false);
         }
