@@ -1,47 +1,64 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { AuroraBackground } from "@/components/ui/aurora-background";
-import { InlineQuoteForm } from "@/components/contact/InlineQuoteForm";
+import { QuoteFormModal } from "@/components/contact/QuoteFormModal";
+import { useQuoteModal } from "@/hooks/useQuoteModal";
 
 export const ServicesHero: React.FC = () => {
-  return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <AuroraBackground>
-        <motion.div
-          initial={{ opacity: 0.0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{
-            delay: 0.3,
-            duration: 0.8,
-            ease: "easeInOut",
-          }}
-          className="relative flex flex-col gap-8 items-center justify-center px-4 max-w-4xl mx-auto"
-        >
-          <div className="text-3xl md:text-7xl font-bold text-white text-center">
-            Nos Services
-            <div className="text-lg md:text-xl text-neutral-200 py-4 max-w-3xl text-center">
-              Une logistique e-commerce complète et sur mesure pour faire grandir votre business sereinement.
-            </div>
-          </div>
-          
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 w-full max-w-2xl">
-            <InlineQuoteForm 
-              title="Obtenir un devis personnalisé"
-              description="Découvrez comment nos services peuvent transformer votre logistique e-commerce."
-            />
-          </div>
+  const { isOpen, openModal, closeModal } = useQuoteModal();
 
-          <button 
-            className="text-white/70 hover:text-white transition-colors duration-300 flex items-center gap-2"
-            onClick={() => {
-              const servicesSection = document.getElementById('services-content');
-              servicesSection?.scrollIntoView({ behavior: 'smooth' });
-            }}
-          >
-            En savoir plus
-          </button>
+  return (
+    <AuroraBackground className="min-h-[65vh] h-auto py-16 md:py-24" keepExistingBackground={true}>
+      <div className="container mx-auto relative px-4 flex flex-col items-center justify-center h-full">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-4xl mx-auto text-center relative z-10"
+        >
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter mb-6">
+            Fulfilment e-commerce : <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500">la solution logistique</span> complète pour votre boutique en ligne
+          </h1>
+          
+          <p className="text-lg md:text-xl text-muted-foreground mb-8 md:mb-10 max-w-3xl mx-auto">
+            Des solutions sur mesure pour gérer efficacement votre chaîne logistique.
+            <span className="block mt-2">Concentrez-vous sur votre cœur de métier, nous nous occupons du reste.</span>
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
+            <Button 
+              variant="blue" 
+              size="2xl" 
+              className="shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
+              onClick={openModal}
+            >
+              Obtenir un devis personnalisé
+            </Button>
+            
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="flex items-center gap-2 group"
+              asChild
+            >
+              <Link to="#services">
+                En savoir plus <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
+          </div>
         </motion.div>
-      </AuroraBackground>
-    </div>
+        
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-[500px] h-[500px] rounded-full bg-blue-500/5 blur-[100px]"></div>
+          <div className="w-[300px] h-[300px] rounded-full bg-orange-500/5 blur-[80px] absolute -top-20 right-[20%]"></div>
+        </div>
+      </div>
+
+      {/* Quote Form Modal */}
+      <QuoteFormModal isOpen={isOpen} onClose={closeModal} />
+    </AuroraBackground>
   );
 };
