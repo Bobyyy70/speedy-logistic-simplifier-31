@@ -174,9 +174,13 @@ export const useSecurityMonitoring = (options: SecurityMonitoringOptions = {}) =
                   'meetings-eu1.hubspot.com',
                   'forms.hubspot.com',
                   'js.hubspot.com',
+                  'js-eu1.hsforms.net',
+                  'hsforms.net',
+                  'hubspot.com',
                   'storage.googleapis.com',
                   'maps.googleapis.com',
                   'google.com',
+                  'googleapis.com',
                   'calendly.com'
                 ];
                 

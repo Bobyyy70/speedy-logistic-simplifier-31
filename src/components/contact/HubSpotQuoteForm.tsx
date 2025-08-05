@@ -42,6 +42,7 @@ export const HubSpotQuoteForm: React.FC<HubSpotQuoteFormProps> = ({ onFormReady 
         const script = document.createElement('script');
         script.src = config.scriptUrl;
         script.defer = true;
+        script.setAttribute('data-expected', 'hubspot-script');
         script.onload = () => {
           scriptLoadedRef.current = true;
           reportSecurityEvent('hubspot_script_loaded', { scriptUrl: config.scriptUrl });
