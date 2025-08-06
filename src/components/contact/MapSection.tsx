@@ -41,12 +41,12 @@ export const MapSection = () => {
           </div>
         ) : (
           <iframe 
-            src="https://storage.googleapis.com/maps-solutions-e7nc7kb2tn/address-selection/nb7a/address-selection.html"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2684.356!2d6.048!3d47.719!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478d11f0e7b8b8b1%3A0x40a5fb99a3b5f5b5!2s37%20Rue%20de%20R%C3%A9maucourt%2C%2070170%20Port-sur-Sa%C3%B4ne%2C%20France!5e0!3m2!1sen!2sus!4v1641234567890!5m2!1sen!2sus"
             width="100%" 
             height="100%" 
-            style={{ border: 0 }}
+            style={{ border: 0, minHeight: '400px' }}
             loading="lazy"
-            title="Sélection d'adresse - Speed E-Log"
+            title="Speed E-Log - 37 Rue de Rémaucourt, Port-sur-Saône"
             className="w-full h-full"
             data-expected="google-maps"
             onError={() => setMapError(true)}

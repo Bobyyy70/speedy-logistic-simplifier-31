@@ -24,17 +24,20 @@ export const CalendarSection = () => {
         </p>
       </div>
       
-      <div className="min-h-[500px] md:min-h-[650px] border border-slate-200 rounded-xl overflow-hidden bg-white">
+      <div className="w-full h-[650px] border border-slate-200 rounded-xl bg-white" style={{ overflow: 'hidden' }}>
         {/* Calendrier HubSpot avec configuration dynamique */}
-        <div className="meetings-iframe-container w-full h-full min-h-[500px] md:min-h-[650px]">
+        <div className="w-full h-full" style={{ overflow: 'hidden' }}>
           <iframe 
-            src="https://meetings-eu1.hubspot.com/contact-speedelog" 
+            src="https://meetings-eu1.hubspot.com/falmanzo?embed=true" 
             width="100%" 
-            height="100%" 
-            className="border-0"
+            height="650" 
+            className="border-0 w-full h-full"
+            style={{ minHeight: '650px', width: '100%', display: 'block', border: 'none' }}
             loading="lazy"
             title="Planifier un rendez-vous"
             data-expected="hubspot-calendar"
+            frameBorder="0"
+            allowFullScreen
           />
         </div>
       </div>

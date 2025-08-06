@@ -1,0 +1,7 @@
+name = "speedelog-site"
+compatibility_date = "2025-08-06"
+
+[assets]
+directory = "./dist"
+
+# Déploiement via npm run build && npx wrangler deploy

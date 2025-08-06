@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build:*)",
+      "Bash(npx wrangler:*)",
+      "Bash(npm run dev:*)",
+      "WebFetch(domain:developers.cloudflare.com)",
+      "Bash(wrangler pages deploy:*)",
+      "Bash(rm:*)",
+      "Bash(cp:*)",
+      "Bash(copy:*)",
+      "Bash(nslookup:*)",
+      "Bash(curl:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": []
+  }
+}

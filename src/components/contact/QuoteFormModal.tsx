@@ -10,6 +10,8 @@ interface QuoteFormModalProps {
 }
 
 export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({ isOpen, onClose }) => {
+  console.log('QuoteFormModal render - isOpen:', isOpen);
+  
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto" aria-describedby="quote-form-description">

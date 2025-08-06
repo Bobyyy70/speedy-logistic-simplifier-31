@@ -57,7 +57,10 @@ export function HeroContent() {
           variant="blue" 
           size="2xl" 
           className="shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
-          onClick={openModal}
+          onClick={() => {
+            console.log('Button clicked, opening modal...');
+            openModal();
+          }}
         >
           <span className="relative z-10 flex items-center text-white">
             Obtenir un devis personnalisé

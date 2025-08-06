@@ -13,12 +13,14 @@
   Content-Security-Policy: default-src 'self'; 
     script-src 'self' 'unsafe-inline' 'unsafe-eval' 
       https://js.hs-scripts.com 
+      https://js-eu1.hs-scripts.com
       https://js.hscollectedforms.net 
       https://js.hsleadflows.net 
       https://js.usemessages.com 
       https://*.googletagmanager.com 
       https://www.google-analytics.com 
       https://*.hs-analytics.net 
+      https://js-eu1.hs-analytics.net
       https://js-eu1.hsforms.net 
       https://*.hsforms.net
       https://forms.hsforms.net
