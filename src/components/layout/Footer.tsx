@@ -119,29 +119,43 @@ export const Footer: React.FC = () => {
 
           {/* Bottom Footer */}
           <div className="container mx-auto px-4 py-6">
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <div className="text-sm text-slate-500">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+              <div className="text-sm text-muted-foreground">
                 <p>&copy; {currentYear} Speed E-Log. Tous droits réservés.</p>
               </div>
-              <div className="flex flex-wrap items-center gap-2 md:gap-4 text-sm">
-                <Link to="/mentions-legales" className="mobile-touch-target text-slate-500 hover:text-slate-900 transition-colors">
-                  Mentions Légales
-                </Link>
-                <Link to="/politique-confidentialite" className="text-slate-500 hover:text-slate-900 transition-colors">
-                  Politique de Confidentialité
-                </Link>
-                <Link to="/politique-cookies" className="text-slate-500 hover:text-slate-900 transition-colors">
-                  Politique de Cookies
-                </Link>
-                <Link to="/cgv" className="mobile-touch-target text-slate-500 hover:text-slate-900 transition-colors">
-                  CGV
-                </Link>
-                  <Link to="/sitemap" className="mobile-touch-target text-slate-500 hover:text-slate-900 transition-colors">
-                    Plan du Site
-                  </Link>
-                  {/* Bouton HubSpot pour paramètres cookies */}
-                  <HubSpotCookieBanner />
-              </div>
+              <nav aria-label="Liens du pied de page" className="w-full md:w-auto">
+                <ul className="w-full text-sm grid grid-cols-1 gap-1 md:flex md:flex-wrap md:justify-end md:gap-4">
+                  <li>
+                    <Link to="/mentions-legales" className="mobile-touch-target inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+                      Mentions Légales
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/politique-confidentialite" className="mobile-touch-target inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+                      Politique de Confidentialité
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/politique-cookies" className="mobile-touch-target inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+                      Politique de Cookies
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/cgv" className="mobile-touch-target inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+                      CGV
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/sitemap" className="mobile-touch-target inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+                      Plan du Site
+                    </Link>
+                  </li>
+                  <li className="md:ml-2">
+                    {/* Bouton HubSpot pour paramètres cookies */}
+                    <HubSpotCookieBanner />
+                  </li>
+                </ul>
+              </nav>
             </div>
           </div>
         </div>
