@@ -1,14 +1,14 @@
-import { useTheme } from "next-themes"
 import { Toaster as Sonner } from "sonner"
+
+// Keep the same API but avoid next-themes (which requires a ThemeProvider)
+// This prevents runtime crashes when no ThemeProvider is present
 
 type ToasterProps = React.ComponentProps<typeof Sonner>
 
 const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme = "system" } = useTheme()
-
   return (
     <Sonner
-      theme={theme as ToasterProps["theme"]}
+      theme={"system"}
       className="toaster group"
       toastOptions={{
         classNames: {
