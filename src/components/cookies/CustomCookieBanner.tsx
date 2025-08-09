@@ -53,10 +53,13 @@ export const CustomCookieBanner: React.FC = () => {
             // Vue simplifiée
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <div className="flex items-center space-x-3 flex-1">
-                <img 
-                  src="/lovable-uploads/19a648da-ac53-4b71-8daf-746987878455.png" 
-                  alt="Speed E-Log - Logo entreprise de logistique e-commerce"
+                <img
+                  src="/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png"
+                  alt="Speed E-Log — logo logistique e-commerce France"
                   className="h-8 w-8 flex-shrink-0"
+                  loading="lazy"
+                  decoding="async"
+                  onError={(e) => { e.currentTarget.src = '/placeholder.svg'; }}
                 />
                 <div className="text-sm">
                   <span className="font-medium text-foreground">
@@ -103,9 +106,12 @@ export const CustomCookieBanner: React.FC = () => {
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <img 
-                    src="/lovable-uploads/19a648da-ac53-4b71-8daf-746987878455.png" 
-                    alt="Speed E-Log - Logo entreprise de logistique e-commerce" 
+                    src="/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png" 
+                    alt="Speed E-Log — logo logistique e-commerce France" 
                     className="h-6 w-6"
+                    loading="lazy"
+                    decoding="async"
+                    onError={(e) => { e.currentTarget.src = '/placeholder.svg'; }}
                   />
                   <h3 className="font-medium text-foreground">Paramètres des cookies</h3>
                 </div>

@@ -1,18 +1,23 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { HeroContent } from "@/components/sections/hero/HeroContent";
 import { HeroCard } from "@/components/sections/hero/HeroCard";
 import { ScrollIndicator } from "@/components/sections/ScrollIndicator";
-import { WorldMapBackground } from "@/components/sections/hero/WorldMapBackground";
+// removed direct import of WorldMapBackground for code-splitting
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import { UltraLazyMotion, performanceVariants } from "@/components/ui/ultra-lazy-motion";
 import { useThrottledParallax } from "@/hooks/use-throttled-parallax";
 import { usePerformanceMonitor } from "@/hooks/use-performance-monitor";
 
+const LazyWorldMapBackground = lazy(() =>
+  import("@/components/sections/hero/WorldMapBackground").then(m => ({ default: m.WorldMapBackground }))
+);
+
 export function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
   const throttledParallax = useThrottledParallax({ intensity: 8, fps: 30 });
   const { metrics } = usePerformanceMonitor();
+  const [showDecorations, setShowDecorations] = useState(false);
 
   // Enable optimized parallax effect only on performant devices
   useEffect(() => {
@@ -28,6 +33,28 @@ export function HeroSection() {
       };
     }
   }, [throttledParallax, metrics.isLowEndDevice]);
+
+  // Defer non-critical decorations until idle (improves LCP)
+  useEffect(() => {
+    if (metrics.isLowEndDevice || metrics.networkSpeed === 'slow') return;
+
+    let idleId: number;
+    const onIdle = () => setShowDecorations(true);
+
+    if ('requestIdleCallback' in window) {
+      idleId = (window as any).requestIdleCallback(onIdle, { timeout: 1500 }) as number;
+    } else {
+      idleId = (setTimeout as unknown as (handler: TimerHandler, timeout?: number) => number)(onIdle, 1200);
+    }
+
+    return () => {
+      if ('cancelIdleCallback' in window) {
+        try { (window as any).cancelIdleCallback(idleId); } catch {}
+      } else {
+        clearTimeout(idleId);
+      }
+    };
+  }, [metrics.isLowEndDevice, metrics.networkSpeed]);
 
   return (
     <section 
@@ -51,11 +78,11 @@ export function HeroSection() {
         size="100%"
         blendingValue="soft-light"
         className="absolute inset-0 z-0 opacity-40"
-        interactive={true}
+        interactive={!metrics.isLowEndDevice && showDecorations}
       />
       
       {/* Animated gradient orbs - only for high-performance devices */}
-      {!metrics.isLowEndDevice && (
+      {!metrics.isLowEndDevice && showDecorations && (
         <div className="absolute inset-0 z-[1] overflow-hidden">
           <UltraLazyMotion
             className="absolute w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-[120px]"
@@ -102,8 +129,10 @@ export function HeroSection() {
       
       {/* World Map Background - conditional rendering based on performance */}
       <div className="absolute inset-0 z-10">
-        {!metrics.isLowEndDevice && metrics.networkSpeed !== 'slow' && (
-          <WorldMapBackground />
+        {!metrics.isLowEndDevice && metrics.networkSpeed !== 'slow' && showDecorations && (
+          <Suspense fallback={null}>
+            <LazyWorldMapBackground />
+          </Suspense>
         )}
       </div>
       
