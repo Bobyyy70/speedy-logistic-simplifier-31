@@ -8,6 +8,7 @@ import { CustomCookieBanner } from "../cookies/CustomCookieBanner";
 import { BreadcrumbSEO } from "@/components/ui/breadcrumb-seo";
 import { Helmet } from "react-helmet-async";
 import { generateMetadata, seoPages } from "@/lib/seo";
+import { getHubSpotConfig } from "@/lib/hubspot-config";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -24,6 +25,23 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     // Scroll vers le haut à chaque changement de route
     window.scrollTo(0, 0);
   }, [location.pathname]);
+
+  // Inject HubSpot embed script once, near the end of <body>
+  useEffect(() => {
+    if (!import.meta.env.PROD) return; // avoid in dev
+    const { portalId, region } = getHubSpotConfig();
+    const scriptId = 'hs-script-loader';
+    if (!portalId || !region) return;
+    if (document.getElementById(scriptId)) return;
+
+    const s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.id = scriptId;
+    s.async = true;
+    s.defer = true;
+    s.src = `https://js-${region}.hs-scripts.com/${portalId}.js`;
+    document.body.appendChild(s);
+  }, []);
 
   return (
     <div className="flex flex-col min-h-screen site-background">

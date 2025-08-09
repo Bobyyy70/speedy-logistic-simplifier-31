@@ -38,13 +38,13 @@ export function HeroSection() {
   useEffect(() => {
     if (metrics.isLowEndDevice || metrics.networkSpeed === 'slow') return;
 
-    let idleId: any;
+    let idleId: number;
     const onIdle = () => setShowDecorations(true);
 
     if ('requestIdleCallback' in window) {
-      idleId = (window as any).requestIdleCallback(onIdle, { timeout: 1500 });
+      idleId = (window as any).requestIdleCallback(onIdle, { timeout: 1500 }) as number;
     } else {
-      idleId = window.setTimeout(onIdle, 1200);
+      idleId = (setTimeout as unknown as (handler: TimerHandler, timeout?: number) => number)(onIdle, 1200);
     }
 
     return () => {
