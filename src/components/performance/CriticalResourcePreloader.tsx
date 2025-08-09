@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 
 const criticalResources = [
-  // Add critical images, fonts, or other resources here
-  // These will be preloaded to improve performance
+  '/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png' // Header logo - critical for early paint
 ];
 
 export const CriticalResourcePreloader = () => {

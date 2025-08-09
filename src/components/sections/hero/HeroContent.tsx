@@ -4,7 +4,6 @@ import { UltraLazyMotion, performanceVariants } from "@/components/ui/ultra-lazy
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HomeLogoWithText } from "@/components/ui/LogoIcon";
-import { AnimatedText } from "@/components/ui/AnimatedText";
 import { SocialProof } from "@/components/sections/hero/SocialProof";
 import { QuoteFormModal } from "@/components/contact/QuoteFormModal";
 import { useQuoteModal } from "@/hooks/useQuoteModal";
@@ -23,16 +22,16 @@ export function HeroContent() {
       </UltraLazyMotion>
 
       <h1 className="space-y-4">
-        <AnimatedText
-          text="La logistique E-commerce,"
-          className="text-fluid-3xl md:text-fluid-4xl lg:text-fluid-5xl xl:text-fluid-6xl font-bold tracking-tighter text-slate-900"
-          delay={0.2}
-        />
-        <AnimatedText
-          text="sans les tracas."
-          className="text-fluid-3xl md:text-fluid-4xl lg:text-fluid-5xl xl:text-fluid-6xl font-bold tracking-tighter text-[#2F68F3]"
-          delay={0.6}
-        />
+        <div
+          className="text-fluid-3xl md:text-fluid-4xl lg:text-fluid-5xl xl:text-fluid-6xl font-bold tracking-tighter text-slate-900 animate-fade-in"
+        >
+          La logistique E-commerce,
+        </div>
+        <div
+          className="text-fluid-3xl md:text-fluid-4xl lg:text-fluid-5xl xl:text-fluid-6xl font-bold tracking-tighter text-[#2F68F3] animate-fade-in"
+        >
+          sans les tracas.
+        </div>
       </h1>
 
       <UltraLazyMotion 

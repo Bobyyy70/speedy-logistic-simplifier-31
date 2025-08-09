@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 export const LogoIcon: React.FC<{
   className?: string;
@@ -14,20 +13,16 @@ export const LogoIcon: React.FC<{
     lg: "w-16 h-16"
   };
   const logoPath = "/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png";
-  return <motion.img src={logoPath} alt="Speed E-Log - Expert logistique e-commerce France" initial={{
-    opacity: 0,
-    scale: 0.95
-  }} animate={{
-    opacity: 1,
-    scale: 1
-  }} transition={{
-    duration: 0.3
-  }} whileHover={{
-    scale: 1.05,
-    transition: {
-      duration: 0.2
-    }
-  }} className={cn(sizeClasses[size], "object-contain", className)} />;
+  return (
+    <img
+      src={logoPath}
+      alt="Speed E-Log - Expert logistique e-commerce France"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      className={cn(sizeClasses[size], "object-contain", className)}
+    />
+  );
 };
 export const LogoIconWithText: React.FC<{
   className?: string;
@@ -37,17 +32,14 @@ export const LogoIconWithText: React.FC<{
   // Utilisation du logo fourni par l'utilisateur
   const logoPath = "/lovable-uploads/5c1b4538-57b0-4f38-af9e-dda22195de74.png";
   return <div className={cn("flex items-center justify-center h-full", className)}>
-    <motion.img src={logoPath} alt="Speed E-Log - Solutions logistiques pour e-commerce" width={520} // Largeur augmentée encore plus pour respecter la demande de +30%
-    height={80} // Hauteur maintenue pour correspondre à la hauteur du header
-    initial={{
-      opacity: 0,
-      scale: 0.95
-    }} animate={{
-      opacity: 1,
-      scale: 1
-    }} transition={{
-      duration: 0.3
-    }} className="h-full w-auto max-h-[80px] object-contain" // Utilisation de h-full pour prendre toute la hauteur disponible
+    <img
+      src={logoPath}
+      alt="Speed E-Log - Solutions logistiques pour e-commerce"
+      width={520}
+      height={80}
+      loading="eager"
+      decoding="async"
+      className="h-full w-auto max-h-[80px] object-contain"
     />
   </div>;
 };
