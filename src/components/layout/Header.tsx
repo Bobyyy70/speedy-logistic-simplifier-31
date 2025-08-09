@@ -13,6 +13,7 @@ export function Header() {
   const navigation = [
     { name: "Accueil", href: "/" },
     { name: "Services", href: "/services" },
+    { name: "3PL France", href: "/logistique-ecommerce-3pl-france" },
     { name: "Technologie", href: "/technology" },
     { name: "À Propos", href: "/about" },
     { name: "FAQ", href: "/faq" },

@@ -21,6 +21,12 @@ export const discoverRoutes = (): RouteInfo[] => {
       changefreq: 'monthly'
     },
     {
+      path: '/logistique-ecommerce-3pl-france',
+      component: 'LogistiqueEcommerce3PLFrance',
+      priority: 0.9,
+      changefreq: 'monthly'
+    },
+    {
       path: '/technology',
       component: 'Technology',
       priority: 0.8,

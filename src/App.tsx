@@ -16,6 +16,7 @@ import CookiePolicy from "./pages/CookiePolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Technology from "./pages/Technology";
 import Sitemap from "./pages/Sitemap";
+import LogistiqueEcommerce3PLFrance from "./pages/LogistiqueEcommerce3PLFrance";
 
 const App = () => (
   <TooltipProvider>
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/a-propos" element={<Navigate to="/about" replace />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FaqPage />} />
+          <Route path="/logistique-ecommerce-3pl-france" element={<LogistiqueEcommerce3PLFrance />} />
           <Route path="/sitemap" element={<Sitemap />} />
           <Route path="/plan-du-site" element={<Navigate to="/sitemap" replace />} />
           <Route path="/mentions-legales" element={<LegalMentions />} />

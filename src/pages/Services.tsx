@@ -32,6 +32,12 @@ const Services: React.FC = () => {
       {/* Main Services Section */}
       <div className="relative">
         <ServicesSection />
+        <div className="container mx-auto px-4 mt-6">
+          <p className="text-sm text-muted-foreground">
+            Besoin d’une solution 3PL en France pour petit volume ?
+            <a href="/logistique-ecommerce-3pl-france" className="ml-2 underline font-medium">Découvrez notre page dédiée</a>.
+          </p>
+        </div>
       </div>
 
       {/* Logistics Performance */}
