@@ -32,9 +32,6 @@ const Contact = () => {
         <meta property="twitter:description" content="Réservez votre consultation logistique gratuite avec Speed E-Log." />
         <meta property="twitter:image" content="https://speedelog.net/lovable-uploads/5c1b4538-57b0-4f38-af9e-dda22195de74.png" />
         
-        {/* Canonical URL */}
-        <link rel="canonical" href="https://speedelog.net/contact" />
-        
         {/* Scripts pour HubSpot Meetings uniquement */}
         <script src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js" type="text/javascript" async></script>
         
