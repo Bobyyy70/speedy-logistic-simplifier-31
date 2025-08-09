@@ -4,18 +4,18 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { CustomCookieBanner } from "@/components/cookies/CustomCookieBanner";
+import { HubSpotCookieBanner } from "./HubSpotCookieBanner";
 import { useCookieManagement } from "@/hooks/useCookieManagement";
 import { Ship, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  const { shouldShowCustomBanner } = useCookieManagement();
+  const { shouldShowCustomBanner, isProduction } = useCookieManagement();
 
   return (
     <>
-      {/* Bannière de cookies personnalisée si nécessaire */}
-      {shouldShowCustomBanner && <CustomCookieBanner />}
-      
+      {/* Bannière de cookies personnalisée si nécessaire (hors production) */}
+      {!isProduction && shouldShowCustomBanner && <CustomCookieBanner />}
       <footer className="relative bg-gray-50 text-slate-900 overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
@@ -136,9 +136,11 @@ export const Footer: React.FC = () => {
                 <Link to="/cgv" className="mobile-touch-target text-slate-500 hover:text-slate-900 transition-colors">
                   CGV
                 </Link>
-                <Link to="/sitemap" className="mobile-touch-target text-slate-500 hover:text-slate-900 transition-colors">
-                  Plan du Site
-                </Link>
+                  <Link to="/sitemap" className="mobile-touch-target text-slate-500 hover:text-slate-900 transition-colors">
+                    Plan du Site
+                  </Link>
+                  {/* Bouton HubSpot pour paramètres cookies */}
+                  <HubSpotCookieBanner />
               </div>
             </div>
           </div>

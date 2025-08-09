@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { FloatingChatButton } from "../contact/FloatingChatButton";
-import { CustomCookieBanner } from "../cookies/CustomCookieBanner";
+
 import { BreadcrumbSEO } from "@/components/ui/breadcrumb-seo";
 import { Helmet } from "react-helmet-async";
 import { generateMetadata, seoPages } from "@/lib/seo";
@@ -146,8 +146,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* Chat flottant global */}
       <FloatingChatButton />
       
-      {/* Bannière de cookies globale */}
-      <CustomCookieBanner />
+      {/* Gestion des cookies: HubSpot (production) et bannière custom (dev) gérés dans le Footer */}
     </div>
   );
 };

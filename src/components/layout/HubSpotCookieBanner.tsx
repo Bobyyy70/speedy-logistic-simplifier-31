@@ -102,7 +102,7 @@ export const HubSpotCookieBanner: React.FC = () => {
         className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
         title="Paramètres des cookies"
       >
-        Gestion des cookies
+        Paramètres des cookies
       </button>
     );
   }
@@ -116,7 +116,7 @@ export const HubSpotCookieBanner: React.FC = () => {
         className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
         title={isInIframe ? "Test bannière (iframe détectée)" : "Paramètres des cookies HubSpot"}
       >
-        {isInIframe ? "Test HubSpot (iframe)" : "Gestion des cookies"}
+        {isInIframe ? "Test HubSpot (iframe)" : "Paramètres des cookies"}
         {!isHubSpotLoaded && (
           <span className="ml-1 text-xs opacity-70">(chargement...)</span>
         )}
