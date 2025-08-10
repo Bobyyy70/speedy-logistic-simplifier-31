@@ -81,15 +81,7 @@ const Contact = () => {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
         <div className="container mx-auto px-4 py-4 md:py-8">
           {/* Page Header */}
-          <motion.header className="text-center mb-8 md:mb-12 pt-4 md:pt-8" initial={{
-          opacity: 0,
-          y: 20
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.6
-        }}>
+          <motion.header className="text-center mb-8 md:mb-12 pt-4 md:pt-8" initial={false}>
             <div className="inline-flex items-center bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-semibold mb-4 md:mb-6 shadow-sm">
               📞 Contactez-nous
             </div>
@@ -107,16 +99,7 @@ const Contact = () => {
           {/* Contenu principal */}
           <div className="space-y-8">
             {/* Section des moyens de contact */}
-            <motion.section className="bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-slate-200" initial={{
-            opacity: 0,
-            y: 30
-          }} animate={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            duration: 0.6,
-            delay: 0.2
-          }}>
+            <motion.section className="bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-slate-200" initial={false}>
               <div className="max-w-4xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                   

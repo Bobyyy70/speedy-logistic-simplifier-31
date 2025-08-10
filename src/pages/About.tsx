@@ -48,8 +48,7 @@ const About = () => {
 
       {/* Hero Section */}
       <motion.section 
-        initial="hidden"
-        animate="visible"
+        initial={false}
         className="relative z-10 py-20 md:py-28 overflow-hidden bg-gradient-to-b from-blue-50/80 via-white to-white dark:from-blue-950/30 dark:via-slate-950 dark:to-slate-950"
       >
         <div className="container px-4 mx-auto">
