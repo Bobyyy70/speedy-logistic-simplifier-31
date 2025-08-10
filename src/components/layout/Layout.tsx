@@ -26,7 +26,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  // Inject HubSpot embed script once, near the end of <body>
+  // Inject HubSpot embed script once, but defer until after load + idle
   useEffect(() => {
     if (!import.meta.env.PROD) return; // avoid in dev
     const { portalId, region } = getHubSpotConfig();
@@ -34,13 +34,36 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     if (!portalId || !region) return;
     if (document.getElementById(scriptId)) return;
 
-    const s = document.createElement('script');
-    s.type = 'text/javascript';
-    s.id = scriptId;
-    s.async = true;
-    s.defer = true;
-    s.src = `https://js-${region}.hs-scripts.com/${portalId}.js`;
-    document.body.appendChild(s);
+    const inject = () => {
+      if (document.getElementById(scriptId)) return;
+      const s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.id = scriptId;
+      s.async = true;
+      s.defer = true;
+      s.src = `https://js-${region}.hs-scripts.com/${portalId}.js`;
+      document.body.appendChild(s);
+    };
+
+    const onLoad = () => {
+      // @ts-ignore - requestIdleCallback may not exist on Window type
+      const ric = window.requestIdleCallback as any;
+      if (typeof ric === 'function') {
+        ric(inject, { timeout: 4000 });
+      } else {
+        setTimeout(inject, 2000);
+      }
+    };
+
+    if (document.readyState === 'complete') {
+      onLoad();
+    } else {
+      window.addEventListener('load', onLoad, { once: true });
+    }
+
+    return () => {
+      window.removeEventListener('load', onLoad);
+    };
   }, []);
 
   return (

@@ -61,27 +61,23 @@ const About = () => {
             <div className="inline-flex items-center justify-center px-4 py-1.5 mb-6 text-xs font-medium tracking-wide text-blue-700 uppercase bg-blue-100 rounded-full dark:bg-blue-900/30 dark:text-blue-300">
               Notre histoire
             </div>
-            <motion.h1 
-              variants={fadeIn}
-              custom={1}
+            <h1 
               className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl text-slate-900 dark:text-white"
             >
               Qui Sommes-nous ?
-            </motion.h1>
+            </h1>
             <motion.div 
               variants={fadeIn}
               custom={2}
               className="w-20 h-1 mx-auto mb-8 bg-gradient-to-r from-orange-400 to-orange-500"
             />
-            <motion.p 
-              variants={fadeIn}
-              custom={3}
+            <p 
               className="max-w-2xl mx-auto mb-10 text-lg leading-relaxed text-slate-600 md:text-xl dark:text-slate-300"
             >
               Speed E-Log est un partenaire logistique spécialisé pour les PME e-commerce françaises.
               Notre mission est de vous permettre de vous concentrer sur la croissance de votre entreprise
               en gérant votre logistique de manière fiable et efficace.
-            </motion.p>
+            </p>
           </motion.div>
         </div>
         

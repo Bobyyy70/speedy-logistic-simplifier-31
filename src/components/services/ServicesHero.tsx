@@ -14,9 +14,7 @@ export const ServicesHero: React.FC = () => {
     <AuroraBackground className="min-h-[65vh] h-auto py-16 md:py-24" keepExistingBackground={true}>
       <div className="container mx-auto relative px-4 flex flex-col items-center justify-center h-full">
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={false}
           className="max-w-4xl mx-auto text-center relative z-10"
         >
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter mb-6">

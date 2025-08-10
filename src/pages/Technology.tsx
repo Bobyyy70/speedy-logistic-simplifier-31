@@ -96,23 +96,17 @@ const Technology = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Left content */}
               <div className="text-left">
-                <motion.h1 
+                <h1 
                   className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-slate-900 dark:text-white mb-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
                 >
                   Notre Technologie <span className="text-blue-600 dark:text-blue-400">Supply<span className="text-blue-400 dark:text-blue-300">OS</span></span>
-                </motion.h1>
+                </h1>
                 
-                <motion.p 
+                <p 
                   className="text-xl text-slate-700 dark:text-slate-300 mb-8 leading-relaxed"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
                 >
                   Une plateforme logistique intégrée et moderne, développée en collaboration avec des e-commerces et des logisticiens, pour optimiser chaque étape de votre chaîne logistique e-commerce.
-                </motion.p>
+                </p>
                 
                 <motion.div 
                   className="space-y-4 mb-8"

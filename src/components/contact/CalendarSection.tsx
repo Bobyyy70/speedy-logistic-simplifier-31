@@ -4,6 +4,22 @@ import { motion } from "framer-motion";
 import { Calendar } from "lucide-react";
 
 export const CalendarSection = () => {
+  const [shouldLoad, setShouldLoad] = React.useState(false);
+  const placeholderRef = React.useRef<HTMLDivElement | null>(null);
+
+  React.useEffect(() => {
+    const el = placeholderRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setShouldLoad(true);
+        obs.disconnect();
+      }
+    }, { rootMargin: '600px 0px', threshold: 0.01 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <motion.section 
       className="bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-slate-200 relative overflow-hidden"
@@ -24,22 +40,34 @@ export const CalendarSection = () => {
         </p>
       </div>
       
-      <div className="w-full h-[650px] border border-slate-200 rounded-xl bg-white" style={{ overflow: 'hidden' }}>
-        {/* Calendrier HubSpot avec configuration dynamique */}
-        <div className="w-full h-full" style={{ overflow: 'hidden' }}>
-          <iframe 
-            src="https://meetings-eu1.hubspot.com/falmanzo?embed=true" 
-            width="100%" 
-            height="650" 
-            className="border-0 w-full h-full"
-            style={{ minHeight: '650px', width: '100%', display: 'block', border: 'none' }}
-            loading="lazy"
-            title="Planifier un rendez-vous"
-            data-expected="hubspot-calendar"
-            frameBorder="0"
-            allowFullScreen
-          />
-        </div>
+      <div ref={placeholderRef} className="w-full h-[650px] border border-slate-200 rounded-xl bg-white" style={{ overflow: 'hidden' }}>
+        {shouldLoad ? (
+          <div className="w-full h-full" style={{ overflow: 'hidden' }}>
+            <iframe 
+              src="https://meetings-eu1.hubspot.com/falmanzo?embed=true" 
+              width="100%" 
+              height="650" 
+              className="border-0 w-full h-full"
+              style={{ minHeight: '650px', width: '100%', display: 'block', border: 'none' }}
+              loading="lazy"
+              title="Planifier un rendez-vous"
+              data-expected="hubspot-calendar"
+              frameBorder="0"
+              allowFullScreen
+            />
+          </div>
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center bg-slate-50">
+            <p className="text-slate-600 mb-3">Calendrier HubSpot</p>
+            <button 
+              type="button"
+              onClick={() => setShouldLoad(true)}
+              className="inline-flex items-center px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700"
+            >
+              Afficher le calendrier
+            </button>
+          </div>
+        )}
       </div>
     </motion.section>
   );
