@@ -66,20 +66,22 @@ export function HeroSection() {
       }}
     >
       {/* Background gradient animation with enhanced colors and subtlety */}
-      <BackgroundGradientAnimation
-        gradientBackgroundStart="#ffffff"
-        gradientBackgroundEnd="#f8fafc"
-        firstColor="47, 104, 243"        // Primary blue
-        secondColor="243, 186, 47"       // Gold/yellow accent
-        thirdColor="100, 220, 255"       // Light blue
-        fourthColor="80, 120, 240"       // Soft blue
-        fifthColor="220, 180, 100"       // Warm gold
-        pointerColor="140, 100, 255"     // Interactive purple
-        size="100%"
-        blendingValue="soft-light"
-        className="absolute inset-0 z-0 opacity-40"
-        interactive={!metrics.isLowEndDevice && showDecorations}
-      />
+      {showDecorations && (
+        <BackgroundGradientAnimation
+          gradientBackgroundStart="#ffffff"
+          gradientBackgroundEnd="#f8fafc"
+          firstColor="47, 104, 243"        // Primary blue
+          secondColor="243, 186, 47"       // Gold/yellow accent
+          thirdColor="100, 220, 255"       // Light blue
+          fourthColor="80, 120, 240"       // Soft blue
+          fifthColor="220, 180, 100"       // Warm gold
+          pointerColor="140, 100, 255"     // Interactive purple
+          size="100%"
+          blendingValue="soft-light"
+          className="absolute inset-0 z-0 opacity-40"
+          interactive={!metrics.isLowEndDevice && showDecorations}
+        />
+      )}
       
       {/* Animated gradient orbs - only for high-performance devices */}
       {!metrics.isLowEndDevice && showDecorations && (

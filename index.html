@@ -5,17 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     
     <!-- Resource preloading for better performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="//speedelog.net">
     
-    <!-- Critical CSS preload -->
-    <link rel="preload" href="/src/index.css" as="style">
-    
-    <!-- Font optimization -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
-    
+    <!-- Performance: removed Google Fonts and incorrect CSS preload to improve LCP; using system fonts -->
     <!-- Favicon Speed E-Log -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png" />

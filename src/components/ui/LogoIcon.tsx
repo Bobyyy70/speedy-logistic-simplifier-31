@@ -19,7 +19,7 @@ export const LogoIcon: React.FC<{
       alt="Speed E-Log - Expert logistique e-commerce France"
       loading="eager"
       decoding="async"
-      fetchPriority="high"
+      
       className={cn(sizeClasses[size], "object-contain", className)}
     />
   );

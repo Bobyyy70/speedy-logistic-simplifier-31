@@ -1,16 +1,16 @@
 
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { ChallengesSection } from "@/components/sections/ChallengesSection";
-import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
-import { WhyUsSection } from "@/components/sections/WhyUsSection";
-import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { ContactCTA } from "@/components/home/ContactCTA";
-import { LogisticsFeatureSection } from "@/components/sections/LogisticsFeatureSection";
-import { LogisticsPerformanceSection } from "@/components/sections/LogisticsPerformanceSection";
 import { LazyMotionDiv } from "@/components/ui/lazy-motion";
-import { CriticalResourcePreloader } from "@/components/performance/CriticalResourcePreloader";
+
+const LazyLogisticsFeatureSection = lazy(() => import("@/components/sections/LogisticsFeatureSection").then(m => ({ default: m.LogisticsFeatureSection })));
+const LazyChallengesSection = lazy(() => import("@/components/sections/ChallengesSection").then(m => ({ default: m.ChallengesSection })));
+const LazyHowItWorksSection = lazy(() => import("@/components/sections/HowItWorksSection").then(m => ({ default: m.HowItWorksSection })));
+const LazyWhyUsSection = lazy(() => import("@/components/sections/WhyUsSection").then(m => ({ default: m.WhyUsSection })));
+const LazyTestimonialsSection = lazy(() => import("@/components/sections/TestimonialsSection").then(m => ({ default: m.TestimonialsSection })));
+const LazyContactCTA = lazy(() => import("@/components/home/ContactCTA").then(m => ({ default: m.ContactCTA })));
+const LazyLogisticsPerformanceSection = lazy(() => import("@/components/sections/LogisticsPerformanceSection").then(m => ({ default: m.LogisticsPerformanceSection })));
 
 // Animation variants pour les transitions entre sections
 const sectionVariants = {
@@ -33,7 +33,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white relative">
-      <CriticalResourcePreloader />
+      
       {/* Removed duplicate BackgroundGradientAnimation - only one in HeroSection */}
 
       <div className="relative overflow-x-hidden z-10">
@@ -57,31 +57,31 @@ const Index = () => {
         
         {/* Main Content Sections - Lazy loaded */}
         <LazyMotionDiv variants={sectionVariants}>
-          <LogisticsFeatureSection />
+          <Suspense fallback={null}><LazyLogisticsFeatureSection /></Suspense>
         </LazyMotionDiv>
         
         <LazyMotionDiv variants={sectionVariants}>
-          <ChallengesSection />
+          <Suspense fallback={null}><LazyChallengesSection /></Suspense>
         </LazyMotionDiv>
         
         <LazyMotionDiv variants={sectionVariants}>
-          <HowItWorksSection />
+          <Suspense fallback={null}><LazyHowItWorksSection /></Suspense>
         </LazyMotionDiv>
         
         <LazyMotionDiv variants={sectionVariants}>
-          <WhyUsSection />
+          <Suspense fallback={null}><LazyWhyUsSection /></Suspense>
         </LazyMotionDiv>
         
         <LazyMotionDiv variants={sectionVariants}>
-          <LogisticsPerformanceSection />
+          <Suspense fallback={null}><LazyLogisticsPerformanceSection /></Suspense>
         </LazyMotionDiv>
         
         <LazyMotionDiv variants={sectionVariants}>
-          <TestimonialsSection />
+          <Suspense fallback={null}><LazyTestimonialsSection /></Suspense>
         </LazyMotionDiv>
         
         <LazyMotionDiv variants={sectionVariants}>
-          <ContactCTA />
+          <Suspense fallback={null}><LazyContactCTA /></Suspense>
         </LazyMotionDiv>
       </div>
     </div>
