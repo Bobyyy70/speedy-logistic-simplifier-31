@@ -16,6 +16,7 @@ const Contact = () => {
         <meta name="geo.placename" content="Port-sur-Saône" />
         <meta name="geo.position" content="47.690249;6.042856" />
         <meta name="ICBM" content="47.690249, 6.042856" />
+        <meta name="robots" content="index, follow" />
         
         {/* Open Graph */}
         <meta property="og:type" content="website" />

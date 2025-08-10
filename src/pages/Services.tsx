@@ -21,6 +21,7 @@ const Services: React.FC = () => {
         <meta name="description" content="Découvrez nos services logistiques e-commerce: réception, stockage, préparation de commandes, expédition et gestion des retours. Solutions pour PME." />
         <meta property="og:title" content="Services Logistiques E-commerce | Speed E-Log" />
         <meta property="og:description" content="Découvrez nos services logistiques e-commerce: réception, stockage, préparation de commandes, expédition et gestion des retours. Solutions pour PME." />
+        <meta name="robots" content="index, follow" />
       </Helmet>
       
       {/* Hero Section */}

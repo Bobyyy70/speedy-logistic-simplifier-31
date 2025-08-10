@@ -59,6 +59,7 @@ const FaqPage = () => {
         <meta name="description" content="Trouvez les réponses à vos questions sur nos services logistiques pour e-commerce : types de produits gérés, transport, intégration, suivi et plus encore." />
         <meta property="og:title" content="FAQ - Questions Fréquentes Logistique | Speed E-Log" />
         <meta property="og:description" content="Trouvez les réponses à vos questions sur nos services logistiques pour e-commerce : types de produits gérés, transport, intégration, suivi et plus encore." />
+        <meta name="robots" content="index, follow" />
       </Helmet>
       
       <div className="container mx-auto px-4">

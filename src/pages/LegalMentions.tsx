@@ -15,6 +15,7 @@ const LegalMentions = () => {
           name="description"
           content="Mentions légales de Speed E-Log, votre partenaire logistique e-commerce basé à Port-sur-Saône."
         />
+        <meta name="robots" content="index, follow" />
       </Helmet>
 
       <h1 className="text-3xl md:text-4xl font-bold mb-8">Mentions Légales</h1>

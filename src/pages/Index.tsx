@@ -49,6 +49,7 @@ const Index = () => {
             content="Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
           />
           <meta name="keywords" content="logistique e-commerce, externalisation logistique, 3PL, fulfillment, préparation commandes, PME logistique" />
+          <meta name="robots" content="index, follow" />
         </Helmet>
         
         {/* Hero Section - No lazy loading for above-fold content */}

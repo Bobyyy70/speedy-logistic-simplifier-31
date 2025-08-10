@@ -14,6 +14,7 @@ const PrivacyPolicy = () => {
           name="description"
           content="Politique RGPD complète de Speed E-Log - Protection des données, droits des utilisateurs et conformité CNIL 2025."
         />
+        <meta name="robots" content="index, follow" />
       </Helmet>
 
       <div className="max-w-4xl mx-auto">

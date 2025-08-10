@@ -73,6 +73,7 @@ const Technology = () => {
       <Helmet>
         <title>Notre Technologie SupplyOS | Speed E-Log</title>
         <meta name="description" content="Découvrez SupplyOS, notre solution logistique intégrée combinant WMS, OMS et TMS pour une gestion optimale de votre chaîne logistique e-commerce." />
+        <meta name="robots" content="index, follow" />
       </Helmet>
 
       {/* Hero Section avec design moderne */}
@@ -171,7 +172,7 @@ const Technology = () => {
                     src="/lovable-uploads/78d7ab9f-306b-4854-a6c6-a1863ac47cf4.png" 
                     alt="Interface SupplyOS montrant les KPIs logistiques - commandes, coûts et performance des transporteurs" 
                     className="w-full object-cover pt-12" 
-                  />
+                    loading="lazy" decoding="async" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
                     <span className="text-white font-medium text-sm bg-blue-600 px-4 py-2 rounded-full">Interface SupplyOS</span>
                   </div>

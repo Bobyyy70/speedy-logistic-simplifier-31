@@ -8,6 +8,7 @@ const TermsOfService = () => {
       <Helmet>
         <title>Conditions Générales de Vente | Speed E-Log</title>
         <meta name="description" content="Conditions générales de vente de Speed E-Log - Services logistiques, stockage et préparation de commandes. CGV version du 13 juillet 2025." />
+        <meta name="robots" content="index, follow" />
       </Helmet>
 
       <h1 className="text-3xl md:text-4xl font-bold mb-12 text-center">CONDITIONS GÉNÉRALES DE VENTE - SPEED E-LOG SAS</h1>
