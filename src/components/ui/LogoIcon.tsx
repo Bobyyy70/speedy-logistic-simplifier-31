@@ -12,6 +12,7 @@ export const LogoIcon: React.FC<{
     md: "w-12 h-12",
     lg: "w-16 h-16"
   };
+  const dims = { sm: { w: 32, h: 32 }, md: { w: 48, h: 48 }, lg: { w: 64, h: 64 } };
   const logoPath = "/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png";
   return (
     <img
@@ -19,7 +20,8 @@ export const LogoIcon: React.FC<{
       alt="Speed E-Log - Expert logistique e-commerce France"
       loading="eager"
       decoding="async"
-      
+      width={dims[size].w}
+      height={dims[size].h}
       className={cn(sizeClasses[size], "object-contain", className)}
     />
   );

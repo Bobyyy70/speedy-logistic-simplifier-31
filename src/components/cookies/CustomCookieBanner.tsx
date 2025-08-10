@@ -59,6 +59,8 @@ export const CustomCookieBanner: React.FC = () => {
                   className="h-8 w-8 flex-shrink-0"
                   loading="lazy"
                   decoding="async"
+                  width={32}
+                  height={32}
                   onError={(e) => { e.currentTarget.src = '/placeholder.svg'; }}
                 />
                 <div className="text-sm">
@@ -111,6 +113,8 @@ export const CustomCookieBanner: React.FC = () => {
                     className="h-6 w-6"
                     loading="lazy"
                     decoding="async"
+                    width={24}
+                    height={24}
                     onError={(e) => { e.currentTarget.src = '/placeholder.svg'; }}
                   />
                   <h3 className="font-medium text-foreground">Paramètres des cookies</h3>

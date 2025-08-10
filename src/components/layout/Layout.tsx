@@ -156,6 +156,19 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             visibility: hidden !important;
             opacity: 0 !important;
           }
+
+          /* Empêcher la bannière cookies de pousser le contenu */
+          #hs-eu-cookie-confirmation,
+          .hs-cookie-notification,
+          [id*="cookie"] [class*="banner"],
+          [class*="cookie"] [class*="banner"] {
+            position: fixed !important;
+            bottom: 0 !important;
+            top: auto !important;
+            left: 0; right: 0;
+            width: 100% !important;
+            z-index: 2147483647 !important;
+          }
         `}</style>
       </Helmet>
 
