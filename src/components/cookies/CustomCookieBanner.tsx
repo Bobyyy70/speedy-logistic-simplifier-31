@@ -4,6 +4,7 @@ import { X, Settings, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useCookieManagement } from '@/hooks/useCookieManagement';
+import { ResponsiveImage } from '@/components/ui/ResponsiveImage';
 
 interface CookiePreferences {
   necessary: boolean;
@@ -53,15 +54,13 @@ export const CustomCookieBanner: React.FC = () => {
             // Vue simplifiée
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <div className="flex items-center space-x-3 flex-1">
-                <img
+                <ResponsiveImage
                   src="/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png"
                   alt="Speed E-Log — logo logistique e-commerce France"
                   className="h-8 w-8 flex-shrink-0"
-                  loading="lazy"
-                  decoding="async"
                   width={32}
                   height={32}
-                  onError={(e) => { e.currentTarget.src = '/placeholder.svg'; }}
+                  sizes="32px"
                 />
                 <div className="text-sm">
                   <span className="font-medium text-foreground">
@@ -107,15 +106,13 @@ export const CustomCookieBanner: React.FC = () => {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <img 
+                  <ResponsiveImage 
                     src="/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png" 
                     alt="Speed E-Log — logo logistique e-commerce France" 
-                    className="h-6 w-6"
-                    loading="lazy"
-                    decoding="async"
+                    className="h-6 w-6" 
                     width={24}
                     height={24}
-                    onError={(e) => { e.currentTarget.src = '/placeholder.svg'; }}
+                    sizes="24px"
                   />
                   <h3 className="font-medium text-foreground">Paramètres des cookies</h3>
                 </div>
