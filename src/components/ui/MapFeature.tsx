@@ -3,6 +3,7 @@ import React from "react";
 import { WorldMap } from "./world-map/component";
 import { motion } from "framer-motion";
 import AnimatedText from "./AnimatedText";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface MapFeatureProps {
   title: string;
@@ -58,9 +59,9 @@ export function MapFeature({
               <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg blur opacity-20"></div>
               <div className="relative bg-gradient-to-br from-white via-white to-white/80 dark:from-slate-900 dark:via-slate-900 dark:to-slate-900/80 shadow-xl rounded-lg p-4 md:p-6 overflow-hidden">
                 {image ? (
-                  <div className="aspect-video bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-950 dark:to-blue-950 rounded-md mb-4 flex items-center justify-center overflow-hidden">
-                    <img alt={imageAlt} className="w-full h-full object-cover" src={image} />
-                  </div>
+                  <AspectRatio ratio={16 / 9} className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-950 dark:to-blue-950 rounded-md mb-4 overflow-hidden">
+                    <img alt={imageAlt} className="w-full h-full object-cover" src={image} width={1600} height={900} loading="lazy" decoding="async" />
+                  </AspectRatio>
                 ) : (
                   <div className="rounded-md overflow-hidden mb-4">
                     <WorldMap dots={dots} opacity={0.65} />
