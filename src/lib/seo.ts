@@ -20,7 +20,12 @@ const truncateDescription = (s?: string, max = 155) => {
 };
 
 export const generateMetadata = (page?: SEOPageData, currentPath?: string) => {
-  const baseUrl = "https://speedelog.net";
+  // Prefer the runtime origin for canonical URLs to avoid duplicate-content issues across environments
+  const defaultBaseUrl = "https://speedelog.net";
+  let baseUrl = defaultBaseUrl;
+  if (typeof window !== 'undefined' && window.location?.origin) {
+    baseUrl = window.location.origin;
+  }
   const defaultImage = `${baseUrl}/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png`; // Logo Speed E-Log
   
   const title = page?.title || defaultSEO.title;

@@ -9,6 +9,7 @@ import { BreadcrumbSEO } from "@/components/ui/breadcrumb-seo";
 import { Helmet } from "react-helmet-async";
 import { generateMetadata, seoPages } from "@/lib/seo";
 import { getHubSpotConfig } from "@/lib/hubspot-config";
+import { CriticalResourcePreloader } from "@/components/performance/CriticalResourcePreloader";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -68,6 +69,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <div className="flex flex-col min-h-screen site-background">
+      <CriticalResourcePreloader />
       <Helmet>
         <html lang="fr" />
         <meta charSet="utf-8" />
