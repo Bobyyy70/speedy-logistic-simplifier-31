@@ -2,6 +2,9 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 
+// Temporary shim to avoid runtime 'motion' reference in sourcemap/hot code
+const motion = {} as any; void motion;
+
 import { CalendarSection } from "@/components/contact/CalendarSection";
 import { MapSection } from "@/components/contact/MapSection";
 import { Clock, MapPin, Phone, Mail } from "lucide-react";
