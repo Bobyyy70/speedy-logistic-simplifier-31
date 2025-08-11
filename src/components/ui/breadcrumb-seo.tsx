@@ -1,7 +1,19 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronRight, Home } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+const ChevronRightSVG = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+    <path d="M9 18l6-6-6-6" />
+  </svg>
+);
+
+const HomeSVG = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+    <path d="M3 9l9-7 9 7" />
+    <path d="M9 22V12h6v10" />
+  </svg>
+);
 
 interface BreadcrumbItem {
   label: string;
@@ -67,11 +79,11 @@ export function BreadcrumbSEO({ className, customItems }: BreadcrumbSEOProps) {
           {breadcrumbItems.map((item, index) => (
             <li key={item.href} className="flex items-center">
               {index > 0 && (
-                <ChevronRight className="h-4 w-4 mx-1 text-muted-foreground/60" />
+                <ChevronRightSVG className="h-4 w-4 mx-1 text-muted-foreground/60" />
               )}
               {index === breadcrumbItems.length - 1 ? (
                 <span className="font-medium text-foreground" aria-current="page">
-                  {index === 0 && <Home className="h-4 w-4 mr-1 inline" />}
+                  {index === 0 && <HomeSVG className="h-4 w-4 mr-1 inline" />}
                   {item.label}
                 </span>
               ) : (
@@ -79,7 +91,7 @@ export function BreadcrumbSEO({ className, customItems }: BreadcrumbSEOProps) {
                   to={item.href}
                   className="hover:text-foreground transition-colors flex items-center"
                 >
-                  {index === 0 && <Home className="h-4 w-4 mr-1" />}
+                  {index === 0 && <HomeSVG className="h-4 w-4 mr-1" />}
                   {item.label}
                 </Link>
               )}
