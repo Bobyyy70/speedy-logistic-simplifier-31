@@ -6,7 +6,7 @@ import { Separator } from "@/components/ui/separator";
 import { CustomCookieBanner } from "@/components/cookies/CustomCookieBanner";
 import { HubSpotCookieBanner } from "./HubSpotCookieBanner";
 import { useCookieManagement } from "@/hooks/useCookieManagement";
-import { Ship, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
+import { LazyIcon } from "@/components/performance/LazyIcon";
 // @ts-ignore - imagetools for optimized logo
 import logoWebp from "@/assets/logo.png?w=32;64&format=webp&as=srcset";
 // @ts-ignore - imagetools for optimized logo fallback
@@ -69,31 +69,31 @@ export const Footer: React.FC = () => {
                   <li>
                     <Link to="/services" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       Nos Services
-                      <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <LazyIcon importIcon={() => import('lucide-react').then(m => ({ default: m.ArrowUpRight }))} className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden />
                     </Link>
                   </li>
                   <li>
                     <Link to="/technology" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       Technologie
-                      <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                       <LazyIcon importIcon={() => import('lucide-react').then(m => ({ default: m.ArrowUpRight }))} className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden />
                     </Link>
                   </li>
                   <li>
                     <Link to="/about" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       À Propos
-                      <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                       <LazyIcon importIcon={() => import('lucide-react').then(m => ({ default: m.ArrowUpRight }))} className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden />
                     </Link>
                   </li>
                   <li>
                     <Link to="/contact" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       Contact
-                      <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                       <LazyIcon importIcon={() => import('lucide-react').then(m => ({ default: m.ArrowUpRight }))} className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden />
                     </Link>
                   </li>
                   <li>
                     <Link to="/faq" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       FAQ
-                      <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <LazyIcon importIcon={() => import('lucide-react').then(m => ({ default: m.ArrowUpRight }))} className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden />
                     </Link>
                   </li>
                 </ul>
@@ -116,14 +116,14 @@ export const Footer: React.FC = () => {
                 <h3 className="text-lg font-semibold text-slate-900">Contact</h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <MapPin className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <LazyIcon importIcon={() => import('lucide-react').then(m => ({ default: m.MapPin }))} className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" aria-hidden />
                     <div className="text-slate-600">
                       <p>Port-sur-Saône</p>
                       <p>Bourgogne-Franche-Comté, France</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Mail className="h-5 w-5 text-blue-600 flex-shrink-0" />
+                    <LazyIcon importIcon={() => import('lucide-react').then(m => ({ default: m.Mail }))} className="h-5 w-5 text-blue-600 flex-shrink-0" aria-hidden />
                     <a href="mailto:contact@speedelog.fr" className="text-slate-600 hover:text-slate-900 transition-colors">
                       contact@speedelog.net
                     </a>
