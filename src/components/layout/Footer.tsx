@@ -21,7 +21,10 @@ export const Footer: React.FC = () => {
           <CustomCookieBanner />
         </div>
       )}
-      <footer className="relative bg-gray-50 text-slate-900 overflow-hidden">
+      <footer
+        className="relative bg-gray-50 text-slate-900 overflow-hidden"
+        style={{ contain: "layout" }}
+      >
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgb(71_85_105)_1px,transparent_0)] bg-[size:24px_24px]" />
@@ -174,8 +177,12 @@ export const Footer: React.FC = () => {
                     </Link>
                   </li>
                   <li className="md:ml-2">
-                    <div className="inline-flex px-2 py-2 md:px-0 md:py-1">
-                      {/* Bouton HubSpot pour paramètres cookies */}
+                    <div
+                      className="inline-flex items-center justify-center px-2 py-2 md:px-0 md:py-1 min-h-[40px] min-w-[160px]"
+                      role="group"
+                      aria-live="off"
+                    >
+                      {/* Bouton HubSpot pour paramètres cookies — espace réservé pour éviter un shift */}
                       <HubSpotCookieBanner />
                     </div>
                   </li>
