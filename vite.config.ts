@@ -28,7 +28,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    target: 'es2015',
+    target: 'esnext',
     cssCodeSplit: true,
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
