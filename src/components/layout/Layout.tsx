@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { FloatingChatButton } from "../contact/FloatingChatButton";
+import { IdleHydrator } from "@/components/performance/IdleHydrator";
 
 import { BreadcrumbSEO } from "@/components/ui/breadcrumb-seo";
 import { Helmet } from "react-helmet-async";
@@ -181,8 +182,10 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       </main>
       <Footer />
       
-      {/* Chat flottant global */}
-      <FloatingChatButton />
+      {/* Chat flottant global (monté après idle) */}
+      <IdleHydrator>
+        <FloatingChatButton />
+      </IdleHydrator>
       
       {/* Gestion des cookies: HubSpot (production) et bannière custom (dev) gérés dans le Footer */}
     </div>
