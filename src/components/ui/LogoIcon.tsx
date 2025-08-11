@@ -24,6 +24,7 @@ export const LogoIcon: React.FC<{
       className={cn(sizeClasses[size], "object-contain", className)}
       sizes={`${dims[size].w}px`}
       priority={size === 'sm'}
+      fetchPriority={size === 'sm' ? 'high' : 'auto'}
     />
   );
 };

@@ -11,6 +11,7 @@ interface ResponsiveImageProps {
   priority?: boolean;
   loading?: "lazy" | "eager";
   decoding?: "async" | "sync" | "auto";
+  fetchPriority?: "high" | "low" | "auto";
   onClick?: React.MouseEventHandler<HTMLImageElement>;
 }
 
@@ -38,6 +39,8 @@ export function ResponsiveImage({
   priority = false,
   loading,
   decoding = "async",
+  fetchPriority = "auto",
+  onClick,
 }: ResponsiveImageProps) {
   const baseName = getBaseName(src);
   const ext = getExt(src);
@@ -59,7 +62,13 @@ export function ResponsiveImage({
       height={height}
       decoding={decoding}
       loading={finalLoading}
+      sizes={sizes}
+      fetchPriority={fetchPriority}
+      onClick={onClick}
       className={cn("block", className)}
+      onError={(e) => {
+        e.currentTarget.src = "/placeholder.svg";
+      }}
     />
   );
 }

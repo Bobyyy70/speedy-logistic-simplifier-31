@@ -29,7 +29,7 @@ export function Header() {
         <div className="flex h-14 md:h-16 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 min-h-[44px] touch-manipulation">
-            <LogoIcon className="h-6 w-6 md:h-8 md:w-8" />
+            <LogoIcon className="h-6 w-6 md:h-8 md:w-8" size="sm" />
             <span className="font-bold text-lg md:text-xl">Speed E-Log</span>
           </Link>
 

@@ -172,6 +172,8 @@ const Technology = () => {
                       height={1000}
                       className="w-full h-full object-cover pt-12"
                       sizes="(max-width: 1024px) 100vw, 640px"
+                      priority
+                      fetchPriority="high"
                     />
                   </AspectRatio>
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
