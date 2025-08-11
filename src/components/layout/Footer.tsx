@@ -1,9 +1,8 @@
 
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { CustomCookieBanner } from "@/components/cookies/CustomCookieBanner";
 import { HubSpotCookieBanner } from "./HubSpotCookieBanner";
 import { useCookieManagement } from "@/hooks/useCookieManagement";
 import { LazyIcon } from "@/components/performance/LazyIcon";
@@ -11,6 +10,9 @@ import { LazyIcon } from "@/components/performance/LazyIcon";
 import logoWebp from "@/assets/logo.png?w=32;64&format=webp&as=srcset";
 // @ts-ignore - imagetools for optimized logo fallback
 import logoPng from "@/assets/logo.png?w=32;64&format=png&as=srcset";
+
+// Defer loading of the heavy CustomCookieBanner (and its icon deps) until truly needed
+const LazyCustomCookieBanner = lazy(() => import("@/components/cookies/CustomCookieBanner").then(m => ({ default: m.CustomCookieBanner })));
 
 // Lightweight inline arrow icon to avoid loading the full icon library for tiny chevrons
 const ArrowSmall: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
@@ -39,7 +41,9 @@ export const Footer: React.FC = () => {
       {/* Bannière de cookies personnalisée si nécessaire (hors production) */}
       {!isProduction && shouldShowCustomBanner && (
         <div className="fixed inset-x-0 bottom-0 z-[2147483647] pointer-events-auto">
-          <CustomCookieBanner />
+          <Suspense fallback={null}>
+            <LazyCustomCookieBanner />
+          </Suspense>
         </div>
       )}
       <footer
