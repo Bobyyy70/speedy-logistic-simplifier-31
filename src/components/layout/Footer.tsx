@@ -16,7 +16,11 @@ export const Footer: React.FC = () => {
   return (
     <>
       {/* Bannière de cookies personnalisée si nécessaire (hors production) */}
-      {!isProduction && shouldShowCustomBanner && <CustomCookieBanner />}
+      {!isProduction && shouldShowCustomBanner && (
+        <div className="fixed inset-x-0 bottom-0 z-[2147483647] pointer-events-auto">
+          <CustomCookieBanner />
+        </div>
+      )}
       <footer className="relative bg-gray-50 text-slate-900 overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
