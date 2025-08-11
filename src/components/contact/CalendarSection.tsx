@@ -1,6 +1,6 @@
 
 import React from "react";
-import { motion } from "framer-motion";
+
 import { Calendar } from "lucide-react";
 
 export const CalendarSection = () => {
@@ -15,17 +15,31 @@ export const CalendarSection = () => {
         setShouldLoad(true);
         obs.disconnect();
       }
-    }, { rootMargin: '600px 0px', threshold: 0.01 });
+    }, { rootMargin: '1800px 0px', threshold: 0.01 });
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
 
+  // Idle fallback: warm up load even if user hasn't scrolled yet
+  React.useEffect(() => {
+    if (shouldLoad) return;
+    const load = () => setShouldLoad(true);
+
+    let cleanup: () => void = () => {};
+    if ('requestIdleCallback' in window) {
+      const id = (window as any).requestIdleCallback(load, { timeout: 4000 });
+      cleanup = () => (window as any).cancelIdleCallback?.(id);
+    } else {
+      const id = setTimeout(load, 3000) as unknown as number;
+      cleanup = () => clearTimeout(id);
+    }
+
+    return cleanup;
+  }, [shouldLoad]);
+
   return (
-    <motion.section 
+    <section 
       className="bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-slate-200 relative overflow-hidden"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.2 }}
       data-calendar-section
     >
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-blue-800"></div>
@@ -58,17 +72,20 @@ export const CalendarSection = () => {
           </div>
         ) : (
           <div className="w-full h-full flex flex-col items-center justify-center bg-slate-50">
-            <p className="text-slate-600 mb-3">Calendrier HubSpot</p>
+            <div className="flex items-center gap-2 mb-3 text-slate-600">
+              <span className="inline-block h-4 w-4 rounded-full border-2 border-slate-300 border-t-blue-600 animate-spin" aria-hidden="true"></span>
+              <span>Calendrier HubSpot</span>
+            </div>
             <button 
               type="button"
               onClick={() => setShouldLoad(true)}
               className="inline-flex items-center px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700"
             >
-              Afficher le calendrier
+              Afficher le calendrier maintenant
             </button>
           </div>
         )}
       </div>
-    </motion.section>
+    </section>
   );
 };

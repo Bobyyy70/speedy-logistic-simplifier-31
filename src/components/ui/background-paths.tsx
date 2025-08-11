@@ -1,9 +1,11 @@
 
 "use client";
 
-import { motion } from "framer-motion";
-import React, { ReactNode } from "react";
+// import { motion } from "framer-motion"; // heavy; keep as-is where used or lazy load wrapper
+import React, { ReactNode, Suspense } from "react";
 import { cn } from "@/lib/utils";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+const LazyAnimatedOverlay = React.lazy(() => import("./background-paths-animated"));
 
 export interface BackgroundPathsProps extends React.HTMLProps<HTMLDivElement> {
   children?: ReactNode;
@@ -21,7 +23,7 @@ function FloatingPaths({ position, opacity = 0.15 }: { position: number; opacity
     } ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${
       684 - i * 5 * position
     } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
-    width: 0.5 + i * 0.035, // Lignes légèrement plus épaisses pour une meilleure visibilité
+    width: 0.5 + i * 0.035,
   }));
 
   return (
@@ -41,23 +43,12 @@ function FloatingPaths({ position, opacity = 0.15 }: { position: number; opacity
       >
         <title>Background Paths</title>
         {paths.map((path) => (
-          <motion.path
+          <path
             key={path.id}
             d={path.d}
             stroke="currentColor"
             strokeWidth={path.width}
-            strokeOpacity={(0.1 + path.id * 0.01) * opacity} // Opacité augmentée mais toujours subtile
-            initial={{ pathLength: 0.3, opacity: 0.4 }}
-            animate={{
-              pathLength: 1,
-              opacity: [0.2, 0.4, 0.2], // Variation d'opacité un peu plus visible
-              pathOffset: [0, 1, 0],
-            }}
-            transition={{
-              duration: 30 + Math.random() * 20, // Animation encore plus lente pour un effet élégant
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-            }}
+            strokeOpacity={(0.1 + path.id * 0.01) * opacity}
           />
         ))}
       </svg>
@@ -68,12 +59,19 @@ function FloatingPaths({ position, opacity = 0.15 }: { position: number; opacity
 export function BackgroundPaths({
   className,
   children,
-  opacity = 0.3, // Augmenté légèrement l'opacité par défaut
+  opacity = 0.3,
   preserveBackground = true,
   ...props
 }: BackgroundPathsProps) {
+  const { elementRef, shouldAnimate } = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '400px',
+    triggerOnce: true,
+  });
+
   return (
     <div
+      ref={elementRef}
       className={cn(
         "relative w-full overflow-hidden",
         !preserveBackground && "bg-white dark:bg-neutral-950",
@@ -82,8 +80,19 @@ export function BackgroundPaths({
       {...props}
     >
       <div className="absolute inset-0 z-0">
-        <FloatingPaths position={1} opacity={opacity} />
-        <FloatingPaths position={-1} opacity={opacity} />
+        {shouldAnimate ? (
+          <Suspense fallback={<>
+            <FloatingPaths position={1} opacity={opacity} />
+            <FloatingPaths position={-1} opacity={opacity} />
+          </>}>
+            <LazyAnimatedOverlay opacity={opacity} />
+          </Suspense>
+        ) : (
+          <>
+            <FloatingPaths position={1} opacity={opacity} />
+            <FloatingPaths position={-1} opacity={opacity} />
+          </>
+        )}
       </div>
       {children && <div className="relative z-10">{children}</div>}
     </div>

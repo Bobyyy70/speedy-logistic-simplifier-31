@@ -1,6 +1,6 @@
 
 import React from "react";
-import { motion } from "framer-motion";
+
 import { MapPin } from "lucide-react";
 
 export const MapSection = () => {
@@ -16,17 +16,31 @@ export const MapSection = () => {
         setShouldLoad(true);
         obs.disconnect();
       }
-    }, { rootMargin: '600px 0px', threshold: 0.01 });
+    }, { rootMargin: '1800px 0px', threshold: 0.01 });
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
 
+  // Idle fallback to warm up the map load
+  React.useEffect(() => {
+    if (shouldLoad) return;
+    const load = () => setShouldLoad(true);
+
+    let cleanup: () => void = () => {};
+    if ('requestIdleCallback' in window) {
+      const id = (window as any).requestIdleCallback(load, { timeout: 4000 });
+      cleanup = () => (window as any).cancelIdleCallback?.(id);
+    } else {
+      const id = setTimeout(load, 3000) as unknown as number;
+      cleanup = () => clearTimeout(id);
+    }
+
+    return cleanup;
+  }, [shouldLoad]);
+
   return (
-    <motion.section 
+    <section 
       className="bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-slate-200"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.6 }}
     >
       <div className="text-center mb-4 md:mb-6">
         <h2 className="text-xl md:text-2xl font-semibold mb-2 text-slate-900 flex items-center justify-center gap-2 md:gap-3 flex-wrap">
@@ -94,6 +108,6 @@ export const MapSection = () => {
           )
         )}
       </div>
-    </motion.section>
+    </section>
   );
 };

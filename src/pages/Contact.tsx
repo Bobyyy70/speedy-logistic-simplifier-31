@@ -1,7 +1,10 @@
 
 import React from "react";
 import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
+
+// Temporary shim to avoid runtime 'motion' reference in sourcemap/hot code
+const motion = {} as any; void motion;
+
 import { CalendarSection } from "@/components/contact/CalendarSection";
 import { MapSection } from "@/components/contact/MapSection";
 import { Clock, MapPin, Phone, Mail } from "lucide-react";
@@ -10,7 +13,7 @@ const Contact = () => {
   return <>
       <Helmet>
         <title>Contact Speed E-Log - Réservez votre consultation logistique gratuite</title>
-        <meta name="description" content="Contactez Speed E-Log pour optimiser votre logistique e-commerce. Réservez une consultation gratuite, utilisez nos formulaires de contact et SAV. Réponse sous 24h garantie. Rendez-vous au 37 Rue de Rémaucourt, Port-sur-Saône." />
+        <meta name="description" content="Contactez Speed E-Log pour optimiser votre logistique e-commerce. Réservez une consultation gratuite. Réponse sous 24h." />
         <meta name="keywords" content="contact speed e-log, consultation logistique, service client, SAV, rendez-vous, Port-sur-Saône, 37 rue rémaucourt, formulaire contact, calendrier" />
         <meta name="geo.region" content="FR-70" />
         <meta name="geo.placename" content="Port-sur-Saône" />
@@ -22,7 +25,7 @@ const Contact = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://speedelog.net/contact" />
         <meta property="og:title" content="Contact Speed E-Log - Consultation logistique gratuite" />
-        <meta property="og:description" content="Réservez votre consultation logistique gratuite avec Speed E-Log. Experts en solutions e-commerce pour PME à Port-sur-Saône." />
+        <meta property="og:description" content="Contactez Speed E-Log pour optimiser votre logistique e-commerce. Réservez une consultation gratuite. Réponse sous 24h." />
         <meta property="og:locale" content="fr_FR" />
         <meta property="og:image" content="https://speedelog.net/lovable-uploads/5c1b4538-57b0-4f38-af9e-dda22195de74.png" />
         
@@ -30,8 +33,19 @@ const Contact = () => {
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://speedelog.net/contact" />
         <meta property="twitter:title" content="Contact Speed E-Log - Consultation gratuite" />
-        <meta property="twitter:description" content="Réservez votre consultation logistique gratuite avec Speed E-Log." />
+        <meta property="twitter:description" content="Contactez Speed E-Log pour optimiser votre logistique e-commerce. Réservez une consultation gratuite. Réponse sous 24h." />
         <meta property="twitter:image" content="https://speedelog.net/lovable-uploads/5c1b4538-57b0-4f38-af9e-dda22195de74.png" />
+        
+        {/* Resource hints for faster iframes */}
+        
+        <link rel="preconnect" href="https://meetings-eu1.hubspot.com" />
+        <link rel="dns-prefetch" href="https://meetings-eu1.hubspot.com" />
+        <link rel="preconnect" href="https://static.hsappstatic.net" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://static.hsappstatic.net" />
+        <link rel="preconnect" href="https://www.google.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://www.google.com" />
+        <link rel="preconnect" href="https://maps.gstatic.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://maps.gstatic.com" />
         
         {/* Schema.org JSON-LD avec données enrichies */}
         <script type="application/ld+json">
@@ -80,8 +94,7 @@ const Contact = () => {
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
         <div className="container mx-auto px-4 py-4 md:py-8">
-          {/* Page Header */}
-          <motion.header className="text-center mb-8 md:mb-12 pt-4 md:pt-8" initial={false}>
+          <header className="text-center mb-8 md:mb-12 pt-4 md:pt-8">
             <div className="inline-flex items-center bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-semibold mb-4 md:mb-6 shadow-sm">
               📞 Contactez-nous
             </div>
@@ -94,12 +107,11 @@ const Contact = () => {
             <p className="text-base md:text-lg text-slate-600 max-w-2xl mx-auto mb-6 md:mb-8 px-4">
               Choisissez le moyen de contact qui vous convient le mieux. Notre équipe est là pour vous accompagner.
             </p>
-          </motion.header>
+          </header>
 
           {/* Contenu principal */}
           <div className="space-y-8">
-            {/* Section des moyens de contact */}
-            <motion.section className="bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-slate-200" initial={false}>
+            <section className="bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-slate-200">
               <div className="max-w-4xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                   
@@ -164,7 +176,7 @@ const Contact = () => {
                   </div>
                 </div>
               </div>
-            </motion.section>
+            </section>
 
             {/* Hero Calendar Section */}
             <CalendarSection />
