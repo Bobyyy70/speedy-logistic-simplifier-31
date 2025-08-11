@@ -12,6 +12,23 @@ import logoWebp from "@/assets/logo.png?w=32;64&format=webp&as=srcset";
 // @ts-ignore - imagetools for optimized logo fallback
 import logoPng from "@/assets/logo.png?w=32;64&format=png&as=srcset";
 
+// Lightweight inline arrow icon to avoid loading the full icon library for tiny chevrons
+const ArrowSmall: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    {...props}
+  >
+    <path d="M7 17L17 7" />
+    <path d="M7 7h10v10" />
+  </svg>
+);
+
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
   const { shouldShowCustomBanner, isProduction } = useCookieManagement();
@@ -69,31 +86,31 @@ export const Footer: React.FC = () => {
                   <li>
                     <Link to="/services" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       Nos Services
-                      <LazyIcon importIcon={() => import('lucide-react').then(m => ({ default: m.ArrowUpRight }))} className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden />
+                      <ArrowSmall className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
                   </li>
                   <li>
                     <Link to="/technology" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       Technologie
-                       <LazyIcon importIcon={() => import('lucide-react').then(m => ({ default: m.ArrowUpRight }))} className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden />
+                       <ArrowSmall className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
                   </li>
                   <li>
                     <Link to="/about" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       À Propos
-                       <LazyIcon importIcon={() => import('lucide-react').then(m => ({ default: m.ArrowUpRight }))} className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden />
+                       <ArrowSmall className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
                   </li>
                   <li>
                     <Link to="/contact" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       Contact
-                       <LazyIcon importIcon={() => import('lucide-react').then(m => ({ default: m.ArrowUpRight }))} className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden />
+                        <ArrowSmall className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
                   </li>
                   <li>
                     <Link to="/faq" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       FAQ
-                      <LazyIcon importIcon={() => import('lucide-react').then(m => ({ default: m.ArrowUpRight }))} className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden />
+                      <ArrowSmall className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
                   </li>
                 </ul>
