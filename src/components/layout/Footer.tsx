@@ -7,7 +7,10 @@ import { CustomCookieBanner } from "@/components/cookies/CustomCookieBanner";
 import { HubSpotCookieBanner } from "./HubSpotCookieBanner";
 import { useCookieManagement } from "@/hooks/useCookieManagement";
 import { Ship, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
-import { ResponsiveImage } from "@/components/ui/ResponsiveImage";
+// @ts-ignore - imagetools for optimized logo
+import logoWebp from "@/assets/logo.png?w=32;64&format=webp&as=srcset";
+// @ts-ignore - imagetools for optimized logo fallback
+import logoPng from "@/assets/logo.png?w=32;64&format=png&as=srcset";
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -37,14 +40,19 @@ export const Footer: React.FC = () => {
               {/* Company Info */}
               <div className="lg:col-span-1 space-y-6">
                 <div className="flex items-center space-x-3">
-                  <ResponsiveImage 
-                    src="/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png"
-                    alt="Speed E-Log - Spécialiste logistique e-commerce France"
-                    width={32}
-                    height={32}
-                    sizes="32px"
-                    className="w-8 h-8 object-contain"
-                  />
+                  <picture>
+                    <source type="image/webp" srcSet={logoWebp as unknown as string} sizes="32px" />
+                    <img
+                      alt="Speed E-Log - Spécialiste logistique e-commerce France"
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 object-contain"
+                      srcSet={logoPng as unknown as string}
+                      sizes="32px"
+                      loading="eager"
+                      decoding="async"
+                    />
+                  </picture>
                   <span className="text-xl font-bold text-slate-900">Speed E-Log</span>
                 </div>
                 <p className="text-slate-600 leading-relaxed">
