@@ -180,7 +180,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         <BreadcrumbSEO />
         {children}
       </main>
-      <Footer />
+      <IdleHydrator>
+        <Footer />
+      </IdleHydrator>
       
       {/* Chat flottant global (monté après idle) */}
       <IdleHydrator>

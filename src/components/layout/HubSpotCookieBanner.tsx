@@ -8,6 +8,7 @@ export const HubSpotCookieBanner: React.FC = () => {
     isProduction
   } = useCookieManagement();
   useEffect(() => {
+    if (!isProduction) return; // Skip all HubSpot checks outside production
     let checkAttempts = 0;
     const maxAttempts = 10;
     const checkHubSpot = () => {
@@ -15,7 +16,7 @@ export const HubSpotCookieBanner: React.FC = () => {
       const hasHsp = !!(window as any)._hsp;
       const hasHbspt = !!(window as any).hbspt;
       const hasPrivacy = !!(window as any).hbspt?.privacy;
-      if (hasHsp || hasHbspt && hasPrivacy) {
+      if (hasHsp || (hasHbspt && hasPrivacy)) {
         setIsHubSpotLoaded(true);
 
         // Essayer d'afficher la bannière automatiquement en production seulement
