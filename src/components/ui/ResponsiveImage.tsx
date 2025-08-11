@@ -69,8 +69,15 @@ export function ResponsiveImage({
         loading={finalLoading}
         className={cn("block", className)}
         onError={(e) => {
-          // Fallback to original if optimized files are missing
-          e.currentTarget.src = src;
+          // Robust fallback: drop srcset/sizes and force original source
+          e.currentTarget.removeAttribute('srcset')
+          e.currentTarget.removeAttribute('sizes')
+          e.currentTarget.src = src
+          // Hint decoding/loading to recover quickly
+          try {
+            e.currentTarget.decoding = 'async'
+            e.currentTarget.loading = 'eager'
+          } catch {}
         }}
       />
     </picture>
