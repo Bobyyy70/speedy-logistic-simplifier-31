@@ -36,6 +36,17 @@ const Contact = () => {
         <meta property="twitter:description" content="Réservez votre consultation logistique gratuite avec Speed E-Log." />
         <meta property="twitter:image" content="https://speedelog.net/lovable-uploads/5c1b4538-57b0-4f38-af9e-dda22195de74.png" />
         
+        {/* Resource hints for faster iframes */}
+        <link rel="canonical" href="https://speedelog.net/contact" />
+        <link rel="preconnect" href="https://meetings-eu1.hubspot.com" />
+        <link rel="dns-prefetch" href="https://meetings-eu1.hubspot.com" />
+        <link rel="preconnect" href="https://static.hsappstatic.net" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://static.hsappstatic.net" />
+        <link rel="preconnect" href="https://www.google.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://www.google.com" />
+        <link rel="preconnect" href="https://maps.gstatic.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://maps.gstatic.com" />
+        
         {/* Schema.org JSON-LD avec données enrichies */}
         <script type="application/ld+json">
           {JSON.stringify({

@@ -16,10 +16,27 @@ export const MapSection = () => {
         setShouldLoad(true);
         obs.disconnect();
       }
-    }, { rootMargin: '600px 0px', threshold: 0.01 });
+    }, { rootMargin: '1800px 0px', threshold: 0.01 });
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
+
+  // Idle fallback to warm up the map load
+  React.useEffect(() => {
+    if (shouldLoad) return;
+    const load = () => setShouldLoad(true);
+
+    let cleanup: () => void = () => {};
+    if ('requestIdleCallback' in window) {
+      const id = (window as any).requestIdleCallback(load, { timeout: 4000 });
+      cleanup = () => (window as any).cancelIdleCallback?.(id);
+    } else {
+      const id = setTimeout(load, 3000) as unknown as number;
+      cleanup = () => clearTimeout(id);
+    }
+
+    return cleanup;
+  }, [shouldLoad]);
 
   return (
     <section 
