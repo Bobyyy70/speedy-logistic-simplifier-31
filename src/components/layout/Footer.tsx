@@ -22,7 +22,7 @@ export const Footer: React.FC = () => {
         </div>
       )}
       <footer
-        className="relative bg-gray-50 text-slate-900 overflow-hidden"
+        className="relative bg-gray-50 text-slate-900 overflow-hidden cv-auto cis-800"
         style={{ contain: "layout" }}
       >
         {/* Background Pattern */}
@@ -178,7 +178,7 @@ export const Footer: React.FC = () => {
                   </li>
                   <li className="md:ml-2">
                     <div
-                      className="inline-flex items-center justify-center px-2 py-2 md:px-0 md:py-1 min-h-[40px] min-w-[160px]"
+                      className="inline-flex items-center justify-center px-2 py-2 md:px-0 md:py-1 min-h-[44px] min-w-[200px] max-w-[260px] overflow-hidden whitespace-nowrap"
                       role="group"
                       aria-live="off"
                     >
