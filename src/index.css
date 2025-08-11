@@ -12,8 +12,12 @@
   img, video { height: auto; max-width: 100%; }
 }
 
-
 @layer utilities {
+  /* Content-visibility helpers to reduce main-thread work for off-screen sections */
+  .cv-auto { content-visibility: auto; contain: layout paint style; }
+  .cis-600 { contain-intrinsic-size: 600px; }
+  .cis-800 { contain-intrinsic-size: 800px; }
+  .cis-1000 { contain-intrinsic-size: 1000px; }
   .glass-effect {
     @apply backdrop-blur-sm bg-white/15 border border-white/20 shadow-glass-light;
   }
