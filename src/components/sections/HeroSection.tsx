@@ -16,7 +16,7 @@ const LazyWorldMapBackground = lazy(() =>
 export function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
   const throttledParallax = useThrottledParallax({ intensity: 8, fps: 30 });
-  const { metrics } = usePerformanceMonitor();
+  const { metrics } = usePerformanceMonitor({ startOnIdle: true });
   const [showDecorations, setShowDecorations] = useState(false);
 
   // Enable optimized parallax effect only on performant devices
