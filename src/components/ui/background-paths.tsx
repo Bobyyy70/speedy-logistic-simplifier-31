@@ -2,8 +2,10 @@
 "use client";
 
 // import { motion } from "framer-motion"; // heavy; keep as-is where used or lazy load wrapper
-import React, { ReactNode } from "react";
+import React, { ReactNode, Suspense } from "react";
 import { cn } from "@/lib/utils";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+const LazyAnimatedOverlay = React.lazy(() => import("./background-paths-animated"));
 
 export interface BackgroundPathsProps extends React.HTMLProps<HTMLDivElement> {
   children?: ReactNode;
@@ -61,8 +63,15 @@ export function BackgroundPaths({
   preserveBackground = true,
   ...props
 }: BackgroundPathsProps) {
+  const { elementRef, shouldAnimate } = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '400px',
+    triggerOnce: true,
+  });
+
   return (
     <div
+      ref={elementRef}
       className={cn(
         "relative w-full overflow-hidden",
         !preserveBackground && "bg-white dark:bg-neutral-950",
@@ -71,8 +80,19 @@ export function BackgroundPaths({
       {...props}
     >
       <div className="absolute inset-0 z-0">
-        <FloatingPaths position={1} opacity={opacity} />
-        <FloatingPaths position={-1} opacity={opacity} />
+        {shouldAnimate ? (
+          <Suspense fallback={<>
+            <FloatingPaths position={1} opacity={opacity} />
+            <FloatingPaths position={-1} opacity={opacity} />
+          </>}>
+            <LazyAnimatedOverlay opacity={opacity} />
+          </Suspense>
+        ) : (
+          <>
+            <FloatingPaths position={1} opacity={opacity} />
+            <FloatingPaths position={-1} opacity={opacity} />
+          </>
+        )}
       </div>
       {children && <div className="relative z-10">{children}</div>}
     </div>
