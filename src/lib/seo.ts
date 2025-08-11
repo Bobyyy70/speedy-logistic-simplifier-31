@@ -10,12 +10,21 @@ export type SEOPageData = {
   structuredData?: any;
 };
 
+// Ensure meta descriptions are short for SERP snippets
+const truncateDescription = (s?: string, max = 155) => {
+  if (!s) return s as any;
+  if (s.length <= max) return s;
+  const cut = s.slice(0, max);
+  const lastSpace = cut.lastIndexOf(" ");
+  return ((lastSpace > 80 ? cut.slice(0, lastSpace) : cut).trim()) + "…";
+};
+
 export const generateMetadata = (page?: SEOPageData, currentPath?: string) => {
   const baseUrl = "https://speedelog.net";
   const defaultImage = `${baseUrl}/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png`; // Logo Speed E-Log
   
   const title = page?.title || defaultSEO.title;
-  const description = page?.description || defaultSEO.description;
+  const description = truncateDescription(page?.description || defaultSEO.description, 155);
   const keywords = page?.keywords || defaultSEO.keywords;
   const image = page?.image || defaultImage;
   const canonical = page?.canonical || (currentPath ? `${baseUrl}${currentPath}` : baseUrl);
@@ -325,7 +334,7 @@ export const seoPages: { [key: string]: SEOPageData } = {
   },
   "/contact": {
     title: "Contact Speed E-Log - Consultation Logistique Gratuite | Devis 24h",
-    description: "Contactez Speed E-Log pour optimiser votre logistique e-commerce. Réservez une consultation gratuite ou utilisez nos formulaires. Réponse sous 24h garantie.",
+    description: "Contactez Speed E-Log pour optimiser votre logistique e-commerce. Consultation gratuite, réponse sous 24h.",
     keywords: "contact logistique e-commerce, consultation gratuite, devis logistique PME, Speed E-Log contact",
     structuredData: {
       "@context": "https://schema.org",
@@ -336,7 +345,7 @@ export const seoPages: { [key: string]: SEOPageData } = {
   },
   "/about": {
     title: "À propos Speed E-Log - Expert Logistique E-commerce PME | Histoire",
-    description: "Découvrez Speed E-Log, votre partenaire logistique e-commerce. Notre histoire, mission et expertise au service des PME françaises depuis Port-sur-Saône.",
+    description: "Speed E-Log, partenaire logistique e-commerce pour PME. Histoire, mission et expertise au service des PME en France.",
     keywords: "à propos Speed E-Log, histoire entreprise logistique, expert e-commerce PME, Port-sur-Saône",
     structuredData: [
       {

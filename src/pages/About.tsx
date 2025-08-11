@@ -40,9 +40,9 @@ const About = () => {
 
       <Helmet>
         <title>À Propos de Speed E-Log | Votre Partenaire Logistique</title>
-        <meta name="description" content="Découvrez Speed E-Log, votre partenaire logistique e-commerce à Port-sur-Saône. Notre mission: simplifier la logistique pour les PME françaises avec fiabilité et transparence." />
+        <meta name="description" content="Speed E-Log, partenaire logistique e-commerce pour PME. Nous simplifions vos opérations avec fiabilité, transparence et performance en France." />
         <meta property="og:title" content="À Propos de Speed E-Log | Votre Partenaire Logistique" />
-        <meta property="og:description" content="Découvrez Speed E-Log, votre partenaire logistique e-commerce à Port-sur-Saône. Notre mission: simplifier la logistique pour les PME françaises avec fiabilité et transparence." />
+        <meta property="og:description" content="Speed E-Log, partenaire logistique e-commerce pour PME. Nous simplifions vos opérations avec fiabilité, transparence et performance en France." />
         <meta name="robots" content="index, follow" />
       </Helmet>
 
