@@ -289,6 +289,9 @@ const About = () => {
                   alt="Équipe de Speed E-Log en réunion stratégique analysant des données logistiques" 
                   className="object-cover w-full h-full transition-transform duration-700 hover:scale-105" 
                   loading="lazy" 
+                  decoding="async"
+                  width={1600}
+                  height={900}
                   src="/lovable-uploads/0eebcb35-a340-42cb-b519-5af8f45c8f76.png" 
                 />
               </AspectRatio>
@@ -377,6 +380,9 @@ const About = () => {
                   alt="Équipe de Speed E-Log collaborant sur des solutions logistiques innovantes" 
                   className="object-cover w-full h-full transition-transform duration-700 hover:scale-105" 
                   loading="lazy" 
+                  decoding="async"
+                  width={1600}
+                  height={900}
                   src="/lovable-uploads/7e668035-1d72-4474-a463-2edc7209bb2a.png" 
                 />
               </AspectRatio>

@@ -326,6 +326,10 @@ const Technology = () => {
                             alt={`SupplyOS - ${screenshot.title}`} 
                             className="w-full h-auto rounded-xl cursor-pointer hover:opacity-90 transition-opacity" 
                             onClick={() => setEnlargedImage(index)} 
+                            width={1600}
+                            height={900}
+                            loading="lazy"
+                            decoding="async"
                           />
                         )}
                       </div>
