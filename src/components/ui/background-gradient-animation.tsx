@@ -39,6 +39,7 @@ export const BackgroundGradientAnimation = ({
   height?: string; // Type pour le nouveau paramètre
 }) => {
   const interactiveRef = useRef<HTMLDivElement>(null);
+  const rectRef = useRef<DOMRect | null>(null);
 
   const [curX, setCurX] = useState(0);
   const [curY, setCurY] = useState(0);
@@ -61,6 +62,23 @@ export const BackgroundGradientAnimation = ({
     document.body.style.setProperty("--pointer-color", pointerColor);
     document.body.style.setProperty("--size", size);
     document.body.style.setProperty("--blending-value", blendingValue);
+  }, []);
+
+  // Cache bounding rect once and update on resize to avoid forced reflow on mousemove
+  useEffect(() => {
+    const updateRect = () => {
+      if (interactiveRef.current?.parentElement) {
+        // Measure relative to container once; this read may trigger layout, but not on every mousemove
+        rectRef.current = interactiveRef.current.parentElement.getBoundingClientRect();
+      }
+    };
+    const rafUpdate = () => requestAnimationFrame(updateRect);
+
+    updateRect();
+    window.addEventListener('resize', rafUpdate, { passive: true } as any);
+    return () => {
+      window.removeEventListener('resize', rafUpdate as any);
+    };
   }, []);
 
   useEffect(() => {
@@ -93,8 +111,15 @@ export const BackgroundGradientAnimation = ({
   }, [tgX, tgY, interactive]);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (interactiveRef.current) {
-      const rect = interactiveRef.current.getBoundingClientRect();
+    // Prefer native offset to avoid layout reads
+    const native: any = event.nativeEvent;
+    if (typeof native?.offsetX === 'number' && typeof native?.offsetY === 'number') {
+      setTgX(native.offsetX);
+      setTgY(native.offsetY);
+      return;
+    }
+    const rect = rectRef.current;
+    if (rect) {
       setTgX(event.clientX - rect.left);
       setTgY(event.clientY - rect.top);
     }
