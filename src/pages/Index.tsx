@@ -1,17 +1,8 @@
-
-import { useEffect, lazy, Suspense } from "react";
+import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { LazyMotionDiv } from "@/components/ui/lazy-motion";
-
-const LazyLogisticsFeatureSection = lazy(() => import("@/components/sections/LogisticsFeatureSection").then(m => ({ default: m.LogisticsFeatureSection })));
-const LazyChallengesSection = lazy(() => import("@/components/sections/ChallengesSection").then(m => ({ default: m.ChallengesSection })));
-const LazyHowItWorksSection = lazy(() => import("@/components/sections/HowItWorksSection").then(m => ({ default: m.HowItWorksSection })));
-const LazyWhyUsSection = lazy(() => import("@/components/sections/WhyUsSection").then(m => ({ default: m.WhyUsSection })));
-const LazyTestimonialsSection = lazy(() => import("@/components/sections/TestimonialsSection").then(m => ({ default: m.TestimonialsSection })));
-const LazyContactCTA = lazy(() => import("@/components/home/ContactCTA").then(m => ({ default: m.ContactCTA })));
-const LazyLogisticsPerformanceSection = lazy(() => import("@/components/sections/LogisticsPerformanceSection").then(m => ({ default: m.LogisticsPerformanceSection })));
-
+import { LazyInView } from "@/components/performance/LazyInView";
 // Animation variants pour les transitions entre sections
 const sectionVariants = {
   hidden: { opacity: 0 },
@@ -56,32 +47,32 @@ const Index = () => {
         <HeroSection />
         
         {/* Main Content Sections - Lazy loaded */}
-        <LazyMotionDiv variants={sectionVariants}>
-          <Suspense fallback={null}><LazyLogisticsFeatureSection /></Suspense>
+        <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
+          <LazyInView loader={() => import("@/components/sections/LogisticsFeatureSection").then(m => ({ default: m.LogisticsFeatureSection }))} />
         </LazyMotionDiv>
         
-        <LazyMotionDiv variants={sectionVariants}>
-          <Suspense fallback={null}><LazyChallengesSection /></Suspense>
+        <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
+          <LazyInView loader={() => import("@/components/sections/ChallengesSection").then(m => ({ default: m.ChallengesSection }))} />
         </LazyMotionDiv>
         
-        <LazyMotionDiv variants={sectionVariants}>
-          <Suspense fallback={null}><LazyHowItWorksSection /></Suspense>
+        <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
+          <LazyInView loader={() => import("@/components/sections/HowItWorksSection").then(m => ({ default: m.HowItWorksSection }))} />
         </LazyMotionDiv>
         
-        <LazyMotionDiv variants={sectionVariants}>
-          <Suspense fallback={null}><LazyWhyUsSection /></Suspense>
+        <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
+          <LazyInView loader={() => import("@/components/sections/WhyUsSection").then(m => ({ default: m.WhyUsSection }))} />
         </LazyMotionDiv>
         
-        <LazyMotionDiv variants={sectionVariants}>
-          <Suspense fallback={null}><LazyLogisticsPerformanceSection /></Suspense>
+        <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
+          <LazyInView loader={() => import("@/components/sections/LogisticsPerformanceSection").then(m => ({ default: m.LogisticsPerformanceSection }))} />
         </LazyMotionDiv>
         
-        <LazyMotionDiv variants={sectionVariants}>
-          <Suspense fallback={null}><LazyTestimonialsSection /></Suspense>
+        <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
+          <LazyInView loader={() => import("@/components/sections/TestimonialsSection").then(m => ({ default: m.TestimonialsSection }))} />
         </LazyMotionDiv>
         
-        <LazyMotionDiv variants={sectionVariants}>
-          <Suspense fallback={null}><LazyContactCTA /></Suspense>
+        <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
+          <LazyInView loader={() => import("@/components/home/ContactCTA").then(m => ({ default: m.ContactCTA }))} />
         </LazyMotionDiv>
       </div>
     </div>
