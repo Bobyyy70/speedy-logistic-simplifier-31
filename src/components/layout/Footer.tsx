@@ -15,6 +15,7 @@ import logoPng from "@/assets/logo.png?w=32;64&format=png&as=srcset";
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
   const { shouldShowCustomBanner, isProduction } = useCookieManagement();
+  const reserveForHubspot = isProduction && typeof document !== 'undefined' && !document.cookie.includes('__hs_cookie_cat_pref');
 
   return (
     <>
@@ -26,7 +27,7 @@ export const Footer: React.FC = () => {
       )}
       <footer
         className="relative bg-gray-50 text-slate-900 overflow-hidden"
-        style={{ contain: "layout" }}
+        style={{ contain: "layout", paddingBottom: reserveForHubspot ? '64px' : undefined }}
       >
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
