@@ -22,7 +22,7 @@ export const Footer: React.FC = () => {
         </div>
       )}
       <footer
-        className="relative bg-gray-50 text-slate-900 overflow-hidden cv-auto cis-800"
+        className="relative bg-gray-50 text-slate-900 overflow-hidden"
         style={{ contain: "layout" }}
       >
         {/* Background Pattern */}
