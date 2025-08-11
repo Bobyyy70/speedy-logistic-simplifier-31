@@ -52,35 +52,15 @@ export function ResponsiveImage({
   const finalLoading = loading ?? (priority ? "eager" : "lazy");
 
   return (
-    <picture>
-      {/* AVIF */}
-      <source type="image/avif" srcSet={`/optimized/${baseName}.avif, ${buildSet("avif")}`} sizes={sizes} />
-      {/* WebP */}
-      <source type="image/webp" srcSet={`/optimized/${baseName}.webp, ${buildSet("webp")}`} sizes={sizes} />
-      {/* Fallback */}
-      <img
-        src={`/optimized/${baseName}-640w.${fallbackExt}`}
-        srcSet={buildSet("fallback")}
-        sizes={sizes}
-        alt={alt}
-        width={width}
-        height={height}
-        decoding={decoding}
-        loading={finalLoading}
-        className={cn("block", className)}
-        onError={(e) => {
-          // Robust fallback: drop srcset/sizes and force original source
-          e.currentTarget.removeAttribute('srcset')
-          e.currentTarget.removeAttribute('sizes')
-          e.currentTarget.src = src
-          // Hint decoding/loading to recover quickly
-          try {
-            e.currentTarget.decoding = 'async'
-            e.currentTarget.loading = 'eager'
-          } catch {}
-        }}
-      />
-    </picture>
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      decoding={decoding}
+      loading={finalLoading}
+      className={cn("block", className)}
+    />
   );
 }
 
