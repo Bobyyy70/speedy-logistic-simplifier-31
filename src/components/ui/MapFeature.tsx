@@ -60,7 +60,7 @@ export function MapFeature({
               <div className="relative bg-gradient-to-br from-white via-white to-white/80 dark:from-slate-900 dark:via-slate-900 dark:to-slate-900/80 shadow-xl rounded-lg p-4 md:p-6 overflow-hidden">
                 {image ? (
                   <AspectRatio ratio={16 / 9} className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-950 dark:to-blue-950 rounded-md mb-4 overflow-hidden">
-                    <img alt={imageAlt} className="w-full h-full object-cover" src={image} width={1600} height={900} loading="lazy" decoding="async" />
+                    <img alt={imageAlt} className="w-full h-full object-cover" src={image} width={1280} height={720} loading="lazy" decoding="async" />
                   </AspectRatio>
                 ) : (
                   <div className="rounded-md overflow-hidden mb-4">

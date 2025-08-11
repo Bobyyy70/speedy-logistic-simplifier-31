@@ -9,6 +9,7 @@ import { AnimatedButton } from "@/components/ui/moving-border";
 import { BackgroundPaths } from "@/components/ui/background-paths";
 import { Button } from "@/components/ui/neon-button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { ResponsiveImage } from "@/components/ui/ResponsiveImage";
 
 const Technology = () => {
   useEffect(() => {
@@ -164,11 +165,14 @@ const Technology = () => {
                     </div>
                   </div>
                   <AspectRatio ratio={16 / 10}>
-                    <img 
-                      src="/lovable-uploads/78d7ab9f-306b-4854-a6c6-a1863ac47cf4.png" 
-                      alt="Interface SupplyOS montrant les KPIs logistiques - commandes, coûts et performance des transporteurs" 
-                      className="w-full h-full object-cover pt-12" 
-                      loading="lazy" decoding="async" width={1600} height={1000} />
+                    <ResponsiveImage
+                      src="/lovable-uploads/78d7ab9f-306b-4854-a6c6-a1863ac47cf4.png"
+                      alt="Interface SupplyOS montrant les KPIs logistiques - commandes, coûts et performance des transporteurs"
+                      width={1600}
+                      height={1000}
+                      className="w-full h-full object-cover pt-12"
+                      sizes="(max-width: 1024px) 100vw, 640px"
+                    />
                   </AspectRatio>
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
                     <span className="text-white font-medium text-sm bg-blue-600 px-4 py-2 rounded-full">Interface SupplyOS</span>
@@ -198,14 +202,13 @@ const Technology = () => {
               transition={{ duration: 0.6 }}
             >
               <div className="relative mb-12">
-                <img 
+                <ResponsiveImage 
                   src="/lovable-uploads/9e3dc511-3aec-4dc9-840f-187ab8de7235.png" 
                   alt="SupplyOS - Plateforme logistique intégrée de Speed E-Log" 
                   className="h-28 sm:h-32 object-contain relative z-10" 
                   width={512}
                   height={128}
-                  loading="lazy"
-                  decoding="async"
+                  sizes="(max-width: 640px) 200px, 512px"
                 />
                 <div className="absolute inset-0 bg-blue-400/10 dark:bg-blue-400/5 rounded-full filter blur-3xl"></div>
               </div>
@@ -305,12 +308,13 @@ const Technology = () => {
                             onClick={() => setEnlargedImage(null)}
                           >
                             <div className="relative max-w-6xl max-h-[90vh]">
-                              <img 
-                                src={screenshot.src} 
-                                alt={`SupplyOS - ${screenshot.title}`} 
-                                className="w-full h-auto object-contain" 
+                              <ResponsiveImage 
+                                src={screenshot.src}
+                                alt={`SupplyOS - ${screenshot.title}`}
+                                className="w-full h-auto object-contain"
                                 width={1600}
                                 height={900}
+                                sizes="100vw"
                               />
                               <button 
                                 onClick={() => setEnlargedImage(null)} 
@@ -321,15 +325,13 @@ const Technology = () => {
                             </div>
                           </div>
                         ) : (
-                          <img 
+                          <ResponsiveImage 
                             src={screenshot.src} 
                             alt={`SupplyOS - ${screenshot.title}`} 
                             className="w-full h-auto rounded-xl cursor-pointer hover:opacity-90 transition-opacity" 
-                            onClick={() => setEnlargedImage(index)} 
                             width={1600}
                             height={900}
-                            loading="lazy"
-                            decoding="async"
+                            sizes="(max-width: 1024px) 100vw, 800px"
                           />
                         )}
                       </div>

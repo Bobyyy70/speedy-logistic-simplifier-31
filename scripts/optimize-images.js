@@ -10,6 +10,7 @@ const OUTPUT_DIR = './public/optimized';
 const WEBP_QUALITY = 85;
 const JPEG_QUALITY = 80;
 const PNG_COMPRESSION = 9;
+const WIDTHS = [320, 480, 640, 768, 960, 1024, 1280, 1600, 1920];
 
 // Ensure output directory exists
 if (!fs.existsSync(OUTPUT_DIR)) {
@@ -35,7 +36,19 @@ async function optimizeImage(inputPath, filename) {
     
     console.log(`Processing: ${filename} (${(originalStats.size / 1024).toFixed(2)} KB)`);
 
-    // Generate WebP version (primary)
+    // Generate AVIF and WebP versions (primary, max 1920)
+    const avifPath = path.join(OUTPUT_DIR, `${baseName}.avif`);
+    await sharp(inputPath)
+      .resize(1920, 1920, {
+        fit: 'inside',
+        withoutEnlargement: true
+      })
+      .avif({
+        quality: Math.min(90, WEBP_QUALITY + 5),
+        effort: 6 // Max compression effort
+      })
+      .toFile(avifPath);
+
     const webpPath = path.join(OUTPUT_DIR, `${baseName}.webp`);
     await sharp(inputPath)
       .resize(1920, 1920, { 
@@ -81,7 +94,35 @@ async function optimizeImage(inputPath, filename) {
 
     fs.writeFileSync(fallbackPath, optimizedBuffer);
 
-    // Calculate savings
+    // Generate responsive variants (AVIF, WebP, and fallback) across widths
+    for (const width of WIDTHS) {
+      try {
+        const avifW = path.join(OUTPUT_DIR, `${baseName}-${width}w.avif`);
+        await sharp(inputPath)
+          .resize(width, width, { fit: 'inside', withoutEnlargement: true })
+          .avif({ quality: Math.min(90, WEBP_QUALITY + 5), effort: 6 })
+          .toFile(avifW);
+
+        const webpW = path.join(OUTPUT_DIR, `${baseName}-${width}w.webp`);
+        await sharp(inputPath)
+          .resize(width, width, { fit: 'inside', withoutEnlargement: true })
+          .webp({ quality: WEBP_QUALITY, effort: 6 })
+          .toFile(webpW);
+
+        const fallbackExt = ['.png'].includes(ext) ? 'png' : 'jpg';
+        const fallbackW = path.join(OUTPUT_DIR, `${baseName}-${width}w.${fallbackExt}`);
+        const pipeline = sharp(inputPath).resize(width, width, { fit: 'inside', withoutEnlargement: true });
+        if (fallbackExt === 'jpg') {
+          await pipeline.jpeg({ quality: JPEG_QUALITY, progressive: true, mozjpeg: true }).toFile(fallbackW);
+        } else {
+          await pipeline.png({ compressionLevel: PNG_COMPRESSION, progressive: true }).toFile(fallbackW);
+        }
+      } catch (e) {
+        console.warn(`Variant generation failed for ${filename} @${width}w:`, e.message);
+      }
+    }
+
+    // Calculate savings (compare against WebP primary)
     const webpStats = fs.statSync(webpPath);
     const fallbackStats = fs.statSync(fallbackPath);
     const bestOptimized = webpStats.size < fallbackStats.size ? webpStats : fallbackStats;
@@ -153,17 +194,18 @@ function generateUsageInstructions() {
 Replace your image imports with the optimized versions:
 
 \`\`\`tsx
-import { OptimizedImage } from '@/components/ui/optimized-image';
+import { ResponsiveImage } from '@/components/ui/ResponsiveImage';
 
 // Instead of:
 <img src="/lovable-uploads/image.png" alt="Description" />
 
 // Use:
-<OptimizedImage
-  src="/optimized/image"
+<ResponsiveImage
+  src="/lovable-uploads/image.png"
   alt="Description"
-  className="w-full h-auto"
-  loading="lazy"
+  width={1200}
+  height={800}
+  sizes="(max-width: 768px) 100vw, 1200px"
 />
 \`\`\`
 

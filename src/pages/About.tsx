@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -11,6 +10,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { useLazyImage } from "@/hooks/use-lazy-image";
 import { BackgroundPaths } from "@/components/ui/background-paths";
 import { motion } from "framer-motion";
+import { ResponsiveImage } from "@/components/ui/ResponsiveImage";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -285,14 +285,13 @@ const About = () => {
               <div className="absolute inset-0 bg-blue-500/5 rounded-2xl transform group-hover:scale-[0.98] transition-transform duration-500" />
               <div className="absolute inset-0 bg-blue-100/80 rounded-2xl transform group-hover:scale-[1.02] transition-transform duration-500 -z-10 blur-xl opacity-50" />
               <AspectRatio ratio={16 / 9} className="overflow-hidden rounded-2xl shadow-2xl">
-                <img 
+                <ResponsiveImage 
                   alt="Équipe de Speed E-Log en réunion stratégique analysant des données logistiques" 
                   className="object-cover w-full h-full transition-transform duration-700 hover:scale-105" 
-                  loading="lazy" 
-                  decoding="async"
                   width={1600}
                   height={900}
                   src="/lovable-uploads/0eebcb35-a340-42cb-b519-5af8f45c8f76.png" 
+                  sizes="(max-width: 1024px) 100vw, 800px"
                 />
               </AspectRatio>
             </motion.div>

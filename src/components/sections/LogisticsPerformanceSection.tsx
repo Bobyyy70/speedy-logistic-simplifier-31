@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { ResponsiveImage } from "@/components/ui/ResponsiveImage";
 
 export function LogisticsPerformanceSection() {
   const performanceMetrics = [
@@ -160,14 +161,13 @@ export function LogisticsPerformanceSection() {
             <div className="relative">
               <div className="absolute -inset-4 rounded-full" />
               <AspectRatio ratio={16 / 9} className="relative z-10">
-                <img 
+                <ResponsiveImage 
                   alt="SupplyOS - Plateforme logistique intégrée de Speed E-Log pour gestion complète des opérations" 
                   className="w-full h-full object-contain" 
                   src="/lovable-uploads/9e3dc511-3aec-4dc9-840f-187ab8de7235.png" 
                   width={1600}
                   height={900}
-                  loading="lazy"
-                  decoding="async"
+                  sizes="(max-width: 1024px) 100vw, 720px"
                 />
               </AspectRatio>
             </div>
