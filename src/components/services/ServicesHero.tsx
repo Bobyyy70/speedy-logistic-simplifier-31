@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AuroraBackground } from "@/components/ui/aurora-background";
@@ -13,8 +13,7 @@ export const ServicesHero: React.FC = () => {
   return (
     <AuroraBackground className="min-h-[65vh] h-auto py-16 md:py-24" keepExistingBackground={true}>
       <div className="container mx-auto relative px-4 flex flex-col items-center justify-center h-full">
-        <motion.div 
-          initial={false}
+        <div 
           className="max-w-4xl mx-auto text-center relative z-10"
         >
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter mb-6">
@@ -47,7 +46,7 @@ export const ServicesHero: React.FC = () => {
               </Link>
             </Button>
           </div>
-        </motion.div>
+        </div>
         
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div className="w-[500px] h-[500px] rounded-full bg-blue-500/5 blur-[100px]"></div>

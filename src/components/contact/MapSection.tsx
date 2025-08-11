@@ -1,6 +1,6 @@
 
 import React from "react";
-import { motion } from "framer-motion";
+
 import { MapPin } from "lucide-react";
 
 export const MapSection = () => {
@@ -22,11 +22,8 @@ export const MapSection = () => {
   }, []);
 
   return (
-    <motion.section 
+    <section 
       className="bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-slate-200"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.6 }}
     >
       <div className="text-center mb-4 md:mb-6">
         <h2 className="text-xl md:text-2xl font-semibold mb-2 text-slate-900 flex items-center justify-center gap-2 md:gap-3 flex-wrap">
@@ -94,6 +91,6 @@ export const MapSection = () => {
           )
         )}
       </div>
-    </motion.section>
+    </section>
   );
 };

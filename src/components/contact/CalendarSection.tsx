@@ -1,6 +1,6 @@
 
 import React from "react";
-import { motion } from "framer-motion";
+
 import { Calendar } from "lucide-react";
 
 export const CalendarSection = () => {
@@ -21,11 +21,8 @@ export const CalendarSection = () => {
   }, []);
 
   return (
-    <motion.section 
+    <section 
       className="bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-slate-200 relative overflow-hidden"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.2 }}
       data-calendar-section
     >
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-blue-800"></div>
@@ -69,6 +66,6 @@ export const CalendarSection = () => {
           </div>
         )}
       </div>
-    </motion.section>
+    </section>
   );
 };

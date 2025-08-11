@@ -34,6 +34,8 @@ export const Footer: React.FC = () => {
                     alt="Speed E-Log - Spécialiste logistique e-commerce France"
                     width="32"
                     height="32"
+                    decoding="async"
+                    loading="lazy"
                     className="w-8 h-8 object-contain"
                   />
                   <span className="text-xl font-bold text-slate-900">Speed E-Log</span>

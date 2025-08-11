@@ -1,7 +1,7 @@
 
 "use client";
 
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion"; // heavy; keep as-is where used or lazy load wrapper
 import React, { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
@@ -21,7 +21,7 @@ function FloatingPaths({ position, opacity = 0.15 }: { position: number; opacity
     } ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${
       684 - i * 5 * position
     } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
-    width: 0.5 + i * 0.035, // Lignes légèrement plus épaisses pour une meilleure visibilité
+    width: 0.5 + i * 0.035,
   }));
 
   return (
@@ -41,23 +41,12 @@ function FloatingPaths({ position, opacity = 0.15 }: { position: number; opacity
       >
         <title>Background Paths</title>
         {paths.map((path) => (
-          <motion.path
+          <path
             key={path.id}
             d={path.d}
             stroke="currentColor"
             strokeWidth={path.width}
-            strokeOpacity={(0.1 + path.id * 0.01) * opacity} // Opacité augmentée mais toujours subtile
-            initial={{ pathLength: 0.3, opacity: 0.4 }}
-            animate={{
-              pathLength: 1,
-              opacity: [0.2, 0.4, 0.2], // Variation d'opacité un peu plus visible
-              pathOffset: [0, 1, 0],
-            }}
-            transition={{
-              duration: 30 + Math.random() * 20, // Animation encore plus lente pour un effet élégant
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-            }}
+            strokeOpacity={(0.1 + path.id * 0.01) * opacity}
           />
         ))}
       </svg>
@@ -68,7 +57,7 @@ function FloatingPaths({ position, opacity = 0.15 }: { position: number; opacity
 export function BackgroundPaths({
   className,
   children,
-  opacity = 0.3, // Augmenté légèrement l'opacité par défaut
+  opacity = 0.3,
   preserveBackground = true,
   ...props
 }: BackgroundPathsProps) {
