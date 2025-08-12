@@ -4,7 +4,7 @@ import { Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { MapFeature } from "@/components/ui/MapFeature";
 
-export function LogisticsFeatureSection() {
+export function LogisticsFeatureSection({ backgroundVariant = 'white' }: { backgroundVariant?: 'white' | 'site' }) {
   // Définition des points de livraison internationaux
   const globalShippingPoints = [
     {
@@ -41,7 +41,7 @@ export function LogisticsFeatureSection() {
   ];
 
   return (
-    <div className="py-16 relative">
+    <section className={`py-16 relative ${backgroundVariant === 'site' ? 'bg-transparent' : 'bg-white'}`}>
       <MapFeature 
         title="Infrastructure Optimisée sur une Portée Mondiale"
         description="Notre entrepôt est spécialement conçu pour traiter efficacement les commandes e-commerce à l'échelle internationale. Avec des processus optimisés et une technologie de pointe, nous garantissons rapidité et précision pour vos livraisons partout dans le monde."
@@ -84,6 +84,6 @@ export function LogisticsFeatureSection() {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

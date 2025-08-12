@@ -53,6 +53,7 @@ const Index = () => {
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
           <LazyInView 
             loader={() => import("@/components/sections/LogisticsFeatureSection").then(m => ({ default: m.LogisticsFeatureSection }))} 
+            componentProps={{ backgroundVariant: 'white' }}
           />
         </LazyMotionDiv>
         
@@ -85,13 +86,15 @@ const Index = () => {
           />
         </LazyMotionDiv>
 
-        {/* Transition back to white before next block */}
-        <div className="h-8 bg-gradient-to-b from-transparent to-white pointer-events-none" aria-hidden="true" />
-        
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
-          <LazyInView loader={() => import("@/components/sections/TestimonialsSection").then(m => ({ default: m.TestimonialsSection }))} />
+          <LazyInView 
+            loader={() => import("@/components/sections/TestimonialsSection").then(m => ({ default: m.TestimonialsSection }))} 
+            componentProps={{ backgroundVariant: 'site' }}
+          />
         </LazyMotionDiv>
         
+        {/* Transition back to white before Contact CTA */}
+        <div className="h-8 bg-gradient-to-b from-transparent to-white pointer-events-none" aria-hidden="true" />
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
           <LazyInView loader={() => import("@/components/home/ContactCTA").then(m => ({ default: m.ContactCTA }))} />
         </LazyMotionDiv>
