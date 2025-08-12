@@ -34,7 +34,26 @@ export default {
       }
     }
 
-    return new Response(response.body, {
+    // For HTML responses, add preload hints for stylesheets to reduce render-blocking
+    const contentType = response.headers.get('content-type') || '';
+    let body: BodyInit | null = response.body;
+
+    if (response.status === 200 && contentType.includes('text/html')) {
+      const html = await response.text();
+      body = html;
+
+      // Find all stylesheet links and add Link preload headers
+      const matches = [...html.matchAll(/<link[^>]+rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)];
+      if (matches.length) {
+        const existingLink = headers.get('Link');
+        const preloadHeader = matches
+          .map((m) => `<${m[1]}>; rel=preload; as=style`)
+          .join(', ');
+        headers.set('Link', existingLink ? `${existingLink}, ${preloadHeader}` : preloadHeader);
+      }
+    }
+
+    return new Response(body, {
       status: response.status,
       statusText: response.statusText,
       headers,
