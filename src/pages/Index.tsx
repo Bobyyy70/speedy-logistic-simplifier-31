@@ -23,7 +23,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white relative">
+    <div className="min-h-screen relative">
       
       {/* Removed duplicate BackgroundGradientAnimation - only one in HeroSection */}
 
@@ -44,7 +44,10 @@ const Index = () => {
         </Helmet>
         
         {/* Hero Section - No lazy loading for above-fold content */}
-        <HeroSection />
+        <div className="bg-white">
+          <HeroSection />
+        </div>
+        <div className="h-8 bg-gradient-to-b from-white to-transparent pointer-events-none" aria-hidden="true" />
         
         {/* Main Content Sections - Lazy loaded */}
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
