@@ -1,10 +1,10 @@
 
 import React, { useState } from 'react';
-import { X, Settings, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useCookieManagement } from '@/hooks/useCookieManagement';
 import { ResponsiveImage } from '@/components/ui/ResponsiveImage';
+import { LazyIcon } from '@/components/performance/LazyIcon';
 
 interface CookiePreferences {
   necessary: boolean;
@@ -79,7 +79,7 @@ export const CustomCookieBanner: React.FC = () => {
                   size="sm"
                   className="text-xs"
                 >
-                  <Settings className="h-3 w-3 mr-1" />
+                  <LazyIcon importIcon={() => import('lucide-react').then(m => ({ default: m.Settings }))} className="h-3 w-3 mr-1" aria-hidden />
                   Gérer
                 </Button>
                 <Button
@@ -96,7 +96,7 @@ export const CustomCookieBanner: React.FC = () => {
                   size="sm"
                   className="text-xs"
                 >
-                  <Check className="h-3 w-3 mr-1" />
+                  <LazyIcon importIcon={() => import('lucide-react').then(m => ({ default: m.Check }))} className="h-3 w-3 mr-1" aria-hidden />
                   Accepter
                 </Button>
               </div>
@@ -122,7 +122,7 @@ export const CustomCookieBanner: React.FC = () => {
                   onClick={() => setShowDetails(false)}
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  <X className="h-4 w-4" />
+                  <LazyIcon importIcon={() => import('lucide-react').then(m => ({ default: m.X }))} className="h-4 w-4" aria-hidden />
                 </Button>
               </div>
 

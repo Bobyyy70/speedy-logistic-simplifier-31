@@ -1,7 +1,6 @@
 import React from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { HubSpotQuoteForm } from "./HubSpotQuoteForm";
-import { X } from "lucide-react";
 interface QuoteFormModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -10,7 +9,6 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
   isOpen,
   onClose
 }) => {
-  console.log('QuoteFormModal render - isOpen:', isOpen);
   return <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto" aria-describedby="quote-form-description">
         <DialogHeader className="flex flex-row items-center justify-between space-y-0 pb-4">

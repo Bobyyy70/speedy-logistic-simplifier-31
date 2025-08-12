@@ -1,5 +1,4 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { lazy, Suspense } from 'react';
 
 // For critical above-fold animations that need immediate loading
 interface CriticalMotionProps {
@@ -12,6 +11,23 @@ interface CriticalMotionProps {
   transition?: any;
 }
 
+// Lazy-load framer-motion elements to avoid blocking main thread on initial paint
+const LazyMotionDiv = lazy(() =>
+  import('framer-motion').then(({ motion }) => ({ default: motion.div }))
+);
+const LazyMotionSection = lazy(() =>
+  import('framer-motion').then(({ motion }) => ({ default: motion.section }))
+);
+const LazyMotionH1 = lazy(() =>
+  import('framer-motion').then(({ motion }) => ({ default: motion.h1 }))
+);
+const LazyMotionH2 = lazy(() =>
+  import('framer-motion').then(({ motion }) => ({ default: motion.h2 }))
+);
+const LazyMotionP = lazy(() =>
+  import('framer-motion').then(({ motion }) => ({ default: motion.p }))
+);
+
 export const CriticalMotion: React.FC<CriticalMotionProps> = ({
   children,
   className,
@@ -22,26 +38,34 @@ export const CriticalMotion: React.FC<CriticalMotionProps> = ({
   transition,
   ...props
 }) => {
-  // Check for reduced motion preference
-  const prefersReducedMotion = typeof window !== 'undefined' && 
+  // Respect reduced motion preference
+  const prefersReducedMotion = typeof window !== 'undefined' &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (prefersReducedMotion) {
-    return React.createElement(component, { className }, children);
-  }
+  const StaticComponent = component as keyof JSX.IntrinsicElements;
+  const fallback = React.createElement(StaticComponent, { className }, children);
 
-  const MotionComponent = motion[component as keyof typeof motion] as any;
+  if (prefersReducedMotion) return fallback;
+
+  const MotionComponent =
+    component === 'section' ? LazyMotionSection :
+    component === 'h1' ? LazyMotionH1 :
+    component === 'h2' ? LazyMotionH2 :
+    component === 'p' ? LazyMotionP :
+    LazyMotionDiv;
 
   return (
-    <MotionComponent
-      variants={variants}
-      initial={initial}
-      animate={animate}
-      transition={transition}
-      className={className}
-      {...props}
-    >
-      {children}
-    </MotionComponent>
+    <Suspense fallback={fallback}>
+      <MotionComponent
+        variants={variants}
+        initial={initial}
+        animate={animate}
+        transition={transition}
+        className={className}
+        {...(props as any)}
+      >
+        {children}
+      </MotionComponent>
+    </Suspense>
   );
 };
