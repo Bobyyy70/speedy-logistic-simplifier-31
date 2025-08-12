@@ -28,23 +28,96 @@ export function useSEOMonitoring() {
   const [validation, setValidation] = useState<SEOValidation | null>(null);
 
   useEffect(() => {
-    // Measure Core Web Vitals
-    const measureWebVitals = () => {
-      const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
-      
+    let cleanupFns: Array<() => void> = [];
+    let headObserver: MutationObserver | null = null;
+    let bodyObserver: MutationObserver | null = null;
+    let debounceTimer: number | null = null;
+    let poFCP: PerformanceObserver | null = null;
+    let poLCP: PerformanceObserver | null = null;
+    let poCLS: PerformanceObserver | null = null;
+    let poFID: PerformanceObserver | null = null;
+
+    const debounce = (fn: () => void, delay = 150) => {
+      if (debounceTimer) window.clearTimeout(debounceTimer);
+      debounceTimer = window.setTimeout(fn, delay);
+    };
+
+    // Measure Core Web Vitals progressively using PerformanceObserver where available
+    const measureNavigation = () => {
+      const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined;
       if (navigation) {
-        setMetrics({
+        setMetrics(prev => ({
+          ...(prev ?? {
+            firstContentfulPaint: 0,
+            largestContentfulPaint: 0,
+            cumulativeLayoutShift: 0,
+            firstInputDelay: 0,
+          }),
           pageLoadTime: navigation.loadEventEnd - navigation.loadEventStart,
           domContentLoaded: navigation.domContentLoadedEventEnd - navigation.loadEventStart,
-          firstContentfulPaint: 0, // Would need observer for real FCP
-          largestContentfulPaint: 0, // Would need observer for real LCP
-          cumulativeLayoutShift: 0, // Would need observer for real CLS
-          firstInputDelay: 0 // Would need observer for real FID
-        });
+        }));
       }
     };
 
-    // Validate SEO elements
+    const observePerf = () => {
+      if (typeof PerformanceObserver === 'undefined') return;
+      try {
+        poFCP = new PerformanceObserver((list) => {
+          const entry = list.getEntries().find(e => (e as PerformanceEntry).name === 'first-contentful-paint') as PerformanceEntry | undefined;
+          if (entry) {
+            setMetrics(prev => ({
+              ...(prev ?? { pageLoadTime: 0, domContentLoaded: 0, largestContentfulPaint: 0, cumulativeLayoutShift: 0, firstInputDelay: 0 }),
+              firstContentfulPaint: entry.startTime,
+            }));
+          }
+        });
+        poFCP.observe({ type: 'paint', buffered: true } as PerformanceObserverInit);
+      } catch {}
+
+      try {
+        poLCP = new PerformanceObserver((list) => {
+          const entries = list.getEntries();
+          const last = entries[entries.length - 1] as PerformanceEntry | undefined;
+          if (last) {
+            setMetrics(prev => ({
+              ...(prev ?? { pageLoadTime: 0, domContentLoaded: 0, firstContentfulPaint: 0, cumulativeLayoutShift: 0, firstInputDelay: 0 }),
+              largestContentfulPaint: last.startTime,
+            }));
+          }
+        });
+        poLCP.observe({ type: 'largest-contentful-paint', buffered: true } as PerformanceObserverInit);
+      } catch {}
+
+      try {
+        let clsValue = 0;
+        poCLS = new PerformanceObserver((list) => {
+          for (const entry of list.getEntries() as any[]) {
+            if (!entry.hadRecentInput) clsValue += entry.value;
+          }
+          setMetrics(prev => ({
+            ...(prev ?? { pageLoadTime: 0, domContentLoaded: 0, firstContentfulPaint: 0, largestContentfulPaint: 0, firstInputDelay: 0 }),
+            cumulativeLayoutShift: clsValue,
+          }));
+        });
+        poCLS.observe({ type: 'layout-shift', buffered: true } as PerformanceObserverInit);
+      } catch {}
+
+      try {
+        poFID = new PerformanceObserver((list) => {
+          const first = list.getEntries()[0] as any;
+          if (first) {
+            const fid = (first.processingStart ?? 0) - (first.startTime ?? 0);
+            setMetrics(prev => ({
+              ...(prev ?? { pageLoadTime: 0, domContentLoaded: 0, firstContentfulPaint: 0, largestContentfulPaint: 0, cumulativeLayoutShift: 0 }),
+              firstInputDelay: fid,
+            }));
+          }
+        });
+        poFID.observe({ type: 'first-input', buffered: true } as PerformanceObserverInit);
+      } catch {}
+    };
+
+    // Validate SEO elements; called debounced and on mutations
     const validateSEO = () => {
       const title = document.querySelector('title')?.textContent || '';
       const description = document.querySelector('meta[name="description"]')?.getAttribute('content') || '';
@@ -62,20 +135,43 @@ export function useSEOMonitoring() {
         h1Count: h1Elements.length,
         hasStructuredData: structuredData.length > 0,
         imagesMissingAlt: imagesMissingAlt.length,
-        totalImages: images.length
+        totalImages: images.length,
       });
     };
 
-    // Run measurements after DOM is loaded
-    if (document.readyState === 'complete') {
-      measureWebVitals();
-      validateSEO();
+    // Initial measurements
+    measureNavigation();
+    observePerf();
+
+    const runValidations = () => debounce(validateSEO, 150);
+
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      runValidations();
     } else {
-      window.addEventListener('load', () => {
-        measureWebVitals();
-        validateSEO();
-      });
+      const onLoad = () => runValidations();
+      window.addEventListener('load', onLoad, { once: true });
+      cleanupFns.push(() => window.removeEventListener('load', onLoad));
     }
+
+    // Observe head/body changes to catch Helmet injections and dynamic content
+    headObserver = new MutationObserver(() => runValidations());
+    bodyObserver = new MutationObserver(() => runValidations());
+
+    try {
+      headObserver.observe(document.head, { childList: true, subtree: true, attributes: true });
+      bodyObserver.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['alt'] });
+      cleanupFns.push(() => headObserver && headObserver.disconnect());
+      cleanupFns.push(() => bodyObserver && bodyObserver.disconnect());
+    } catch {}
+
+    return () => {
+      cleanupFns.forEach(fn => fn());
+      if (debounceTimer) window.clearTimeout(debounceTimer);
+      poFCP?.disconnect?.();
+      poLCP?.disconnect?.();
+      poCLS?.disconnect?.();
+      poFID?.disconnect?.();
+    };
   }, [location.pathname]);
 
   // Calculate SEO score
