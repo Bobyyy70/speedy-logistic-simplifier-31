@@ -479,6 +479,40 @@ export const seoPages: { [key: string]: SEOPageData } = {
     description: "Conditions générales de vente Speed E-Log pour services de logistique e-commerce. Tarifs, engagements et modalités de nos prestations 3PL.",
     keywords: "CGV Speed E-Log, conditions générales logistique, tarifs 3PL, conditions services e-commerce",
   },
+  
+  // Nouvelles pages clés
+  "/integrations": {
+    title: "Intégrations e-commerce et transporteurs | Speed E‑Log",
+    description: "Connectez Shopify, WooCommerce, marketplaces et transporteurs (Colissimo, FedEx...). 40+ intégrations pour un fulfillment PME en France.",
+    keywords: "intégrations e-commerce, connecteurs Shopify, WooCommerce, marketplaces, transporteurs Colissimo, FedEx, API logistique",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Intégrations Speed E-Log",
+      "itemListOrder": "Unordered"
+    }
+  },
+  "/suivi-colis": {
+    title: "Suivi Colis E‑commerce | Speed E‑Log",
+    description: "Suivez votre colis Speed E‑Log. Entrez votre numéro de suivi et code postal pour accéder au suivi en marque blanche.",
+    keywords: "suivi colis, tracking e-commerce, Sendcloud, suivi Speed E-Log",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Suivi de colis"
+    }
+  },
+  "/blog": {
+    title: "Blog Logistique E‑commerce | Conseils 3PL PME – Speed E‑Log",
+    description: "Articles et guides sur la logistique e-commerce, fulfillment, intégrations et optimisation des coûts pour PME. Actus et tutoriels.",
+    keywords: "blog logistique e-commerce, 3PL, fulfillment, tutoriels logistique, cas clients",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Blog Speed E-Log",
+      "inLanguage": "fr-FR"
+    }
+  },
 };
 
 // Generate sitemap data

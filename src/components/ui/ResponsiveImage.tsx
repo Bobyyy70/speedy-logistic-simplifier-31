@@ -1,5 +1,6 @@
 import React from "react";
 import { cn } from "@/lib/utils";
+import { validateAltText } from "@/lib/alt-text-utils";
 
 interface ResponsiveImageProps {
   src: string; // original path like /lovable-uploads/uuid.png
@@ -53,6 +54,17 @@ export function ResponsiveImage({
     }).join(", ");
 
   const finalLoading = loading ?? (priority ? "eager" : "lazy");
+
+  // Dev-only alt text validation
+  if (import.meta.env.DEV) {
+    try {
+      const res = validateAltText(alt);
+      if (!res.isValid) {
+        console.warn(`[SEO] Image alt à améliorer: "${alt}"`, res.issues, res.suggestions);
+      }
+    } catch {}
+  }
+
 
   return (
     <img

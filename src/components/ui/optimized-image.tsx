@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useAdaptiveLoading } from "@/hooks/use-performance-monitor";
 import { cn } from "@/lib/utils";
+import { validateAltText } from "@/lib/alt-text-utils";
 
 interface OptimizedImageProps {
   src: string; // Base path without extension for optimized loading
@@ -63,6 +64,16 @@ export function OptimizedImage({
 
   // Determine final image source with fallbacks
   const finalSrc = imageError ? (placeholder || "/placeholder.svg") : fallbackSrc;
+
+  // Dev-only alt text validation
+  if (import.meta.env.DEV) {
+    try {
+      const res = validateAltText(alt);
+      if (!res.isValid) {
+        console.warn(`[SEO] Image alt à améliorer: "${alt}"`, res.issues, res.suggestions);
+      }
+    } catch {}
+  }
   
   // Calculate computed aspect ratio
   const computedAspectRatio = aspectRatio || (width && height ? `${width}/${height}` : undefined);

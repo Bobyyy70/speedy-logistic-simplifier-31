@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+
 import { HeroSection } from "@/components/sections/HeroSection";
 import { LazyMotionDiv } from "@/components/ui/lazy-motion";
 import { LazyInView } from "@/components/performance/LazyInView";
@@ -28,20 +28,6 @@ const Index = () => {
       {/* Removed duplicate BackgroundGradientAnimation - only one in HeroSection */}
 
       <div className="relative overflow-x-hidden z-10">
-        <Helmet>
-          <title>Speed E-Log | Logistique E-commerce Simplifiée pour PME</title>
-          <meta 
-            name="description" 
-            content="Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
-          />
-          <meta property="og:title" content="Speed E-Log | Logistique E-commerce Simplifiée pour PME" />
-          <meta 
-            property="og:description" 
-            content="Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
-          />
-          <meta name="keywords" content="logistique e-commerce, externalisation logistique, 3PL, fulfillment, préparation commandes, PME logistique" />
-          <meta name="robots" content="index, follow" />
-        </Helmet>
         
         {/* Hero Section - No lazy loading for above-fold content */}
         <div className="bg-white">

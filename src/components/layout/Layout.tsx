@@ -11,7 +11,7 @@ import { Helmet } from "react-helmet-async";
 import { generateMetadata, seoPages } from "@/lib/seo";
 import { getHubSpotConfig } from "@/lib/hubspot-config";
 import { CriticalResourcePreloader } from "@/components/performance/CriticalResourcePreloader";
-
+import { SeoAuditWidget } from "@/components/seo/SeoAuditWidget";
 interface LayoutProps {
   children: React.ReactNode;
 }
@@ -188,6 +188,8 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <IdleHydrator>
         <FloatingChatButton />
       </IdleHydrator>
+
+      {import.meta.env.DEV && <SeoAuditWidget />}
       
       {/* Gestion des cookies: HubSpot (production) et bannière custom (dev) gérés dans le Footer */}
     </div>
