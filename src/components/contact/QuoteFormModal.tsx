@@ -1,6 +1,6 @@
 import React from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { HubSpotQuoteForm } from "./HubSpotQuoteForm";
+import { HubspotEmbeddedForm } from "./HubspotEmbeddedForm";
 interface QuoteFormModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -26,7 +26,7 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
             Remplissez ce formulaire pour recevoir un devis personnalisé adapté à vos besoins logistiques.
           </p>
           
-          <HubSpotQuoteForm />
+          <HubspotEmbeddedForm />
         </div>
       </DialogContent>
     </Dialog>;
