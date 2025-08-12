@@ -33,7 +33,7 @@ export const LazyMotionDiv: React.FC<LazyMotionDivProps> = ({
   });
 
   return (
-    <div ref={elementRef} className={className}>
+    <div ref={elementRef} className={['relative', className].filter(Boolean).join(' ')}>
       <Suspense fallback={<div className={className}>{children}</div>}>
         {shouldAnimate ? (
           <MotionDiv
