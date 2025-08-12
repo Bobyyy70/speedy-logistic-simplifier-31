@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { getHubSpotConfig, hubSpotUtils } from "@/lib/hubspot-config";
 
 const SCRIPT_ID = "hs-forms-v2-script";
+const EMBED_SCRIPT_ID = "hs-forms-embed-components-script";
 
 /**
  * HubSpot Forms v2 embed: loads official SDK and renders the exact original form styling.
@@ -42,6 +43,43 @@ export const HubspotEmbeddedForm: React.FC = () => {
       });
 
     const render = async () => {
+      const fallbackLegacyEmbed = async () => {
+        try {
+          if (!containerRef.current) return;
+          // Prepare container for legacy embed components script
+          containerRef.current.innerHTML = "";
+          const target = document.createElement("div");
+          target.className = "hs-form-frame";
+          target.setAttribute("data-region", config.region || "eu1");
+          target.setAttribute("data-form-id", config.forms.quote);
+          target.setAttribute("data-portal-id", config.portalId);
+          containerRef.current.appendChild(target);
+
+          // Load legacy embed script once
+          let embedScript = document.getElementById(EMBED_SCRIPT_ID) as HTMLScriptElement | null;
+          if (!embedScript) {
+            embedScript = document.createElement("script");
+            embedScript.id = EMBED_SCRIPT_ID;
+            embedScript.src = hubSpotUtils.getScriptUrl(config);
+            embedScript.defer = true;
+            embedScript.onload = () => {
+              if (!cancelled) setReady(true);
+            };
+            embedScript.onerror = () => {
+              console.error("HubSpot legacy embed failed to load");
+              if (!cancelled) setReady(true);
+            };
+            document.head.appendChild(embedScript);
+          } else {
+            // Script already present; assume it processes current DOM
+            if (!cancelled) setReady(true);
+          }
+        } catch (e) {
+          console.error("HubSpot fallback error:", e);
+          if (!cancelled) setReady(true);
+        }
+      };
+
       try {
         await ensureScriptLoaded();
         if (cancelled) return;
@@ -52,8 +90,8 @@ export const HubspotEmbeddedForm: React.FC = () => {
         }
         if (!cancelled) setReady(true);
       } catch (err) {
-        console.error("HubSpot form load error:", err);
-        if (!cancelled) setReady(true); // fail-open so users still see container/fallback
+        console.error("HubSpot form load error (will try legacy fallback):", err);
+        await fallbackLegacyEmbed();
       }
     };
 

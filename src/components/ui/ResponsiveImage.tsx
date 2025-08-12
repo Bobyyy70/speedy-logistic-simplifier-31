@@ -75,7 +75,7 @@ export function ResponsiveImage({
       decoding={decoding}
       loading={finalLoading}
       sizes={sizes}
-      fetchPriority={fetchPriority}
+      {...(fetchPriority ? { fetchpriority: fetchPriority } : {})}
       onClick={onClick}
       className={cn("block", className)}
       onError={(e) => {
