@@ -338,8 +338,8 @@ export const seoPages: { [key: string]: SEOPageData } = {
     )
   },
   "/contact": {
-    title: "Contact Speed E-Log - Consultation Logistique Gratuite | Devis 24h",
-    description: "Contactez Speed E-Log pour optimiser votre logistique e-commerce. Consultation gratuite, réponse sous 24h.",
+    title: "Contact Speed E-Log | Consultation logistique gratuite",
+    description: "Contactez Speed E-Log et optimisez votre logistique e‑commerce. Consultation gratuite, réponse sous 24 h en France métropolitaine.",
     keywords: "contact logistique e-commerce, consultation gratuite, devis logistique PME, Speed E-Log contact",
     structuredData: {
       "@context": "https://schema.org",

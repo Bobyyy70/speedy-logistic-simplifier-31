@@ -12,8 +12,8 @@ import { Clock, MapPin, Phone, Mail } from "lucide-react";
 const Contact = () => {
   return <>
       <Helmet>
-        <title>Contact Speed E-Log - Réservez votre consultation logistique gratuite</title>
-        <meta name="description" content="Contactez Speed E-Log pour optimiser votre logistique e-commerce. Réservez une consultation gratuite. Réponse sous 24h." />
+        <title>Contact Speed E-Log | Consultation logistique gratuite</title>
+        <meta name="description" content="Contactez Speed E-Log et optimisez votre logistique e‑commerce. Consultation gratuite, réponse sous 24 h en France métropolitaine." />
         <meta name="keywords" content="contact speed e-log, consultation logistique, service client, SAV, rendez-vous, Port-sur-Saône, 37 rue rémaucourt, formulaire contact, calendrier" />
         <meta name="geo.region" content="FR-70" />
         <meta name="geo.placename" content="Port-sur-Saône" />
