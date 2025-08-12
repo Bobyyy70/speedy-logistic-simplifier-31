@@ -4,7 +4,7 @@ import { Clock, Wallet, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
 import AnimatedText from "@/components/ui/AnimatedText";
 
-export function ChallengesSection() {
+export function ChallengesSection({ backgroundVariant = 'white' }: { backgroundVariant?: 'white' | 'site' }) {
   const challenges = [
     {
       icon: Clock,
@@ -23,8 +23,10 @@ export function ChallengesSection() {
     }
   ];
   
+  const sectionBg = backgroundVariant === 'site' ? 'bg-transparent' : 'bg-white';
+  
   return (
-    <section id="challenges" className="py-12 md:py-24 lg:py-32 bg-white relative overflow-hidden">
+    <section id="challenges" className={`py-12 md:py-24 lg:py-32 ${sectionBg} relative overflow-hidden`}>
       <div className="container mx-auto px-4 relative z-10">
         {/* Introduction */}
         <motion.div 

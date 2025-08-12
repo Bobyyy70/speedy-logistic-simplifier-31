@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import AnimatedText from "@/components/ui/AnimatedText";
 import { OptimizedTestimonialsCarousel } from "@/components/ui/testimonials/OptimizedTestimonialsCarousel";
 
-export function TestimonialsSection() {
+export function TestimonialsSection({ backgroundVariant = 'white' }: { backgroundVariant?: 'white' | 'site' }) {
   return (
-    <section className="py-16 md:py-24 bg-white relative overflow-hidden">
+    <section className={`py-16 md:py-24 ${backgroundVariant === 'site' ? 'bg-transparent' : 'bg-white'} relative overflow-hidden`} >
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12 md:mb-16">
           <motion.div
