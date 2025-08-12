@@ -67,7 +67,7 @@ const Index = () => {
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
           <LazyInView 
             loader={() => import("@/components/sections/HowItWorksSection").then(m => ({ default: m.HowItWorksSection }))}
-            componentProps={{ backgroundVariant: 'site' }}
+            componentProps={{ backgroundVariant: 'white' }}
           />
         </LazyMotionDiv>
         
