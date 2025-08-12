@@ -22,7 +22,7 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
         </DialogHeader>
         
         <div className="space-y-4">
-          <DialogDescription id="quote-form-description" className="text-slate-600">
+          <DialogDescription id="dialog-description" className="text-slate-600">
             Remplissez ce formulaire pour recevoir un devis personnalisé adapté à vos besoins logistiques.
           </DialogDescription>
           

@@ -65,9 +65,20 @@ export const HubspotEmbeddedForm: React.FC = () => {
             embedScript.onload = () => {
               if (!cancelled) setReady(true);
             };
-            embedScript.onerror = () => {
-              console.error("HubSpot legacy embed failed to load");
-              if (!cancelled) setReady(true);
+            embedScript.onerror = async () => {
+              console.error("HubSpot legacy embed failed to load; trying v2 SDK");
+              try {
+                await ensureScriptLoaded();
+                if (cancelled) return;
+                if (containerRef.current) {
+                  containerRef.current.innerHTML = "";
+                  await hubSpotUtils.createForm(config.forms.quote, containerRef.current, config);
+                }
+                if (!cancelled) setReady(true);
+              } catch (e2) {
+                console.error("HubSpot v2 fallback also failed:", e2);
+                if (!cancelled) setReady(true);
+              }
             };
             document.head.appendChild(embedScript);
           } else {
@@ -80,19 +91,8 @@ export const HubspotEmbeddedForm: React.FC = () => {
         }
       };
 
-      try {
-        await ensureScriptLoaded();
-        if (cancelled) return;
-        if (containerRef.current) {
-          // Clear any previous markup to avoid duplicate forms
-          containerRef.current.innerHTML = "";
-          await hubSpotUtils.createForm(config.forms.quote, containerRef.current, config);
-        }
-        if (!cancelled) setReady(true);
-      } catch (err) {
-        console.error("HubSpot form load error (will try legacy fallback):", err);
-        await fallbackLegacyEmbed();
-      }
+      // Prefer legacy embed components first to reduce 403s on dev domains
+      await fallbackLegacyEmbed();
     };
 
     render();
