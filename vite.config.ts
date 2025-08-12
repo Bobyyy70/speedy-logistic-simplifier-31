@@ -38,7 +38,7 @@ export default defineConfig(({ mode }) => ({
               preload: 'swap',
               pruneSource: false,
               compress: true,
-              inlineFonts: true,
+              inlineFonts: false,
               preloadFonts: true,
               fonts: 'swap'
             });
