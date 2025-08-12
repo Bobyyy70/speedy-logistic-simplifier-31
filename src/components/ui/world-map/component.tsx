@@ -1,11 +1,12 @@
 
 import React, { useRef } from "react";
-import { useTheme } from "next-themes";
-import DottedMap from "dotted-map";
 import { MapPaths } from "./MapPaths";
 import { MapPoints } from "./MapPoints";
 import { MovingDots } from "./MovingDots";
 import { MapProps } from "./types";
+import { useDottedMap } from "./useDottedMap";
+import { DEFAULT_DOTS } from "./constants";
+
 
 export function WorldMap({
   dots = [],
@@ -16,34 +17,12 @@ export function WorldMap({
   secondaryDotColor = "#F3BA2F",
 }: MapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
-  const map = new DottedMap({ height: 100, grid: "diagonal" });
-  
-  // Get the theme from next-themes
-  const { theme } = useTheme();
-  const isDarkMode = theme === "dark";
+  const { svgMap } = useDottedMap();
 
-  const svgMap = map.getSVG({
-    radius: 0.35, // Slightly larger dots
-    color: isDarkMode ? "#FFFFFF90" : "#00000045", // Plus léger pour meilleure lisibilité
-    shape: "circle",
-    backgroundColor: "transparent", // Transparent background to blend with the gradient
-  });
 
   // If no points are provided, use default ones
-  const activeDots = dots.length > 0 ? dots : [
-    {
-      start: { lat: 48.8566, lng: 2.3522, label: "France" },
-      end: { lat: 40.7128, lng: -74.006, label: "New York" }
-    },
-    {
-      start: { lat: 48.8566, lng: 2.3522 },
-      end: { lat: 35.6762, lng: 139.6503, label: "Tokyo" }
-    },
-    {
-      start: { lat: 48.8566, lng: 2.3522 },
-      end: { lat: -33.8688, lng: 151.2093, label: "Sydney" }
-    }
-  ];
+  const activeDots = dots.length > 0 ? dots : DEFAULT_DOTS;
+
 
   return (
     <div className="w-full h-full rounded-lg relative font-sans">

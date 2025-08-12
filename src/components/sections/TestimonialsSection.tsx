@@ -3,10 +3,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import AnimatedText from "@/components/ui/AnimatedText";
 import { OptimizedTestimonialsCarousel } from "@/components/ui/testimonials/OptimizedTestimonialsCarousel";
+import { sectionBgClass, BackgroundVariant } from "./section-variants";
 
-export function TestimonialsSection({ backgroundVariant = 'white' }: { backgroundVariant?: 'white' | 'site' }) {
+export function TestimonialsSection({ backgroundVariant = 'white' }: { backgroundVariant?: BackgroundVariant }) {
   return (
-    <section className={`py-16 md:py-24 ${backgroundVariant === 'site' ? 'bg-transparent' : 'bg-white'} relative overflow-hidden`} >
+    <section className={`py-16 md:py-24 ${sectionBgClass(backgroundVariant)} relative overflow-hidden`} >
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12 md:mb-16">
           <motion.div
