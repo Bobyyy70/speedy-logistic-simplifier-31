@@ -5,6 +5,10 @@ import { componentTagger } from "lovable-tagger";
 import analyzer from "rollup-plugin-analyzer";
 import terser from "@rollup/plugin-terser";
 import { imagetools } from 'vite-imagetools';
+import fs from 'fs/promises';
+// @ts-ignore - critters types not resolved in config context
+import Critters from 'critters';
+
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -16,6 +20,36 @@ export default defineConfig(({ mode }) => ({
     imagetools(),
     react(),
     mode === 'development' && componentTagger(),
+    mode === 'production' && (() => {
+      let outDir = 'dist';
+      return {
+        name: 'vite-critters-inline',
+        apply: (config: any, env: any) => env.command === 'build',
+        configResolved(resolved: any) {
+          outDir = resolved.build.outDir || 'dist';
+        },
+        async writeBundle() {
+          try {
+            const indexPath = path.resolve(process.cwd(), outDir, 'index.html');
+            const html = await fs.readFile(indexPath, 'utf8');
+            const critters = new Critters({
+              path: path.resolve(process.cwd(), outDir),
+              logLevel: 'silent',
+              preload: 'swap',
+              pruneSource: false,
+              compress: true,
+              inlineFonts: true,
+              preloadFonts: true,
+              fonts: 'swap'
+            });
+            const processed = await critters.process(html);
+            await fs.writeFile(indexPath, processed, 'utf8');
+          } catch (e: any) {
+            console.warn('[critters] skipping inline CSS:', e?.message || e);
+          }
+        }
+      };
+    })(),
     mode === 'production' && analyzer({ 
       summaryOnly: true,
       limit: 10,
