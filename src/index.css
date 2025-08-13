@@ -1,5 +1,6 @@
 
 /* Performance optimizations */
+@import "./styles/critical.css";
 @import "./styles/performance.css";
 @import "./styles/performance-tbt.css";
 

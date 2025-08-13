@@ -34,7 +34,12 @@ export function WorldMap({
           width="1056"
           draggable={false}
           decoding="async"
-          style={{ opacity }}
+          loading="lazy"
+          style={{ 
+            opacity,
+            willChange: 'auto', // Don't optimize for changes
+            contain: 'layout style paint' // Isolate rendering
+          }}
         />
         <svg
           ref={svgRef}

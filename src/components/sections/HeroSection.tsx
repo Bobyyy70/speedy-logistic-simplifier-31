@@ -37,7 +37,7 @@ export function HeroSection() {
     }
   }, [throttledParallax, metrics.isLowEndDevice]);
 
-  // Defer non-critical decorations until idle (improves LCP)
+  // Defer non-critical decorations until idle (improves LCP) - reduced timeout
   useEffect(() => {
     if (metrics.isLowEndDevice || metrics.networkSpeed === 'slow') return;
 
@@ -45,9 +45,9 @@ export function HeroSection() {
     const onIdle = () => setShowDecorations(true);
 
     if ('requestIdleCallback' in window) {
-      idleId = (window as any).requestIdleCallback(onIdle, { timeout: 1500 }) as number;
+      idleId = (window as any).requestIdleCallback(onIdle, { timeout: 800 }) as number;
     } else {
-      idleId = (setTimeout as unknown as (handler: TimerHandler, timeout?: number) => number)(onIdle, 1200);
+      idleId = (setTimeout as unknown as (handler: TimerHandler, timeout?: number) => number)(onIdle, 500);
     }
 
     return () => {

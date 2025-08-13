@@ -33,10 +33,10 @@ export const useDottedMap = () => {
       // Defer heavy library load off the critical path
       import("dotted-map").then(({ default: DottedMap }) => {
         if (cancelled) return;
-        const map = new DottedMap({ height: 100, grid: "diagonal" });
+        const map = new DottedMap({ height: 60, grid: "diagonal" }); // Reduced size for performance
         const svg = map.getSVG({
-          radius: 0.35,
-          color: isDarkMode ? "#FFFFFF90" : "#00000045",
+          radius: 0.25, // Smaller radius for less DOM complexity
+          color: isDarkMode ? "#FFFFFF60" : "#00000030", // Reduced opacity
           shape: "circle",
           backgroundColor: "transparent",
         });
