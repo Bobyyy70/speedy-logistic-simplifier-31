@@ -20,7 +20,12 @@ const truncateDescription = (s?: string, max = 155) => {
 };
 
 export const generateMetadata = (page?: SEOPageData, currentPath?: string) => {
-  const baseUrl = "https://speedelog.net";
+  // Prefer the runtime origin for canonical URLs to avoid duplicate-content issues across environments
+  const defaultBaseUrl = "https://speedelog.net";
+  let baseUrl = defaultBaseUrl;
+  if (typeof window !== 'undefined' && window.location?.origin) {
+    baseUrl = window.location.origin;
+  }
   const defaultImage = `${baseUrl}/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png`; // Logo Speed E-Log
   
   const title = page?.title || defaultSEO.title;
@@ -333,8 +338,8 @@ export const seoPages: { [key: string]: SEOPageData } = {
     )
   },
   "/contact": {
-    title: "Contact Speed E-Log - Consultation Logistique Gratuite | Devis 24h",
-    description: "Contactez Speed E-Log pour optimiser votre logistique e-commerce. Consultation gratuite, réponse sous 24h.",
+    title: "Contact Speed E-Log | Consultation logistique gratuite",
+    description: "Contactez Speed E-Log et optimisez votre logistique e‑commerce. Consultation gratuite, réponse sous 24 h en France métropolitaine.",
     keywords: "contact logistique e-commerce, consultation gratuite, devis logistique PME, Speed E-Log contact",
     structuredData: {
       "@context": "https://schema.org",
@@ -473,6 +478,40 @@ export const seoPages: { [key: string]: SEOPageData } = {
     title: "CGV Speed E-Log | Conditions Générales Logistique E-commerce",
     description: "Conditions générales de vente Speed E-Log pour services de logistique e-commerce. Tarifs, engagements et modalités de nos prestations 3PL.",
     keywords: "CGV Speed E-Log, conditions générales logistique, tarifs 3PL, conditions services e-commerce",
+  },
+  
+  // Nouvelles pages clés
+  "/integrations": {
+    title: "Intégrations e-commerce et transporteurs | Speed E‑Log",
+    description: "Connectez Shopify, WooCommerce, marketplaces et transporteurs (Colissimo, FedEx...). 40+ intégrations pour un fulfillment PME en France.",
+    keywords: "intégrations e-commerce, connecteurs Shopify, WooCommerce, marketplaces, transporteurs Colissimo, FedEx, API logistique",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Intégrations Speed E-Log",
+      "itemListOrder": "Unordered"
+    }
+  },
+  "/suivi-colis": {
+    title: "Suivi Colis E‑commerce | Speed E‑Log",
+    description: "Suivez votre colis Speed E‑Log. Entrez votre numéro de suivi et code postal pour accéder au suivi en marque blanche.",
+    keywords: "suivi colis, tracking e-commerce, Sendcloud, suivi Speed E-Log",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Suivi de colis"
+    }
+  },
+  "/blog": {
+    title: "Blog Logistique E‑commerce | Conseils 3PL PME – Speed E‑Log",
+    description: "Articles et guides sur la logistique e-commerce, fulfillment, intégrations et optimisation des coûts pour PME. Actus et tutoriels.",
+    keywords: "blog logistique e-commerce, 3PL, fulfillment, tutoriels logistique, cas clients",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Blog Speed E-Log",
+      "inLanguage": "fr-FR"
+    }
   },
 };
 

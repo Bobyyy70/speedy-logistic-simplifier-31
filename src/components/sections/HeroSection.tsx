@@ -4,7 +4,10 @@ import { HeroContent } from "@/components/sections/hero/HeroContent";
 import { HeroCard } from "@/components/sections/hero/HeroCard";
 import { ScrollIndicator } from "@/components/sections/ScrollIndicator";
 // removed direct import of WorldMapBackground for code-splitting
-import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
+// Lazy load background animation to avoid early script evaluation
+const LazyBackgroundGradientAnimation = lazy(() =>
+  import("@/components/ui/background-gradient-animation").then(m => ({ default: m.BackgroundGradientAnimation }))
+);
 import { UltraLazyMotion, performanceVariants } from "@/components/ui/ultra-lazy-motion";
 import { useThrottledParallax } from "@/hooks/use-throttled-parallax";
 import { usePerformanceMonitor } from "@/hooks/use-performance-monitor";
@@ -16,7 +19,7 @@ const LazyWorldMapBackground = lazy(() =>
 export function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
   const throttledParallax = useThrottledParallax({ intensity: 8, fps: 30 });
-  const { metrics } = usePerformanceMonitor();
+  const { metrics } = usePerformanceMonitor({ startOnIdle: true });
   const [showDecorations, setShowDecorations] = useState(false);
 
   // Enable optimized parallax effect only on performant devices
@@ -34,7 +37,7 @@ export function HeroSection() {
     }
   }, [throttledParallax, metrics.isLowEndDevice]);
 
-  // Defer non-critical decorations until idle (improves LCP)
+  // Defer non-critical decorations until idle (improves LCP) - reduced timeout
   useEffect(() => {
     if (metrics.isLowEndDevice || metrics.networkSpeed === 'slow') return;
 
@@ -42,9 +45,9 @@ export function HeroSection() {
     const onIdle = () => setShowDecorations(true);
 
     if ('requestIdleCallback' in window) {
-      idleId = (window as any).requestIdleCallback(onIdle, { timeout: 1500 }) as number;
+      idleId = (window as any).requestIdleCallback(onIdle, { timeout: 800 }) as number;
     } else {
-      idleId = (setTimeout as unknown as (handler: TimerHandler, timeout?: number) => number)(onIdle, 1200);
+      idleId = (setTimeout as unknown as (handler: TimerHandler, timeout?: number) => number)(onIdle, 500);
     }
 
     return () => {
@@ -67,20 +70,22 @@ export function HeroSection() {
     >
       {/* Background gradient animation with enhanced colors and subtlety */}
       {showDecorations && (
-        <BackgroundGradientAnimation
-          gradientBackgroundStart="#ffffff"
-          gradientBackgroundEnd="#f8fafc"
-          firstColor="47, 104, 243"        // Primary blue
-          secondColor="243, 186, 47"       // Gold/yellow accent
-          thirdColor="100, 220, 255"       // Light blue
-          fourthColor="80, 120, 240"       // Soft blue
-          fifthColor="220, 180, 100"       // Warm gold
-          pointerColor="140, 100, 255"     // Interactive purple
-          size="100%"
-          blendingValue="soft-light"
-          className="absolute inset-0 z-0 opacity-40"
-          interactive={!metrics.isLowEndDevice && showDecorations}
-        />
+        <Suspense fallback={null}>
+          <LazyBackgroundGradientAnimation
+            gradientBackgroundStart="#ffffff"
+            gradientBackgroundEnd="#f8fafc"
+            firstColor="47, 104, 243"        // Primary blue
+            secondColor="243, 186, 47"       // Gold/yellow accent
+            thirdColor="100, 220, 255"       // Light blue
+            fourthColor="80, 120, 240"       // Soft blue
+            fifthColor="220, 180, 100"       // Warm gold
+            pointerColor="140, 100, 255"     // Interactive purple
+            size="100%"
+            blendingValue="soft-light"
+            className="absolute inset-0 z-0 opacity-40"
+            interactive={!metrics.isLowEndDevice && showDecorations}
+          />
+        </Suspense>
       )}
       
       {/* Animated gradient orbs - only for high-performance devices */}

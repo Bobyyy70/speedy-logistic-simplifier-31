@@ -22,12 +22,26 @@ export function useBeamsAnimation({
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
 
+        let isVisible = true;
+        let isDocumentHidden = false;
+        const visibilityHandler = () => {
+            isDocumentHidden = document.hidden;
+        };
+        document.addEventListener("visibilitychange", visibilityHandler);
+
+        const observer = new IntersectionObserver(([entry]) => {
+            isVisible = entry.isIntersecting;
+        }, { threshold: 0.01 });
+        observer.observe(canvas);
+
         const updateCanvasSize = () => {
             const dpr = window.devicePixelRatio || 1;
             canvas.width = window.innerWidth * dpr;
             canvas.height = window.innerHeight * dpr;
             canvas.style.width = `${window.innerWidth}px`;
             canvas.style.height = `${window.innerHeight}px`;
+            // Reset any existing transforms before applying scale to avoid compounding
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
             ctx.scale(dpr, dpr);
 
             const totalBeams = MINIMUM_BEAMS;
@@ -41,6 +55,12 @@ export function useBeamsAnimation({
 
         function animate() {
             if (!canvas || !ctx) return;
+
+            // Skip heavy drawing when not visible or tab is hidden
+            if (isDocumentHidden || !isVisible) {
+                animationFrameRef.current = requestAnimationFrame(animate);
+                return;
+            }
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.filter = "blur(20px)"; // Flou augmenté pour plus de discrétion
@@ -68,6 +88,8 @@ export function useBeamsAnimation({
             if (animationFrameRef.current) {
                 cancelAnimationFrame(animationFrameRef.current);
             }
+            observer.disconnect();
+            document.removeEventListener("visibilitychange", visibilityHandler);
         };
     }, [intensity, colors]);
 

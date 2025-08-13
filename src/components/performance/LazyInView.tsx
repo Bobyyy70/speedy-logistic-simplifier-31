@@ -10,6 +10,8 @@ interface LazyInViewProps<T extends React.ComponentType<any>> {
   triggerOnce?: boolean;
   // Optional wrapper to reserve space and avoid CLS for below-the-fold
   wrapperStyle?: React.CSSProperties;
+  // Props to forward to the lazily loaded component
+  componentProps?: Record<string, any>;
 }
 
 export function LazyInView<T extends React.ComponentType<any>>({
@@ -20,6 +22,7 @@ export function LazyInView<T extends React.ComponentType<any>>({
   threshold = 0.01,
   triggerOnce = true,
   wrapperStyle,
+  componentProps,
 }: LazyInViewProps<T>) {
   const { elementRef, shouldAnimate } = useIntersectionObserver({
     rootMargin,
@@ -34,7 +37,7 @@ export function LazyInView<T extends React.ComponentType<any>>({
     <div ref={elementRef} className={className} style={wrapperStyle}>
       {Component ? (
         <Suspense fallback={fallback}>
-          <Component />
+          <Component {...componentProps} />
         </Suspense>
       ) : null}
     </div>

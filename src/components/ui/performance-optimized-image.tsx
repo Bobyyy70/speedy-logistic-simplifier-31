@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
+import { validateAltText } from "@/lib/alt-text-utils";
 
 interface PerformanceOptimizedImageProps {
   src: string;
@@ -39,6 +40,17 @@ export const PerformanceOptimizedImage: React.FC<PerformanceOptimizedImageProps>
   }, []);
 
   const shouldLoad = priority || shouldAnimate;
+
+  // Dev-only alt text validation
+  if (import.meta.env.DEV) {
+    try {
+      const res = validateAltText(alt);
+      if (!res.isValid) {
+        console.warn(`[SEO] Image alt à améliorer: "${alt}"`, res.issues, res.suggestions);
+      }
+    } catch {}
+  }
+
 
   return (
     <div ref={elementRef} className={`relative overflow-hidden ${className}`}>

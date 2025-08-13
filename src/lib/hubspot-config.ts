@@ -37,7 +37,7 @@ if (isProduction) {
 export const getHubSpotConfig = (): HubSpotConfig => {
   const portalId = import.meta.env.VITE_HUBSPOT_PORTAL_ID || (isDevelopment ? '144571109' : '');
   const region = import.meta.env.VITE_HUBSPOT_REGION || (isDevelopment ? 'eu1' : '');
-  const quoteFormId = import.meta.env.VITE_HUBSPOT_QUOTE_FORM_ID || (isDevelopment ? 'ebf2ad52-915e-4bfa-b4c0-a2ff8480054f' : '');
+  const quoteFormId = import.meta.env.VITE_HUBSPOT_QUOTE_FORM_ID || (isDevelopment ? 'd5353f82-5ee6-44c1-afd6-501f1f60728c' : '');
   
   // Build forms API URL based on portal ID and region
   const formsApiUrl = import.meta.env.VITE_HUBSPOT_FORMS_API_URL || 
@@ -63,9 +63,14 @@ export const getHubSpotConfig = (): HubSpotConfig => {
 
 // Utility functions for common HubSpot operations
 export const hubSpotUtils = {
-  // Build the HubSpot script URL
+  // Build the HubSpot script URL (legacy embed)
   getScriptUrl: (config: HubSpotConfig = getHubSpotConfig()) => {
     return `https://js-${config.region}.hsforms.net/forms/embed/${config.portalId}.js`;
+  },
+
+  // Build the HubSpot Forms v2 SDK script URL
+  getV2ScriptUrl: (config: HubSpotConfig = getHubSpotConfig()) => {
+    return `https://js-${config.region}.hsforms.net/forms/v2.js`;
   },
 
   // Check if HubSpot is available

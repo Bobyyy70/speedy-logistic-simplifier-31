@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+
 import { HeroSection } from "@/components/sections/HeroSection";
 import { LazyMotionDiv } from "@/components/ui/lazy-motion";
 import { LazyInView } from "@/components/performance/LazyInView";
@@ -23,54 +23,64 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white relative">
+    <div className="min-h-screen relative">
       
       {/* Removed duplicate BackgroundGradientAnimation - only one in HeroSection */}
 
       <div className="relative overflow-x-hidden z-10">
-        <Helmet>
-          <title>Speed E-Log | Logistique E-commerce Simplifiée pour PME</title>
-          <meta 
-            name="description" 
-            content="Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
-          />
-          <meta property="og:title" content="Speed E-Log | Logistique E-commerce Simplifiée pour PME" />
-          <meta 
-            property="og:description" 
-            content="Externalisez votre logistique e-commerce avec Speed E-Log. Services fiables et transparents pour PME. Obtenez un devis personnalisé." 
-          />
-          <meta name="keywords" content="logistique e-commerce, externalisation logistique, 3PL, fulfillment, préparation commandes, PME logistique" />
-          <meta name="robots" content="index, follow" />
-        </Helmet>
         
         {/* Hero Section - No lazy loading for above-fold content */}
-        <HeroSection />
+        <div className="bg-white">
+          <HeroSection />
+        </div>
+        <div className="h-8 bg-gradient-to-b from-white to-transparent pointer-events-none" aria-hidden="true" />
         
         {/* Main Content Sections - Lazy loaded */}
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
-          <LazyInView loader={() => import("@/components/sections/LogisticsFeatureSection").then(m => ({ default: m.LogisticsFeatureSection }))} />
+          <LazyInView 
+            loader={() => import("@/components/sections/LogisticsFeatureSection").then(m => ({ default: m.LogisticsFeatureSection }))} 
+            componentProps={{ backgroundVariant: 'white' }}
+          />
+        </LazyMotionDiv>
+        
+        {/* Apply site background to mid sections */}
+        <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
+          <LazyInView 
+            loader={() => import("@/components/sections/ChallengesSection").then(m => ({ default: m.ChallengesSection }))}
+            componentProps={{ backgroundVariant: 'site' }}
+          />
         </LazyMotionDiv>
         
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
-          <LazyInView loader={() => import("@/components/sections/ChallengesSection").then(m => ({ default: m.ChallengesSection }))} />
+          <LazyInView 
+            loader={() => import("@/components/sections/HowItWorksSection").then(m => ({ default: m.HowItWorksSection }))}
+            componentProps={{ backgroundVariant: 'white' }}
+          />
         </LazyMotionDiv>
         
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
-          <LazyInView loader={() => import("@/components/sections/HowItWorksSection").then(m => ({ default: m.HowItWorksSection }))} />
+          <LazyInView 
+            loader={() => import("@/components/sections/WhyUsSection").then(m => ({ default: m.WhyUsSection }))}
+            componentProps={{ backgroundVariant: 'site' }}
+          />
         </LazyMotionDiv>
         
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
-          <LazyInView loader={() => import("@/components/sections/WhyUsSection").then(m => ({ default: m.WhyUsSection }))} />
+          <LazyInView 
+            loader={() => import("@/components/sections/LogisticsPerformanceSection").then(m => ({ default: m.LogisticsPerformanceSection }))}
+            componentProps={{ backgroundVariant: 'site' }}
+          />
         </LazyMotionDiv>
-        
+
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
-          <LazyInView loader={() => import("@/components/sections/LogisticsPerformanceSection").then(m => ({ default: m.LogisticsPerformanceSection }))} />
+          <LazyInView 
+            loader={() => import("@/components/sections/TestimonialsSection").then(m => ({ default: m.TestimonialsSection }))} 
+            componentProps={{ backgroundVariant: 'site' }}
+          />
         </LazyMotionDiv>
         
-        <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
-          <LazyInView loader={() => import("@/components/sections/TestimonialsSection").then(m => ({ default: m.TestimonialsSection }))} />
-        </LazyMotionDiv>
-        
+        {/* Transition back to white before Contact CTA */}
+        <div className="h-8 bg-gradient-to-b from-transparent to-white pointer-events-none" aria-hidden="true" />
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
           <LazyInView loader={() => import("@/components/home/ContactCTA").then(m => ({ default: m.ContactCTA }))} />
         </LazyMotionDiv>

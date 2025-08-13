@@ -60,7 +60,7 @@ export function Hero() {
                     height="300"
                     loading="eager"
                     decoding="async"
-                    fetchPriority="high"
+                    
                   />
                 </div>
                 <h3 className="font-semibold text-lg mb-2">Une logistique moderne et efficace</h3>

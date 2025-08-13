@@ -40,7 +40,7 @@ export const MapSection = () => {
 
   return (
     <section 
-      className="bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-slate-200"
+      className="bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-slate-200 cv-auto cis-800"
     >
       <div className="text-center mb-4 md:mb-6">
         <h2 className="text-xl md:text-2xl font-semibold mb-2 text-slate-900 flex items-center justify-center gap-2 md:gap-3 flex-wrap">

@@ -12,12 +12,16 @@ interface PerformanceMonitorOptions {
   fpsThreshold?: number;
   memoryThreshold?: number;
   reportInterval?: number;
+  startOnIdle?: boolean;
+  idleTimeout?: number;
 }
 
 export const usePerformanceMonitor = ({
   fpsThreshold = 50,
   memoryThreshold = 100, // MB
   reportInterval = 5000, // 5 seconds
+  startOnIdle = false,
+  idleTimeout = 1200,
 }: PerformanceMonitorOptions = {}) => {
   const [metrics, setMetrics] = useState<PerformanceMetrics>({
     fps: 60,
@@ -118,24 +122,46 @@ export const usePerformanceMonitor = ({
     });
   }, [fpsThreshold, memoryThreshold, measureMemory, detectNetworkSpeed, detectDeviceCapability]);
 
-  // Start monitoring
+  // Start monitoring (optionally deferred until idle)
   useEffect(() => {
-    // Start FPS measurement
-    rafIdRef.current = requestAnimationFrame(measureFPS);
+    let interval: any;
+    let started = false;
 
-    // Set up periodic metrics calculation
-    const interval = setInterval(calculateMetrics, reportInterval);
-
-    // Initial calculation
-    calculateMetrics();
-
-    return () => {
-      if (rafIdRef.current) {
-        cancelAnimationFrame(rafIdRef.current);
-      }
-      clearInterval(interval);
+    const start = () => {
+      if (started) return;
+      started = true;
+      rafIdRef.current = requestAnimationFrame(measureFPS);
+      interval = setInterval(calculateMetrics, reportInterval);
+      calculateMetrics();
     };
-  }, [measureFPS, calculateMetrics, reportInterval]);
+
+    if (startOnIdle) {
+      const w = window as any;
+      if (typeof w.requestIdleCallback === 'function') {
+        const idleId = w.requestIdleCallback(start, { timeout: idleTimeout });
+        return () => {
+          if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+          if (interval) clearInterval(interval);
+          if (typeof w.cancelIdleCallback === 'function') {
+            try { w.cancelIdleCallback(idleId); } catch {}
+          }
+        };
+      } else {
+        const t = setTimeout(start, idleTimeout);
+        return () => {
+          if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+          if (interval) clearInterval(interval);
+          clearTimeout(t);
+        };
+      }
+    } else {
+      start();
+      return () => {
+        if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+        if (interval) clearInterval(interval);
+      };
+    }
+  }, [measureFPS, calculateMetrics, reportInterval, startOnIdle, idleTimeout]);
 
   // Performance-based configuration suggestions
   const getOptimizedConfig = useCallback(() => {

@@ -1,5 +1,6 @@
 name = "speedelog-site"
 compatibility_date = "2025-08-06"
+main = "worker.ts"
 
 [assets]
 directory = "./dist"

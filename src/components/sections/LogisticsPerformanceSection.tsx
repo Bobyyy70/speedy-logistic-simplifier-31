@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { ResponsiveImage } from "@/components/ui/ResponsiveImage";
 
-export function LogisticsPerformanceSection() {
+export function LogisticsPerformanceSection({ backgroundVariant = 'white' }: { backgroundVariant?: 'white' | 'site' }) {
   const performanceMetrics = [
     {
       icon: Shield,
@@ -39,8 +39,10 @@ export function LogisticsPerformanceSection() {
     }
   ];
 
+  const sectionBg = backgroundVariant === 'site' ? 'bg-transparent' : 'bg-white';
+
   return (
-    <section className="w-full py-10 md:py-20 lg:py-28 bg-white relative overflow-hidden">
+    <section className={`w-full py-10 md:py-20 lg:py-28 ${sectionBg} relative overflow-hidden`}>
       <div className="container px-4 md:px-6">
         <div className="text-center mb-12">
           <motion.span 

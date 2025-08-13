@@ -1,12 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { UltraLazyMotion, performanceVariants } from "@/components/ui/ultra-lazy-motion";
-import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HomeLogoWithText } from "@/components/ui/LogoIcon";
 import { SocialProof } from "@/components/sections/hero/SocialProof";
 import { QuoteFormModal } from "@/components/contact/QuoteFormModal";
 import { useQuoteModal } from "@/hooks/useQuoteModal";
+
+// Inline lightweight ArrowRight icon to avoid loading lucide-react in the critical path
+const ArrowRightIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+    <path d="M5 12h14" />
+    <path d="M12 5l7 7-7 7" />
+  </svg>
+);
 
 export function HeroContent() {
   const { isOpen, openModal, closeModal } = useQuoteModal();
@@ -64,7 +71,7 @@ export function HeroContent() {
           <span className="relative z-10 flex items-center text-white">
             Obtenir un devis personnalisé
             <span className="ml-2 inline-block">
-              <ArrowRight className="h-4 w-4 animate-[bounce_1.2s_ease-in-out_infinite]" />
+              <ArrowRightIcon className="h-4 w-4 animate-[bounce_1.2s_ease-in-out_infinite]" />
             </span>
           </span>
         </Button>

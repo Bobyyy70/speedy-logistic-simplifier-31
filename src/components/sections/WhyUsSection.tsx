@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import AnimatedText from "@/components/ui/AnimatedText";
 import { Card, CardContent } from "@/components/ui/card";
 
-export function WhyUsSection() {
+export function WhyUsSection({ backgroundVariant = 'white' }: { backgroundVariant?: 'white' | 'site' }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -44,11 +44,13 @@ export function WhyUsSection() {
     }
   ];
   
+  const sectionBg = backgroundVariant === 'site' ? 'bg-transparent' : 'bg-white';
+  
   return (
     <section 
       id="why-us" 
       ref={ref}
-      className="py-12 md:py-24 lg:py-32 bg-white relative overflow-hidden"
+      className={`py-12 md:py-24 lg:py-32 ${sectionBg} relative overflow-hidden`}
     >
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-10">

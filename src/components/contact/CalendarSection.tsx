@@ -39,7 +39,7 @@ export const CalendarSection = () => {
 
   return (
     <section 
-      className="bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-slate-200 relative overflow-hidden"
+      className="bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-slate-200 relative overflow-hidden cv-auto cis-800"
       data-calendar-section
     >
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-blue-800"></div>

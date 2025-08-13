@@ -5,8 +5,9 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Layout } from "./components/layout/Layout";
+import { IdleHydrator } from "@/components/performance/IdleHydrator";
 
-const Index = lazy(() => import("./pages/Index"));
+import Index from "./pages/Index";
 const Services = lazy(() => import("./pages/Services"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
@@ -46,8 +47,10 @@ const App = () => (
           </Routes>
         </Suspense>
       </Layout>
-      <Toaster />
-      <Sonner />
+      <IdleHydrator>
+        <Toaster />
+        <Sonner />
+      </IdleHydrator>
     </BrowserRouter>
   </TooltipProvider>
 );

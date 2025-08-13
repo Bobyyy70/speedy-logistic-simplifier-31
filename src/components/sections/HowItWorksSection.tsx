@@ -42,7 +42,7 @@ const steps = [
   }
 ];
 
-export function HowItWorksSection() {
+export function HowItWorksSection({ backgroundVariant = 'white' }: { backgroundVariant?: 'white' | 'site' }) {
   const [activeTab, setActiveTab] = useState("step1");
   const [isAnimating, setIsAnimating] = useState(false);
   
@@ -54,8 +54,10 @@ export function HowItWorksSection() {
     }, 300);
   };
   
+  const sectionBg = backgroundVariant === 'site' ? 'bg-transparent' : 'bg-white';
+  
   return (
-    <section id="how-it-works" className="py-12 md:py-24 relative overflow-hidden bg-white lg:py-32">
+    <section id="how-it-works" className={`py-12 md:py-24 relative overflow-hidden ${sectionBg} lg:py-32`}>
       <div className="container mx-auto px-4 relative z-10">
         {/* Introduction */}
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12 md:mb-16">

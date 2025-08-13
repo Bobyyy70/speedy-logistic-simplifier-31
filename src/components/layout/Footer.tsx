@@ -1,23 +1,55 @@
 
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { CustomCookieBanner } from "@/components/cookies/CustomCookieBanner";
 import { HubSpotCookieBanner } from "./HubSpotCookieBanner";
 import { useCookieManagement } from "@/hooks/useCookieManagement";
-import { Ship, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
-import { ResponsiveImage } from "@/components/ui/ResponsiveImage";
+import { LazyIcon } from "@/components/performance/LazyIcon";
+// @ts-ignore - imagetools for optimized logo
+import logoWebp from "@/assets/logo.png?w=32;64&format=webp&as=srcset";
+// @ts-ignore - imagetools for optimized logo fallback
+import logoPng from "@/assets/logo.png?w=32;64&format=png&as=srcset";
+
+// Defer loading of the heavy CustomCookieBanner (and its icon deps) until truly needed
+const LazyCustomCookieBanner = lazy(() => import("@/components/cookies/CustomCookieBanner").then(m => ({ default: m.CustomCookieBanner })));
+
+// Lightweight inline arrow icon to avoid loading the full icon library for tiny chevrons
+const ArrowSmall: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    {...props}
+  >
+    <path d="M7 17L17 7" />
+    <path d="M7 7h10v10" />
+  </svg>
+);
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
   const { shouldShowCustomBanner, isProduction } = useCookieManagement();
+  const reserveForHubspot = isProduction && typeof document !== 'undefined' && !document.cookie.includes('__hs_cookie_cat_pref');
 
   return (
     <>
       {/* Bannière de cookies personnalisée si nécessaire (hors production) */}
-      {!isProduction && shouldShowCustomBanner && <CustomCookieBanner />}
-      <footer className="relative bg-gray-50 text-slate-900 overflow-hidden">
+      {!isProduction && shouldShowCustomBanner && (
+        <div className="fixed inset-x-0 bottom-0 z-[2147483647] pointer-events-auto">
+          <Suspense fallback={null}>
+            <LazyCustomCookieBanner />
+          </Suspense>
+        </div>
+      )}
+      <footer
+        className="relative bg-gray-50 text-slate-900 overflow-hidden"
+        style={{ contain: "layout", paddingBottom: reserveForHubspot ? '64px' : undefined }}
+      >
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgb(71_85_105)_1px,transparent_0)] bg-[size:24px_24px]" />
@@ -30,14 +62,19 @@ export const Footer: React.FC = () => {
               {/* Company Info */}
               <div className="lg:col-span-1 space-y-6">
                 <div className="flex items-center space-x-3">
-                  <ResponsiveImage 
-                    src="/lovable-uploads/e1cf40f5-51ac-4818-b66e-e65eb61520d1.png"
-                    alt="Speed E-Log - Spécialiste logistique e-commerce France"
-                    width={32}
-                    height={32}
-                    sizes="32px"
-                    className="w-8 h-8 object-contain"
-                  />
+                  <picture>
+                    <source type="image/webp" srcSet={logoWebp as unknown as string} sizes="32px" />
+                    <img
+                      alt="Speed E-Log - Spécialiste logistique e-commerce France"
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 object-contain"
+                      srcSet={logoPng as unknown as string}
+                      sizes="32px"
+                      loading="eager"
+                      decoding="async"
+                    />
+                  </picture>
                   <span className="text-xl font-bold text-slate-900">Speed E-Log</span>
                 </div>
                 <p className="text-slate-600 leading-relaxed">
@@ -53,31 +90,31 @@ export const Footer: React.FC = () => {
                   <li>
                     <Link to="/services" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       Nos Services
-                      <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <ArrowSmall className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
                   </li>
                   <li>
                     <Link to="/technology" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       Technologie
-                      <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                       <ArrowSmall className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
                   </li>
                   <li>
                     <Link to="/about" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       À Propos
-                      <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                       <ArrowSmall className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
                   </li>
                   <li>
                     <Link to="/contact" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       Contact
-                      <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <ArrowSmall className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
                   </li>
                   <li>
                     <Link to="/faq" className="text-slate-600 hover:text-slate-900 transition-colors duration-200 flex items-center group">
                       FAQ
-                      <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <ArrowSmall className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
                   </li>
                 </ul>
@@ -100,14 +137,14 @@ export const Footer: React.FC = () => {
                 <h3 className="text-lg font-semibold text-slate-900">Contact</h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <MapPin className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <LazyIcon importIcon={() => import('lucide-react').then(m => ({ default: m.MapPin }))} className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" aria-hidden />
                     <div className="text-slate-600">
                       <p>Port-sur-Saône</p>
                       <p>Bourgogne-Franche-Comté, France</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Mail className="h-5 w-5 text-blue-600 flex-shrink-0" />
+                    <LazyIcon importIcon={() => import('lucide-react').then(m => ({ default: m.Mail }))} className="h-5 w-5 text-blue-600 flex-shrink-0" aria-hidden />
                     <a href="mailto:contact@speedelog.fr" className="text-slate-600 hover:text-slate-900 transition-colors">
                       contact@speedelog.net
                     </a>
@@ -170,8 +207,12 @@ export const Footer: React.FC = () => {
                     </Link>
                   </li>
                   <li className="md:ml-2">
-                    <div className="inline-flex px-2 py-2 md:px-0 md:py-1">
-                      {/* Bouton HubSpot pour paramètres cookies */}
+                    <div
+                      className="inline-flex items-center justify-center px-2 py-2 md:px-0 md:py-1 min-h-[44px] min-w-[200px] max-w-[260px] overflow-hidden whitespace-nowrap"
+                      role="group"
+                      aria-live="off"
+                    >
+                      {/* Bouton HubSpot pour paramètres cookies — espace réservé pour éviter un shift */}
                       <HubSpotCookieBanner />
                     </div>
                   </li>
