@@ -91,7 +91,7 @@ export default function GlobalNetworkSection({
               d'expédier partout dans le monde avec une efficacité optimale.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col gap-4 justify-center items-center">
               <Button 
                 onClick={openModal}
                 size="lg"
@@ -101,7 +101,7 @@ export default function GlobalNetworkSection({
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-500 text-center">
                 Réponse sous 24h • Sans engagement
               </p>
             </div>
