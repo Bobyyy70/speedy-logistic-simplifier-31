@@ -101,9 +101,14 @@ export default function GlobalNetworkSection({
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               
-              <p className="text-sm text-gray-500 text-center">
+              <Button 
+                onClick={openModal}
+                variant="outline"
+                size="lg"
+                className="border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300"
+              >
                 Réponse sous 24h • Sans engagement
-              </p>
+              </Button>
             </div>
           </motion.div>
         </div>
