@@ -79,17 +79,19 @@ const Index = () => {
           />
         </LazyMotionDiv>
         
-        <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
-          <LazyInView 
-            loader={() => import("@/components/sections/GlobalNetworkSection").then(m => ({ default: m.GlobalNetworkSection }))} 
-            componentProps={{ backgroundVariant: 'site' }}
-          />
-        </LazyMotionDiv>
         
         {/* Transition back to white before Contact CTA */}
         <div className="h-8 bg-gradient-to-b from-transparent to-white pointer-events-none" aria-hidden="true" />
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
           <LazyInView loader={() => import("@/components/home/ContactCTA").then(m => ({ default: m.ContactCTA }))} />
+        </LazyMotionDiv>
+        
+        {/* Section WorldMap avec fenêtre devis - avant le footer */}
+        <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
+          <LazyInView 
+            loader={() => import("@/components/sections/GlobalNetworkSection").then(m => ({ default: m.GlobalNetworkSection }))} 
+            componentProps={{ backgroundVariant: 'white' }}
+          />
         </LazyMotionDiv>
       </div>
     </div>

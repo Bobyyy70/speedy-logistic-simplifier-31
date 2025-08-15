@@ -13,108 +13,91 @@ interface GlobalNetworkSectionProps {
 export function GlobalNetworkSection({ backgroundVariant = 'site' }: GlobalNetworkSectionProps) {
   const { isOpen, openModal, closeModal } = useQuoteModal();
 
-  const backgroundClass = backgroundVariant === 'white' ? 'bg-white' : 'bg-background';
+  // Points de livraison internationaux pour la carte
+  const globalShippingPoints = [
+    {
+      start: { lat: 48.8566, lng: 2.3522, label: "France" },
+      end: { lat: 40.7128, lng: -74.006, label: "New York" }
+    },
+    {
+      start: { lat: 48.8566, lng: 2.3522 },
+      end: { lat: -33.8688, lng: 151.2093, label: "Sydney" }
+    },
+    {
+      start: { lat: 48.8566, lng: 2.3522 },
+      end: { lat: 35.6762, lng: 139.6503, label: "Tokyo" }
+    },
+    {
+      start: { lat: 48.8566, lng: 2.3522 },
+      end: { lat: 55.7558, lng: 37.6173, label: "Moscow" }
+    }
+  ];
 
   return (
-    <section className={`py-16 md:py-24 lg:py-32 w-full ${backgroundClass}`}>
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
-        {/* Text Content */}
-        <div className="text-center mb-12 md:mb-16">
-          <motion.h2 
-            className="font-bold text-2xl md:text-4xl lg:text-5xl mb-4 md:mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Livraisons{" "}
-            <span className="text-muted-foreground">
-              {"Internationales".split("").map((letter, idx) => (
-                <motion.span
-                  key={idx}
-                  className="inline-block"
-                  initial={{ x: -10, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.04 }}
-                >
-                  {letter}
-                </motion.span>
-              ))}
-            </span>
-          </motion.h2>
-          
-          <motion.p 
-            className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Une logistique sans frontières pour votre e-commerce. Expédiez partout dans le monde avec la même simplicité qu'une livraison locale.
-          </motion.p>
-        </div>
-
-        {/* World Map */}
+    <section className="py-16 md:py-24 lg:py-32 px-0 relative overflow-hidden bg-white">
+      {/* Fond avec carte du monde plus visible */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <WorldMap 
+          dots={globalShippingPoints} 
+          lineColor="#2F68F3"
+          secondaryLineColor="#F3BA2F"
+          opacity={0.6}
+          dotColor="#2F68F3"
+          secondaryDotColor="#F3BA2F"
+        />
+      </div>
+      
+      <div className="section-container py-0 my-0 px-4 md:px-8 relative z-10">
         <motion.div 
-          className="mb-12 md:mb-16"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          <WorldMap
-            dots={[
-              {
-                start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-                end: { lat: 40.7128, lng: -74.0060 }, // New York
-              },
-              {
-                start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-                end: { lat: -33.8688, lng: 151.2093 }, // Sydney
-              },
-              {
-                start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-                end: { lat: 35.6762, lng: 139.6503 }, // Tokyo
-              },
-              {
-                start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-                end: { lat: 55.7558, lng: 37.6173 }, // Moscow
-              },
-              {
-                start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-                end: { lat: -15.7975, lng: -47.8919 }, // Brazil (Brasília)
-              },
-              {
-                start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-                end: { lat: -1.2921, lng: 36.8219 }, // Nairobi, Kenya
-              },
-            ]}
-            lineColor="#2F68F3"
-            secondaryLineColor="#F3BA2F"
-            opacity={0.75}
-            dotColor="#2F68F3"
-            secondaryDotColor="#F3BA2F"
-          />
-        </motion.div>
-
-        {/* CTA Button */}
-        <motion.div 
-          className="text-center"
+          className="section-box text-center max-w-3xl mx-auto backdrop-blur-sm bg-white/80 rounded-2xl p-8 md:p-12 shadow-xl border border-slate-200/50"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ 
+            duration: 0.8,
+            type: "spring",
+            stiffness: 100,
+            damping: 12
+          }}
         >
-          <Button 
-            variant="blue" 
-            size="2xl" 
-            className="shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
-            onClick={openModal}
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Demander un devis personnalisé
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-orange-500">
+              Prêt à optimiser votre logistique ?
+            </h2>
+          </motion.div>
+          
+          <motion.p 
+            className="text-base md:text-lg text-slate-600 dark:text-slate-300 mb-6 md:mb-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            Contactez-nous dès aujourd'hui pour obtenir un devis personnalisé et découvrir comment Speed E Log peut transformer votre chaîne logistique.
+          </motion.p>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+          >
+            <Button 
+              variant="blue" 
+              size="2xl" 
+              className="mx-auto shadow-xl hover:shadow-[#2F68F3]/25 transition-all duration-300 rounded-full"
+              onClick={openModal}
+            >
+              Obtenir un devis personnalisé 
+              <ArrowRight className="ml-2 h-5 w-5 text-white transition-transform" />
+            </Button>
+          </motion.div>
         </motion.div>
       </div>
 
