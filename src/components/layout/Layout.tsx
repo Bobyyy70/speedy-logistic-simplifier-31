@@ -5,8 +5,6 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { FloatingChatButton } from "../contact/FloatingChatButton";
 import { IdleHydrator } from "@/components/performance/IdleHydrator";
-import { QuoteFormModal } from "@/components/contact/QuoteFormModal";
-import { useQuoteModal } from "@/hooks/useQuoteModal";
 
 import { BreadcrumbSEO } from "@/components/ui/breadcrumb-seo";
 import { Helmet } from "react-helmet-async";
@@ -14,20 +12,12 @@ import { generateMetadata, seoPages } from "@/lib/seo";
 import { getHubSpotConfig } from "@/lib/hubspot-config";
 import { CriticalResourcePreloader } from "@/components/performance/CriticalResourcePreloader";
 import { SeoAuditWidget } from "@/components/seo/SeoAuditWidget";
-import Canonical from '@/components/seo/Canonical';
-
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
-  const { isOpen, closeModal } = useQuoteModal();
-
-  // Debug: log modal state changes
-  React.useEffect(() => {
-    console.log('Layout: Modal isOpen state changed to:', isOpen);
-  }, [isOpen]);
   
   // Generate SEO metadata based on current route
   const pageData = seoPages[location.pathname];
@@ -81,7 +71,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="flex flex-col min-h-screen site-background">
       <CriticalResourcePreloader />
-      <Canonical url={metadata.canonical} noindex={metadata.robots?.toLowerCase().includes('noindex')} />
       <Helmet>
         <html lang="fr" />
         <meta charSet="utf-8" />
@@ -135,12 +124,12 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <script key={index} type="application/ld+json">
                   {JSON.stringify(schema)}
                 </script>
-              )) 
+              ))
             : (
                 <script type="application/ld+json">
                   {JSON.stringify(metadata.structuredData)}
                 </script>
-              )}
+              )
         )}
         
         {/* CSS personnalisé pour masquer le branding HubSpot */}
@@ -186,9 +175,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         `}</style>
       </Helmet>
 
-      <Header/>
+      <Header />
       <main className="flex-1">
-        <BreadcrumbSEO/>
+        <BreadcrumbSEO />
         {children}
       </main>
       <IdleHydrator>
@@ -197,12 +186,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       
       {/* Chat flottant global (monté après idle) */}
       <IdleHydrator>
-        <FloatingChatButton/>
+        <FloatingChatButton />
       </IdleHydrator>
 
-      {import.meta.env.DEV && <SeoAuditWidget />}      
-      {/* Modal unique pour toute l'application */}
-      <QuoteFormModal isOpen={isOpen} onClose={closeModal} />      
+      {import.meta.env.DEV && <SeoAuditWidget />}
+      
       {/* Gestion des cookies: HubSpot (production) et bannière custom (dev) gérés dans le Footer */}
     </div>
   );
