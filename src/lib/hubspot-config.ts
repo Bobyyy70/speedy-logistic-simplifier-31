@@ -19,13 +19,9 @@ const isDevelopment = import.meta.env.DEV;
 const isProduction = import.meta.env.PROD;
 
 // Required environment variables validation
-const requiredEnvVars = [
-  'VITE_HUBSPOT_PORTAL_ID',
-  'VITE_HUBSPOT_REGION',
-  'VITE_HUBSPOT_QUOTE_FORM_ID'
-];
+const requiredEnvVars = ['VITE_HUBSPOT_PORTAL_ID', 'VITE_HUBSPOT_REGION' , 'VITE_HUBSPOT_QUOTE_FORM_ID'];
 
-// Log missing environment variables in production (non-blocking)
+// Log missing environment variables in production (non-blocking) 
 if (isProduction) {
   const missingVars = requiredEnvVars.filter(varName => !import.meta.env[varName]);
   if (missingVars.length > 0) {
@@ -33,19 +29,19 @@ if (isProduction) {
   }
 }
 
-// Get configuration from environment variables with fallbacks for development
+ // Get configuration from environment variables with fallbacks for development
 export const getHubSpotConfig = (): HubSpotConfig => {
-  const portalId = import.meta.env.VITE_HUBSPOT_PORTAL_ID || (isDevelopment ? '144571109' : '');
-  const region = import.meta.env.VITE_HUBSPOT_REGION || (isDevelopment ? 'eu1' : '');
-  const quoteFormId = import.meta.env.VITE_HUBSPOT_QUOTE_FORM_ID || (isDevelopment ? 'd5353f82-5ee6-44c1-afd6-501f1f60728c' : '');
-  
-  // Build forms API URL based on portal ID and region
-  const formsApiUrl = import.meta.env.VITE_HUBSPOT_FORMS_API_URL || 
-    `https://js-${region}.hsforms.net/forms/embed/${portalId}.js`;
-  
-  // Build meetings URL based on region
-  const meetingsUrl = import.meta.env.VITE_HUBSPOT_MEETINGS_URL || 
-    (isDevelopment ? 'https://meetings-eu1.hubspot.com/falmanzo?embed=true' : '');
+  const portalId = import.meta.env.VITE_HUBSPOT_PORTAL_ID || (isDevelopment ? '144571109' : ''); 
+  const region = import.meta.env.VITE_HUBSPOT_REGION || (isDevelopment ? 'eu1' : ''); 
+  const quoteFormId = import.meta.env.VITE_HUBSPOT_QUOTE_FORM_ID || (isDevelopment ? 'd5353f82-5ee6-44c1-afd6-501f1f60728e' : '');
+
+  // Build forms API URL based on portal ID and region (guardé : seulement si portalId et region sont fournis)
+  const formsApiUrl = import.meta.env.VITE_HUBSPOT_FORMS_API_URL ||
+    (portalId && region ? `https://js-${region}.hsforms.net/forms/embed/${portalId}.js` : '');
+
+  // Build meetings URL based on region (utilisé en dev par défaut si la config est présente)
+  const meetingsUrl = import.meta.env.VITE_HUBSPOT_MEETINGS_URL ||
+    (isDevelopment && portalId && region ? 'https://meetings-eu1.hubspot.com/falmanzo?embed=true' : '');
 
   return {
     portalId,
@@ -58,18 +54,20 @@ export const getHubSpotConfig = (): HubSpotConfig => {
       contact: import.meta.env.VITE_HUBSPOT_CONTACT_FORM_ID || 'contact-form-id',
       newsletter: import.meta.env.VITE_HUBSPOT_NEWSLETTER_FORM_ID || 'newsletter-form-id'
     }
-  };
+  };  
 };
 
 // Utility functions for common HubSpot operations
 export const hubSpotUtils = {
-  // Build the HubSpot script URL (legacy embed)
+  // Build the HubSpot script URL (legacy embed) - retourne vide si config incomplète
   getScriptUrl: (config: HubSpotConfig = getHubSpotConfig()) => {
+    if (!config.region || !config.portalId) return '';
     return `https://js-${config.region}.hsforms.net/forms/embed/${config.portalId}.js`;
   },
 
-  // Build the HubSpot Forms v2 SDK script URL
+  // Build the HubSpot Forms v2 SDK script URL - retourne vide si config incomplète
   getV2ScriptUrl: (config: HubSpotConfig = getHubSpotConfig()) => {
+    if (!config.region) return '';
     return `https://js-${config.region}.hsforms.net/forms/v2.js`;
   },
 
@@ -89,6 +87,10 @@ export const hubSpotUtils = {
 
   // Create a form with error handling
   createForm: async (formId: string, targetElement: HTMLElement, config: HubSpotConfig = getHubSpotConfig()) => {
+    // Guardrails: refuse si la configuration est incomplète
+    if (!config.portalId || !config.region) {
+      throw new Error('Invalid HubSpot configuration: portalId or region missing - cannot create form');
+    }
     if (!hubSpotUtils.isHubSpotLoaded()) {
       throw new Error('HubSpot forms library not loaded');
     }
@@ -99,7 +101,7 @@ export const hubSpotUtils = {
         portalId: config.portalId,
         formId: formId,
         target: targetElement
-      });
+      }); 
     } catch (error) {
       console.error('Failed to create HubSpot form:', error);
       throw error;

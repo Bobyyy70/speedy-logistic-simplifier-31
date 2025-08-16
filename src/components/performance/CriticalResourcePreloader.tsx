@@ -31,18 +31,23 @@ export const CriticalResourcePreloader = () => {
       document.head.appendChild(link);
     });
 
-    // Prefetch critical chunks
-    const criticalChunks = [
-      '/src/components/ui/world-map/useDottedMap.ts',
-      '/src/hooks/use-performance-monitor.ts'
-    ];
+    // Prefetch critical chunks - only preload built modules in production.
+    if (import.meta.env.PROD) {
+      const criticalChunks = [
+        // Replace these with real build output paths as needed
+        '/assets/world-map.dotted.js',
+        '/assets/perf-monitor.js'
+      ];
 
-    criticalChunks.forEach(chunk => {
-      const link = document.createElement('link');
-      link.rel = 'modulepreload';
-      link.href = chunk;
-      document.head.appendChild(link);
-    });
+      criticalChunks.forEach(chunk => {
+        const link = document.createElement('link');
+        link.rel = 'modulepreload';
+        link.href = chunk;
+        document.head.appendChild(link);
+      });
+    } else {
+      // In dev, avoid preloading source TS paths which lead to 404 during dev builds
+    }
   }, []);
 
   return null;
