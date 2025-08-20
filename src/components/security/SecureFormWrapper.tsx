@@ -8,8 +8,8 @@ interface SecureFormWrapperProps {
   className?: string;
 }
 
-// Global rate limiter instance
-const formRateLimiter = new ClientRateLimiter(3, 5 * 60 * 1000, 'form_submissions');
+// Global rate limiter instance - (maxAttempts, windowMs, blockDurationMs, progressiveDelay)
+const formRateLimiter = new ClientRateLimiter(3, 5 * 60 * 1000, 15 * 60 * 1000, true);
 
 export const SecureFormWrapper: React.FC<SecureFormWrapperProps> = ({
   children,

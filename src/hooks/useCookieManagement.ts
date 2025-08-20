@@ -59,21 +59,36 @@ export const useCookieManagement = (): CookieManagementHook => {
       timestamp: Date.now()
     };
 
-    localStorage.setItem('cookie-consent', JSON.stringify(updated));
-    setHasConsent(true);
-
-    // Appliquer les préférences à HubSpot si disponible
-    if ((window as any)._hsp) {
-      (window as any)._hsp.push(['setPrivacyConsent', { 
-        analyticsConsent: updated.analytics 
-      }]);
+    // Enhanced cookie security: use secure storage
+    try {
+      localStorage.setItem('cookie-consent', JSON.stringify(updated));
       
-      if (updated.analytics) {
-        (window as any)._hsp.push(['trackPageView']);
-      }
-    }
+      // Set secure cookie attributes for consent tracking
+      const isSecure = window.location.protocol === 'https:';
+      const cookieValue = btoa(JSON.stringify({
+        necessary: updated.necessary,
+        analytics: updated.analytics,
+        marketing: updated.marketing,
+        timestamp: updated.timestamp
+      }));
+      
+      document.cookie = `consent=${cookieValue}; path=/; max-age=31536000${isSecure ? '; secure' : ''}; samesite=strict`;
+      
+      setHasConsent(true);
 
-    // Consent updated
+      // Appliquer les préférences à HubSpot si disponible
+      if ((window as any)._hsp) {
+        (window as any)._hsp.push(['setPrivacyConsent', { 
+          analyticsConsent: updated.analytics 
+        }]);
+        
+        if (updated.analytics) {
+          (window as any)._hsp.push(['trackPageView']);
+        }
+      }
+    } catch (error) {
+      console.error('Failed to update cookie consent:', error);
+    }
   };
 
   const resetConsent = () => {
