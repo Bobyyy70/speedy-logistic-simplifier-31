@@ -28,15 +28,16 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  // Defer HubSpot loading until user interaction to reduce initial JS execution
+  // Load HubSpot only when user shows clear engagement intent
   useEffect(() => {
-    if (!import.meta.env.PROD) return; // avoid in dev
+    if (!import.meta.env.PROD) return;
     const { portalId, region } = getHubSpotConfig();
     const scriptId = 'hs-script-loader';
     if (!portalId || !region) return;
     if (document.getElementById(scriptId)) return;
 
     let hubspotLoaded = false;
+    let engagementTimer: NodeJS.Timeout | number;
     let idleCallback: number;
     
     const inject = () => {
@@ -49,34 +50,61 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       s.async = true;
       s.defer = true;
       s.src = `https://js-${region}.hs-scripts.com/${portalId}.js`;
-      s.onload = () => console.log("HubSpot script loaded");
-      s.onerror = () => console.error("Failed to load HubSpot script");
       document.body.appendChild(s);
     };
 
-    // Load on user interaction or after extended idle time
-    const handleUserInteraction = () => {
+    let scrollCount = 0;
+    let clickCount = 0;
+    const minScrollEngagement = 3; // User must scroll at least 3 times
+    const minTimeEngagement = 10000; // User must stay 10+ seconds
+
+    // Only load when user shows real engagement
+    const handleScroll = () => {
+      scrollCount++;
+      if (scrollCount >= minScrollEngagement) {
+        inject();
+        cleanup();
+      }
+    };
+
+    const handleClick = () => {
+      clickCount++;
+      if (clickCount >= 2) { // 2+ clicks shows engagement
+        inject();
+        cleanup();
+      }
+    };
+
+    const handleTimeEngagement = () => {
       inject();
-      document.removeEventListener('scroll', handleUserInteraction);
-      document.removeEventListener('click', handleUserInteraction);
-      document.removeEventListener('touchstart', handleUserInteraction);
-      document.removeEventListener('keydown', handleUserInteraction);
+      cleanup();
+    };
+
+    const cleanup = () => {
+      if (engagementTimer) clearTimeout(engagementTimer as any);
+      if (idleCallback && typeof (window as any).cancelIdleCallback === 'function') {
+        (window as any).cancelIdleCallback(idleCallback);
+      }
+      document.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('click', handleClick);
     };
 
     const onLoad = () => {
-      // @ts-ignore - requestIdleCallback may not exist on Window type
+      // Only start tracking engagement after page load
+      engagementTimer = setTimeout(handleTimeEngagement, minTimeEngagement);
+      
+      // Track meaningful interactions
+      document.addEventListener('scroll', handleScroll, { passive: true });
+      document.addEventListener('click', handleClick);
+      
+      // Ultimate fallback - very delayed
+      // @ts-ignore
       const ric = window.requestIdleCallback as any;
       if (typeof ric === 'function') {
-        idleCallback = ric(inject, { timeout: 8000 }); // Increased timeout
-      } else {
-        setTimeout(inject, 5000); // Increased delay
+        idleCallback = ric(() => {
+          if (!hubspotLoaded) inject();
+        }, { timeout: 15000 });
       }
-      
-      // Also listen for user interactions to load earlier if needed
-      document.addEventListener('scroll', handleUserInteraction, { passive: true, once: true });
-      document.addEventListener('click', handleUserInteraction, { once: true });
-      document.addEventListener('touchstart', handleUserInteraction, { passive: true, once: true });
-      document.addEventListener('keydown', handleUserInteraction, { once: true });
     };
 
     if (document.readyState === 'complete') {
@@ -85,16 +113,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       window.addEventListener('load', onLoad, { once: true });
     }
 
-    return () => {
-      if (idleCallback && typeof (window as any).cancelIdleCallback === 'function') {
-        (window as any).cancelIdleCallback(idleCallback);
-      }
-      window.removeEventListener('load', onLoad);
-      document.removeEventListener('scroll', handleUserInteraction);
-      document.removeEventListener('click', handleUserInteraction);
-      document.removeEventListener('touchstart', handleUserInteraction);
-      document.removeEventListener('keydown', handleUserInteraction);
-    };
+    return cleanup;
   }, []);
 
   return (
