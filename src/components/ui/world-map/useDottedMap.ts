@@ -7,12 +7,6 @@ const svgCache: Record<"light" | "dark", string | undefined> = { light: undefine
 // Extremely small placeholder to avoid blocking first paint
 const fallbackSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 5"/>';
 
-// requestIdleCallback polyfill
-const ric: (cb: () => void) => number =
-  (typeof window !== "undefined" && (window as any).requestIdleCallback)
-    ? (cb => (window as any).requestIdleCallback(cb))
-    : (cb => window.setTimeout(cb, 0));
-
 export const useDottedMap = () => {
   const { theme } = useTheme();
   const isDarkMode = theme === "dark";
@@ -29,23 +23,21 @@ export const useDottedMap = () => {
       return;
     }
 
-    ric(() => {
-      // Defer heavy library load off the critical path
-      import("dotted-map").then(({ default: DottedMap }) => {
-        if (cancelled) return;
-        const map = new DottedMap({ height: 60, grid: "diagonal" }); // Reduced size for performance
-        const svg = map.getSVG({
-          radius: 0.25, // Smaller radius for less DOM complexity
-          color: isDarkMode ? "#FFFFFF60" : "#00000030", // Reduced opacity
-          shape: "circle",
-          backgroundColor: "transparent",
-        });
-        svgCache[mode] = svg;
-        if (!cancelled) setSvgMap(svg);
-      }).catch(() => {
-        // Fallback silently on failure
-        if (!cancelled) setSvgMap(fallbackSVG);
+    // Load immediately instead of deferring for LCP optimization
+    import("dotted-map").then(({ default: DottedMap }) => {
+      if (cancelled) return;
+      const map = new DottedMap({ height: 60, grid: "diagonal" }); // Reduced size for performance
+      const svg = map.getSVG({
+        radius: 0.25, // Smaller radius for less DOM complexity
+        color: isDarkMode ? "#FFFFFF60" : "#00000030", // Reduced opacity
+        shape: "circle",
+        backgroundColor: "transparent",
       });
+      svgCache[mode] = svg;
+      if (!cancelled) setSvgMap(svg);
+    }).catch(() => {
+      // Fallback silently on failure
+      if (!cancelled) setSvgMap(fallbackSVG);
     });
 
     return () => { cancelled = true; };
