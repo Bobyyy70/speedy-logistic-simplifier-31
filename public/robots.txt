@@ -25,5 +25,20 @@ Disallow: /tmp/
 # Sitemaps
 Sitemap: https://speedelog.net/sitemap.xml
 
-# Cache directives
+# Performance directives
 Cache-control: max-age=86400
+
+# Accessibility for search engines
+Request-rate: 1/1s
+Visit-time: 0600-2359
+
+# Allow indexing main content
+Allow: /services
+Allow: /technology
+Allow: /contact
+Allow: /about
+Allow: /faq
+Allow: /mentions-legales
+Allow: /politique-confidentialite
+Allow: /politique-cookies
+Allow: /cgv

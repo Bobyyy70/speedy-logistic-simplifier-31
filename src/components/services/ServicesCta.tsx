@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -28,6 +29,14 @@ export const ServicesCta: React.FC = () => {
         <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
           Discutons de vos besoins spécifiques et voyons comment Speed E-Log peut vous aider à simplifier vos opérations et à vous concentrer sur votre croissance.
         </p>
+
+        {/* Internal Links for SEO */}
+        <div className="mb-6">
+          <p className="text-sm text-muted-foreground mb-4">
+            En savoir plus sur nos <Link to="/services" className="text-primary hover:underline font-medium">services logistiques</Link> ou 
+            {" "} notre <Link to="/technology" className="text-primary hover:underline font-medium">plateforme technologique</Link>.
+          </p>
+        </div>
         <Button 
           variant="blue" 
           size="2xl" 

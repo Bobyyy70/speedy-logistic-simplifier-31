@@ -5,15 +5,6 @@ import { Badge } from "@/components/ui/badge";
 const CookiePolicy = () => {
   return (
     <>
-      <Helmet>
-        <title>Politique de Gestion des Cookies et Traceurs | Speed E-Log</title>
-        <meta 
-          name="description" 
-          content="Politique complète de gestion des cookies et traceurs Speed E-Log SAS. Conforme aux lignes directrices CNIL 2020 et exigences 2024-2025." 
-        />
-        <meta name="robots" content="index, follow" />
-        
-      </Helmet>
 
       <div className="container mx-auto px-4 py-12 max-w-4xl">
         <div className="space-y-8">

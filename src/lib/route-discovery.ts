@@ -63,6 +63,12 @@ export const discoverRoutes = (): RouteInfo[] => {
       changefreq: 'yearly'
     },
     {
+      path: '/politique-cookies',
+      component: 'CookiePolicy',
+      priority: 0.3,
+      changefreq: 'yearly'
+    },
+    {
       path: '/sitemap',
       component: 'Sitemap',
       priority: 0.5,
