@@ -1,94 +1,105 @@
 
 import React, { useRef, useEffect, useState, lazy, Suspense } from "react";
-import { Link } from "react-router-dom";
 import { HeroContent } from "@/components/sections/hero/HeroContent";
 import { HeroCard } from "@/components/sections/hero/HeroCard";
-import { ScrollIndicator } from "@/components/sections/ScrollIndicator";
 import { WorldMapBackground } from "@/components/sections/hero/WorldMapBackground";
-// Lazy load background animation to avoid early script evaluation
+import { IdleHydrator } from "@/components/performance/IdleHydrator";
+
+// Lazy load all non-critical components to improve TTI
+const LazyScrollIndicator = lazy(() =>
+  import("@/components/sections/ScrollIndicator").then(m => ({ default: m.ScrollIndicator }))
+);
+
 const LazyBackgroundGradientAnimation = lazy(() =>
   import("@/components/ui/background-gradient-animation").then(m => ({ default: m.BackgroundGradientAnimation }))
 );
-import { UltraLazyMotion, performanceVariants } from "@/components/ui/ultra-lazy-motion";
-import { useThrottledParallax } from "@/hooks/use-throttled-parallax";
-import { usePerformanceMonitor } from "@/hooks/use-performance-monitor";
+
+const LazyUltraLazyMotion = lazy(() =>
+  import("@/components/ui/ultra-lazy-motion").then(m => ({ default: m.UltraLazyMotion }))
+);
+
+// Remove the problematic lazy hook imports - hooks should not be lazy loaded
 
 export function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const throttledParallax = useThrottledParallax({ intensity: 8, fps: 30 });
-  const { metrics } = usePerformanceMonitor({ startOnIdle: true });
-  const [showDecorations, setShowDecorations] = useState(false);
-
-  // Enable optimized parallax effect only on performant devices
-  useEffect(() => {
-    if (!heroRef.current || metrics.isLowEndDevice) return;
-
-    const worldMapElement = heroRef.current.querySelector(".world-map-container") as HTMLElement;
-    const handleMouseMove = throttledParallax(worldMapElement);
-    
-    if (handleMouseMove) {
-      window.addEventListener("mousemove", handleMouseMove, { passive: true });
-      return () => {
-        window.removeEventListener("mousemove", handleMouseMove);
-      };
-    }
-  }, [throttledParallax, metrics.isLowEndDevice]);
-
-  // Defer non-critical decorations until after TTI (improves TTI significantly)
-  useEffect(() => {
-    if (metrics.isLowEndDevice || metrics.networkSpeed === 'slow') return;
-
-    let idleId: number;
-    const onIdle = () => setShowDecorations(true);
-
-    if ('requestIdleCallback' in window) {
-      idleId = (window as any).requestIdleCallback(onIdle, { timeout: 3000 }) as number;
-    } else {
-      idleId = (setTimeout as unknown as (handler: TimerHandler, timeout?: number) => number)(onIdle, 2000);
-    }
-
-    return () => {
-      if ('cancelIdleCallback' in window) {
-        try { (window as any).cancelIdleCallback(idleId); } catch {}
-      } else {
-        clearTimeout(idleId);
-      }
-    };
-  }, [metrics.isLowEndDevice, metrics.networkSpeed]);
 
   return (
     <section 
       ref={heroRef} 
       className="relative w-full h-screen min-h-[100vh] overflow-hidden"
-      style={{
-        willChange: 'transform',
-        transform: 'translate3d(0, 0, 0)' // Force GPU layer
-      }}
     >
-      {/* Background gradient animation with enhanced colors and subtlety */}
-      {showDecorations && (
-        <Suspense fallback={null}>
-          <LazyBackgroundGradientAnimation
-            gradientBackgroundStart="#ffffff"
-            gradientBackgroundEnd="#f8fafc"
-            firstColor="47, 104, 243"        // Primary blue
-            secondColor="243, 186, 47"       // Gold/yellow accent
-            thirdColor="100, 220, 255"       // Light blue
-            fourthColor="80, 120, 240"       // Soft blue
-            fifthColor="220, 180, 100"       // Warm gold
-            pointerColor="140, 100, 255"     // Interactive purple
-            size="100%"
-            blendingValue="soft-light"
-            className="absolute inset-0 z-0 opacity-40"
-            interactive={!metrics.isLowEndDevice && showDecorations}
-          />
-        </Suspense>
-      )}
+      {/* World Map Background - Critical for LCP, load immediately */}
+      <div className="absolute inset-0 z-10">
+        <WorldMapBackground />
+      </div>
       
-      {/* Animated gradient orbs - only for high-performance devices */}
-      {!metrics.isLowEndDevice && showDecorations && (
-        <div className="absolute inset-0 z-[1] overflow-hidden">
-          <UltraLazyMotion
+      {/* Critical content - load immediately */}
+      <div className="container mx-auto relative z-20 h-full flex items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_600px] gap-6 lg:gap-12 items-center">
+          <HeroContent />
+          <HeroCard />
+        </div>
+      </div>
+      
+      {/* Non-critical decorations - defer for better TTI */}
+      <IdleHydrator timeout={2000}>
+        <EnhancedDecorations />
+      </IdleHydrator>
+      
+      {/* Scroll indicator - defer to improve TTI */}
+      <IdleHydrator timeout={1500}>
+        <Suspense fallback={null}>
+          <LazyScrollIndicator />
+        </Suspense>
+      </IdleHydrator>
+    </section>
+  );
+}
+
+// Separate component for heavy decorations to avoid blocking initial render
+function EnhancedDecorations() {
+  const [showDecorations, setShowDecorations] = useState(false);
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Quick device capability check without heavy monitoring
+    const isLowEnd = navigator.hardwareConcurrency ? navigator.hardwareConcurrency <= 2 : false;
+    const isSlowConnection = (navigator as any).connection?.effectiveType === 'slow-2g' || 
+                            (navigator as any).connection?.effectiveType === '2g';
+    
+    if (isLowEnd || isSlowConnection) return;
+
+    // Defer decorations even further to ensure TTI
+    const timer = setTimeout(() => setShowDecorations(true), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!showDecorations) return null;
+
+  return (
+    <div className="absolute inset-0 z-[1]" ref={heroRef}>
+      {/* Background gradient animation */}
+      <Suspense fallback={null}>
+        <LazyBackgroundGradientAnimation
+          gradientBackgroundStart="#ffffff"
+          gradientBackgroundEnd="#f8fafc"
+          firstColor="47, 104, 243"
+          secondColor="243, 186, 47"
+          thirdColor="100, 220, 255"
+          fourthColor="80, 120, 240"
+          fifthColor="220, 180, 100"
+          pointerColor="140, 100, 255"
+          size="100%"
+          blendingValue="soft-light"
+          className="absolute inset-0 z-0 opacity-40"
+          interactive={true}
+        />
+      </Suspense>
+      
+      {/* Animated gradient orbs */}
+      <div className="absolute inset-0 z-[1] overflow-hidden">
+        <Suspense fallback={null}>
+          <LazyUltraLazyMotion
             className="absolute w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-[120px]"
             variants={{
               hidden: { opacity: 0, x: "-20%", y: "0%" },
@@ -107,8 +118,8 @@ export function HeroSection() {
             respectConnection={true}
           >
             <div className="w-full h-full" />
-          </UltraLazyMotion>
-          <UltraLazyMotion
+          </LazyUltraLazyMotion>
+          <LazyUltraLazyMotion
             className="absolute w-[400px] h-[400px] top-[20%] right-[10%] rounded-full bg-yellow-500/10 blur-[100px]"
             variants={{
               hidden: { opacity: 0, x: "10%", y: "5%" },
@@ -127,26 +138,9 @@ export function HeroSection() {
             respectConnection={true}
           >
             <div className="w-full h-full" />
-          </UltraLazyMotion>
-        </div>
-      )}
-      
-      {/* World Map Background - now prioritized for LCP */}
-      <div className="absolute inset-0 z-10">
-        <WorldMapBackground />
+          </LazyUltraLazyMotion>
+        </Suspense>
       </div>
-      
-      <div className="container mx-auto relative z-20 h-full flex items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_600px] gap-6 lg:gap-12 items-center">
-          {/* Content Column */}
-          <HeroContent />
-          
-          {/* Visual Column with floating effect */}
-          <HeroCard />
-        </div>
-      </div>
-      
-      <ScrollIndicator />
-    </section>
+    </div>
   );
 }
