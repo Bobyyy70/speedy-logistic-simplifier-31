@@ -24,7 +24,7 @@ export function ContactCTA() {
   return (
     <section className="py-16 md:py-24 lg:py-32 px-0 relative overflow-hidden bg-white">
       {/* Fond subtil avec carte du monde */}
-      <div className="absolute inset-0 opacity-60 pointer-events-none">
+      <div className="absolute inset-0 opacity-80 pointer-events-none">
         <WorldMap dots={globalShippingPoints} opacity={0.35} />
       </div>
       
