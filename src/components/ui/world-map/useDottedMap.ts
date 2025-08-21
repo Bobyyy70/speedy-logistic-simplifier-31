@@ -23,22 +23,30 @@ export const useDottedMap = () => {
       return;
     }
 
-    // Load immediately instead of deferring for LCP optimization
-    import("dotted-map").then(({ default: DottedMap }) => {
-      if (cancelled) return;
-      const map = new DottedMap({ height: 60, grid: "diagonal" }); // Reduced size for performance
-      const svg = map.getSVG({
-        radius: 0.25, // Smaller radius for less DOM complexity
-        color: isDarkMode ? "#FFFFFF60" : "#00000030", // Reduced opacity
-        shape: "circle",
-        backgroundColor: "transparent",
+    // Use requestIdleCallback for non-blocking load to improve TTI
+    const loadMap = () => {
+      import("dotted-map").then(({ default: DottedMap }) => {
+        if (cancelled) return;
+        const map = new DottedMap({ height: 60, grid: "diagonal" }); // Reduced size for performance
+        const svg = map.getSVG({
+          radius: 0.25, // Smaller radius for less DOM complexity
+          color: isDarkMode ? "#FFFFFF60" : "#00000030", // Reduced opacity
+          shape: "circle",
+          backgroundColor: "transparent",
+        });
+        svgCache[mode] = svg;
+        if (!cancelled) setSvgMap(svg);
+      }).catch(() => {
+        // Fallback silently on failure
+        if (!cancelled) setSvgMap(fallbackSVG);
       });
-      svgCache[mode] = svg;
-      if (!cancelled) setSvgMap(svg);
-    }).catch(() => {
-      // Fallback silently on failure
-      if (!cancelled) setSvgMap(fallbackSVG);
-    });
+    };
+
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(loadMap, { timeout: 1000 });
+    } else {
+      setTimeout(loadMap, 100);
+    }
 
     return () => { cancelled = true; };
   }, [isDarkMode, mode]);
