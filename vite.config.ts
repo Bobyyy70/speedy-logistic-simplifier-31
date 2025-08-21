@@ -79,70 +79,36 @@ export default defineConfig(({ mode }) => ({
         }),
       ].filter(Boolean),
       output: {
-        manualChunks: (id) => {
-          // Core React - always needed
-          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
-            return 'react-vendor';
-          }
-          if (id.includes('node_modules/react-router-dom')) {
-            return 'react-router';
-          }
+        manualChunks: {
+          // Core React chunks
+          'react-vendor': ['react', 'react-dom'],
+          'react-router': ['react-router-dom'],
           
-          // Heavy libraries - separate chunks
-          if (id.includes('node_modules/framer-motion')) return 'framer-motion';
-          if (id.includes('node_modules/recharts')) return 'charts';
-          if (id.includes('node_modules/dotted-map') || id.includes('node_modules/simplex-noise')) {
-            return 'map-libs';
-          }
+          // UI Library chunks
+          'radix-ui': [
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-dropdown-menu',
+            '@radix-ui/react-accordion',
+            '@radix-ui/react-tabs',
+            '@radix-ui/react-popover',
+          ],
+          'form-libs': ['react-hook-form', '@hookform/resolvers', 'zod'],
           
-          // UI components - group by usage pattern
-          if (id.includes('@radix-ui/')) return 'radix-ui';
-          if (id.includes('react-hook-form') || id.includes('@hookform/') || id.includes('zod')) {
-            return 'form-libs';
-          }
+          // Animation chunks (lazy loaded)
+          'framer-motion': ['framer-motion'],
           
-          // Icons and utilities - lightweight
-          if (id.includes('lucide-react')) return 'icons';
-          if (id.includes('clsx') || id.includes('tailwind-merge') || id.includes('date-fns')) {
-            return 'utils';
-          }
+          // Chart and data visualization
+          'charts': ['recharts'],
           
-          // External services
-          if (id.includes('@calcom/embed-react')) return 'external';
+          // Utility libraries
+          'utils': ['clsx', 'tailwind-merge', 'date-fns'],
+          'icons': ['lucide-react'],
           
-          // Split large page components
-          if (id.includes('src/pages/')) {
-            const pageName = id.split('/pages/')[1].split('.')[0].toLowerCase();
-            return `page-${pageName}`;
-          }
+          // Map and specialized components
+          'map-libs': ['dotted-map', 'simplex-noise'],
           
-          // Split sections for better lazy loading
-          if (id.includes('src/components/sections/')) {
-            const sectionName = id.split('/sections/')[1].split('.')[0].toLowerCase();
-            return `section-${sectionName}`;
-          }
-          
-          // Split UI components by category
-          if (id.includes('src/components/ui/') && !id.includes('node_modules')) {
-            return 'ui-components';
-          }
-          
-          // Split performance components
-          if (id.includes('src/components/performance/')) {
-            return 'performance-utils';
-          }
-          
-          // Group remaining node_modules by size/usage
-          if (id.includes('node_modules/')) {
-            // Group smaller utilities together
-            if (id.includes('class-variance-authority') || 
-                id.includes('next-themes') || 
-                id.includes('sonner') ||
-                id.includes('input-otp')) {
-              return 'small-vendor';
-            }
-            return 'vendor';
-          }
+          // External integrations
+          'external': ['@calcom/embed-react'],
         },
         // Optimize chunk naming for better caching
         chunkFileNames: (chunkInfo) => {
@@ -166,23 +132,19 @@ export default defineConfig(({ mode }) => ({
     },
     // Enable source maps in development only
     sourcemap: mode === 'development',
-    // Optimize dependencies - minimize eager loading
+    // Optimize dependencies
     optimizeDeps: {
       include: [
         'react',
         'react-dom',
         'react-router-dom',
-        'clsx',
-        'tailwind-merge',
+        'framer-motion',
+        'lucide-react',
       ],
       exclude: [
-        // Exclude all heavy libraries for lazy loading
-        'framer-motion',
+        // Exclude heavy libraries that should be lazy loaded
         'dotted-map',
         'recharts',
-        'simplex-noise',
-        '@calcom/embed-react',
-        'lucide-react', // Icons loaded on demand
       ],
     },
   },

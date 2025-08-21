@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { HeroSection } from "@/components/sections/HeroSection";
 import { LazyMotionDiv } from "@/components/ui/lazy-motion";
-import { LazyComponentLoader } from "@/components/performance/LazyComponentLoader";
+import { LazyInView } from "@/components/performance/LazyInView";
 // Animation variants pour les transitions entre sections
 const sectionVariants = {
   hidden: { opacity: 0 },
@@ -35,63 +35,54 @@ const Index = () => {
         </div>
         <div className="h-8 bg-gradient-to-b from-white to-transparent pointer-events-none" aria-hidden="true" />
         
-        {/* Main Content Sections - Optimized lazy loading */}
+        {/* Main Content Sections - Lazy loaded */}
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
-          <LazyComponentLoader 
-            importFn={() => import("@/components/sections/LogisticsFeatureSection")}
-            componentName="LogisticsFeatureSection"
-            backgroundVariant="white"
+          <LazyInView 
+            loader={() => import("@/components/sections/LogisticsFeatureSection").then(m => ({ default: m.LogisticsFeatureSection }))} 
+            componentProps={{ backgroundVariant: 'white' }}
           />
         </LazyMotionDiv>
         
         {/* Apply site background to mid sections */}
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
-          <LazyComponentLoader 
-            importFn={() => import("@/components/sections/ChallengesSection")}
-            componentName="ChallengesSection"
-            backgroundVariant="site"
+          <LazyInView 
+            loader={() => import("@/components/sections/ChallengesSection").then(m => ({ default: m.ChallengesSection }))}
+            componentProps={{ backgroundVariant: 'site' }}
           />
         </LazyMotionDiv>
         
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
-          <LazyComponentLoader 
-            importFn={() => import("@/components/sections/HowItWorksSection")}
-            componentName="HowItWorksSection"
-            backgroundVariant="white"
+          <LazyInView 
+            loader={() => import("@/components/sections/HowItWorksSection").then(m => ({ default: m.HowItWorksSection }))}
+            componentProps={{ backgroundVariant: 'white' }}
           />
         </LazyMotionDiv>
         
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
-          <LazyComponentLoader 
-            importFn={() => import("@/components/sections/WhyUsSection")}
-            componentName="WhyUsSection"
-            backgroundVariant="site"
+          <LazyInView 
+            loader={() => import("@/components/sections/WhyUsSection").then(m => ({ default: m.WhyUsSection }))}
+            componentProps={{ backgroundVariant: 'site' }}
           />
         </LazyMotionDiv>
         
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
-          <LazyComponentLoader 
-            importFn={() => import("@/components/sections/LogisticsPerformanceSection")}
-            componentName="LogisticsPerformanceSection"
-            backgroundVariant="site"
+          <LazyInView 
+            loader={() => import("@/components/sections/LogisticsPerformanceSection").then(m => ({ default: m.LogisticsPerformanceSection }))}
+            componentProps={{ backgroundVariant: 'site' }}
           />
         </LazyMotionDiv>
 
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
-          <LazyComponentLoader 
-            importFn={() => import("@/components/sections/TestimonialsSection")}
-            componentName="TestimonialsSection"
-            backgroundVariant="site"
+          <LazyInView 
+            loader={() => import("@/components/sections/TestimonialsSection").then(m => ({ default: m.TestimonialsSection }))} 
+            componentProps={{ backgroundVariant: 'site' }}
           />
         </LazyMotionDiv>
         
         {/* Transition back to white before Contact CTA */}
         <div className="h-8 bg-gradient-to-b from-transparent to-white pointer-events-none" aria-hidden="true" />
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
-          <LazyComponentLoader 
-            importFn={() => import("@/components/home/ContactCTA")}
-            componentName="ContactCTA" 
-          />
+          <LazyInView loader={() => import("@/components/home/ContactCTA").then(m => ({ default: m.ContactCTA }))} />
         </LazyMotionDiv>
       </div>
     </div>
