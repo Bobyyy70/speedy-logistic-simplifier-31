@@ -1,0 +1,14 @@
+{
+  "records": [
+    {
+      "action": "create_file",
+      "path": "src/lib/quicksort.js",
+      "author": "automation",
+      "timestamp": "2025-08-21T08:16:36Z",
+      "notes": "Ajout quicksort non-mutatif JS, export CommonJS/ESM interop",
+      "stored_via": "local-fallback",
+      "tool_available": false,
+      "tool_name": "byterover-store-knowledge"
+    }
+  ]
+}
