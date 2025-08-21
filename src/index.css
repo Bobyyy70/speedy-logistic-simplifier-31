@@ -1,5 +1,5 @@
-
 /* Performance optimizations */
+@import url('./styles/lcp-optimizations.css');
 @import "./styles/critical.css";
 @import "./styles/performance.css";
 @import "./styles/performance-tbt.css";

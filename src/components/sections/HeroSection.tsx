@@ -1,16 +1,13 @@
+
 import React, { useRef, useEffect, useState, lazy, Suspense } from "react";
-import { Link } from "react-router-dom";
-import { HeroContent } from "@/components/sections/hero/HeroContent";
-import { HeroCard } from "@/components/sections/hero/HeroCard";
+import { OptimizedHeroContent } from "@/components/sections/hero/OptimizedHeroContent";
+import { OptimizedHeroImage } from "@/components/sections/hero/OptimizedHeroImage";
 import { ScrollIndicator } from "@/components/sections/ScrollIndicator";
-// removed direct import of WorldMapBackground for code-splitting
-// Lazy load background animation to avoid early script evaluation
+
+// Lazy load des animations non-critiques pour ne pas bloquer le LCP
 const LazyBackgroundGradientAnimation = lazy(() =>
   import("@/components/ui/background-gradient-animation").then(m => ({ default: m.BackgroundGradientAnimation }))
 );
-import { UltraLazyMotion, performanceVariants } from "@/components/ui/ultra-lazy-motion";
-import { useThrottledParallax } from "@/hooks/use-throttled-parallax";
-import { usePerformanceMonitor } from "@/hooks/use-performance-monitor";
 
 const LazyWorldMapBackground = lazy(() =>
   import("@/components/sections/hero/WorldMapBackground").then(m => ({ default: m.WorldMapBackground }))
@@ -18,138 +15,67 @@ const LazyWorldMapBackground = lazy(() =>
 
 export function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const throttledParallax = useThrottledParallax({ intensity: 8, fps: 30 });
-  const { metrics } = usePerformanceMonitor({ startOnIdle: true });
   const [showDecorations, setShowDecorations] = useState(false);
 
-  // Enable optimized parallax effect only on performant devices
+  // Différer les décorations après le LCP pour ne pas impacter la performance
   useEffect(() => {
-    if (!heroRef.current || metrics.isLowEndDevice) return;
-
-    const worldMapElement = heroRef.current.querySelector(".world-map-container") as HTMLElement;
-    const handleMouseMove = throttledParallax(worldMapElement);
-    
-    if (handleMouseMove) {
-      window.addEventListener("mousemove", handleMouseMove, { passive: true });
-      return () => {
-        window.removeEventListener("mousemove", handleMouseMove);
-      };
-    }
-  }, [throttledParallax, metrics.isLowEndDevice]);
-
-  // Defer non-critical decorations until idle (improves LCP) - reduced timeout
-  useEffect(() => {
-    if (metrics.isLowEndDevice || metrics.networkSpeed === 'slow') return;
-
-    let idleId: number;
-    const onIdle = () => setShowDecorations(true);
-
-    if ('requestIdleCallback' in window) {
-      idleId = (window as any).requestIdleCallback(onIdle, { timeout: 800 }) as number;
-    } else {
-      idleId = (setTimeout as unknown as (handler: TimerHandler, timeout?: number) => number)(onIdle, 500);
-    }
-
-    return () => {
-      if ('cancelIdleCallback' in window) {
-        try { (window as any).cancelIdleCallback(idleId); } catch {}
+    // Attendre que le contenu critique soit rendu avant d'ajouter les décorations
+    const timer = setTimeout(() => {
+      if ('requestIdleCallback' in window) {
+        (window as any).requestIdleCallback(() => setShowDecorations(true), { timeout: 2000 });
       } else {
-        clearTimeout(idleId);
+        setTimeout(() => setShowDecorations(true), 1000);
       }
-    };
-  }, [metrics.isLowEndDevice, metrics.networkSpeed]);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section 
       ref={heroRef} 
-      className="relative w-full h-screen min-h-[100vh] overflow-hidden"
-      style={{
-        willChange: 'transform',
-        transform: 'translate3d(0, 0, 0)' // Force GPU layer
-      }}
+      className="relative w-full h-screen min-h-[100vh] overflow-hidden bg-white"
     >
-      {/* Background gradient animation with enhanced colors and subtlety */}
+      {/* Background décoratif différé pour ne pas impacter le LCP */}
       {showDecorations && (
         <Suspense fallback={null}>
           <LazyBackgroundGradientAnimation
             gradientBackgroundStart="#ffffff"
             gradientBackgroundEnd="#f8fafc"
-            firstColor="47, 104, 243"        // Primary blue
-            secondColor="243, 186, 47"       // Gold/yellow accent
-            thirdColor="100, 220, 255"       // Light blue
-            fourthColor="80, 120, 240"       // Soft blue
-            fifthColor="220, 180, 100"       // Warm gold
-            pointerColor="140, 100, 255"     // Interactive purple
+            firstColor="47, 104, 243"
+            secondColor="243, 186, 47"
+            thirdColor="100, 220, 255"
+            fourthColor="80, 120, 240"
+            fifthColor="220, 180, 100"
+            pointerColor="140, 100, 255"
             size="100%"
             blendingValue="soft-light"
             className="absolute inset-0 z-0 opacity-40"
-            interactive={!metrics.isLowEndDevice && showDecorations}
+            interactive={false} // Désactivé pour la performance
           />
         </Suspense>
       )}
       
-      {/* Animated gradient orbs - only for high-performance devices */}
-      {!metrics.isLowEndDevice && showDecorations && (
-        <div className="absolute inset-0 z-[1] overflow-hidden">
-          <UltraLazyMotion
-            className="absolute w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-[120px]"
-            variants={{
-              hidden: { opacity: 0, x: "-20%", y: "0%" },
-              visible: { 
-                opacity: 1, 
-                x: ["-20%", "10%", "-10%", "5%", "-20%"],
-                y: ["0%", "15%", "-5%", "10%", "0%"],
-                transition: {
-                  duration: 25,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  ease: "easeInOut",
-                }
-              }
-            }}
-            respectConnection={true}
-          >
-            <div className="w-full h-full" />
-          </UltraLazyMotion>
-          <UltraLazyMotion
-            className="absolute w-[400px] h-[400px] top-[20%] right-[10%] rounded-full bg-yellow-500/10 blur-[100px]"
-            variants={{
-              hidden: { opacity: 0, x: "10%", y: "5%" },
-              visible: { 
-                opacity: 1, 
-                x: ["10%", "-15%", "5%", "-5%", "10%"],
-                y: ["5%", "-10%", "15%", "0%", "5%"],
-                transition: {
-                  duration: 20,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  ease: "easeInOut",
-                }
-              }
-            }}
-            respectConnection={true}
-          >
-            <div className="w-full h-full" />
-          </UltraLazyMotion>
-        </div>
-      )}
-      
-      {/* World Map Background - conditional rendering based on performance */}
-      <div className="absolute inset-0 z-10">
-        {!metrics.isLowEndDevice && metrics.networkSpeed !== 'slow' && showDecorations && (
+      {/* Carte du monde différée */}
+      {showDecorations && (
+        <div className="absolute inset-0 z-10">
           <Suspense fallback={null}>
             <LazyWorldMapBackground />
           </Suspense>
-        )}
-      </div>
+        </div>
+      )}
       
-      <div className="container mx-auto relative z-20 h-full flex items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_600px] gap-6 lg:gap-12 items-center">
-          {/* Content Column */}
-          <HeroContent />
+      {/* Contenu principal - critique pour LCP */}
+      <div className="container mx-auto relative z-20 h-full flex items-center px-4 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_500px] xl:grid-cols-[1fr_600px] gap-8 lg:gap-16 items-center w-full">
           
-          {/* Visual Column with floating effect */}
-          <HeroCard />
+          {/* Contenu textuel optimisé - élément critique LCP */}
+          <OptimizedHeroContent />
+          
+          {/* Image héro optimisée - potentiel élément LCP */}
+          <div className="order-first lg:order-last">
+            <OptimizedHeroImage />
+          </div>
         </div>
       </div>
       
