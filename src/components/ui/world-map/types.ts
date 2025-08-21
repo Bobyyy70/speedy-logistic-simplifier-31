@@ -4,6 +4,11 @@ export interface Dot {
   end: { lat: number; lng: number };
 }
 
+export interface MapDot {
+  start: { lat: number; lng: number; label?: string };
+  end: { lat: number; lng: number; label?: string };
+}
+
 export interface WorldMapProps {
   dots?: Dot[];
   lineColor?: string;
@@ -20,5 +25,9 @@ export interface MapPoint {
 }
 
 export interface MovingDotsProps {
-  dots: Dot[];
+  dots: MapDot[];
+}
+
+export interface MapProps extends WorldMapProps {
+  // Additional map-specific props if needed
 }

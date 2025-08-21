@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useDottedMap } from "./useDottedMap";
 import { MapPaths } from "./MapPaths";
@@ -16,6 +17,12 @@ export function WorldMap({
 }: WorldMapProps) {
   const { svgMap } = useDottedMap();
 
+  // Convert Dot[] to MapDot[] format for compatibility
+  const mapDots = dots.map(dot => ({
+    start: { ...dot.start, label: dot.start.lat === 48.8566 && dot.start.lng === 2.3522 ? "France" : undefined },
+    end: { ...dot.end, label: undefined }
+  }));
+
   return (
     <div className="w-full h-full relative">
       <img
@@ -26,8 +33,8 @@ export function WorldMap({
         width={1056}
         draggable={false}
         decoding="async"
-        loading={priority ? "eager" : "lazy"}
-        fetchPriority={priority ? "high" : "auto"}
+        loading="eager"
+        fetchPriority="high"
         style={{
           opacity,
           willChange: "auto",
@@ -35,9 +42,21 @@ export function WorldMap({
         }}
       />
       
-      <MapPaths />
-      <MapPoints />
-      <MovingDots dots={dots} />
+      {dots.length > 0 && (
+        <svg className="absolute inset-0 w-full h-full pointer-events-none">
+          <MapPaths 
+            dots={mapDots} 
+            lineColor={lineColor} 
+            secondaryLineColor={secondaryLineColor} 
+          />
+          <MapPoints 
+            dots={mapDots} 
+            lineColor={dotColor} 
+            secondaryLineColor={secondaryDotColor} 
+          />
+          <MovingDots dots={mapDots} />
+        </svg>
+      )}
     </div>
   );
 }
