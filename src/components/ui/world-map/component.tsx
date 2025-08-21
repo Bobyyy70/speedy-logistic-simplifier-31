@@ -33,8 +33,8 @@ export function WorldMap({
         width={1056}
         draggable={false}
         decoding="async"
-        loading="eager"
-        fetchPriority="high"
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : "auto"}
         style={{
           opacity,
           willChange: "auto",
