@@ -1,9 +1,10 @@
+
 import React, { useRef, useEffect, useState, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { HeroContent } from "@/components/sections/hero/HeroContent";
 import { HeroCard } from "@/components/sections/hero/HeroCard";
 import { ScrollIndicator } from "@/components/sections/ScrollIndicator";
-// removed direct import of WorldMapBackground for code-splitting
+import { WorldMapBackground } from "@/components/sections/hero/WorldMapBackground";
 // Lazy load background animation to avoid early script evaluation
 const LazyBackgroundGradientAnimation = lazy(() =>
   import("@/components/ui/background-gradient-animation").then(m => ({ default: m.BackgroundGradientAnimation }))
@@ -11,10 +12,6 @@ const LazyBackgroundGradientAnimation = lazy(() =>
 import { UltraLazyMotion, performanceVariants } from "@/components/ui/ultra-lazy-motion";
 import { useThrottledParallax } from "@/hooks/use-throttled-parallax";
 import { usePerformanceMonitor } from "@/hooks/use-performance-monitor";
-
-const LazyWorldMapBackground = lazy(() =>
-  import("@/components/sections/hero/WorldMapBackground").then(m => ({ default: m.WorldMapBackground }))
-);
 
 export function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -134,13 +131,9 @@ export function HeroSection() {
         </div>
       )}
       
-      {/* World Map Background - conditional rendering based on performance */}
+      {/* World Map Background - now prioritized for LCP */}
       <div className="absolute inset-0 z-10">
-        {!metrics.isLowEndDevice && metrics.networkSpeed !== 'slow' && showDecorations && (
-          <Suspense fallback={null}>
-            <LazyWorldMapBackground />
-          </Suspense>
-        )}
+        <WorldMapBackground />
       </div>
       
       <div className="container mx-auto relative z-20 h-full flex items-center">
