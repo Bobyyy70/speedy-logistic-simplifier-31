@@ -5,8 +5,13 @@ import { Helmet } from "react-helmet-async";
 // Temporary shim to avoid runtime 'motion' reference in sourcemap/hot code
 const motion = {} as any; void motion;
 
-import { CalendarSection } from "@/components/contact/CalendarSection";
-import { MapSection } from "@/components/contact/MapSection";
+// Lazy load contact components to reduce initial JS bundle
+const CalendarSection = React.lazy(() => 
+  import("@/components/contact/CalendarSection").then(m => ({ default: m.CalendarSection }))
+);
+const MapSection = React.lazy(() => 
+  import("@/components/contact/MapSection").then(m => ({ default: m.MapSection }))
+);
 import { Clock, MapPin, Phone, Mail } from "lucide-react";
 
 const Contact = () => {
@@ -178,11 +183,23 @@ const Contact = () => {
               </div>
             </section>
 
-            {/* Hero Calendar Section */}
-            <CalendarSection />
+            {/* Hero Calendar Section - Lazy loaded */}
+            <React.Suspense fallback={
+              <div className="bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-slate-200 animate-pulse">
+                <div className="h-64 bg-gray-200 rounded-2xl"></div>
+              </div>
+            }>
+              <CalendarSection />
+            </React.Suspense>
 
-            {/* Map Section */}
-            <MapSection />
+            {/* Map Section - Lazy loaded */}
+            <React.Suspense fallback={
+              <div className="bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-slate-200 animate-pulse">
+                <div className="h-96 bg-gray-200 rounded-2xl"></div>
+              </div>
+            }>
+              <MapSection />
+            </React.Suspense>
           </div>
         </div>
       </div>
