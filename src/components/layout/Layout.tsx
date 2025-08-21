@@ -88,6 +88,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         {/* Canonical URL */}
         <link rel="canonical" href={metadata.canonical} />
         
+        {/* Hreflang Tags */}
+        <link rel="alternate" hrefLang="fr" href={metadata.canonical} />
+        <link rel="alternate" hrefLang="fr-FR" href={metadata.canonical} />
+        <link rel="alternate" hrefLang="x-default" href={metadata.canonical} />
+        
         {/* Geo Tags */}
         <meta name="geo.region" content={metadata.geo.region} />
         <meta name="geo.placename" content={metadata.geo.placename} />

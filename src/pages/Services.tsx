@@ -16,13 +16,6 @@ const Services: React.FC = () => {
 
   return (
     <div className="w-full">
-      <Helmet>
-        <title>Services Logistiques E-commerce | Speed E-Log</title>
-        <meta name="description" content="Découvrez nos services logistiques e-commerce: réception, stockage, préparation de commandes, expédition et gestion des retours. Solutions pour PME." />
-        <meta property="og:title" content="Services Logistiques E-commerce | Speed E-Log" />
-        <meta property="og:description" content="Découvrez nos services logistiques e-commerce: réception, stockage, préparation de commandes, expédition et gestion des retours. Solutions pour PME." />
-        <meta name="robots" content="index, follow" />
-      </Helmet>
       
       {/* Hero Section */}
       <ServicesHero />
