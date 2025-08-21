@@ -38,7 +38,8 @@ const Index = () => {
         {/* Main Content Sections - Optimized lazy loading */}
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
           <LazyComponentLoader 
-            importFn={() => import("@/components/sections/LogisticsFeatureSection").then(m => ({ default: m.LogisticsFeatureSection }))}
+            importFn={() => import("@/components/sections/LogisticsFeatureSection")}
+            componentName="LogisticsFeatureSection"
             backgroundVariant="white"
           />
         </LazyMotionDiv>
@@ -46,35 +47,40 @@ const Index = () => {
         {/* Apply site background to mid sections */}
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
           <LazyComponentLoader 
-            importFn={() => import("@/components/sections/ChallengesSection").then(m => ({ default: m.ChallengesSection }))}
+            importFn={() => import("@/components/sections/ChallengesSection")}
+            componentName="ChallengesSection"
             backgroundVariant="site"
           />
         </LazyMotionDiv>
         
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
           <LazyComponentLoader 
-            importFn={() => import("@/components/sections/HowItWorksSection").then(m => ({ default: m.HowItWorksSection }))}
+            importFn={() => import("@/components/sections/HowItWorksSection")}
+            componentName="HowItWorksSection"
             backgroundVariant="white"
           />
         </LazyMotionDiv>
         
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
           <LazyComponentLoader 
-            importFn={() => import("@/components/sections/WhyUsSection").then(m => ({ default: m.WhyUsSection }))}
+            importFn={() => import("@/components/sections/WhyUsSection")}
+            componentName="WhyUsSection"
             backgroundVariant="site"
           />
         </LazyMotionDiv>
         
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
           <LazyComponentLoader 
-            importFn={() => import("@/components/sections/LogisticsPerformanceSection").then(m => ({ default: m.LogisticsPerformanceSection }))}
+            importFn={() => import("@/components/sections/LogisticsPerformanceSection")}
+            componentName="LogisticsPerformanceSection"
             backgroundVariant="site"
           />
         </LazyMotionDiv>
 
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
           <LazyComponentLoader 
-            importFn={() => import("@/components/sections/TestimonialsSection").then(m => ({ default: m.TestimonialsSection }))}
+            importFn={() => import("@/components/sections/TestimonialsSection")}
+            componentName="TestimonialsSection"
             backgroundVariant="site"
           />
         </LazyMotionDiv>
@@ -82,7 +88,10 @@ const Index = () => {
         {/* Transition back to white before Contact CTA */}
         <div className="h-8 bg-gradient-to-b from-transparent to-white pointer-events-none" aria-hidden="true" />
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
-          <LazyComponentLoader importFn={() => import("@/components/home/ContactCTA").then(m => ({ default: m.ContactCTA }))} />
+          <LazyComponentLoader 
+            importFn={() => import("@/components/home/ContactCTA")}
+            componentName="ContactCTA" 
+          />
         </LazyMotionDiv>
       </div>
     </div>
