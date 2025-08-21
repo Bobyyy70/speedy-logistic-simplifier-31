@@ -8,14 +8,6 @@ const PrivacyPolicy = () => {
 
   return (
     <div className="container mx-auto py-16 px-4">
-      <Helmet>
-        <title>Politique de Protection des Données Personnelles | Speed E-Log</title>
-        <meta
-          name="description"
-          content="Politique RGPD complète de Speed E-Log - Protection des données, droits des utilisateurs et conformité CNIL 2025."
-        />
-        <meta name="robots" content="index, follow" />
-      </Helmet>
 
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">

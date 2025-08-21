@@ -38,13 +38,6 @@ const About = () => {
         className="fixed inset-0 z-0"
       />
 
-      <Helmet>
-        <title>À Propos de Speed E-Log | Votre Partenaire Logistique</title>
-        <meta name="description" content="Speed E-Log, partenaire logistique e-commerce pour PME. Nous simplifions vos opérations avec fiabilité, transparence et performance en France." />
-        <meta property="og:title" content="À Propos de Speed E-Log | Votre Partenaire Logistique" />
-        <meta property="og:description" content="Speed E-Log, partenaire logistique e-commerce pour PME. Nous simplifions vos opérations avec fiabilité, transparence et performance en France." />
-        <meta name="robots" content="index, follow" />
-      </Helmet>
 
       {/* Hero Section */}
       <motion.section 

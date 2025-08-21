@@ -52,6 +52,7 @@ export function WorldMapBackground() {
         opacity={0.75}
         dotColor="#2F68F3"
         secondaryDotColor="#F3BA2F"
+        priority={true}
       />
       
       {/* Overlay gradient for better contrast with content */}

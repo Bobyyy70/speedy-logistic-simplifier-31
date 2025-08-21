@@ -72,11 +72,6 @@ const Technology = () => {
 
   return (
     <div className="w-full relative site-background">
-      <Helmet>
-        <title>Notre Technologie SupplyOS | Speed E-Log</title>
-        <meta name="description" content="Découvrez SupplyOS, notre solution logistique intégrée combinant WMS, OMS et TMS pour une gestion optimale de votre chaîne logistique e-commerce." />
-        <meta name="robots" content="index, follow" />
-      </Helmet>
 
       {/* Hero Section avec design moderne */}
       <section className="min-h-[90vh] relative overflow-hidden flex items-center">

@@ -28,7 +28,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  // Inject HubSpot embed script once, but defer until after load + idle
+  // Defer HubSpot loading until user interaction to reduce initial JS execution
   useEffect(() => {
     if (!import.meta.env.PROD) return; // avoid in dev
     const { portalId, region } = getHubSpotConfig();
@@ -36,25 +36,47 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     if (!portalId || !region) return;
     if (document.getElementById(scriptId)) return;
 
+    let hubspotLoaded = false;
+    let idleCallback: number;
+    
     const inject = () => {
-      if (document.getElementById(scriptId)) return;
+      if (hubspotLoaded || document.getElementById(scriptId)) return;
+      hubspotLoaded = true;
+      
       const s = document.createElement('script');
       s.type = 'text/javascript';
       s.id = scriptId;
       s.async = true;
       s.defer = true;
       s.src = `https://js-${region}.hs-scripts.com/${portalId}.js`;
+      s.onload = () => console.log("HubSpot script loaded");
+      s.onerror = () => console.error("Failed to load HubSpot script");
       document.body.appendChild(s);
+    };
+
+    // Load on user interaction or after extended idle time
+    const handleUserInteraction = () => {
+      inject();
+      document.removeEventListener('scroll', handleUserInteraction);
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('touchstart', handleUserInteraction);
+      document.removeEventListener('keydown', handleUserInteraction);
     };
 
     const onLoad = () => {
       // @ts-ignore - requestIdleCallback may not exist on Window type
       const ric = window.requestIdleCallback as any;
       if (typeof ric === 'function') {
-        ric(inject, { timeout: 4000 });
+        idleCallback = ric(inject, { timeout: 8000 }); // Increased timeout
       } else {
-        setTimeout(inject, 2000);
+        setTimeout(inject, 5000); // Increased delay
       }
+      
+      // Also listen for user interactions to load earlier if needed
+      document.addEventListener('scroll', handleUserInteraction, { passive: true, once: true });
+      document.addEventListener('click', handleUserInteraction, { once: true });
+      document.addEventListener('touchstart', handleUserInteraction, { passive: true, once: true });
+      document.addEventListener('keydown', handleUserInteraction, { once: true });
     };
 
     if (document.readyState === 'complete') {
@@ -64,7 +86,14 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     }
 
     return () => {
+      if (idleCallback && typeof (window as any).cancelIdleCallback === 'function') {
+        (window as any).cancelIdleCallback(idleCallback);
+      }
       window.removeEventListener('load', onLoad);
+      document.removeEventListener('scroll', handleUserInteraction);
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('touchstart', handleUserInteraction);
+      document.removeEventListener('keydown', handleUserInteraction);
     };
   }, []);
 
@@ -87,6 +116,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         
         {/* Canonical URL */}
         <link rel="canonical" href={metadata.canonical} />
+        
+        {/* Hreflang Tags */}
+        <link rel="alternate" hrefLang="fr" href={metadata.canonical} />
+        <link rel="alternate" hrefLang="fr-FR" href={metadata.canonical} />
+        <link rel="alternate" hrefLang="x-default" href={metadata.canonical} />
         
         {/* Geo Tags */}
         <meta name="geo.region" content={metadata.geo.region} />

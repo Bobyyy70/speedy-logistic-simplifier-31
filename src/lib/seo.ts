@@ -479,6 +479,11 @@ export const seoPages: { [key: string]: SEOPageData } = {
     description: "Conditions générales de vente Speed E-Log pour services de logistique e-commerce. Tarifs, engagements et modalités de nos prestations 3PL.",
     keywords: "CGV Speed E-Log, conditions générales logistique, tarifs 3PL, conditions services e-commerce",
   },
+  "/politique-cookies": {
+    title: "Politique de Gestion des Cookies et Traceurs | Speed E-Log",
+    description: "Politique complète de gestion des cookies et traceurs Speed E-Log SAS. Conforme aux lignes directrices CNIL 2020 et exigences 2024-2025.",
+    keywords: "politique cookies, traceurs CNIL, gestion cookies Speed E-Log, RGPD cookies",
+  },
   
   // Nouvelles pages clés
   "/integrations": {

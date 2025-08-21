@@ -15,83 +15,138 @@ export const sanitizeHtml = (html: string): string => {
   });
 };
 
-// Enhanced rate limiting with localStorage persistence
+// Enhanced rate limiting with localStorage persistence and progressive blocking
 export class ClientRateLimiter {
-  private attempts: Map<string, { count: number; lastAttempt: number }> = new Map();
-  private readonly maxAttempts: number;
-  private readonly windowMs: number;
-  private readonly storageKey: string;
+  private attempts: Map<string, { count: number; firstAttempt: number; lastAttempt: number; violations: number }> = new Map();
+  private maxAttempts: number;
+  private windowMs: number;
+  private blockDurationMs: number;
+  private progressiveDelay: boolean;
 
-  constructor(maxAttempts: number = 5, windowMs: number = 15 * 60 * 1000, storageKey: string = 'rate_limiter') {
+  constructor(maxAttempts = 5, windowMs = 60000, blockDurationMs = 300000, progressiveDelay = true) {
     this.maxAttempts = maxAttempts;
     this.windowMs = windowMs;
-    this.storageKey = storageKey;
+    this.blockDurationMs = blockDurationMs;
+    this.progressiveDelay = progressiveDelay;
     this.loadFromStorage();
   }
 
   private loadFromStorage(): void {
     try {
-      if (typeof window !== 'undefined' && window.localStorage) {
-        const stored = localStorage.getItem(this.storageKey);
-        if (stored) {
-          const data = JSON.parse(stored);
-          this.attempts = new Map(Object.entries(data));
-        }
+      const stored = localStorage.getItem('rate-limiter-attempts');
+      if (stored) {
+        const data = JSON.parse(stored);
+        this.attempts = new Map(Object.entries(data).map(([key, value]: [string, any]) => [
+          key,
+          {
+            count: value.count || 0,
+            firstAttempt: value.firstAttempt || Date.now(),
+            lastAttempt: value.lastAttempt || Date.now(),
+            violations: value.violations || 0
+          }
+        ]));
       }
     } catch (error) {
-      console.warn('Failed to load rate limiting data from storage:', error);
+      console.warn('Failed to load rate limiter data from storage:', error);
+      this.attempts = new Map();
     }
   }
 
   private saveToStorage(): void {
     try {
-      if (typeof window !== 'undefined' && window.localStorage) {
-        const data = Object.fromEntries(this.attempts);
-        localStorage.setItem(this.storageKey, JSON.stringify(data));
-      }
+      const data = Object.fromEntries(this.attempts);
+      localStorage.setItem('rate-limiter-attempts', JSON.stringify(data));
     } catch (error) {
-      console.warn('Failed to save rate limiting data to storage:', error);
+      console.warn('Failed to save rate limiter data to storage:', error);
     }
+  }
+
+  private cleanup(): void {
+    const now = Date.now();
+    const keysToDelete: string[] = [];
+    
+    this.attempts.forEach((value, key) => {
+      const effectiveBlockDuration = this.progressiveDelay 
+        ? this.blockDurationMs * Math.pow(2, Math.min(value.violations, 5))
+        : this.blockDurationMs;
+      
+      if (now - value.lastAttempt > effectiveBlockDuration) {
+        keysToDelete.push(key);
+      }
+    });
+    
+    keysToDelete.forEach(key => this.attempts.delete(key));
+    if (keysToDelete.length > 0) {
+      this.saveToStorage();
+    }
+  }
+
+  private getBlockDuration(violations: number): number {
+    if (!this.progressiveDelay) return this.blockDurationMs;
+    return this.blockDurationMs * Math.pow(2, Math.min(violations, 5)); // Max 32x delay
   }
 
   isAllowed(identifier: string): boolean {
+    this.cleanup();
     const now = Date.now();
-    const record = this.attempts.get(identifier);
+    const attempt = this.attempts.get(identifier);
 
-    if (!record) {
-      this.attempts.set(identifier, { count: 1, lastAttempt: now });
+    if (!attempt) {
+      this.attempts.set(identifier, {
+        count: 1,
+        firstAttempt: now,
+        lastAttempt: now,
+        violations: 0
+      });
       this.saveToStorage();
       return true;
     }
 
-    // Reset if window has passed
-    if (now - record.lastAttempt > this.windowMs) {
-      this.attempts.set(identifier, { count: 1, lastAttempt: now });
+    const effectiveBlockDuration = this.getBlockDuration(attempt.violations);
+
+    // Check if we're still in the rate limit window
+    if (now - attempt.firstAttempt < this.windowMs) {
+      if (attempt.count >= this.maxAttempts) {
+        // Check if block period has expired
+        if (now - attempt.lastAttempt < effectiveBlockDuration) {
+          // Log security event for repeated violations
+          if (attempt.violations > 3) {
+            logSecurityEvent('repeated_rate_limit_violations', { 
+              identifier, 
+              violations: attempt.violations,
+              blockDuration: effectiveBlockDuration 
+            });
+          }
+          return false;
+        } else {
+          // Block period expired, reset but track violation
+          this.attempts.set(identifier, {
+            count: 1,
+            firstAttempt: now,
+            lastAttempt: now,
+            violations: attempt.violations + 1
+          });
+          this.saveToStorage();
+          return true;
+        }
+      } else {
+        // Increment attempt count
+        attempt.count++;
+        attempt.lastAttempt = now;
+        this.attempts.set(identifier, attempt);
+        this.saveToStorage();
+        return true;
+      }
+    } else {
+      // Window expired, reset attempts but keep violation history
+      this.attempts.set(identifier, {
+        count: 1,
+        firstAttempt: now,
+        lastAttempt: now,
+        violations: Math.max(0, attempt.violations - 1) // Gradually forgive violations
+      });
       this.saveToStorage();
       return true;
-    }
-
-    // Check if limit exceeded
-    if (record.count >= this.maxAttempts) {
-      this.logSecurityEvent('rate_limit_exceeded', { identifier, count: record.count });
-      return false;
-    }
-
-    // Increment counter
-    record.count++;
-    record.lastAttempt = now;
-    this.saveToStorage();
-    return true;
-  }
-
-  reset(identifier: string): void {
-    this.attempts.delete(identifier);
-    this.saveToStorage();
-  }
-
-  private logSecurityEvent(type: string, data: any): void {
-    if (import.meta.env.DEV || import.meta.env.VITE_DEBUG_MODE === 'true') {
-      console.warn(`Security Event [${type}]:`, data);
     }
   }
 }

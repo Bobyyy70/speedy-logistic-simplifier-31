@@ -7,12 +7,6 @@ const svgCache: Record<"light" | "dark", string | undefined> = { light: undefine
 // Extremely small placeholder to avoid blocking first paint
 const fallbackSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 5"/>';
 
-// requestIdleCallback polyfill
-const ric: (cb: () => void) => number =
-  (typeof window !== "undefined" && (window as any).requestIdleCallback)
-    ? (cb => (window as any).requestIdleCallback(cb))
-    : (cb => window.setTimeout(cb, 0));
-
 export const useDottedMap = () => {
   const { theme } = useTheme();
   const isDarkMode = theme === "dark";
@@ -29,8 +23,8 @@ export const useDottedMap = () => {
       return;
     }
 
-    ric(() => {
-      // Defer heavy library load off the critical path
+    // Use requestIdleCallback for non-blocking load to improve TTI
+    const loadMap = () => {
       import("dotted-map").then(({ default: DottedMap }) => {
         if (cancelled) return;
         const map = new DottedMap({ height: 60, grid: "diagonal" }); // Reduced size for performance
@@ -46,7 +40,13 @@ export const useDottedMap = () => {
         // Fallback silently on failure
         if (!cancelled) setSvgMap(fallbackSVG);
       });
-    });
+    };
+
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(loadMap, { timeout: 1000 });
+    } else {
+      setTimeout(loadMap, 100);
+    }
 
     return () => { cancelled = true; };
   }, [isDarkMode, mode]);

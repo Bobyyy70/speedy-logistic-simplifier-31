@@ -18,22 +18,29 @@ interface HubSpotConfig {
 const isDevelopment = import.meta.env.DEV;
 const isProduction = import.meta.env.PROD;
 
-// Required environment variables validation
-const requiredEnvVars = ['VITE_HUBSPOT_PORTAL_ID', 'VITE_HUBSPOT_REGION' , 'VITE_HUBSPOT_QUOTE_FORM_ID'];
+// Critical environment variables for production
+const requiredEnvVars = ['VITE_HUBSPOT_PORTAL_ID', 'VITE_HUBSPOT_REGION', 'VITE_HUBSPOT_QUOTE_FORM_ID'];
 
-// Log missing environment variables in production (non-blocking) 
+// Strict validation for production environment
 if (isProduction) {
   const missingVars = requiredEnvVars.filter(varName => !import.meta.env[varName]);
   if (missingVars.length > 0) {
-    console.warn(`⚠️ Missing environment variables (using defaults): ${missingVars.join(', ')}`);
+    console.error(`❌ SECURITY: Missing critical environment variables in production: ${missingVars.join(', ')}`);
+    console.error('HubSpot integration will be disabled for security reasons.');
   }
 }
 
- // Get configuration from environment variables with fallbacks for development
+// Get configuration from environment variables with fallbacks for development/preview
 export const getHubSpotConfig = (): HubSpotConfig => {
-  const portalId = import.meta.env.VITE_HUBSPOT_PORTAL_ID || (isDevelopment ? '144571109' : ''); 
-  const region = import.meta.env.VITE_HUBSPOT_REGION || (isDevelopment ? 'eu1' : ''); 
-  const quoteFormId = import.meta.env.VITE_HUBSPOT_QUOTE_FORM_ID || (isDevelopment ? 'd5353f82-5ee6-44c1-afd6-501f1f60728e' : '');
+  const portalId = import.meta.env.VITE_HUBSPOT_PORTAL_ID || '144571109'; 
+  const region = import.meta.env.VITE_HUBSPOT_REGION || 'eu1'; 
+  const quoteFormId = import.meta.env.VITE_HUBSPOT_QUOTE_FORM_ID || 'd5353f82-5ee6-44c1-afd6-501f1f60728e';
+
+  // Only enforce strict validation in actual production deployments (not previews)
+  const isActualProduction = isProduction && window.location.hostname !== 'localhost' && !window.location.hostname.includes('lovable.app');
+  if (isActualProduction && (!import.meta.env.VITE_HUBSPOT_PORTAL_ID || !import.meta.env.VITE_HUBSPOT_REGION || !import.meta.env.VITE_HUBSPOT_QUOTE_FORM_ID)) {
+    console.error('SECURITY: HubSpot configuration incomplete in production environment - using fallback values');
+  }
 
   // Build forms API URL based on portal ID and region (guardé : seulement si portalId et region sont fournis)
   const formsApiUrl = import.meta.env.VITE_HUBSPOT_FORMS_API_URL ||

@@ -24,6 +24,14 @@ export const ServicesHero: React.FC = () => {
             Des solutions sur mesure pour gérer efficacement votre chaîne logistique.
             <span className="block mt-2">Concentrez-vous sur votre cœur de métier, nous nous occupons du reste.</span>
           </p>
+
+          {/* Internal Links for SEO */}
+          <div className="mb-6 text-center">
+            <p className="text-sm text-muted-foreground">
+              Découvrez également notre <Link to="/technology" className="text-primary hover:underline font-medium">technologie SupplyOS</Link> et 
+              {" "}<Link to="/contact" className="text-primary hover:underline font-medium">contactez-nous</Link> pour un devis personnalisé.
+            </p>
+          </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
             <Button 
