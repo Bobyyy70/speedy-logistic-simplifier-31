@@ -39,15 +39,15 @@ const Services: React.FC = () => {
         description="Notre réseau logistique s'adapte à votre stratégie commerciale. Que vous cibliez le marché français ou international, nous disposons des solutions et partenaires pour vous accompagner efficacement dans votre déploiement."
         mapDots={[
           {
-            start: { lat: 48.8566, lng: 2.3522, label: "France" },
+            start: { lat: 46.2276, lng: 2.2137, label: "France" },
             end: { lat: 47.6, lng: 6.18, label: "Port-sur-Saône" }
           },
           {
-            start: { lat: 48.8566, lng: 2.3522 },
+            start: { lat: 46.2276, lng: 2.2137 },
             end: { lat: 43.2965, lng: 5.3698, label: "Marseille" }
           },
           {
-            start: { lat: 48.8566, lng: 2.3522 },
+            start: { lat: 46.2276, lng: 2.2137 },
             end: { lat: 52.5200, lng: 13.4050, label: "Berlin" }
           }
         ]}
