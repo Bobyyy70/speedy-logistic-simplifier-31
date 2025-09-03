@@ -41,22 +41,6 @@ export function WorldMap({
           contain: "layout style paint",
         }}
       />
-      
-      {dots.length > 0 && (
-        <svg className="absolute inset-0 w-full h-full pointer-events-none">
-          <MapPaths 
-            dots={mapDots} 
-            lineColor={lineColor} 
-            secondaryLineColor={secondaryLineColor} 
-          />
-          <MapPoints 
-            dots={mapDots} 
-            lineColor={dotColor} 
-            secondaryLineColor={secondaryDotColor} 
-          />
-          <MovingDots dots={mapDots} />
-        </svg>
-      )}
     </div>
   );
 }
