@@ -30,27 +30,27 @@ export function WorldMapDemo() {
       <WorldMap
         dots={[
           {
-            start: { lat: 46.2276, lng: 2.2137 }, // France (center)
+            start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
             end: { lat: 40.7128, lng: -74.0060 }, // New York
           },
           {
-            start: { lat: 46.2276, lng: 2.2137 }, // France (center)
+            start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
             end: { lat: -33.8688, lng: 151.2093 }, // Sydney
           },
           {
-            start: { lat: 46.2276, lng: 2.2137 }, // France (center)
+            start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
             end: { lat: 35.6762, lng: 139.6503 }, // Tokyo
           },
           {
-            start: { lat: 46.2276, lng: 2.2137 }, // France (center)
+            start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
             end: { lat: 55.7558, lng: 37.6173 }, // Moscow
           },
           {
-            start: { lat: 46.2276, lng: 2.2137 }, // France (center)
+            start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
             end: { lat: -15.7975, lng: -47.8919 }, // Brazil (Brasília)
           },
           {
-            start: { lat: 46.2276, lng: 2.2137 }, // France (center)
+            start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
             end: { lat: -1.2921, lng: 36.8219 }, // Nairobi, Kenya
           },
         ]}

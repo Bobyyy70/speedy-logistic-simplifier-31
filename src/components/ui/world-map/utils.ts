@@ -1,18 +1,18 @@
 
 /**
  * Projects geographical coordinates to SVG coordinates
- * Using proper world map dimensions and Mercator projection
+ * Based on dotted-map dimensions (height: 60, aspect ratio ~2:1)
  */
 export const projectPoint = (lat: number, lng: number) => {
-  // Use standard viewport dimensions for world map projection
-  const mapWidth = 1056;
-  const mapHeight = 495;
+  // DottedMap with height: 60 generates approximately 120px width (2:1 ratio)
+  const mapWidth = 120;
+  const mapHeight = 60;
   
   // Convert longitude to x coordinate (simple linear projection)
   const x = ((lng + 180) / 360) * mapWidth;
   
-  // Convert latitude to y coordinate (adjusted for Mercator-like projection)
-  // France should be around y = 150-180 on a 495px height map
+  // Convert latitude to y coordinate with adjusted projection
+  // Center Europe should be around y = 20-25 on a 60px height map
   const y = ((90 - lat) / 180) * mapHeight;
   
   return { x, y };
