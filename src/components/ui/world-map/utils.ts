@@ -1,10 +1,20 @@
 
 /**
  * Projects geographical coordinates to SVG coordinates
+ * Using proper world map dimensions and Mercator projection
  */
 export const projectPoint = (lat: number, lng: number) => {
-  const x = (lng + 180) * (800 / 360);
-  const y = (90 - lat) * (400 / 180);
+  // Use standard viewport dimensions for world map projection
+  const mapWidth = 1056;
+  const mapHeight = 495;
+  
+  // Convert longitude to x coordinate (simple linear projection)
+  const x = ((lng + 180) / 360) * mapWidth;
+  
+  // Convert latitude to y coordinate (adjusted for Mercator-like projection)
+  // France should be around y = 150-180 on a 495px height map
+  const y = ((90 - lat) / 180) * mapHeight;
+  
   return { x, y };
 };
 
