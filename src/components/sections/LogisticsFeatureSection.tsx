@@ -5,18 +5,32 @@ import { motion } from "framer-motion";
 import { MapFeature } from "@/components/ui/MapFeature";
 
 export function LogisticsFeatureSection({ backgroundVariant = 'white' }: { backgroundVariant?: 'white' | 'site' }) {
-  // Définition des points de livraison internationaux
+  // Définition des points de livraison internationaux depuis la France
   const globalShippingPoints = [
+    // Destinations européennes principales
+    {
+      start: { lat: 48.8566, lng: 2.3522, label: "France" },
+      end: { lat: 51.5074, lng: -0.1278, label: "London" }
+    },
+    {
+      start: { lat: 48.8566, lng: 2.3522, label: "France" },
+      end: { lat: 52.5200, lng: 13.4050, label: "Berlin" }
+    },
+    {
+      start: { lat: 48.8566, lng: 2.3522, label: "France" },
+      end: { lat: 41.9028, lng: 12.4964, label: "Rome" }
+    },
+    // Destinations intercontinentales
     {
       start: { lat: 48.8566, lng: 2.3522, label: "France" },
       end: { lat: 40.7128, lng: -74.006, label: "New York" }
     },
     {
-      start: { lat: 48.8566, lng: 2.3522 },
+      start: { lat: 48.8566, lng: 2.3522, label: "France" },
       end: { lat: 35.6762, lng: 139.6503, label: "Tokyo" }
     },
     {
-      start: { lat: 48.8566, lng: 2.3522 },
+      start: { lat: 48.8566, lng: 2.3522, label: "France" },
       end: { lat: -33.8688, lng: 151.2093, label: "Sydney" }
     }
   ];
