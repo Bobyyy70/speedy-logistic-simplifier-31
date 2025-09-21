@@ -48,7 +48,7 @@ export function Services() {
           <p className="section-subtitle mobile-text">Une solution complète pour gérer efficacement votre chaîne logistique e-commerce sans les tracas</p>
         </motion.div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 mt-12">
+        <div className="mobile-grid-3 mt-8 sm:mt-12">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (

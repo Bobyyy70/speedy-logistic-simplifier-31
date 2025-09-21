@@ -8,7 +8,7 @@ export function Hero() {
     <div className="relative bg-gradient-to-r from-blue-50 to-sky-50 overflow-hidden">
       <div className="absolute inset-0 bg-[url('/placeholder.svg')] opacity-5 bg-repeat"></div>
       <div className="section-container pt-20 pb-12 md:pt-32 lg:pt-40 md:pb-16 lg:pb-20 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="mobile-grid-2 gap-6">
           <div className="space-y-4 md:space-y-6">
             <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight px-2 md:px-0">
               La logistique E-commerce, <span className="text-primary">sans les tracas</span>.

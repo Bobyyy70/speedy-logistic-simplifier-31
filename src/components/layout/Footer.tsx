@@ -57,8 +57,8 @@ export const Footer: React.FC = () => {
 
         <div className="relative z-10">
           {/* Main Footer Content */}
-          <div className="container mx-auto px-4 py-16">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          <div className="container mx-auto mobile-content-padding mobile-section-padding">
+            <div className="mobile-grid-2 lg:grid-cols-4 gap-8 lg:gap-12 mobile-content-padding">
               {/* Company Info */}
               <div className="lg:col-span-1 space-y-6">
                 <div className="flex items-center space-x-3">
@@ -158,7 +158,7 @@ export const Footer: React.FC = () => {
           <Separator className="bg-slate-200" />
 
           {/* Bottom Footer */}
-          <div className="container mx-auto px-4 py-6">
+          <div className="container mx-auto mobile-content-padding py-6">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-6">
               <div className="text-sm text-muted-foreground">
                 <p>&copy; {currentYear} Speed E-Log. Tous droits réservés.</p>

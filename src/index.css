@@ -85,25 +85,82 @@
     @apply min-h-[48px] px-4 py-3 touch-manipulation flex items-center;
   }
 
-  /* Mobile-first typography */
+  /* Mobile-first typography with fluid scaling */
   .mobile-text-xs {
-    @apply text-sm md:text-xs;
+    @apply text-fluid-xs leading-relaxed;
   }
 
   .mobile-text-sm {
-    @apply text-base md:text-sm;
+    @apply text-fluid-sm leading-relaxed;
   }
 
   .mobile-text-base {
-    @apply text-lg md:text-base;
+    @apply text-fluid-base leading-relaxed;
   }
 
   .mobile-text-lg {
-    @apply text-xl md:text-lg;
+    @apply text-fluid-lg leading-relaxed;
   }
 
   .mobile-text-xl {
-    @apply text-2xl md:text-xl;
+    @apply text-fluid-xl leading-tight;
+  }
+
+  /* Mobile-optimized grid layouts */
+  .mobile-grid {
+    @apply grid gap-4 sm:gap-6 lg:gap-8;
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-grid-2 {
+    @apply grid gap-4 sm:gap-6 lg:gap-8;
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-grid-3 {
+    @apply grid gap-4 sm:gap-6 lg:gap-8;
+    grid-template-columns: 1fr;
+  }
+
+  /* Mobile-responsive spacing */
+  .mobile-section-padding {
+    @apply py-8 sm:py-12 md:py-16 lg:py-20;
+  }
+
+  .mobile-content-padding {
+    @apply px-4 sm:px-6 md:px-8;
+  }
+
+  /* Mobile-optimized interactive elements */
+  .mobile-link {
+    @apply min-h-[44px] flex items-center touch-manipulation text-fluid-base;
+  }
+
+  .mobile-icon-button {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation;
+  }
+
+  .mobile-form-field {
+    @apply min-h-[48px] text-fluid-base px-4 py-3 touch-manipulation rounded-lg;
+  }
+
+  /* Mobile-first responsive breakpoints */
+  @media (min-width: 640px) {
+    .mobile-grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .mobile-grid-3 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .mobile-grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
   
   /* Fond de l'application - maintenant avec couleur claire pour le texte sombre */

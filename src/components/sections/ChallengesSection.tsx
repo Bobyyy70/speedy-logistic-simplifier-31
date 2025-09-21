@@ -71,7 +71,7 @@ export function ChallengesSection({ backgroundVariant = 'white' }: { backgroundV
         </motion.div>
 
         {/* Challenges Grid - Avec hauteur fixe et alignement */}
-        <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-3">
+        <div className="mx-auto mobile-grid lg:grid-cols-3 gap-8 sm:gap-12 items-start max-w-5xl">
           {challenges.map((challenge, index) => (
             <motion.div 
               key={index} 

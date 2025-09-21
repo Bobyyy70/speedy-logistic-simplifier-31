@@ -36,7 +36,7 @@ export function HowItWorks() {
 
         <div className="mt-16 relative">
           <div className="hidden md:block absolute left-0 right-0 top-24 h-0.5 bg-gradient-to-r from-blue-400/60 via-white/60 to-blue-500/60 dark:from-blue-600 dark:via-white/20 dark:to-blue-600/60"></div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="mobile-grid md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {steps.map((step, index) => (
               <motion.div 
                 key={index} 

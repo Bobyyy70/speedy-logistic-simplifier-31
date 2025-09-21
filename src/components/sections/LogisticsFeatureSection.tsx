@@ -69,7 +69,7 @@ export function LogisticsFeatureSection({ backgroundVariant = 'white' }: { backg
           </p>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="mobile-grid-3 gap-6">
           {checkItems.map((item, index) => (
             <motion.div
               key={index}

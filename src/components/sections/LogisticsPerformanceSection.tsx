@@ -75,7 +75,7 @@ export function LogisticsPerformanceSection({ backgroundVariant = 'white' }: { b
           </motion.p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-16">
+        <div className="mobile-grid-2 lg:grid-cols-4 gap-6 mb-16">
           {performanceMetrics.map((item, index) => (
             <motion.div
               key={index}

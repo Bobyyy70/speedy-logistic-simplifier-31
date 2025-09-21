@@ -86,7 +86,7 @@ export function WhyUsSection({ backgroundVariant = 'white' }: { backgroundVarian
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        <div className="mobile-grid-2 gap-6">
           {/* Left column: advantages list */}
           <div className="space-y-4">
             {advantages.map((advantage, index) => (

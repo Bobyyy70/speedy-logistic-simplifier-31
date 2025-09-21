@@ -136,13 +136,15 @@ export function HeroSection() {
         <WorldMapBackground />
       </div>
       
-      <div className="container mx-auto relative z-20 h-full flex items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_600px] gap-6 lg:gap-12 items-center">
+      <div className="container mx-auto relative z-20 h-full flex items-center mobile-content-padding">
+        <div className="mobile-grid lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_600px] gap-6 lg:gap-12 items-center w-full">
           {/* Content Column */}
           <HeroContent />
           
-          {/* Visual Column with floating effect */}
-          <HeroCard />
+          {/* Visual Column with floating effect - hidden on small mobile for better performance */}
+          <div className="hidden sm:block">
+            <HeroCard />
+          </div>
         </div>
       </div>
       
