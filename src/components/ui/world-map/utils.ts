@@ -1,12 +1,12 @@
 
 /**
  * Projects geographical coordinates to SVG coordinates
- * Based on dotted-map dimensions (height: 60, aspect ratio ~2:1)
+ * Based on rendered SVG dimensions (width: 1056, height: 495)
  */
 export const projectPoint = (lat: number, lng: number) => {
-  // DottedMap with height: 60 generates approximately 120px width (2:1 ratio)
-  const mapWidth = 120;
-  const mapHeight = 60;
+  // Match the overlay SVG/viewBox dimensions for perfect alignment
+  const mapWidth = 1056;
+  const mapHeight = 495;
   
   // Convert longitude to x coordinate (simple linear projection)
   const x = ((lng + 180) / 360) * mapWidth;
