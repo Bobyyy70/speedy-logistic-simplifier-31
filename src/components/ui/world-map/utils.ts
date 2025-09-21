@@ -1,4 +1,3 @@
-
 /**
  * Projects geographical coordinates to SVG coordinates
  * Based on rendered SVG dimensions (width: 1056, height: 495)
@@ -20,27 +19,41 @@ export const projectPoint = (lat: number, lng: number) => {
 
 /**
  * Creates a curved path between two points with enhanced aesthetics
+ * Creates beautiful loops for distant destinations
  */
 export const createCurvedPath = (
   start: { x: number; y: number },
   end: { x: number; y: number },
   index: number
 ) => {
-  // Create more natural curve by adjusting height factor
-  const heightFactor = 0.5 + (index % 5) * 0.1;
-  const heightVariation = 60 + (index % 5) * 10;
-  
-  // Calculate control point for smoother, more natural curves
   const dx = end.x - start.x;
   const dy = end.y - start.y;
   const distance = Math.sqrt(dx * dx + dy * dy);
   
-  // Adjust midpoint calculation for more attractive arcs
-  const midX = start.x + dx * 0.5;
-  const midY = start.y + dy * 0.5 - heightVariation * (1 - Math.min(1, distance / 400));
+  // Determine if this is a long-distance route (intercontinental)
+  const isLongDistance = distance > 300;
   
-  // Use cubic Bezier curve for more control over path shape
-  return `M ${start.x} ${start.y} Q ${midX} ${midY} ${end.x} ${end.y}`;
+  if (isLongDistance) {
+    // Create beautiful loops for intercontinental routes using cubic Bézier
+    const heightFactor = 0.8 + (index % 3) * 0.2;
+    const baseHeight = Math.min(120, distance * 0.4);
+    const heightVariation = baseHeight * heightFactor;
+    
+    // Two control points for cubic Bézier curve
+    const controlX1 = start.x + dx * 0.25;
+    const controlY1 = start.y - heightVariation;
+    const controlX2 = start.x + dx * 0.75;
+    const controlY2 = end.y - heightVariation * 0.6;
+    
+    return `M ${start.x} ${start.y} C ${controlX1} ${controlY1}, ${controlX2} ${controlY2}, ${end.x} ${end.y}`;
+  } else {
+    // Gentle curves for European routes
+    const heightVariation = 40 + (index % 3) * 15;
+    const midX = start.x + dx * 0.5;
+    const midY = start.y + dy * 0.5 - heightVariation;
+    
+    return `M ${start.x} ${start.y} Q ${midX} ${midY} ${end.x} ${end.y}`;
+  }
 };
 
 /**

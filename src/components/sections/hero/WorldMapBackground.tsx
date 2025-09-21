@@ -6,34 +6,26 @@ import { WorldMap } from "@/components/ui/world-map/component";
 export function WorldMapBackground() {
   // Define our global logistics network from France
   const shippingRoutes = [
-    // European destinations
-    {
-      start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-      end: { lat: 51.5074, lng: -0.1278, label: "London" } // London, UK
-    },
-    {
-      start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-      end: { lat: 52.5200, lng: 13.4050, label: "Berlin" } // Berlin, Germany
-    },
-    {
-      start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-      end: { lat: 40.4168, lng: -3.7038, label: "Madrid" } // Madrid, Spain
-    },
-    {
-      start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-      end: { lat: 41.9028, lng: 12.4964, label: "Rome" } // Rome, Italy
-    },
-    {
-      start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-      end: { lat: 52.3676, lng: 4.9041, label: "Amsterdam" } // Amsterdam, Netherlands
-    },
+    // Destinations européennes plus espacées
     {
       start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
       end: { lat: 59.3293, lng: 18.0686, label: "Stockholm" } // Stockholm, Sweden
     },
     {
       start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-      end: { lat: 50.1109, lng: 8.6821, label: "Frankfurt" } // Frankfurt, Germany
+      end: { lat: 38.7223, lng: -9.1393, label: "Lisbonne" } // Lisbon, Portugal
+    },
+    {
+      start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
+      end: { lat: 37.9838, lng: 23.7275, label: "Athènes" } // Athens, Greece
+    },
+    {
+      start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
+      end: { lat: 59.9139, lng: 10.7522, label: "Oslo" } // Oslo, Norway
+    },
+    {
+      start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
+      end: { lat: 41.3851, lng: 2.1734, label: "Barcelone" } // Barcelona, Spain
     },
     // Intercontinental destinations - Americas
     {

@@ -11,16 +11,20 @@ export function ContactCTA() {
 
   // Points de livraison internationaux pour la carte diversifiée
   const globalShippingPoints = [
-    // Destinations européennes
+    // Destinations européennes plus espacées
     {
       start: { lat: 48.8566, lng: 2.3522, label: "France" },
-      end: { lat: 51.5074, lng: -0.1278, label: "London" }
+      end: { lat: 59.3293, lng: 18.0686, label: "Stockholm" }
     },
     {
       start: { lat: 48.8566, lng: 2.3522, label: "France" },
-      end: { lat: 52.5200, lng: 13.4050, label: "Berlin" }
+      end: { lat: 38.7223, lng: -9.1393, label: "Lisbonne" }
     },
-    // Destinations intercontinentales
+    {
+      start: { lat: 48.8566, lng: 2.3522, label: "France" },
+      end: { lat: 37.9838, lng: 23.7275, label: "Athènes" }
+    },
+    // Destinations intercontinentales avec belles boucles
     {
       start: { lat: 48.8566, lng: 2.3522, label: "France" },
       end: { lat: 40.7128, lng: -74.006, label: "New York" }
@@ -28,6 +32,10 @@ export function ContactCTA() {
     {
       start: { lat: 48.8566, lng: 2.3522, label: "France" },
       end: { lat: 35.6762, lng: 139.6503, label: "Tokyo" }
+    },
+    {
+      start: { lat: 48.8566, lng: 2.3522, label: "France" },
+      end: { lat: 1.3521, lng: 103.8198, label: "Singapour" }
     },
     {
       start: { lat: 48.8566, lng: 2.3522, label: "France" },
@@ -47,7 +55,7 @@ export function ContactCTA() {
           className="section-box text-center max-w-3xl mx-auto backdrop-blur-sm"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ 
             duration: 0.8,
             type: "spring",
@@ -58,7 +66,7 @@ export function ContactCTA() {
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-orange-500">
@@ -70,7 +78,7 @@ export function ContactCTA() {
             className="text-base md:text-lg text-slate-600 dark:text-slate-300 mb-6 md:mb-8"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             Contactez-nous dès aujourd'hui pour obtenir un devis personnalisé et découvrir comment Speed E Log peut transformer votre chaîne logistique.
@@ -79,7 +87,7 @@ export function ContactCTA() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.5, delay: 0.6 }}
             whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
           >

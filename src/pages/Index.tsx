@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { LazyMotionDiv } from "@/components/ui/lazy-motion";
 import { LazyInView } from "@/components/performance/LazyInView";
+import { ContactCTA } from "@/components/home/ContactCTA";
 // Animation variants pour les transitions entre sections
 const sectionVariants = {
   hidden: { opacity: 0 },
@@ -82,7 +83,7 @@ const Index = () => {
         {/* Transition back to white before Contact CTA */}
         <div className="h-8 bg-gradient-to-b from-transparent to-white pointer-events-none" aria-hidden="true" />
         <LazyMotionDiv className="cv-auto cis-800" variants={sectionVariants}>
-          <LazyInView loader={() => import("@/components/home/ContactCTA").then(m => ({ default: m.ContactCTA }))} />
+          <ContactCTA />
         </LazyMotionDiv>
       </div>
     </div>

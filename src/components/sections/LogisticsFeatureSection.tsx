@@ -7,20 +7,20 @@ import { MapFeature } from "@/components/ui/MapFeature";
 export function LogisticsFeatureSection({ backgroundVariant = 'white' }: { backgroundVariant?: 'white' | 'site' }) {
   // Définition des points de livraison internationaux depuis la France
   const globalShippingPoints = [
-    // Destinations européennes principales
+    // Destinations européennes plus espacées
     {
       start: { lat: 48.8566, lng: 2.3522, label: "France" },
-      end: { lat: 51.5074, lng: -0.1278, label: "London" }
+      end: { lat: 59.3293, lng: 18.0686, label: "Stockholm" }
     },
     {
       start: { lat: 48.8566, lng: 2.3522, label: "France" },
-      end: { lat: 52.5200, lng: 13.4050, label: "Berlin" }
+      end: { lat: 38.7223, lng: -9.1393, label: "Lisbonne" }
     },
     {
       start: { lat: 48.8566, lng: 2.3522, label: "France" },
-      end: { lat: 41.9028, lng: 12.4964, label: "Rome" }
+      end: { lat: 37.9838, lng: 23.7275, label: "Athènes" }
     },
-    // Destinations intercontinentales
+    // Destinations intercontinentales avec belles boucles
     {
       start: { lat: 48.8566, lng: 2.3522, label: "France" },
       end: { lat: 40.7128, lng: -74.006, label: "New York" }
