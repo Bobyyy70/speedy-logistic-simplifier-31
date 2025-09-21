@@ -8,6 +8,10 @@ interface MapPointsProps {
   dots: MapDot[];
   lineColor: string;
   secondaryLineColor: string;
+  dotColor?: string;
+  secondaryDotColor?: string;
+  opacity?: number;
+  priority?: boolean;
 }
 
 export const MapPoints: React.FC<MapPointsProps> = ({ 

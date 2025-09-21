@@ -17,11 +17,22 @@ export function WorldMap({
 }: WorldMapProps) {
   const { svgMap } = useDottedMap();
 
-  // Convert Dot[] to MapDot[] format for compatibility
-  const mapDots = dots.map(dot => ({
-    start: { ...dot.start, label: dot.start.lat === 48.8566 && dot.start.lng === 2.3522 ? "France" : undefined },
-    end: { ...dot.end, label: undefined }
-  }));
+  // Convert Dot[] to MapDot[] format for compatibility  
+  const mapDots = dots.map(dot => {
+    let endLabel = undefined;
+    // Add labels for European destinations
+    if (dot.end.lat === 51.5074 && dot.end.lng === -0.1278) endLabel = "London";
+    if (dot.end.lat === 52.5200 && dot.end.lng === 13.4050) endLabel = "Berlin";
+    if (dot.end.lat === 40.4168 && dot.end.lng === -3.7038) endLabel = "Madrid";
+    if (dot.end.lat === 41.9028 && dot.end.lng === 12.4964) endLabel = "Rome";
+    if (dot.end.lat === 52.3676 && dot.end.lng === 4.9041) endLabel = "Amsterdam";
+    if (dot.end.lat === 47.3769 && dot.end.lng === 8.5417) endLabel = "Zurich";
+    
+    return {
+      start: { ...dot.start, label: dot.start.lat === 48.8566 && dot.start.lng === 2.3522 ? "France" : undefined },
+      end: { ...dot.end, label: endLabel }
+    };
+  });
 
   return (
     <div className="w-full h-full relative">
@@ -58,6 +69,8 @@ export function WorldMap({
         />
         <MapPoints
           dots={mapDots}
+          lineColor={lineColor}
+          secondaryLineColor={secondaryLineColor}
           dotColor={dotColor}
           secondaryDotColor={secondaryDotColor}
           opacity={opacity}

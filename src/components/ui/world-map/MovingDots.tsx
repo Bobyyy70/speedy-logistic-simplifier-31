@@ -6,6 +6,10 @@ import { MapDot } from "./types";
 
 interface MovingDotsProps {
   dots: MapDot[];
+  dotColor?: string;
+  secondaryDotColor?: string;
+  opacity?: number;
+  priority?: boolean;
 }
 
 export const MovingDots: React.FC<MovingDotsProps> = ({ dots }) => {

@@ -4,31 +4,31 @@ import { LazyMotionWrapper } from "@/components/ui/lazy-motion-wrapper";
 import { WorldMap } from "@/components/ui/world-map/component";
 
 export function WorldMapBackground() {
-  // Define our international shipping routes
+  // Define our European shipping routes
   const shippingRoutes = [
     {
       start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-      end: { lat: 40.7128, lng: -74.0060 } // New York
+      end: { lat: 51.5074, lng: -0.1278 } // London, UK
     },
     {
       start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-      end: { lat: -33.8688, lng: 151.2093 } // Sydney
+      end: { lat: 52.5200, lng: 13.4050 } // Berlin, Germany
     },
     {
       start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-      end: { lat: 35.6762, lng: 139.6503 } // Tokyo
+      end: { lat: 40.4168, lng: -3.7038 } // Madrid, Spain
     },
     {
       start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-      end: { lat: 55.7558, lng: 37.6173 } // Moscow
+      end: { lat: 41.9028, lng: 12.4964 } // Rome, Italy
     },
     {
       start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-      end: { lat: -15.7975, lng: -47.8919 } // Brazil (Brasília)
+      end: { lat: 52.3676, lng: 4.9041 } // Amsterdam, Netherlands  
     },
     {
       start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-      end: { lat: -1.2921, lng: 36.8219 } // Nairobi, Kenya
+      end: { lat: 47.3769, lng: 8.5417 } // Zurich, Switzerland
     }
   ];
 

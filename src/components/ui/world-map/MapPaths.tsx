@@ -8,6 +8,8 @@ interface MapPathsProps {
   dots: MapDot[];
   lineColor: string;
   secondaryLineColor: string;
+  opacity?: number;
+  priority?: boolean;
 }
 
 const RawMapPaths: React.FC<MapPathsProps> = ({ dots, lineColor, secondaryLineColor }) => {
