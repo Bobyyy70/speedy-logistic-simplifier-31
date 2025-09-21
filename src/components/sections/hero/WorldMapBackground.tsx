@@ -6,54 +6,33 @@ import { WorldMap } from "@/components/ui/world-map/component";
 export function WorldMapBackground() {
   // Define our global logistics network from France
   const shippingRoutes = [
-    // Destinations européennes plus espacées
+    // Destinations nord
     {
       start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
       end: { lat: 59.3293, lng: 18.0686, label: "Stockholm" } // Stockholm, Sweden
     },
     {
       start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-      end: { lat: 38.7223, lng: -9.1393, label: "Lisbonne" } // Lisbon, Portugal
+      end: { lat: 59.9139, lng: 10.7522, label: "Oslo" } // Oslo, Norway
     },
+    // Destinations sud
     {
       start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
       end: { lat: 37.9838, lng: 23.7275, label: "Athènes" } // Athens, Greece
     },
     {
       start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-      end: { lat: 59.9139, lng: 10.7522, label: "Oslo" } // Oslo, Norway
+      end: { lat: 33.5731, lng: -7.5898, label: "Casablanca" } // Casablanca, Morocco
     },
-    {
-      start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-      end: { lat: 41.3851, lng: 2.1734, label: "Barcelone" } // Barcelona, Spain
-    },
-    // Intercontinental destinations - Americas
+    // Intercontinental destinations variées
     {
       start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
       end: { lat: 40.7128, lng: -74.0060, label: "New York" } // New York, USA
     },
     {
       start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-      end: { lat: 34.0522, lng: -118.2437, label: "Los Angeles" } // Los Angeles, USA
-    },
-    {
-      start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-      end: { lat: 43.6532, lng: -79.3832, label: "Toronto" } // Toronto, Canada
-    },
-    // Asia destinations
-    {
-      start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
       end: { lat: 35.6762, lng: 139.6503, label: "Tokyo" } // Tokyo, Japan
     },
-    {
-      start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-      end: { lat: 31.2304, lng: 121.4737, label: "Shanghai" } // Shanghai, China
-    },
-    {
-      start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
-      end: { lat: 1.3521, lng: 103.8198, label: "Singapore" } // Singapore
-    },
-    // Oceania & Others
     {
       start: { lat: 48.8566, lng: 2.3522 }, // Paris, France
       end: { lat: -33.8688, lng: 151.2093, label: "Sydney" } // Sydney, Australia
