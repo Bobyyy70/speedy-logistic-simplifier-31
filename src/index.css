@@ -144,6 +144,15 @@
     @apply min-h-[48px] text-fluid-base px-4 py-3 touch-manipulation rounded-lg;
   }
 
+  /* Mobile spacing utilities */
+  .mobile-spacing-x {
+    @apply space-x-4 md:space-x-6 lg:space-x-8;
+  }
+
+  .mobile-gap {
+    @apply gap-4 md:gap-6 lg:gap-8;
+  }
+
   /* Mobile-first responsive breakpoints */
   @media (min-width: 640px) {
     .mobile-grid-2 {

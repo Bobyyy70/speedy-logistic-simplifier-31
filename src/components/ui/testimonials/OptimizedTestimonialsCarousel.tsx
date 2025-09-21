@@ -2,7 +2,7 @@ import { useEffect, useState, useRef, useMemo, useCallback } from "react";
 import { motion } from "framer-motion";
 import { TestimonialCard } from "./TestimonialCard";
 import { testimonials } from "./data";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useEnhancedMobile } from "@/hooks/use-enhanced-mobile";
 import { useOptimizedAnimation } from "@/hooks/use-optimized-animation";
 
 // Configuration constants
@@ -19,11 +19,11 @@ export function OptimizedTestimonialsCarousel() {
   const [isTouching, setIsTouching] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
-  const isMobile = useIsMobile();
+  const mobile = useEnhancedMobile();
   
   // Memoized calculations
   const { cardWidth, cardGap, containerWidth, duplicatedTestimonials } = useMemo(() => {
-    const width = isMobile ? MOBILE_CARD_WIDTH : DESKTOP_CARD_WIDTH;
+    const width = mobile.isMobile ? MOBILE_CARD_WIDTH : DESKTOP_CARD_WIDTH;
     const gap = 20;
     const container = testimonials.length * (width + gap);
     const duplicated = [...testimonials, ...testimonials];
@@ -34,7 +34,7 @@ export function OptimizedTestimonialsCarousel() {
       containerWidth: container,
       duplicatedTestimonials: duplicated
     };
-  }, [isMobile]);
+  }, [mobile.isMobile]);
 
   // Optimized animation callback
   const animationCallback = useCallback((timestamp: number) => {
@@ -104,7 +104,7 @@ export function OptimizedTestimonialsCarousel() {
   return (
     <div
       ref={carouselRef}
-      className="overflow-hidden relative touch-none"
+      className="overflow-hidden relative touch-manipulation"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onTouchStart={handleTouchStart}
@@ -112,7 +112,7 @@ export function OptimizedTestimonialsCarousel() {
       onTouchEnd={handleTouchEnd}
     >
       <motion.div
-        className="flex gap-5 py-4"
+        className="flex gap-4 md:gap-6 py-4"
         style={{ 
           x: scrollX,
           willChange: 'transform'
@@ -123,7 +123,7 @@ export function OptimizedTestimonialsCarousel() {
           <TestimonialCard 
             key={`testimonial-${index}`}
             {...testimonial} 
-            isMobile={isMobile}
+            isMobile={mobile.isMobile}
           />
         ))}
       </motion.div>

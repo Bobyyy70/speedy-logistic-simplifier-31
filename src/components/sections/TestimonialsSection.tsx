@@ -7,8 +7,8 @@ import { sectionBgClass, BackgroundVariant } from "./section-variants";
 
 export function TestimonialsSection({ backgroundVariant = 'white' }: { backgroundVariant?: BackgroundVariant }) {
   return (
-    <section className={`py-16 md:py-24 ${sectionBgClass(backgroundVariant)} relative overflow-hidden`} >
-      <div className="container mx-auto px-4 relative z-10">
+    <section className={`mobile-section-padding ${sectionBgClass(backgroundVariant)} relative overflow-hidden`} >
+      <div className="mobile-container relative z-10">
         <div className="text-center mb-12 md:mb-16">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -22,12 +22,12 @@ export function TestimonialsSection({ backgroundVariant = 'white' }: { backgroun
           
           <AnimatedText
             text="Ils nous font confiance"
-            className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-slate-900 dark:text-white"
+            className="text-fluid-3xl font-bold tracking-tighter text-slate-900 dark:text-white"
             delay={0.2}
           />
           
           <motion.p
-            className="max-w-[700px] mx-auto mt-4 text-slate-600 dark:text-slate-300"
+            className="max-w-[700px] mx-auto mt-4 mobile-text-base text-slate-600 dark:text-slate-300"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}

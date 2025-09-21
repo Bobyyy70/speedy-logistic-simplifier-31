@@ -332,24 +332,24 @@ Message: ${sanitizedData.message || 'Aucun message'}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
-            className="space-y-4"
+            className="mobile-spacing-y"
           >
             <FormField
               control={form.control}
               name="firstName"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Prénom</FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <span className="absolute left-3 top-3 text-muted-foreground">
-                        <User className="h-4 w-4" />
-                      </span>
-                      <Input className="pl-10" placeholder="Votre prénom" {...field} />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
+                  <FormItem>
+                    <FormLabel className="mobile-text-sm">Prénom</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
+                          <User className="h-4 w-4" />
+                        </span>
+                        <Input className="pl-10 mobile-form-field" placeholder="Votre prénom" {...field} />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
               )}
             />
 
