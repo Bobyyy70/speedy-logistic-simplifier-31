@@ -41,6 +41,36 @@ export function WorldMap({
           contain: "layout style paint",
         }}
       />
+      <svg
+        className="absolute top-0 left-0 w-full h-full pointer-events-none"
+        viewBox="0 0 1056 495"
+        width={1056}
+        height={495}
+        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", pointerEvents: "none" }}
+        aria-hidden="true"
+      >
+        <MapPaths
+          dots={mapDots}
+          lineColor={lineColor}
+          secondaryLineColor={secondaryLineColor}
+          opacity={opacity}
+          priority={priority}
+        />
+        <MapPoints
+          dots={mapDots}
+          dotColor={dotColor}
+          secondaryDotColor={secondaryDotColor}
+          opacity={opacity}
+          priority={priority}
+        />
+        <MovingDots
+          dots={mapDots}
+          dotColor={dotColor}
+          secondaryDotColor={secondaryDotColor}
+          opacity={opacity}
+          priority={priority}
+        />
+      </svg>
     </div>
   );
 }
