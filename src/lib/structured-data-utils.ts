@@ -127,6 +127,100 @@ export const generateEventSchema = (event: {
   ...(event.url && { "url": event.url })
 });
 
+// Generate HowTo schema for step-by-step guides
+export const generateHowToSchema = (howTo: {
+  name: string;
+  description: string;
+  totalTime?: string;
+  steps: Array<{
+    name: string;
+    text: string;
+    duration?: string;
+    image?: string;
+  }>;
+  url?: string;
+}) => ({
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": howTo.name,
+  "description": howTo.description,
+  ...(howTo.totalTime && { "totalTime": howTo.totalTime }),
+  ...(howTo.url && { "url": howTo.url }),
+  "step": howTo.steps.map((step, index) => ({
+    "@type": "HowToStep",
+    "position": index + 1,
+    "name": step.name,
+    "text": step.text,
+    ...(step.duration && { "itemListElement": [{ "@type": "HowToDirection", "text": step.text }] }),
+    ...(step.image && { "image": step.image })
+  }))
+});
+
+// Generate Person schema for author information
+export const generatePersonSchema = (person: {
+  name: string;
+  jobTitle: string;
+  description: string;
+  image?: string;
+  email?: string;
+  url?: string;
+  sameAs?: string[];
+}) => ({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": person.name,
+  "jobTitle": person.jobTitle,
+  "description": person.description,
+  ...(person.image && { "image": person.image }),
+  ...(person.email && { "email": person.email }),
+  ...(person.url && { "url": person.url }),
+  ...(person.sameAs && { "sameAs": person.sameAs }),
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Speed E-Log"
+  }
+});
+
+// Generate DefinedTerm schema for glossary items
+export const generateDefinedTermSchema = (term: {
+  name: string;
+  description: string;
+  url?: string;
+}) => ({
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "name": term.name,
+  "description": term.description,
+  ...(term.url && { "url": term.url })
+});
+
+// Generate BreadcrumbList schema
+export const generateBreadcrumbSchema = (items: Array<{ name: string; url?: string }>) => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    ...(item.url && { "item": item.url })
+  }))
+});
+
+// Generate AggregateRating schema for reviews/testimonials
+export const generateAggregateRatingSchema = (rating: {
+  ratingValue: number;
+  reviewCount: number;
+  bestRating?: number;
+  worstRating?: number;
+}) => ({
+  "@context": "https://schema.org",
+  "@type": "AggregateRating",
+  "ratingValue": rating.ratingValue,
+  "reviewCount": rating.reviewCount,
+  "bestRating": rating.bestRating || 5,
+  "worstRating": rating.worstRating || 1
+});
+
 // Generate Product/Service offer schema
 export const generateOfferSchema = (offer: {
   name: string;
