@@ -20,7 +20,6 @@ export const CriticalResourcePreloader = () => {
     const preconnectDomains = [
       'https://js.hsforms.net',
       'https://js.hubspot.com',
-      'https://unpkg.com' // For dotted-map and other CDN resources
     ];
 
     preconnectDomains.forEach(domain => {

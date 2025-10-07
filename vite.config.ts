@@ -105,7 +105,7 @@ export default defineConfig(({ mode }) => ({
           'icons': ['lucide-react'],
           
           // Map and specialized components
-          'map-libs': ['dotted-map', 'simplex-noise'],
+          'map-libs': ['simplex-noise'],
           
           // External integrations
           'external': ['@calcom/embed-react'],
@@ -143,7 +143,6 @@ export default defineConfig(({ mode }) => ({
       ],
       exclude: [
         // Exclude heavy libraries that should be lazy loaded
-        'dotted-map',
         'recharts',
       ],
     },
