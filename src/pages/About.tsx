@@ -31,7 +31,18 @@ const About = () => {
   }, []);
 
   return (
-    <div className="relative overflow-hidden bg-slate-50 dark:bg-slate-950">
+    <>
+      <Helmet>
+        <title>À Propos de Speed E-Log | Notre Histoire et Nos Valeurs</title>
+        <meta name="description" content="Découvrez Speed E-Log, partenaire logistique des PME e-commerce françaises. Notre mission : simplifier votre logistique avec transparence et fiabilité." />
+        <meta name="keywords" content="à propos Speed E-Log, histoire, valeurs, mission, équipe logistique, partenaire e-commerce" />
+        <link rel="canonical" href="https://speedelog.net/about" />
+        <meta property="og:url" content="https://speedelog.net/about" />
+        <meta property="og:title" content="À Propos de Speed E-Log | Notre Histoire" />
+        <meta property="og:description" content="Découvrez Speed E-Log, partenaire logistique des PME e-commerce françaises. Notre mission : simplifier votre logistique." />
+      </Helmet>
+      
+      <div className="relative overflow-hidden bg-slate-50 dark:bg-slate-950">
       <BackgroundPaths 
         opacity={0.15} 
         preserveBackground={true}
@@ -418,7 +429,8 @@ const About = () => {
           </motion.div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };
 

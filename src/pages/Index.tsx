@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-
+import { Helmet } from "react-helmet-async";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { LazyMotionDiv } from "@/components/ui/lazy-motion";
 import { LazyInView } from "@/components/performance/LazyInView";
@@ -24,9 +24,21 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen relative">
+    <>
+      <Helmet>
+        <title>Speed E-Log | Logistique e-commerce pour PME françaises</title>
+        <meta name="description" content="Externalisez votre logistique e-commerce avec Speed E-Log. Fulfillment, préparation de commandes et expédition pour PME. Tarif dès 6,50€ TTC." />
+        <meta name="keywords" content="logistique e-commerce, fulfillment France, 3PL, préparation commandes, externalisation logistique PME" />
+        <link rel="canonical" href="https://speedelog.net/" />
+        <meta property="og:url" content="https://speedelog.net/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Speed E-Log | Logistique e-commerce pour PME" />
+        <meta property="og:description" content="Externalisez votre logistique e-commerce avec Speed E-Log. Fulfillment, préparation de commandes et expédition pour PME." />
+      </Helmet>
       
-      {/* Removed duplicate BackgroundGradientAnimation - only one in HeroSection */}
+      <div className="min-h-screen relative">
+        
+        {/* Removed duplicate BackgroundGradientAnimation - only one in HeroSection */}
 
       <div className="relative overflow-x-hidden z-10">
         
@@ -86,7 +98,8 @@ const Index = () => {
           <ContactCTA />
         </LazyMotionDiv>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 

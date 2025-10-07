@@ -46,6 +46,8 @@ const Sitemap: React.FC = () => {
         <title>Plan du Site - Speed E-Log | Navigation Complète</title>
         <meta name="description" content="Plan du site Speed E-Log - Accédez facilement à toutes nos pages : services logistiques, technologie, contact, FAQ et mentions légales." />
         <meta name="keywords" content="plan du site, navigation, Speed E-Log, logistique, e-commerce" />
+        <link rel="canonical" href="https://speedelog.net/sitemap" />
+        <meta property="og:url" content="https://speedelog.net/sitemap" />
         <meta name="robots" content="index, follow" />
         
       </Helmet>

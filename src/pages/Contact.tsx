@@ -20,6 +20,7 @@ const Contact = () => {
         <title>Contact Speed E-Log | Consultation logistique gratuite</title>
         <meta name="description" content="Contactez Speed E-Log et optimisez votre logistique e‑commerce. Consultation gratuite, réponse sous 24 h en France métropolitaine." />
         <meta name="keywords" content="contact speed e-log, consultation logistique, service client, SAV, rendez-vous, Port-sur-Saône, 37 rue rémaucourt, formulaire contact, calendrier" />
+        <link rel="canonical" href="https://speedelog.net/contact" />
         <meta name="geo.region" content="FR-70" />
         <meta name="geo.placename" content="Port-sur-Saône" />
         <meta name="geo.position" content="47.690249;6.042856" />

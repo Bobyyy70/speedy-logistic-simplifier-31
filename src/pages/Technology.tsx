@@ -71,7 +71,18 @@ const Technology = () => {
   ];
 
   return (
-    <div className="w-full relative site-background">
+    <>
+      <Helmet>
+        <title>Technologie SupplyOS | Speed E-Log</title>
+        <meta name="description" content="Découvrez SupplyOS, notre plateforme logistique intégrée. WMS, OMS, TMS avec intégrations e-commerce natives et analytics avancés." />
+        <meta name="keywords" content="SupplyOS, WMS, OMS, TMS, plateforme logistique, intégration e-commerce, analytics logistique" />
+        <link rel="canonical" href="https://speedelog.net/technology" />
+        <meta property="og:url" content="https://speedelog.net/technology" />
+        <meta property="og:title" content="Technologie SupplyOS | Speed E-Log" />
+        <meta property="og:description" content="Découvrez SupplyOS, notre plateforme logistique intégrée avec WMS, OMS, TMS et analytics avancés." />
+      </Helmet>
+      
+      <div className="w-full relative site-background">
 
       {/* Hero Section avec design moderne */}
       <section className="min-h-[90vh] relative overflow-hidden flex items-center">
@@ -484,7 +495,8 @@ const Technology = () => {
           </div>
         </section>
       </BackgroundPaths>
-    </div>
+      </div>
+    </>
   );
 };
 

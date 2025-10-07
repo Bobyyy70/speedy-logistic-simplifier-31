@@ -15,9 +15,20 @@ const Services: React.FC = () => {
   }, []);
 
   return (
-    <div className="w-full">
+    <>
+      <Helmet>
+        <title>Services Logistiques E-commerce | Speed E-Log</title>
+        <meta name="description" content="Solutions logistiques complètes pour e-commerce : réception, stockage, préparation, expédition et gestion des retours. Fulfillment 3PL pour PME." />
+        <meta name="keywords" content="services logistiques, fulfillment, stockage e-commerce, préparation commandes, 3PL France" />
+        <link rel="canonical" href="https://speedelog.net/services" />
+        <meta property="og:url" content="https://speedelog.net/services" />
+        <meta property="og:title" content="Services Logistiques E-commerce | Speed E-Log" />
+        <meta property="og:description" content="Solutions logistiques complètes pour e-commerce : réception, stockage, préparation, expédition et gestion des retours." />
+      </Helmet>
       
-      {/* Hero Section */}
+      <div className="w-full">
+        
+        {/* Hero Section */}
       <ServicesHero />
       
       {/* Key Benefits Section */}
@@ -58,7 +69,8 @@ const Services: React.FC = () => {
       
       {/* CTA Section */}
       <ServicesCta />
-    </div>
+      </div>
+    </>
   );
 };
 

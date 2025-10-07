@@ -5,6 +5,13 @@ import { Badge } from "@/components/ui/badge";
 const CookiePolicy = () => {
   return (
     <>
+      <Helmet>
+        <title>Politique de Gestion des Cookies | Speed E-Log</title>
+        <meta name="description" content="Politique de gestion des cookies et traceurs de Speed E-Log. Conforme aux lignes directrices CNIL 2020 et exigences 2024-2025." />
+        <link rel="canonical" href="https://speedelog.net/politique-cookies" />
+        <meta property="og:url" content="https://speedelog.net/politique-cookies" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
 
       <div className="container mx-auto px-4 py-12 max-w-4xl">
         <div className="space-y-8">
@@ -492,8 +499,8 @@ const CookiePolicy = () => {
               </p>
             </CardContent>
           </Card>
-        </div>
       </div>
+    </div>
     </>
   );
 };

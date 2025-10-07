@@ -8,7 +8,16 @@ const LegalMentions = () => {
   }, []);
 
   return (
-    <div className="container mx-auto py-16 px-4">
+    <>
+      <Helmet>
+        <title>Mentions Légales | Speed E-Log</title>
+        <meta name="description" content="Mentions légales de Speed E-Log - SAS au capital de 1000€, SIRET 934 758 020 00010, siège social Port-sur-Saône." />
+        <link rel="canonical" href="https://speedelog.net/mentions-legales" />
+        <meta property="og:url" content="https://speedelog.net/mentions-legales" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+      
+      <div className="container mx-auto py-16 px-4">
 
       <h1 className="text-3xl md:text-4xl font-bold mb-8">Mentions Légales</h1>
 
@@ -80,7 +89,8 @@ const LegalMentions = () => {
           </p>
         </section>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

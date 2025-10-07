@@ -7,7 +7,16 @@ const PrivacyPolicy = () => {
   }, []);
 
   return (
-    <div className="container mx-auto py-16 px-4">
+    <>
+      <Helmet>
+        <title>Politique de Confidentialité | Speed E-Log</title>
+        <meta name="description" content="Politique de protection des données personnelles de Speed E-Log. Conforme RGPD et CNIL 2024-2025." />
+        <link rel="canonical" href="https://speedelog.net/politique-confidentialite" />
+        <meta property="og:url" content="https://speedelog.net/politique-confidentialite" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+      
+      <div className="container mx-auto py-16 px-4">
 
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
@@ -381,6 +390,7 @@ const PrivacyPolicy = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

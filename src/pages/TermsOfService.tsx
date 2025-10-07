@@ -4,7 +4,17 @@ const TermsOfService = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  return <div className="container mx-auto py-16 px-4">
+  return (
+  <>
+    <Helmet>
+      <title>Conditions Générales de Vente | Speed E-Log</title>
+      <meta name="description" content="Conditions générales de vente de Speed E-Log - Services logistiques, stockage et préparation de commandes. CGV version du 13 juillet 2025." />
+      <link rel="canonical" href="https://speedelog.net/cgv" />
+      <meta property="og:url" content="https://speedelog.net/cgv" />
+      <meta name="robots" content="index, follow" />
+    </Helmet>
+    
+    <div className="container mx-auto py-16 px-4">
       <Helmet>
         <title>Conditions Générales de Vente | Speed E-Log</title>
         <meta name="description" content="Conditions générales de vente de Speed E-Log - Services logistiques, stockage et préparation de commandes. CGV version du 13 juillet 2025." />
@@ -360,6 +370,8 @@ const TermsOfService = () => {
           </p>
         </div>
       </div>
-    </div>;
+    </div>
+    </>
+  );
 };
 export default TermsOfService;

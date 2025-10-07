@@ -15,6 +15,9 @@ const Pricing = () => {
           name="description"
           content="Découvrez nos tarifs transparents pour la logistique e-commerce. Grille tarifaire claire et sans frais cachés pour les PME."
         />
+        <link rel="canonical" href="https://speedelog.net/pricing" />
+        <meta property="og:url" content="https://speedelog.net/pricing" />
+        <meta property="og:title" content="Tarifs Logistique E-commerce | Speed E-Log" />
       </Helmet>
 
       <div className="relative min-h-screen pt-24 pb-16">
