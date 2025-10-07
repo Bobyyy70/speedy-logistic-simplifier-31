@@ -1,6 +1,6 @@
 
 import React from "react";
-import { useDottedMap } from "./useDottedMap";
+import { useStaticMap } from "./useStaticMap";
 import { MapPaths } from "./MapPaths";
 import { MapPoints } from "./MapPoints";
 import { MovingDots } from "./MovingDots";
@@ -15,7 +15,7 @@ export function WorldMap({
   secondaryDotColor = "#f59e0b",
   priority = false
 }: WorldMapProps) {
-  const { svgMap } = useDottedMap();
+  const { svgPath } = useStaticMap();
 
   // Convert Dot[] to MapDot[] format for compatibility  
   const mapDots = dots.map(dot => {
@@ -37,15 +37,14 @@ export function WorldMap({
   return (
     <div className="w-full h-full relative">
       <img
-        src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
+        src={svgPath}
         className="h-full w-full [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)]"
         alt="Carte mondiale illustrant la portée internationale des services logistiques Speed E Log"
         height={495}
         width={1056}
         draggable={false}
         decoding="async"
-        loading="eager"
-        fetchPriority="high"
+        loading="lazy"
         style={{
           opacity,
           willChange: "auto",

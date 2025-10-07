@@ -18,7 +18,7 @@ export function LazyInView<T extends React.ComponentType<any>>({
   loader,
   fallback = null,
   className,
-  rootMargin = '600px',
+  rootMargin = '100px',
   threshold = 0.01,
   triggerOnce = true,
   wrapperStyle,

@@ -88,6 +88,9 @@
 /*.svg
   Cache-Control: public, max-age=31536000, immutable
 
+/world-map-*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
 /*.ico
   Cache-Control: public, max-age=31536000, immutable
 
