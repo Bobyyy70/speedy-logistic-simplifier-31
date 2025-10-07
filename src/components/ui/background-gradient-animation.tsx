@@ -66,18 +66,29 @@ export const BackgroundGradientAnimation = ({
 
   // Cache bounding rect once and update on resize to avoid forced reflow on mousemove
   useEffect(() => {
+    let resizeTimeout: NodeJS.Timeout;
     const updateRect = () => {
       if (interactiveRef.current?.parentElement) {
-        // Measure relative to container once; this read may trigger layout, but not on every mousemove
-        rectRef.current = interactiveRef.current.parentElement.getBoundingClientRect();
+        // Batch DOM reads using RAF to prevent layout thrashing
+        requestAnimationFrame(() => {
+          if (interactiveRef.current?.parentElement) {
+            rectRef.current = interactiveRef.current.parentElement.getBoundingClientRect();
+          }
+        });
       }
     };
-    const rafUpdate = () => requestAnimationFrame(updateRect);
+    
+    // Debounce resize updates to reduce reflow frequency
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(updateRect, 150);
+    };
 
     updateRect();
-    window.addEventListener('resize', rafUpdate, { passive: true } as any);
+    window.addEventListener('resize', handleResize, { passive: true });
     return () => {
-      window.removeEventListener('resize', rafUpdate as any);
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(resizeTimeout);
     };
   }, []);
 
@@ -137,7 +148,11 @@ export const BackgroundGradientAnimation = ({
         preserveBackground ? "" : "bg-[linear-gradient(40deg,var(--gradient-background-start),var(--gradient-background-end))]",
         containerClassName
       )}
-      style={{ height }} // Utilisation de la hauteur personnalisable
+      style={{ 
+        height,
+        willChange: 'transform',
+        contain: 'layout style paint'
+      }}
     >
       <svg className="hidden">
         <defs>
@@ -163,6 +178,10 @@ export const BackgroundGradientAnimation = ({
           "gradients-container h-full w-full blur-lg absolute inset-0",
           isSafari ? "blur-2xl" : "[filter:url(#blurMe)_blur(40px)]"
         )}
+        style={{
+          willChange: 'transform',
+          transform: 'translate3d(0, 0, 0)'
+        }}
       >
         <div
           className={cn(
@@ -219,6 +238,10 @@ export const BackgroundGradientAnimation = ({
               `[mix-blend-mode:var(--blending-value)] w-full h-full -top-1/2 -left-1/2`,
               `opacity-70`
             )}
+            style={{
+              willChange: 'transform',
+              contain: 'layout style paint'
+            }}
           ></div>
         )}
       </div>

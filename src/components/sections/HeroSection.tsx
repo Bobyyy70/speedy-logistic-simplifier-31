@@ -62,7 +62,8 @@ export function HeroSection() {
       className="relative w-full h-screen min-h-[100vh] overflow-hidden"
       style={{
         willChange: 'transform',
-        transform: 'translate3d(0, 0, 0)' // Force GPU layer
+        transform: 'translate3d(0, 0, 0)',
+        contain: 'layout style paint'
       }}
     >
       {/* Background gradient animation with enhanced colors and subtlety */}
