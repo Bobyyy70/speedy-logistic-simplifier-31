@@ -19,6 +19,19 @@ const CookiePolicy = lazy(() => import("./pages/CookiePolicy"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const Technology = lazy(() => import("./pages/Technology"));
 const Sitemap = lazy(() => import("./pages/Sitemap"));
+const Calculator = lazy(() => import("./pages/Calculator"));
+const Integrations = lazy(() => import("./pages/Integrations"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogArticle = lazy(() => import("./pages/BlogArticle"));
+
+// Service Detail Pages
+const FulfillmentEcommerce = lazy(() => import("./pages/services/FulfillmentEcommerce"));
+const WarehouseManagement = lazy(() => import("./pages/services/WarehouseManagement"));
+const TransportDistribution = lazy(() => import("./pages/services/TransportDistribution"));
+const FBAPrep = lazy(() => import("./pages/services/FBAPrep"));
+const CustomPackaging = lazy(() => import("./pages/services/CustomPackaging"));
+const ReturnsManagement = lazy(() => import("./pages/services/ReturnsManagement"));
+const B2BLogistics = lazy(() => import("./pages/services/B2BLogistics"));
 const App = () => (
   <TooltipProvider>
     <BrowserRouter>
@@ -27,8 +40,20 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/services/fulfillment-ecommerce" element={<FulfillmentEcommerce />} />
+            <Route path="/services/warehouse-management" element={<WarehouseManagement />} />
+            <Route path="/services/transport-distribution" element={<TransportDistribution />} />
+            <Route path="/services/fba-prep" element={<FBAPrep />} />
+            <Route path="/services/custom-packaging" element={<CustomPackaging />} />
+            <Route path="/services/returns-management" element={<ReturnsManagement />} />
+            <Route path="/services/b2b-logistics" element={<B2BLogistics />} />
             <Route path="/technology" element={<Technology />} />
             <Route path="/technologie" element={<Navigate to="/technology" replace />} />
+            <Route path="/calculator" element={<Calculator />} />
+            <Route path="/calculateur" element={<Navigate to="/calculator" replace />} />
+            <Route path="/integrations" element={<Integrations />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogArticle />} />
             {/* Redirection of all pricing routes to contact page */}
             <Route path="/pricing" element={<Navigate to="/contact" replace />} />
             <Route path="/tarifs" element={<Navigate to="/contact" replace />} />

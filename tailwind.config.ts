@@ -70,8 +70,18 @@ export default {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))'
+          50: '#fff7ed',
+          100: '#ffedd5',
+          200: '#fed7aa',
+          300: '#fdba74',
+          400: '#fb923c',
+          500: '#f97316', // Main brand orange
+          600: '#ea580c',
+          700: '#c2410c',
+          800: '#9a3412',
+          900: '#7c2d12',
+          DEFAULT: '#f97316',
+          foreground: '#ffffff'
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
@@ -248,6 +258,7 @@ export default {
       },
       fontFamily: {
         sans: [
+          'Inter',
           '-apple-system',
           'BlinkMacSystemFont',
           '"Segoe UI"',
@@ -257,6 +268,13 @@ export default {
           'sans-serif',
           '"Apple Color Emoji"',
           '"Segoe UI Emoji"',
+        ],
+        heading: [
+          'Poppins',
+          'Inter',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'sans-serif',
         ],
         serif: [
           'Georgia',
