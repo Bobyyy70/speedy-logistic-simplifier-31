@@ -21,6 +21,8 @@ const Technology = lazy(() => import("./pages/Technology"));
 const Sitemap = lazy(() => import("./pages/Sitemap"));
 const Calculator = lazy(() => import("./pages/Calculator"));
 const Integrations = lazy(() => import("./pages/Integrations"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogArticle = lazy(() => import("./pages/BlogArticle"));
 
 // Service Detail Pages
 const FulfillmentEcommerce = lazy(() => import("./pages/services/FulfillmentEcommerce"));
@@ -50,6 +52,8 @@ const App = () => (
             <Route path="/calculator" element={<Calculator />} />
             <Route path="/calculateur" element={<Navigate to="/calculator" replace />} />
             <Route path="/integrations" element={<Integrations />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogArticle />} />
             {/* Redirection of all pricing routes to contact page */}
             <Route path="/pricing" element={<Navigate to="/contact" replace />} />
             <Route path="/tarifs" element={<Navigate to="/contact" replace />} />
